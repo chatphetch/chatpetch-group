@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Chatpetch Group | บริษัท ฉัตรเพชร กรุ๊ป จำกัด</title>
@@ -11,38 +11,50 @@
     content="บริษัท ฉัตรเพชร กรุ๊ป จำกัด โรงงานผลิตและจำหน่ายวัสดุงานพื้นทุกประเภท พร้อมบริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร"
 >
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
->
-
 <style>
 
 /* =========================================================
    CHATPETCH GROUP
-   PREMIUM CORPORATE HOMEPAGE
-   CLEAN VERSION
+   PREMIUM WARM INDUSTRIAL HOMEPAGE
+   FULL SINGLE FILE
+========================================================= */
+
+@import url(
+    'https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap'
+);
+
+
+/* =========================================================
+   COLOR SYSTEM
 ========================================================= */
 
 :root{
-    --black:#030303;
-    --black2:#070707;
-    --dark:#0d0d0d;
-    --dark2:#121212;
 
-    --gold:#c9a45c;
-    --gold2:#e9cf8b;
-    --gold3:#8d6b2f;
+    --black:#0b0806;
+    --black2:#100c09;
 
-    --white:#ffffff;
-    --muted:#a6a6a6;
-    --muted2:#777;
+    --dark:#15100c;
+    --dark2:#1b140f;
 
-    --line:rgba(255,255,255,.10);
-    --gold-line:rgba(201,164,92,.32);
+    --brown:#241a13;
+    --brown2:#302219;
+    --brown3:#3d2c20;
+
+    --floor:#4b3828;
+    --floor2:#5c4531;
+
+    --gold:#bd934c;
+    --gold2:#d7b56e;
+    --gold3:#8b6632;
+
+    --white:#f2ede5;
+    --white2:#ddd4c9;
+
+    --muted:#aaa096;
+    --muted2:#82776c;
+
+    --line:rgba(204,169,108,.16);
+    --line2:rgba(255,255,255,.065);
 
     --max:1500px;
 }
@@ -63,10 +75,71 @@ html{
 }
 
 body{
-    background:#030303;
-    color:#fff;
-    font-family:'Prompt','Kanit',sans-serif;
+
+    min-height:100vh;
+
     overflow-x:hidden;
+
+    color:var(--white);
+
+    font-family:
+        'Prompt',
+        'Kanit',
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 80% 12%,
+            rgba(93,66,42,.22),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 12% 55%,
+            rgba(74,52,34,.16),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #120d09 0%,
+            #1b130e 42%,
+            #21170f 68%,
+            #100b08 100%
+        );
+
+    background-attachment:fixed;
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-20;
+
+    opacity:.22;
+
+    background-image:
+
+        linear-gradient(
+            rgba(210,175,113,.025) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(210,175,113,.025) 1px,
+            transparent 1px
+        );
+
+    background-size:72px 72px;
 }
 
 a{
@@ -74,68 +147,37 @@ a{
     text-decoration:none;
 }
 
-button,
-input,
-textarea,
-select{
+button{
     font-family:inherit;
-}
-
-img{
-    max-width:100%;
 }
 
 
 /* =========================================================
-   BACKGROUND
+   WARM AMBIENT LIGHT
 ========================================================= */
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-20;
-    pointer-events:none;
-
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,.022) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.022) 1px,
-            transparent 1px
-        );
-
-    background-size:60px 60px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            rgba(0,0,0,.45),
-            transparent
-        );
-}
-
 .bg-glow{
+
     position:fixed;
+
     width:650px;
     height:650px;
+
     border-radius:50%;
+
     pointer-events:none;
+
     z-index:-10;
+
+    filter:blur(60px);
 
     background:
         radial-gradient(
             circle,
-            rgba(201,164,92,.14) 0%,
-            rgba(201,164,92,.05) 35%,
-            transparent 72%
+            rgba(154,111,58,.14),
+            rgba(105,72,43,.06) 38%,
+            transparent 70%
         );
-
-    filter:blur(35px);
 }
 
 .glow-one{
@@ -144,8 +186,8 @@ body::before{
 }
 
 .glow-two{
-    top:650px;
-    left:-400px;
+    left:-360px;
+    top:850px;
 }
 
 
@@ -154,25 +196,29 @@ body::before{
 ========================================================= */
 
 .top-line{
+
     position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
     height:3px;
+
     z-index:9999;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            var(--gold),
-            var(--gold2),
-            var(--gold),
+            #8c6633,
+            #d2ae68,
+            #8c6633,
             transparent
         );
 
     box-shadow:
-        0 0 15px rgba(201,164,92,.75);
+        0 0 14px rgba(190,145,73,.35);
 }
 
 
@@ -181,23 +227,27 @@ body::before{
 ========================================================= */
 
 .side-line{
+
     position:fixed;
+
     top:15%;
     bottom:15%;
     left:18px;
-    width:1px;
 
-    z-index:20;
-    pointer-events:none;
+    width:1px;
 
     background:
         linear-gradient(
             transparent,
-            rgba(201,164,92,.55),
+            rgba(190,145,73,.34),
             transparent
         );
 
-    opacity:.65;
+    opacity:.55;
+
+    z-index:20;
+
+    pointer-events:none;
 }
 
 
@@ -206,7 +256,12 @@ body::before{
 ========================================================= */
 
 .container{
-    width:min(var(--max),calc(100% - 80px));
+
+    width:min(
+        var(--max),
+        calc(100% - 80px)
+    );
+
     margin:0 auto;
 }
 
@@ -216,50 +271,78 @@ body::before{
 ========================================================= */
 
 .header{
+
     position:fixed;
+
     top:3px;
     left:0;
+
     width:100%;
+
     z-index:1000;
 
-    background:rgba(3,3,3,.88);
+    background:
+        linear-gradient(
+            180deg,
+            rgba(11,8,6,.96),
+            rgba(20,14,10,.91)
+        );
 
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
 
     border-bottom:
-        1px solid rgba(201,164,92,.16);
+        1px solid rgba(193,150,79,.18);
+
+    box-shadow:
+        0 12px 40px rgba(0,0,0,.28);
 }
 
 .header > .container{
+
     width:100%;
+
     max-width:1760px;
-    padding:0 22px;
+
+    padding:
+        0 22px;
+
+    margin:0 auto;
 }
 
 .navbar{
+
+    width:100%;
+
     height:86px;
 
     display:flex;
+
     align-items:center;
 
-    width:100%;
     gap:26px;
 }
 
 
-/* BRAND */
+/* =========================================================
+   BRAND
+========================================================= */
 
 .customer-brand{
+
     display:flex;
+
     align-items:center;
+
     gap:13px;
 
     min-width:345px;
+
     flex:0 0 auto;
 }
 
 .customer-brand img{
+
     width:72px;
     height:72px;
 
@@ -267,21 +350,29 @@ body::before{
     max-height:72px;
 
     object-fit:contain;
+
     display:block;
 
     flex:0 0 72px;
 }
 
 .customer-brand-text{
+
     display:flex;
+
     flex-direction:column;
+
     min-width:0;
 }
 
 .customer-brand-text strong{
+
     display:block;
 
+    color:#eee8dd;
+
     font-size:18px;
+
     font-weight:600;
 
     letter-spacing:1.8px;
@@ -290,86 +381,126 @@ body::before{
 }
 
 .customer-brand-text small{
+
     display:block;
 
     margin-top:2px;
 
-    color:var(--gold);
+    color:#c4a05c;
 
     font-size:9px;
+
     letter-spacing:2px;
 
     white-space:nowrap;
 }
 
 
-/* NAV */
+/* =========================================================
+   NAV
+========================================================= */
 
 .customer-nav{
+
     display:flex;
+
     align-items:center;
 
     flex:1 1 auto;
+
     min-width:0;
 
     gap:18px;
 }
 
 .customer-nav-main{
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     flex:1 1 auto;
+
     min-width:0;
 
-    gap:clamp(4px,.55vw,12px);
+    gap:clamp(
+        4px,
+        .55vw,
+        12px
+    );
 }
 
 .customer-nav-actions{
+
     display:flex;
+
     align-items:center;
+
     justify-content:flex-end;
 
     flex:0 0 auto;
 
     gap:10px;
+
     margin-left:auto;
 }
 
-.customer-nav > div a,
+.customer-nav > a,
 .customer-nav-main > a,
+.customer-nav-actions > a,
 .nav-drop-trigger{
+
     position:relative;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     min-height:46px;
 
     padding:
         11px
-        clamp(7px,.55vw,11px);
+        clamp(
+            7px,
+            .55vw,
+            11px
+        );
 
-    color:#cfcfcf;
+    color:#c5bdb3;
 
     background:transparent;
+
     border:0;
 
-    font-family:'Prompt','Kanit',sans-serif;
-    font-size:clamp(11px,.63vw,13px);
+    font-family:
+        'Prompt',
+        'Kanit',
+        sans-serif;
+
+    font-size:
+        clamp(
+            11px,
+            .63vw,
+            13px
+        );
+
     font-weight:400;
 
     line-height:1;
 
     cursor:pointer;
+
     white-space:nowrap;
 }
 
 .customer-nav-main > a::after,
-.nav-drop-trigger::after,
-.customer-nav-actions > a::after{
+.customer-nav-actions > a::after,
+.nav-drop-trigger::after{
+
     content:"";
 
     position:absolute;
@@ -380,41 +511,55 @@ body::before{
 
     height:1px;
 
-    background:var(--gold);
+    background:#b9914d;
 
     transform:scaleX(0);
+
     transform-origin:center;
 
-    transition:.25s;
+    transition:.3s;
 }
 
 .customer-nav-main > a:hover,
 .customer-nav-main > a.active,
 .customer-nav-actions > a:hover,
 .nav-drop-trigger:hover{
-    color:#fff;
+
+    color:#eee6dc;
 }
 
 .customer-nav-main > a:hover::after,
 .customer-nav-main > a.active::after,
 .customer-nav-actions > a:hover::after,
-.nav-drop-trigger:hover::after,
 .nav-dropdown:hover .nav-drop-trigger::after,
 .nav-dropdown.open .nav-drop-trigger::after{
+
     transform:scaleX(1);
 }
 
 
-/* SERVICE DROPDOWN */
+/* =========================================================
+   SERVICE DROPDOWN
+========================================================= */
 
 .nav-dropdown{
     position:relative;
 }
 
+.nav-drop-trigger{
+
+    min-height:46px;
+
+    color:#c5bdb3;
+
+    font-weight:400;
+}
+
 .nav-drop-trigger .arrow{
+
     margin-left:6px;
 
-    color:var(--gold2);
+    color:#d0ad69;
 
     font-size:8px;
 
@@ -423,34 +568,44 @@ body::before{
 
 .nav-dropdown:hover .arrow,
 .nav-dropdown.open .arrow{
+
     transform:rotate(180deg);
 }
 
 .nav-submenu{
+
     position:absolute;
 
     top:calc(100% - 2px);
-    left:50%;
 
-    transform:
-        translateX(-50%)
-        translateY(8px);
+    left:50%;
 
     width:245px;
 
     padding:8px;
 
-    background:rgba(8,8,8,.98);
-
-    border:
-        1px solid rgba(201,164,92,.32);
-
-    box-shadow:
-        0 24px 50px rgba(0,0,0,.6);
+    transform:
+        translateX(-50%)
+        translateY(8px);
 
     opacity:0;
+
     visibility:hidden;
+
     pointer-events:none;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211811,
+            #100c09
+        );
+
+    border:
+        1px solid rgba(195,153,81,.28);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.68);
 
     transition:.22s;
 
@@ -458,16 +613,17 @@ body::before{
 }
 
 .nav-submenu a{
+
     display:block;
 
     padding:11px 13px;
 
-    color:#cfcfcf;
+    color:#c2b7aa;
 
     font-size:12px;
 
     border-bottom:
-        1px solid rgba(255,255,255,.06);
+        1px solid rgba(255,255,255,.055);
 
     transition:.2s;
 }
@@ -477,18 +633,22 @@ body::before{
 }
 
 .nav-submenu a:hover{
-    color:var(--gold2);
+
+    color:#d9b873;
 
     background:
-        rgba(201,164,92,.07);
+        rgba(157,113,58,.08);
 
     padding-left:17px;
 }
 
 .nav-dropdown:hover .nav-submenu,
 .nav-dropdown.open .nav-submenu{
+
     opacity:1;
+
     visibility:visible;
+
     pointer-events:auto;
 
     transform:
@@ -497,20 +657,28 @@ body::before{
 }
 
 
-/* CART */
+/* =========================================================
+   CART
+========================================================= */
 
 .nav-shop{
+
     border:
-        1px solid rgba(201,164,92,.40)!important;
+        1px solid rgba(195,153,81,.34)
+        !important;
 
-    color:var(--gold2)!important;
+    color:#d0ad69 !important;
 
-    padding-left:16px!important;
-    padding-right:16px!important;
+    margin-left:0 !important;
+
+    padding-left:16px !important;
+    padding-right:16px !important;
 }
 
 .cart-count{
+
     display:inline-grid;
+
     place-items:center;
 
     min-width:20px;
@@ -520,29 +688,34 @@ body::before{
 
     border-radius:50%;
 
-    background:var(--gold);
-    color:#000;
+    background:#bb914a;
+
+    color:#110c08;
 
     font-size:10px;
+
     font-weight:700;
 }
 
 
-/* MOBILE BUTTON */
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
 
 .menu-toggle{
+
     display:none;
 
     width:44px;
     height:44px;
 
     border:
-        1px solid var(--gold-line);
+        1px solid rgba(195,153,81,.30);
 
     background:
-        rgba(255,255,255,.03);
+        rgba(33,23,16,.65);
 
-    color:#fff;
+    color:#e1d5c6;
 
     cursor:pointer;
 }
@@ -553,29 +726,40 @@ body::before{
 ========================================================= */
 
 .hero{
+
     position:relative;
 
-    min-height:calc(100vh - 0px);
-    height:780px;
-
-    max-height:900px;
-
-    margin-top:0;
-
-    padding-top:89px;
+    min-height:100vh;
 
     display:flex;
-    align-items:stretch;
+
+    align-items:center;
 
     overflow:hidden;
 
-    background:#050505;
+    padding-top:89px;
+
+    background:
+
+        radial-gradient(
+            circle at 75% 45%,
+            rgba(75,52,34,.35),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            120deg,
+            #120d09,
+            #241a13 52%,
+            #110c09
+        );
 }
 
 
 /* HERO IMAGE */
 
 .hero-bg{
+
     position:absolute;
 
     inset:0;
@@ -583,40 +767,32 @@ body::before{
     width:100%;
     height:100%;
 
+    display:block;
+
     object-fit:cover;
 
     object-position:center center;
 
     z-index:0;
 
-    display:block;
+    filter:
+        brightness(.47)
+        saturate(.68)
+        contrast(1.06)
+        sepia(.16);
 
-    background:
-        radial-gradient(
-            circle at 72% 45%,
-            rgba(201,164,92,.12),
-            transparent 35%
-        ),
-        linear-gradient(
-            120deg,
-            #050505,
-            #101010
-        );
+    transform:scale(1.015);
 }
 
-
-/*
-   ถ้ารูปยังไม่มีใน GitHub
-   จะไม่แสดง alt text ทับหน้าจอ
-*/
 .hero-bg.image-error{
     display:none;
 }
 
 
-/* HERO OVERLAY */
+/* HERO WARM OVERLAY */
 
 .hero::before{
+
     content:"";
 
     position:absolute;
@@ -628,27 +804,29 @@ body::before{
     pointer-events:none;
 
     background:
+
         linear-gradient(
             90deg,
-            rgba(0,0,0,.92) 0%,
-            rgba(0,0,0,.78) 24%,
-            rgba(0,0,0,.42) 48%,
-            rgba(0,0,0,.12) 72%,
-            rgba(0,0,0,.05) 100%
+            rgba(9,6,4,.94) 0%,
+            rgba(19,13,9,.82) 24%,
+            rgba(39,27,18,.55) 50%,
+            rgba(31,22,15,.34) 72%,
+            rgba(10,7,5,.48) 100%
         ),
 
         linear-gradient(
             180deg,
-            rgba(0,0,0,.15) 0%,
-            rgba(0,0,0,.04) 50%,
-            rgba(0,0,0,.60) 100%
+            rgba(7,5,4,.18),
+            rgba(20,13,8,.25) 52%,
+            rgba(9,6,4,.72) 100%
         );
 }
 
 
-/* GOLD EDGE */
+/* WARM FLOOR TEXTURE */
 
 .hero::after{
+
     content:"";
 
     position:absolute;
@@ -659,65 +837,98 @@ body::before{
 
     pointer-events:none;
 
+    background:
+
+        radial-gradient(
+            ellipse at 75% 70%,
+            rgba(115,81,48,.13),
+            transparent 38%
+        ),
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(183,137,73,.035),
+            transparent
+        );
+
     border-bottom:
-        1px solid rgba(201,164,92,.18);
+        1px solid rgba(193,153,85,.15);
 }
 
 
-/* HERO CONTENT */
+/* =========================================================
+   HERO CONTENT
+========================================================= */
 
 .hero-inner{
+
     position:relative;
 
     z-index:5;
 
-    width:min(1500px,calc(100% - 80px));
+    width:min(
+        1500px,
+        calc(100% - 80px)
+    );
 
     height:100%;
+
+    min-height:calc(100vh - 89px);
 
     margin:0 auto;
 
     display:flex;
+
     align-items:center;
 }
 
 .hero-content{
-    width:min(760px,68%);
+
+    width:min(
+        760px,
+        68%
+    );
 
     padding:
         30px
         0
-        130px;
+        150px;
 }
 
 
 /* LABEL */
 
 .hero-label{
+
     display:flex;
+
     align-items:center;
 
     gap:12px;
 
     margin-bottom:22px;
 
-    color:var(--gold2);
+    color:#d1ae6a;
 
     font-size:12px;
+
     letter-spacing:4px;
 }
 
 .hero-label::before{
+
     content:"";
 
     width:40px;
+
     height:1px;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            var(--gold)
+            #bd934c
         );
 }
 
@@ -725,7 +936,14 @@ body::before{
 /* TITLE */
 
 .hero h1{
-    font-family:'Kanit',sans-serif;
+
+    margin-bottom:24px;
+
+    color:#eee9df;
+
+    font-family:
+        'Kanit',
+        sans-serif;
 
     font-size:
         clamp(
@@ -739,35 +957,38 @@ body::before{
     font-weight:600;
 
     letter-spacing:-2px;
-
-    margin-bottom:24px;
 }
 
 .hero h1 span{
+
     display:block;
 
-    color:var(--gold2);
+    color:#d1aa63;
 }
 
 
 /* DESCRIPTION */
 
 .hero-description{
+
     max-width:690px;
 
-    color:#e3e3e3;
+    margin-bottom:28px;
+
+    color:#d0c7bc;
 
     font-size:14px;
 
     line-height:1.9;
-
-    margin-bottom:28px;
 }
 
 
-/* BUTTONS */
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .hero-buttons{
+
     display:flex;
 
     gap:13px;
@@ -776,67 +997,95 @@ body::before{
 }
 
 .btn{
+
     min-height:50px;
 
     padding:
-        0
-        25px;
+        0 25px;
 
     display:inline-flex;
 
     align-items:center;
+
     justify-content:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    color:#e9dfd2;
 
     font-size:13px;
 
     transition:.3s;
-
-    position:relative;
-    overflow:hidden;
 }
 
 .btn-gold{
+
+    color:#171009;
+
     background:
         linear-gradient(
             135deg,
-            var(--gold2),
-            var(--gold),
-            var(--gold3)
+            #d7b76f,
+            #bd934c,
+            #8c6633
         );
-
-    color:#050505;
 
     font-weight:600;
 
     box-shadow:
-        0 10px 35px
-        rgba(201,164,92,.18);
+        0 10px 35px rgba(102,72,38,.24);
 }
 
 .btn-gold:hover{
+
     transform:translateY(-3px);
 
     box-shadow:
-        0 15px 45px
-        rgba(201,164,92,.32);
+        0 15px 45px rgba(111,76,37,.38);
 }
 
 .btn-line{
-    border:
-        1px solid rgba(255,255,255,.28);
 
-    color:#fff;
+    color:#e4dbd0;
 
     background:
-        rgba(255,255,255,.025);
+        rgba(33,24,17,.34);
+
+    border:
+        1px solid rgba(213,193,163,.26);
 }
 
 .btn-line:hover{
-    border-color:var(--gold);
 
-    color:var(--gold2);
+    color:#d7b56e;
+
+    border-color:#b99250;
 
     transform:translateY(-3px);
+}
+
+.btn-outline{
+
+    color:#caa665;
+
+    background:transparent;
+
+    border:
+        1px solid rgba(195,153,81,.34);
+
+    white-space:nowrap;
+}
+
+.btn-outline:hover{
+
+    color:#e0c17f;
+
+    background:
+        rgba(155,112,57,.08);
+
+    border-color:#c49b56;
 }
 
 
@@ -845,6 +1094,7 @@ body::before{
 ========================================================= */
 
 .hero-points{
+
     position:absolute;
 
     left:0;
@@ -853,21 +1103,30 @@ body::before{
     z-index:7;
 
     width:950px;
+
     max-width:100%;
 
     display:grid;
 
     grid-template-columns:
-        repeat(4,minmax(150px,1fr));
+        repeat(
+            4,
+            minmax(
+                150px,
+                1fr
+            )
+        );
 
     border-top:
-        1px solid rgba(255,255,255,.14);
+        1px solid rgba(210,180,131,.16);
 }
 
 .hero-point{
+
     min-height:95px;
 
     display:flex;
+
     align-items:center;
 
     gap:10px;
@@ -877,7 +1136,7 @@ body::before{
         18px;
 
     border-right:
-        1px solid rgba(255,255,255,.10);
+        1px solid rgba(210,180,131,.09);
 }
 
 .hero-point:first-child{
@@ -889,10 +1148,12 @@ body::before{
 }
 
 .hero-point-icon{
+
     width:26px;
+
     flex:0 0 26px;
 
-    color:#f1c85f;
+    color:#d0aa60;
 
     font-size:22px;
 
@@ -902,9 +1163,10 @@ body::before{
 }
 
 .hero-point strong{
+
     display:block;
 
-    color:#fff;
+    color:#e2d9ce;
 
     font-size:13px;
 
@@ -914,11 +1176,12 @@ body::before{
 }
 
 .hero-point small{
+
     display:block;
 
     margin-top:3px;
 
-    color:#a7a7a7;
+    color:#8f8378;
 
     font-size:10px;
 
@@ -927,89 +1190,12 @@ body::before{
 
 
 /* =========================================================
-   SCROLL DOWN BUTTON
+   IMPORTANT:
+   NO HERO ARROW
 ========================================================= */
 
 .hero-next{
-    position:absolute;
-
-    right:32px;
-    bottom:38px;
-
-    z-index:10;
-
-    width:58px;
-    height:58px;
-
-    display:grid;
-    place-items:center;
-
-    border:
-        1px solid rgba(201,164,92,.45);
-
-    border-radius:50%;
-
-    background:
-        rgba(0,0,0,.70);
-
-    color:#f1c85f;
-
-    font-size:28px;
-
-    line-height:1;
-
-    cursor:pointer;
-
-    transition:
-        transform .3s ease,
-        background .3s ease,
-        border-color .3s ease;
-}
-
-.hero-next:hover{
-    background:
-        rgba(201,164,92,.95);
-
-    color:#050505;
-
-    border-color:#e9cf8b;
-
-    transform:translateY(-5px);
-}
-
-.hero-next::after{
-    content:"";
-
-    position:absolute;
-
-    inset:-8px;
-
-    border:
-        1px solid rgba(201,164,92,.13);
-
-    border-radius:50%;
-
-    pointer-events:none;
-}
-
-.hero-next span{
-    display:block;
-
-    animation:
-        arrowDown 1.6s ease-in-out infinite;
-}
-
-@keyframes arrowDown{
-
-    0%,
-    100%{
-        transform:translateY(-2px);
-    }
-
-    50%{
-        transform:translateY(4px);
-    }
-
+    display:none !important;
 }
 
 
@@ -1018,29 +1204,42 @@ body::before{
 ========================================================= */
 
 .stats-bar{
+
     border-top:
-        1px solid rgba(255,255,255,.09);
+        1px solid rgba(205,170,108,.13);
 
     border-bottom:
-        1px solid rgba(255,255,255,.09);
+        1px solid rgba(205,170,108,.13);
 
-    background:#050505;
+    background:
+        linear-gradient(
+            180deg,
+            #1b140f,
+            #21170f
+        );
 }
 
 .stats-grid{
+
     display:grid;
 
     grid-template-columns:
-        repeat(4,1fr);
+        repeat(
+            4,
+            1fr
+        );
 }
 
 .stat{
+
     min-height:112px;
 
     display:flex;
+
     flex-direction:column;
 
     align-items:center;
+
     justify-content:center;
 
     text-align:center;
@@ -1048,7 +1247,7 @@ body::before{
     padding:18px 20px;
 
     border-right:
-        1px solid rgba(255,255,255,.12);
+        1px solid rgba(205,170,108,.10);
 }
 
 .stat:last-child{
@@ -1056,9 +1255,10 @@ body::before{
 }
 
 .stat strong{
-    font-family:'Kanit',sans-serif;
 
-    color:#f1c85f;
+    color:#caa15c;
+
+    font-family:'Kanit',sans-serif;
 
     font-size:22px;
 
@@ -1066,28 +1266,41 @@ body::before{
 }
 
 .stat span{
+
     margin-top:5px;
 
-    color:#d0d0d0;
+    color:#aa9f94;
 
     font-size:11px;
 }
 
 
 /* =========================================================
-   SECTION
+   COMMON SECTION
 ========================================================= */
 
 .menu-section{
-    padding:95px 0 100px;
 
-    background:#080808;
+    padding:
+        95px
+        0
+        100px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #211810 0%,
+            #19120e 100%
+        );
 }
 
 .section-head{
+
     display:flex;
 
     align-items:flex-end;
+
     justify-content:space-between;
 
     gap:40px;
@@ -1096,16 +1309,20 @@ body::before{
 }
 
 .section-kicker{
-    color:var(--gold);
+
+    margin-bottom:8px;
+
+    color:#bd934c;
 
     font-size:11px;
 
     letter-spacing:3px;
-
-    margin-bottom:8px;
 }
 
 .section-head h2{
+
+    color:#e5ddd3;
+
     font-family:'Kanit',sans-serif;
 
     font-size:
@@ -1121,33 +1338,16 @@ body::before{
 }
 
 .section-head .lead{
+
     max-width:650px;
 
     margin-top:10px;
 
-    color:#9d9d9d;
+    color:#9e9388;
 
     font-size:13px;
 
     line-height:1.85;
-}
-
-.btn-outline{
-    border:
-        1px solid rgba(201,164,92,.38);
-
-    color:var(--gold2);
-
-    background:transparent;
-
-    white-space:nowrap;
-}
-
-.btn-outline:hover{
-    background:
-        rgba(201,164,92,.08);
-
-    border-color:var(--gold);
 }
 
 
@@ -1156,25 +1356,35 @@ body::before{
 ========================================================= */
 
 .solution-cards{
+
     display:grid;
 
     grid-template-columns:
-        repeat(5,1fr);
+        repeat(
+            5,
+            1fr
+        );
 
     gap:14px;
 }
 
 .solution-card{
+
     position:relative;
 
     min-width:0;
 
     overflow:hidden;
 
-    background:#0e0e0e;
+    background:
+        linear-gradient(
+            145deg,
+            #2a2018,
+            #18110d
+        );
 
     border:
-        1px solid rgba(255,255,255,.09);
+        1px solid rgba(203,167,105,.13);
 
     transition:
         transform .3s ease,
@@ -1183,45 +1393,72 @@ body::before{
 }
 
 .solution-card:hover{
+
     transform:translateY(-7px);
 
     border-color:
-        rgba(201,164,92,.45);
+        rgba(204,166,100,.38);
 
     box-shadow:
-        0 25px 60px
-        rgba(0,0,0,.5);
+        0 25px 60px rgba(0,0,0,.50);
 }
 
 .solution-card .image{
+
     height:180px;
 
     overflow:hidden;
 
-    background:#151515;
+    background:#21170f;
 }
 
 .solution-card .image img{
+
     width:100%;
     height:100%;
 
-    object-fit:cover;
-
     display:block;
 
+    object-fit:cover;
+
+    filter:
+        saturate(.72)
+        sepia(.12)
+        brightness(.78);
+
     transition:
-        transform .5s ease;
+        transform .5s ease,
+        filter .5s ease;
 }
 
 .solution-card:hover .image img{
+
     transform:scale(1.06);
+
+    filter:
+        saturate(.82)
+        sepia(.10)
+        brightness(.88);
 }
 
 .solution-card .body{
+
     padding:20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(49,36,25,.34),
+            rgba(19,13,9,.42)
+        );
 }
 
 .solution-card h3{
+
+    margin-bottom:7px;
+
+    color:#e1d7cb;
+
     font-family:'Kanit',sans-serif;
 
     font-size:19px;
@@ -1229,48 +1466,42 @@ body::before{
     font-weight:500;
 
     line-height:1.3;
-
-    margin-bottom:7px;
 }
 
 .solution-card p{
-    color:#888;
+
+    min-height:38px;
+
+    color:#91867b;
 
     font-size:11px;
 
     line-height:1.7;
-
-    min-height:38px;
 }
 
 .solution-link{
+
     display:flex;
 
     align-items:center;
-    justify-content:space-between;
 
     margin-top:18px;
 
     padding-top:13px;
 
-    border-top:
-        1px solid rgba(255,255,255,.07);
-
-    color:#aaa;
+    color:#9d9185;
 
     font-size:10px;
+
+    border-top:
+        1px solid rgba(208,174,112,.09);
 }
+
+
+/* ไม่มีลูกศรในการ์ด */
 
 .solution-link b{
-    color:var(--gold);
-
-    font-size:18px;
-
-    transition:.3s;
-}
-
-.solution-card:hover .solution-link b{
-    transform:translateX(5px);
+    display:none !important;
 }
 
 
@@ -1279,22 +1510,32 @@ body::before{
 ========================================================= */
 
 .home-about{
-    padding:110px 0;
 
-    background:#050505;
+    padding:
+        110px
+        0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #17110d,
+            #21170f
+        );
 
     border-top:
-        1px solid rgba(255,255,255,.08);
+        1px solid rgba(205,170,108,.12);
 
     border-bottom:
-        1px solid rgba(255,255,255,.08);
+        1px solid rgba(205,170,108,.12);
 }
 
 .home-about-grid{
+
     display:grid;
 
     grid-template-columns:
-        .9fr 1.1fr;
+        .9fr
+        1.1fr;
 
     gap:80px;
 
@@ -1302,6 +1543,11 @@ body::before{
 }
 
 .home-about h2{
+
+    margin-bottom:25px;
+
+    color:#e6ddd2;
+
     font-family:'Kanit',sans-serif;
 
     font-size:
@@ -1314,43 +1560,52 @@ body::before{
     line-height:1.2;
 
     font-weight:500;
-
-    margin-bottom:25px;
 }
 
 .home-about p{
-    color:#aaa;
+
+    margin-bottom:13px;
+
+    color:#aaa096;
 
     font-size:13px;
 
     line-height:2;
-
-    margin-bottom:13px;
 }
 
 
-/* VALUES */
+/* =========================================================
+   VALUE GRID
+========================================================= */
 
 .value-grid{
+
     display:grid;
 
     grid-template-columns:
-        repeat(2,1fr);
+        repeat(
+            2,
+            1fr
+        );
 
     border:
-        1px solid rgba(255,255,255,.09);
+        1px solid rgba(205,170,108,.13);
+
+    background:
+        rgba(26,18,12,.35);
 }
 
 .value{
+
     min-height:145px;
 
     padding:25px;
 
     border-right:
-        1px solid rgba(255,255,255,.09);
+        1px solid rgba(205,170,108,.11);
 
     border-bottom:
-        1px solid rgba(255,255,255,.09);
+        1px solid rgba(205,170,108,.11);
 
     transition:.3s;
 }
@@ -1364,38 +1619,44 @@ body::before{
 }
 
 .value:hover{
+
     background:
-        rgba(201,164,92,.045);
+        rgba(143,101,52,.075);
 }
 
 .value-icon{
-    color:var(--gold);
-
-    font-size:20px;
 
     margin-bottom:15px;
+
+    color:#c29a56;
+
+    font-size:20px;
 }
 
 .value strong{
+
     display:block;
+
+    margin-bottom:5px;
+
+    color:#ded5ca;
 
     font-family:'Kanit',sans-serif;
 
     font-size:17px;
 
     font-weight:500;
-
-    margin-bottom:5px;
 }
 
 .value p{
-    color:#777;
+
+    margin:0;
+
+    color:#8f8378;
 
     font-size:10px;
 
     line-height:1.7;
-
-    margin:0;
 }
 
 
@@ -1404,39 +1665,45 @@ body::before{
 ========================================================= */
 
 .home-cta{
+
     position:relative;
 
     overflow:hidden;
 
     background:
+
         linear-gradient(
             90deg,
-            #0a0a0a,
-            #15110a
+            #21160e,
+            #302116 48%,
+            #19110c
         );
 
     border-bottom:
-        1px solid rgba(201,164,92,.16);
+        1px solid rgba(204,166,101,.15);
 }
 
 .home-cta::before{
+
     content:"";
 
     position:absolute;
 
     inset:0;
 
+    pointer-events:none;
+
     background:
+
         radial-gradient(
             circle at 75% 50%,
-            rgba(201,164,92,.13),
-            transparent 40%
+            rgba(173,124,60,.16),
+            transparent 42%
         );
-
-    pointer-events:none;
 }
 
 .home-cta-inner{
+
     position:relative;
 
     z-index:2;
@@ -1446,12 +1713,18 @@ body::before{
     display:flex;
 
     align-items:center;
+
     justify-content:space-between;
 
     gap:40px;
 }
 
 .home-cta h2{
+
+    margin-bottom:10px;
+
+    color:#e8ded1;
+
     font-family:'Kanit',sans-serif;
 
     font-size:
@@ -1464,12 +1737,11 @@ body::before{
     line-height:1.2;
 
     font-weight:500;
-
-    margin-bottom:10px;
 }
 
 .home-cta p{
-    color:#999;
+
+    color:#a79b8e;
 
     font-size:13px;
 
@@ -1482,15 +1754,25 @@ body::before{
 ========================================================= */
 
 .footer{
-    padding:65px 0 25px;
 
-    background:#030303;
+    padding:
+        65px
+        0
+        25px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #120d09,
+            #0b0806
+        );
 
     border-top:
-        1px solid rgba(255,255,255,.08);
+        1px solid rgba(204,166,101,.12);
 }
 
 .footer-main{
+
     display:grid;
 
     grid-template-columns:
@@ -1507,11 +1789,12 @@ body::before{
 }
 
 .footer-brand > p{
+
     max-width:600px;
 
     margin-top:20px;
 
-    color:#8c8c8c;
+    color:#8e8378;
 
     font-size:12px;
 
@@ -1519,22 +1802,25 @@ body::before{
 }
 
 .footer-menu{
+
     justify-self:start;
 
     margin-left:0;
 }
 
 .footer-title{
-    color:var(--gold);
+
+    margin-bottom:16px;
+
+    color:#b9904e;
 
     font-size:11px;
 
     letter-spacing:3px;
-
-    margin-bottom:16px;
 }
 
 .footer-links{
+
     display:flex;
 
     flex-direction:column;
@@ -1543,7 +1829,8 @@ body::before{
 }
 
 .footer-links a{
-    color:#999;
+
+    color:#91867a;
 
     font-size:12px;
 
@@ -1551,33 +1838,39 @@ body::before{
 }
 
 .footer-links a:hover{
-    color:var(--gold2);
+
+    color:#d1ac68;
 
     transform:translateX(4px);
 }
 
 
-/* FOOTER BOTTOM */
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
 
 .footer-bottom{
+
     display:flex;
 
     align-items:center;
+
     justify-content:space-between;
 
     gap:20px;
 
     padding-top:22px;
 
-    border-top:
-        1px solid rgba(255,255,255,.08);
-
-    color:#666;
+    color:#71675d;
 
     font-size:10px;
+
+    border-top:
+        1px solid rgba(204,166,101,.10);
 }
 
 .footer-bottom > span{
+
     display:flex;
 
     align-items:center;
@@ -1586,67 +1879,75 @@ body::before{
 }
 
 .footer-actions{
+
     display:flex;
 
     align-items:center;
 
+    justify-content:flex-end;
+
     gap:7px;
 
     flex-wrap:wrap;
-
-    justify-content:flex-end;
 }
 
 .footer-btn{
-    display:inline-flex;
-
-    align-items:center;
-    justify-content:center;
 
     min-height:35px;
 
     padding:
-        0
-        13px;
+        0 13px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#ad9f91;
 
     border:
-        1px solid rgba(201,164,92,.30);
-
-    color:#aaa;
+        1px solid rgba(195,153,81,.25);
 
     transition:.25s;
 }
 
 .footer-btn:hover{
-    color:var(--gold2);
 
-    border-color:var(--gold);
+    color:#d1ad68;
+
+    border-color:#bc914b;
 }
 
 .social-btn{
-    display:inline-flex;
-
-    align-items:center;
-    justify-content:center;
 
     min-width:35px;
     height:35px;
 
     padding:0 8px;
 
-    border:
-        1px solid rgba(201,164,92,.30);
+    display:inline-flex;
 
-    color:var(--gold2);
+    align-items:center;
+
+    justify-content:center;
+
+    color:#c4a265;
+
+    border:
+        1px solid rgba(195,153,81,.25);
 
     transition:.25s;
 }
 
 .social-btn:hover{
-    background:
-        rgba(201,164,92,.12);
 
-    border-color:var(--gold);
+    background:
+        rgba(155,111,57,.09);
+
+    color:#d6b36b;
+
+    border-color:#bd914b;
 }
 
 
@@ -1655,6 +1956,7 @@ body::before{
 ========================================================= */
 
 .floating-contact{
+
     position:fixed;
 
     right:24px;
@@ -1670,21 +1972,23 @@ body::before{
 }
 
 .float-btn{
+
     width:52px;
     height:52px;
 
     display:grid;
+
     place-items:center;
 
     border:
-        1px solid rgba(201,164,92,.38);
+        1px solid rgba(195,153,81,.34);
 
     border-radius:50%;
 
     background:
-        rgba(5,5,5,.90);
+        rgba(20,14,10,.92);
 
-    color:var(--gold2);
+    color:#c8a35f;
 
     font-size:18px;
 
@@ -1694,9 +1998,10 @@ body::before{
 }
 
 .float-btn:hover{
-    background:var(--gold);
 
-    color:#050505;
+    background:#b98e49;
+
+    color:#120c08;
 
     transform:translateY(-3px);
 }
@@ -1707,6 +2012,7 @@ body::before{
 ========================================================= */
 
 .reveal{
+
     opacity:0;
 
     transform:translateY(22px);
@@ -1717,6 +2023,7 @@ body::before{
 }
 
 .reveal.show{
+
     opacity:1;
 
     transform:translateY(0);
@@ -1724,13 +2031,17 @@ body::before{
 
 
 /* =========================================================
-   DESKTOP WIDTH ADJUSTMENTS
+   DESKTOP
 ========================================================= */
 
 @media(max-width:1500px) and (min-width:1051px){
 
     .header > .container{
-        padding:0 18px;
+
+        max-width:1500px;
+
+        padding:
+            0 18px;
     }
 
     .navbar{
@@ -1760,6 +2071,7 @@ body::before{
     .customer-nav-main > a,
     .nav-drop-trigger,
     .customer-nav-actions > a{
+
         padding-left:5px;
         padding-right:5px;
 
@@ -1767,14 +2079,16 @@ body::before{
     }
 
     .customer-nav-actions{
+
         margin-left:4px;
 
         gap:6px;
     }
 
     .nav-shop{
-        padding-left:11px!important;
-        padding-right:11px!important;
+
+        padding-left:11px !important;
+        padding-right:11px !important;
     }
 
     .hero-content{
@@ -1794,34 +2108,45 @@ body::before{
     }
 
     .navbar{
+
         height:89px;
+
         gap:10px;
     }
 
     .customer-brand{
+
         min-width:0;
+
         flex:1 1 auto;
     }
 
     .customer-nav{
+
         position:fixed;
 
         top:89px;
+
         left:20px;
         right:20px;
 
         display:none;
 
         flex-direction:column;
+
         align-items:stretch;
 
         padding:15px;
 
         background:
-            rgba(10,10,10,.98);
+            linear-gradient(
+                145deg,
+                #211811,
+                #0e0a07
+            );
 
         border:
-            1px solid rgba(201,164,92,.25);
+            1px solid rgba(195,153,81,.25);
 
         box-shadow:
             0 30px 60px rgba(0,0,0,.65);
@@ -1838,11 +2163,13 @@ body::before{
 
     .customer-nav-main,
     .customer-nav-actions{
+
         width:100%;
 
         display:flex;
 
         flex-direction:column;
+
         align-items:stretch;
 
         margin:0;
@@ -1851,6 +2178,7 @@ body::before{
     .customer-nav-main > a,
     .nav-drop-trigger,
     .customer-nav-actions > a{
+
         width:100%;
 
         justify-content:center;
@@ -1867,19 +2195,22 @@ body::before{
     }
 
     .nav-submenu{
+
         position:static;
 
         width:100%;
-
-        transform:none!important;
 
         margin-top:2px;
 
         display:none;
 
         opacity:1;
+
         visibility:visible;
+
         pointer-events:auto;
+
+        transform:none !important;
 
         box-shadow:none;
     }
@@ -1900,27 +2231,36 @@ body::before{
     /* HERO */
 
     .hero{
+
         padding-top:89px;
 
         height:760px;
+
         min-height:760px;
     }
 
     .hero-inner{
-        width:calc(100% - 50px);
+
+        width:
+            calc(100% - 50px);
     }
 
     .hero-content{
+
         width:78%;
 
         padding-bottom:150px;
     }
 
     .hero-points{
+
         width:80%;
 
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(
+                2,
+                1fr
+            );
 
         bottom:25px;
     }
@@ -1929,17 +2269,17 @@ body::before{
         min-height:65px;
     }
 
-    .hero-next{
-        right:18px;
-        bottom:30px;
-    }
-
     .solution-cards{
+
         grid-template-columns:
-            repeat(3,1fr);
+            repeat(
+                3,
+                1fr
+            );
     }
 
     .home-about-grid{
+
         grid-template-columns:1fr;
 
         gap:50px;
@@ -1950,6 +2290,7 @@ body::before{
     }
 
     .footer-main{
+
         grid-template-columns:
             minmax(0,1fr)
             280px;
@@ -1976,28 +2317,32 @@ body::before{
     }
 
     .customer-brand img{
-        width:48px!important;
-        height:48px!important;
 
-        max-width:48px!important;
-        max-height:48px!important;
+        width:48px !important;
+        height:48px !important;
 
-        flex-basis:48px!important;
+        max-width:48px !important;
+        max-height:48px !important;
+
+        flex-basis:48px !important;
     }
 
     .customer-brand-text strong{
+
         font-size:14px;
 
         letter-spacing:1.2px;
     }
 
     .customer-brand-text small{
+
         font-size:7px;
 
         letter-spacing:1.4px;
     }
 
     .customer-nav{
+
         top:78px;
 
         left:12px;
@@ -2008,14 +2353,18 @@ body::before{
     /* HERO */
 
     .hero{
+
         height:auto;
+
         min-height:760px;
 
         padding-top:75px;
     }
 
     .hero-inner{
-        width:calc(100% - 30px);
+
+        width:
+            calc(100% - 30px);
 
         min-height:685px;
 
@@ -2023,6 +2372,7 @@ body::before{
     }
 
     .hero-content{
+
         width:100%;
 
         padding:
@@ -2032,6 +2382,7 @@ body::before{
     }
 
     .hero-label{
+
         font-size:10px;
 
         letter-spacing:3px;
@@ -2040,6 +2391,7 @@ body::before{
     }
 
     .hero h1{
+
         font-size:
             clamp(
                 46px,
@@ -2055,6 +2407,7 @@ body::before{
     }
 
     .hero-description{
+
         font-size:12px;
 
         line-height:1.9;
@@ -2065,35 +2418,38 @@ body::before{
     }
 
     .hero-buttons{
+
         width:100%;
     }
 
     .hero-buttons .btn{
+
         min-height:48px;
 
         flex:1;
     }
 
 
-    /* POINTS */
+    /* BENEFITS */
 
     .hero-points{
+
         left:0;
+
         bottom:18px;
 
-        width:calc(100% - 55px);
+        width:100%;
 
         grid-template-columns:
             1fr 1fr;
-
-        border-top:
-            1px solid rgba(255,255,255,.13);
     }
 
     .hero-point{
+
         min-height:68px;
 
-        padding:12px 8px;
+        padding:
+            12px 8px;
 
         gap:6px;
     }
@@ -2103,10 +2459,12 @@ body::before{
     }
 
     .hero-point-icon{
-        font-size:17px;
 
         width:20px;
+
         flex-basis:20px;
+
+        font-size:17px;
     }
 
     .hero-point strong{
@@ -2118,30 +2476,20 @@ body::before{
     }
 
 
-    /* ARROW */
-
-    .hero-next{
-        width:48px;
-        height:48px;
-
-        right:0;
-        bottom:27px;
-
-        font-size:23px;
-    }
-
-
     /* STATS */
 
     .stats-grid{
+
         grid-template-columns:
             1fr 1fr;
     }
 
     .stat{
+
         min-height:88px;
 
-        padding:14px 8px;
+        padding:
+            14px 8px;
     }
 
     .stat strong{
@@ -2149,6 +2497,7 @@ body::before{
     }
 
     .stat span{
+
         font-size:9px;
 
         line-height:1.5;
@@ -2158,10 +2507,14 @@ body::before{
     /* SOLUTION */
 
     .menu-section{
-        padding:65px 0;
+
+        padding:
+            65px
+            0;
     }
 
     .section-head{
+
         display:block;
 
         margin-bottom:25px;
@@ -2172,6 +2525,7 @@ body::before{
     }
 
     .solution-cards{
+
         grid-template-columns:
             1fr 1fr;
 
@@ -2202,7 +2556,10 @@ body::before{
     /* ABOUT */
 
     .home-about{
-        padding:70px 0;
+
+        padding:
+            70px
+            0;
     }
 
     .home-about h2{
@@ -2210,11 +2567,13 @@ body::before{
     }
 
     .value-grid{
+
         grid-template-columns:
             1fr 1fr;
     }
 
     .value{
+
         min-height:125px;
 
         padding:18px;
@@ -2232,14 +2591,17 @@ body::before{
     /* CTA */
 
     .home-cta-inner{
+
         min-height:300px;
 
         display:block;
 
-        padding:60px 0;
+        padding:
+            60px 0;
     }
 
     .home-cta-inner .btn{
+
         margin-top:25px;
     }
 
@@ -2247,10 +2609,12 @@ body::before{
     /* FOOTER */
 
     .footer{
+
         padding-top:50px;
     }
 
     .footer-main{
+
         grid-template-columns:1fr;
 
         gap:35px;
@@ -2261,26 +2625,31 @@ body::before{
     }
 
     .footer-bottom{
+
         flex-direction:column;
 
         align-items:flex-start;
     }
 
     .footer-actions{
+
         justify-content:flex-start;
     }
 
 
-    /* FLOAT */
+    /* FLOATING */
 
     .floating-contact{
+
         right:12px;
+
         bottom:12px;
 
         gap:7px;
     }
 
     .float-btn{
+
         width:44px;
         height:44px;
 
@@ -2324,16 +2693,30 @@ body::before{
     }
 
     .value{
+
         min-height:135px;
 
         padding:15px;
     }
 
     .footer-actions{
+
         flex-direction:column;
 
         align-items:flex-start;
     }
+}
+
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection{
+
+    background:#9d7840;
+
+    color:#fff;
 }
 
 </style>
@@ -2342,14 +2725,17 @@ body::before{
 
 <body>
 
+
 <!-- =========================================================
      DECORATION
 ========================================================= -->
 
 <div class="top-line"></div>
+
 <div class="side-line"></div>
 
 <div class="bg-glow glow-one"></div>
+
 <div class="bg-glow glow-two"></div>
 
 
@@ -2362,6 +2748,7 @@ body::before{
     <div class="container">
 
         <nav class="navbar">
+
 
             <!-- BRAND -->
 
@@ -2402,6 +2789,7 @@ body::before{
 
                 <div class="customer-nav-main">
 
+
                     <a
                         href="index.html"
                         class="active"
@@ -2409,9 +2797,11 @@ body::before{
                         หน้าแรก
                     </a>
 
+
                     <a href="about.html">
                         เกี่ยวกับเรา
                     </a>
+
 
                     <a href="products.html">
                         สินค้า
@@ -2457,24 +2847,27 @@ body::before{
                     </div>
 
 
-                    <!-- IMPORTANT:
-                         ผลงานไม่มี Dropdown -->
+                    <!-- ผลงาน ไม่มี Dropdown -->
 
                     <a href="projects.html">
                         ผลงาน
                     </a>
 
+
                     <a href="reference.html">
                         โครงการอ้างอิง
                     </a>
+
 
                     <a href="technical-center.html">
                         ศูนย์เทคนิค
                     </a>
 
+
                     <a href="knowledge.html">
                         คลังความรู้
                     </a>
+
 
                     <a href="contact.html">
                         ติดต่อเรา
@@ -2495,6 +2888,7 @@ body::before{
                         href="cart.html"
                         class="nav-shop"
                     >
+
                         🛒 ตะกร้า
 
                         <span
@@ -2545,14 +2939,8 @@ body::before{
     id="hero"
 >
 
-    <!--
-        IMPORTANT
 
-        ต้องมีไฟล์:
-        assets/home-hero-visual.jpg
-
-        ถ้าไม่มี รูป Interior จะไม่แสดง
-    -->
+    <!-- ถ้ามีไฟล์นี้จะแสดงภาพ Interior -->
 
     <img
         class="hero-bg"
@@ -2565,7 +2953,9 @@ body::before{
 
     <div class="hero-inner">
 
+
         <div class="hero-content reveal">
+
 
             <div class="hero-label">
                 CHATPETCH GROUP
@@ -2573,17 +2963,25 @@ body::before{
 
 
             <h1>
+
                 วัสดุงานพื้น
+
                 <br>
-                <span>ครบทุกระบบ</span>
+
+                <span>
+                    ครบทุกระบบ
+                </span>
+
             </h1>
 
 
             <p class="hero-description">
+
                 บริษัท ฉัตรเพชร กรุ๊ป จำกัด
                 โรงงานผลิตและจำหน่ายวัสดุงานพื้นทุกประเภท
                 พร้อมบริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
                 ตั้งแต่วัสดุ อุปกรณ์ ไปจนถึงงานติดตั้ง
+
             </p>
 
 
@@ -2593,7 +2991,7 @@ body::before{
                     href="about.html"
                     class="btn btn-gold"
                 >
-                    รู้จักบริษัท →
+                    รู้จักบริษัท
                 </a>
 
                 <a
@@ -2605,14 +3003,14 @@ body::before{
 
             </div>
 
+
         </div>
 
 
-        <!-- =================================================
-             BENEFITS
-        ================================================== -->
+        <!-- BENEFITS -->
 
         <div class="hero-points">
+
 
             <div class="hero-point">
 
@@ -2697,22 +3095,9 @@ body::before{
 
             </div>
 
+
         </div>
 
-
-        <!-- =================================================
-             SCROLL DOWN
-        ================================================== -->
-
-        <button
-            type="button"
-            class="hero-next"
-            id="heroNext"
-            aria-label="เลื่อนลงเพื่อดูเนื้อหาถัดไป"
-            title="เลื่อนลง"
-        >
-            <span>↓</span>
-        </button>
 
     </div>
 
@@ -2729,6 +3114,7 @@ body::before{
 >
 
     <div class="container stats-grid">
+
 
         <div class="stat">
 
@@ -2781,6 +3167,7 @@ body::before{
 
         </div>
 
+
     </div>
 
 </section>
@@ -2797,6 +3184,7 @@ body::before{
 
     <div class="container">
 
+
         <div class="section-head">
 
             <div>
@@ -2811,10 +3199,12 @@ body::before{
                 </h2>
 
                 <p class="lead">
+
                     เรามุ่งมั่นคัดสรรวัสดุและพัฒนางานพื้น
                     เพื่อให้ตอบโจทย์ทุกพื้นที่
                     ทั้งในภาคอุตสาหกรรม เชิงพาณิชย์
                     และที่อยู่อาศัย
+
                 </p>
 
             </div>
@@ -2824,7 +3214,7 @@ body::before{
                 href="products.html"
                 class="btn btn-outline"
             >
-                ดูสินค้าทั้งหมด →
+                ดูสินค้าทั้งหมด
             </a>
 
         </div>
@@ -2861,15 +3251,9 @@ body::before{
                     </p>
 
                     <div class="solution-link">
-
                         <span>
                             ดูรายละเอียด
                         </span>
-
-                        <b>
-                            →
-                        </b>
-
                     </div>
 
                 </div>
@@ -2905,15 +3289,9 @@ body::before{
                     </p>
 
                     <div class="solution-link">
-
                         <span>
                             ดูรายละเอียด
                         </span>
-
-                        <b>
-                            →
-                        </b>
-
                     </div>
 
                 </div>
@@ -2949,15 +3327,9 @@ body::before{
                     </p>
 
                     <div class="solution-link">
-
                         <span>
                             ดูรายละเอียด
                         </span>
-
-                        <b>
-                            →
-                        </b>
-
                     </div>
 
                 </div>
@@ -2993,15 +3365,9 @@ body::before{
                     </p>
 
                     <div class="solution-link">
-
                         <span>
                             ดูรายละเอียด
                         </span>
-
-                        <b>
-                            →
-                        </b>
-
                     </div>
 
                 </div>
@@ -3037,20 +3403,15 @@ body::before{
                     </p>
 
                     <div class="solution-link">
-
                         <span>
                             ดูรายละเอียด
                         </span>
-
-                        <b>
-                            →
-                        </b>
-
                     </div>
 
                 </div>
 
             </a>
+
 
         </div>
 
@@ -3078,34 +3439,50 @@ body::before{
             </div>
 
             <h2>
+
                 ประสบการณ์ที่มากกว่า
+
                 <br>
+
                 เพื่อพื้นของคุณในอนาคต
+
             </h2>
 
+
             <p>
+
                 บริษัท ฉัตรเพชร กรุ๊ป จำกัด
                 ดำเนินธุรกิจเกี่ยวกับการจำหน่ายวัสดุ
                 และอุปกรณ์สำหรับงานพื้น
                 รวมถึงผลิตภัณฑ์ที่เกี่ยวข้องกับงานก่อสร้าง
                 และให้คำปรึกษาด้านระบบพื้นอย่างครบวงจร
+
             </p>
 
+
             <p>
+
                 ♠️ สร้างสรรค์ผลงาน
+
                 &nbsp;&nbsp;
+
                 ♠️ มาตรฐานเข้าถึง
+
                 &nbsp;&nbsp;
+
                 ♠️ ยืน 1 คุณภาพ
+
             </p>
+
 
             <a
                 href="about.html"
                 class="btn btn-gold"
                 style="margin-top:20px"
             >
-                เกี่ยวกับเรา →
+                เกี่ยวกับเรา
             </a>
+
 
         </div>
 
@@ -3232,6 +3609,7 @@ body::before{
 
     <div class="container home-cta-inner">
 
+
         <div>
 
             <div class="section-kicker">
@@ -3254,12 +3632,14 @@ body::before{
             href="contact.html"
             class="btn btn-gold"
         >
-            ติดต่อเรา →
+            ติดต่อเรา
         </a>
+
 
     </div>
 
 </section>
+
 
 </main>
 
@@ -3308,7 +3688,10 @@ body::before{
 
 
                 <p>
-                    🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹
+
+                    🌹 โรงงานผลิต-จำหน่าย
+                    วัสดุงานพื้นทุกประเภท 🌹
+
                     <br>
 
                     ♠️ สร้างสรรค์ผลงาน
@@ -3320,12 +3703,13 @@ body::before{
                     <br>
 
                     บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
+
                 </p>
 
             </div>
 
 
-            <!-- FOOTER MENU -->
+            <!-- MENU -->
 
             <div class="footer-menu">
 
@@ -3363,6 +3747,7 @@ body::before{
 
             </div>
 
+
         </div>
 
 
@@ -3370,9 +3755,11 @@ body::before{
 
         <div class="footer-bottom">
 
+
             <span>
                 © 2026 CHATPETCH GROUP CO., LTD.
             </span>
+
 
             <span>
                 10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310
@@ -3381,6 +3768,7 @@ body::before{
 
             <span class="footer-actions">
 
+
                 <a
                     class="footer-btn"
                     href="contact.html"
@@ -3388,12 +3776,14 @@ body::before{
                     ☎ ติดต่อเรา
                 </a>
 
+
                 <a
                     class="footer-btn"
                     href="order-status.html"
                 >
                     🔎 ติดตามคำสั่งซื้อ
                 </a>
+
 
                 <a
                     class="social-btn"
@@ -3405,6 +3795,7 @@ body::before{
                     f
                 </a>
 
+
                 <a
                     class="social-btn"
                     href="#"
@@ -3412,6 +3803,7 @@ body::before{
                 >
                     ▶
                 </a>
+
 
                 <a
                     class="social-btn"
@@ -3421,9 +3813,11 @@ body::before{
                     LINE
                 </a>
 
+
             </span>
 
         </div>
+
 
     </div>
 
@@ -3436,6 +3830,7 @@ body::before{
 
 <div class="floating-contact">
 
+
     <a
         class="float-btn"
         href="tel:0828223678"
@@ -3444,6 +3839,7 @@ body::before{
     >
         ☎
     </a>
+
 
     <a
         class="float-btn"
@@ -3456,6 +3852,7 @@ body::before{
         f
     </a>
 
+
     <a
         class="float-btn"
         href="contact.html"
@@ -3464,6 +3861,7 @@ body::before{
     >
         ✉
     </a>
+
 
 </div>
 
@@ -3555,7 +3953,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   CLOSE MOBILE MENU AFTER LINK CLICK
+   CLOSE MOBILE MENU
 ========================================================= */
 
 document
@@ -3567,7 +3965,11 @@ document
             function(){
 
                 if(navMenu){
-                    navMenu.classList.remove("show");
+
+                    navMenu.classList.remove(
+                        "show"
+                    );
+
                 }
 
             }
@@ -3591,30 +3993,40 @@ function updateCartCount(){
                 ) || "[]"
             );
 
+
         const count =
             Array.isArray(cart)
+
                 ? cart.reduce(
                     function(total,item){
 
                         return total +
                             (
-                                Number(item.quantity)
-                                || 1
+                                Number(
+                                    item.quantity
+                                ) || 1
                             );
 
                     },
                     0
                 )
+
                 : 0;
+
 
         const cartCount =
             document.getElementById(
                 "cartCount"
             );
 
+
         if(cartCount){
-            cartCount.textContent = count;
+
+            cartCount.textContent =
+                count;
+
         }
+
 
     }catch(error){
 
@@ -3631,17 +4043,12 @@ updateCartCount();
 
 
 /* =========================================================
-   HERO IMAGE ERROR PROTECTION
+   HERO IMAGE ERROR
 ========================================================= */
-
-/*
-   ถ้า home-hero-visual.jpg ยังไม่มี
-   จะซ่อน alt text และปล่อยพื้นหลัง
-   Premium dark gradient แทน
-*/
 
 const heroBg =
     document.getElementById("heroBg");
+
 
 if(heroBg){
 
@@ -3660,64 +4067,13 @@ if(heroBg){
 
 
 /* =========================================================
-   HERO SCROLL DOWN
-========================================================= */
-
-const heroNext =
-    document.getElementById("heroNext");
-
-
-if(heroNext){
-
-    heroNext.addEventListener(
-        "click",
-        function(){
-
-            const target =
-                document.getElementById(
-                    "stats"
-                );
-
-            if(!target){
-                return;
-            }
-
-            const header =
-                document.querySelector(
-                    ".header"
-                );
-
-            const headerHeight =
-                header
-                    ? header.offsetHeight
-                    : 0;
-
-            const targetTop =
-                target.getBoundingClientRect().top
-                +
-                window.pageYOffset
-                -
-                headerHeight;
-
-            window.scrollTo({
-
-                top:targetTop,
-
-                behavior:"smooth"
-
-            });
-
-        }
-    );
-
-}
-
-
-/* =========================================================
    REVEAL ANIMATION
 ========================================================= */
 
-if("IntersectionObserver" in window){
+if(
+    "IntersectionObserver"
+    in window
+){
 
     const observer =
         new IntersectionObserver(
@@ -3758,13 +4114,16 @@ if("IntersectionObserver" in window){
 
         });
 
+
 }else{
 
     document
         .querySelectorAll(".reveal")
         .forEach(function(element){
 
-            element.classList.add("show");
+            element.classList.add(
+                "show"
+            );
 
         });
 
@@ -3785,12 +4144,19 @@ document.addEventListener(
                 .querySelectorAll(".nav-dropdown")
                 .forEach(function(item){
 
-                    item.classList.remove("open");
+                    item.classList.remove(
+                        "open"
+                    );
 
                 });
 
+
             if(navMenu){
-                navMenu.classList.remove("show");
+
+                navMenu.classList.remove(
+                    "show"
+                );
+
             }
 
         }
@@ -3799,6 +4165,7 @@ document.addEventListener(
 );
 
 </script>
+
 
 </body>
 </html>
