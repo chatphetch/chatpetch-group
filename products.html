@@ -1,1049 +1,659 @@
 <!DOCTYPE html>
 <html lang="th">
-<!DOCTYPE html>
-<html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>สินค้า | Chatpetch Group</title>
-<meta name="description" content="บริษัท ฉัตรเพชร กรุ๊ป จำกัด โรงงานผลิตและจำหน่ายวัสดุงานพื้นทุกประเภท">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>สินค้า | CHATPHETCH GROUP</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-
-/* =========================================================
-   CHATPHETCH GROUP
-   PREMIUM CORPORATE HOMEPAGE
-   SINGLE FILE VERSION
-========================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap');
-
 :root{
-    --black:#030303;
-    --black2:#080808;
-    --dark:#101010;
-
-    --gold:#c9a45c;
-    --gold2:#e9cf8b;
-    --gold3:#8d6b2f;
-
-    --white:#ffffff;
-    --muted:#a6a6a6;
-
-    --line:rgba(255,255,255,.10);
-    --gold-line:rgba(201,164,92,.35);
-
-    --max:1280px;
+  --bg:#160d08;
+  --bg2:#21130c;
+  --brown:#2b1a10;
+  --brown2:#352015;
+  --gold:#c7a66a;
+  --gold2:#e1c98d;
+  --cream:#f1e7d5;
+  --text:#eee4d5;
+  --muted:#a99b8b;
+  --line:rgba(199,166,106,.22);
+  --line2:rgba(255,255,255,.08);
+  --shadow:0 25px 70px rgba(0,0,0,.42);
+  --max:1320px;
 }
 
-/* RESET */
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  box-sizing:border-box;
 }
 
 html{
-    scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
 
 body{
-    background:#030303 !important;
-    color:#fff !important;
-    font-family:'Prompt','Kanit',sans-serif;
-    overflow-x:hidden;
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 8%,rgba(125,82,42,.18),transparent 30%),
+    radial-gradient(circle at 85% 25%,rgba(103,66,34,.14),transparent 28%),
+    linear-gradient(135deg,#120a06 0%,#1b1009 42%,#25150c 100%);
+  font-family:"Prompt",sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.16;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:42px 42px;
+  z-index:-1;
 }
 
 a{
-    color:inherit;
-    text-decoration:none;
+  color:inherit;
+  text-decoration:none;
 }
 
 button{
-    font-family:inherit;
+  font-family:inherit;
 }
-
-/* =========================================================
-   BACKGROUND
-========================================================= */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:-10;
-
-    background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-
-    background-size:60px 60px;
-
-    mask-image:linear-gradient(
-        to bottom,
-        black,
-        rgba(0,0,0,.5),
-        transparent
-    );
-}
-
-.bg-glow{
-    position:fixed;
-    width:650px;
-    height:650px;
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(201,164,92,.18) 0%,
-            rgba(201,164,92,.07) 30%,
-            transparent 70%
-        );
-
-    filter:blur(30px);
-    pointer-events:none;
-    z-index:-5;
-}
-
-.glow-one{
-    top:-250px;
-    right:-150px;
-}
-
-.glow-two{
-    top:600px;
-    left:-350px;
-}
-
-/* =========================================================
-   DECORATIVE LINES
-========================================================= */
-
-.top-line{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:3px;
-    z-index:9999;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--gold),
-            var(--gold2),
-            var(--gold),
-            transparent
-        );
-
-    box-shadow:
-        0 0 15px rgba(201,164,92,.8);
-}
-
-.side-line{
-    position:fixed;
-    top:15%;
-    bottom:15%;
-    left:18px;
-
-    width:1px;
-
-    background:
-        linear-gradient(
-            transparent,
-            rgba(201,164,92,.6),
-            transparent
-        );
-
-    opacity:.7;
-    z-index:20;
-}
-
-/* =========================================================
-   CONTAINER
-========================================================= */
 
 .container{
-    width:min(var(--max), calc(100% - 80px));
-    margin:auto;
+  width:min(var(--max),calc(100% - 56px));
+  margin:auto;
 }
 
 /* =========================================================
-   CUSTOMER HEADER — STANDARD / SAME ON EVERY CUSTOMER PAGE
+   HEADER
 ========================================================= */
+
 .header{
-    position:fixed;
-    top:3px;
-    left:0;
-    width:100%;
-    z-index:1000;
-    background:rgba(3,3,3,.86);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(201,164,92,.16);
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  background:rgba(17,9,5,.92);
+  border-bottom:1px solid rgba(199,166,106,.18);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
 }
+
+.header > .container{
+  width:min(1480px,calc(100% - 34px));
+}
+
 .navbar{
-    min-height:88px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:22px;
+  min-height:86px;
+  display:flex;
+  align-items:center;
+  gap:22px;
 }
+
 .customer-brand{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  flex:0 0 auto;
+  min-width:315px;
 }
+
 .customer-brand img{
-    width:72px;
-    height:72px;
-    object-fit:contain;
-    display:block;
-    filter:drop-shadow(0 0 12px rgba(201,164,92,.18));
+  width:72px;
+  height:72px;
+  max-width:72px;
+  max-height:72px;
+  object-fit:contain;
+  display:block;
+  flex:0 0 72px;
 }
+
+.customer-brand-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.1;
+}
+
 .customer-brand-text strong{
-    display:block;
-    font-family:'Kanit',sans-serif;
-    font-size:18px;
-    line-height:1.1;
-    letter-spacing:1.8px;
-    font-weight:600;
-    white-space:nowrap;
+  font-family:"Kanit",sans-serif;
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:.8px;
+  color:#f2e6d2;
+  white-space:nowrap;
 }
+
 .customer-brand-text small{
-    display:block;
-    margin-top:5px;
-    color:var(--gold);
-    font-size:9px;
-    letter-spacing:2px;
-    white-space:nowrap;
+  margin-top:5px;
+  font-size:10px;
+  letter-spacing:1.8px;
+  color:#a9967d;
+  white-space:nowrap;
 }
+
 .customer-nav{
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
-    gap:2px;
-    min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:4px;
+  flex:1;
 }
+
 .customer-nav > a,
-.customer-nav > .nav-dropdown > .nav-drop-trigger{
-    position:relative;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-height:46px;
-    padding:11px 10px;
-    border:0;
-    background:transparent;
-    color:#cfcfcf;
-    font-family:'Prompt','Kanit',sans-serif;
-    font-size:12px;
-    font-weight:400;
-    white-space:nowrap;
-    cursor:pointer;
-    transition:.3s;
+.nav-drop-trigger{
+  border:0;
+  background:transparent;
+  color:#d8cbbb;
+  font-size:13px;
+  font-weight:400;
+  white-space:nowrap;
+  padding:10px 8px;
+  cursor:pointer;
+  transition:.25s ease;
 }
-.customer-nav > a::after,
-.customer-nav > .nav-dropdown > .nav-drop-trigger::after{
-    content:"";
-    position:absolute;
-    left:10px;
-    right:10px;
-    bottom:5px;
-    height:1px;
-    transform:scaleX(0);
-    background:var(--gold);
-    transition:.3s;
-}
+
 .customer-nav > a:hover,
 .customer-nav > a.active,
-.customer-nav > .nav-dropdown:hover > .nav-drop-trigger,
-.customer-nav > .nav-dropdown.active > .nav-drop-trigger{
-    color:#fff;
-    background:rgba(201,164,92,.08);
+.nav-drop-trigger:hover{
+  color:var(--gold2);
 }
-.customer-nav > a:hover::after,
-.customer-nav > a.active::after,
-.customer-nav > .nav-dropdown:hover > .nav-drop-trigger::after,
-.customer-nav > .nav-dropdown.active > .nav-drop-trigger::after{
-    transform:scaleX(1);
-}
+
 .nav-dropdown{
-    position:relative;
+  position:relative;
 }
-.nav-drop-trigger span.arrow{
-    margin-left:5px;
-    color:var(--gold);
-    font-size:9px;
-    transition:.25s;
+
+.nav-drop-trigger{
+  display:flex;
+  align-items:center;
+  gap:5px;
 }
-.nav-dropdown:hover .arrow,
-.nav-dropdown.open .arrow{
-    transform:rotate(180deg);
+
+.nav-drop-trigger .arrow{
+  font-size:8px;
+  opacity:.7;
+  transition:.2s;
 }
+
+.nav-dropdown:hover .arrow{
+  transform:rotate(180deg);
+}
+
 .nav-submenu{
-    position:absolute;
-    top:calc(100% + 8px);
-    left:50%;
-    transform:translate(-50%,-8px);
-    width:245px;
-    padding:8px;
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-    background:rgba(7,7,7,.98);
-    border:1px solid rgba(201,164,92,.30);
-    box-shadow:0 24px 55px rgba(0,0,0,.65), inset 0 0 35px rgba(201,164,92,.025);
-    transition:.25s ease;
+  position:absolute;
+  top:calc(100% + 9px);
+  right:0;
+  min-width:235px;
+  padding:8px;
+  background:rgba(30,17,10,.98);
+  border:1px solid var(--line);
+  border-radius:10px;
+  box-shadow:var(--shadow);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(7px);
+  transition:.22s ease;
 }
-.nav-dropdown:hover .nav-submenu,
-.nav-dropdown.open .nav-submenu{
-    opacity:1;
-    visibility:visible;
-    pointer-events:auto;
-    transform:translate(-50%,0);
+
+.nav-dropdown:hover .nav-submenu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
 }
-.nav-submenu::before{
-    content:"";
-    position:absolute;
-    top:-5px;
-    left:50%;
-    width:9px;
-    height:9px;
-    transform:translateX(-50%) rotate(45deg);
-    background:#090909;
-    border-left:1px solid rgba(201,164,92,.30);
-    border-top:1px solid rgba(201,164,92,.30);
-}
+
 .nav-submenu a{
-    display:block;
-    padding:12px 13px;
-    color:#bdbdbd;
-    font-size:12px;
-    line-height:1.45;
-    border-left:2px solid transparent;
-    transition:.25s;
+  display:block;
+  padding:11px 13px;
+  border-radius:7px;
+  color:#cbbda9;
+  font-size:13px;
 }
-.nav-submenu a + a{
-    border-top:1px solid rgba(255,255,255,.055);
-}
+
 .nav-submenu a:hover{
-    color:var(--gold2);
-    background:rgba(201,164,92,.07);
-    border-left-color:var(--gold);
-    padding-left:17px;
+  background:rgba(199,166,106,.1);
+  color:var(--gold2);
 }
+
 .nav-shop{
-    border:1px solid rgba(201,164,92,.40) !important;
-    color:var(--gold2) !important;
-    margin-left:6px;
-    padding-left:13px !important;
-    padding-right:13px !important;
+  border:1px solid rgba(199,166,106,.28)!important;
+  border-radius:8px;
+  margin-left:3px;
 }
-.nav-shop::after{display:none!important;}
+
 .cart-count{
-    display:inline-grid;
-    place-items:center;
-    min-width:19px;
-    height:19px;
-    margin-left:6px;
-    padding:0 5px;
-    border-radius:50%;
-    background:var(--gold);
-    color:#000;
-    font-size:10px;
-    font-weight:700;
+  display:inline-flex;
+  min-width:19px;
+  height:19px;
+  align-items:center;
+  justify-content:center;
+  margin-left:3px;
+  padding:0 5px;
+  border-radius:50px;
+  background:var(--gold);
+  color:#211208;
+  font-size:10px;
+  font-weight:700;
 }
+
 .menu-toggle{
-    display:none;
-    width:44px;
-    height:44px;
-    border:1px solid var(--gold-line);
-    background:rgba(255,255,255,.03);
-    color:#fff;
-    cursor:pointer;
-    font-size:21px;
+  display:none;
+  border:1px solid rgba(199,166,106,.28);
+  background:rgba(255,255,255,.04);
+  color:#eadfcf;
+  width:42px;
+  height:42px;
+  border-radius:8px;
+  font-size:21px;
+  cursor:pointer;
 }
 
 /* =========================================================
-   HERO
+   PAGE HERO
 ========================================================= */
 
-.hero{
-    min-height:100vh;
-
-    padding-top:89px;
-
-    display:flex;
-    align-items:center;
-
-    position:relative;
-    overflow:hidden;
+.page-hero{
+  position:relative;
+  padding:165px 0 80px;
+  min-height:450px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
 }
 
-.hero::before{
-    content:"01";
-
-    position:absolute;
-
-    left:4%;
-    bottom:5%;
-
-    font-family:Arial,sans-serif;
-    font-size:160px;
-    font-weight:900;
-
-    color:rgba(255,255,255,.018);
-
-    pointer-events:none;
+.page-hero::before{
+  content:"";
+  position:absolute;
+  width:650px;
+  height:650px;
+  border-radius:50%;
+  right:-250px;
+  top:-240px;
+  background:radial-gradient(circle,rgba(146,96,47,.22),transparent 68%);
+  pointer-events:none;
 }
 
-.hero-grid{
-    display:grid;
-    grid-template-columns:1.05fr .95fr;
-    gap:70px;
-    align-items:center;
+.page-hero::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--line),transparent);
 }
 
-/* HERO LEFT */
-
-.hero-label{
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    color:var(--gold2);
-
-    font-size:12px;
-    letter-spacing:3px;
-
-    margin-bottom:25px;
+.hero-inner{
+  position:relative;
+  z-index:2;
+  width:min(var(--max),calc(100% - 56px));
+  margin:auto;
 }
 
-.hero-label::before{
-    content:"";
-    width:42px;
-    height:1px;
-
-    background:linear-gradient(
-        90deg,
-        transparent,
-        var(--gold)
-    );
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+  color:var(--gold);
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:2px;
 }
 
-.hero h1{
-    font-family:'Kanit',sans-serif;
-
-    font-size:clamp(48px,6vw,88px);
-
-    line-height:1.02;
-
-    font-weight:600;
-
-    letter-spacing:-2px;
-
-    margin-bottom:25px;
+.eyebrow::before{
+  content:"";
+  width:42px;
+  height:1px;
+  background:var(--gold);
 }
 
-.hero h1 span{
-    display:block;
-
-    background:
-        linear-gradient(
-            100deg,
-            #fff,
-            var(--gold2),
-            var(--gold)
-        );
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    color:transparent;
+.page-title{
+  margin:0;
+  font-family:"Kanit",sans-serif;
+  font-size:clamp(42px,5vw,72px);
+  line-height:1.12;
+  font-weight:600;
+  color:var(--cream);
+  letter-spacing:-1px;
 }
 
-.hero-description{
-    max-width:650px;
-
-    color:#aaa;
-
-    font-size:16px;
-    line-height:2;
-
-    margin-bottom:35px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:14px;
-    flex-wrap:wrap;
-}
-
-/* BUTTON */
-
-.btn{
-    min-height:50px;
-
-    padding:0 25px;
-
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:13px;
-
-    transition:.35s;
-
-    position:relative;
-    overflow:hidden;
-}
-
-.btn-gold{
-    background:
-        linear-gradient(
-            135deg,
-            var(--gold2),
-            var(--gold),
-            var(--gold3)
-        );
-
-    color:#050505;
-
-    font-weight:600;
-
-    box-shadow:
-        0 10px 35px rgba(201,164,92,.18);
-}
-
-.btn-gold:hover{
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 15px 45px rgba(201,164,92,.35);
-}
-
-.btn-line{
-    border:1px solid rgba(255,255,255,.22);
-    color:#fff;
-
-    background:rgba(255,255,255,.025);
-}
-
-.btn-line:hover{
-    border-color:var(--gold);
-    color:var(--gold2);
-    transform:translateY(-3px);
-}
-
-/* HERO RIGHT */
-
-.hero-visual{
-    position:relative;
-    height:570px;
-}
-
-.hero-image{
-    position:absolute;
-    inset:20px 20px 20px 60px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(201,164,92,.18),
-            rgba(0,0,0,.2)
-        ),
-        url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85")
-        center/cover;
-
-    border:1px solid rgba(201,164,92,.32);
-
-    box-shadow:
-        -30px 30px 80px rgba(0,0,0,.7),
-        0 0 60px rgba(201,164,92,.08);
-
-    overflow:hidden;
-}
-
-.hero-image::before{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(201,164,92,.22),
-            transparent 30%,
-            transparent 65%,
-            rgba(0,0,0,.65)
-        );
-}
-
-.hero-image::after{
-    content:"";
-
-    position:absolute;
-
-    width:160px;
-    height:160px;
-
-    right:-60px;
-    top:-60px;
-
-    border:1px solid rgba(201,164,92,.7);
-
-    transform:rotate(45deg);
-}
-
-/* FLOATING CARD */
-
-.hero-card{
-    position:absolute;
-
-    left:0;
-    bottom:55px;
-
-    width:260px;
-
-    padding:24px;
-
-    background:
-        rgba(12,12,12,.84);
-
-    backdrop-filter:blur(20px);
-
-    border:1px solid rgba(201,164,92,.35);
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.65);
-}
-
-.hero-card small{
-    color:var(--gold);
-
-    font-size:10px;
-    letter-spacing:2px;
-}
-
-.hero-card strong{
-    display:block;
-
-    font-size:24px;
-
-    margin:7px 0;
-}
-
-.hero-card p{
-    color:#888;
-
-    font-size:12px;
-    line-height:1.7;
-}
-
-/* CORNERS */
-
-.corner{
-    position:absolute;
-
-    width:35px;
-    height:35px;
-
-    border-color:var(--gold);
-    border-style:solid;
-}
-
-.corner.tl{
-    top:0;
-    left:0;
-    border-width:1px 0 0 1px;
-}
-
-.corner.br{
-    right:0;
-    bottom:0;
-    border-width:0 1px 1px 0;
+.page-description{
+  max-width:700px;
+  margin:20px 0 0;
+  color:#ad9e8d;
+  font-size:16px;
+  line-height:1.85;
 }
 
 /* =========================================================
-   INTRO STRIP
+   CATEGORY FILTER
 ========================================================= */
 
-.intro-strip{
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(201,164,92,.08),
-            transparent,
-            rgba(201,164,92,.06)
-        );
-}
-
-.intro-inner{
-    min-height:115px;
-
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    align-items:center;
-}
-
-.intro-item{
-    padding:20px 30px;
-
-    border-right:1px solid var(--line);
-}
-
-.intro-item:last-child{
-    border-right:0;
-}
-
-.intro-item span{
-    display:block;
-
-    color:var(--gold);
-
-    font-size:10px;
-    letter-spacing:2px;
-
-    margin-bottom:7px;
-}
-
-.intro-item strong{
-    font-size:17px;
-    font-weight:500;
-}
-
-/* =========================================================
-   MENU SECTION
-========================================================= */
-
-.menu-section{
-    padding:130px 0;
+.products-section{
+  padding:65px 0 110px;
 }
 
 .section-head{
-    display:flex;
-    align-items:end;
-    justify-content:space-between;
-
-    margin-bottom:55px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:30px;
+  margin-bottom:32px;
 }
 
-.section-kicker{
-    color:var(--gold);
-
-    font-size:11px;
-    letter-spacing:3px;
-
-    margin-bottom:10px;
+.section-label{
+  margin:0 0 8px;
+  color:var(--gold);
+  font-size:13px;
+  letter-spacing:2px;
+  font-weight:500;
 }
 
 .section-title{
-    font-family:'Kanit',sans-serif;
-
-    font-size:45px;
-    font-weight:500;
-
-    line-height:1.15;
+  margin:0;
+  color:#eee4d5;
+  font-family:"Kanit",sans-serif;
+  font-size:32px;
+  line-height:1.3;
+  font-weight:500;
 }
 
-.section-description{
-    color:#888;
-    font-size:13px;
-    max-width:380px;
-    line-height:1.9;
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:flex-end;
 }
 
-/* MENU GRID */
-
-.menu-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:18px;
+.filter-btn{
+  border:1px solid rgba(199,166,106,.22);
+  background:rgba(255,255,255,.025);
+  color:#b9aa98;
+  border-radius:30px;
+  padding:9px 16px;
+  font-size:13px;
+  cursor:pointer;
+  transition:.25s ease;
 }
 
-.menu-card{
-    min-height:260px;
-
-    padding:32px;
-
-    position:relative;
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.055),
-            rgba(255,255,255,.012)
-        );
-
-    border:1px solid rgba(255,255,255,.10);
-
-    transition:.4s;
-}
-
-.menu-card::before{
-    content:"";
-
-    position:absolute;
-
-    width:160px;
-    height:160px;
-
-    right:-70px;
-    bottom:-70px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(201,164,92,.16),
-            transparent 65%
-        );
-
-    transition:.4s;
-}
-
-.menu-card::after{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    top:0;
-
-    width:3px;
-    height:0;
-
-    background:
-        linear-gradient(
-            var(--gold2),
-            var(--gold3)
-        );
-
-    transition:.4s;
-}
-
-.menu-card:hover{
-    transform:translateY(-8px);
-
-    border-color:
-        rgba(201,164,92,.45);
-
-    box-shadow:
-        0 25px 70px rgba(0,0,0,.5);
-}
-
-.menu-card:hover::after{
-    height:100%;
-}
-
-.menu-card:hover::before{
-    transform:scale(1.4);
-}
-
-.card-number{
-    color:rgba(201,164,92,.45);
-
-    font-family:Arial,sans-serif;
-    font-size:12px;
-    letter-spacing:2px;
-}
-
-.card-icon{
-    width:58px;
-    height:58px;
-
-    display:grid;
-    place-items:center;
-
-    margin:35px 0 22px;
-
-    border:1px solid rgba(201,164,92,.35);
-
-    color:var(--gold2);
-
-    font-size:22px;
-
-    background:
-        rgba(201,164,92,.045);
-}
-
-.menu-card h3{
-    font-size:22px;
-    font-weight:500;
-
-    margin-bottom:10px;
-}
-
-.menu-card p{
-    color:#858585;
-
-    font-size:12px;
-    line-height:1.8;
-}
-
-.card-arrow{
-    position:absolute;
-
-    right:25px;
-    top:28px;
-
-    color:var(--gold);
-
-    font-size:22px;
-
-    transition:.3s;
-}
-
-.menu-card:hover .card-arrow{
-    transform:translate(5px,-5px);
+.filter-btn:hover,
+.filter-btn.active{
+  background:rgba(199,166,106,.12);
+  color:var(--gold2);
+  border-color:rgba(199,166,106,.55);
 }
 
 /* =========================================================
-   COMPANY STATEMENT
+   CATEGORY CARDS
 ========================================================= */
 
-.statement{
-    padding:120px 0;
-
-    position:relative;
-
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-
-    overflow:hidden;
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
 }
 
-.statement::before{
-    content:"CG";
-
-    position:absolute;
-
-    right:-20px;
-    top:30px;
-
-    font-family:Arial,sans-serif;
-    font-size:260px;
-    font-weight:900;
-
-    color:rgba(255,255,255,.018);
+.product-card{
+  position:relative;
+  min-width:0;
+  background:
+    linear-gradient(180deg,rgba(62,37,22,.58),rgba(29,17,10,.92));
+  border:1px solid rgba(199,166,106,.2);
+  overflow:hidden;
+  box-shadow:0 18px 50px rgba(0,0,0,.2);
+  transition:
+    transform .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease;
 }
 
-.statement-inner{
-    display:grid;
-    grid-template-columns:.7fr 1.3fr;
-    gap:80px;
-    align-items:center;
+.product-card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(199,166,106,.48);
+  box-shadow:0 28px 70px rgba(0,0,0,.42);
 }
 
-.statement-mark{
-    font-size:120px;
-
-    font-family:Arial,sans-serif;
-    font-weight:900;
-
-    color:transparent;
-
-    -webkit-text-stroke:
-        1px rgba(201,164,92,.45);
+.product-cover{
+  position:relative;
+  height:285px;
+  overflow:hidden;
+  background:#2b1a10;
 }
 
-.statement-content h2{
-    font-family:'Kanit',sans-serif;
-
-    font-size:44px;
-    line-height:1.3;
-
-    font-weight:500;
-
-    margin-bottom:25px;
+.product-cover::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.02) 15%,rgba(19,9,5,.12) 45%,rgba(18,9,5,.82) 100%),
+    linear-gradient(90deg,rgba(18,9,5,.28),transparent 50%);
+  pointer-events:none;
 }
 
-.statement-content h2 span{
-    color:var(--gold2);
+.product-cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .65s ease;
 }
 
-.statement-content p{
-    color:#999;
+.product-card:hover .product-cover img{
+  transform:scale(1.045);
+}
 
-    max-width:720px;
+.cover-badge{
+  position:absolute;
+  z-index:2;
+  top:18px;
+  left:18px;
+  padding:7px 12px;
+  border:1px solid rgba(225,201,141,.45);
+  background:rgba(20,10,6,.58);
+  color:#ead9b7;
+  font-size:11px;
+  letter-spacing:1px;
+  backdrop-filter:blur(8px);
+}
 
-    line-height:2;
+.cover-title{
+  position:absolute;
+  z-index:2;
+  left:25px;
+  right:25px;
+  bottom:23px;
+}
 
-    font-size:14px;
+.cover-title strong{
+  display:block;
+  font-family:"Kanit",sans-serif;
+  color:#f5e9d5;
+  font-size:25px;
+  font-weight:500;
+  line-height:1.3;
+}
+
+.cover-title span{
+  display:block;
+  margin-top:4px;
+  color:#cdbda7;
+  font-size:13px;
+}
+
+.product-body{
+  padding:27px 29px 25px;
+  min-height:215px;
+  display:flex;
+  flex-direction:column;
+}
+
+.product-category{
+  margin-bottom:7px;
+  color:var(--gold);
+  font-size:12px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+}
+
+.product-name{
+  margin:0;
+  color:#f0e4d2;
+  font-family:"Kanit",sans-serif;
+  font-size:26px;
+  font-weight:500;
+  line-height:1.3;
+}
+
+.product-description{
+  margin:9px 0 0;
+  color:#9f9181;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.product-footer{
+  margin-top:auto;
+  padding-top:21px;
+  border-top:1px solid rgba(199,166,106,.14);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.detail-link{
+  color:#d6bc82;
+  font-size:14px;
+  font-weight:500;
+  transition:.25s ease;
+}
+
+.detail-link:hover{
+  color:#f1dca9;
+  transform:translateX(4px);
+}
+
+.detail-arrow{
+  margin-left:5px;
+  font-size:12px;
 }
 
 /* =========================================================
-   CONTACT CTA
+   EMPTY
 ========================================================= */
 
-.contact-cta{
-    padding:110px 0;
+.empty-state{
+  display:none;
+  padding:70px 20px;
+  text-align:center;
+  border:1px dashed rgba(199,166,106,.2);
+  color:#998b7b;
 }
 
-.cta-box{
-    position:relative;
+/* =========================================================
+   CTA
+========================================================= */
 
-    padding:65px;
-
-    overflow:hidden;
-
-    border:1px solid rgba(201,164,92,.3);
-
-    background:
-        linear-gradient(
-            120deg,
-            rgba(201,164,92,.11),
-            rgba(255,255,255,.025),
-            rgba(201,164,92,.04)
-        );
-
-    box-shadow:
-        inset 0 0 80px rgba(201,164,92,.025);
+.cta{
+  position:relative;
+  margin-top:10px;
+  padding:85px 0;
+  overflow:hidden;
+  background:
+    linear-gradient(110deg,rgba(64,39,23,.95),rgba(29,16,9,.95));
+  border-top:1px solid rgba(199,166,106,.16);
+  border-bottom:1px solid rgba(199,166,106,.16);
 }
 
-.cta-box::before{
-    content:"";
-
-    position:absolute;
-
-    width:350px;
-    height:350px;
-
-    border:1px solid rgba(201,164,92,.15);
-
-    border-radius:50%;
-
-    right:-150px;
-    top:-180px;
+.cta::before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  left:-250px;
+  top:-200px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(199,166,106,.13),transparent 70%);
 }
 
-.cta-box h2{
-    font-family:'Kanit',sans-serif;
-
-    font-size:42px;
-    font-weight:500;
-
-    margin-bottom:12px;
+.cta-inner{
+  position:relative;
+  z-index:2;
+  width:min(1000px,calc(100% - 56px));
+  margin:auto;
+  text-align:center;
 }
 
-.cta-box p{
-    color:#999;
-    margin-bottom:30px;
+.cta-kicker{
+  color:var(--gold);
+  font-size:13px;
+  letter-spacing:2px;
+  margin-bottom:13px;
+}
+
+.cta h2{
+  margin:0;
+  font-family:"Kanit",sans-serif;
+  font-size:clamp(30px,4vw,48px);
+  font-weight:500;
+  color:#f1e5d3;
+}
+
+.cta p{
+  max-width:680px;
+  margin:15px auto 28px;
+  color:#a99b8a;
+  font-size:15px;
+  line-height:1.8;
+}
+
+.cta-actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  min-height:46px;
+  padding:12px 22px;
+  border-radius:7px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  transition:.25s ease;
+}
+
+.btn-gold{
+  background:linear-gradient(135deg,#c6a25d,#e0c989);
+  color:#211208;
+  font-weight:600;
+}
+
+.btn-gold:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 30px rgba(199,166,106,.2);
+}
+
+.btn-outline{
+  border:1px solid rgba(199,166,106,.35);
+  color:#d9c39a;
+  background:rgba(255,255,255,.025);
+}
+
+.btn-outline:hover{
+  border-color:rgba(199,166,106,.65);
+  background:rgba(199,166,106,.08);
 }
 
 /* =========================================================
@@ -1051,114 +661,134 @@ body::before{
 ========================================================= */
 
 .footer{
-    border-top:1px solid rgba(255,255,255,.08);
-
-    background:#050505;
+  padding:65px 0 25px;
+  background:#110905;
+  border-top:1px solid rgba(199,166,106,.12);
 }
 
-.footer-main{
-    padding:65px 0;
-
-    display:grid;
-    grid-template-columns:1.4fr .8fr .8fr;
-    gap:60px;
+.footer-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 430px;
+  gap:8px;
 }
 
-.footer-brand p{
-    color:#777;
-
-    font-size:12px;
-    line-height:1.9;
-
-    max-width:430px;
-
-    margin-top:18px;
+.footer-brand{
+  display:flex;
+  align-items:flex-start;
+  gap:18px;
 }
 
-.footer-title{
-    color:var(--gold2);
-
-    font-size:12px;
-    letter-spacing:2px;
-
-    margin-bottom:18px;
+.footer-brand img{
+  width:74px;
+  height:74px;
+  object-fit:contain;
+  flex:0 0 74px;
 }
 
-.footer-links{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
+.footer-brand-content strong{
+  display:block;
+  color:#eee1cd;
+  font-family:"Kanit",sans-serif;
+  font-size:19px;
+  font-weight:500;
 }
 
-.footer-links a{
-    color:#888;
-
-    font-size:12px;
-
-    transition:.3s;
+.footer-brand-content p{
+  margin:10px 0 0;
+  color:#9f9181;
+  font-size:13px;
+  line-height:1.8;
 }
 
-.footer-links a:hover{
-    color:var(--gold2);
-    padding-left:5px;
+.footer-tagline{
+  color:#bda77d!important;
+}
+
+.footer-menu{
+  justify-self:start;
+  margin-left:0;
+}
+
+.footer-menu h3{
+  margin:0 0 16px;
+  color:#d9c08d;
+  font-family:"Kanit",sans-serif;
+  font-size:16px;
+  font-weight:500;
+}
+
+.footer-menu a{
+  display:block;
+  margin-bottom:8px;
+  color:#968879;
+  font-size:13px;
+  transition:.2s;
+}
+
+.footer-menu a:hover{
+  color:#dfc78f;
 }
 
 .footer-bottom{
-    padding:20px 0;
-
-    border-top:1px solid rgba(255,255,255,.06);
-
-    display:flex;
-    justify-content:space-between;
-    gap:20px;
-
-    color:#555;
-
-    font-size:10px;
+  margin-top:50px;
+  padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.07);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
 }
 
-/* =========================================================
-   FLOATING CONTACT
-========================================================= */
-
-.floating-contact{
-    position:fixed;
-
-    right:22px;
-    bottom:22px;
-
-    z-index:900;
-
-    display:flex;
-    flex-direction:column;
-    gap:9px;
+.footer-copy{
+  color:#75695d;
+  font-size:12px;
 }
 
-.float-btn{
-    width:46px;
-    height:46px;
-
-    display:grid;
-    place-items:center;
-
-    border-radius:50%;
-
-    background:#0d0d0d;
-
-    border:1px solid rgba(201,164,92,.4);
-
-    color:var(--gold2);
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.45);
-
-    transition:.3s;
+.footer-info{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:9px;
+  flex-wrap:wrap;
 }
 
-.float-btn:hover{
-    transform:translateY(-4px);
-    background:var(--gold);
-    color:#000;
+.footer-address{
+  color:#827568;
+  font-size:12px;
+  margin-right:8px;
+}
+
+.footer-btn{
+  border:1px solid rgba(199,166,106,.25);
+  color:#cdb681;
+  padding:8px 13px;
+  border-radius:6px;
+  font-size:12px;
+  transition:.2s;
+}
+
+.footer-btn:hover{
+  background:rgba(199,166,106,.08);
+  border-color:rgba(199,166,106,.5);
+}
+
+.social{
+  display:flex;
+  gap:7px;
+  margin-left:4px;
+}
+
+.social a{
+  width:31px;
+  height:31px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(199,166,106,.2);
+  border-radius:50%;
+  color:#bca47a;
+  font-size:11px;
 }
 
 /* =========================================================
@@ -1166,950 +796,841 @@ body::before{
 ========================================================= */
 
 .reveal{
-    opacity:0;
-    transform:translateY(35px);
-    transition:
-        opacity .8s ease,
-        transform .8s ease;
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .65s ease,transform .65s ease;
 }
 
-.reveal.active{
-    opacity:1;
-    transform:none;
-}
-
-/* =========================================================
-   SCROLLBAR
-========================================================= */
-
-::-webkit-scrollbar{
-    width:8px;
-}
-
-::-webkit-scrollbar-track{
-    background:#030303;
-}
-
-::-webkit-scrollbar-thumb{
-    background:
-        linear-gradient(
-            var(--gold3),
-            var(--gold)
-        );
+.reveal.show{
+  opacity:1;
+  transform:none;
 }
 
 /* =========================================================
    RESPONSIVE
 ========================================================= */
 
-@media(max-width:1050px){
+@media(max-width:1180px){
+
+  .customer-brand{
+    min-width:250px;
+  }
+
+  .customer-brand-text strong{
+    font-size:16px;
+  }
+
+  .customer-nav > a,
+  .nav-drop-trigger{
+    font-size:12px;
+    padding-left:6px;
+    padding-right:6px;
+  }
 
-    .container{
-        width:min(100% - 40px, var(--max));
-    }
-
-    .customer-nav{
-        position:fixed;
-
-        top:91px;
-        left:20px;
-        right:20px;
-
-        display:none;
-        flex-direction:column;
-
-        padding:15px;
-
-        background:
-            rgba(10,10,10,.97);
-
-        border:1px solid rgba(201,164,92,.25);
-
-        box-shadow:
-            0 30px 60px rgba(0,0,0,.6);
-    }
-
-    .customer-nav.show{
-        display:flex;
-    }
-
-    .customer-nav > a,
-    .customer-nav > .nav-dropdown > .nav-drop-trigger{
-        width:100%;
-        text-align:center;
-        padding:14px;
-    }
-
-    .nav-dropdown{width:100%;}
-    .nav-drop-trigger{justify-content:center!important;}
-    .nav-submenu{
-        position:static;
-        width:100%;
-        transform:none!important;
-        display:none;
-        opacity:1;
-        visibility:visible;
-        pointer-events:auto;
-        margin-top:4px;
-    }
-    .nav-dropdown.open .nav-submenu{display:block;}
-    .nav-submenu::before{display:none;}
-
-    .nav-shop{
-        margin-left:0;
-    }
-
-    .menu-toggle{
-        display:block;
-    }
-
-    .hero-grid{
-        grid-template-columns:1fr;
-    }
-
-    .hero{
-        padding-top:130px;
-        padding-bottom:70px;
-    }
-
-    .hero-visual{
-        height:500px;
-    }
-
-    .menu-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .statement-inner{
-        grid-template-columns:1fr;
-        gap:30px;
-    }
-
-    .statement-mark{
-        font-size:80px;
-    }
-
-    .footer-main{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-@media(max-width:650px){
-
-    .container{
-        width:calc(100% - 30px);
-    }
-
-    .navbar{
-        height:75px;
-    }
-
-    .logo-text strong{
-        font-size:14px;
-    }
-
-    .logo-text small{
-        font-size:7px;
-    }
-
-    .logo-mark{
-        width:43px;
-        height:43px;
-    }
-
-    .hero{
-        padding-top:110px;
-    }
-
-    .hero h1{
-        font-size:48px;
-        letter-spacing:-1px;
-    }
-
-    .hero-description{
-        font-size:13px;
-    }
-
-    .hero-visual{
-        height:420px;
-    }
-
-    .hero-image{
-        inset:10px 5px 20px 35px;
-    }
-
-    .hero-card{
-        width:210px;
-        left:0;
-        bottom:20px;
-        padding:18px;
-    }
-
-    .hero-card strong{
-        font-size:19px;
-    }
-
-    .intro-inner{
-        grid-template-columns:1fr;
-    }
-
-    .intro-item{
-        border-right:0;
-        border-bottom:1px solid var(--line);
-    }
-
-    .intro-item:last-child{
-        border-bottom:0;
-    }
-
-    .section-head{
-        display:block;
-    }
-
-    .section-title{
-        font-size:34px;
-        margin-bottom:20px;
-    }
-
-    .menu-section{
-        padding:80px 0;
-    }
-
-    .menu-grid{
-        grid-template-columns:1fr;
-    }
-
-    .menu-card{
-        min-height:230px;
-    }
-
-    .statement{
-        padding:80px 0;
-    }
-
-    .statement-content h2{
-        font-size:31px;
-    }
-
-    .cta-box{
-        padding:35px 25px;
-    }
-
-    .cta-box h2{
-        font-size:31px;
-    }
-
-    .footer-main{
-        grid-template-columns:1fr;
-        gap:35px;
-    }
-
-    .footer-bottom{
-        flex-direction:column;
-    }
-
-    .side-line{
-        display:none;
-    }
-
-    .floating-contact{
-        right:14px;
-        bottom:14px;
-    }
-
-}
-
-
-
-/* =========================================================
-   PRODUCTS PAGE HERO
-========================================================= */
-.page-hero{
-  position:relative;
-  padding:155px 0 72px;
-  overflow:hidden;
-  border-bottom:1px solid var(--line);
-  background:
-    radial-gradient(circle at 82% 25%, rgba(201,164,92,.10), transparent 34%),
-    linear-gradient(180deg, rgba(255,255,255,.012), transparent);
-}
-.page-hero::before{
-  content:"PRODUCTS";
-  position:absolute;
-  right:-20px;
-  bottom:-42px;
-  font-family:'Kanit',sans-serif;
-  font-size:150px;
-  line-height:1;
-  font-weight:700;
-  letter-spacing:5px;
-  color:rgba(255,255,255,.018);
-  pointer-events:none;
-}
-.page-hero .container{
-  position:relative;
-  z-index:2;
-}
-.page-hero .eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  color:var(--gold2);
-  font-size:11px;
-  letter-spacing:3px;
-  margin-bottom:18px;
-}
-.page-hero .eyebrow::before{
-  content:"";
-  width:42px;
-  height:1px;
-  background:var(--gold);
-}
-.page-hero h1{
-  font-family:'Kanit',sans-serif;
-  font-size:clamp(52px,6vw,78px);
-  line-height:1.12;
-  font-weight:500;
-  letter-spacing:-1.5px;
-  margin:0 0 18px;
-}
-.page-hero h1 span{
-  color:var(--gold2);
-}
-.page-hero p{
-  max-width:760px;
-  color:#929292;
-  font-size:14px;
-  line-height:1.95;
-}
-
-.filter-wrap{
-  padding-top:45px;
-}
-.filter-label{
-  color:#b9b9b9;
-}
-
-/* product-page variables used by legacy module */
-:root{
-  --gray:#999;
-  --gold-light:#e9cf8b;
-  --container:1280px;
-}
-
-/* =========================================================
-   CUSTOMER PAGE PRODUCT MODULE
-========================================================= */
-
-
-.filter-wrap{
-  margin-bottom:45px;
-}
-
-.filter-label{
-  color:var(--gray);
-  font-size:13px;
-  margin-bottom:14px;
-}
-
-.filters{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.filter-btn{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.025);
-  color:#ccc;
-  padding:11px 20px;
-  cursor:pointer;
-  transition:.25s;
-}
-
-.filter-btn:hover,
-.filter-btn.active{
-  border-color:var(--gold);
-  color:#000;
-  background:var(--gold);
-}
-
-/* PRODUCTS */
-
-.product-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-  padding-bottom:90px;
-}
-
-.product-card{
-  display:flex;
-  flex-direction:column;
-  height:100%;
-  background:
-    linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.015));
-  border:1px solid var(--line);
-  position:relative;
-  overflow:hidden;
-  transition:.35s;
-}
-
-.product-card:hover{
-  transform:translateY(-7px);
-  border-color:var(--gold-line);
-  box-shadow:0 25px 60px rgba(0,0,0,.45);
-}
-
-.product-image-link{
-  display:block;
-  position:relative;
-  overflow:hidden;
-  background:#111;
-  cursor:pointer;
-}
-
-.product-image{
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:contain;
-  display:block;
-  padding:18px;
-  transition:transform .55s ease;
-}
-
-.product-card:hover .product-image{
-  transform:scale(1.06);
-}
-
-.image-click-label{
-  position:absolute;
-  left:14px;
-  bottom:14px;
-  padding:7px 11px;
-  background:rgba(0,0,0,.72);
-  border:1px solid rgba(200,164,91,.5);
-  color:var(--gold-light);
-  font-size:11px;
-  opacity:0;
-  transform:translateY(8px);
-  transition:.3s;
-}
-
-.product-card:hover .image-click-label{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.product-content{
-  padding:22px;
-  display:flex;
-  flex-direction:column;
-  flex:1;
-}
-
-/* จัดข้อมูลใน Card ให้เสมอกันทุกสินค้า */
-.product-name{
-  min-height:52px;
-  display:flex;
-  align-items:flex-start;
-}
-
-.product-short{
-  min-height:51px;
-  max-height:51px;
-  overflow:hidden;
-}
-
-.product-price{
-  margin-top:15px;
-  min-height:36px;
-  display:flex;
-  align-items:center;
-}
-
-.shipping-highlight{
-  min-height:36px;
-}
-
-.product-actions{
-  margin-top:auto;
-  padding-top:18px;
-}
-
-.product-category{
-  color:var(--gold);
-  font-size:11px;
-  letter-spacing:1.5px;
-  margin-bottom:8px;
-  text-transform:uppercase;
-}
-
-.product-name{
-  font-size:21px;
-  line-height:1.25;
-  margin-bottom:8px;
-}
-
-.product-name a:hover{
-  color:var(--gold-light);
-}
-
-.product-short{
-  color:#999;
-  min-height:48px;
-  line-height:1.6;
-  font-size:14px;
-}
-
-.product-price{
-  color:var(--gold-light);
-  font-size:24px;
-  font-weight:600;
-  margin-top:15px;
-}
-
-.shipping-highlight{
-  margin-top:7px;
-  padding:8px 10px;
-  display:inline-block;
-  border:1px solid rgba(200,164,91,.28);
-  background:rgba(200,164,91,.07);
-  color:var(--gold-light);
-  font-size:12px;
-}
-
-.product-actions{
-  margin-top:18px;
-  display:flex;
-  gap:8px;
-}
-
-.detail-btn,
-.add-btn{
-  flex:1;
-  min-height:44px;
-  border:1px solid var(--gold-line);
-  cursor:pointer;
-  transition:.25s;
-}
-
-.detail-btn{
-  background:transparent;
-  color:var(--gold-light);
-}
-
-.detail-btn:hover{
-  background:rgba(200,164,91,.10);
-}
-
-.add-btn{
-  background:var(--gold);
-  color:#050505;
-  font-weight:600;
-}
-
-.add-btn:hover{
-  background:var(--gold-light);
-}
-
-.loading,
-.empty,
-.error{
-  grid-column:1/-1;
-  padding:60px 20px;
-  text-align:center;
-  color:var(--gray);
-  border:1px solid var(--line);
-}
-
-
-
-
-.toast{
-  position:fixed;
-  right:20px;
-  bottom:25px;
-  z-index:2000;
-  padding:15px 20px;
-  background:#111;
-  border:1px solid var(--gold-line);
-  color:var(--white);
-  transform:translateY(120px);
-  opacity:0;
-  transition:.3s;
-}
-
-.toast.show{
-  transform:translateY(0);
-  opacity:1;
-}
-
-
-
-
-@media(max-width:1050px){
   .product-grid{
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(2,minmax(0,1fr));
   }
 }
 
-@media(max-width:800px){
-  .nav-menu{
-    display:none;
+@media(max-width:980px){
+
+  .navbar{
+    min-height:78px;
+  }
+
+  .customer-brand{
+    min-width:0;
+    flex:1;
+  }
+
+  .customer-brand img{
+    width:60px;
+    height:60px;
+    flex-basis:60px;
+  }
+
+  .customer-brand-text strong{
+    font-size:16px;
+  }
+
+  .customer-brand-text small{
+    font-size:8px;
+  }
+
+  .customer-nav{
     position:absolute;
-    top:78px;
-    left:0;
-    right:0;
-    background:#080808;
-    border-bottom:1px solid var(--gold-line);
-    padding:15px 20px 20px;
+    left:17px;
+    right:17px;
+    top:calc(100% + 8px);
+    padding:10px;
+    display:none;
     flex-direction:column;
     align-items:stretch;
+    justify-content:flex-start;
+    background:rgba(24,13,8,.98);
+    border:1px solid rgba(199,166,106,.2);
+    border-radius:12px;
+    box-shadow:0 25px 60px rgba(0,0,0,.5);
   }
 
-  .customer-nav.show{
+  .customer-nav.open{
     display:flex;
   }
 
-  .nav-menu a{
-    padding:13px;
+  .customer-nav > a,
+  .nav-drop-trigger{
+    width:100%;
+    padding:12px 13px;
+    text-align:left;
+    font-size:14px;
   }
 
-  .menu-btn{
+  .nav-shop{
+    margin:4px 0 0;
+  }
+
+  .nav-dropdown{
+    width:100%;
+  }
+
+  .nav-drop-trigger{
+    justify-content:space-between;
+  }
+
+  .nav-submenu{
+    position:static;
+    min-width:0;
+    margin:0 7px 7px;
+    padding:4px;
+    display:none;
+    opacity:1;
+    visibility:visible;
+    transform:none;
+    box-shadow:none;
+    background:rgba(255,255,255,.025);
+  }
+
+  .nav-dropdown.open .nav-submenu{
     display:block;
   }
 
-  .product-grid{
-    grid-template-columns:repeat(2,1fr);
+  .nav-submenu a{
+    font-size:13px;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .page-hero{
+    padding-top:135px;
+  }
+
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .filters{
+    justify-content:flex-start;
   }
 
   .footer-grid{
     grid-template-columns:1fr;
+    gap:40px;
   }
 }
 
-@media(max-width:560px){
-  .customer-brand img{width:55px;height:55px;}
-  .customer-brand-text strong{font-size:14px;letter-spacing:1.2px;}
-  .customer-brand-text small{font-size:7px;letter-spacing:1.4px;}
-  .container{
-    width:min(100% - 28px,var(--container));
-  }
+@media(max-width:700px){
 
-  .header-inner{
-    min-height:68px;
-    padding:0 14px;
-  }
-
-  .brand-text{
-    display:none;
-  }
-
-  .logo{
-    width:43px;
-    height:43px;
+  .container,
+  .hero-inner{
+    width:min(100% - 32px,var(--max));
   }
 
   .page-hero{
-    padding:120px 0 55px;
+    padding:125px 0 60px;
+    min-height:auto;
   }
 
-  .page-hero h1{
-    font-size:58px;
-    letter-spacing:-2px;
+  .page-title{
+    font-size:43px;
   }
 
-  .page-hero p{
+  .page-description{
     font-size:14px;
+    line-height:1.8;
+  }
+
+  .products-section{
+    padding:48px 0 75px;
   }
 
   .product-grid{
-    grid-template-columns:1fr 1fr;
-    gap:12px;
+    grid-template-columns:1fr;
+    gap:18px;
   }
 
-  .product-content{
-    padding:14px;
+  .product-cover{
+    height:260px;
+  }
+
+  .product-body{
+    min-height:190px;
+    padding:23px;
   }
 
   .product-name{
-    font-size:16px;
-    min-height:40px;
+    font-size:24px;
   }
 
-  .product-short{
-    font-size:12px;
-    min-height:38px;
-    max-height:38px;
-  }
-
-  .product-price{
-    font-size:19px;
-  }
-
-  .shipping-highlight{
-    font-size:10px;
-  }
-
-  .product-actions{
+  .footer-bottom{
+    align-items:flex-start;
     flex-direction:column;
   }
 
-  .detail-btn,
-  .add-btn{
-    min-height:42px;
+  .footer-info{
+    justify-content:flex-start;
   }
 
-  .image-click-label{
-    display:none;
-  }
-}
-
-@media(max-width:380px){
-  .product-grid{
-    grid-template-columns:1fr;
+  .footer-address{
+    width:100%;
+    margin-bottom:4px;
   }
 }
 
-main{position:relative;}
+@media(max-width:450px){
 
+  .customer-brand img{
+    width:54px;
+    height:54px;
+    flex-basis:54px;
+  }
 
-/* =========================================================
-   MASTER FOOTER OVERRIDE
-========================================================= */
-.footer{
-  background:#050505;
-  border-top:1px solid rgba(201,164,92,.30);
-}
-.footer-main{
-  padding:70px 0 62px;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 430px;
-  gap:8px;
-  align-items:start;
-}
-.footer-brand{min-width:0;}
-.footer-logo{
-  display:flex;
-  align-items:center;
-  gap:20px;
-  width:max-content;
-}
-.footer-logo img{
-  width:76px;
-  height:76px;
-  object-fit:contain;
-  display:block;
-  filter:drop-shadow(0 0 14px rgba(201,164,92,.18));
-}
-.footer-logo-text strong{
-  display:block;
-  color:#fff;
-  font-family:'Kanit',sans-serif;
-  font-size:27px;
-  line-height:1.1;
-  letter-spacing:1.3px;
-  font-weight:600;
-}
-.footer-logo-text small{
-  display:block;
-  margin-top:7px;
-  color:#d8b86b;
-  font-size:11px;
-  letter-spacing:2.2px;
-}
-.footer-description{
-  margin-top:30px !important;
-  color:#858585 !important;
-  font-size:15px !important;
-  line-height:1.9 !important;
-}
-.footer-tagline{
-  margin-top:25px !important;
-  color:#8f8f8f !important;
-  font-size:15px !important;
-  line-height:2 !important;
-}
-.footer-menu{
-  justify-self:start;
-  margin-left:0;
-}
-.footer-menu-title{
-  position:relative;
-  color:#e4c978;
-  font-size:15px;
-  letter-spacing:2px;
-  font-weight:500;
-  margin:2px 0 22px;
-  padding-bottom:13px;
-}
-.footer-menu-title::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:42px;
-  height:2px;
-  background:#d8b86b;
-}
-.footer-links{display:flex;flex-direction:column;gap:13px;}
-.footer-links a{color:#777;font-size:14px;transition:.25s;}
-.footer-links a:hover{color:#e4c978;transform:translateX(4px);}
-.footer-bottom{
-  min-height:88px;
-  padding:18px 0;
-  border-top:1px solid rgba(201,164,92,.28);
-  display:grid;
-  grid-template-columns:auto 1fr auto auto;
-  gap:28px;
-  align-items:center;
-  color:#777;
-  font-size:12px;
-}
-.footer-copy{white-space:nowrap;color:#777;font-size:12px;}
-.footer-copy strong{color:#ddd;font-weight:500;}
-.footer-address{color:#777;font-size:12px;display:flex;align-items:center;gap:8px;min-width:0;}
-.footer-pin{color:#e4c978;font-size:20px;}
-.footer-actions{display:flex;align-items:center;gap:12px;padding-left:24px;border-left:1px solid rgba(201,164,92,.28);}
-.footer-action{display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:0 17px;border:1px solid rgba(201,164,92,.30);border-radius:11px;color:#e4c978;font-size:13px;white-space:nowrap;transition:.25s;}
-.footer-action:hover{border-color:#d8b86b;background:rgba(201,164,92,.06);transform:translateY(-2px);}
-.footer-social{display:flex;align-items:center;gap:10px;padding-left:24px;border-left:1px solid rgba(201,164,92,.28);}
-.footer-social a{width:48px;height:48px;border:1px solid rgba(201,164,92,.42);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#e4c978;font-size:18px;transition:.25s;}
-.footer-social a:hover{background:rgba(201,164,92,.08);border-color:#e4c978;transform:translateY(-2px);}
-@media(max-width:1200px){
-  .footer-bottom{grid-template-columns:1fr 1fr;}
-  .footer-actions{padding-left:0;border-left:0;}
-  .footer-social{padding-left:0;border-left:0;justify-content:flex-end;}
-}
-@media(max-width:1050px){
-  .footer-main{grid-template-columns:1fr 1fr;}
-}
-@media(max-width:760px){
-  .footer-main{grid-template-columns:1fr;gap:42px;padding:52px 0 45px;}
-  .footer-logo img{width:64px;height:64px;}
-  .footer-logo-text strong{font-size:21px;}
-  .footer-logo-text small{font-size:9px;}
-  .footer-description,.footer-tagline{font-size:13px !important;}
-  .footer-bottom{grid-template-columns:1fr;gap:18px;padding:25px 0 30px;}
-  .footer-copy{white-space:normal;}
-  .footer-actions,.footer-social{padding-left:0;border-left:0;justify-content:flex-start;flex-wrap:wrap;}
-}
+  .customer-brand-text strong{
+    font-size:14px;
+  }
 
+  .customer-brand-text small{
+    font-size:7px;
+    letter-spacing:1.2px;
+  }
+
+  .menu-toggle{
+    width:40px;
+    height:40px;
+  }
+
+  .page-title{
+    font-size:37px;
+  }
+
+  .eyebrow{
+    font-size:11px;
+  }
+
+  .section-title{
+    font-size:27px;
+  }
+
+  .filters{
+    gap:6px;
+  }
+
+  .filter-btn{
+    font-size:12px;
+    padding:8px 12px;
+  }
+
+  .product-cover{
+    height:235px;
+  }
+
+  .cover-title strong{
+    font-size:22px;
+  }
+
+  .product-body{
+    padding:21px;
+  }
+
+  .product-name{
+    font-size:22px;
+  }
+
+  .product-description{
+    font-size:13px;
+  }
+
+  .cta{
+    padding:65px 0;
+  }
+
+  .cta-inner{
+    width:calc(100% - 32px);
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .footer{
+    padding-top:48px;
+  }
+
+  .footer-brand{
+    gap:13px;
+  }
+}
 </style>
-
-
-
 </head>
+
 <body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
 <header class="header">
-<div class="container">
-<nav class="navbar">
+  <div class="container">
+    <nav class="navbar">
 
-<a href="index.html" class="customer-brand" aria-label="CHATPHETCH GROUP">
-    <img src="assets/logo.png" alt="CHATPHETCH GROUP" width="72" height="72" style="width:72px;height:72px;max-width:72px;max-height:72px;object-fit:contain;display:block;flex:0 0 72px;">
-    <div class="customer-brand-text">
-        <strong>CHATPHETCH GROUP</strong>
-        <small>FLOORING &amp; CONSTRUCTION</small>
-    </div>
-</a>
+      <a href="index.html" class="customer-brand" aria-label="CHATPHETCH GROUP">
+        <img
+          src="assets/logo.png"
+          alt="CHATPHETCH GROUP"
+          width="72"
+          height="72"
+        >
 
-<div class="customer-nav" id="navMenu">
-    <a href="index.html">หน้าแรก</a>
-    <a href="about.html">เกี่ยวกับเรา</a>
-    <a href="products.html" class="active">สินค้า</a>
-
-    <div class="nav-dropdown">
-        <button type="button" class="nav-drop-trigger">บริการ <span class="arrow">▼</span></button>
-        <div class="nav-submenu">
-            <a href="services.html">ดูบริการทั้งหมด</a>
-            <a href="service-detail.html?service=flooring">บริการระบบงานพื้น</a>
-            <a href="service-detail.html?service=coating">บริการเคลือบผิว / สี</a>
-            <a href="service-detail.html?service=consulting">ปรึกษาและเลือกวัสดุ</a>
-            <a href="service-detail.html?service=installation">คำปรึกษางานติดตั้ง</a>
+        <div class="customer-brand-text">
+          <strong>CHATPHETCH GROUP</strong>
+          <small>FLOORING &amp; CONSTRUCTION</small>
         </div>
-    </div>
+      </a>
 
-    <div class="nav-dropdown">
-        <button type="button" class="nav-drop-trigger">ผลงาน <span class="arrow">▼</span></button>
-        <div class="nav-submenu">
-            <a href="projects.html">ดูผลงานทั้งหมด</a>
-            <a href="projects.html?category=flooring">ผลงานระบบพื้น</a>
-            <a href="projects.html?category=stamped">ผลงานพื้นพิมพ์ลาย</a>
-            <a href="projects.html?category=coating">ผลงานสี / น้ำยา</a>
-            <a href="projects.html?category=construction">ผลงานงานก่อสร้าง</a>
+      <div class="customer-nav" id="navMenu">
+
+        <a href="index.html">หน้าแรก</a>
+
+        <a href="about.html">เกี่ยวกับเรา</a>
+
+        <a href="products.html" class="active">สินค้า</a>
+
+        <div class="nav-dropdown" id="serviceDropdown">
+
+          <button
+            type="button"
+            class="nav-drop-trigger"
+            id="serviceTrigger"
+          >
+            บริการ
+            <span class="arrow">▼</span>
+          </button>
+
+          <div class="nav-submenu">
+
+            <a href="services.html">
+              ดูบริการทั้งหมด
+            </a>
+
+            <a href="service-detail.html?service=industrial">
+              บริการระบบงานพื้น
+            </a>
+
+            <a href="service-detail.html?service=coating">
+              บริการเคลือบผิว / สี
+            </a>
+
+            <a href="service-detail.html?service=consulting">
+              ปรึกษาและเลือกวัสดุ
+            </a>
+
+            <a href="service-detail.html?service=installation">
+              คำปรึกษางานติดตั้ง
+            </a>
+
+          </div>
+
         </div>
-    </div>
 
-    <a href="reference.html">โครงการอ้างอิง</a>
-    <a href="technical-center.html">ศูนย์เทคนิค</a>
-    <a href="knowledge.html">คลังความรู้</a>
-    <a href="contact.html">ติดต่อเรา</a>
-    <a href="order-status.html">🔎 ติดตามคำสั่งซื้อ</a>
-    <a href="cart.html" class="nav-shop">🛒 ตะกร้า <span class="cart-count" id="cartCount">0</span></a>
-</div>
+        <a href="projects.html">ผลงาน</a>
 
-<button class="menu-toggle" id="menuToggle" aria-label="เปิดเมนู">☰</button>
-</nav>
-</div>
+        <a href="reference.html">โครงการอ้างอิง</a>
+
+        <a href="technical-center.html">ศูนย์เทคนิค</a>
+
+        <a href="knowledge.html">คลังความรู้</a>
+
+        <a href="contact.html">ติดต่อเรา</a>
+
+        <a href="order-status.html">
+          🔎 ติดตามคำสั่งซื้อ
+        </a>
+
+        <a href="cart.html" class="nav-shop">
+          🛒 ตะกร้า
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+
+      </div>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="เปิดเมนู"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+    </nav>
+  </div>
 </header>
-<main>
+
+
+<!-- =========================================================
+     PAGE HERO
+========================================================= -->
 
 <section class="page-hero">
-  <div class="container">
 
-    <div class="eyebrow">CHATPHETCH GROUP</div>
+  <div class="hero-inner">
 
-    <h1>
-      สินค้า
-      <span>PRODUCTS</span>
+    <div class="eyebrow">
+      CHATPHETCH GROUP
+    </div>
+
+    <h1 class="page-title">
+      วัสดุและระบบงานพื้น
     </h1>
 
-    <p>
-      วัสดุสำหรับงานพื้น สี น้ำยาเคลือบ และผลิตภัณฑ์ที่เกี่ยวข้อง
-      คัดสรรสำหรับงานก่อสร้างและงานพื้นอย่างครบวงจร
+    <p class="page-description">
+      ผลิตภัณฑ์และโซลูชันสำหรับงานพื้นหลากหลายระบบ
+      พร้อมข้อมูลสำหรับเลือกวัสดุให้เหมาะกับลักษณะงาน
+      และการใช้งานของแต่ละโครงการ
     </p>
 
   </div>
+
 </section>
 
-<section class="container filter-wrap">
 
-  <div class="filter-label">เลือกประเภทสินค้า</div>
+<!-- =========================================================
+     PRODUCTS
+========================================================= -->
 
-  <div class="filters">
+<main>
 
-    <button class="filter-btn active" data-category="all">
-      ทั้งหมด
-    </button>
+<section class="products-section">
 
-    <button class="filter-btn" data-category="floor">
-      วัสดุงานพื้น
-    </button>
+  <div class="container">
 
-    <button class="filter-btn" data-category="coating">
-      สี / น้ำยา
-    </button>
+    <div class="section-head">
 
-    <button class="filter-btn" data-category="construction">
-      วัสดุก่อสร้าง
-    </button>
+      <div>
+        <p class="section-label">
+          PRODUCT CATEGORIES
+        </p>
 
-    <button class="filter-btn" data-category="equipment">
-      อุปกรณ์
-    </button>
+        <h2 class="section-title">
+          เลือกประเภทงานที่ต้องการ
+        </h2>
+      </div>
+
+      <div class="filters" id="filters">
+
+        <button
+          class="filter-btn active"
+          data-filter="all"
+          type="button"
+        >
+          ทั้งหมด
+        </button>
+
+        <button
+          class="filter-btn"
+          data-filter="floor"
+          type="button"
+        >
+          วัสดุงานพื้น
+        </button>
+
+        <button
+          class="filter-btn"
+          data-filter="stamped"
+          type="button"
+        >
+          งานพิมพ์ลาย
+        </button>
+
+        <button
+          class="filter-btn"
+          data-filter="coating"
+          type="button"
+        >
+          งานเคลือบผิว
+        </button>
+
+        <button
+          class="filter-btn"
+          data-filter="consulting"
+          type="button"
+        >
+          ปรึกษาและเลือกวัสดุ
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="product-grid" id="productGrid">
+
+
+      <!-- ===================================================
+           1. วัสดุงานพื้น
+      ==================================================== -->
+
+      <article
+        class="product-card reveal"
+        data-category="floor"
+      >
+
+        <a href="products.html?category=floor">
+
+          <div class="product-cover">
+
+            <img
+              src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1400&q=85"
+              alt="วัสดุงานพื้น"
+              loading="lazy"
+            >
+
+            <div class="cover-badge">
+              FLOORING SYSTEM
+            </div>
+
+            <div class="cover-title">
+              <strong>วัสดุงานพื้น</strong>
+              <span>Flooring Materials</span>
+            </div>
+
+          </div>
+
+          <div class="product-body">
+
+            <div class="product-category">
+              FLOOR
+            </div>
+
+            <h3 class="product-name">
+              วัสดุงานพื้น
+            </h3>
+
+            <p class="product-description">
+              ผลิตภัณฑ์สำหรับงานพื้นหลากหลายประเภท
+              สำหรับงานก่อสร้าง งานปรับปรุง และงานพื้นในโครงการ
+            </p>
+
+            <div class="product-footer">
+              <span class="detail-link">
+                ดูรายละเอียด
+                <span class="detail-arrow">→</span>
+              </span>
+            </div>
+
+          </div>
+
+        </a>
+
+      </article>
+
+
+      <!-- ===================================================
+           2. งานพิมพ์ลาย
+      ==================================================== -->
+
+      <article
+        class="product-card reveal"
+        data-category="stamped"
+      >
+
+        <a href="products.html?category=stamped">
+
+          <div class="product-cover">
+
+            <img
+              src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85"
+              alt="งานพิมพ์ลายคอนกรีต"
+              loading="lazy"
+            >
+
+            <div class="cover-badge">
+              STAMPED CONCRETE
+            </div>
+
+            <div class="cover-title">
+              <strong>งานพิมพ์ลาย</strong>
+              <span>Stamped Concrete</span>
+            </div>
+
+          </div>
+
+          <div class="product-body">
+
+            <div class="product-category">
+              STAMPED
+            </div>
+
+            <h3 class="product-name">
+              งานพิมพ์ลาย
+            </h3>
+
+            <p class="product-description">
+              ระบบพื้นพิมพ์ลายสำหรับสร้างพื้นผิว
+              และลวดลายที่มีเอกลักษณ์สำหรับแต่ละพื้นที่
+            </p>
+
+            <div class="product-footer">
+              <span class="detail-link">
+                ดูรายละเอียด
+                <span class="detail-arrow">→</span>
+              </span>
+            </div>
+
+          </div>
+
+        </a>
+
+      </article>
+
+
+      <!-- ===================================================
+           3. งานเคลือบผิว
+      ==================================================== -->
+
+      <article
+        class="product-card reveal"
+        data-category="coating"
+      >
+
+        <a href="products.html?category=coating">
+
+          <div class="product-cover">
+
+            <img
+              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1400&q=85"
+              alt="งานเคลือบผิว"
+              loading="lazy"
+            >
+
+            <div class="cover-badge">
+              SURFACE COATING
+            </div>
+
+            <div class="cover-title">
+              <strong>งานเคลือบผิว</strong>
+              <span>Surface Coating</span>
+            </div>
+
+          </div>
+
+          <div class="product-body">
+
+            <div class="product-category">
+              COATING
+            </div>
+
+            <h3 class="product-name">
+              งานเคลือบผิว
+            </h3>
+
+            <p class="product-description">
+              ระบบเคลือบผิวสำหรับงานคอนกรีต
+              เพื่อช่วยเพิ่มความสวยงามและดูแลพื้นผิว
+            </p>
+
+            <div class="product-footer">
+              <span class="detail-link">
+                ดูรายละเอียด
+                <span class="detail-arrow">→</span>
+              </span>
+            </div>
+
+          </div>
+
+        </a>
+
+      </article>
+
+
+      <!-- ===================================================
+           4. เคลือบผิวชนิดสี
+      ==================================================== -->
+
+      <article
+        class="product-card reveal"
+        data-category="coating"
+      >
+
+        <a href="products.html?category=coating">
+
+          <div class="product-cover">
+
+            <img
+              src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1400&q=85"
+              alt="เคลือบผิวชนิดสี"
+              loading="lazy"
+            >
+
+            <div class="cover-badge">
+              COLOR COATING
+            </div>
+
+            <div class="cover-title">
+              <strong>เคลือบผิวชนิดสี</strong>
+              <span>Decorative Color Coating</span>
+            </div>
+
+          </div>
+
+          <div class="product-body">
+
+            <div class="product-category">
+              COLOR
+            </div>
+
+            <h3 class="product-name">
+              เคลือบผิวชนิดสี
+            </h3>
+
+            <p class="product-description">
+              ระบบเคลือบผิวชนิดสีสำหรับงานตกแต่ง
+              และการสร้างโทนสีให้เหมาะกับพื้นที่
+            </p>
+
+            <div class="product-footer">
+              <span class="detail-link">
+                ดูรายละเอียด
+                <span class="detail-arrow">→</span>
+              </span>
+            </div>
+
+          </div>
+
+        </a>
+
+      </article>
+
+
+      <!-- ===================================================
+           5. ปรึกษาและเลือกวัสดุ
+      ==================================================== -->
+
+      <article
+        class="product-card reveal"
+        data-category="consulting"
+      >
+
+        <a href="service-detail.html?service=consulting">
+
+          <div class="product-cover">
+
+            <img
+              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=85"
+              alt="ปรึกษาและเลือกวัสดุ"
+              loading="lazy"
+            >
+
+            <div class="cover-badge">
+              CONSULTATION
+            </div>
+
+            <div class="cover-title">
+              <strong>ปรึกษาและเลือกวัสดุ</strong>
+              <span>Material Consultation</span>
+            </div>
+
+          </div>
+
+          <div class="product-body">
+
+            <div class="product-category">
+              CONSULTING
+            </div>
+
+            <h3 class="product-name">
+              ปรึกษาและเลือกวัสดุ
+            </h3>
+
+            <p class="product-description">
+              ให้คำปรึกษาเกี่ยวกับระบบพื้นและวัสดุ
+              เพื่อช่วยพิจารณาแนวทางให้เหมาะกับลักษณะงาน
+            </p>
+
+            <div class="product-footer">
+              <span class="detail-link">
+                ดูรายละเอียด
+                <span class="detail-arrow">→</span>
+              </span>
+            </div>
+
+          </div>
+
+        </a>
+
+      </article>
+
+
+      <div class="empty-state" id="emptyState">
+        ไม่พบประเภทงานที่เลือก
+      </div>
+
+    </div>
 
   </div>
 
 </section>
 
-<section class="container">
 
-  <div class="product-grid" id="productGrid">
+<!-- =========================================================
+     CTA
+========================================================= -->
 
-    <div class="loading">
-      กำลังโหลดสินค้า<br>
-      กรุณารอสักครู่...
+<section class="cta">
+
+  <div class="cta-inner">
+
+    <div class="cta-kicker">
+      CHATPHETCH GROUP
+    </div>
+
+    <h2>
+      ไม่แน่ใจว่าควรเลือกวัสดุแบบไหน?
+    </h2>
+
+    <p>
+      สามารถติดต่อทีมงานเพื่อสอบถามเกี่ยวกับระบบพื้น
+      และเลือกแนวทางให้เหมาะกับลักษณะงานของคุณ
+    </p>
+
+    <div class="cta-actions">
+
+      <a
+        href="contact.html"
+        class="btn btn-gold"
+      >
+        ☎ ติดต่อเรา
+      </a>
+
+      <a
+        href="service-detail.html?service=consulting"
+        class="btn btn-outline"
+      >
+        ดูบริการปรึกษา
+      </a>
+
     </div>
 
   </div>
@@ -2117,625 +1638,448 @@ main{position:relative;}
 </section>
 
 </main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer class="footer">
+
   <div class="container">
 
-    <div class="footer-main">
+    <div class="footer-grid">
 
       <div class="footer-brand">
-        <a href="index.html" class="footer-logo">
-          <img src="assets/logo.png" alt="CHATPHETCH GROUP">
-          <div class="footer-logo-text">
-            <strong>CHATPHETCH GROUP</strong>
-            <small>FLOORING &amp; CONSTRUCTION</small>
-          </div>
-        </a>
 
-        <p class="footer-description">
-          🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹
-        </p>
+        <img
+          src="assets/logo.png"
+          alt="CHATPHETCH GROUP"
+        >
 
-        <p class="footer-tagline">
-          ♠️ สร้างสรรค์ผลงาน &nbsp; ♠️ มาตรฐานเข้าถึง &nbsp; ♠️ ยืน 1 คุณภาพ
-          <br>
-          บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
-        </p>
+        <div class="footer-brand-content">
+
+          <strong>
+            CHATPHETCH GROUP
+          </strong>
+
+          <p>
+            🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹
+          </p>
+
+          <p class="footer-tagline">
+            ♠️ สร้างสรรค์ผลงาน
+            &nbsp;&nbsp;
+            ♠️ มาตรฐานเข้าถึง
+            &nbsp;&nbsp;
+            ♠️ ยืน 1 คุณภาพ
+          </p>
+
+          <p>
+            บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
+          </p>
+
+        </div>
+
       </div>
 
+
       <div class="footer-menu">
-        <div class="footer-menu-title">MENU</div>
-        <nav class="footer-links" aria-label="Footer navigation">
-          <a href="index.html">หน้าแรก</a>
-          <a href="about.html">เกี่ยวกับเรา</a>
-          <a href="products.html">สินค้า</a>
-          <a href="services.html">บริการ</a>
-          <a href="projects.html">ผลงาน</a>
-          <a href="contact.html">ติดต่อเรา</a>
-        </nav>
+
+        <h3>
+          MENU
+        </h3>
+
+        <a href="index.html">
+          หน้าแรก
+        </a>
+
+        <a href="about.html">
+          เกี่ยวกับเรา
+        </a>
+
+        <a href="products.html">
+          สินค้า
+        </a>
+
+        <a href="services.html">
+          บริการ
+        </a>
+
+        <a href="projects.html">
+          ผลงาน
+        </a>
+
+        <a href="reference.html">
+          โครงการอ้างอิง
+        </a>
+
+        <a href="technical-center.html">
+          ศูนย์เทคนิค
+        </a>
+
+        <a href="knowledge.html">
+          คลังความรู้
+        </a>
+
+        <a href="contact.html">
+          ติดต่อเรา
+        </a>
+
       </div>
 
     </div>
 
+
     <div class="footer-bottom">
 
       <div class="footer-copy">
-        © 2026 <strong>CHATPHETCH GROUP</strong> &nbsp; All rights reserved.
+        © 2026 CHATPHETCH GROUP. All Rights Reserved.
       </div>
 
-      <div class="footer-address">
-        <span class="footer-pin">📍</span>
-        <span>10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310</span>
-      </div>
+      <div class="footer-info">
 
-      <div class="footer-actions">
-        <a class="footer-action" href="contact.html">☎ ติดต่อเรา</a>
-        <a class="footer-action" href="order-status.html">🔎 ติดตามคำสั่งซื้อ</a>
-      </div>
+        <span class="footer-address">
+          10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310
+        </span>
 
-      <div class="footer-social" aria-label="Social media">
-        <a href="https://www.facebook.com/ChatphetchGroup" target="_blank" rel="noopener" aria-label="Facebook">f</a>
-        <a href="#" aria-label="YouTube">▶</a>
-        <a href="#" aria-label="LINE">LINE</a>
+        <a
+          href="contact.html"
+          class="footer-btn"
+        >
+          ☎ ติดต่อเรา
+        </a>
+
+        <a
+          href="order-status.html"
+          class="footer-btn"
+        >
+          🔎 ติดตามคำสั่งซื้อ
+        </a>
+
+        <div class="social">
+
+          <a
+            href="https://www.facebook.com/ChatphetchGroup"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            f
+          </a>
+
+          <a
+            href="#"
+            aria-label="YouTube"
+          >
+            ▶
+          </a>
+
+          <a
+            href="#"
+            aria-label="LINE"
+          >
+            LINE
+          </a>
+
+        </div>
+
       </div>
 
     </div>
 
   </div>
+
 </footer>
 
 
-<div class="floating-contact">
-
-<a
-href="tel:0828223678"
-class="float-btn"
-title="โทรหาบริษัท">
-
-☎
-
-</a>
-
-<a
-href="https://www.facebook.com/ChatphetchGroup"
-target="_blank"
-class="float-btn"
-title="Facebook">
-
-f
-
-</a>
-
-<a
-href="contact.html"
-class="float-btn"
-title="ติดต่อเรา">
-
-✉
-
-</a>
-
-</div>
-
-<button class="back-top" id="backTop">↑</button>
-<div class="toast" id="toast">เพิ่มสินค้าในตะกร้าเรียบร้อย</div>
-
 <script>
 
-const SUPABASE_URL =
-  "https://mfhllgklcfnnbyyzzljz.supabase.co";
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 
-const SUPABASE_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1maGxsZ2tsY2Zubn5eXp6bGp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkwMjY2NzEsImV4cCI6MjEwNDYwMjY3MX0.bjpjXkB0tpgrJu8BwmpSO3_MSQSLMWC1xI0v-9hNlIc";
-
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
-
-const DEFAULT_PRODUCTS = [
-
-  {
-    id:"91428",
-    category:"floor",
-    category_label:"วัสดุงานพื้น",
-    image:"assets/products/91428.jpg",
-    name:"PREMIUM STAMPED CONCRETE (PSC)",
-    short_desc:"สีเคลือบแกร่งสำหรับงานพิมพ์ลาย",
-    price_label:"799.-",
-    numeric_price:799,
-    details:[
-      "เฉดสี : M 1 - 26",
-      "ปริมาณ : 1 กระสอบ = 25 กก.",
-      "ได้พื้นที่ประมาณ 8-10 ตร.ม./กระสอบ"
-    ],
-    features:[
-      "สีคงทน ไม่ซีดจาง",
-      "มีหลากหลายสีสัน",
-      "ทนต่อทุกสภาพอากาศ"
-    ],
-    options:[]
-  },
-
-  {
-    id:"91427",
-    category:"floor",
-    category_label:"วัสดุงานพื้น",
-    image:"assets/products/releaser-power.jpg",
-    name:"RELEASER POWER",
-    short_desc:"ผงฝุ่นลอกแบบ",
-    price_label:"เริ่ม 1,050.-",
-    numeric_price:1050,
-    details:[],
-    features:[],
-    options:[
-      {label:"10KG",price:1909},
-      {label:"5KG",price:1050}
-    ]
-  },
-
-  {
-    id:"91430",
-    category:"coating",
-    category_label:"สี / น้ำยา",
-    image:"assets/products/91430.jpg",
-    name:"READY COAT (RCT)",
-    short_desc:"น้ำยาเคลือบเงาคอนกรีต (ชนิดใส)",
-    price_label:"เริ่ม 388.-",
-    numeric_price:388,
-    details:[
-      "750 มล. : 2-3 ตร.ม. / 2 เที่ยว",
-      "4 กก. : 12-15 ตร.ม.",
-      "9 กก. : 25-30 ตร.ม.",
-      "18 กก. : 40-50 ตร.ม."
-    ],
-    features:[
-      "ป้องกันรังสี UV",
-      "เพิ่มความเงางาม",
-      "ช่วยป้องกันคราบสกปรก"
-    ],
-    options:[
-      {label:"18 KG",price:2850},
-      {label:"9 KG",price:1803},
-      {label:"4 KG",price:905},
-      {label:"1 KG",price:388}
-    ]
-  },
-
-  {
-    id:"91429",
-    category:"coating",
-    category_label:"สี / น้ำยา",
-    image:"assets/products/91429.jpg",
-    name:"READY COAT COLOR (RCR)",
-    short_desc:"น้ำยาเคลือบเงาคอนกรีต (ชนิดสี)",
-    price_label:"เริ่ม 369.-",
-    numeric_price:369,
-    details:[
-      "(เฉดสีตามลูกค้าต้องการ)",
-      "750 มล. : 2-3 ตร.ม. / 2 เที่ยว",
-      "4 กก. : 12-15 ตร.ม.",
-      "9 กก. : 25-30 ตร.ม.",
-      "18 กก. : 40-50 ตร.ม."
-    ],
-    features:[
-      "ป้องกันรังสี UV",
-      "เพิ่มความเงางาม",
-      "ช่วยป้องกันคราบสกปรก"
-    ],
-    options:[
-      {label:"1 KG",price:369},
-      {label:"4 KG",price:1059},
-      {label:"9 KG",price:2175},
-      {label:"18 KG",price:3850}
-    ]
-  }
-
-];
-
-let products = [];
-let currentCategory = "all";
-
-function escapeHtml(value){
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
-
-function normalizeProduct(p){
-
-  const options = Array.isArray(p.options)
-    ? p.options.map(option => ({
-        label: option.label || "",
-        price: Number(option.price || 0),
-        priceLabel: option.priceLabel || (Number(option.price || 0) ? Number(option.price).toLocaleString("th-TH") + ".-" : "")
-      }))
-    : [];
-
-  const basePrice = Number(p.price || 0);
-  const optionPrices = options.map(o => Number(o.price || 0)).filter(Boolean);
-  const numericPrice = optionPrices.length ? Math.min(...optionPrices) : basePrice;
-  const priceLabel = numericPrice ? (options.length ? `เริ่ม ${numericPrice.toLocaleString("th-TH")}.-` : `${numericPrice.toLocaleString("th-TH")}.-`) : "";
-
-  const details = [];
-  if(p.package_size) details.push(`ขนาดบรรจุ : ${p.package_size}`);
-  if(p.coverage) details.push(`พื้นที่การใช้งาน : ${p.coverage}`);
-  if(p.technical_data && typeof p.technical_data === "object") {
-    Object.entries(p.technical_data).forEach(([key,value]) => {
-      if(value !== null && value !== undefined && String(value).trim()) details.push(`${key} : ${value}`);
-    });
-  }
-
-  if(!details.length && Array.isArray(p.details)) details.push(...p.details);
-  if(!details.length && typeof p.details === "string") details.push(...p.details.split("\n").filter(Boolean));
-
-  return {
-    id:String(p.id || p.code || ""),
-    code:p.code || p.id || "",
-    category:p.category || "floor",
-    category_label:p.category_label || p.categoryLabel || "สินค้า",
-    image:p.image || "",
-    name:p.name || "",
-    short_desc:p.short_description || p.short_desc || p.shortDesc || "",
-    price_label:priceLabel,
-    numeric_price:numericPrice,
-    details,
-    features:Array.isArray(p.features) ? p.features : [],
-    options
-  };
-}
-
-// CUSTOMER NAVIGATION — shared behavior for every customer page
-const navMenu = document.getElementById("navMenu");
 const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+const serviceDropdown = document.getElementById("serviceDropdown");
+const serviceTrigger = document.getElementById("serviceTrigger");
 
-if(menuToggle && navMenu){
-  menuToggle.addEventListener("click",()=>{
-    navMenu.classList.toggle("show");
+if(menuToggle){
+
+  menuToggle.addEventListener("click", function(){
+
+    const isOpen = navMenu.classList.toggle("open");
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      isOpen ? "true" : "false"
+    );
+
   });
+
 }
 
-document.querySelectorAll(".nav-drop-trigger").forEach(trigger=>{
-  trigger.addEventListener("click",event=>{
-    event.preventDefault();
-    event.stopPropagation();
-    const parent=trigger.closest(".nav-dropdown");
-    document.querySelectorAll(".nav-dropdown.open").forEach(item=>{
-      if(item!==parent) item.classList.remove("open");
-    });
-    parent.classList.toggle("open");
-  });
-});
 
-document.addEventListener("click",event=>{
-  if(!event.target.closest(".nav-dropdown")){
-    document.querySelectorAll(".nav-dropdown.open").forEach(item=>item.classList.remove("open"));
-  }
-});
+/* =========================================================
+   MOBILE SERVICE DROPDOWN
+========================================================= */
 
-async function loadProducts(){
+if(serviceTrigger){
 
-  let supabaseProducts = [];
+  serviceTrigger.addEventListener("click", function(e){
 
-  try{
+    if(window.innerWidth <= 980){
 
-    const {data,error} = await supabaseClient
-      .from("products")
-      .select("*")
-      .eq("visible",true)
-      .order("sort_order",{ascending:true})
-      .order("created_at",{ascending:true});
+      e.preventDefault();
 
-    if(!error && Array.isArray(data)){
-      supabaseProducts = data.map(normalizeProduct);
+      serviceDropdown.classList.toggle("open");
+
     }
 
-  }catch(error){
-    console.warn("Supabase load failed:",error);
-  }
-
-  const source =
-    supabaseProducts.length
-      ? supabaseProducts
-      : DEFAULT_PRODUCTS;
-
-  const categoryOrder = {floor:1, coating:2, construction:3, equipment:4};
-
-  products = [...source].sort((a,b)=>{
-    const ac = categoryOrder[a.category] || 99;
-    const bc = categoryOrder[b.category] || 99;
-    if(ac !== bc) return ac - bc;
-    return String(a.name).localeCompare(String(b.name), "th");
   });
 
-  renderProducts();
-
 }
 
-function renderProducts(){
 
-  const grid =
-    document.getElementById("productGrid");
+/* =========================================================
+   CLOSE MOBILE MENU WHEN CLICK LINK
+========================================================= */
 
-  const filtered =
-    currentCategory === "all"
-      ? products
-      : products.filter(
-          p => p.category === currentCategory
-        );
+document.querySelectorAll(".customer-nav a").forEach(function(link){
 
-  if(!filtered.length){
+  link.addEventListener("click", function(){
 
-    grid.innerHTML = `
-      <div class="empty">
-        ยังไม่มีสินค้าในหมวดนี้
-      </div>
-    `;
+    if(window.innerWidth <= 980){
 
-    return;
-  }
+      navMenu.classList.remove("open");
 
-  grid.innerHTML =
-    filtered.map(product => {
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
 
-      const id =
-        encodeURIComponent(product.id);
-
-      const image =
-        product.image || "";
-
-      const imageHtml = image
-        ? `
-          <img
-            class="product-image"
-            src="${escapeHtml(image)}"
-            alt="${escapeHtml(product.name)}"
-            loading="lazy"
-            onerror="this.style.display='none';"
-          >
-        `
-        : `
-          <div
-            class="product-image"
-            style="
-              display:grid;
-              place-items:center;
-              color:#777;
-            "
-          >
-            ไม่มีรูปสินค้า
-          </div>
-        `;
-
-      return `
-        <article class="product-card">
-
-          <a
-            href="product-detail.html?id=${id}"
-            class="product-image-link"
-            aria-label="ดูรายละเอียด ${escapeHtml(product.name)}"
-          >
-
-            ${imageHtml}
-
-            <span class="image-click-label">
-              คลิกดูรายละเอียด →
-            </span>
-
-          </a>
-
-          <div class="product-content">
-
-            <div class="product-category">
-              ${escapeHtml(product.category_label)}
-            </div>
-
-            <h2 class="product-name">
-
-              <a href="product-detail.html?id=${id}">
-                ${escapeHtml(product.name)}
-              </a>
-
-            </h2>
-
-            <div class="product-short">
-              ${escapeHtml(product.short_desc)}
-            </div>
-
-            <div class="product-price">
-              ${escapeHtml(product.price_label)}
-            </div>
-
-            <div class="shipping-highlight">
-              ✓ ส่งแล้ววันนี้ทั่วไทย
-            </div>
-
-            <div class="product-actions">
-
-              <a
-                href="product-detail.html?id=${id}"
-                class="detail-btn"
-                style="
-                  display:grid;
-                  place-items:center;
-                  text-align:center;
-                "
-              >
-                ดูรายละเอียด
-              </a>
-
-              <button
-                class="add-btn"
-                onclick="quickAdd('${String(product.id).replace(/'/g,"\\'")}')"
-              >
-                เพิ่มลงตะกร้า
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
-      `;
-
-    }).join("");
-
-}
-
-function getCart(){
-
-  try{
-    return JSON.parse(
-      localStorage.getItem("chatpetch_cart") || "[]"
-    );
-  }catch{
-    return [];
-  }
-
-}
-
-function saveCart(cart){
-
-  localStorage.setItem(
-    "chatpetch_cart",
-    JSON.stringify(cart)
-  );
-
-  updateCartBadge();
-
-}
-
-function quickAdd(id){
-
-  const product =
-    products.find(
-      p => String(p.id) === String(id)
-    );
-
-  if(!product) return;
-
-  if(product.options && product.options.length){
-
-    window.location.href =
-      `product-detail.html?id=${encodeURIComponent(product.id)}`;
-
-    return;
-  }
-
-  const cart = getCart();
-
-  const cartId =
-    `${product.id}`;
-
-  const existing =
-    cart.find(item => item.id === cartId);
-
-  if(existing){
-
-    existing.quantity += 1;
-
-  }else{
-
-    cart.push({
-      id:cartId,
-      productId:String(product.id),
-      name:product.name,
-      image:product.image,
-      category:product.category,
-      categoryLabel:product.category_label,
-      quantity:1,
-      priceLabel:product.price_label,
-      numericPrice:product.numeric_price,
-      selectedOption:null
-    });
-
-  }
-
-  saveCart(cart);
-  showToast();
-
-}
-
-function updateCartBadge(){
-
-  const cart = getCart();
-
-  const count =
-    cart.reduce(
-      (sum,item)=>sum + Number(item.quantity || 0),
-      0
-    );
-
-  document.getElementById("cartCount").textContent =
-    count;
-
-}
-
-function showToast(){
-
-  const toast =
-    document.getElementById("toast");
-
-  toast.classList.add("show");
-
-  setTimeout(()=>{
-    toast.classList.remove("show");
-  },2200);
-
-}
-
-document
-  .querySelectorAll(".filter-btn")
-  .forEach(button=>{
-
-    button.addEventListener("click",()=>{
-
-      document
-        .querySelectorAll(".filter-btn")
-        .forEach(b=>b.classList.remove("active"));
-
-      button.classList.add("active");
-
-      currentCategory =
-        button.dataset.category;
-
-      renderProducts();
-
-    });
+    }
 
   });
-
-window.addEventListener("scroll",()=>{
-
-  const backTop =
-    document.getElementById("backTop");
-
-  if(window.scrollY > 500){
-    backTop.classList.add("show");
-  }else{
-    backTop.classList.remove("show");
-  }
 
 });
 
-document
-  .getElementById("backTop")
-  .addEventListener("click",()=>{
 
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
+/* =========================================================
+   CART COUNT
+========================================================= */
+
+function updateCartCount(){
+
+  const cartCount = document.getElementById("cartCount");
+
+  if(!cartCount) return;
+
+  try{
+
+    const cart =
+      JSON.parse(
+        localStorage.getItem("chatpetch_cart") || "[]"
+      );
+
+    let count = 0;
+
+    if(Array.isArray(cart)){
+
+      cart.forEach(function(item){
+
+        const qty =
+          Number(item.quantity || item.qty || 1);
+
+        count += qty;
+
+      });
+
+    }
+
+    cartCount.textContent = count;
+
+  }catch(error){
+
+    cartCount.textContent = "0";
+
+  }
+
+}
+
+updateCartCount();
+
+
+/* =========================================================
+   CATEGORY FILTER
+========================================================= */
+
+const filterButtons =
+  document.querySelectorAll(".filter-btn");
+
+const cards =
+  document.querySelectorAll(".product-card");
+
+const emptyState =
+  document.getElementById("emptyState");
+
+
+function applyFilter(filter){
+
+  let visibleCount = 0;
+
+  cards.forEach(function(card){
+
+    const category =
+      card.getAttribute("data-category");
+
+    const shouldShow =
+      filter === "all" ||
+      category === filter;
+
+    if(shouldShow){
+
+      card.style.display = "";
+
+      visibleCount++;
+
+      setTimeout(function(){
+
+        card.classList.add("show");
+
+      },30);
+
+    }else{
+
+      card.style.display = "none";
+      card.classList.remove("show");
+
+    }
 
   });
 
-updateCartBadge();
-loadProducts();
+  if(emptyState){
 
+    emptyState.style.display =
+      visibleCount === 0 ? "block" : "none";
+
+  }
+
+}
+
+
+filterButtons.forEach(function(button){
+
+  button.addEventListener("click", function(){
+
+    filterButtons.forEach(function(btn){
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    const filter =
+      button.getAttribute("data-filter");
+
+    applyFilter(filter);
+
+  });
+
+});
+
+
+/* =========================================================
+   READ CATEGORY FROM URL
+========================================================= */
+
+const urlParams =
+  new URLSearchParams(window.location.search);
+
+const urlCategory =
+  urlParams.get("category");
+
+
+if(
+  urlCategory &&
+  ["floor","stamped","coating","consulting"].includes(urlCategory)
+){
+
+  const targetButton =
+    document.querySelector(
+      '.filter-btn[data-filter="' + urlCategory + '"]'
+    );
+
+  if(targetButton){
+
+    filterButtons.forEach(function(btn){
+      btn.classList.remove("active");
+    });
+
+    targetButton.classList.add("active");
+
+    applyFilter(urlCategory);
+
+  }
+
+}else{
+
+  applyFilter("all");
+
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealObserver =
+  new IntersectionObserver(
+    function(entries){
+
+      entries.forEach(function(entry){
+
+        if(entry.isIntersecting){
+
+          entry.target.classList.add("show");
+
+          revealObserver.unobserve(entry.target);
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.12
+    }
+  );
+
+
+document.querySelectorAll(".reveal").forEach(function(element){
+
+  revealObserver.observe(element);
+
+});
+
+
+/* =========================================================
+   UPDATE CART WHEN TAB BECOMES ACTIVE
+========================================================= */
+
+window.addEventListener("storage", updateCartCount);
+
+document.addEventListener(
+  "visibilitychange",
+  function(){
+
+    if(!document.hidden){
+      updateCartCount();
+    }
+
+  }
+);
 
 </script>
+
 </body>
 </html>
