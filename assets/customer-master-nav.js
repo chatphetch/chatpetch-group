@@ -1,1657 +1,958 @@
-/* ============================================================
-   CHATPHETCH GROUP — CUSTOMER MASTER HEADER
-   ใช้กับทุกหน้า Customer
-
-   - Header เดียวกันทุกหน้า
-   - บริการมี dropdown
-   - ผลงานเป็นลิงก์ตรง ไม่มี dropdown
-   - Active menu อัตโนมัติ
-   - Mobile menu
-   - Mobile service dropdown
-   - Cart count จาก localStorage
-   ============================================================ */
+/* =========================================================
+   CHATPETCH GROUP
+   CUSTOMER MASTER HEADER + FOOTER
+   ใช้ไฟล์นี้กับ Customer Pages ทุกหน้า
+   ========================================================= */
 
 (function () {
   "use strict";
 
-  /* ============================================================
-     MENU
-     ============================================================ */
+  const currentPage =
+    (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
 
   const NAV = [
-    {
-      href: "index.html",
-      label: "หน้าแรก",
-      key: "home"
-    },
+    { key: "home", label: "หน้าแรก", href: "index.html" },
+    { key: "about", label: "เกี่ยวกับเรา", href: "about.html" },
+    { key: "products", label: "สินค้า", href: "products.html" },
 
     {
-      href: "about.html",
-      label: "เกี่ยวกับเรา",
-      key: "about"
-    },
-
-    {
-      href: "products.html",
-      label: "สินค้า",
-      key: "products"
-    },
-
-    {
-      type: "dropdown",
-      label: "บริการ",
       key: "services",
-
-      items: [
+      label: "บริการ",
+      dropdown: [
+        { label: "ดูบริการทั้งหมด", href: "services.html" },
         {
-          href: "services.html",
-          label: "ดูบริการทั้งหมด"
+          label: "บริการระบบงานพื้น",
+          href: "service-detail.html?service=industrial"
         },
-
         {
-          href: "service-detail.html?service=industrial",
-          label: "บริการระบบงานพื้น"
+          label: "บริการเคลือบผิว / สี",
+          href: "service-detail.html?service=coating"
         },
-
         {
-          href: "service-detail.html?service=coating",
-          label: "บริการเคลือบผิว / สี"
+          label: "ปรึกษาและเลือกวัสดุ",
+          href: "service-detail.html?service=consulting"
         },
-
         {
-          href: "service-detail.html?service=consulting",
-          label: "ปรึกษาและเลือกวัสดุ"
-        },
-
-        {
-          href: "service-detail.html?service=installation",
-          label: "คำปรึกษางานติดตั้ง"
+          label: "คำปรึกษางานติดตั้ง",
+          href: "service-detail.html?service=installation"
         }
       ]
     },
 
-    /*
-      IMPORTANT:
-      ผลงานเป็นลิงก์ตรง
-      ไม่มี dropdown
-    */
+    /* สำคัญ: ผลงานเป็นลิงก์ตรง ไม่มี Dropdown */
+    { key: "projects", label: "ผลงาน", href: "projects.html" },
+
+    { key: "reference", label: "โครงการอ้างอิง", href: "reference.html" },
+    { key: "technical", label: "ศูนย์เทคนิค", href: "technical-center.html" },
+    { key: "knowledge", label: "คลังความรู้", href: "knowledge.html" },
+    { key: "contact", label: "ติดต่อเรา", href: "contact.html" },
 
     {
-      href: "projects.html",
-      label: "ผลงาน",
-      key: "projects"
-    },
-
-    {
-      href: "reference.html",
-      label: "โครงการอ้างอิง",
-      key: "reference"
-    },
-
-    {
-      href: "technical-center.html",
-      label: "ศูนย์เทคนิค",
-      key: "technical"
-    },
-
-    {
-      href: "knowledge.html",
-      label: "คลังความรู้",
-      key: "knowledge"
-    },
-
-    {
-      href: "contact.html",
-      label: "ติดต่อเรา",
-      key: "contact"
-    },
-
-    {
-      href: "order-status.html",
+      key: "order",
       label: "🔎 ติดตามคำสั่งซื้อ",
-      key: "orders"
+      href: "order-status.html"
     },
 
     {
-      href: "cart.html",
-      label: "🛒 ตะกร้า",
       key: "cart",
-      shop: true
+      label: "🛒 ตะกร้า",
+      href: "cart.html",
+      cart: true
     }
   ];
 
-
-  /* ============================================================
-     PAGE → ACTIVE MENU
-     ============================================================ */
-
-  const PAGE_KEYS = {
-
-    "index.html":
-      "home",
-
-    "about.html":
-      "about",
-
-    "products.html":
-      "products",
-
-    "product-detail.html":
-      "products",
-
-    "services.html":
-      "services",
-
-    "service-detail.html":
-      "services",
-
-    "projects.html":
-      "projects",
-
-    "project-detail.html":
-      "projects",
-
-    "reference.html":
-      "reference",
-
-    "technical-center.html":
-      "technical",
-
-    "knowledge.html":
-      "knowledge",
-
-    "knowledge-detail.html":
-      "knowledge",
-
-    "contact.html":
-      "contact",
-
-    "cart.html":
-      "cart",
-
-    "checkout.html":
-      "cart",
-
-    "order-status.html":
-      "orders"
+  const PAGE_KEY = {
+    "index.html": "home",
+    "about.html": "about",
+    "services.html": "services",
+    "service-detail.html": "services",
+    "products.html": "products",
+    "product-detail.html": "products",
+    "projects.html": "projects",
+    "project-detail.html": "projects",
+    "reference.html": "reference",
+    "technical-center.html": "technical",
+    "knowledge.html": "knowledge",
+    "knowledge-detail.html": "knowledge",
+    "contact.html": "contact",
+    "cart.html": "cart",
+    "checkout.html": "cart",
+    "order-status.html": "order"
   };
 
+  const activeKey = PAGE_KEY[currentPage] || "";
 
-  const pageName =
-    (
-      window.location.pathname
-        .split("/")
-        .pop() || "index.html"
-    ).toLowerCase();
+  /* ---------------------------------------------------------
+     MASTER CSS
+     --------------------------------------------------------- */
+  const style = document.createElement("style");
 
+  style.id = "chatpetch-master-layout-style";
 
-  const activeKey =
-    PAGE_KEYS[pageName] || "home";
+  style.textContent = `
+    @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap');
 
-
-  /* ============================================================
-     MASTER HEADER CSS
-     ============================================================ */
-
-  const css = `
-
-    /* ========================================================
-       HEADER
-       ======================================================== */
-
-    .cp-master-header,
-    .cp-master-header * {
-      box-sizing: border-box;
+    :root{
+      --black:#030303;
+      --black2:#080808;
+      --dark:#101010;
+      --gold:#c9a45c;
+      --gold2:#e9cf8b;
+      --gold3:#8d6b2f;
+      --white:#fff;
+      --muted:#a6a6a6;
+      --line:rgba(255,255,255,.10);
+      --gold-line:rgba(201,164,92,.35);
+      --max:1280px;
     }
 
-
-    .cp-master-header {
-
-      position: fixed;
-
-      top: 3px;
-      left: 0;
-
-      width: 100%;
-
-      z-index: 10000;
-
-      background:
-        rgba(3, 3, 3, .78);
-
-      backdrop-filter:
-        blur(18px);
-
-      -webkit-backdrop-filter:
-        blur(18px);
-
-      border-bottom:
-        1px solid rgba(201, 164, 92, .16);
-
-      color: #fff;
-
-      font-family:
-        "Prompt",
-        "Kanit",
-        sans-serif;
+    body{
+      font-family:'Prompt','Kanit',sans-serif !important;
+      background:#030303 !important;
+      color:#fff !important;
+      overflow-x:hidden;
     }
 
-
-    /* ========================================================
-       CONTAINER
-       ======================================================== */
-
-    .cp-master-header .cp-header-container {
-
-      width:
-        min(
-          1280px,
-          calc(100% - 80px)
-        );
-
-      margin:
-        0 auto;
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-10;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size:60px 60px;
+      mask-image:linear-gradient(
+        to bottom,
+        black,
+        rgba(0,0,0,.5),
+        transparent
+      );
     }
 
-
-    /* ========================================================
-       NAVBAR
-       ======================================================== */
-
-    .cp-master-header .cp-navbar {
-
-      height: 86px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 20px;
+    .header{
+      position:fixed !important;
+      top:3px !important;
+      left:0 !important;
+      width:100% !important;
+      z-index:1000 !important;
+      background:rgba(3,3,3,.78) !important;
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(201,164,92,.16) !important;
     }
 
-
-    /* ========================================================
-       BRAND
-       ======================================================== */
-
-    .cp-master-header .cp-brand {
-
-      min-width: 0;
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 14px;
-
-      flex: 0 0 auto;
-
-      color: #fff;
-
-      text-decoration: none;
+    .header .container{
+      width:min(var(--max),calc(100% - 80px));
+      margin:auto;
     }
 
-
-    .cp-master-header .cp-brand img {
-
-      width: 72px !important;
-
-      height: 72px !important;
-
-      max-width: 72px !important;
-
-      max-height: 72px !important;
-
-      object-fit: contain;
-
-      display: block;
-
-      flex: 0 0 72px;
+    .navbar{
+      height:86px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
     }
 
-
-    .cp-master-header .cp-brand-text {
-
-      min-width: 0;
-
-      display: flex;
-
-      flex-direction: column;
-
-      justify-content: center;
+    .customer-brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex:0 0 auto;
+      color:inherit;
+      text-decoration:none;
     }
 
-
-    .cp-master-header
-    .cp-brand-text strong {
-
-      display: block;
-
-      font-family:
-        "Prompt",
-        "Kanit",
-        sans-serif;
-
-      font-size: 18px;
-
-      line-height: 1.15;
-
-      font-weight: 600;
-
-      letter-spacing: 1.8px;
-
-      white-space: nowrap;
+    .customer-brand img{
+      width:72px !important;
+      height:72px !important;
+      max-width:72px !important;
+      max-height:72px !important;
+      object-fit:contain !important;
+      display:block;
+      flex:0 0 72px;
     }
 
-
-    .cp-master-header
-    .cp-brand-text small {
-
-      display: block;
-
-      margin-top: 4px;
-
-      color: #c9a45c;
-
-      font-family: Arial, sans-serif;
-
-      font-size: 9px;
-
-      line-height: 1.1;
-
-      letter-spacing: 2px;
-
-      white-space: nowrap;
+    .customer-brand-text strong{
+      display:block;
+      font-size:18px;
+      line-height:1.15;
+      letter-spacing:1.8px;
+      font-weight:600;
+      white-space:nowrap;
     }
 
-
-    /* ========================================================
-       MAIN NAV
-       ======================================================== */
-
-    .cp-master-header .cp-nav {
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: flex-end;
-
-      gap: 2px;
-
-      min-width: 0;
+    .customer-brand-text small{
+      display:block;
+      color:var(--gold);
+      font-size:9px;
+      line-height:1.2;
+      letter-spacing:2px;
+      margin-top:4px;
+      white-space:nowrap;
     }
 
-
-    .cp-master-header .cp-nav > a,
-    .cp-master-header .cp-drop-trigger {
-
-      position: relative;
-
-      min-height: 46px;
-
-      padding:
-        11px 10px;
-
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 5px;
-
-      border: 0;
-
-      background: transparent;
-
-      color: #cfcfcf;
-
-      font:
-        500 12px/1.2
-        "Prompt",
-        "Kanit",
-        sans-serif;
-
-      text-decoration: none;
-
-      cursor: pointer;
-
-      white-space: nowrap;
-
-      transition:
-        color .25s ease,
-        background .25s ease;
+    .customer-nav{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:2px;
+      min-width:0;
     }
 
-
-    /* ========================================================
-       ACTIVE / HOVER LINE
-       ======================================================== */
-
-    .cp-master-header .cp-nav > a::after,
-    .cp-master-header .cp-drop-trigger::after {
-
-      content: "";
-
-      position: absolute;
-
-      left: 10px;
-      right: 10px;
-
-      bottom: 4px;
-
-      height: 1px;
-
-      background: #c9a45c;
-
-      transform:
-        scaleX(0);
-
-      transform-origin:
-        center;
-
-      transition:
-        transform .25s ease;
+    .customer-nav > a,
+    .nav-drop-trigger{
+      position:relative;
+      min-height:46px;
+      padding:11px 10px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      color:#cfcfcf;
+      font-family:'Prompt','Kanit',sans-serif;
+      font-size:12px;
+      font-weight:400;
+      line-height:1.2;
+      background:transparent;
+      border:0;
+      cursor:pointer;
+      text-decoration:none;
+      white-space:nowrap;
+      transition:.3s;
     }
 
-
-    .cp-master-header .cp-nav > a:hover,
-    .cp-master-header .cp-drop-trigger:hover,
-    .cp-master-header .cp-nav > a.cp-active,
-    .cp-master-header .cp-drop-trigger.cp-active {
-
-      color: #fff;
+    .customer-nav > a::after,
+    .nav-drop-trigger::after{
+      content:"";
+      position:absolute;
+      left:10px;
+      right:10px;
+      bottom:4px;
+      height:1px;
+      background:var(--gold);
+      transform:scaleX(0);
+      transform-origin:center;
+      transition:.3s;
     }
 
-
-    .cp-master-header .cp-nav > a:hover::after,
-    .cp-master-header .cp-nav > a.cp-active::after,
-    .cp-master-header .cp-drop-trigger:hover::after,
-    .cp-master-header .cp-drop-trigger.cp-active::after {
-
-      transform:
-        scaleX(1);
+    .customer-nav > a:hover,
+    .customer-nav > a.active,
+    .nav-drop-trigger:hover,
+    .nav-dropdown.open .nav-drop-trigger{
+      color:#fff;
     }
 
-
-    /* ========================================================
-       DROPDOWN
-       ======================================================== */
-
-    .cp-master-header .cp-dropdown {
-
-      position: relative;
+    .customer-nav > a:hover::after,
+    .customer-nav > a.active::after,
+    .nav-dropdown.open .nav-drop-trigger::after{
+      transform:scaleX(1);
     }
 
-
-    .cp-master-header
-    .cp-drop-trigger
-    .cp-arrow {
-
-      font-size: 9px;
-
-      color: #c9a45c;
-
-      transition:
-        transform .2s ease;
+    .nav-shop{
+      border:1px solid rgba(201,164,92,.4) !important;
+      color:var(--gold2) !important;
+      margin-left:5px;
     }
 
-
-    .cp-master-header
-    .cp-dropdown:hover
-    .cp-arrow,
-
-    .cp-master-header
-    .cp-dropdown.cp-open
-    .cp-arrow {
-
-      transform:
-        rotate(180deg);
+    .nav-shop::after{
+      display:none !important;
     }
 
-
-    /* ========================================================
-       SUB MENU
-       ======================================================== */
-
-    .cp-master-header .cp-submenu {
-
-      position: absolute;
-
-      top:
-        calc(100% - 1px);
-
-      left: 50%;
-
-      transform:
-        translateX(-50%)
-        translateY(8px);
-
-      width: 245px;
-
-      padding: 8px;
-
-      background:
-        rgba(8, 8, 8, .98);
-
-      border:
-        1px solid
-        rgba(201, 164, 92, .35);
-
-      box-shadow:
-        0 22px 55px
-        rgba(0, 0, 0, .6);
-
-      opacity: 0;
-
-      visibility: hidden;
-
-      pointer-events: none;
-
-      transition:
-        opacity .2s ease,
-        transform .2s ease,
-        visibility .2s ease;
+    .cart-count{
+      display:inline-grid;
+      place-items:center;
+      min-width:18px;
+      height:18px;
+      margin-left:3px;
+      padding:0 4px;
+      border-radius:50%;
+      background:var(--gold);
+      color:#000;
+      font-size:10px;
+      font-weight:700;
     }
 
-
-    .cp-master-header
-    .cp-dropdown:hover
-    .cp-submenu,
-
-    .cp-master-header
-    .cp-dropdown.cp-open
-    .cp-submenu {
-
-      opacity: 1;
-
-      visibility: visible;
-
-      pointer-events: auto;
-
-      transform:
-        translateX(-50%)
-        translateY(0);
+    .nav-dropdown{
+      position:relative;
     }
 
-
-    .cp-master-header
-    .cp-submenu a {
-
-      display: flex;
-
-      align-items: center;
-
-      min-height: 42px;
-
-      padding:
-        9px 12px;
-
-      color: #cfcfcf;
-
-      font:
-        400 12px/1.35
-        "Prompt",
-        "Kanit",
-        sans-serif;
-
-      text-decoration: none;
-
-      border:
-        1px solid transparent;
-
-      transition:
-        .2s ease;
+    .nav-drop-trigger .arrow{
+      color:var(--gold);
+      font-size:8px;
+      transition:.25s;
     }
 
-
-    .cp-master-header
-    .cp-submenu a:hover {
-
-      color: #fff;
-
-      border-color:
-        rgba(201, 164, 92, .22);
-
-      background:
-        rgba(201, 164, 92, .07);
+    .nav-dropdown.open .nav-drop-trigger .arrow{
+      transform:rotate(180deg);
     }
 
-
-    /* ========================================================
-       CART
-       ======================================================== */
-
-    .cp-master-header .cp-shop {
-
-      margin-left: 5px;
-
-      border:
-        1px solid
-        rgba(201, 164, 92, .4) !important;
-
-      color:
-        #e9cf8b !important;
+    .nav-submenu{
+      position:absolute;
+      top:calc(100% + 2px);
+      left:50%;
+      transform:translateX(-50%) translateY(8px);
+      width:245px;
+      padding:8px;
+      background:rgba(8,8,8,.98);
+      border:1px solid rgba(201,164,92,.35);
+      box-shadow:0 25px 70px rgba(0,0,0,.65);
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:.25s;
     }
 
-
-    .cp-master-header
-    .cp-shop::after {
-
-      display: none;
+    .nav-dropdown:hover .nav-submenu,
+    .nav-dropdown.open .nav-submenu{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+      transform:translateX(-50%) translateY(0);
     }
 
-
-    .cp-master-header
-    .cp-cart-count {
-
-      display: inline-grid;
-
-      place-items: center;
-
-      min-width: 18px;
-
-      height: 18px;
-
-      padding:
-        0 4px;
-
-      margin-left: 3px;
-
-      border-radius: 50%;
-
-      background:
-        #c9a45c;
-
-      color:
-        #000;
-
-      font:
-        700 10px/1
-        Arial,
-        sans-serif;
+    .nav-submenu a{
+      display:flex;
+      align-items:center;
+      min-height:42px;
+      padding:9px 12px;
+      color:#cfcfcf;
+      font-size:12px;
+      line-height:1.35;
+      text-decoration:none;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      transition:.2s;
     }
 
-
-    /* ========================================================
-       MOBILE BUTTON
-       ======================================================== */
-
-    .cp-master-header
-    .cp-menu-toggle {
-
-      display: none;
-
-      width: 44px;
-
-      height: 44px;
-
-      flex: 0 0 44px;
-
-      border:
-        1px solid
-        rgba(201, 164, 92, .35);
-
-      background:
-        rgba(255, 255, 255, .03);
-
-      color: #fff;
-
-      cursor: pointer;
-
-      font-size: 20px;
+    .nav-submenu a:last-child{
+      border-bottom:0;
     }
 
+    .nav-submenu a:hover{
+      color:var(--gold2);
+      background:rgba(201,164,92,.07);
+      padding-left:16px;
+    }
 
-    /* ========================================================
-       1250px
-       ======================================================== */
+    .menu-toggle{
+      display:none;
+      width:44px;
+      height:44px;
+      border:1px solid var(--gold-line);
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      cursor:pointer;
+      font-size:20px;
+    }
 
-    @media (max-width: 1250px) {
+    /* ให้ main/page content ไม่ชน fixed header */
+    main{
+      position:relative;
+    }
 
-      .cp-master-header
-      .cp-header-container {
+    /* MASTER FOOTER */
+    .footer{
+      border-top:1px solid rgba(201,164,92,.22);
+      background:#070707;
+      padding:65px 0 28px;
+    }
 
-        width:
-          min(
-            1280px,
-            calc(100% - 40px)
-          );
+    .footer .container{
+      width:min(var(--max),calc(100% - 80px));
+      margin:auto;
+    }
+
+    .footer-main{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 430px;
+      gap:8px;
+      align-items:start;
+    }
+
+    .footer-brand .logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:inherit;
+      text-decoration:none;
+      margin-bottom:20px;
+    }
+
+    .footer-brand .logo-mark{
+      width:50px;
+      height:50px;
+      display:grid;
+      place-items:center;
+      border:1px solid var(--gold);
+      color:var(--gold2);
+      background:linear-gradient(
+        135deg,
+        rgba(201,164,92,.18),
+        rgba(255,255,255,.02)
+      );
+    }
+
+    .footer-brand .logo-text strong{
+      display:block;
+      font-size:18px;
+      letter-spacing:2px;
+    }
+
+    .footer-brand .logo-text small{
+      display:block;
+      color:var(--gold);
+      font-size:9px;
+      letter-spacing:2px;
+      margin-top:3px;
+    }
+
+    .footer-description{
+      max-width:560px;
+      color:#999;
+      font-size:14px;
+      line-height:2;
+    }
+
+    .footer-title{
+      color:var(--gold2);
+      font-size:12px;
+      letter-spacing:2px;
+      margin-bottom:16px;
+      text-transform:uppercase;
+    }
+
+    .footer-menu{
+      justify-self:start;
+      margin-left:0;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:5px;
+    }
+
+    .footer-links a{
+      color:#999;
+      font-size:13px;
+      line-height:1.8;
+      text-decoration:none;
+      transition:.2s;
+    }
+
+    .footer-links a:hover{
+      color:var(--gold2);
+    }
+
+    .footer-bottom{
+      margin-top:45px;
+      padding-top:20px;
+      border-top:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      color:#666;
+      font-size:11px;
+    }
+
+    .footer-address{
+      color:#777;
+    }
+
+    .footer-actions{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:8px;
+    }
+
+    .footer-action{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:38px;
+      padding:0 14px;
+      border:1px solid rgba(201,164,92,.35);
+      color:var(--gold2);
+      font-size:12px;
+      text-decoration:none;
+      transition:.25s;
+    }
+
+    .footer-action:hover{
+      background:rgba(201,164,92,.09);
+      border-color:var(--gold);
+    }
+
+    .footer-social{
+      display:flex;
+      gap:7px;
+    }
+
+    .footer-social a{
+      width:36px;
+      height:36px;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(201,164,92,.3);
+      color:var(--gold2);
+      text-decoration:none;
+      font-size:12px;
+    }
+
+    @media(max-width:1250px){
+      .header .container{
+        width:min(var(--max),calc(100% - 40px));
       }
 
-
-      .cp-master-header
-      .cp-nav > a,
-
-      .cp-master-header
-      .cp-drop-trigger {
-
-        padding-left: 8px;
-
-        padding-right: 8px;
-
-        font-size: 11px;
+      .customer-nav > a,
+      .nav-drop-trigger{
+        padding-left:7px;
+        padding-right:7px;
+        font-size:11px;
       }
 
+      .customer-brand-text strong{
+        font-size:16px;
+      }
 
-      .cp-master-header
-      .cp-brand-text strong {
-
-        font-size: 16px;
+      .footer .container{
+        width:min(var(--max),calc(100% - 40px));
       }
     }
 
-
-    /* ========================================================
-       1050px — MOBILE / TABLET
-       ======================================================== */
-
-    @media (max-width: 1050px) {
-
-      .cp-master-header
-      .cp-header-container {
-
-        width:
-          calc(100% - 28px);
+    @media(max-width:1050px){
+      .navbar{
+        height:78px;
       }
 
-
-      .cp-master-header
-      .cp-navbar {
-
-        height: 78px;
+      .customer-nav{
+        display:none;
+        position:absolute;
+        top:78px;
+        left:0;
+        right:0;
+        padding:12px 20px 20px;
+        flex-direction:column;
+        align-items:stretch;
+        justify-content:flex-start;
+        gap:2px;
+        background:rgba(5,5,5,.98);
+        border-bottom:1px solid rgba(201,164,92,.3);
+        box-shadow:0 25px 60px rgba(0,0,0,.55);
       }
 
-
-      .cp-master-header
-      .cp-brand img {
-
-        width: 58px !important;
-
-        height: 58px !important;
-
-        max-width: 58px !important;
-
-        max-height: 58px !important;
-
-        flex-basis: 58px;
+      .customer-nav.show{
+        display:flex;
       }
 
-
-      .cp-master-header
-      .cp-brand-text strong {
-
-        font-size: 15px;
-
-        letter-spacing: 1.2px;
+      .customer-nav > a,
+      .nav-drop-trigger{
+        width:100%;
+        min-height:45px;
+        justify-content:flex-start;
+        padding:12px 13px;
+        font-size:13px;
       }
 
-
-      .cp-master-header
-      .cp-brand-text small {
-
-        font-size: 8px;
-
-        letter-spacing: 1.4px;
+      .customer-nav > a::after,
+      .nav-drop-trigger::after{
+        left:13px;
+        right:auto;
+        width:35px;
       }
 
-
-      .cp-master-header
-      .cp-menu-toggle {
-
-        display: block;
+      .nav-shop{
+        margin-left:0;
+        margin-top:5px;
       }
 
-
-      .cp-master-header
-      .cp-nav {
-
-        position: absolute;
-
-        top:
-          calc(100% + 1px);
-
-        left: 0;
-
-        right: 0;
-
-        display: none;
-
-        flex-direction: column;
-
-        align-items: stretch;
-
-        justify-content: flex-start;
-
-        gap: 0;
-
-        max-height:
-          calc(100vh - 85px);
-
-        overflow: auto;
-
-        padding: 10px;
-
-        background:
-          rgba(5, 5, 5, .98);
-
-        border-bottom:
-          1px solid
-          rgba(201, 164, 92, .25);
-
-        box-shadow:
-          0 25px 60px
-          rgba(0, 0, 0, .65);
+      .nav-dropdown{
+        width:100%;
       }
 
-
-      .cp-master-header
-      .cp-nav.cp-show {
-
-        display: flex;
+      .nav-drop-trigger{
+        justify-content:space-between;
       }
 
-
-      .cp-master-header
-      .cp-nav > a,
-
-      .cp-master-header
-      .cp-drop-trigger {
-
-        width: 100%;
-
-        min-height: 48px;
-
-        justify-content: flex-start;
-
-        padding:
-          12px 14px;
-
-        font-size: 13px;
+      .nav-submenu{
+        position:static;
+        width:100%;
+        transform:none !important;
+        display:none;
+        opacity:1;
+        visibility:visible;
+        pointer-events:auto;
+        margin:0 0 4px;
+        box-shadow:none;
       }
 
-
-      .cp-master-header
-      .cp-nav > a::after,
-
-      .cp-master-header
-      .cp-drop-trigger::after {
-
-        display: none;
+      .nav-dropdown.open .nav-submenu{
+        display:block;
       }
 
-
-      .cp-master-header
-      .cp-dropdown {
-
-        width: 100%;
+      .menu-toggle{
+        display:block;
       }
 
-
-      /* mobile dropdown */
-
-      .cp-master-header
-      .cp-submenu {
-
-        position: static;
-
-        width: 100%;
-
-        transform: none;
-
-        padding:
-          0 0 5px 12px;
-
-        background: transparent;
-
-        border: 0;
-
-        box-shadow: none;
-
-        opacity: 1;
-
-        visibility: visible;
-
-        pointer-events: auto;
-
-        display: none;
-      }
-
-
-      .cp-master-header
-      .cp-dropdown.cp-open
-      .cp-submenu {
-
-        display: block;
-
-        transform: none;
-      }
-
-
-      .cp-master-header
-      .cp-submenu a {
-
-        min-height: 44px;
-
-        padding:
-          10px 14px;
-      }
-
-
-      .cp-master-header
-      .cp-shop {
-
-        margin:
-          4px 0 0;
+      .footer-main{
+        grid-template-columns:1fr 300px;
       }
     }
 
-
-    /* ========================================================
-       650px — PHONE
-       ======================================================== */
-
-    @media (max-width: 650px) {
-
-      .cp-master-header
-      .cp-header-container {
-
-        width:
-          calc(100% - 20px);
+    @media(max-width:700px){
+      .header .container{
+        width:calc(100% - 28px);
       }
 
-
-      .cp-master-header
-      .cp-brand {
-
-        gap: 9px;
+      .customer-brand img{
+        width:56px !important;
+        height:56px !important;
+        max-width:56px !important;
+        max-height:56px !important;
+        flex-basis:56px;
       }
 
-
-      .cp-master-header
-      .cp-brand img {
-
-        width: 48px !important;
-
-        height: 48px !important;
-
-        max-width: 48px !important;
-
-        max-height: 48px !important;
-
-        flex-basis: 48px;
+      .customer-brand-text strong{
+        font-size:14px;
+        letter-spacing:1.3px;
       }
 
-
-      .cp-master-header
-      .cp-brand-text strong {
-
-        font-size: 13px;
-
-        letter-spacing: 1px;
+      .customer-brand-text small{
+        font-size:8px;
+        letter-spacing:1.5px;
       }
 
+      .footer .container{
+        width:calc(100% - 28px);
+      }
 
-      .cp-master-header
-      .cp-brand-text small {
+      .footer-main{
+        grid-template-columns:1fr;
+        gap:35px;
+      }
 
-        font-size: 7px;
-
-        letter-spacing: 1px;
+      .footer-bottom{
+        flex-direction:column;
+        align-items:flex-start;
       }
     }
 
+    @media(max-width:480px){
+      .customer-brand-text{
+        display:none;
+      }
+
+      .customer-brand img{
+        width:52px !important;
+        height:52px !important;
+        max-width:52px !important;
+        max-height:52px !important;
+        flex-basis:52px;
+      }
+    }
   `;
 
+  document.head.appendChild(style);
 
-  /* ============================================================
-     INJECT CSS
-     ============================================================ */
+  /* ---------------------------------------------------------
+     HEADER
+     --------------------------------------------------------- */
+  function createHeader() {
+    document.querySelectorAll("header").forEach(el => el.remove());
 
-  function injectStyle() {
+    const header = document.createElement("header");
+    header.className = "header";
 
-    if (
-      document.getElementById(
-        "cp-master-header-style"
-      )
-    ) {
-      return;
-    }
+    const container = document.createElement("div");
+    container.className = "container";
 
+    const nav = document.createElement("nav");
+    nav.className = "navbar";
 
-    const style =
-      document.createElement("style");
+    const brand = document.createElement("a");
+    brand.href = "index.html";
+    brand.className = "customer-brand";
+    brand.setAttribute("aria-label", "CHATPHETCH GROUP");
 
+    brand.innerHTML = `
+      <img
+        src="assets/logo.png"
+        alt="CHATPHETCH GROUP"
+        width="72"
+        height="72"
+        style="width:72px;height:72px;max-width:72px;max-height:72px;object-fit:contain;display:block;flex:0 0 72px;"
+      >
+      <div class="customer-brand-text">
+        <strong>CHATPHETCH GROUP</strong>
+        <small>FLOORING &amp; CONSTRUCTION</small>
+      </div>
+    `;
 
-    style.id =
-      "cp-master-header-style";
+    const navMenu = document.createElement("div");
+    navMenu.className = "customer-nav";
+    navMenu.id = "navMenu";
 
+    NAV.forEach(item => {
+      if (item.dropdown) {
+        const wrap = document.createElement("div");
+        wrap.className = "nav-dropdown";
 
-    style.textContent =
-      css;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "nav-drop-trigger";
+        button.innerHTML = `
+          <span>${item.label}</span>
+          <span class="arrow">▼</span>
+        `;
 
+        const submenu = document.createElement("div");
+        submenu.className = "nav-submenu";
 
-    document.head.appendChild(style);
-  }
+        item.dropdown.forEach(child => {
+          const a = document.createElement("a");
+          a.href = child.href;
+          a.textContent = child.label;
+          submenu.appendChild(a);
+        });
 
+        button.addEventListener("click", function (e) {
+          e.stopPropagation();
 
-  /* ============================================================
-     CART COUNT
-     ============================================================ */
+          document.querySelectorAll(".nav-dropdown.open").forEach(other => {
+            if (other !== wrap) other.classList.remove("open");
+          });
 
-  function cartCount() {
+          wrap.classList.toggle("open");
+        });
 
-    try {
+        wrap.appendChild(button);
+        wrap.appendChild(submenu);
+        navMenu.appendChild(wrap);
 
-      const raw =
-        localStorage.getItem(
-          "chatpetch_cart"
-        );
+        if (activeKey === item.key) {
+          button.classList.add("active");
+        }
 
-
-      if (!raw) {
-        return 0;
+        return;
       }
 
+      const a = document.createElement("a");
+      a.href = item.href;
+      a.textContent = item.label;
 
-      const cart =
-        JSON.parse(raw);
-
-
-      if (Array.isArray(cart)) {
-
-        return cart.reduce(
-          (sum, item) =>
-            sum +
-            Number(
-              item.quantity || 1
-            ),
-          0
-        );
+      if (activeKey === item.key) {
+        a.classList.add("active");
       }
 
-
-      if (
-        cart &&
-        Array.isArray(cart.items)
-      ) {
-
-        return cart.items.reduce(
-          (sum, item) =>
-            sum +
-            Number(
-              item.quantity || 1
-            ),
-          0
-        );
-      }
-
-
-      return 0;
-
-    } catch (error) {
-
-      console.warn(
-        "CHATPHETCH cart count error:",
-        error
-      );
-
-      return 0;
-    }
-  }
-
-
-  /* ============================================================
-     RENDER NAV
-     ============================================================ */
-
-  function renderNav() {
-
-    return NAV.map(item => {
-
-      /* ----------------------------------------
-         DROPDOWN
-         ---------------------------------------- */
-
-      if (
-        item.type === "dropdown"
-      ) {
-
-        const active =
-          activeKey === item.key
-            ? " cp-active"
-            : "";
-
-
-        return `
-          <div
-            class="cp-dropdown"
-            data-cp-dropdown
-          >
-
-            <button
-              type="button"
-              class="cp-drop-trigger${active}"
-              aria-expanded="false"
-            >
-              ${item.label}
-
-              <span class="cp-arrow">
-                ▼
-              </span>
-
-            </button>
-
-
-            <div class="cp-submenu">
-
-              ${item.items
-                .map(
-                  sub => `
-                    <a href="${sub.href}">
-                      ${sub.label}
-                    </a>
-                  `
-                )
-                .join("")}
-
-            </div>
-
-          </div>
+      if (item.cart) {
+        a.classList.add("nav-shop");
+        a.innerHTML = `
+          🛒 ตะกร้า
+          <span class="cart-count" id="cartCount">0</span>
         `;
       }
 
+      navMenu.appendChild(a);
+    });
 
-      /* ----------------------------------------
-         NORMAL LINK
-         ---------------------------------------- */
+    const menuToggle = document.createElement("button");
+    menuToggle.type = "button";
+    menuToggle.className = "menu-toggle";
+    menuToggle.id = "menuToggle";
+    menuToggle.setAttribute("aria-label", "เปิดเมนู");
+    menuToggle.textContent = "☰";
 
-      const active =
-        activeKey === item.key
-          ? " cp-active"
-          : "";
+    menuToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      navMenu.classList.toggle("show");
+    });
 
+    nav.appendChild(brand);
+    nav.appendChild(navMenu);
+    nav.appendChild(menuToggle);
 
-      const shop =
-        item.shop
-          ? " cp-shop"
-          : "";
+    container.appendChild(nav);
+    header.appendChild(container);
 
-
-      const count =
-        item.shop
-          ? `
-            <span
-              class="cp-cart-count"
-              id="cpCartCount"
-            >
-              0
-            </span>
-          `
-          : "";
-
-
-      return `
-        <a
-          href="${item.href}"
-          class="${shop.trim()}${active}"
-          ${item.shop
-            ? 'id="cpCartLink"'
-            : ""}
-        >
-          ${item.label}
-          ${count}
-        </a>
-      `;
-    }).join("");
+    document.body.insertBefore(header, document.body.firstChild);
   }
 
+  /* ---------------------------------------------------------
+     FOOTER
+     --------------------------------------------------------- */
+  function createFooter() {
+    document.querySelectorAll("footer").forEach(el => el.remove());
 
-  /* ============================================================
-     BUILD HEADER
-     ============================================================ */
+    const footer = document.createElement("footer");
+    footer.className = "footer";
 
-  function buildHeader() {
+    footer.innerHTML = `
+      <div class="container">
 
-    const header =
-      document.createElement(
-        "header"
-      );
+        <div class="footer-main">
 
+          <div class="footer-brand">
+            <a href="index.html" class="logo" aria-label="CHATPHETCH GROUP">
+              <img
+                src="assets/logo.png"
+                alt="CHATPHETCH GROUP"
+                width="72"
+                height="72"
+                style="width:72px;height:72px;max-width:72px;max-height:72px;object-fit:contain;display:block;"
+              >
 
-    header.className =
-      "cp-master-header";
+              <div class="logo-text">
+                <strong>CHATPHETCH GROUP</strong>
+                <small>FLOORING &amp; CONSTRUCTION</small>
+              </div>
+            </a>
 
-
-    header.innerHTML = `
-
-      <div class="cp-header-container">
-
-        <nav class="cp-navbar">
-
-
-          <!-- BRAND -->
-
-          <a
-            href="index.html"
-            class="cp-brand"
-            aria-label="CHATPHETCH GROUP"
-          >
-
-            <img
-              src="assets/logo.png"
-              alt="CHATPHETCH GROUP"
-              width="72"
-              height="72"
-            >
-
-
-            <div class="cp-brand-text">
-
-              <strong>
-                CHATPHETCH GROUP
-              </strong>
-
-              <small>
-                FLOORING &amp; CONSTRUCTION
-              </small>
-
-            </div>
-
-          </a>
-
-
-          <!-- NAV -->
-
-          <div
-            class="cp-nav"
-            id="cpNavMenu"
-          >
-
-            ${renderNav()}
-
+            <p class="footer-description">
+              🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹<br>
+              ♠️ สร้างสรรค์ผลงาน &nbsp;&nbsp;
+              ♠️ มาตรฐานเข้าถึง &nbsp;&nbsp;
+              ♠️ ยืน 1 คุณภาพ<br>
+              บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
+            </p>
           </div>
 
+          <div class="footer-menu">
+            <div class="footer-title">MENU</div>
 
-          <!-- MOBILE -->
+            <div class="footer-links">
+              <a href="index.html">หน้าแรก</a>
+              <a href="about.html">เกี่ยวกับเรา</a>
+              <a href="products.html">สินค้า</a>
+              <a href="services.html">บริการ</a>
+              <a href="projects.html">ผลงาน</a>
+              <a href="contact.html">ติดต่อเรา</a>
+            </div>
+          </div>
 
-          <button
-            type="button"
-            class="cp-menu-toggle"
-            id="cpMenuToggle"
-            aria-label="เปิดเมนู"
-            aria-expanded="false"
-          >
-            ☰
-          </button>
+        </div>
 
+        <div class="footer-bottom">
 
-        </nav>
+          <div>
+            © 2026 CHATPETCH GROUP CO., LTD.
+          </div>
+
+          <div class="footer-address">
+            10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310
+          </div>
+
+          <div class="footer-actions">
+            <a href="contact.html" class="footer-action">
+              ☎ ติดต่อเรา
+            </a>
+
+            <a href="order-status.html" class="footer-action">
+              🔎 ติดตามคำสั่งซื้อ
+            </a>
+
+            <div class="footer-social">
+              <a
+                href="https://www.facebook.com/ChatphetchGroup"
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook"
+              >f</a>
+
+              <a href="#" aria-label="YouTube">▶</a>
+              <a href="#" aria-label="LINE">LINE</a>
+            </div>
+          </div>
+
+        </div>
 
       </div>
     `;
 
-
-    return header;
+    document.body.appendChild(footer);
   }
 
+  /* ---------------------------------------------------------
+     CART COUNT
+     --------------------------------------------------------- */
+  function updateCartCount() {
+    const targets = document.querySelectorAll("#cartCount");
 
-  /* ============================================================
-     REMOVE OLD HEADER
-     ============================================================ */
+    let count = 0;
 
-  function removeOldHeader() {
+    try {
+      const raw = localStorage.getItem("chatpetch_cart");
 
-    const candidates = [
+      if (raw) {
+        const cart = JSON.parse(raw);
 
-      ...document.querySelectorAll(
-        "header"
-      ),
-
-      ...document.querySelectorAll(
-        ".header"
-      )
-    ];
-
-
-    const unique =
-      [...new Set(candidates)];
-
-
-    unique.forEach(el => {
-
-      if (
-        el.classList.contains(
-          "cp-master-header"
-        )
-      ) {
-        return;
+        if (Array.isArray(cart)) {
+          count = cart.reduce((sum, item) => {
+            return sum + Number(item.quantity || 1);
+          }, 0);
+        } else if (cart && typeof cart === "object") {
+          count = Object.values(cart).reduce((sum, item) => {
+            if (typeof item === "number") return sum + item;
+            return sum + Number(item?.quantity || 0);
+          }, 0);
+        }
       }
+    } catch (error) {
+      console.warn("Cart count error:", error);
+    }
 
-
-      if (
-        el.closest(
-          ".cp-master-header"
-        )
-      ) {
-        return;
-      }
-
-
-      el.remove();
+    targets.forEach(el => {
+      el.textContent = count;
     });
   }
 
+  /* ---------------------------------------------------------
+     GLOBAL NAV BEHAVIOR
+     --------------------------------------------------------- */
+  function initNavigation() {
+    document.addEventListener("click", function (e) {
+      const dropdown = e.target.closest(".nav-dropdown");
 
-  /* ============================================================
-     UPDATE CART
-     ============================================================ */
+      if (!dropdown) {
+        document.querySelectorAll(".nav-dropdown.open")
+          .forEach(el => el.classList.remove("open"));
+      }
 
-  function updateCartCount() {
+      const link = e.target.closest(".customer-nav a");
 
-    const el =
-      document.getElementById(
-        "cpCartCount"
-      );
+      if (link) {
+        document.getElementById("navMenu")?.classList.remove("show");
+      }
+    });
 
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 1050) {
+        document.getElementById("navMenu")?.classList.remove("show");
+      }
+    });
 
-    if (el) {
+    window.addEventListener("storage", updateCartCount);
 
-      el.textContent =
-        String(
-          cartCount()
-        );
-    }
+    window.addEventListener("pageshow", updateCartCount);
   }
 
-
-  /* ============================================================
-     EVENTS
-     ============================================================ */
-
-  function bindEvents(header) {
-
-    const menuToggle =
-      header.querySelector(
-        "#cpMenuToggle"
-      );
-
-
-    const nav =
-      header.querySelector(
-        "#cpNavMenu"
-      );
-
-
-    /* ----------------------------------------
-       MOBILE MENU
-       ---------------------------------------- */
-
-    menuToggle.addEventListener(
-      "click",
-      function () {
-
-        const show =
-          nav.classList.toggle(
-            "cp-show"
-          );
-
-
-        menuToggle.setAttribute(
-          "aria-expanded",
-          String(show)
-        );
-      }
-    );
-
-
-    /* ----------------------------------------
-       DROPDOWN
-       ---------------------------------------- */
-
-    header
-      .querySelectorAll(
-        "[data-cp-dropdown]"
-      )
-      .forEach(dropdown => {
-
-        const trigger =
-          dropdown.querySelector(
-            ".cp-drop-trigger"
-          );
-
-
-        trigger.addEventListener(
-          "click",
-          function (event) {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
-
-            const isOpen =
-              dropdown.classList.toggle(
-                "cp-open"
-              );
-
-
-            trigger.setAttribute(
-              "aria-expanded",
-              String(isOpen)
-            );
-
-
-            /* close other dropdowns */
-
-            header
-              .querySelectorAll(
-                "[data-cp-dropdown]"
-              )
-              .forEach(other => {
-
-                if (
-                  other !== dropdown
-                ) {
-
-                  other.classList.remove(
-                    "cp-open"
-                  );
-
-
-                  const otherTrigger =
-                    other.querySelector(
-                      ".cp-drop-trigger"
-                    );
-
-
-                  if (
-                    otherTrigger
-                  ) {
-
-                    otherTrigger.setAttribute(
-                      "aria-expanded",
-                      "false"
-                    );
-                  }
-                }
-              });
-          }
-        );
-      });
-
-
-    /* ----------------------------------------
-       CLOSE MOBILE AFTER LINK
-       ---------------------------------------- */
-
-    header
-      .querySelectorAll(
-        ".cp-nav > a, .cp-submenu a"
-      )
-      .forEach(link => {
-
-        link.addEventListener(
-          "click",
-          function () {
-
-            nav.classList.remove(
-              "cp-show"
-            );
-
-
-            menuToggle.setAttribute(
-              "aria-expanded",
-              "false"
-            );
-          }
-        );
-      });
-
-
-    /* ----------------------------------------
-       CLICK OUTSIDE
-       ---------------------------------------- */
-
-    document.addEventListener(
-      "click",
-      function (event) {
-
-        if (
-          !header.contains(
-            event.target
-          )
-        ) {
-
-          header
-            .querySelectorAll(
-              "[data-cp-dropdown]"
-            )
-            .forEach(dropdown => {
-
-              dropdown.classList.remove(
-                "cp-open"
-              );
-
-
-              const trigger =
-                dropdown.querySelector(
-                  ".cp-drop-trigger"
-                );
-
-
-              if (trigger) {
-
-                trigger.setAttribute(
-                  "aria-expanded",
-                  "false"
-                );
-              }
-            });
-        }
-      }
-    );
-
-
-    /* ----------------------------------------
-       CART UPDATE
-       ---------------------------------------- */
-
-    window.addEventListener(
-      "storage",
-      updateCartCount
-    );
-
-
-    window.addEventListener(
-      "cart:updated",
-      updateCartCount
-    );
-  }
-
-
-  /* ============================================================
-     INIT
-     ============================================================ */
-
+  /* ---------------------------------------------------------
+     RUN
+     --------------------------------------------------------- */
   function init() {
-
-    if (
-      !document.body
-    ) {
-      return;
-    }
-
-
-    if (
-      document.querySelector(
-        ".cp-master-header"
-      )
-    ) {
-      return;
-    }
-
-
-    injectStyle();
-
-
-    /*
-      ลบ Header เดิมของหน้าออก
-    */
-
-    removeOldHeader();
-
-
-    /*
-      สร้าง Master Header
-    */
-
-    const header =
-      buildHeader();
-
-
-    document.body.prepend(
-      header
-    );
-
-
-    /*
-      ผูก Event
-    */
-
-    bindEvents(
-      header
-    );
-
-
-    /*
-      อัปเดตจำนวนตะกร้า
-    */
-
+    createHeader();
+    createFooter();
     updateCartCount();
+    initNavigation();
   }
 
-
-  /* ============================================================
-     START
-     ============================================================ */
-
-  if (
-    document.readyState ===
-    "loading"
-  ) {
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      init,
-      { once: true }
-    );
-
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
   } else {
-
     init();
   }
 
