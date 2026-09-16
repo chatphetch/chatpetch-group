@@ -379,22 +379,28 @@ body::before{
 .hero-visual{
     position:relative;
     height:570px;
+    min-width:0;
+}
+
+.hero-visual::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(90deg, rgba(3,3,3,.10), transparent 35%, rgba(3,3,3,.10));
+    border:1px solid rgba(201,164,92,.16);
 }
 
 .hero-image{
     position:absolute;
-    inset:20px 20px 20px 60px;
+    inset:0;
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(201,164,92,.18),
-            rgba(0,0,0,.2)
-        ),
-        url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85")
-        center/cover;
+        linear-gradient(90deg, rgba(3,3,3,.10), rgba(3,3,3,.02) 55%, rgba(3,3,3,.28)),
+        url("assets/home-hero-visual.jpg")
+        center/cover no-repeat;
 
-    border:1px solid rgba(201,164,92,.32);
+    border:1px solid rgba(201,164,92,.38);
 
     box-shadow:
         -30px 30px 80px rgba(0,0,0,.7),
@@ -440,10 +446,10 @@ body::before{
 .hero-card{
     position:absolute;
 
-    left:0;
-    bottom:55px;
+    left:-25px;
+    bottom:34px;
 
-    width:260px;
+    width:285px;
 
     padding:24px;
 
@@ -1103,7 +1109,7 @@ body::before{
     }
 
     .hero-image{
-        inset:10px 5px 20px 35px;
+        inset:0;
     }
 
     .hero-card{
