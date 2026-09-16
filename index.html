@@ -762,18 +762,18 @@ body::before{
 }
 
 .statement::before{
-    content:"CG";
+    content:"";
 
     position:absolute;
 
     right:-20px;
     top:30px;
 
-    font-family:Arial,sans-serif;
-    font-size:260px;
-    font-weight:900;
-
-    color:rgba(255,255,255,.018);
+    width:420px;
+    height:420px;
+    background:url("assets/logo.png") center/contain no-repeat;
+    opacity:.035;
+    filter:grayscale(1);
 }
 
 .statement-inner{
@@ -784,15 +784,17 @@ body::before{
 }
 
 .statement-mark{
-    font-size:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:260px;
+}
 
-    font-family:Arial,sans-serif;
-    font-weight:900;
-
-    color:transparent;
-
-    -webkit-text-stroke:
-        1px rgba(201,164,92,.45);
+.statement-mark img{
+    width:min(260px,100%);
+    height:auto;
+    object-fit:contain;
+    filter:drop-shadow(0 16px 35px rgba(201,164,92,.12));
 }
 
 .statement-content h2{
@@ -1185,6 +1187,13 @@ body::before{
 
 }
 
+
+@media(max-width:650px){
+  .statement{padding:80px 0;}
+  .statement::before{width:260px;height:260px;right:-100px;top:20px;}
+  .statement-mark{min-height:180px;}
+  .statement-mark img{width:180px;}
+}
 </style>
 </head>
 
@@ -1631,7 +1640,7 @@ EXPLORE CHATPETCH GROUP
 <div class="statement-inner">
 
 <div class="statement-mark reveal">
-CG
+<img src="assets/logo.png" alt="CHATPHETCH GROUP" loading="lazy">
 </div>
 
 
