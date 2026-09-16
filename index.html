@@ -17,7 +17,7 @@
 <link
   href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
   rel="stylesheet"
-/>
+>
 
 <style>
 
@@ -26,29 +26,26 @@
 ========================================================= */
 
 :root{
-
   --bg:#120b07;
-  --bg-dark:#0c0705;
-  --brown-1:#18100b;
-  --brown-2:#21160f;
-  --brown-3:#2a1c13;
-  --brown-4:#352419;
-  --brown-5:#463020;
+  --bg2:#18100b;
+  --bg3:#21160f;
+  --bg4:#2b1d14;
+  --bg5:#38271b;
 
-  --gold:#bc9149;
-  --gold-light:#d5b064;
-  --gold-dark:#87622e;
+  --gold:#bd934c;
+  --gold2:#d4af68;
+  --gold3:#8d672f;
 
   --cream:#eee5da;
-  --cream-2:#d8cec2;
+  --cream2:#d8cdc0;
 
-  --text:#b4a79a;
-  --text-dark:#81756a;
+  --text:#a99c8e;
+  --muted:#81756a;
 
-  --line:rgba(207,169,101,.18);
-  --line-soft:rgba(255,255,255,.065);
+  --line:rgba(203,164,96,.18);
+  --line2:rgba(255,255,255,.07);
 
-  --max-width:1500px;
+  --max:1500px;
 }
 
 
@@ -67,9 +64,7 @@ html{
 }
 
 body{
-
   min-height:100vh;
-
   overflow-x:hidden;
 
   font-family:
@@ -81,50 +76,45 @@ body{
 
   background:
     radial-gradient(
-      circle at 82% 8%,
-      rgba(135,95,46,.14),
+      circle at 80% 5%,
+      rgba(145,101,49,.12),
       transparent 28%
     ),
     radial-gradient(
-      circle at 8% 60%,
-      rgba(104,70,38,.10),
+      circle at 5% 65%,
+      rgba(108,73,39,.09),
       transparent 32%
     ),
     linear-gradient(
       135deg,
-      #0d0806 0%,
-      #17100b 35%,
-      #21160f 65%,
-      #110a07 100%
+      #0c0705 0%,
+      #17100b 38%,
+      #21160f 70%,
+      #100906 100%
     );
 }
 
 body::before{
-
   content:"";
 
   position:fixed;
-
   inset:0;
 
-  z-index:-20;
-
   pointer-events:none;
+  z-index:-20;
 
   background-image:
     linear-gradient(
-      rgba(190,146,75,.022) 1px,
+      rgba(190,146,75,.018) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(190,146,75,.022) 1px,
+      rgba(190,146,75,.018) 1px,
       transparent 1px
     );
 
   background-size:70px 70px;
-
-  opacity:.7;
 }
 
 a{
@@ -145,11 +135,10 @@ img{
 
 
 /* =========================================================
-   TOP GOLD LINE
+   GOLD TOP LINE
 ========================================================= */
 
 .top-line{
-
   position:fixed;
 
   top:0;
@@ -158,20 +147,20 @@ img{
   width:100%;
   height:3px;
 
-  z-index:9999;
+  z-index:99999;
 
   background:
     linear-gradient(
       90deg,
-      transparent 0%,
-      var(--gold-dark) 18%,
-      var(--gold-light) 50%,
-      var(--gold-dark) 82%,
-      transparent 100%
+      transparent,
+      var(--gold3) 20%,
+      var(--gold2) 50%,
+      var(--gold3) 80%,
+      transparent
     );
 
   box-shadow:
-    0 0 16px rgba(188,145,73,.4);
+    0 0 18px rgba(189,147,76,.35);
 }
 
 
@@ -180,7 +169,6 @@ img{
 ========================================================= */
 
 .ambient{
-
   position:fixed;
 
   width:650px;
@@ -197,19 +185,19 @@ img{
   background:
     radial-gradient(
       circle,
-      rgba(151,105,53,.10),
+      rgba(151,105,53,.09),
       transparent 70%
     );
 }
 
 .ambient.one{
-  top:-380px;
-  right:-220px;
+  top:-350px;
+  right:-250px;
 }
 
 .ambient.two{
-  top:1000px;
   left:-430px;
+  top:1100px;
 }
 
 
@@ -218,11 +206,10 @@ img{
 ========================================================= */
 
 .container{
-
   width:
     min(
-      var(--max-width),
-      calc(100% - 80px)
+      var(--max),
+      calc(100% - 70px)
     );
 
   margin:0 auto;
@@ -234,7 +221,6 @@ img{
 ========================================================= */
 
 .header{
-
   position:fixed;
 
   top:3px;
@@ -242,116 +228,111 @@ img{
 
   width:100%;
 
-  z-index:1000;
+  z-index:5000;
 
   background:
     linear-gradient(
       180deg,
-      rgba(18,11,7,.98),
-      rgba(28,18,11,.94)
+      rgba(18,11,7,.985),
+      rgba(24,15,10,.95)
     );
 
   border-bottom:
-    1px solid rgba(203,164,96,.17);
+    1px solid rgba(203,164,96,.18);
 
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
 
   box-shadow:
-    0 15px 50px rgba(0,0,0,.34);
+    0 15px 45px rgba(0,0,0,.35);
 }
 
 .header > .container{
-
   width:100%;
-
-  max-width:1760px;
-
-  padding:
-    0 22px;
+  max-width:1800px;
+  padding:0 28px;
 }
 
 .navbar{
-
   width:100%;
-
-  height:86px;
+  height:94px;
 
   display:flex;
-
   align-items:center;
 
-  gap:25px;
+  gap:34px;
 }
 
 
 /* =========================================================
    BRAND
+   ขยายจากของเดิม
 ========================================================= */
 
 .customer-brand{
-
   display:flex;
-
   align-items:center;
 
-  gap:13px;
+  gap:17px;
 
-  min-width:345px;
+  min-width:390px;
 
   flex:0 0 auto;
 }
 
 .customer-brand img{
+  width:82px;
+  height:82px;
 
-  width:72px;
-  height:72px;
+  max-width:82px;
+  max-height:82px;
 
-  max-width:72px;
-  max-height:72px;
-
-  flex:0 0 72px;
-
-  object-fit:contain;
+  flex:0 0 82px;
 
   display:block;
+
+  object-fit:contain;
 }
 
 .customer-brand-text{
-
   display:flex;
-
   flex-direction:column;
-
   min-width:0;
 }
 
 .customer-brand-text strong{
-
   color:#eee7dd;
 
-  font-size:18px;
+  font-family:
+    "Kanit",
+    "Prompt",
+    sans-serif;
 
-  line-height:1.1;
+  font-size:21px;
+
+  line-height:1.05;
 
   font-weight:600;
 
-  letter-spacing:1.8px;
+  letter-spacing:2px;
 
   white-space:nowrap;
 }
 
 .customer-brand-text small{
+  margin-top:7px;
 
-  margin-top:5px;
+  color:var(--gold2);
 
-  color:var(--gold-light);
+  font-family:
+    "Prompt",
+    sans-serif;
 
-  font-size:9px;
+  font-size:10px;
 
   line-height:1;
 
-  letter-spacing:2px;
+  letter-spacing:2.3px;
 
   white-space:nowrap;
 }
@@ -359,47 +340,42 @@ img{
 
 /* =========================================================
    NAV
+   เพิ่มระยะห่าง
 ========================================================= */
 
 .customer-nav{
-
   flex:1;
 
   min-width:0;
 
   display:flex;
-
   align-items:center;
 
-  gap:12px;
+  gap:22px;
 }
 
 .customer-nav-main{
-
   flex:1;
 
   min-width:0;
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
-  gap:clamp(
-    2px,
-    .48vw,
-    11px
-  );
+  gap:
+    clamp(
+      9px,
+      .72vw,
+      17px
+    );
 }
 
 .customer-nav-actions{
-
   display:flex;
-
   align-items:center;
 
-  gap:8px;
+  gap:13px;
 
   margin-left:auto;
 }
@@ -407,26 +383,23 @@ img{
 .customer-nav-main > a,
 .customer-nav-actions > a,
 .nav-drop-trigger{
-
   position:relative;
 
-  min-height:46px;
+  min-height:48px;
 
   padding:
-    11px
+    12px
     clamp(
-      7px,
-      .48vw,
-      11px
+      8px,
+      .52vw,
+      13px
     );
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
-  color:#c6baad;
+  color:#c9bdb0;
 
   background:transparent;
 
@@ -440,8 +413,8 @@ img{
   font-size:
     clamp(
       11px,
-      .63vw,
-      13px
+      .66vw,
+      14px
     );
 
   font-weight:400;
@@ -457,18 +430,17 @@ img{
 .customer-nav-main > a::after,
 .customer-nav-actions > a::after,
 .nav-drop-trigger::after{
-
   content:"";
 
   position:absolute;
 
-  left:8px;
-  right:8px;
+  left:9px;
+  right:9px;
   bottom:5px;
 
   height:1px;
 
-  background:var(--gold-light);
+  background:var(--gold2);
 
   transform:scaleX(0);
 
@@ -481,7 +453,6 @@ img{
 .customer-nav-main > a.active,
 .customer-nav-actions > a:hover,
 .nav-drop-trigger:hover{
-
   color:#f0e7dc;
 }
 
@@ -490,13 +461,12 @@ img{
 .customer-nav-actions > a:hover::after,
 .nav-dropdown:hover .nav-drop-trigger::after,
 .nav-dropdown.open .nav-drop-trigger::after{
-
   transform:scaleX(1);
 }
 
 
 /* =========================================================
-   SERVICES DROPDOWN
+   SERVICE DROPDOWN
 ========================================================= */
 
 .nav-dropdown{
@@ -504,38 +474,34 @@ img{
 }
 
 .nav-drop-trigger .arrow{
-
   margin-left:6px;
 
-  color:var(--gold-light);
+  color:var(--gold2);
 
   font-size:8px;
 
-  transition:.2s ease;
+  transition:.2s;
 }
 
 .nav-dropdown:hover .arrow,
 .nav-dropdown.open .arrow{
-
   transform:rotate(180deg);
 }
 
 .nav-submenu{
-
   position:absolute;
 
   top:calc(100% - 1px);
-
   left:50%;
 
-  width:245px;
+  width:250px;
 
   padding:8px;
 
   background:
     linear-gradient(
       145deg,
-      #302116,
+      #302117,
       #120b07
     );
 
@@ -543,26 +509,23 @@ img{
     1px solid rgba(203,164,96,.30);
 
   box-shadow:
-    0 28px 70px rgba(0,0,0,.68);
-
-  transform:
-    translate(-50%,10px);
+    0 30px 75px rgba(0,0,0,.68);
 
   opacity:0;
-
   visibility:hidden;
 
   pointer-events:none;
+
+  transform:
+    translate(-50%,12px);
 
   transition:.22s ease;
 }
 
 .nav-submenu a{
-
   display:block;
 
-  padding:
-    12px 13px;
+  padding:13px 14px;
 
   color:#c4b7aa;
 
@@ -573,7 +536,7 @@ img{
   border-bottom:
     1px solid rgba(255,255,255,.055);
 
-  transition:.2s ease;
+  transition:.2s;
 }
 
 .nav-submenu a:last-child{
@@ -581,18 +544,16 @@ img{
 }
 
 .nav-submenu a:hover{
-
-  color:var(--gold-light);
+  color:var(--gold2);
 
   background:
     rgba(188,145,73,.07);
 
-  padding-left:18px;
+  padding-left:19px;
 }
 
 .nav-dropdown:hover .nav-submenu,
 .nav-dropdown.open .nav-submenu{
-
   opacity:1;
 
   visibility:visible;
@@ -609,58 +570,53 @@ img{
 ========================================================= */
 
 .nav-shop{
+  padding:
+    11px 15px
+    !important;
 
   border:
     1px solid rgba(203,164,96,.34)
     !important;
 
   color:
-    var(--gold-light)
-    !important;
-
-  padding:
-    11px 14px
+    var(--gold2)
     !important;
 }
 
 .cart-count{
-
   min-width:20px;
   height:20px;
 
-  margin-left:6px;
+  margin-left:7px;
 
-  display:inline-grid;
-
+  display:grid;
   place-items:center;
 
   border-radius:50%;
 
   color:#160e08;
 
-  background:var(--gold-light);
+  background:var(--gold2);
 
   font-size:10px;
-
   font-weight:700;
 }
 
 
 /* =========================================================
-   MOBILE MENU BUTTON
+   MOBILE BUTTON
 ========================================================= */
 
 .menu-toggle{
-
   display:none;
 
-  width:44px;
-  height:44px;
+  width:46px;
+  height:46px;
 
   color:#eadfd3;
 
   background:
-    rgba(50,33,22,.42);
+    rgba(50,33,22,.45);
 
   border:
     1px solid rgba(203,164,96,.30);
@@ -674,19 +630,13 @@ img{
 ========================================================= */
 
 .hero{
-
   position:relative;
+
+  margin-top:97px;
 
   width:100%;
 
-  height:
-    clamp(
-      620px,
-      47vw,
-      780px
-    );
-
-  min-height:620px;
+  min-height:0;
 
   overflow:hidden;
 
@@ -695,38 +645,33 @@ img{
 }
 
 
-/* =========================================================
-   HERO IMAGE
-========================================================= */
+/*
+  ใช้ภาพจริงเป็นภาพหลัก
+  ไม่ใช้ object-fit:cover
+  เพื่อไม่ crop โลโก้
+*/
 
 .hero-bg{
-
-  position:absolute;
-
-  inset:0;
+  position:relative;
 
   width:100%;
-  height:100%;
+  height:auto;
+
+  min-height:0;
 
   display:block;
 
-  object-fit:cover;
+  object-fit:contain;
 
   object-position:center center;
 
-  background:
-    linear-gradient(
-      135deg,
-      #1c120c,
-      #2b1d13,
-      #110a07
-    );
+  background:#1a100a;
 
   filter:
-    brightness(.60)
+    brightness(.56)
     saturate(.72)
     contrast(1.04)
-    sepia(.14);
+    sepia(.12);
 
   z-index:0;
 }
@@ -737,7 +682,6 @@ img{
 ========================================================= */
 
 .hero::before{
-
   content:"";
 
   position:absolute;
@@ -749,21 +693,20 @@ img{
   pointer-events:none;
 
   background:
-
     linear-gradient(
       90deg,
-      rgba(11,7,5,.94) 0%,
-      rgba(24,14,9,.79) 23%,
-      rgba(38,23,14,.45) 48%,
-      rgba(26,16,10,.20) 72%,
-      rgba(10,6,4,.38) 100%
+      rgba(10,6,4,.90) 0%,
+      rgba(24,14,9,.58) 25%,
+      rgba(32,20,12,.25) 50%,
+      rgba(15,9,6,.18) 75%,
+      rgba(8,5,3,.38) 100%
     ),
 
     linear-gradient(
       180deg,
-      rgba(10,6,4,.08),
-      rgba(10,6,4,.18) 50%,
-      rgba(8,5,3,.67) 100%
+      rgba(8,5,3,.10),
+      rgba(8,5,3,.25) 55%,
+      rgba(8,5,3,.72) 100%
     );
 }
 
@@ -773,18 +716,17 @@ img{
 ========================================================= */
 
 .hero-inner{
+  position:absolute;
 
-  position:relative;
+  inset:0;
 
   z-index:5;
 
   width:
     min(
       1500px,
-      calc(100% - 80px)
+      calc(100% - 70px)
     );
-
-  height:100%;
 
   margin:0 auto;
 
@@ -794,29 +736,24 @@ img{
 }
 
 .hero-content{
-
   width:
     min(
-      720px,
-      65%
+      680px,
+      62%
     );
 
-  padding-top:45px;
+  padding-top:25px;
 }
 
 .hero-label{
-
-  position:relative;
-
   display:flex;
-
   align-items:center;
 
   gap:12px;
 
-  margin-bottom:20px;
+  margin-bottom:19px;
 
-  color:var(--gold-light);
+  color:var(--gold2);
 
   font-size:11px;
 
@@ -824,7 +761,6 @@ img{
 }
 
 .hero-label::before{
-
   content:"";
 
   width:38px;
@@ -839,8 +775,7 @@ img{
 }
 
 .hero h1{
-
-  margin-bottom:23px;
+  margin-bottom:22px;
 
   color:#f0e8de;
 
@@ -850,28 +785,26 @@ img{
 
   font-size:
     clamp(
-      58px,
-      6.2vw,
-      94px
+      54px,
+      5.6vw,
+      90px
     );
 
-  line-height:1.02;
+  line-height:1.03;
 
   font-weight:600;
 
-  letter-spacing:-2px;
+  letter-spacing:-1.8px;
 }
 
 .hero h1 span{
-
   color:#d5ad63;
 }
 
 .hero-description{
-
   max-width:650px;
 
-  margin-bottom:27px;
+  margin-bottom:25px;
 
   color:#d1c5b8;
 
@@ -882,71 +815,65 @@ img{
 
 
 /* =========================================================
-   HERO BUTTON
+   BUTTONS
 ========================================================= */
 
 .hero-buttons{
-
   display:flex;
 
   align-items:center;
 
-  gap:12px;
+  gap:13px;
 
   flex-wrap:wrap;
 }
 
 .btn{
-
   min-height:51px;
 
   padding:
-    0 26px;
+    0 27px;
 
   display:inline-flex;
 
   align-items:center;
-
   justify-content:center;
 
   font-size:13px;
 
   transition:
     transform .3s ease,
-    border-color .3s ease,
     background .3s ease,
+    border-color .3s ease,
     color .3s ease,
     box-shadow .3s ease;
 }
 
 .btn-gold{
-
   color:#160e08;
 
   background:
     linear-gradient(
       135deg,
       #d9b66d,
-      #bf954d,
-      #906832
+      #bd934c,
+      #8e6832
     );
 
   font-weight:600;
 
   box-shadow:
-    0 15px 38px rgba(83,55,26,.25);
+    0 15px 40px rgba(72,47,22,.27);
 }
 
 .btn-gold:hover{
-
   transform:translateY(-3px);
 
   box-shadow:
-    0 20px 48px rgba(83,55,26,.40);
+    0 20px 50px rgba(72,47,22,.42);
 }
 
 .btn-line{
-
   color:#e2d8cd;
 
   background:
@@ -957,8 +884,7 @@ img{
 }
 
 .btn-line:hover{
-
-  color:var(--gold-light);
+  color:var(--gold2);
 
   border-color:
     rgba(203,164,96,.60);
@@ -967,8 +893,7 @@ img{
 }
 
 .btn-outline{
-
-  color:var(--gold-light);
+  color:var(--gold2);
 
   background:transparent;
 
@@ -977,11 +902,10 @@ img{
 }
 
 .btn-outline:hover{
-
   color:#f0dfc2;
 
   background:
-    rgba(188,145,73,.08);
+    rgba(188,145,73,.07);
 
   border-color:
     rgba(203,164,96,.65);
@@ -993,7 +917,6 @@ img{
 ========================================================= */
 
 .hero-points{
-
   position:absolute;
 
   left:0;
@@ -1012,11 +935,9 @@ img{
 }
 
 .hero-point{
-
   min-height:82px;
 
-  padding:
-    13px 15px;
+  padding:13px 15px;
 
   display:flex;
 
@@ -1037,20 +958,18 @@ img{
 }
 
 .hero-point-icon{
+  width:28px;
 
-  width:26px;
+  flex:0 0 28px;
 
-  flex:0 0 26px;
+  color:var(--gold2);
 
-  color:var(--gold-light);
-
-  font-size:19px;
+  font-size:18px;
 
   text-align:center;
 }
 
 .hero-point strong{
-
   display:block;
 
   color:#e7ddd1;
@@ -1061,7 +980,6 @@ img{
 }
 
 .hero-point small{
-
   display:block;
 
   margin-top:3px;
@@ -1077,7 +995,6 @@ img{
 ========================================================= */
 
 .stats-bar{
-
   background:
     linear-gradient(
       180deg,
@@ -1093,7 +1010,6 @@ img{
 }
 
 .stats-grid{
-
   display:grid;
 
   grid-template-columns:
@@ -1101,18 +1017,15 @@ img{
 }
 
 .stat{
-
   min-height:112px;
 
-  padding:
-    20px;
+  padding:20px;
 
   display:flex;
 
   flex-direction:column;
 
   align-items:center;
-
   justify-content:center;
 
   text-align:center;
@@ -1126,8 +1039,7 @@ img{
 }
 
 .stat strong{
-
-  color:var(--gold-light);
+  color:var(--gold2);
 
   font-family:"Kanit",sans-serif;
 
@@ -1137,7 +1049,6 @@ img{
 }
 
 .stat span{
-
   margin-top:5px;
 
   color:#a49789;
@@ -1149,11 +1060,10 @@ img{
 
 
 /* =========================================================
-   GENERAL SECTION
+   SECTION
 ========================================================= */
 
 .menu-section{
-
   padding:
     100px 0;
 
@@ -1166,11 +1076,9 @@ img{
 }
 
 .section-head{
-
   display:flex;
 
   align-items:flex-end;
-
   justify-content:space-between;
 
   gap:40px;
@@ -1179,10 +1087,9 @@ img{
 }
 
 .section-kicker{
-
   margin-bottom:9px;
 
-  color:var(--gold-light);
+  color:var(--gold2);
 
   font-size:11px;
 
@@ -1190,12 +1097,9 @@ img{
 }
 
 .section-head h2{
-
   color:#e9e0d5;
 
-  font-family:
-    "Kanit",
-    sans-serif;
+  font-family:"Kanit",sans-serif;
 
   font-size:
     clamp(
@@ -1210,7 +1114,6 @@ img{
 }
 
 .section-head .lead{
-
   max-width:650px;
 
   margin-top:11px;
@@ -1228,7 +1131,6 @@ img{
 ========================================================= */
 
 .solution-cards{
-
   display:grid;
 
   grid-template-columns:
@@ -1238,7 +1140,6 @@ img{
 }
 
 .solution-card{
-
   overflow:hidden;
 
   background:
@@ -1258,7 +1159,6 @@ img{
 }
 
 .solution-card:hover{
-
   transform:translateY(-7px);
 
   border-color:
@@ -1269,7 +1169,6 @@ img{
 }
 
 .solution-card .image{
-
   height:180px;
 
   overflow:hidden;
@@ -1278,7 +1177,6 @@ img{
 }
 
 .solution-card .image img{
-
   width:100%;
   height:100%;
 
@@ -1297,7 +1195,6 @@ img{
 }
 
 .solution-card:hover .image img{
-
   transform:scale(1.06);
 
   filter:
@@ -1306,19 +1203,15 @@ img{
 }
 
 .solution-card .body{
-
   padding:20px;
 }
 
 .solution-card h3{
-
   margin-bottom:7px;
 
   color:#e1d7cb;
 
-  font-family:
-    "Kanit",
-    sans-serif;
+  font-family:"Kanit",sans-serif;
 
   font-size:19px;
 
@@ -1328,7 +1221,6 @@ img{
 }
 
 .solution-card p{
-
   min-height:38px;
 
   color:#918477;
@@ -1339,7 +1231,6 @@ img{
 }
 
 .solution-link{
-
   margin-top:18px;
 
   padding-top:13px;
@@ -1358,7 +1249,6 @@ img{
 ========================================================= */
 
 .home-about{
-
   padding:
     110px 0;
 
@@ -1377,7 +1267,6 @@ img{
 }
 
 .home-about-grid{
-
   display:grid;
 
   grid-template-columns:
@@ -1390,14 +1279,11 @@ img{
 }
 
 .home-about h2{
-
   margin-bottom:27px;
 
   color:#eee6dc;
 
-  font-family:
-    "Kanit",
-    sans-serif;
+  font-family:"Kanit",sans-serif;
 
   font-size:
     clamp(
@@ -1412,7 +1298,6 @@ img{
 }
 
 .home-about p{
-
   margin-bottom:15px;
 
   color:#a99c8e;
@@ -1424,11 +1309,10 @@ img{
 
 
 /* =========================================================
-   ABOUT CLICKABLE GRID
+   ABOUT VALUE GRID
 ========================================================= */
 
 .value-grid{
-
   display:grid;
 
   grid-template-columns:
@@ -1442,7 +1326,6 @@ img{
 }
 
 .value{
-
   position:relative;
 
   min-height:150px;
@@ -1474,7 +1357,6 @@ img{
 }
 
 .value::before{
-
   content:"";
 
   position:absolute;
@@ -1499,7 +1381,6 @@ img{
 }
 
 .value::after{
-
   content:"";
 
   position:absolute;
@@ -1524,7 +1405,6 @@ img{
 }
 
 .value:hover{
-
   background:
     linear-gradient(
       145deg,
@@ -1547,10 +1427,9 @@ img{
 }
 
 .value-icon{
-
   margin-bottom:15px;
 
-  color:var(--gold-light);
+  color:var(--gold2);
 
   font-size:20px;
 
@@ -1558,23 +1437,19 @@ img{
 }
 
 .value:hover .value-icon{
-
   color:#e3bf78;
 
   transform:translateY(-2px);
 }
 
 .value strong{
-
   display:block;
 
   margin-bottom:7px;
 
   color:#ded5ca;
 
-  font-family:
-    "Kanit",
-    sans-serif;
+  font-family:"Kanit",sans-serif;
 
   font-size:17px;
 
@@ -1586,7 +1461,6 @@ img{
 }
 
 .value p{
-
   margin:0;
 
   color:#887c70;
@@ -1597,7 +1471,7 @@ img{
 }
 
 .value:hover strong{
-  color:var(--gold-light);
+  color:var(--gold2);
 }
 
 
@@ -1606,7 +1480,6 @@ img{
 ========================================================= */
 
 .home-cta{
-
   position:relative;
 
   overflow:hidden;
@@ -1624,7 +1497,6 @@ img{
 }
 
 .home-cta::before{
-
   content:"";
 
   position:absolute;
@@ -1640,7 +1512,6 @@ img{
 }
 
 .home-cta-inner{
-
   position:relative;
 
   z-index:2;
@@ -1650,21 +1521,17 @@ img{
   display:flex;
 
   align-items:center;
-
   justify-content:space-between;
 
   gap:40px;
 }
 
 .home-cta h2{
-
   margin-bottom:10px;
 
   color:#e9dfd3;
 
-  font-family:
-    "Kanit",
-    sans-serif;
+  font-family:"Kanit",sans-serif;
 
   font-size:
     clamp(
@@ -1679,7 +1546,6 @@ img{
 }
 
 .home-cta p{
-
   color:#a49688;
 
   font-size:13px;
@@ -1693,7 +1559,6 @@ img{
 ========================================================= */
 
 .footer{
-
   padding:
     65px 0 25px;
 
@@ -1709,7 +1574,6 @@ img{
 }
 
 .footer-main{
-
   display:grid;
 
   grid-template-columns:
@@ -1726,7 +1590,6 @@ img{
 }
 
 .footer-brand > p{
-
   max-width:650px;
 
   margin-top:20px;
@@ -1739,17 +1602,15 @@ img{
 }
 
 .footer-menu{
-
   justify-self:start;
 
   margin-left:0;
 }
 
 .footer-title{
-
   margin-bottom:16px;
 
-  color:var(--gold-light);
+  color:var(--gold2);
 
   font-size:11px;
 
@@ -1757,7 +1618,6 @@ img{
 }
 
 .footer-links{
-
   display:flex;
 
   flex-direction:column;
@@ -1766,7 +1626,6 @@ img{
 }
 
 .footer-links a{
-
   color:#908378;
 
   font-size:12px;
@@ -1775,8 +1634,7 @@ img{
 }
 
 .footer-links a:hover{
-
-  color:var(--gold-light);
+  color:var(--gold2);
 
   transform:translateX(4px);
 }
@@ -1787,13 +1645,11 @@ img{
 ========================================================= */
 
 .footer-bottom{
-
   padding-top:22px;
 
   display:flex;
 
   align-items:center;
-
   justify-content:space-between;
 
   gap:20px;
@@ -1807,11 +1663,9 @@ img{
 }
 
 .footer-actions{
-
   display:flex;
 
   align-items:center;
-
   justify-content:flex-end;
 
   gap:7px;
@@ -1821,13 +1675,11 @@ img{
 
 .footer-btn,
 .social-btn{
-
   min-height:35px;
 
   display:inline-flex;
 
   align-items:center;
-
   justify-content:center;
 
   color:#a59481;
@@ -1843,7 +1695,6 @@ img{
 }
 
 .social-btn{
-
   min-width:35px;
 
   padding:0 8px;
@@ -1851,8 +1702,7 @@ img{
 
 .footer-btn:hover,
 .social-btn:hover{
-
-  color:var(--gold-light);
+  color:var(--gold2);
 
   border-color:
     rgba(203,164,96,.55);
@@ -1867,7 +1717,6 @@ img{
 ========================================================= */
 
 .floating-contact{
-
   position:fixed;
 
   right:20px;
@@ -1883,12 +1732,10 @@ img{
 }
 
 .float-btn{
-
   width:49px;
   height:49px;
 
   display:grid;
-
   place-items:center;
 
   border:
@@ -1896,7 +1743,7 @@ img{
 
   border-radius:50%;
 
-  color:var(--gold-light);
+  color:var(--gold2);
 
   background:
     rgba(19,12,8,.92);
@@ -1907,10 +1754,9 @@ img{
 }
 
 .float-btn:hover{
-
   color:#130b07;
 
-  background:var(--gold-light);
+  background:var(--gold2);
 
   transform:translateY(-3px);
 }
@@ -1921,7 +1767,6 @@ img{
 ========================================================= */
 
 .reveal{
-
   opacity:0;
 
   transform:translateY(22px);
@@ -1932,10 +1777,62 @@ img{
 }
 
 .reveal.show{
-
   opacity:1;
 
   transform:translateY(0);
+}
+
+
+/* =========================================================
+   IMPORTANT:
+   ลบลูกศร / ปุ่ม Slider / Carousel ที่ติดมาจากโค้ดเก่า
+========================================================= */
+
+/*
+  ไม่ว่าของเดิมจะใช้ชื่อ class แบบไหน
+  กลุ่มนี้จะไม่ให้แสดงใน Hero
+*/
+
+.hero .hero-next,
+.hero .hero-prev,
+.hero .hero-arrow,
+.hero .hero-arrows,
+.hero .slider-arrow,
+.hero .slider-arrows,
+.hero .slide-next,
+.hero .slide-prev,
+.hero .carousel-control,
+.hero .carousel-control-next,
+.hero .carousel-control-prev,
+.hero .swiper-button-next,
+.hero .swiper-button-prev,
+.hero .slick-arrow,
+.hero [class*="arrow"],
+.hero [class*="next"],
+.hero [class*="prev"],
+.hero button[aria-label*="next" i],
+.hero button[aria-label*="previous" i],
+.hero button[aria-label*="prev" i],
+.hero button[title*="next" i],
+.hero button[title*="previous" i],
+.hero button[title*="prev" i]{
+  display:none !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+
+
+/*
+  กัน pseudo-element ของ Slider เดิม
+*/
+
+.hero .swiper-button-next::after,
+.hero .swiper-button-prev::after,
+.hero .slick-next::before,
+.hero .slick-prev::before{
+  display:none !important;
+  content:none !important;
 }
 
 
@@ -1946,23 +1843,45 @@ img{
 @media(max-width:1250px){
 
   .customer-brand{
-    min-width:290px;
+    min-width:315px;
+  }
+
+  .customer-brand img{
+    width:72px;
+    height:72px;
+    max-width:72px;
+    max-height:72px;
+    flex-basis:72px;
   }
 
   .customer-brand-text strong{
-    font-size:16px;
+    font-size:18px;
   }
 
   .customer-nav{
+    gap:7px;
+  }
+
+  .customer-nav-main{
     gap:4px;
   }
 
   .customer-nav-main > a,
   .customer-nav-actions > a,
   .nav-drop-trigger{
-    padding-left:7px;
-    padding-right:7px;
+    padding-left:6px;
+    padding-right:6px;
     font-size:11px;
+  }
+
+  .solution-cards{
+    grid-template-columns:
+      repeat(3,1fr);
+  }
+
+  .home-about-grid{
+    grid-template-columns:1fr;
+    gap:50px;
   }
 }
 
@@ -1974,28 +1893,42 @@ img{
 @media(max-width:1050px){
 
   .header > .container{
-    padding:0 18px;
+    padding:0 17px;
   }
 
   .navbar{
-    height:82px;
+    height:80px;
+    gap:15px;
   }
 
   .customer-brand{
-
     min-width:0;
-
     flex:1;
   }
 
-  .customer-nav{
+  .customer-brand img{
+    width:61px;
+    height:61px;
+    max-width:61px;
+    max-height:61px;
+    flex-basis:61px;
+  }
 
+  .customer-brand-text strong{
+    font-size:16px;
+  }
+
+  .customer-brand-text small{
+    font-size:8px;
+  }
+
+  .customer-nav{
     position:fixed;
 
-    top:82px;
+    top:80px;
 
-    left:14px;
-    right:14px;
+    left:12px;
+    right:12px;
 
     display:none;
 
@@ -2019,7 +1952,7 @@ img{
       0 30px 80px rgba(0,0,0,.70);
 
     max-height:
-      calc(100vh - 98px);
+      calc(100vh - 94px);
 
     overflow-y:auto;
   }
@@ -2030,7 +1963,6 @@ img{
 
   .customer-nav-main,
   .customer-nav-actions{
-
     width:100%;
 
     flex-direction:column;
@@ -2045,7 +1977,6 @@ img{
   .customer-nav-main > a,
   .customer-nav-actions > a,
   .nav-drop-trigger{
-
     width:100%;
 
     min-height:46px;
@@ -2058,7 +1989,6 @@ img{
   }
 
   .nav-submenu{
-
     position:static;
 
     width:100%;
@@ -2066,7 +1996,6 @@ img{
     display:none;
 
     opacity:1;
-
     visibility:visible;
 
     pointer-events:auto;
@@ -2088,13 +2017,12 @@ img{
   /* HERO */
 
   .hero{
+    margin-top:83px;
+  }
 
-    height:
-      clamp(
-        620px,
-        68vw,
-        720px
-      );
+  .hero-inner{
+    width:
+      calc(100% - 40px);
   }
 
   .hero-content{
@@ -2102,24 +2030,10 @@ img{
   }
 
   .hero-points{
-
     width:82%;
 
     grid-template-columns:
       repeat(2,1fr);
-  }
-
-  .solution-cards{
-
-    grid-template-columns:
-      repeat(3,1fr);
-  }
-
-  .home-about-grid{
-
-    grid-template-columns:1fr;
-
-    gap:50px;
   }
 }
 
@@ -2131,7 +2045,6 @@ img{
 @media(max-width:700px){
 
   .container{
-
     width:
       calc(100% - 30px);
   }
@@ -2141,11 +2054,10 @@ img{
   }
 
   .navbar{
-    height:74px;
+    height:73px;
   }
 
   .customer-brand img{
-
     width:50px;
     height:50px;
 
@@ -2156,113 +2068,109 @@ img{
   }
 
   .customer-brand-text strong{
-
     font-size:14px;
 
     letter-spacing:1px;
   }
 
   .customer-brand-text small{
-
     font-size:7px;
 
     letter-spacing:1.3px;
   }
 
   .customer-nav{
-
-    top:75px;
+    top:73px;
 
     left:10px;
     right:10px;
   }
 
 
-  /* HERO */
+  /* =====================================================
+     HERO MOBILE
+  ===================================================== */
 
   .hero{
+    margin-top:76px;
 
-    height:680px;
+    /*
+      สำคัญ:
+      ให้ภาพมีความสูงตามตัวภาพจริง
+      ไม่ crop โลโก้
+    */
 
-    min-height:680px;
+    min-height:0;
   }
 
   .hero-bg{
+    width:100%;
+    height:auto;
 
-    object-fit:cover;
-
-    object-position:center center;
+    object-fit:contain;
 
     filter:
-      brightness(.49)
+      brightness(.48)
       saturate(.65)
       contrast(1.03)
-      sepia(.15);
+      sepia(.14);
   }
 
   .hero::before{
-
     background:
 
       linear-gradient(
         90deg,
-        rgba(11,7,5,.95),
-        rgba(25,15,9,.73),
-        rgba(20,12,8,.43)
+        rgba(10,6,4,.90),
+        rgba(24,14,9,.57),
+        rgba(20,12,8,.28)
       ),
 
       linear-gradient(
         180deg,
-        rgba(10,6,4,.13),
-        rgba(10,6,4,.67)
+        rgba(10,6,4,.08),
+        rgba(10,6,4,.72)
       );
   }
 
   .hero-inner{
-
     width:
       calc(100% - 30px);
   }
 
   .hero-content{
-
     width:100%;
-
-    padding-top:70px;
+    padding-top:10px;
   }
 
   .hero-label{
-
     font-size:9px;
-
     letter-spacing:3px;
   }
 
   .hero h1{
-
-    margin-bottom:20px;
+    margin-bottom:17px;
 
     font-size:
       clamp(
-        44px,
-        13vw,
-        65px
+        40px,
+        12vw,
+        60px
       );
 
     letter-spacing:-1px;
   }
 
   .hero-description{
+    max-width:100%;
 
-    font-size:12px;
+    font-size:11px;
 
-    line-height:1.85;
+    line-height:1.8;
   }
 
   .hero-buttons{
-
     flex-direction:column;
-
     align-items:stretch;
   }
 
@@ -2271,7 +2179,6 @@ img{
   }
 
   .hero-points{
-
     left:0;
     bottom:10px;
 
@@ -2282,11 +2189,10 @@ img{
   }
 
   .hero-point{
-
-    min-height:65px;
+    min-height:62px;
 
     padding:
-      9px 7px;
+      8px 6px;
   }
 
   .hero-point:first-child{
@@ -2294,16 +2200,13 @@ img{
   }
 
   .hero-point-icon{
-
     width:20px;
-
     flex-basis:20px;
-
-    font-size:16px;
+    font-size:15px;
   }
 
   .hero-point strong{
-    font-size:9px;
+    font-size:8px;
   }
 
   .hero-point small{
@@ -2314,17 +2217,13 @@ img{
   /* STATS */
 
   .stats-grid{
-
     grid-template-columns:
       1fr 1fr;
   }
 
   .stat{
-
     min-height:92px;
-
-    padding:
-      13px 7px;
+    padding:13px 7px;
   }
 
   .stat strong{
@@ -2332,25 +2231,19 @@ img{
   }
 
   .stat span{
-
     font-size:8px;
-
-    line-height:1.45;
   }
 
 
   /* SECTION */
 
   .menu-section{
-
     padding:
       68px 0 72px;
   }
 
   .section-head{
-
     display:block;
-
     margin-bottom:26px;
   }
 
@@ -2363,7 +2256,6 @@ img{
   }
 
   .solution-cards{
-
     grid-template-columns:
       1fr 1fr;
 
@@ -2386,37 +2278,26 @@ img{
     font-size:9px;
   }
 
-  .solution-link{
-    font-size:9px;
-  }
-
 
   /* ABOUT */
 
   .home-about{
-
     padding:
       72px 0;
   }
 
   .home-about h2{
-
     font-size:34px;
-
     line-height:1.2;
   }
 
   .home-about p{
-
     font-size:11px;
-
     line-height:1.9;
   }
 
   .value{
-
     min-height:140px;
-
     padding:18px;
   }
 
@@ -2432,7 +2313,6 @@ img{
   /* CTA */
 
   .home-cta-inner{
-
     min-height:300px;
 
     display:block;
@@ -2457,9 +2337,7 @@ img{
   /* FOOTER */
 
   .footer-main{
-
     grid-template-columns:1fr;
-
     gap:35px;
   }
 
@@ -2468,9 +2346,7 @@ img{
   }
 
   .footer-bottom{
-
     flex-direction:column;
-
     align-items:flex-start;
   }
 
@@ -2482,14 +2358,11 @@ img{
   /* FLOAT */
 
   .floating-contact{
-
     right:9px;
-
     bottom:9px;
   }
 
   .float-btn{
-
     width:43px;
     height:43px;
   }
@@ -2502,15 +2375,7 @@ img{
 
 @media(max-width:450px){
 
-  .hero{
-
-    height:690px;
-
-    min-height:690px;
-  }
-
   .solution-cards{
-
     grid-template-columns:1fr;
   }
 
@@ -2519,15 +2384,12 @@ img{
   }
 
   .value-grid{
-
     grid-template-columns:
       1fr 1fr;
   }
 
   .value{
-
     min-height:140px;
-
     padding:15px;
   }
 
@@ -2550,11 +2412,6 @@ img{
 
 <body>
 
-
-<!-- =========================================================
-     DECORATION
-========================================================= -->
-
 <div class="top-line"></div>
 
 <div class="ambient one"></div>
@@ -2572,8 +2429,6 @@ img{
     <nav class="navbar">
 
 
-      <!-- BRAND -->
-
       <a
         href="index.html"
         class="customer-brand"
@@ -2583,8 +2438,8 @@ img{
         <img
           src="assets/logo.png"
           alt="CHATPHETCH GROUP"
-          width="72"
-          height="72"
+          width="82"
+          height="82"
         >
 
         <div class="customer-brand-text">
@@ -2602,13 +2457,10 @@ img{
       </a>
 
 
-      <!-- NAVIGATION -->
-
       <div
         class="customer-nav"
         id="navMenu"
       >
-
 
         <div class="customer-nav-main">
 
@@ -2630,8 +2482,6 @@ img{
             สินค้า
           </a>
 
-
-          <!-- SERVICES -->
 
           <div class="nav-dropdown">
 
@@ -2676,8 +2526,6 @@ img{
           </div>
 
 
-          <!-- PROJECTS : DIRECT LINK -->
-
           <a href="projects.html">
             ผลงาน
           </a>
@@ -2706,8 +2554,6 @@ img{
         </div>
 
 
-        <!-- ACTIONS -->
-
         <div class="customer-nav-actions">
 
 
@@ -2735,11 +2581,8 @@ img{
 
         </div>
 
-
       </div>
 
-
-      <!-- MOBILE -->
 
       <button
         type="button"
@@ -2764,6 +2607,16 @@ img{
 
 <section class="hero">
 
+
+  <!--
+    ภาพนี้ต้องอยู่ที่:
+    assets/home-hero-visual.jpg
+
+    จุดสำคัญ:
+    ใช้ width 100% + height auto
+    ไม่ใช้ object-fit: cover
+    เพื่อไม่ให้โลโก้ในภาพถูกตัด
+  -->
 
   <img
     class="hero-bg"
@@ -2809,7 +2662,6 @@ img{
 
       <div class="hero-buttons">
 
-
         <a
           href="about.html"
           class="btn btn-gold"
@@ -2825,14 +2677,11 @@ img{
           ดูสินค้า
         </a>
 
-
       </div>
 
 
     </div>
 
-
-    <!-- HERO INFORMATION -->
 
     <div class="hero-points">
 
@@ -3044,8 +2893,6 @@ img{
     <div class="solution-cards">
 
 
-      <!-- CARD 1 -->
-
       <a
         href="products.html"
         class="solution-card"
@@ -3079,8 +2926,6 @@ img{
 
       </a>
 
-
-      <!-- CARD 2 -->
 
       <a
         href="product-detail.html?id=91428"
@@ -3116,8 +2961,6 @@ img{
       </a>
 
 
-      <!-- CARD 3 -->
-
       <a
         href="products.html?category=coating"
         class="solution-card"
@@ -3152,8 +2995,6 @@ img{
       </a>
 
 
-      <!-- CARD 4 -->
-
       <a
         href="product-detail.html?id=91429"
         class="solution-card"
@@ -3187,8 +3028,6 @@ img{
 
       </a>
 
-
-      <!-- CARD 5 -->
 
       <a
         href="services.html"
@@ -3239,8 +3078,6 @@ img{
 
   <div class="container home-about-grid">
 
-
-    <!-- LEFT -->
 
     <div class="reveal">
 
@@ -3299,12 +3136,8 @@ img{
     </div>
 
 
-    <!-- RIGHT : CLICKABLE -->
-
     <div class="value-grid reveal">
 
-
-      <!-- 1 -->
 
       <a
         href="products.html"
@@ -3326,8 +3159,6 @@ img{
       </a>
 
 
-      <!-- 2 -->
-
       <a
         href="services.html"
         class="value"
@@ -3347,8 +3178,6 @@ img{
 
       </a>
 
-
-      <!-- 3 -->
 
       <a
         href="service-detail.html?service=consulting"
@@ -3370,8 +3199,6 @@ img{
       </a>
 
 
-      <!-- 4 -->
-
       <a
         href="technical-center.html"
         class="value"
@@ -3392,8 +3219,6 @@ img{
       </a>
 
 
-      <!-- 5 -->
-
       <a
         href="projects.html"
         class="value"
@@ -3413,8 +3238,6 @@ img{
 
       </a>
 
-
-      <!-- 6 -->
 
       <a
         href="contact.html"
@@ -3496,8 +3319,6 @@ img{
     <div class="footer-main">
 
 
-      <!-- FOOTER BRAND -->
-
       <div class="footer-brand">
 
 
@@ -3509,8 +3330,8 @@ img{
           <img
             src="assets/logo.png"
             alt="CHATPHETCH GROUP"
-            width="72"
-            height="72"
+            width="82"
+            height="82"
           >
 
           <div class="customer-brand-text">
@@ -3550,8 +3371,6 @@ img{
 
       </div>
 
-
-      <!-- FOOTER MENU -->
 
       <div class="footer-menu">
 
@@ -3603,8 +3422,6 @@ img{
     </div>
 
 
-    <!-- FOOTER BOTTOM -->
-
     <div class="footer-bottom">
 
 
@@ -3642,7 +3459,6 @@ img{
           href="https://www.facebook.com/ChatphetchGroup"
           target="_blank"
           rel="noopener"
-          aria-label="Facebook"
         >
           f
         </a>
@@ -3651,7 +3467,6 @@ img{
         <a
           class="social-btn"
           href="#"
-          aria-label="YouTube"
         >
           ▶
         </a>
@@ -3660,7 +3475,6 @@ img{
         <a
           class="social-btn"
           href="#"
-          aria-label="LINE"
         >
           LINE
         </a>
@@ -3716,10 +3530,6 @@ img{
 </div>
 
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-
 <script>
 
 /* =========================================================
@@ -3748,7 +3558,7 @@ if(menuToggle && navMenu){
 
 
 /* =========================================================
-   SERVICES DROPDOWN
+   SERVICE DROPDOWN
 ========================================================= */
 
 document
@@ -3777,7 +3587,7 @@ document
 
 
 /* =========================================================
-   CLOSE DROPDOWN WHEN CLICK OUTSIDE
+   CLOSE DROPDOWN
 ========================================================= */
 
 document.addEventListener(
@@ -3803,7 +3613,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   CLOSE MOBILE NAV AFTER CLICK
+   CLOSE MOBILE MENU
 ========================================================= */
 
 document
@@ -3816,9 +3626,7 @@ document
 
         if(navMenu){
 
-          navMenu.classList.remove(
-            "show"
-          );
+          navMenu.classList.remove("show");
 
         }
 
@@ -3894,7 +3702,7 @@ updateCartCount();
 
 
 /* =========================================================
-   REVEAL ANIMATION
+   REVEAL
 ========================================================= */
 
 if(
@@ -3947,9 +3755,7 @@ if(
     .querySelectorAll(".reveal")
     .forEach(function(element){
 
-      element.classList.add(
-        "show"
-      );
+      element.classList.add("show");
 
     });
 
@@ -3957,7 +3763,7 @@ if(
 
 
 /* =========================================================
-   ESCAPE KEY
+   ESCAPE
 ========================================================= */
 
 document.addEventListener(
@@ -3972,18 +3778,14 @@ document.addEventListener(
         .querySelectorAll(".nav-dropdown")
         .forEach(function(dropdown){
 
-          dropdown.classList.remove(
-            "open"
-          );
+          dropdown.classList.remove("open");
 
         });
 
 
       if(navMenu){
 
-        navMenu.classList.remove(
-          "show"
-        );
+        navMenu.classList.remove("show");
 
       }
 
@@ -3993,7 +3795,6 @@ document.addEventListener(
 );
 
 </script>
-
 
 </body>
 </html>
