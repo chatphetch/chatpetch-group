@@ -12,23 +12,17 @@
 
 <style>
 :root{
-    --bg:#090806;
-    --bg2:#100d09;
-    --panel:#17110c;
-    --panel2:#20170f;
-
-    --gold:#c9a85a;
-    --gold2:#e3c97d;
-    --gold3:#8d7135;
-
+    --bg:#0b0806;
+    --bg-soft:#120d09;
+    --brown:#1b120c;
+    --brown2:#25180e;
+    --gold:#c8a65b;
+    --gold-light:#e2c878;
+    --cream:#eee4d4;
+    --text:#ddd3c5;
+    --muted:#95897a;
+    --line:rgba(200,166,91,.25);
     --white:#fff;
-    --cream:#f0e7d6;
-    --text:#e8dfd1;
-    --muted:#9f9588;
-
-    --line:rgba(201,168,90,.22);
-    --line2:rgba(255,255,255,.10);
-
     --container:1480px;
 }
 
@@ -49,27 +43,27 @@ body{
     overflow-x:hidden;
 }
 
-body::before{
+body:before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
     z-index:999;
-    opacity:.035;
+    opacity:.025;
     background-image:
-        linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
-    background-size:70px 70px;
+        linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);
+    background-size:80px 80px;
 }
 
 a{
-    text-decoration:none;
     color:inherit;
+    text-decoration:none;
 }
 
 img{
-    max-width:100%;
     display:block;
+    max-width:100%;
 }
 
 button{
@@ -87,53 +81,51 @@ HEADER
 
 .header{
     position:absolute;
-    z-index:100;
     top:0;
     left:0;
     width:100%;
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,.94),
-            rgba(0,0,0,.62),
-            transparent
-        );
+    z-index:100;
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.95),
+        rgba(0,0,0,.55),
+        transparent
+    );
 }
 
 .navbar{
-    min-height:100px;
+    height:100px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:35px;
+    gap:30px;
 }
 
 .brand{
     display:flex;
     align-items:center;
-    gap:14px;
+    gap:13px;
     flex-shrink:0;
 }
 
-.brand img{
-    width:64px;
-    height:64px;
+.brand-logo{
+    width:62px;
+    height:62px;
     object-fit:contain;
 }
 
-.brand-copy strong{
-    display:block;
+.brand-name{
     color:#fff;
     font-family:"Kanit",sans-serif;
     font-size:19px;
+    letter-spacing:2px;
     line-height:1;
-    letter-spacing:2.5px;
 }
 
-.brand-copy span{
+.brand-sub{
+    color:#958a7d;
     display:block;
-    margin-top:7px;
-    color:#a99e90;
+    margin-top:6px;
     font-size:8px;
     letter-spacing:3px;
 }
@@ -141,76 +133,77 @@ HEADER
 .main-nav{
     display:flex;
     align-items:center;
-    justify-content:flex-end;
-    gap:25px;
+    gap:23px;
     font-size:12px;
 }
 
-.main-nav>a,
-.service-trigger{
-    color:#e8e0d4;
+.main-nav>a{
+    color:#e7dfd4;
     transition:.25s;
 }
 
-.main-nav>a:hover,
-.service-trigger:hover{
-    color:var(--gold2);
+.main-nav>a:hover{
+    color:var(--gold-light);
 }
 
 .service-dropdown{
     position:relative;
 }
 
-.service-trigger{
-    background:none;
+.service-button{
     border:0;
+    background:none;
+    color:#e7dfd4;
     cursor:pointer;
     font-size:12px;
+}
+
+.service-button:hover{
+    color:var(--gold-light);
 }
 
 .service-menu{
     position:absolute;
     top:30px;
-    left:-20px;
-    width:235px;
+    left:-18px;
+    width:230px;
     padding:9px;
-    background:rgba(12,9,7,.98);
+
+    background:rgba(12,9,6,.98);
     border:1px solid var(--line);
-    box-shadow:0 20px 60px rgba(0,0,0,.5);
 
     opacity:0;
     visibility:hidden;
-    transform:translateY(8px);
+    transform:translateY(7px);
     transition:.2s;
 }
 
 .service-dropdown:hover .service-menu{
     opacity:1;
     visibility:visible;
-    transform:translateY(0);
+    transform:none;
 }
 
 .service-menu a{
     display:block;
-    padding:11px 13px;
-    color:#cfc4b4;
+    padding:11px 12px;
+    color:#cfc4b5;
     font-size:11px;
 }
 
 .service-menu a:hover{
-    background:rgba(201,168,90,.10);
-    color:var(--gold2);
+    background:rgba(200,166,91,.1);
+    color:var(--gold-light);
 }
 
 .cart-link{
-    border:1px solid var(--gold3);
-    padding:10px 14px;
+    padding:9px 14px;
+    border:1px solid var(--gold);
     color:#fff!important;
 }
 
 .cart-count{
-    color:var(--gold2);
-    margin-left:3px;
+    color:var(--gold-light);
 }
 
 .menu-toggle{
@@ -218,118 +211,142 @@ HEADER
     width:44px;
     height:44px;
     border:1px solid var(--line);
-    color:#fff;
     background:rgba(0,0,0,.3);
-    font-size:23px;
-    cursor:pointer;
+    color:#fff;
+    font-size:22px;
 }
 
 /* =========================================================
 HERO
+ไม่มี hero-floor.jpg
+ใช้ภาพสินค้าที่มีจริงเป็นภาพหลัก
 ========================================================= */
 
 .hero{
-    position:relative;
     min-height:850px;
+    position:relative;
     overflow:hidden;
 
     background:
+        radial-gradient(
+            circle at 70% 35%,
+            rgba(200,166,91,.16),
+            transparent 28%
+        ),
         linear-gradient(
             90deg,
-            rgba(7,5,3,.97) 0%,
-            rgba(7,5,3,.92) 26%,
-            rgba(7,5,3,.66) 51%,
-            rgba(7,5,3,.15) 100%
-        ),
-        url("assets/hero-floor.jpg") center center / cover no-repeat,
-        #17100a;
-}
-
-.hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-        radial-gradient(
-            circle at 70% 45%,
-            rgba(201,168,90,.14),
-            transparent 34%
+            #090705 0%,
+            #100b07 45%,
+            #1b1009 100%
         );
 }
 
-.hero::after{
-    content:"";
+.hero-image{
     position:absolute;
-    left:0;
+    top:0;
     right:0;
-    bottom:0;
-    height:220px;
-    background:linear-gradient(
-        to bottom,
-        transparent,
-        var(--bg)
-    );
+    width:58%;
+    height:100%;
+    overflow:hidden;
 }
 
-.hero-inner{
-    position:relative;
+.hero-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    opacity:.72;
+    filter:saturate(.82) contrast(1.05);
+}
+
+.hero-image:before{
+    content:"";
+    position:absolute;
     z-index:2;
+    inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            #090705 0%,
+            rgba(9,7,5,.82) 15%,
+            rgba(9,7,5,.15) 65%,
+            rgba(9,7,5,.35) 100%
+        );
+}
+
+.hero-image:after{
+    content:"";
+    position:absolute;
+    z-index:3;
+    inset:0;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.05),
+            rgba(0,0,0,.5)
+        );
+}
+
+.hero-content-wrap{
+    position:relative;
+    z-index:5;
     min-height:850px;
     display:flex;
     align-items:center;
 }
 
 .hero-content{
-    width:670px;
+    width:650px;
     padding-top:90px;
 }
 
-.hero-label{
+.hero-kicker{
     display:flex;
     align-items:center;
     gap:13px;
 
-    color:var(--gold2);
+    color:var(--gold-light);
     font-size:11px;
     letter-spacing:4px;
+
     margin-bottom:25px;
 }
 
-.hero-label::before{
+.hero-kicker:before{
     content:"";
     width:48px;
     height:1px;
     background:var(--gold);
 }
 
-.hero h1{
+.hero-title{
     color:#fff;
     font-family:"Kanit",sans-serif;
-    font-weight:500;
-    font-size:clamp(62px,7vw,108px);
+    font-size:clamp(60px,7vw,105px);
     line-height:.96;
+    font-weight:500;
     letter-spacing:-2px;
 }
 
-.hero h1 span{
+.hero-title span{
     display:block;
-    color:var(--gold2);
+    color:var(--gold-light);
 }
 
 .hero-description{
-    width:560px;
+    width:540px;
     max-width:100%;
     margin-top:30px;
 
-    color:#d2c8ba;
-    font-size:15px;
+    color:#cfc4b6;
+    font-size:14px;
     line-height:2;
 }
 
 .hero-buttons{
     display:flex;
     gap:12px;
-    margin-top:34px;
+    margin-top:32px;
 }
 
 .btn{
@@ -342,35 +359,31 @@ HERO
 
     border:1px solid var(--gold);
     font-size:12px;
-
     transition:.3s;
 }
 
 .btn-gold{
-    color:#0b0805;
     background:var(--gold);
+    color:#090705;
 }
 
 .btn-gold:hover{
-    background:var(--gold2);
-    border-color:var(--gold2);
+    background:var(--gold-light);
 }
 
-.btn-line{
+.btn-outline{
+    background:rgba(0,0,0,.2);
     color:#fff;
-    background:rgba(0,0,0,.20);
 }
 
-.btn-line:hover{
-    background:rgba(201,168,90,.12);
+.btn-outline:hover{
+    background:rgba(200,166,91,.12);
 }
 
-/* HERO FEATURES */
-
-.hero-feature-strip{
+.hero-points{
     width:950px;
     max-width:100%;
-    margin-top:65px;
+    margin-top:60px;
 
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -379,32 +392,31 @@ HERO
     border-bottom:1px solid rgba(255,255,255,.12);
 }
 
-.hero-feature{
+.hero-point{
     min-height:85px;
-    padding:18px 20px;
-
+    padding:17px 20px;
     border-right:1px solid rgba(255,255,255,.12);
 }
 
-.hero-feature:last-child{
+.hero-point:last-child{
     border-right:0;
 }
 
-.hero-feature-number{
-    color:var(--gold2);
+.hero-point-number{
+    color:var(--gold-light);
     font-family:"Kanit",sans-serif;
-    font-size:20px;
+    font-size:19px;
 }
 
-.hero-feature-title{
+.hero-point-title{
+    color:#e0d6c9;
     margin-top:4px;
-    color:#ded4c6;
     font-size:11px;
 }
 
-.hero-feature-text{
+.hero-point-text{
+    color:#82786d;
     margin-top:2px;
-    color:#857c71;
     font-size:9px;
 }
 
@@ -413,10 +425,7 @@ STATS
 ========================================================= */
 
 .stats{
-    position:relative;
-    z-index:5;
-    margin-top:-1px;
-    background:#0c0a08;
+    background:#0c0907;
     border-top:1px solid var(--line);
     border-bottom:1px solid var(--line);
 }
@@ -427,13 +436,11 @@ STATS
 }
 
 .stat{
-    min-height:155px;
+    min-height:145px;
     padding:25px 35px;
-
     display:flex;
     flex-direction:column;
     justify-content:center;
-
     border-right:1px solid var(--line);
 }
 
@@ -442,36 +449,35 @@ STATS
 }
 
 .stat-number{
-    color:var(--gold2);
+    color:var(--gold-light);
     font-family:"Kanit",sans-serif;
-    font-size:44px;
-    font-weight:500;
+    font-size:43px;
     line-height:1;
 }
 
-.stat-label{
-    margin-top:10px;
-    color:#b1a699;
+.stat-title{
+    margin-top:9px;
+    color:#a99d8e;
     font-size:11px;
 }
 
 .stat-line{
     width:35px;
     height:1px;
-    margin-top:14px;
-    background:var(--gold3);
+    margin-top:13px;
+    background:var(--gold);
 }
 
 /* =========================================================
-COMMON SECTION
+COMMON
 ========================================================= */
 
 .section{
-    padding:125px 0;
+    padding:120px 0;
 }
 
 .section-label{
-    color:var(--gold2);
+    color:var(--gold-light);
     font-size:10px;
     letter-spacing:4px;
     margin-bottom:15px;
@@ -480,17 +486,17 @@ COMMON SECTION
 .section-title{
     color:#fff;
     font-family:"Kanit",sans-serif;
-    font-size:clamp(45px,5.3vw,76px);
+    font-size:clamp(45px,5.3vw,75px);
+    line-height:1.04;
     font-weight:500;
-    line-height:1.03;
 }
 
 .section-title span{
-    color:var(--gold2);
+    color:var(--gold-light);
 }
 
 .section-description{
-    color:#a59a8c;
+    color:#9e9385;
     font-size:13px;
     line-height:1.9;
 }
@@ -501,23 +507,19 @@ OUR SOLUTIONS
 
 .solutions{
     background:
-        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),
-        #17100b;
+        linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px),
+        var(--brown);
 
     background-size:60px 60px;
 }
 
-.solutions-heading{
+.solutions-head{
     display:grid;
-    grid-template-columns:1fr 420px;
+    grid-template-columns:1fr 430px;
+    gap:70px;
     align-items:end;
-    gap:80px;
     margin-bottom:55px;
-}
-
-.solutions-heading-right{
-    padding-bottom:7px;
 }
 
 .solutions-grid{
@@ -527,38 +529,37 @@ OUR SOLUTIONS
     gap:16px;
 }
 
-.solution-card{
+.solution{
     position:relative;
     overflow:hidden;
-    border:1px solid rgba(255,255,255,.09);
-    background:#120d09;
+    background:#100c08;
+    border:1px solid rgba(255,255,255,.08);
 }
 
-.solution-card.big{
+.solution.big{
     grid-row:span 2;
 }
 
-.solution-image{
+.solution img{
     width:100%;
     height:100%;
     object-fit:cover;
-    transition:.65s;
+    transition:.7s;
 }
 
-.solution-card::after{
+.solution:hover img{
+    transform:scale(1.06);
+}
+
+.solution:after{
     content:"";
     position:absolute;
     inset:0;
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,.95),
-            rgba(0,0,0,.08) 70%
-        );
-}
-
-.solution-card:hover .solution-image{
-    transform:scale(1.06);
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.96),
+        rgba(0,0,0,.04) 70%
+    );
 }
 
 .solution-info{
@@ -566,185 +567,89 @@ OUR SOLUTIONS
     z-index:2;
     left:25px;
     right:25px;
-    bottom:25px;
+    bottom:24px;
 }
 
-.solution-no{
-    color:var(--gold2);
+.solution-number{
+    color:var(--gold-light);
     font-size:10px;
     letter-spacing:2px;
 }
 
 .solution-info h3{
-    margin-top:7px;
     color:#fff;
     font-family:"Kanit",sans-serif;
     font-size:27px;
     font-weight:500;
+    margin-top:7px;
 }
 
 .solution-info p{
-    margin-top:4px;
-    color:#c0b5a7;
+    color:#b6aa9b;
     font-size:10px;
-    line-height:1.7;
+    margin-top:4px;
 }
 
 /* =========================================================
-SECOND SOLUTION STRIP
+SOLUTION BAR
 ========================================================= */
 
-.solution-strip{
+.solution-bar{
     padding-top:0;
-    background:#17100b;
+    background:var(--brown);
 }
 
-.solution-strip-grid{
+.solution-bar-grid{
     display:grid;
     grid-template-columns:repeat(5,1fr);
     border-top:1px solid var(--line);
     border-bottom:1px solid var(--line);
 }
 
-.solution-strip-card{
-    min-height:175px;
+.solution-bar-item{
+    min-height:170px;
     padding:25px 22px;
-
     border-right:1px solid var(--line);
-
-    transition:.3s;
+    transition:.25s;
 }
 
-.solution-strip-card:last-child{
+.solution-bar-item:last-child{
     border-right:0;
 }
 
-.solution-strip-card:hover{
-    background:rgba(201,168,90,.055);
+.solution-bar-item:hover{
+    background:rgba(200,166,91,.05);
 }
 
-.solution-strip-no{
-    color:var(--gold2);
+.solution-bar-number{
+    color:var(--gold-light);
     font-size:10px;
 }
 
-.solution-strip-card h3{
-    margin-top:18px;
+.solution-bar-item h3{
     color:#fff;
     font-family:"Kanit",sans-serif;
     font-size:18px;
     font-weight:500;
+    margin-top:18px;
 }
 
-.solution-strip-card p{
+.solution-bar-item p{
+    color:#877d71;
+    font-size:10px;
+    line-height:1.7;
     margin-top:7px;
-    color:#8f8579;
-    font-size:10px;
-    line-height:1.7;
 }
 
 /* =========================================================
-ABOUT
+PRODUCTS
 ========================================================= */
 
-.about{
-    background:
-        radial-gradient(
-            circle at 15% 50%,
-            rgba(201,168,90,.08),
-            transparent 35%
-        ),
-        #0b0907;
+.products{
+    background:#120d09;
 }
 
-.about-grid{
-    display:grid;
-    grid-template-columns:.85fr 1.15fr;
-    gap:90px;
-    align-items:center;
-}
-
-.about-left{
-    max-width:600px;
-}
-
-.about-left .section-title{
-    margin-bottom:30px;
-}
-
-.about-text{
-    color:#b2a79a;
-    font-size:14px;
-    line-height:2;
-}
-
-.about-tagline{
-    margin-top:20px;
-    color:#d3c5b3;
-    font-size:12px;
-    line-height:2;
-}
-
-.about-button{
-    margin-top:30px;
-}
-
-.about-values{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
-
-.about-value{
-    min-height:185px;
-    padding:27px;
-
-    border:1px solid var(--line);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(201,168,90,.075),
-            rgba(255,255,255,.012)
-        );
-
-    transition:.3s;
-}
-
-.about-value:hover{
-    border-color:rgba(201,168,90,.55);
-    transform:translateY(-4px);
-}
-
-.about-icon{
-    color:var(--gold2);
-    font-size:25px;
-}
-
-.about-value h3{
-    margin-top:19px;
-    color:#fff;
-    font-family:"Kanit",sans-serif;
-    font-size:19px;
-    font-weight:500;
-}
-
-.about-value p{
-    margin-top:8px;
-    color:#8f8579;
-    font-size:10px;
-    line-height:1.7;
-}
-
-/* =========================================================
-PRODUCT SHOWCASE
-========================================================= */
-
-.product-section{
-    background:#18110c;
-}
-
-.product-heading{
+.products-head{
     display:flex;
     justify-content:space-between;
     align-items:end;
@@ -752,12 +657,12 @@ PRODUCT SHOWCASE
     margin-bottom:50px;
 }
 
-.product-heading-text{
+.products-head-left{
     max-width:650px;
 }
 
-.product-heading-text .section-title{
-    margin-bottom:20px;
+.products-head-left .section-description{
+    margin-top:20px;
 }
 
 .product-grid{
@@ -768,9 +673,9 @@ PRODUCT SHOWCASE
 
 .product-card{
     position:relative;
-    overflow:hidden;
     min-height:480px;
-    background:#100c08;
+    overflow:hidden;
+    background:#0e0a07;
     border:1px solid rgba(255,255,255,.08);
 }
 
@@ -778,23 +683,22 @@ PRODUCT SHOWCASE
     width:100%;
     height:100%;
     object-fit:cover;
-    transition:.6s;
+    transition:.65s;
 }
 
 .product-card:hover img{
     transform:scale(1.06);
 }
 
-.product-card::after{
+.product-card:after{
     content:"";
     position:absolute;
     inset:0;
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,.95),
-            rgba(0,0,0,.02) 65%
-        );
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.96),
+        transparent 68%
+    );
 }
 
 .product-info{
@@ -802,27 +706,113 @@ PRODUCT SHOWCASE
     z-index:2;
     left:22px;
     right:22px;
-    bottom:23px;
+    bottom:22px;
 }
 
 .product-category{
-    color:var(--gold2);
+    color:var(--gold-light);
     font-size:9px;
     letter-spacing:2px;
 }
 
 .product-info h3{
-    margin-top:7px;
     color:#fff;
     font-family:"Kanit",sans-serif;
-    font-size:23px;
+    font-size:22px;
     font-weight:500;
+    margin-top:7px;
 }
 
 .product-info p{
-    margin-top:5px;
-    color:#b4a99b;
+    color:#afa497;
     font-size:9px;
+    margin-top:4px;
+}
+
+/* =========================================================
+ABOUT
+========================================================= */
+
+.about{
+    background:#0a0806;
+}
+
+.about-grid{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:90px;
+    align-items:center;
+}
+
+.about-copy{
+    max-width:600px;
+}
+
+.about-copy .section-title{
+    margin-bottom:28px;
+}
+
+.about-text{
+    color:#aaa093;
+    font-size:14px;
+    line-height:2;
+}
+
+.about-tagline{
+    color:#d2c5b4;
+    font-size:12px;
+    line-height:2;
+    margin-top:20px;
+}
+
+.about-button{
+    margin-top:30px;
+}
+
+.values{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.value{
+    min-height:180px;
+    padding:27px;
+    border:1px solid var(--line);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(200,166,91,.07),
+            rgba(255,255,255,.01)
+        );
+
+    transition:.3s;
+}
+
+.value:hover{
+    transform:translateY(-4px);
+    border-color:rgba(200,166,91,.55);
+}
+
+.value-icon{
+    color:var(--gold-light);
+    font-size:25px;
+}
+
+.value h3{
+    color:#fff;
+    font-family:"Kanit",sans-serif;
+    font-size:19px;
+    font-weight:500;
+    margin-top:18px;
+}
+
+.value p{
+    color:#887e72;
+    font-size:10px;
+    line-height:1.7;
+    margin-top:7px;
 }
 
 /* =========================================================
@@ -831,33 +821,32 @@ CTA
 
 .cta{
     position:relative;
-    min-height:510px;
+    overflow:hidden;
+    min-height:470px;
 
     display:flex;
     align-items:center;
 
-    overflow:hidden;
-
     background:
         linear-gradient(
             90deg,
-            rgba(7,5,3,.97),
-            rgba(7,5,3,.78) 45%,
-            rgba(7,5,3,.25)
+            rgba(9,7,5,.98),
+            rgba(9,7,5,.88) 38%,
+            rgba(9,7,5,.45)
         ),
-        url("assets/hero-floor.jpg") center / cover no-repeat,
-        #21160d;
+        url("assets/products/91428.jpg") center / cover no-repeat;
 }
 
-.cta::before{
+.cta:after{
     content:"";
     position:absolute;
     inset:0;
-    background:radial-gradient(
-        circle at 80% 50%,
-        rgba(201,168,90,.14),
-        transparent 30%
-    );
+    background:
+        radial-gradient(
+            circle at 80% 50%,
+            rgba(200,166,91,.18),
+            transparent 28%
+        );
 }
 
 .cta-content{
@@ -865,20 +854,16 @@ CTA
     z-index:2;
 }
 
-.cta-content .section-title{
-    max-width:780px;
-}
-
 .cta-text{
-    max-width:550px;
-    margin-top:20px;
-    color:#b8ad9f;
+    max-width:560px;
+    color:#b2a698;
     font-size:13px;
     line-height:1.9;
+    margin-top:20px;
 }
 
 .cta-button{
-    margin-top:30px;
+    margin-top:28px;
 }
 
 /* =========================================================
@@ -895,7 +880,7 @@ FOOTER
     display:grid;
     grid-template-columns:minmax(0,1fr) 430px;
     gap:8px;
-    padding-bottom:60px;
+    padding-bottom:55px;
 }
 
 .footer-brand{
@@ -905,24 +890,23 @@ FOOTER
 }
 
 .footer-logo{
-    width:78px;
-    height:78px;
+    width:76px;
+    height:76px;
     object-fit:contain;
 }
 
-.footer-brand strong{
-    display:block;
+.footer-company{
     color:#fff;
     font-family:"Kanit",sans-serif;
-    font-size:22px;
+    font-size:21px;
     letter-spacing:2px;
 }
 
-.footer-brand p{
-    margin-top:12px;
-    color:#93887b;
+.footer-description{
+    color:#91877b;
     font-size:11px;
     line-height:2;
+    margin-top:12px;
 }
 
 .footer-menu{
@@ -931,10 +915,10 @@ FOOTER
 }
 
 .footer-menu-title{
-    color:var(--gold2);
+    color:var(--gold-light);
     font-size:10px;
     letter-spacing:3px;
-    margin-bottom:20px;
+    margin-bottom:19px;
 }
 
 .footer-menu-grid{
@@ -944,38 +928,38 @@ FOOTER
 }
 
 .footer-menu-grid a{
-    color:#8f8579;
+    color:#8d8378;
     font-size:11px;
     transition:.2s;
 }
 
 .footer-menu-grid a:hover{
-    color:var(--gold2);
+    color:var(--gold-light);
 }
 
 .footer-contact{
-    margin-top:28px;
-    color:#8f8579;
+    color:#83796e;
     font-size:10px;
     line-height:2;
+    margin-top:27px;
 }
 
-.footer-actions{
+.footer-buttons{
     display:flex;
     flex-wrap:wrap;
-    gap:9px;
+    gap:8px;
     margin-top:17px;
 }
 
-.footer-actions a{
+.footer-buttons a{
     border:1px solid var(--line);
+    color:#b9ad9e;
     padding:8px 12px;
-    color:#c9bca9;
     font-size:10px;
 }
 
-.footer-actions a:hover{
-    color:var(--gold2);
+.footer-buttons a:hover{
+    color:var(--gold-light);
     border-color:var(--gold);
 }
 
@@ -986,9 +970,9 @@ FOOTER
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:25px;
+    gap:20px;
 
-    color:#655e56;
+    color:#615a53;
     font-size:9px;
 }
 
@@ -1000,13 +984,11 @@ FOOTER
 .social a{
     width:32px;
     height:32px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
-    border:1px solid rgba(201,168,90,.25);
-    color:var(--gold2);
+    border:1px solid rgba(200,166,91,.25);
+    color:var(--gold-light);
     font-size:9px;
 }
 
@@ -1016,23 +998,23 @@ BACK TOP
 
 .back-top{
     position:fixed;
-    z-index:90;
-    right:22px;
-    bottom:22px;
+    right:20px;
+    bottom:20px;
+    z-index:80;
 
-    width:44px;
-    height:44px;
+    width:43px;
+    height:43px;
 
-    border:1px solid var(--gold);
     background:var(--gold);
+    border:1px solid var(--gold);
     color:#080604;
 
     cursor:pointer;
-    opacity:.75;
+    opacity:.7;
 }
 
 /* =========================================================
-TABLET
+1200
 ========================================================= */
 
 @media(max-width:1200px){
@@ -1044,10 +1026,10 @@ TABLET
 
     .solutions-grid{
         grid-template-columns:1fr 1fr;
-        grid-template-rows:360px 260px 260px;
+        grid-template-rows:350px 280px 280px;
     }
 
-    .solution-card.big{
+    .solution.big{
         grid-column:span 2;
         grid-row:span 1;
     }
@@ -1056,21 +1038,21 @@ TABLET
         grid-template-columns:repeat(2,1fr);
     }
 
-    .solution-strip-grid{
+    .solution-bar-grid{
         grid-template-columns:repeat(3,1fr);
     }
 
-    .solution-strip-card:nth-child(3){
+    .solution-bar-item:nth-child(3){
         border-right:0;
     }
 
-    .solution-strip-card:nth-child(-n+3){
+    .solution-bar-item:nth-child(-n+3){
         border-bottom:1px solid var(--line);
     }
 }
 
 /* =========================================================
-MOBILE NAV
+900
 ========================================================= */
 
 @media(max-width:900px){
@@ -1080,21 +1062,20 @@ MOBILE NAV
     }
 
     .navbar{
-        min-height:80px;
+        height:80px;
     }
 
-    .brand img{
-        width:52px;
-        height:52px;
+    .brand-logo{
+        width:50px;
+        height:50px;
     }
 
-    .brand-copy strong{
+    .brand-name{
         font-size:15px;
     }
 
-    .brand-copy span{
+    .brand-sub{
         font-size:6px;
-        letter-spacing:2px;
     }
 
     .menu-toggle{
@@ -1103,9 +1084,9 @@ MOBILE NAV
 
     .main-nav{
         position:absolute;
+        top:80px;
         left:20px;
         right:20px;
-        top:80px;
 
         display:none;
         flex-direction:column;
@@ -1123,7 +1104,7 @@ MOBILE NAV
     }
 
     .main-nav>a,
-    .service-trigger{
+    .service-button{
         display:block;
         width:100%;
         padding:13px;
@@ -1134,11 +1115,9 @@ MOBILE NAV
         position:static;
         display:none;
         width:100%;
-
         opacity:1;
         visibility:visible;
         transform:none;
-        box-shadow:none;
     }
 
     .service-dropdown.open .service-menu{
@@ -1147,17 +1126,24 @@ MOBILE NAV
 
     .hero{
         min-height:820px;
+    }
+
+    .hero-image{
+        width:100%;
+        opacity:.75;
+    }
+
+    .hero-image:before{
         background:
             linear-gradient(
                 180deg,
-                rgba(7,5,3,.72),
-                rgba(7,5,3,.95)
-            ),
-            url("assets/hero-floor.jpg") center / cover no-repeat,
-            #17100a;
+                rgba(9,7,5,.45),
+                rgba(9,7,5,.9) 65%,
+                #090705 100%
+            );
     }
 
-    .hero-inner{
+    .hero-content-wrap{
         min-height:820px;
     }
 
@@ -1165,19 +1151,19 @@ MOBILE NAV
         padding-top:90px;
     }
 
-    .hero h1{
-        font-size:60px;
+    .hero-points{
+        margin-top:45px;
     }
 
-    .hero-feature-strip{
+    .hero-points{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .hero-feature:nth-child(2){
+    .hero-point:nth-child(2){
         border-right:0;
     }
 
-    .hero-feature:nth-child(-n+2){
+    .hero-point:nth-child(-n+2){
         border-bottom:1px solid rgba(255,255,255,.12);
     }
 
@@ -1193,7 +1179,7 @@ MOBILE NAV
         border-bottom:1px solid var(--line);
     }
 
-    .solutions-heading{
+    .solutions-head{
         grid-template-columns:1fr;
         gap:20px;
     }
@@ -1214,7 +1200,7 @@ MOBILE NAV
 }
 
 /* =========================================================
-SMALL MOBILE
+600
 ========================================================= */
 
 @media(max-width:600px){
@@ -1224,25 +1210,19 @@ SMALL MOBILE
     }
 
     .hero{
-        min-height:800px;
+        min-height:790px;
     }
 
-    .hero-inner{
-        min-height:800px;
+    .hero-content-wrap{
+        min-height:790px;
     }
 
-    .hero-content{
-        padding-top:100px;
-    }
-
-    .hero h1{
+    .hero-title{
         font-size:48px;
-        letter-spacing:-1px;
     }
 
     .hero-description{
         font-size:12px;
-        line-height:1.9;
     }
 
     .hero-buttons{
@@ -1250,23 +1230,19 @@ SMALL MOBILE
         align-items:stretch;
     }
 
-    .hero-feature-strip{
-        margin-top:45px;
+    .hero-points{
+        margin-top:42px;
     }
 
-    .hero-feature{
-        padding:15px 12px;
+    .hero-point{
+        padding:14px 12px;
     }
 
-    .hero-feature-number{
-        font-size:17px;
-    }
-
-    .hero-feature-title{
+    .hero-point-title{
         font-size:9px;
     }
 
-    .hero-feature-text{
+    .hero-point-text{
         font-size:8px;
     }
 
@@ -1280,10 +1256,10 @@ SMALL MOBILE
     }
 
     .stat-number{
-        font-size:30px;
+        font-size:29px;
     }
 
-    .stat-label{
+    .stat-title{
         font-size:8px;
     }
 
@@ -1300,31 +1276,31 @@ SMALL MOBILE
         flex-direction:column;
     }
 
-    .solution-card,
-    .solution-card.big{
-        min-height:320px;
+    .solution,
+    .solution.big{
         height:320px;
+        min-height:320px;
     }
 
-    .solution-strip-grid{
+    .solution-bar-grid{
         grid-template-columns:1fr;
     }
 
-    .solution-strip-card,
-    .solution-strip-card:nth-child(-n+3){
+    .solution-bar-item,
+    .solution-bar-item:nth-child(-n+3){
         border-right:0;
         border-bottom:1px solid var(--line);
     }
 
-    .solution-strip-card:last-child{
+    .solution-bar-item:last-child{
         border-bottom:0;
     }
 
-    .product-heading{
+    .products-head{
         display:block;
     }
 
-    .product-heading .btn{
+    .products-head .btn{
         margin-top:25px;
     }
 
@@ -1336,26 +1312,21 @@ SMALL MOBILE
         min-height:430px;
     }
 
-    .about-values{
+    .values{
         grid-template-columns:1fr;
     }
 
+    .cta{
+        min-height:450px;
+    }
+
     .footer-bottom{
-        align-items:flex-start;
         flex-direction:column;
+        align-items:flex-start;
     }
 
     .footer-menu-grid{
         grid-template-columns:1fr 1fr;
-    }
-
-    .cta{
-        min-height:480px;
-    }
-
-    .back-top{
-        right:14px;
-        bottom:14px;
     }
 }
 </style>
@@ -1375,11 +1346,22 @@ HEADER
 
 <a href="index.html" class="brand">
 
-<img src="assets/logo.png" alt="CHATPHETCH GROUP">
+<img
+class="brand-logo"
+src="assets/logo.png"
+alt="CHATPHETCH GROUP"
+>
 
-<div class="brand-copy">
-<strong>CHATPHETCH GROUP</strong>
-<span>FLOORING &amp; CONSTRUCTION</span>
+<div>
+
+<div class="brand-name">
+CHATPHETCH GROUP
+</div>
+
+<span class="brand-sub">
+FLOORING &amp; CONSTRUCTION
+</span>
+
 </div>
 
 </a>
@@ -1387,16 +1369,25 @@ HEADER
 
 <div class="main-nav" id="mainNav">
 
-<a href="index.html">หน้าแรก</a>
+<a href="index.html">
+หน้าแรก
+</a>
 
-<a href="about.html">เกี่ยวกับเรา</a>
+<a href="about.html">
+เกี่ยวกับเรา
+</a>
 
-<a href="products.html">สินค้า</a>
+<a href="products.html">
+สินค้า
+</a>
 
 
 <div class="service-dropdown" id="serviceDropdown">
 
-<button class="service-trigger" type="button">
+<button
+class="service-button"
+type="button"
+>
 บริการ ▼
 </button>
 
@@ -1427,15 +1418,25 @@ HEADER
 </div>
 
 
-<a href="projects.html">ผลงาน</a>
+<a href="projects.html">
+ผลงาน
+</a>
 
-<a href="reference.html">โครงการอ้างอิง</a>
+<a href="reference.html">
+โครงการอ้างอิง
+</a>
 
-<a href="technical-center.html">ศูนย์เทคนิค</a>
+<a href="technical-center.html">
+ศูนย์เทคนิค
+</a>
 
-<a href="knowledge.html">คลังความรู้</a>
+<a href="knowledge.html">
+คลังความรู้
+</a>
 
-<a href="contact.html">ติดต่อเรา</a>
+<a href="contact.html">
+ติดต่อเรา
+</a>
 
 <a href="order-status.html">
 🔎 ติดตามคำสั่งซื้อ
@@ -1449,7 +1450,11 @@ HEADER
 </div>
 
 
-<button class="menu-toggle" id="menuToggle">
+<button
+class="menu-toggle"
+id="menuToggle"
+type="button"
+>
 ☰
 </button>
 
@@ -1466,102 +1471,119 @@ HERO
 
 <section class="hero">
 
-<div class="container hero-inner">
+<div class="hero-image">
+
+<img
+src="assets/products/91428.jpg"
+alt="วัสดุงานพื้น CHATPHETCH GROUP"
+>
+
+</div>
+
+
+<div class="container hero-content-wrap">
 
 <div class="hero-content">
 
-<div class="hero-label">
+<div class="hero-kicker">
 CHATPHETCH GROUP
 </div>
 
-<h1>
+<h1 class="hero-title">
 วัสดุงานพื้น
 <span>ครบทุกระบบ</span>
 </h1>
 
 <p class="hero-description">
-โรงงานผลิตและจำหน่าย วัสดุงานพื้นทุกประเภท
-พร้อมบริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
-เพื่อช่วยให้คุณเลือกวัสดุและแนวทางที่เหมาะกับลักษณะงาน
+🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹
+<br>
+บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
 </p>
+
 
 <div class="hero-buttons">
 
-<a href="products.html" class="btn btn-gold">
-ดูสินค้าทั้งหมด
+<a
+href="products.html"
+class="btn btn-gold"
+>
+ดูสินค้าทั้งหมด →
 </a>
 
-<a href="services.html" class="btn btn-line">
-ดูบริการของเรา
+<a
+href="contact.html"
+class="btn btn-outline"
+>
+ปรึกษาทีมงาน
 </a>
 
 </div>
 
 
-<div class="hero-feature-strip">
+<div class="hero-points">
 
-<div class="hero-feature">
+<div class="hero-point">
 
-<div class="hero-feature-number">
+<div class="hero-point-number">
 01
 </div>
 
-<div class="hero-feature-title">
+<div class="hero-point-title">
 วัสดุงานพื้น
 </div>
 
-<div class="hero-feature-text">
+<div class="hero-point-text">
 ผลิตภัณฑ์สำหรับงานพื้น
 </div>
 
 </div>
 
 
-<div class="hero-feature">
+<div class="hero-point">
 
-<div class="hero-feature-number">
+<div class="hero-point-number">
 02
 </div>
 
-<div class="hero-feature-title">
+<div class="hero-point-title">
 ระบบพิมพ์ลาย
 </div>
 
-<div class="hero-feature-text">
+<div class="hero-point-text">
 Premium Stamped Concrete
 </div>
 
 </div>
 
 
-<div class="hero-feature">
+<div class="hero-point">
 
-<div class="hero-feature-number">
+<div class="hero-point-number">
 03
 </div>
 
-<div class="hero-feature-title">
+<div class="hero-point-title">
 ระบบเคลือบผิว
 </div>
 
-<div class="hero-feature-text">
+<div class="hero-point-text">
 เคลือบและปกป้องพื้นผิว
 </div>
 
 </div>
 
 
-<div class="hero-feature">
+<div class="hero-point">
 
-<div class="hero-feature-number">
+<div class="hero-point-number">
 04
 </div>
 
-<div class="hero-feature-title">
+<div class="hero-point-title">
 คำปรึกษา
 </div>
 
-<div class="hero-feature-text">
+<div class="hero-point-text">
 เลือกวัสดุให้เหมาะกับงาน
 </div>
 
@@ -1592,7 +1614,7 @@ STATS
 04
 </div>
 
-<div class="stat-label">
+<div class="stat-title">
 ผลิตภัณฑ์ในระบบออนไลน์
 </div>
 
@@ -1607,7 +1629,7 @@ STATS
 04
 </div>
 
-<div class="stat-label">
+<div class="stat-title">
 กลุ่มวัสดุหลัก
 </div>
 
@@ -1622,7 +1644,7 @@ STATS
 100%
 </div>
 
-<div class="stat-label">
+<div class="stat-title">
 ข้อมูลสินค้าออนไลน์
 </div>
 
@@ -1637,7 +1659,7 @@ STATS
 01
 </div>
 
-<div class="stat-label">
+<div class="stat-title">
 ศูนย์ข้อมูลและคำปรึกษา
 </div>
 
@@ -1660,7 +1682,7 @@ OUR SOLUTIONS
 
 <div class="container">
 
-<div class="solutions-heading">
+<div class="solutions-head">
 
 <div>
 
@@ -1676,7 +1698,7 @@ OUR SOLUTIONS
 </div>
 
 
-<div class="solutions-heading-right">
+<div>
 
 <p class="section-description">
 ตั้งแต่การเลือกวัสดุ ระบบงานพื้น
@@ -1692,17 +1714,19 @@ OUR SOLUTIONS
 <div class="solutions-grid">
 
 
-<a href="products.html" class="solution-card big">
+<a
+href="products.html"
+class="solution big"
+>
 
 <img
-class="solution-image"
 src="assets/products/91428.jpg"
-alt="วัสดุงานพื้น"
+alt="PREMIUM STAMPED CONCRETE"
 >
 
 <div class="solution-info">
 
-<div class="solution-no">
+<div class="solution-number">
 01
 </div>
 
@@ -1711,7 +1735,7 @@ alt="วัสดุงานพื้น"
 </h3>
 
 <p>
-ผลิตภัณฑ์และวัสดุสำหรับงานพื้น
+ผลิตภัณฑ์สำหรับงานพื้น
 </p>
 
 </div>
@@ -1719,17 +1743,19 @@ alt="วัสดุงานพื้น"
 </a>
 
 
-<a href="products.html" class="solution-card">
+<a
+href="products.html"
+class="solution"
+>
 
 <img
-class="solution-image"
 src="assets/products/releaser-power.jpg"
-alt="ระบบพิมพ์ลาย"
+alt="RELEASER POWER"
 >
 
 <div class="solution-info">
 
-<div class="solution-no">
+<div class="solution-number">
 02
 </div>
 
@@ -1738,7 +1764,7 @@ alt="ระบบพิมพ์ลาย"
 </h3>
 
 <p>
-วัสดุสำหรับ Premium Stamped Concrete
+Premium Stamped Concrete
 </p>
 
 </div>
@@ -1746,17 +1772,19 @@ alt="ระบบพิมพ์ลาย"
 </a>
 
 
-<a href="products.html" class="solution-card">
+<a
+href="products.html"
+class="solution"
+>
 
 <img
-class="solution-image"
 src="assets/products/91430.jpg"
-alt="ระบบเคลือบผิว"
+alt="READY COAT"
 >
 
 <div class="solution-info">
 
-<div class="solution-no">
+<div class="solution-number">
 03
 </div>
 
@@ -1765,7 +1793,7 @@ alt="ระบบเคลือบผิว"
 </h3>
 
 <p>
-เคลือบ ปกป้อง และตกแต่งพื้นผิว
+เคลือบและปกป้องพื้นผิว
 </p>
 
 </div>
@@ -1773,17 +1801,19 @@ alt="ระบบเคลือบผิว"
 </a>
 
 
-<a href="products.html" class="solution-card">
+<a
+href="products.html"
+class="solution"
+>
 
 <img
-class="solution-image"
 src="assets/products/91429.jpg"
-alt="เคลือบผิวชนิดสี"
+alt="READY COAT COLOR"
 >
 
 <div class="solution-info">
 
-<div class="solution-no">
+<div class="solution-number">
 04
 </div>
 
@@ -1792,7 +1822,7 @@ alt="เคลือบผิวชนิดสี"
 </h3>
 
 <p>
-สำหรับเพิ่มสีสันและตกแต่งพื้นผิว
+สำหรับงานตกแต่งพื้นผิว
 </p>
 
 </div>
@@ -1800,17 +1830,19 @@ alt="เคลือบผิวชนิดสี"
 </a>
 
 
-<a href="technical-center.html" class="solution-card">
+<a
+href="technical-center.html"
+class="solution"
+>
 
 <img
-class="solution-image"
-src="assets/products/releaser-power.jpg"
+src="assets/products/91428.jpg"
 alt="ข้อมูลทางเทคนิค"
 >
 
 <div class="solution-info">
 
-<div class="solution-no">
+<div class="solution-number">
 05
 </div>
 
@@ -1819,7 +1851,7 @@ alt="ข้อมูลทางเทคนิค"
 </h3>
 
 <p>
-ข้อมูลสำหรับศึกษาระบบงานพื้น
+ศูนย์ข้อมูลสำหรับระบบงานพื้น
 </p>
 
 </div>
@@ -1834,18 +1866,22 @@ alt="ข้อมูลทางเทคนิค"
 
 
 <!-- =========================================================
-SOLUTION STRIP
+SOLUTION BAR
 ========================================================= -->
 
-<section class="solution-strip">
+<section class="solution-bar">
 
 <div class="container">
 
-<div class="solution-strip-grid">
+<div class="solution-bar-grid">
 
-<a href="products.html" class="solution-strip-card">
 
-<div class="solution-strip-no">
+<a
+href="products.html"
+class="solution-bar-item"
+>
+
+<div class="solution-bar-number">
 01
 </div>
 
@@ -1854,16 +1890,18 @@ SOLUTION STRIP
 </h3>
 
 <p>
-เลือกผลิตภัณฑ์ตามลักษณะของงาน
-และระบบพื้นที่ต้องการ
+ผลิตภัณฑ์สำหรับงานพื้น
 </p>
 
 </a>
 
 
-<a href="products.html" class="solution-strip-card">
+<a
+href="products.html"
+class="solution-bar-item"
+>
 
-<div class="solution-strip-no">
+<div class="solution-bar-number">
 02
 </div>
 
@@ -1872,15 +1910,18 @@ SOLUTION STRIP
 </h3>
 
 <p>
-วัสดุสำหรับงาน Premium Stamped Concrete
+วัสดุสำหรับงาน Stamped Concrete
 </p>
 
 </a>
 
 
-<a href="products.html" class="solution-strip-card">
+<a
+href="products.html"
+class="solution-bar-item"
+>
 
-<div class="solution-strip-no">
+<div class="solution-bar-number">
 03
 </div>
 
@@ -1889,16 +1930,18 @@ SOLUTION STRIP
 </h3>
 
 <p>
-ผลิตภัณฑ์สำหรับงานเคลือบผิว
-และงานตกแต่งพื้นผิว
+ผลิตภัณฑ์สำหรับเคลือบพื้นผิว
 </p>
 
 </a>
 
 
-<a href="service-detail.html?service=consulting" class="solution-strip-card">
+<a
+href="service-detail.html?service=consulting"
+class="solution-bar-item"
+>
 
-<div class="solution-strip-no">
+<div class="solution-bar-number">
 04
 </div>
 
@@ -1907,27 +1950,31 @@ SOLUTION STRIP
 </h3>
 
 <p>
-ช่วยเลือกวัสดุให้เหมาะกับลักษณะงาน
+เลือกวัสดุให้เหมาะกับลักษณะงาน
 </p>
 
 </a>
 
 
-<a href="technical-center.html" class="solution-strip-card">
+<a
+href="technical-center.html"
+class="solution-bar-item"
+>
 
-<div class="solution-strip-no">
+<div class="solution-bar-number">
 05
 </div>
 
 <h3>
-ข้อมูลทางเทคนิค
+ศูนย์เทคนิค
 </h3>
 
 <p>
-ศูนย์รวมข้อมูลสำหรับระบบงานพื้น
+ข้อมูลสำหรับระบบงานพื้น
 </p>
 
 </a>
+
 
 </div>
 
@@ -1937,16 +1984,16 @@ SOLUTION STRIP
 
 
 <!-- =========================================================
-PRODUCT SHOWCASE
+PRODUCT COLLECTION
 ========================================================= -->
 
-<section class="section product-section">
+<section class="section products">
 
 <div class="container">
 
-<div class="product-heading">
+<div class="products-head">
 
-<div class="product-heading-text">
+<div class="products-head-left">
 
 <div class="section-label">
 PRODUCT COLLECTION
@@ -1958,13 +2005,17 @@ PRODUCT COLLECTION
 </h2>
 
 <p class="section-description">
-เลือกดูผลิตภัณฑ์และรายละเอียดของวัสดุ
+เลือกดูผลิตภัณฑ์และรายละเอียดวัสดุ
 สำหรับงานพื้นและงานเคลือบผิว
 </p>
 
 </div>
 
-<a href="products.html" class="btn btn-line">
+
+<a
+href="products.html"
+class="btn btn-outline"
+>
 ดูสินค้าทั้งหมด →
 </a>
 
@@ -1974,7 +2025,10 @@ PRODUCT COLLECTION
 <div class="product-grid">
 
 
-<a href="product-detail.html?id=91428" class="product-card">
+<a
+href="product-detail.html?id=91428"
+class="product-card"
+>
 
 <img
 src="assets/products/91428.jpg"
@@ -2000,7 +2054,10 @@ PREMIUM STAMPED CONCRETE
 </a>
 
 
-<a href="product-detail.html?id=91427" class="product-card">
+<a
+href="product-detail.html?id=91427"
+class="product-card"
+>
 
 <img
 src="assets/products/releaser-power.jpg"
@@ -2026,7 +2083,10 @@ RELEASER POWER
 </a>
 
 
-<a href="product-detail.html?id=91430" class="product-card">
+<a
+href="product-detail.html?id=91430"
+class="product-card"
+>
 
 <img
 src="assets/products/91430.jpg"
@@ -2052,7 +2112,10 @@ READY COAT
 </a>
 
 
-<a href="product-detail.html?id=91429" class="product-card">
+<a
+href="product-detail.html?id=91429"
+class="product-card"
+>
 
 <img
 src="assets/products/91429.jpg"
@@ -2077,6 +2140,7 @@ READY COAT COLOR
 
 </a>
 
+
 </div>
 
 </div>
@@ -2085,7 +2149,7 @@ READY COAT COLOR
 
 
 <!-- =========================================================
-ABOUT US
+ABOUT
 ========================================================= -->
 
 <section class="section about">
@@ -2094,7 +2158,7 @@ ABOUT US
 
 <div class="about-grid">
 
-<div class="about-left">
+<div class="about-copy">
 
 <div class="section-label">
 ABOUT US
@@ -2102,7 +2166,7 @@ ABOUT US
 
 <h2 class="section-title">
 สร้างสรรค์งานพื้น<br>
-ด้วยวัสดุที่ <span>เหมาะกับงาน</span>
+<span>ด้วยวัสดุที่เหมาะกับงาน</span>
 </h2>
 
 <p class="about-text">
@@ -2119,18 +2183,22 @@ ABOUT US
 ♠️ ยืน 1 คุณภาพ
 </p>
 
-<a href="about.html" class="btn btn-line about-button">
+<a
+href="about.html"
+class="btn btn-outline about-button"
+>
 เกี่ยวกับเรา →
 </a>
 
 </div>
 
 
-<div class="about-values">
+<div class="values">
 
-<div class="about-value">
 
-<div class="about-icon">
+<div class="value">
+
+<div class="value-icon">
 ◆
 </div>
 
@@ -2145,9 +2213,9 @@ ABOUT US
 </div>
 
 
-<div class="about-value">
+<div class="value">
 
-<div class="about-icon">
+<div class="value-icon">
 ⚙
 </div>
 
@@ -2156,15 +2224,15 @@ ABOUT US
 </h3>
 
 <p>
-ตั้งแต่การเลือกวัสดุจนถึงคำปรึกษางาน
+บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบ
 </p>
 
 </div>
 
 
-<div class="about-value">
+<div class="value">
 
-<div class="about-icon">
+<div class="value-icon">
 ♧
 </div>
 
@@ -2173,15 +2241,15 @@ ABOUT US
 </h3>
 
 <p>
-ช่วยเลือกแนวทางให้เหมาะกับลักษณะงาน
+ช่วยเลือกวัสดุให้เหมาะกับลักษณะงาน
 </p>
 
 </div>
 
 
-<div class="about-value">
+<div class="value">
 
-<div class="about-icon">
+<div class="value-icon">
 ▤
 </div>
 
@@ -2196,9 +2264,9 @@ ABOUT US
 </div>
 
 
-<div class="about-value">
+<div class="value">
 
-<div class="about-icon">
+<div class="value-icon">
 ◇
 </div>
 
@@ -2213,9 +2281,9 @@ ABOUT US
 </div>
 
 
-<div class="about-value">
+<div class="value">
 
-<div class="about-icon">
+<div class="value-icon">
 ♢
 </div>
 
@@ -2228,6 +2296,7 @@ ABOUT US
 </p>
 
 </div>
+
 
 </div>
 
@@ -2262,7 +2331,10 @@ CHATPHETCH GROUP
 ติดต่อทีมงานเพื่อสอบถามข้อมูลและเลือกวัสดุให้เหมาะกับงาน
 </p>
 
-<a href="contact.html" class="btn btn-gold cta-button">
+<a
+href="contact.html"
+class="btn btn-gold cta-button"
+>
 ☎ ติดต่อเรา
 </a>
 
@@ -2283,6 +2355,7 @@ FOOTER
 
 <div class="footer-main">
 
+
 <div>
 
 <div class="footer-brand">
@@ -2295,21 +2368,26 @@ alt="CHATPHETCH GROUP"
 
 <div>
 
-<strong>
+<div class="footer-company">
 CHATPHETCH GROUP
-</strong>
+</div>
 
-<p>
+<div class="footer-description">
+
 🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹
 <br>
+
 ♠️ สร้างสรรค์ผลงาน
 &nbsp;&nbsp;
 ♠️ มาตรฐานเข้าถึง
 &nbsp;&nbsp;
 ♠️ ยืน 1 คุณภาพ
+
 <br><br>
+
 บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
-</p>
+
+</div>
 
 </div>
 
@@ -2323,6 +2401,7 @@ CHATPHETCH GROUP
 <div class="footer-menu-title">
 MENU
 </div>
+
 
 <div class="footer-menu-grid">
 
@@ -2371,19 +2450,31 @@ MENU
 
 <div class="footer-contact">
 
-085-6299778 — ฝ่ายเทคนิค<br>
-098-0153271 — ฝ่ายบัญชี<br>
-082-8223678 — Sale พี่หญิง<br>
-098-6710888 — Sale มีน<br>
-063-0630046 — Sale เอ้<br>
-098-6426962 — Sale สาว<br>
+085-6299778 — ฝ่ายเทคนิค
 <br>
+
+098-0153271 — ฝ่ายบัญชี
+<br>
+
+082-8223678 — Sale พี่หญิง
+<br>
+
+098-6710888 — Sale มีน
+<br>
+
+063-0630046 — Sale เอ้
+<br>
+
+098-6426962 — Sale สาว
+
+<br><br>
+
 10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310
 
 </div>
 
 
-<div class="footer-actions">
+<div class="footer-buttons">
 
 <a href="contact.html">
 ☎ ติดต่อเรา
@@ -2397,6 +2488,7 @@ MENU
 
 </div>
 
+
 </div>
 
 
@@ -2409,6 +2501,7 @@ MENU
 <div>
 10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310
 </div>
+
 
 <div class="social">
 
@@ -2440,7 +2533,6 @@ LINE
 <button
 class="back-top"
 id="backTop"
-aria-label="กลับด้านบน"
 >
 ↑
 </button>
@@ -2469,7 +2561,7 @@ menuToggle.addEventListener("click",function(){
 
 
 serviceDropdown
-.querySelector(".service-trigger")
+.querySelector(".service-button")
 .addEventListener("click",function(){
 
     if(window.innerWidth <= 900){
@@ -2477,27 +2569,6 @@ serviceDropdown
         serviceDropdown.classList.toggle("open");
 
     }
-
-});
-
-
-/* =========================================================
-CLOSE MENU
-========================================================= */
-
-document
-.querySelectorAll(".main-nav > a")
-.forEach(function(link){
-
-    link.addEventListener("click",function(){
-
-        if(window.innerWidth <= 900){
-
-            mainNav.classList.remove("open");
-
-        }
-
-    });
 
 });
 
@@ -2520,12 +2591,15 @@ function updateCartCount(){
         if(Array.isArray(cart)){
 
             count =
-            cart.reduce(function(total,item){
+            cart.reduce(
+                function(total,item){
 
-                return total +
-                Number(item.quantity || 0);
+                    return total +
+                    Number(item.quantity || 0);
 
-            },0);
+                },
+                0
+            );
 
         }
 
@@ -2535,12 +2609,12 @@ function updateCartCount(){
 
     }
 
-    const cartCount =
+    const element =
     document.getElementById("cartCount");
 
-    if(cartCount){
+    if(element){
 
-        cartCount.textContent = count;
+        element.textContent = count;
 
     }
 
@@ -2558,15 +2632,10 @@ document.getElementById("backTop");
 
 window.addEventListener("scroll",function(){
 
-    if(window.scrollY > 500){
-
-        backTop.style.opacity = "1";
-
-    }else{
-
-        backTop.style.opacity = ".55";
-
-    }
+    backTop.style.opacity =
+        window.scrollY > 450
+        ? "1"
+        : ".7";
 
 });
 
@@ -2584,7 +2653,28 @@ backTop.addEventListener("click",function(){
 
 
 /* =========================================================
-RESIZE
+CLOSE MOBILE MENU
+========================================================= */
+
+document
+.querySelectorAll(".main-nav > a")
+.forEach(function(link){
+
+    link.addEventListener("click",function(){
+
+        if(window.innerWidth <= 900){
+
+            mainNav.classList.remove("open");
+
+        }
+
+    });
+
+});
+
+
+/* =========================================================
+DESKTOP RESET
 ========================================================= */
 
 window.addEventListener("resize",function(){
