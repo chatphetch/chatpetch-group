@@ -3,613 +3,1112 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>CHATPHETCH GROUP — ผู้ใช้งาน</title>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>
+  CHATPHETCH GROUP — จัดการผู้ใช้งาน
+</title>
+
+<meta
+  name="description"
+  content="CHATPHETCH GROUP Admin User Management"
+/>
+
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+>
+
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+>
 
 <link
   href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
   rel="stylesheet"
 >
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
+
 
 <style>
 
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root{
+
   --black:#050505;
-  --dark:#0d0d0d;
-  --dark2:#111;
+
+  --dark:#0b0b0b;
+
+  --dark-2:#101010;
+
+  --dark-3:#151515;
+
   --gold:#c8a45b;
+
   --gold-light:#f0d991;
-  --line:rgba(255,255,255,.09);
-  --gold-line:rgba(200,164,91,.30);
-  --green:#5cdb8d;
+
+  --gold-soft:rgba(200,164,91,.10);
+
+  --gold-border:rgba(200,164,91,.28);
+
+  --white:#ffffff;
+
+  --text:#d8d8d8;
+
+  --muted:#777;
+
+  --muted-2:#555;
+
+  --line:rgba(255,255,255,.08);
+
+  --green:#61d892;
+
+  --green-soft:rgba(97,216,146,.10);
+
   --red:#ff7777;
-  --blue:#74aef5;
+
+  --red-soft:rgba(255,119,119,.10);
+
+  --blue:#78aef0;
+
+  --blue-soft:rgba(120,174,240,.10);
+
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
+
   box-sizing:border-box;
+
 }
+
 
 html{
-  scroll-behavior:smooth;
+
+  min-height:100%;
+
 }
 
+
 body{
+
   margin:0;
+
   min-height:100vh;
 
-  color:#fff;
+  color:var(--white);
+
+  background:
+
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(200,164,91,.07),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(200,164,91,.05),
+      transparent 28%
+    ),
+
+    var(--black);
 
   font-family:
     "Prompt",
     "Kanit",
     sans-serif;
 
-  background:
-    radial-gradient(
-      circle at 12% 12%,
-      rgba(200,164,91,.075),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 88% 20%,
-      rgba(200,164,91,.055),
-      transparent 28%
-    ),
-    #050505;
 }
 
+
 body::before{
+
   content:"";
+
   position:fixed;
+
   inset:0;
 
+  z-index:-1;
+
+  pointer-events:none;
+
   background-image:
+
     linear-gradient(
-      rgba(255,255,255,.035) 1px,
+      rgba(255,255,255,.025) 1px,
       transparent 1px
     ),
+
     linear-gradient(
       90deg,
-      rgba(255,255,255,.035) 1px,
+      rgba(255,255,255,.025) 1px,
       transparent 1px
     );
 
   background-size:40px 40px;
 
-  pointer-events:none;
 }
 
-a{
-  color:inherit;
+
+button,
+input,
+select{
+
+  font:inherit;
+
 }
+
 
 button{
-  font:inherit;
+
   cursor:pointer;
+
 }
 
+
+button:disabled{
+
+  cursor:not-allowed;
+
+  opacity:.55;
+
+}
+
+
 /* =========================================================
-HEADER
+   HEADER
 ========================================================= */
 
 .header{
+
   position:sticky;
+
   top:0;
+
   z-index:1000;
 
-  min-height:100px;
+  min-height:92px;
+
+  padding:
+    14px
+    4vw;
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
-
-  padding:0 4vw;
-
-  background:rgba(5,5,5,.95);
-
-  border-top:1px solid rgba(200,164,91,.35);
-  border-bottom:1px solid var(--line);
-
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.brand a{
-  display:flex;
-  align-items:center;
-}
-
-.logo{
-  width:52px;
-  height:52px;
-
-  object-fit:contain;
-
-  border:1px solid var(--gold);
-}
-
-.brand-name{
-  font-size:18px;
-  font-weight:700;
-}
-
-.brand-sub{
-  color:#777;
-  font-size:11px;
-  letter-spacing:2px;
-}
-
-.nav{
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
-
-.nav a,
-.logout{
-  min-height:40px;
-  padding:0 15px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  color:#aaa;
-  text-decoration:none;
-
-  border:1px solid rgba(255,255,255,.08);
-
-  background:#090909;
-
-  font-family:inherit;
-  font-size:13px;
-
-  cursor:pointer;
-
-  transition:
-    color .2s ease,
-    border-color .2s ease,
-    background .2s ease;
-}
-
-.nav a:hover,
-.nav a.active,
-.logout:hover{
-  color:var(--gold-light);
-  border-color:var(--gold-line);
-  background:#101010;
-}
-
-.user{
-  color:#777;
-  font-size:12px;
-  white-space:nowrap;
-}
-
-/* =========================================================
-PAGE
-========================================================= */
-
-.page{
-  position:relative;
-  z-index:1;
-
-  width:min(
-    calc(100% - 48px),
-    1540px
-  );
-
-  margin:auto;
-
-  padding:55px 0 80px;
-}
-
-.kicker{
-  color:var(--gold);
-  font-size:13px;
-  letter-spacing:4px;
-  font-weight:600;
-}
-
-h1{
-  margin:7px 0 0;
-
-  font-size:clamp(42px,5vw,60px);
-  line-height:1.2;
-}
-
-.desc{
-  margin-top:10px;
-
-  color:#777;
-  font-size:14px;
-}
-
-.top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
 
   gap:25px;
 
-  margin-bottom:35px;
+  background:
+    rgba(5,5,5,.94);
+
+  border-top:
+    1px solid
+    rgba(200,164,91,.35);
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+
 }
 
-.btn{
+
+.brand{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  min-width:0;
+
+}
+
+
+.brand-link{
+
+  display:flex;
+
+  align-items:center;
+
+  text-decoration:none;
+
+}
+
+
+.logo{
+
+  width:52px;
+
+  height:52px;
+
+  display:block;
+
+  object-fit:contain;
+
+  border:
+    1px solid
+    var(--gold);
+
+}
+
+
+.brand-text{
+
+  min-width:0;
+
+}
+
+
+.brand-name{
+
+  color:var(--white);
+
+  font-size:18px;
+
+  font-weight:700;
+
+  line-height:1.2;
+
+}
+
+
+.brand-sub{
+
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  letter-spacing:2.5px;
+
+}
+
+
+.nav{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:flex-end;
+
+  flex-wrap:wrap;
+
+  gap:7px;
+
+}
+
+
+.nav a,
+.logout-button{
+
+  min-height:40px;
+
+  padding:
+    0 14px;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:#aaa;
+
+  background:#090909;
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
+  text-decoration:none;
+
+  font-size:12px;
+
+  transition:
+    .2s ease;
+
+}
+
+
+.nav a:hover,
+.nav a.active,
+.logout-button:hover{
+
+  color:var(--gold-light);
+
+  border-color:
+    var(--gold-border);
+
+  background:#111;
+
+}
+
+
+.current-user{
+
+  color:#777;
+
+  font-size:11px;
+
+  white-space:nowrap;
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.page{
+
+  width:
+    min(
+      calc(100% - 48px),
+      1540px
+    );
+
+  margin:
+    0 auto;
+
+  padding:
+    55px
+    0
+    80px;
+
+}
+
+
+.page-head{
+
+  margin-bottom:32px;
+
+  display:flex;
+
+  align-items:flex-end;
+
+  justify-content:space-between;
+
+  gap:25px;
+
+}
+
+
+.kicker{
+
+  color:var(--gold);
+
+  font-size:12px;
+
+  font-weight:600;
+
+  letter-spacing:4px;
+
+}
+
+
+h1{
+
+  margin:
+    7px
+    0
+    0;
+
+  font-size:
+    clamp(
+      38px,
+      5vw,
+      58px
+    );
+
+  line-height:1.15;
+
+  font-weight:600;
+
+}
+
+
+.description{
+
+  margin-top:10px;
+
+  color:#777;
+
+  font-size:13px;
+
+  line-height:1.8;
+
+}
+
+
+.refresh-button{
+
   min-height:44px;
 
-  padding:0 18px;
-
-  border:1px solid rgba(255,255,255,.11);
-
-  background:#101010;
+  padding:
+    0 18px;
 
   color:#ddd;
 
-  font-family:inherit;
+  background:#101010;
 
-  cursor:pointer;
+  border:
+    1px solid
+    rgba(255,255,255,.10);
 
   transition:
-    color .2s ease,
-    border-color .2s ease,
-    background .2s ease;
+    .2s ease;
+
 }
 
-.btn:hover{
+
+.refresh-button:hover{
+
   color:var(--gold-light);
-  border-color:var(--gold-line);
+
+  border-color:
+    var(--gold-border);
+
   background:#151515;
+
 }
 
-.btn:disabled{
-  opacity:.55;
-  cursor:not-allowed;
-}
 
 /* =========================================================
-STATUS
+   NOTICE
 ========================================================= */
 
 .notice{
+
   display:none;
 
   margin-bottom:24px;
 
-  padding:15px 18px;
+  padding:
+    14px
+    17px;
 
-  border:1px solid var(--line);
+  color:#aaa;
 
   background:#0b0b0b;
 
-  color:#aaa;
+  border:
+    1px solid
+    var(--line);
 
   font-size:13px;
 
   line-height:1.7;
+
 }
+
 
 .notice.show{
+
   display:block;
+
 }
+
 
 .notice.error{
-  color:#ffb0b0;
 
-  border-color:rgba(255,100,100,.25);
+  color:#ffb2b2;
 
-  background:rgba(255,80,80,.06);
+  background:
+    var(--red-soft);
+
+  border-color:
+    rgba(255,119,119,.25);
+
 }
+
 
 .notice.success{
-  color:#a8edc2;
 
-  border-color:rgba(92,219,141,.25);
+  color:#a9edc5;
 
-  background:rgba(92,219,141,.06);
+  background:
+    var(--green-soft);
+
+  border-color:
+    rgba(97,216,146,.25);
+
 }
+
 
 /* =========================================================
-TABLE
-========================================================= */
-
-.table{
-  overflow:auto;
-
-  border:1px solid var(--line);
-
-  background:#080808;
-}
-
-table{
-  width:100%;
-  min-width:900px;
-
-  border-collapse:collapse;
-}
-
-th{
-  padding:18px;
-
-  color:var(--gold-light);
-
-  background:#111;
-
-  text-align:left;
-
-  font-size:13px;
-  font-weight:600;
-
-  border-bottom:1px solid var(--line);
-
-  white-space:nowrap;
-}
-
-td{
-  padding:18px;
-
-  color:#ccc;
-
-  font-size:13px;
-
-  border-bottom:1px solid rgba(255,255,255,.07);
-
-  vertical-align:middle;
-}
-
-tbody tr{
-  transition:background .2s ease;
-}
-
-tbody tr:hover{
-  background:rgba(255,255,255,.025);
-}
-
-tbody tr:last-child td{
-  border-bottom:0;
-}
-
-.name{
-  color:#eee;
-  font-weight:600;
-}
-
-.email{
-  color:#777;
-  font-size:12px;
-  margin-top:3px;
-}
-
-.role{
-  display:inline-flex;
-
-  padding:6px 12px;
-
-  border-radius:999px;
-
-  color:var(--gold-light);
-
-  background:rgba(200,164,91,.10);
-
-  border:1px solid rgba(200,164,91,.15);
-
-  font-size:11px;
-  font-weight:600;
-}
-
-.role.owner{
-  color:#f0d991;
-  background:rgba(200,164,91,.14);
-}
-
-.role.manager{
-  color:#9ec5ff;
-  background:rgba(116,174,245,.10);
-}
-
-.role.staff{
-  color:#a8edc2;
-  background:rgba(92,219,141,.10);
-}
-
-.role.viewer{
-  color:#aaa;
-  background:rgba(255,255,255,.06);
-}
-
-.active{
-  color:var(--green);
-}
-
-.inactive{
-  color:var(--red);
-}
-
-.empty{
-  padding:45px 20px !important;
-
-  text-align:center;
-
-  color:#666;
-}
-
-.loading-cell{
-  padding:45px 20px !important;
-
-  text-align:center;
-
-  color:#777;
-}
-
-/* =========================================================
-ACCESS DENIED
+   ACCESS DENIED
 ========================================================= */
 
 .access-denied{
+
   display:none;
 
   min-height:360px;
 
   align-items:center;
+
   justify-content:center;
 
   text-align:center;
 
-  border:1px solid var(--line);
-
   background:
+
     radial-gradient(
       circle at center,
-      rgba(200,164,91,.07),
+      rgba(200,164,91,.06),
       transparent 55%
     ),
+
     #080808;
+
+  border:
+    1px solid
+    var(--line);
+
 }
+
 
 .access-denied.show{
+
   display:flex;
+
 }
 
-.access-inner{
-  max-width:560px;
-  padding:40px;
+
+.access-content{
+
+  width:
+    min(
+      100%,
+      620px
+    );
+
+  padding:45px 25px;
+
 }
+
 
 .access-icon{
+
   width:64px;
+
   height:64px;
 
-  margin:0 auto 20px;
+  margin:
+    0 auto
+    20px;
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
-  border:1px solid rgba(255,100,100,.25);
+  color:#ff8c8c;
 
-  color:#ff8585;
+  border:
+    1px solid
+    rgba(255,119,119,.28);
 
-  font-size:26px;
+  background:
+    rgba(255,119,119,.05);
+
+  font-size:25px;
+
 }
+
 
 .access-title{
+
+  color:#eee;
+
   font-size:25px;
+
   font-weight:600;
+
 }
 
-.access-desc{
+
+.access-message{
+
   margin-top:10px;
 
   color:#777;
 
   font-size:13px;
-  line-height:1.8;
+
+  line-height:1.9;
+
 }
 
-.access-home{
+
+.back-admin{
+
   display:inline-flex;
+
+  min-height:43px;
 
   margin-top:22px;
 
-  min-height:42px;
-
-  padding:0 18px;
+  padding:
+    0 18px;
 
   align-items:center;
-  justify-content:center;
 
-  border:1px solid var(--gold-line);
+  justify-content:center;
 
   color:var(--gold-light);
 
+  background:
+    rgba(200,164,91,.06);
+
+  border:
+    1px solid
+    var(--gold-border);
+
   text-decoration:none;
 
-  background:rgba(200,164,91,.06);
+  transition:.2s ease;
+
 }
 
+
+.back-admin:hover{
+
+  background:
+    rgba(200,164,91,.12);
+
+}
+
+
 /* =========================================================
-RESPONSIVE
+   TABLE
+========================================================= */
+
+.table-wrapper{
+
+  overflow:auto;
+
+  background:#080808;
+
+  border:
+    1px solid
+    var(--line);
+
+}
+
+
+table{
+
+  width:100%;
+
+  min-width:900px;
+
+  border-collapse:collapse;
+
+}
+
+
+thead{
+
+  background:#111;
+
+}
+
+
+th{
+
+  padding:
+    17px
+    18px;
+
+  color:var(--gold-light);
+
+  text-align:left;
+
+  white-space:nowrap;
+
+  font-size:12px;
+
+  font-weight:600;
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+}
+
+
+td{
+
+  padding:
+    17px
+    18px;
+
+  color:#ccc;
+
+  font-size:12px;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.06);
+
+  vertical-align:middle;
+
+}
+
+
+tbody tr{
+
+  transition:
+    background
+    .2s
+    ease;
+
+}
+
+
+tbody tr:hover{
+
+  background:
+    rgba(255,255,255,.025);
+
+}
+
+
+tbody tr:last-child td{
+
+  border-bottom:0;
+
+}
+
+
+/* =========================================================
+   USER
+========================================================= */
+
+.user-name{
+
+  color:#eee;
+
+  font-size:13px;
+
+  font-weight:600;
+
+}
+
+
+.user-id{
+
+  margin-top:4px;
+
+  color:#555;
+
+  font-size:10px;
+
+  word-break:break-all;
+
+}
+
+
+.email{
+
+  color:#aaa;
+
+  word-break:break-word;
+
+}
+
+
+.role{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  min-width:76px;
+
+  padding:
+    5px
+    11px;
+
+  border-radius:999px;
+
+  border:
+    1px solid
+    rgba(200,164,91,.16);
+
+  background:
+    rgba(200,164,91,.08);
+
+  color:var(--gold-light);
+
+  font-size:10px;
+
+  font-weight:600;
+
+  letter-spacing:.5px;
+
+}
+
+
+.role.owner{
+
+  color:#f0d991;
+
+  background:
+    rgba(200,164,91,.14);
+
+  border-color:
+    rgba(200,164,91,.25);
+
+}
+
+
+.role.manager{
+
+  color:#a6c9ff;
+
+  background:
+    var(--blue-soft);
+
+  border-color:
+    rgba(120,174,240,.20);
+
+}
+
+
+.role.staff{
+
+  color:#a8edc2;
+
+  background:
+    var(--green-soft);
+
+  border-color:
+    rgba(97,216,146,.20);
+
+}
+
+
+.role.viewer{
+
+  color:#aaa;
+
+  background:
+    rgba(255,255,255,.05);
+
+  border-color:
+    rgba(255,255,255,.08);
+
+}
+
+
+.status{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:6px;
+
+  white-space:nowrap;
+
+}
+
+
+.status.active{
+
+  color:var(--green);
+
+}
+
+
+.status.inactive{
+
+  color:var(--red);
+
+}
+
+
+.date{
+
+  color:#777;
+
+  white-space:nowrap;
+
+}
+
+
+.empty{
+
+  padding:
+    55px
+    20px !important;
+
+  color:#666;
+
+  text-align:center;
+
+}
+
+
+.loading{
+
+  padding:
+    55px
+    20px !important;
+
+  color:#777;
+
+  text-align:center;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+
+  padding:
+    30px
+    20px
+    50px;
+
+  color:#555;
+
+  text-align:center;
+
+  font-size:10px;
+
+  letter-spacing:1px;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
 ========================================================= */
 
 @media(max-width:1100px){
 
   .header{
-    padding:0 24px;
+
+    padding:
+      14px
+      24px;
+
   }
 
-  .nav{
-    flex-wrap:wrap;
-    justify-content:flex-end;
-  }
+  .current-user{
 
-  .user{
     display:none;
+
   }
 
 }
 
-@media(max-width:900px){
 
-  .top{
+@media(max-width:850px){
+
+  .page{
+
+    width:
+      calc(100% - 30px);
+
+    padding-top:38px;
+
+  }
+
+  .page-head{
+
     align-items:flex-start;
+
     flex-direction:column;
+
   }
 
-  .btn{
+  .refresh-button{
+
     width:100%;
+
   }
 
 }
 
-@media(max-width:600px){
+
+@media(max-width:650px){
 
   .header{
-    flex-direction:column;
+
     align-items:stretch;
 
-    padding:14px 20px;
+    flex-direction:column;
 
     gap:14px;
-  }
 
-  .brand{
-    justify-content:flex-start;
   }
 
   .nav{
-    width:100%;
-    flex-wrap:wrap;
+
+    justify-content:flex-start;
+
   }
 
   .nav a,
-  .logout{
-    flex:1 1 calc(50% - 7px);
+  .logout-button{
+
+    flex:
+      1 1
+      calc(50% - 7px);
+
   }
 
   .page{
-    width:calc(100% - 28px);
-    padding-top:35px;
+
+    width:
+      calc(100% - 22px);
+
   }
 
   h1{
-    font-size:38px;
-  }
 
-  .access-inner{
-    padding:28px 20px;
+    font-size:38px;
+
   }
 
 }
@@ -618,21 +1117,34 @@ RESPONSIVE
 
 </head>
 
+
 <body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
 <header class="header">
 
   <div class="brand">
 
-    <a href="admin.html">
+    <a
+      href="admin.html"
+      class="brand-link"
+      aria-label="CHATPHETCH GROUP Admin"
+    >
+
       <img
         src="assets/logo.png"
         class="logo"
         alt="CHATPHETCH GROUP"
       >
+
     </a>
 
-    <div>
+
+    <div class="brand-text">
 
       <div class="brand-name">
         CHATPHETCH GROUP
@@ -645,6 +1157,7 @@ RESPONSIVE
     </div>
 
   </div>
+
 
   <nav class="nav">
 
@@ -668,16 +1181,16 @@ RESPONSIVE
     </a>
 
     <span
-      class="user"
-      id="user"
+      class="current-user"
+      id="currentUser"
     >
-      กำลังตรวจสอบสิทธิ์...
+      กำลังตรวจสอบ...
     </span>
 
     <button
       type="button"
-      class="logout"
-      id="logout"
+      class="logout-button"
+      id="logoutButton"
     >
       ออกจากระบบ
     </button>
@@ -687,9 +1200,14 @@ RESPONSIVE
 </header>
 
 
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
 <main class="page">
 
-  <div class="top">
+
+  <div class="page-head">
 
     <div>
 
@@ -701,16 +1219,18 @@ RESPONSIVE
         จัดการผู้ใช้งาน
       </h1>
 
-      <div class="desc">
-        จัดการบัญชีผู้ดูแลระบบและสิทธิ์การใช้งาน
+      <div class="description">
+        จัดการบัญชีผู้ดูแลระบบและตรวจสอบสิทธิ์การใช้งาน
       </div>
 
     </div>
 
+
     <button
       type="button"
-      class="btn"
-      id="refresh"
+      class="refresh-button"
+      id="refreshButton"
+      disabled
     >
       ↻ รีเฟรช
     </button>
@@ -718,19 +1238,29 @@ RESPONSIVE
   </div>
 
 
+  <!-- =======================================================
+       NOTICE
+  ======================================================== -->
+
   <div
-    class="notice"
     id="notice"
+    class="notice"
     role="alert"
+    aria-live="polite"
   ></div>
 
 
+  <!-- =======================================================
+       ACCESS DENIED
+  ======================================================== -->
+
   <section
-    class="access-denied"
     id="accessDenied"
+    class="access-denied"
+    aria-live="polite"
   >
 
-    <div class="access-inner">
+    <div class="access-content">
 
       <div class="access-icon">
         !
@@ -740,14 +1270,16 @@ RESPONSIVE
         ไม่มีสิทธิ์เข้าถึง
       </div>
 
-      <div class="access-desc">
+      <div
+        class="access-message"
+        id="accessMessage"
+      >
         หน้านี้สงวนสำหรับ OWNER เท่านั้น
-        บัญชีของคุณไม่มีสิทธิ์จัดการผู้ใช้งานระบบ
       </div>
 
       <a
         href="admin.html"
-        class="access-home"
+        class="back-admin"
       >
         กลับหน้า Admin
       </a>
@@ -757,9 +1289,13 @@ RESPONSIVE
   </section>
 
 
-  <div
-    class="table"
-    id="userTable"
+  <!-- =======================================================
+       USERS TABLE
+  ======================================================== -->
+
+  <section
+    id="tableWrapper"
+    class="table-wrapper"
   >
 
     <table>
@@ -788,17 +1324,22 @@ RESPONSIVE
             วันที่เพิ่ม
           </th>
 
+          <th>
+            อัปเดตล่าสุด
+          </th>
+
         </tr>
 
       </thead>
 
-      <tbody id="body">
+
+      <tbody id="usersBody">
 
         <tr>
 
           <td
-            colspan="5"
-            class="loading-cell"
+            colspan="6"
+            class="loading"
           >
             กำลังตรวจสอบสิทธิ์...
           </td>
@@ -809,9 +1350,17 @@ RESPONSIVE
 
     </table>
 
-  </div>
+  </section>
+
 
 </main>
+
+
+<footer class="footer">
+
+  CHATPHETCH GROUP — ADMIN SYSTEM
+
+</footer>
 
 
 <script>
@@ -823,13 +1372,22 @@ RESPONSIVE
 const SUPABASE_URL =
   "https://mfhllgklcfnnbyyzzljz.supabase.co";
 
+
 const SUPABASE_KEY =
   "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
+
 
 const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_KEY
+    SUPABASE_KEY,
+    {
+      auth:{
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true
+      }
+    }
   );
 
 
@@ -837,68 +1395,215 @@ const supabaseClient =
    ELEMENTS
 ========================================================= */
 
-const bodyEl =
-  document.getElementById("body");
+const currentUserElement =
+  document.getElementById(
+    "currentUser"
+  );
 
-const userEl =
-  document.getElementById("user");
 
-const noticeEl =
-  document.getElementById("notice");
+const noticeElement =
+  document.getElementById(
+    "notice"
+  );
+
+
+const accessDeniedElement =
+  document.getElementById(
+    "accessDenied"
+  );
+
+
+const accessMessageElement =
+  document.getElementById(
+    "accessMessage"
+  );
+
+
+const tableWrapperElement =
+  document.getElementById(
+    "tableWrapper"
+  );
+
+
+const usersBodyElement =
+  document.getElementById(
+    "usersBody"
+  );
+
 
 const refreshButton =
-  document.getElementById("refresh");
+  document.getElementById(
+    "refreshButton"
+  );
+
 
 const logoutButton =
-  document.getElementById("logout");
-
-const userTable =
-  document.getElementById("userTable");
-
-const accessDenied =
-  document.getElementById("accessDenied");
+  document.getElementById(
+    "logoutButton"
+  );
 
 
 /* =========================================================
    STATE
 ========================================================= */
 
+let sessionUser = null;
+
 let currentAdmin = null;
-let isAuthorized = false;
+
+let users = [];
+
+let authorized = false;
+
+let loadingUsers = false;
 
 
 /* =========================================================
    HELPERS
 ========================================================= */
 
-function escapeHTML(value){
+function escapeHTML(
+  value
+){
 
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  return String(
+    value ?? ""
+  )
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
 
-function formatDate(value){
+/* =========================================================
+   ROLE
+========================================================= */
 
-  if(!value){
-    return "-";
+function normalizeRole(
+  value
+){
+
+  return String(
+    value || ""
+  )
+    .trim()
+    .toLowerCase();
+
+}
+
+
+function roleLabel(
+  value
+){
+
+  const role =
+    normalizeRole(
+      value
+    );
+
+  switch(role){
+
+    case "owner":
+      return "OWNER";
+
+    case "manager":
+      return "MANAGER";
+
+    case "staff":
+      return "STAFF";
+
+    case "viewer":
+      return "VIEWER";
+
+    default:
+      return "UNKNOWN";
+
   }
 
+}
+
+
+function roleClass(
+  value
+){
+
+  const role =
+    normalizeRole(
+      value
+    );
+
+  if(
+    [
+      "owner",
+      "manager",
+      "staff",
+      "viewer"
+    ].includes(role)
+  ){
+
+    return role;
+
+  }
+
+  return "viewer";
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+function formatDate(
+  value
+){
+
+  if(!value){
+
+    return "-";
+
+  }
+
+
   const date =
-    new Date(value);
+    new Date(
+      value
+    );
+
 
   if(
     Number.isNaN(
       date.getTime()
     )
   ){
+
     return "-";
+
   }
+
 
   return date.toLocaleString(
     "th-TH",
@@ -914,57 +1619,22 @@ function formatDate(value){
 }
 
 
-function normalizeRole(value){
-
-  return String(
-    value || "viewer"
-  )
-    .trim()
-    .toLowerCase();
-
-}
-
-
-function roleLabel(value){
-
-  const role =
-    normalizeRole(value);
-
-  return role.toUpperCase();
-
-}
-
-
-function roleClass(value){
-
-  const role =
-    normalizeRole(value);
-
-  if(
-    [
-      "owner",
-      "manager",
-      "staff",
-      "viewer"
-    ].includes(role)
-  ){
-    return role;
-  }
-
-  return "viewer";
-
-}
-
+/* =========================================================
+   NOTICE
+========================================================= */
 
 function showNotice(
   message,
   type="error"
 ){
 
-  noticeEl.textContent =
-    String(message || "");
+  noticeElement.textContent =
+    String(
+      message || ""
+    );
 
-  noticeEl.className =
+
+  noticeElement.className =
     "notice show " +
     type;
 
@@ -973,28 +1643,35 @@ function showNotice(
 
 function hideNotice(){
 
-  noticeEl.textContent =
+  noticeElement.textContent =
     "";
 
-  noticeEl.className =
+  noticeElement.className =
     "notice";
 
 }
 
 
+/* =========================================================
+   LOADING
+========================================================= */
+
 function setLoading(
-  message="กำลังโหลด..."
+  message
 ){
 
-  bodyEl.innerHTML = `
+  usersBodyElement.innerHTML = `
 
     <tr>
 
       <td
-        colspan="5"
-        class="loading-cell"
+        colspan="6"
+        class="loading"
       >
-        ${escapeHTML(message)}
+        ${escapeHTML(
+          message ||
+          "กำลังโหลด..."
+        )}
       </td>
 
     </tr>
@@ -1005,10 +1682,23 @@ function setLoading(
 
 
 /* =========================================================
-   GET CURRENT SESSION
+   SHOW LOGIN REDIRECT
 ========================================================= */
 
-async function getCurrentSession(){
+function redirectToAdmin(){
+
+  window.location.replace(
+    "admin.html"
+  );
+
+}
+
+
+/* =========================================================
+   GET SESSION
+========================================================= */
+
+async function getSession(){
 
   const {
     data,
@@ -1018,22 +1708,29 @@ async function getCurrentSession(){
       .auth
       .getSession();
 
+
   if(error){
 
     throw error;
 
   }
 
-  return data?.session || null;
+
+  return (
+    data &&
+    data.session
+  )
+    ? data.session
+    : null;
 
 }
 
 
 /* =========================================================
-   GET CURRENT ADMIN
+   GET ADMIN USER
 ========================================================= */
 
-async function getCurrentAdmin(
+async function getAdminUser(
   userId
 ){
 
@@ -1043,20 +1740,28 @@ async function getCurrentAdmin(
 
   }
 
+
   const {
     data,
     error
   } =
     await supabaseClient
-      .from("admin_users")
+
+      .from(
+        "admin_users"
+      )
+
       .select(
         "id,user_id,email,name,role,active,created_at,updated_at"
       )
+
       .eq(
         "user_id",
         userId
       )
+
       .maybeSingle();
+
 
   if(error){
 
@@ -1064,45 +1769,51 @@ async function getCurrentAdmin(
 
   }
 
+
   return data || null;
 
 }
 
 
 /* =========================================================
-   ACCESS CONTROL
+   CHECK ACCESS
 ========================================================= */
 
 async function checkAccess(){
 
   const session =
-    await getCurrentSession();
+    await getSession();
+
 
   if(!session){
 
-    isAuthorized = false;
+    authorized =
+      false;
 
-    location.replace(
-      "admin.html"
-    );
+    redirectToAdmin();
 
     return false;
 
   }
 
 
+  sessionUser =
+    session.user;
+
+
   currentAdmin =
-    await getCurrentAdmin(
-      session.user.id
+    await getAdminUser(
+      sessionUser.id
     );
 
 
   if(!currentAdmin){
 
-    isAuthorized = false;
+    authorized =
+      false;
 
     showAccessDenied(
-      "ไม่พบบัญชีผู้ดูแลระบบ"
+      "บัญชี Google นี้ยังไม่ได้ถูกเพิ่มในระบบ admin_users"
     );
 
     return false;
@@ -1116,12 +1827,15 @@ async function checkAccess(){
     );
 
 
-  if(!currentAdmin.active){
+  if(
+    currentAdmin.active !== true
+  ){
 
-    isAuthorized = false;
+    authorized =
+      false;
 
     showAccessDenied(
-      "บัญชีผู้ดูแลระบบถูกปิดใช้งาน"
+      "บัญชีผู้ดูแลนี้ถูกปิดการใช้งาน"
     );
 
     return false;
@@ -1130,16 +1844,24 @@ async function checkAccess(){
 
 
   /*
-   * USER MANAGEMENT
-   * อนุญาตเฉพาะ OWNER
+   * สำคัญ:
+   * หน้าจัดการผู้ใช้งานให้ OWNER เท่านั้น
    */
 
-  if(role !== "owner"){
+  if(
+    role !== "owner"
+  ){
 
-    isAuthorized = false;
+    authorized =
+      false;
 
-    userEl.textContent =
-      `${currentAdmin.name || "ผู้ดูแล"} · ${roleLabel(role)}`;
+    currentUserElement.textContent =
+      `${
+        currentAdmin.name ||
+        currentAdmin.email ||
+        "ผู้ดูแล"
+      } · ${roleLabel(role)}`;
+
 
     showAccessDenied(
       "หน้านี้สงวนสำหรับ OWNER เท่านั้น"
@@ -1150,20 +1872,30 @@ async function checkAccess(){
   }
 
 
-  isAuthorized = true;
+  authorized =
+    true;
 
-  userEl.textContent =
-    `${currentAdmin.name || "เจ้าของบริษัท"} · OWNER`;
 
-  accessDenied.classList.remove(
+  currentUserElement.textContent =
+    `${
+      currentAdmin.name ||
+      currentAdmin.email ||
+      "OWNER"
+    } · OWNER`;
+
+
+  accessDeniedElement.classList.remove(
     "show"
   );
 
-  userTable.style.display =
+
+  tableWrapperElement.style.display =
     "";
+
 
   refreshButton.disabled =
     false;
+
 
   return true;
 
@@ -1178,18 +1910,29 @@ function showAccessDenied(
   message
 ){
 
-  userTable.style.display =
+  tableWrapperElement.style.display =
     "none";
 
-  accessDenied.classList.add(
+
+  accessDeniedElement.classList.add(
     "show"
   );
+
+
+  accessMessageElement.textContent =
+    String(
+      message ||
+      "ไม่มีสิทธิ์เข้าถึงหน้านี้"
+    );
+
 
   refreshButton.disabled =
     true;
 
+
   showNotice(
-    message,
+    message ||
+    "ไม่มีสิทธิ์เข้าถึงหน้านี้",
     "error"
   );
 
@@ -1202,52 +1945,97 @@ function showAccessDenied(
 
 async function loadUsers(){
 
-  if(!isAuthorized){
+  if(
+    !authorized
+  ){
 
     return;
 
   }
 
 
-  hideNotice();
+  if(
+    loadingUsers
+  ){
+
+    return;
+
+  }
+
+
+  loadingUsers =
+    true;
+
 
   refreshButton.disabled =
     true;
+
+
+  hideNotice();
+
 
   setLoading(
     "กำลังโหลดรายชื่อผู้ใช้งาน..."
   );
 
 
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("admin_users")
-      .select(
-        "id,user_id,email,name,role,active,created_at,updated_at"
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+
+        .from(
+          "admin_users"
+        )
+
+        .select(
+          "id,user_id,email,name,role,active,created_at,updated_at"
+        )
+
+        .order(
+          "created_at",
+          {
+            ascending:true
+          }
+        );
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    users =
+      Array.isArray(
+        data
       )
-      .order(
-        "created_at",
-        {
-          ascending:true
-        }
-      );
+        ? data
+        : [];
 
 
-  refreshButton.disabled =
-    false;
+    renderUsers();
 
 
-  if(error){
+  }
+  catch(error){
 
-    bodyEl.innerHTML = `
+    console.error(
+      "LOAD USERS ERROR:",
+      error
+    );
+
+
+    usersBodyElement.innerHTML = `
 
       <tr>
 
         <td
-          colspan="5"
+          colspan="6"
           class="empty"
         >
           ไม่สามารถโหลดข้อมูลผู้ใช้งานได้
@@ -1257,31 +2045,44 @@ async function loadUsers(){
 
     `;
 
+
     showNotice(
       error.message ||
-      "เกิดข้อผิดพลาดในการโหลดข้อมูล",
+      "ไม่สามารถโหลดข้อมูลผู้ใช้งานได้",
       "error"
     );
 
-    return;
+
+  }
+  finally{
+
+    loadingUsers =
+      false;
+
+    refreshButton.disabled =
+      false;
 
   }
 
-
-  const users =
-    Array.isArray(data)
-      ? data
-      : [];
+}
 
 
-  if(!users.length){
+/* =========================================================
+   RENDER USERS
+========================================================= */
 
-    bodyEl.innerHTML = `
+function renderUsers(){
+
+  if(
+    !users.length
+  ){
+
+    usersBodyElement.innerHTML = `
 
       <tr>
 
         <td
-          colspan="5"
+          colspan="6"
           class="empty"
         >
           ยังไม่มีข้อมูลผู้ใช้งาน
@@ -1296,10 +2097,10 @@ async function loadUsers(){
   }
 
 
-  bodyEl.innerHTML =
+  usersBodyElement.innerHTML =
     users
       .map(
-        renderUserRow
+        renderUser
       )
       .join("");
 
@@ -1310,7 +2111,7 @@ async function loadUsers(){
    RENDER USER
 ========================================================= */
 
-function renderUserRow(
+function renderUser(
   user
 ){
 
@@ -1319,22 +2120,33 @@ function renderUserRow(
       user.role
     );
 
-  const safeRoleClass =
+
+  const roleCss =
     roleClass(
       role
     );
 
 
   const statusClass =
-    user.active
+    user.active === true
       ? "active"
       : "inactive";
 
 
   const statusText =
-    user.active
+    user.active === true
       ? "● เปิดใช้งาน"
       : "● ปิดใช้งาน";
+
+
+  const isSelf =
+    sessionUser &&
+    String(
+      user.user_id
+    ) ===
+    String(
+      sessionUser.id
+    );
 
 
   return `
@@ -1343,10 +2155,43 @@ function renderUserRow(
 
       <td>
 
-        <div class="name">
+        <div class="user-name">
+
           ${escapeHTML(
-            user.name || "-"
+            user.name ||
+            "-"
           )}
+
+        </div>
+
+
+        ${
+          isSelf
+            ? `
+
+              <div
+                style="
+                  margin-top:4px;
+                  color:var(--gold);
+                  font-size:9px;
+                "
+              >
+                บัญชีของคุณ
+              </div>
+
+            `
+            : ""
+        }
+
+
+        <div class="user-id">
+
+          ID:
+          ${escapeHTML(
+            user.user_id ||
+            "-"
+          )}
+
         </div>
 
       </td>
@@ -1355,9 +2200,12 @@ function renderUserRow(
       <td>
 
         <div class="email">
+
           ${escapeHTML(
-            user.email || "-"
+            user.email ||
+            "-"
           )}
+
         </div>
 
       </td>
@@ -1366,11 +2214,15 @@ function renderUserRow(
       <td>
 
         <span
-          class="role ${safeRoleClass}"
+          class="role ${roleCss}"
         >
+
           ${escapeHTML(
-            roleLabel(role)
+            roleLabel(
+              role
+            )
           )}
+
         </span>
 
       </td>
@@ -1379,20 +2231,43 @@ function renderUserRow(
       <td>
 
         <span
-          class="${statusClass}"
+          class="status ${statusClass}"
         >
+
           ${statusText}
+
         </span>
 
       </td>
 
 
       <td>
-        ${escapeHTML(
-          formatDate(
-            user.created_at
-          )
-        )}
+
+        <span class="date">
+
+          ${escapeHTML(
+            formatDate(
+              user.created_at
+            )
+          )}
+
+        </span>
+
+      </td>
+
+
+      <td>
+
+        <span class="date">
+
+          ${escapeHTML(
+            formatDate(
+              user.updated_at
+            )
+          )}
+
+        </span>
+
       </td>
 
     </tr>
@@ -1403,61 +2278,21 @@ function renderUserRow(
 
 
 /* =========================================================
-   LOGOUT
-========================================================= */
-
-async function logout(){
-
-  logoutButton.disabled =
-    true;
-
-  try{
-
-    const {
-      error
-    } =
-      await supabaseClient
-        .auth
-        .signOut();
-
-    if(error){
-
-      throw error;
-
-    }
-
-    location.replace(
-      "admin.html"
-    );
-
-  }
-  catch(error){
-
-    logoutButton.disabled =
-      false;
-
-    showNotice(
-      error.message ||
-      "ไม่สามารถออกจากระบบได้",
-      "error"
-    );
-
-  }
-
-}
-
-
-/* =========================================================
    REFRESH
 ========================================================= */
 
 refreshButton.addEventListener(
   "click",
-  async()=>{
+  async function(){
 
-    if(!isAuthorized){
+    if(
+      !authorized
+    ){
+
       return;
+
     }
+
 
     await loadUsers();
 
@@ -1466,12 +2301,61 @@ refreshButton.addEventListener(
 
 
 /* =========================================================
-   LOGOUT EVENT
+   LOGOUT
 ========================================================= */
 
 logoutButton.addEventListener(
   "click",
-  logout
+  async function(){
+
+    logoutButton.disabled =
+      true;
+
+
+    try{
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .auth
+          .signOut();
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      window.location.replace(
+        "admin.html"
+      );
+
+
+    }
+    catch(error){
+
+      console.error(
+        "LOGOUT ERROR:",
+        error
+      );
+
+
+      logoutButton.disabled =
+        false;
+
+
+      showNotice(
+        error.message ||
+        "ไม่สามารถออกจากระบบได้",
+        "error"
+      );
+
+    }
+
+  }
 );
 
 
@@ -1482,16 +2366,17 @@ logoutButton.addEventListener(
 supabaseClient
   .auth
   .onAuthStateChange(
-    async(
+    (
       event,
       session
     )=>{
 
       if(
-        event === "SIGNED_OUT"
+        event ===
+        "SIGNED_OUT"
       ){
 
-        location.replace(
+        window.location.replace(
           "admin.html"
         );
 
@@ -1501,11 +2386,11 @@ supabaseClient
 
 
       if(
-        event === "TOKEN_REFRESHED" &&
-        !session
+        event ===
+        "USER_DELETED"
       ){
 
-        location.replace(
+        window.location.replace(
           "admin.html"
         );
 
@@ -1516,15 +2401,25 @@ supabaseClient
 
 
 /* =========================================================
-   INIT
+   INITIALIZE
 ========================================================= */
 
 async function init(){
 
   try{
 
+    tableWrapperElement.style.display =
+      "";
+
+
+    accessDeniedElement.classList.remove(
+      "show"
+    );
+
+
     refreshButton.disabled =
       true;
+
 
     setLoading(
       "กำลังตรวจสอบสิทธิ์..."
@@ -1535,7 +2430,9 @@ async function init(){
       await checkAccess();
 
 
-    if(!allowed){
+    if(
+      !allowed
+    ){
 
       return;
 
@@ -1553,16 +2450,22 @@ async function init(){
     );
 
 
-    userTable.style.display =
+    authorized =
+      false;
+
+
+    tableWrapperElement.style.display =
       "none";
 
-    accessDenied.classList.add(
+
+    accessDeniedElement.classList.add(
       "show"
     );
 
+
     showNotice(
       error.message ||
-      "ไม่สามารถตรวจสอบสิทธิ์ได้",
+      "ไม่สามารถตรวจสอบสิทธิ์ผู้ใช้งานได้",
       "error"
     );
 
@@ -1570,6 +2473,10 @@ async function init(){
 
 }
 
+
+/* =========================================================
+   START
+========================================================= */
 
 init();
 
