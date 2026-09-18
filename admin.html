@@ -3065,21 +3065,29 @@ function showRecovery(){
 
 async function doLogin(event){
   event.preventDefault();
-  const email = $("loginEmail").value.trim().toLowerCase();
-  const password = $("loginPassword").value;
+
+  const emailInput = $("loginEmail");
+  const passwordInput = $("loginPassword");
   const button = $("loginButton");
   const errorBox = $("loginError");
+
+  const email = emailInput.value.trim().toLowerCase();
+  const password = passwordInput.value;
+
   errorBox.textContent = "";
   errorBox.classList.remove("show");
 
-  if(!email || !$("loginEmail").checkValidity()){
+  if(!email || !emailInput.checkValidity()){
     errorBox.textContent = "กรุณากรอกอีเมลให้ถูกต้อง";
     errorBox.classList.add("show");
+    emailInput.focus();
     return;
   }
+
   if(!password){
     errorBox.textContent = "กรุณากรอกรหัสผ่าน";
     errorBox.classList.add("show");
+    passwordInput.focus();
     return;
   }
 
@@ -3087,23 +3095,22 @@ async function doLogin(event){
   button.textContent = "กำลังเข้าสู่ระบบ...";
 
   try{
-    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    // Login ด้วย Email + Password เท่านั้น
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
     if(error) throw error;
-    if(!data?.user) throw new Error("ไม่พบข้อมูลผู้ใช้งานหลังเข้าสู่ระบบ");
+    if(!data?.session?.user){
+      throw new Error("เข้าสู่ระบบสำเร็จแต่ไม่พบ Session");
+    }
 
-    // Verify the same admin_users record before entering the dashboard.
-    const { data: admin, error: roleError } = await supabaseClient
-      .from("admin_users")
-      .select("user_id,email,name,role,active")
-      .eq("user_id", data.user.id)
-      .maybeSingle();
-    if(roleError) throw roleError;
-    if(!admin) throw new Error("บัญชีนี้ยังไม่ได้ถูกเพิ่มใน admin_users");
-    if(admin.active !== true) throw new Error("บัญชีนี้ถูกปิดการใช้งาน");
-    const role = String(admin.role || "").trim().toLowerCase();
-    if(!["owner","manager","staff","viewer"].includes(role)) throw new Error("บัญชีนี้มี Role ไม่ถูกต้อง");
+    // เปลี่ยนหน้าไป Dashboard ทันที
+    // การตรวจสิทธิ์ admin_users จะทำต่อใน admin-dashboard.html
+    const dashboardUrl = new URL("admin-dashboard.html", window.location.href).href;
+    window.location.assign(dashboardUrl);
 
-    window.location.replace("admin-dashboard.html");
   }catch(error){
     console.error("LOGIN ERROR:", error);
     errorBox.textContent = loginErrorMessage(error);
@@ -3112,7 +3119,6 @@ async function doLogin(event){
     button.textContent = "เข้าสู่ระบบ";
   }
 }
-
 async function forgotPassword(){
   const email = $("loginEmail").value.trim().toLowerCase();
   const errorBox = $("loginError");
