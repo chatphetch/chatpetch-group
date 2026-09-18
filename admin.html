@@ -514,6 +514,216 @@ async function updatePassword(){
    LOGIN
 ========================================================= */
 
+const LOGIN_LOCK_KEY =
+  "chatpetch_admin_login_lock_until";
+
+let loginInProgress =
+  false;
+
+let loginLockTimer =
+  null;
+
+function getLoginLockUntil(){
+
+  const value =
+    Number(
+      localStorage.getItem(
+        LOGIN_LOCK_KEY
+      ) || 0
+    );
+
+  if(
+    !Number.isFinite(value) ||
+    value <= Date.now()
+  ){
+
+    localStorage.removeItem(
+      LOGIN_LOCK_KEY
+    );
+
+    return 0;
+
+  }
+
+  return value;
+
+}
+
+function getLoginRetrySeconds(){
+
+  const value =
+    getLoginLockUntil();
+
+  if(!value){
+
+    return 0;
+
+  }
+
+  return Math.max(
+    1,
+    Math.ceil(
+      (
+        value -
+        Date.now()
+      ) / 1000
+    )
+  );
+
+}
+
+function setLoginLock(seconds){
+
+  const safeSeconds =
+    Math.max(
+      1,
+      Math.min(
+        300,
+        Number(seconds) || 60
+      )
+    );
+
+  const until =
+    Date.now() +
+    (
+      safeSeconds *
+      1000
+    );
+
+  localStorage.setItem(
+    LOGIN_LOCK_KEY,
+    String(until)
+  );
+
+  renderLoginLock();
+
+}
+
+function clearLoginLock(){
+
+  localStorage.removeItem(
+    LOGIN_LOCK_KEY
+  );
+
+  if(loginLockTimer){
+
+    clearInterval(
+      loginLockTimer
+    );
+
+    loginLockTimer =
+      null;
+
+  }
+
+  renderLoginLock();
+
+}
+
+function renderLoginLock(){
+
+  const button =
+    $("loginButton");
+
+  if(!button){
+
+    return;
+
+  }
+
+  const seconds =
+    getLoginRetrySeconds();
+
+  if(seconds <= 0){
+
+    if(
+      loginLockTimer
+    ){
+
+      clearInterval(
+        loginLockTimer
+      );
+
+      loginLockTimer =
+        null;
+
+    }
+
+    button.disabled =
+      loginInProgress;
+
+    return;
+
+  }
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "รอ " +
+    seconds +
+    " วินาที";
+
+  if(
+    !loginLockTimer
+  ){
+
+    loginLockTimer =
+      setInterval(
+        renderLoginLock,
+        1000
+      );
+
+  }
+
+}
+
+function getAuthRateLimitSeconds(error){
+
+  const status =
+    Number(
+      error?.status ||
+      error?.statusCode ||
+      0
+    );
+
+  const code =
+    String(
+      error?.code ||
+      ""
+    ).toLowerCase();
+
+  const message =
+    String(
+      error?.message ||
+      ""
+    ).toLowerCase();
+
+  if(
+    status === 429 ||
+    code ===
+      "over_request_rate_limit" ||
+    message.includes(
+      "too many requests"
+    ) ||
+    message.includes(
+      "rate limit"
+    ) ||
+    message.includes(
+      "over_request_rate_limit"
+    )
+  ){
+
+    return 60;
+
+  }
+
+  return 0;
+
+}
+
+
+
 .login-screen{
 
   min-height:100vh;
@@ -4444,10 +4654,12 @@ function getLoginErrorMessage(error){
   }
 
   if(
+    Number(error?.status) === 429 ||
     message.includes("too many requests") ||
-    message.includes("rate limit")
+    message.includes("rate limit") ||
+    message.includes("over_request_rate_limit")
   ){
-    return "มีการลองเข้าสู่ระบบหลายครั้งเกินไป กรุณารอสักครู่แล้วลองใหม่";
+    return "ระบบจำกัดการเข้าสู่ระบบชั่วคราว เนื่องจากมีคำขอมากเกินไป กรุณารอเวลานับถอยหลังก่อนลองใหม่";
   }
 
   if(
@@ -4466,6 +4678,38 @@ function getLoginErrorMessage(error){
 
 
 async function login(){
+
+  const retrySeconds =
+    getLoginRetrySeconds();
+
+  if(retrySeconds > 0){
+
+    const errorBox =
+      $("loginError");
+
+    errorBox.textContent =
+      "กรุณารอ " +
+      retrySeconds +
+      " วินาทีก่อนลองเข้าสู่ระบบอีกครั้ง";
+
+    errorBox.classList.add(
+      "show"
+    );
+
+    renderLoginLock();
+
+    return;
+
+  }
+
+  if(loginInProgress){
+
+    return;
+
+  }
+
+  loginInProgress =
+    true;
 
   const form =
     $("loginForm");
@@ -4601,6 +4845,22 @@ async function login(){
     );
 
 
+    const rateLimitSeconds =
+      getAuthRateLimitSeconds(
+        error
+      );
+
+    if(
+      rateLimitSeconds > 0
+    ){
+
+      setLoginLock(
+        rateLimitSeconds
+      );
+
+    }
+
+
     try{
 
       await supabaseClient
@@ -4633,17 +4893,28 @@ async function login(){
 
   }finally{
 
-    button.disabled =
+    loginInProgress =
       false;
-
-    button.textContent =
-      "เข้าสู่ระบบ";
 
     emailInput.disabled =
       false;
 
     passwordInput.disabled =
       false;
+
+    renderLoginLock();
+
+    if(
+      !getLoginRetrySeconds()
+    ){
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "เข้าสู่ระบบ";
+
+    }
 
   }
 
@@ -8990,6 +9261,8 @@ $("loginForm")
 
     }
   );
+
+renderLoginLock();
 
 
 $("passwordToggle")
