@@ -4442,6 +4442,18 @@ async function updatePassword(){
 const LOGIN_LOCK_KEY =
   "chatpetch_admin_login_lock_until";
 
+/*
+ * ล้าง client-side lock เก่าจากเวอร์ชันก่อนหน้าเมื่อเปิดหน้าใหม่
+ * Rate limit จริงยังคงถูกควบคุมโดย Supabase ฝั่งเซิร์ฟเวอร์
+ */
+(function clearLegacyLoginLock(){
+
+  localStorage.removeItem(
+    LOGIN_LOCK_KEY
+  );
+
+})();
+
 let loginInProgress =
   false;
 
@@ -4695,7 +4707,7 @@ function getLoginErrorMessage(error){
     message.includes("rate limit") ||
     message.includes("over_request_rate_limit")
   ){
-    return "ระบบจำกัดการเข้าสู่ระบบชั่วคราว เนื่องจากมีคำขอมากเกินไป กรุณารอเวลานับถอยหลังก่อนลองใหม่";
+    return "Supabase จำกัดการเข้าสู่ระบบชั่วคราว เนื่องจากมีคำขอมากเกินไป กรุณารอให้ระบบปลด Rate Limit ก่อน แล้วจึงลองใหม่อีกครั้ง";
   }
 
   if(
@@ -4897,14 +4909,11 @@ async function login(){
     }
 
 
-    try{
-
-      await supabaseClient
-        .auth
-        .signOut();
-
-    }catch{}
-
+    /*
+     * ไม่เรียก auth.signOut() เมื่อ Login ล้มเหลว
+     * เพราะไม่มี session ใหม่ที่ต้อง signOut และไม่ควรยิง Auth request เพิ่ม
+     * ระหว่างที่ Supabase กำลัง rate-limit
+     */
 
     currentUser =
       null;
