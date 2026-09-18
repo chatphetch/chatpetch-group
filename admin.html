@@ -411,6 +411,91 @@ img{
 }
 
 
+.login-field{
+  margin-bottom:16px;
+  text-align:left;
+}
+
+.login-field label{
+  display:block;
+  margin-bottom:7px;
+  color:#cfcfcf;
+  font-size:12px;
+  font-weight:500;
+}
+
+.login-field input{
+  width:100%;
+  min-height:50px;
+  padding:0 14px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  outline:none;
+  background:#080808;
+  color:#fff;
+  font-family:inherit;
+  font-size:13px;
+  transition:.2s ease;
+}
+
+.login-field input::placeholder{
+  color:#555;
+}
+
+.login-field input:focus{
+  border-color:var(--gold-line);
+  box-shadow:0 0 0 3px rgba(200,164,91,.07);
+}
+
+.password-wrap{
+  position:relative;
+}
+
+.password-wrap input{
+  padding-right:74px;
+}
+
+.password-toggle{
+  position:absolute;
+  top:50%;
+  right:9px;
+  transform:translateY(-50%);
+  min-width:56px;
+  min-height:34px;
+  padding:0 9px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:7px;
+  background:#111;
+  color:#aaa;
+  font-family:inherit;
+  font-size:10px;
+}
+
+.password-toggle:hover{
+  color:var(--gold-light);
+  border-color:var(--gold-line);
+}
+
+.forgot-password{
+  margin-top:15px;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:#777;
+  font-family:inherit;
+  font-size:11px;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+.forgot-password:hover{
+  color:var(--gold-light);
+}
+
+.login-error{
+  text-align:left;
+}
+
 /* =========================================================
    APP
 ========================================================= */
@@ -2356,16 +2441,74 @@ tbody tr:hover{
       Admin / Back Office
     </div>
 
-    <button
-      class="login-button"
-      id="loginButton"
+    <form
+      id="loginForm"
+      autocomplete="on"
     >
-      เข้าสู่ระบบด้วย Google
+
+      <div class="login-field">
+        <label for="loginEmail">อีเมล</label>
+
+        <input
+          type="email"
+          id="loginEmail"
+          name="email"
+          autocomplete="username"
+          inputmode="email"
+          placeholder="admin@example.com"
+          required
+        >
+      </div>
+
+      <div class="login-field">
+        <label for="loginPassword">รหัสผ่าน</label>
+
+        <div class="password-wrap">
+          <input
+            type="password"
+            id="loginPassword"
+            name="password"
+            autocomplete="current-password"
+            placeholder="••••••••"
+            minlength="6"
+            required
+          >
+
+          <button
+            type="button"
+            class="password-toggle"
+            id="passwordToggle"
+            aria-label="แสดงรหัสผ่าน"
+            aria-pressed="false"
+          >
+            แสดง
+          </button>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="login-button"
+        id="loginButton"
+      >
+        เข้าสู่ระบบ
+      </button>
+
+    </form>
+
+    <button
+      type="button"
+      class="forgot-password"
+      id="forgotPasswordButton"
+    >
+      ลืมรหัสผ่าน?
     </button>
 
     <div
       class="login-error"
       id="loginError"
+      role="alert"
+      aria-live="polite"
     ></div>
 
   </div>
@@ -3770,7 +3913,58 @@ function getRedirectUrl(){
    LOGIN
 ========================================================= */
 
+function getLoginErrorMessage(error){
+
+  const message =
+    String(
+      error?.message || ""
+    ).toLowerCase();
+
+  if(
+    message.includes("invalid login credentials") ||
+    message.includes("invalid credentials")
+  ){
+    return "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
+  }
+
+  if(
+    message.includes("email not confirmed")
+  ){
+    return "อีเมลนี้ยังไม่ได้ยืนยัน กรุณาตรวจสอบอีเมลก่อนเข้าสู่ระบบ";
+  }
+
+  if(
+    message.includes("too many requests") ||
+    message.includes("rate limit")
+  ){
+    return "มีการลองเข้าสู่ระบบหลายครั้งเกินไป กรุณารอสักครู่แล้วลองใหม่";
+  }
+
+  if(
+    message.includes("network") ||
+    message.includes("fetch")
+  ){
+    return "ไม่สามารถเชื่อมต่อระบบได้ กรุณาตรวจสอบอินเทอร์เน็ต";
+  }
+
+  return (
+    error?.message ||
+    "ไม่สามารถเข้าสู่ระบบได้"
+  );
+
+}
+
+
 async function login(){
+
+  const form =
+    $("loginForm");
+
+  const emailInput =
+    $("loginEmail");
+
+  const passwordInput =
+    $("loginPassword");
 
   const button =
     $("loginButton");
@@ -3779,15 +3973,66 @@ async function login(){
     $("loginError");
 
 
+  const email =
+    emailInput.value
+      .trim()
+      .toLowerCase();
+
+  const password =
+    passwordInput.value;
+
+
+  errorBox.classList.remove(
+    "show"
+  );
+
+
+  if(
+    !email ||
+    !emailInput.checkValidity()
+  ){
+
+    errorBox.textContent =
+      "กรุณากรอกอีเมลให้ถูกต้อง";
+
+    errorBox.classList.add(
+      "show"
+    );
+
+    emailInput.focus();
+
+    return;
+
+  }
+
+
+  if(!password){
+
+    errorBox.textContent =
+      "กรุณากรอกรหัสผ่าน";
+
+    errorBox.classList.add(
+      "show"
+    );
+
+    passwordInput.focus();
+
+    return;
+
+  }
+
+
   button.disabled =
     true;
 
   button.textContent =
     "กำลังเข้าสู่ระบบ...";
 
-  errorBox.classList.remove(
-    "show"
-  );
+  emailInput.disabled =
+    true;
+
+  passwordInput.disabled =
+    true;
 
 
   try{
@@ -3798,24 +4043,44 @@ async function login(){
     } =
       await supabaseClient
         .auth
-        .signInWithOAuth({
-          provider:"google",
-
-          options:{
-            redirectTo:
-              getRedirectUrl(),
-
-            queryParams:{
-              access_type:"offline",
-              prompt:"select_account"
-            }
-          }
+        .signInWithPassword({
+          email,
+          password
         });
 
 
     if(error){
+
       throw error;
+
     }
+
+
+    if(!data?.user){
+
+      throw new Error(
+        "ไม่พบข้อมูลผู้ใช้งานหลังเข้าสู่ระบบ"
+      );
+
+    }
+
+
+    currentUser =
+      data.user;
+
+
+    await loadRole();
+
+
+    passwordInput.value =
+      "";
+
+
+    showApp();
+
+    showLoading(false);
+
+    await loadDashboard();
 
 
   }catch(error){
@@ -3825,19 +4090,173 @@ async function login(){
       error
     );
 
+
+    try{
+
+      await supabaseClient
+        .auth
+        .signOut();
+
+    }catch{}
+
+
+    currentUser =
+      null;
+
+    currentRole =
+      null;
+
+
+    showLogin();
+
+    showLoading(false);
+
+
     errorBox.textContent =
-      error.message ||
-      "ไม่สามารถเข้าสู่ระบบได้";
+      getLoginErrorMessage(
+        error
+      );
 
     errorBox.classList.add(
       "show"
     );
 
+  }finally{
+
     button.disabled =
       false;
 
     button.textContent =
-      "เข้าสู่ระบบด้วย Google";
+      "เข้าสู่ระบบ";
+
+    emailInput.disabled =
+      false;
+
+    passwordInput.disabled =
+      false;
+
+  }
+
+}
+
+
+/* =========================================================
+   PASSWORD RESET
+========================================================= */
+
+async function forgotPassword(){
+
+  const emailInput =
+    $("loginEmail");
+
+  const button =
+    $("forgotPasswordButton");
+
+  const errorBox =
+    $("loginError");
+
+
+  const email =
+    emailInput.value
+      .trim()
+      .toLowerCase();
+
+
+  errorBox.classList.remove(
+    "show"
+  );
+
+
+  if(
+    !email ||
+    !emailInput.checkValidity()
+  ){
+
+    errorBox.textContent =
+      "กรุณากรอกอีเมลที่ใช้เป็นบัญชี Admin ก่อน";
+
+    errorBox.classList.add(
+      "show"
+    );
+
+    emailInput.focus();
+
+    return;
+
+  }
+
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "กำลังส่ง...";
+
+
+  try{
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .auth
+        .resetPasswordForEmail(
+          email,
+          {
+            redirectTo:
+              getRedirectUrl()
+          }
+        );
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    errorBox.textContent =
+      "หากอีเมลนี้มีอยู่ในระบบ ระบบจะส่งลิงก์สำหรับตั้งรหัสผ่านใหม่ไปยังอีเมลของคุณ";
+
+    errorBox.classList.add(
+      "show"
+    );
+
+    errorBox.style.color =
+      "#a8edc2";
+
+    errorBox.style.background =
+      "var(--green-bg)";
+
+    errorBox.style.borderColor =
+      "rgba(85,217,133,.25)";
+
+
+  }catch(error){
+
+    console.error(
+      "PASSWORD RESET ERROR:",
+      error
+    );
+
+
+    errorBox.textContent =
+      getLoginErrorMessage(
+        error
+      );
+
+    errorBox.classList.add(
+      "show"
+    );
+
+  }finally{
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "ลืมรหัสผ่าน?";
 
   }
 
@@ -8025,10 +8444,67 @@ $("refreshUsers")
    LOGIN / LOGOUT
 ========================================================= */
 
-$("loginButton")
+$("loginForm")
+  .addEventListener(
+    "submit",
+    event => {
+
+      event.preventDefault();
+
+      login();
+
+    }
+  );
+
+
+$("passwordToggle")
   .addEventListener(
     "click",
-    login
+    () => {
+
+      const input =
+        $("loginPassword");
+
+      const button =
+        $("passwordToggle");
+
+      const showing =
+        input.type === "text";
+
+
+      input.type =
+        showing
+          ? "password"
+          : "text";
+
+
+      button.textContent =
+        showing
+          ? "แสดง"
+          : "ซ่อน";
+
+
+      button.setAttribute(
+        "aria-label",
+        showing
+          ? "แสดงรหัสผ่าน"
+          : "ซ่อนรหัสผ่าน"
+      );
+
+
+      button.setAttribute(
+        "aria-pressed",
+        String(!showing)
+      );
+
+    }
+  );
+
+
+$("forgotPasswordButton")
+  .addEventListener(
+    "click",
+    forgotPassword
   );
 
 
@@ -8113,8 +8589,9 @@ supabaseClient
 
           $("loginError")
             .textContent =
-              error.message ||
-              "ไม่สามารถตรวจสอบสิทธิ์ได้";
+              getLoginErrorMessage(
+                error
+              );
 
 
           $("loginError")
