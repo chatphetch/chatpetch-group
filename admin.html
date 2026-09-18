@@ -1,50 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title>
-  CHATPHETCH GROUP — Admin
-</title>
-
-<link
-  rel="preconnect"
-  href="https://fonts.googleapis.com"
->
-
-<link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin
->
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
-  rel="stylesheet"
->
-
-<script
-  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-  onerror="
-    (function(){
-      var s=document.createElement('script');
-      s.src='https://unpkg.com/@supabase/supabase-js@2';
-      s.onerror=function(){
-        window.__supabaseLoadFailed=true;
-      };
-      document.head.appendChild(s);
-    })();
-  "
-></script>
-
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHATPHETCH GROUP — Admin</title>
 <style>
+
 
 /* =========================================================
    ROOT
@@ -269,6 +230,474 @@ img{
   font-size:12px;
 
 }
+
+
+/* =========================================================
+   PASSWORD RECOVERY
+========================================================= */
+
+function isPasswordRecoveryUrl(){
+
+  const hash =
+    String(
+      window.location.hash ||
+      ""
+    );
+
+  const search =
+    String(
+      window.location.search ||
+      ""
+    );
+
+  return (
+    /(?:^|&)type=recovery(?:&|$)/i.test(
+      hash.replace(/^#/,"")
+    ) ||
+    /(?:^|[?&])type=recovery(?:&|$)/i.test(
+      search
+    )
+  );
+
+}
+
+
+function showRecovery(){
+
+  passwordRecoveryMode =
+    true;
+
+  $("loading")
+    .classList
+    .add("hidden");
+
+  $("loginScreen")
+    .classList
+    .remove("show");
+
+  $("app")
+    .classList
+    .remove("show");
+
+  $("recoveryScreen")
+    .classList
+    .add("show");
+
+  $("newPassword")
+    .value = "";
+
+  $("confirmNewPassword")
+    .value = "";
+
+  $("recoveryMessage")
+    .classList
+    .remove("show");
+
+}
+
+
+function hideRecovery(){
+
+  passwordRecoveryMode =
+    false;
+
+  $("recoveryScreen")
+    .classList
+    .remove("show");
+
+}
+
+
+function showRecoveryMessage(
+  message,
+  success=false
+){
+
+  const box =
+    $("recoveryMessage");
+
+  box.textContent =
+    message;
+
+  box.style.color =
+    success
+      ? "#a8edc2"
+      : "#ff9999";
+
+  box.style.background =
+    success
+      ? "var(--green-bg)"
+      : "var(--red-bg)";
+
+  box.style.borderColor =
+    success
+      ? "rgba(85,217,133,.25)"
+      : "rgba(239,108,108,.3)";
+
+  box.classList
+    .add("show");
+
+}
+
+
+async function updatePassword(){
+
+  const password =
+    $("newPassword")
+      .value;
+
+  const confirmPassword =
+    $("confirmNewPassword")
+      .value;
+
+  const button =
+    $("recoveryButton");
+
+  if(
+    password.length < 6
+  ){
+
+    showRecoveryMessage(
+      "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"
+    );
+
+    return;
+
+  }
+
+  if(
+    password !==
+    confirmPassword
+  ){
+
+    showRecoveryMessage(
+      "รหัสผ่านทั้งสองช่องไม่ตรงกัน"
+    );
+
+    return;
+
+  }
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "กำลังบันทึก...";
+
+
+  try{
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .auth
+        .updateUser({
+          password:
+            password
+        });
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    showRecoveryMessage(
+      "เปลี่ยนรหัสผ่านเรียบร้อยแล้ว กำลังกลับไปหน้าเข้าสู่ระบบ...",
+      true
+    );
+
+
+    /*
+     * จบ recovery session แล้วกลับไปหน้า Login
+     * เพื่อให้ผู้ใช้เข้าสู่ระบบใหม่ด้วยรหัสผ่านใหม่
+     */
+    setTimeout(
+      async ()=>{
+
+        try{
+
+          await supabaseClient
+            .auth
+            .signOut();
+
+        }catch(error){
+
+          console.error(
+            "RECOVERY SIGNOUT ERROR:",
+            error
+          );
+
+        }
+
+
+        window.history
+          .replaceState(
+            {},
+            document.title,
+            window.location.pathname
+          );
+
+
+        hideRecovery();
+
+        showLogin();
+
+        $("loginError")
+          .classList
+          .remove("show");
+
+        $("loginEmail")
+          .focus();
+
+      },
+      1200
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "PASSWORD UPDATE ERROR:",
+      error
+    );
+
+
+    showRecoveryMessage(
+      getLoginErrorMessage(
+        error
+      )
+    );
+
+
+  }finally{
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "บันทึกรหัสผ่านใหม่";
+
+  }
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+const LOGIN_LOCK_KEY =
+  "chatpetch_admin_login_lock_until";
+
+let loginInProgress =
+  false;
+
+let loginLockTimer =
+  null;
+
+function getLoginLockUntil(){
+
+  const value =
+    Number(
+      localStorage.getItem(
+        LOGIN_LOCK_KEY
+      ) || 0
+    );
+
+  if(
+    !Number.isFinite(value) ||
+    value <= Date.now()
+  ){
+
+    localStorage.removeItem(
+      LOGIN_LOCK_KEY
+    );
+
+    return 0;
+
+  }
+
+  return value;
+
+}
+
+function getLoginRetrySeconds(){
+
+  const value =
+    getLoginLockUntil();
+
+  if(!value){
+
+    return 0;
+
+  }
+
+  return Math.max(
+    1,
+    Math.ceil(
+      (
+        value -
+        Date.now()
+      ) / 1000
+    )
+  );
+
+}
+
+function setLoginLock(seconds){
+
+  const safeSeconds =
+    Math.max(
+      1,
+      Math.min(
+        300,
+        Number(seconds) || 60
+      )
+    );
+
+  const until =
+    Date.now() +
+    (
+      safeSeconds *
+      1000
+    );
+
+  localStorage.setItem(
+    LOGIN_LOCK_KEY,
+    String(until)
+  );
+
+  renderLoginLock();
+
+}
+
+function clearLoginLock(){
+
+  localStorage.removeItem(
+    LOGIN_LOCK_KEY
+  );
+
+  if(loginLockTimer){
+
+    clearInterval(
+      loginLockTimer
+    );
+
+    loginLockTimer =
+      null;
+
+  }
+
+  renderLoginLock();
+
+}
+
+function renderLoginLock(){
+
+  const button =
+    $("loginButton");
+
+  if(!button){
+
+    return;
+
+  }
+
+  const seconds =
+    getLoginRetrySeconds();
+
+  if(seconds <= 0){
+
+    if(
+      loginLockTimer
+    ){
+
+      clearInterval(
+        loginLockTimer
+      );
+
+      loginLockTimer =
+        null;
+
+    }
+
+    button.disabled =
+      loginInProgress;
+
+    return;
+
+  }
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "รอ " +
+    seconds +
+    " วินาที";
+
+  if(
+    !loginLockTimer
+  ){
+
+    loginLockTimer =
+      setInterval(
+        renderLoginLock,
+        1000
+      );
+
+  }
+
+}
+
+function getAuthRateLimitSeconds(error){
+
+  const status =
+    Number(
+      error?.status ||
+      error?.statusCode ||
+      0
+    );
+
+  const code =
+    String(
+      error?.code ||
+      ""
+    ).toLowerCase();
+
+  const message =
+    String(
+      error?.message ||
+      ""
+    ).toLowerCase();
+
+  if(
+    status === 429 ||
+    code ===
+      "over_request_rate_limit" ||
+    message.includes(
+      "too many requests"
+    ) ||
+    message.includes(
+      "rate limit"
+    ) ||
+    message.includes(
+      "over_request_rate_limit"
+    )
+  ){
+
+    return 60;
+
+  }
+
+  return 0;
+
+}
+
 
 
 .login-screen{
@@ -2534,152 +2963,225 @@ tbody tr:hover{
   display:block;
 }
 
-</style>
 
-<style>
-.login-screen{display:none;}
-.login-screen.show{display:flex;}
-.login-error{margin-top:14px;color:#ff9b9b;font-size:13px;line-height:1.6;min-height:0;}
-.login-error:not(.show){display:none;}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+<body>
+<section class="login-screen" id="loginScreen">
+<div class="login-card">
+<img alt="CHATPHETCH GROUP" class="login-logo" src="assets/logo.png"/>
+<h1 class="login-title">
+      CHATPHETCH <span>GROUP</span>
+</h1>
+<div class="login-subtitle">
+      ระบบจัดการหลังบ้าน<br/>
+      Admin / Back Office
+    </div>
+<form autocomplete="on" id="loginForm">
+<div class="login-field">
+<label for="loginEmail">อีเมล</label>
+<input autocomplete="username" id="loginEmail" inputmode="email" name="email" placeholder="admin@example.com" required="" type="email"/>
+</div>
+<div class="login-field">
+<label for="loginPassword">รหัสผ่าน</label>
+<div class="password-wrap">
+<input autocomplete="current-password" id="loginPassword" minlength="6" name="password" placeholder="••••••••" required="" type="password"/>
+<button aria-label="แสดงรหัสผ่าน" aria-pressed="false" class="password-toggle" id="passwordToggle" type="button">
+            แสดง
+          </button>
+</div>
+</div>
+<button class="login-button" id="loginButton" type="submit">
+        เข้าสู่ระบบ
+      </button>
+</form>
+<button class="forgot-password" id="forgotPasswordButton" type="button">
+      ลืมรหัสผ่าน?
+    </button>
+<div aria-live="polite" class="login-error" id="loginError" role="alert"></div>
+</div>
+</section>
 
-
-<section class="login-screen show" id="loginScreen">
-  <div class="login-card">
-    <img src="assets/logo.png" class="login-logo" alt="CHATPHETCH GROUP">
-    <h1 class="login-title">CHATPHETCH <span>GROUP</span></h1>
-    <div class="login-subtitle">ระบบจัดการหลังบ้าน<br>Admin / Back Office</div>
-
-    <form id="loginForm" autocomplete="on">
-      <div class="login-field">
-        <label for="loginEmail">อีเมล</label>
-        <input type="email" id="loginEmail" name="email" autocomplete="username" inputmode="email" placeholder="admin@example.com" required>
-      </div>
-
-      <div class="login-field">
-        <label for="loginPassword">รหัสผ่าน</label>
-        <div class="password-wrap">
-          <input type="password" id="loginPassword" name="password" autocomplete="current-password" placeholder="••••••••" required>
-          <button type="button" class="password-toggle" id="passwordToggle" aria-label="แสดงรหัสผ่าน">แสดง</button>
+<section class="recovery-screen" id="recoveryScreen">
+  <div class="recovery-card">
+    <img src="assets/logo.png" class="recovery-logo" alt="CHATPHETCH GROUP">
+    <h1 class="recovery-title">ตั้งรหัสผ่านใหม่</h1>
+    <div class="recovery-subtitle">กรุณากำหนดรหัสผ่านใหม่สำหรับบัญชี Admin</div>
+    <form id="recoveryForm" autocomplete="off">
+      <div class="recovery-field">
+        <label for="newPassword">รหัสผ่านใหม่</label>
+        <div class="recovery-password-wrap">
+          <input type="password" id="newPassword" autocomplete="new-password" minlength="6" required>
+          <button type="button" class="recovery-toggle" id="newPasswordToggle">แสดง</button>
         </div>
       </div>
-
-      <button type="submit" class="login-button" id="loginButton">เข้าสู่ระบบ</button>
+      <div class="recovery-field">
+        <label for="confirmNewPassword">ยืนยันรหัสผ่านใหม่</label>
+        <div class="recovery-password-wrap">
+          <input type="password" id="confirmNewPassword" autocomplete="new-password" minlength="6" required>
+          <button type="button" class="recovery-toggle" id="confirmPasswordToggle">แสดง</button>
+        </div>
+      </div>
+      <button type="submit" class="recovery-button" id="recoveryButton">บันทึกรหัสผ่านใหม่</button>
     </form>
-
-    <button type="button" class="forgot-password" id="forgotPassword">ลืมรหัสผ่าน?</button>
-    <div class="login-error" id="loginError" role="alert"></div>
+    <div class="recovery-message" id="recoveryMessage" role="alert" aria-live="polite"></div>
   </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+
 const SUPABASE_URL = "https://mfhllgklcfnnbyyzzljz.supabase.co";
 const SUPABASE_KEY = "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth:{ persistSession:true, autoRefreshToken:true, detectSessionInUrl:true }
+});
 
-const $ = (id) => document.getElementById(id);
-const loginForm = $("loginForm");
-const loginButton = $("loginButton");
-const loginError = $("loginError");
+const $ = id => document.getElementById(id);
 
-function showError(message){
-  loginError.textContent = message || "เข้าสู่ระบบไม่สำเร็จ";
-  loginError.classList.add("show");
-}
-function clearError(){
-  loginError.textContent = "";
-  loginError.classList.remove("show");
-}
-function getRedirectUrl(){
-  return window.location.origin + "/chatpetch-group/admin.html";
-}
-function roleError(){
-  return "บัญชีนี้ยังไม่ได้รับสิทธิ์ผู้ดูแลระบบ หรือถูกปิดการใช้งาน";
+function loginErrorMessage(error){
+  const m = String(error?.message || "").toLowerCase();
+  if(m.includes("invalid login credentials") || m.includes("invalid credentials")) return "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
+  if(m.includes("email not confirmed")) return "อีเมลนี้ยังไม่ได้ยืนยัน กรุณาตรวจสอบอีเมลก่อนเข้าสู่ระบบ";
+  if(Number(error?.status) === 429 || m.includes("too many requests") || m.includes("rate limit") || m.includes("over_request_rate_limit")) return "ระบบจำกัดการเข้าสู่ระบบชั่วคราว กรุณารอสักครู่แล้วลองใหม่";
+  if(m.includes("network") || m.includes("fetch")) return "ไม่สามารถเชื่อมต่อระบบได้ กรุณาตรวจสอบอินเทอร์เน็ต";
+  return error?.message || "ไม่สามารถเข้าสู่ระบบได้";
 }
 
-async function checkAdmin(user){
-  const { data, error } = await supabaseClient
-    .from("admin_users")
-    .select("user_id, email, name, role, active")
-    .eq("user_id", user.id)
-    .maybeSingle();
-
-  if(error) throw error;
-  if(!data || data.active !== true) throw new Error(roleError());
-  if(!["owner","manager","staff","admin"].includes(String(data.role || "").toLowerCase())){
-    throw new Error(roleError());
-  }
-  return data;
+function isRecovery(){
+  const text = window.location.hash + "&" + window.location.search;
+  return /(^|[&#?])type=recovery(&|$)/i.test(text);
 }
 
-async function login(){
-  clearError();
-  const email = $("loginEmail").value.trim();
+function showLogin(){
+  $("recoveryScreen")?.classList.remove("show");
+  $("loginScreen")?.classList.add("show");
+}
+
+function showRecovery(){
+  $("loginScreen")?.classList.remove("show");
+  $("recoveryScreen")?.classList.add("show");
+}
+
+async function doLogin(event){
+  event.preventDefault();
+  const email = $("loginEmail").value.trim().toLowerCase();
   const password = $("loginPassword").value;
-  if(!email || !password) return;
+  const button = $("loginButton");
+  const errorBox = $("loginError");
+  errorBox.textContent = "";
+  errorBox.classList.remove("show");
 
-  loginButton.disabled = true;
-  loginButton.textContent = "กำลังเข้าสู่ระบบ...";
+  if(!email || !$("loginEmail").checkValidity()){
+    errorBox.textContent = "กรุณากรอกอีเมลให้ถูกต้อง";
+    errorBox.classList.add("show");
+    return;
+  }
+  if(!password){
+    errorBox.textContent = "กรุณากรอกรหัสผ่าน";
+    errorBox.classList.add("show");
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "กำลังเข้าสู่ระบบ...";
 
   try{
     const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
     if(error) throw error;
-    if(!data?.user) throw new Error("ไม่พบข้อมูลผู้ใช้");
+    if(!data?.user) throw new Error("ไม่พบข้อมูลผู้ใช้งานหลังเข้าสู่ระบบ");
 
-    await checkAdmin(data.user);
-    window.location.replace("./admin-dashboard.html");
+    // Verify the same admin_users record before entering the dashboard.
+    const { data: admin, error: roleError } = await supabaseClient
+      .from("admin_users")
+      .select("user_id,email,name,role,active")
+      .eq("user_id", data.user.id)
+      .maybeSingle();
+    if(roleError) throw roleError;
+    if(!admin) throw new Error("บัญชีนี้ยังไม่ได้ถูกเพิ่มใน admin_users");
+    if(admin.active !== true) throw new Error("บัญชีนี้ถูกปิดการใช้งาน");
+    const role = String(admin.role || "").trim().toLowerCase();
+    if(!["owner","manager","staff","viewer"].includes(role)) throw new Error("บัญชีนี้มี Role ไม่ถูกต้อง");
+
+    window.location.replace("admin-dashboard.html");
   }catch(error){
-    console.error(error);
-    let message = error?.message || "เข้าสู่ระบบไม่สำเร็จ";
-    if(/invalid login credentials/i.test(message)) message = "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
-    else if(/rate limit|too many requests/i.test(message)) message = "ระบบจำกัดการเข้าสู่ระบบชั่วคราว กรุณารอสักครู่แล้วลองใหม่";
-    else if(/permission|row-level|policy/i.test(message)) message = "ไม่สามารถตรวจสอบสิทธิ์ Admin ได้ กรุณาตรวจสอบ admin_users และ RLS";
-    showError(message);
-  }finally{
-    loginButton.disabled = false;
-    loginButton.textContent = "เข้าสู่ระบบ";
+    console.error("LOGIN ERROR:", error);
+    errorBox.textContent = loginErrorMessage(error);
+    errorBox.classList.add("show");
+    button.disabled = false;
+    button.textContent = "เข้าสู่ระบบ";
   }
 }
 
-loginForm.addEventListener("submit", e => { e.preventDefault(); login(); });
-$("passwordToggle").addEventListener("click", () => {
-  const input = $("loginPassword");
-  const visible = input.type === "text";
-  input.type = visible ? "password" : "text";
-  $("passwordToggle").textContent = visible ? "แสดง" : "ซ่อน";
-});
-
-$("forgotPassword").addEventListener("click", async () => {
-  clearError();
-  const email = $("loginEmail").value.trim();
-  if(!email){ showError("กรุณากรอกอีเมลก่อนกดลืมรหัสผ่าน"); return; }
-  const button = $("forgotPassword");
-  button.disabled = true;
+async function forgotPassword(){
+  const email = $("loginEmail").value.trim().toLowerCase();
+  const errorBox = $("loginError");
+  errorBox.classList.remove("show");
+  if(!email || !$("loginEmail").checkValidity()){
+    errorBox.textContent = "กรุณากรอกอีเมลก่อนกดลืมรหัสผ่าน";
+    errorBox.classList.add("show");
+    $("loginEmail").focus();
+    return;
+  }
   try{
-    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo: getRedirectUrl() });
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+      redirectTo: "https://chatphetch.github.io/chatpetch-group/admin.html"
+    });
     if(error) throw error;
-    showError("ส่งลิงก์สำหรับตั้งรหัสผ่านไปที่อีเมลแล้ว กรุณาตรวจสอบกล่องจดหมาย");
+    errorBox.textContent = "ส่งลิงก์ตั้งรหัสผ่านใหม่ไปยังอีเมลแล้ว กรุณาตรวจสอบกล่องจดหมาย";
+    errorBox.classList.add("show");
   }catch(error){
-    showError(error?.message || "ไม่สามารถส่งลิงก์รีเซ็ตรหัสผ่านได้");
-  }finally{ button.disabled = false; }
+    errorBox.textContent = loginErrorMessage(error);
+    errorBox.classList.add("show");
+  }
+}
+
+async function saveRecoveryPassword(event){
+  event.preventDefault();
+  const p = $("newPassword").value;
+  const c = $("confirmNewPassword").value;
+  const btn = $("recoveryButton");
+  const msg = $("recoveryMessage");
+  msg.textContent = "";
+  if(p.length < 6){ msg.textContent = "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"; return; }
+  if(p !== c){ msg.textContent = "รหัสผ่านทั้งสองช่องไม่ตรงกัน"; return; }
+  btn.disabled = true;
+  btn.textContent = "กำลังบันทึก...";
+  try{
+    const { error } = await supabaseClient.auth.updateUser({ password:p });
+    if(error) throw error;
+    msg.textContent = "ตั้งรหัสผ่านสำเร็จแล้ว กำลังกลับไปหน้าเข้าสู่ระบบ...";
+    setTimeout(async ()=>{
+      await supabaseClient.auth.signOut();
+      window.location.replace("admin.html");
+    }, 1200);
+  }catch(error){
+    msg.textContent = error?.message || "ไม่สามารถตั้งรหัสผ่านได้";
+    btn.disabled = false;
+    btn.textContent = "บันทึกรหัสผ่านใหม่";
+  }
+}
+
+$("loginForm").addEventListener("submit", doLogin);
+$("forgotPasswordButton").addEventListener("click", forgotPassword);
+$("passwordToggle").addEventListener("click", ()=>{
+  const input=$("loginPassword");
+  const showing=input.type === "text";
+  input.type=showing ? "password" : "text";
+  $("passwordToggle").textContent=showing ? "แสดง" : "ซ่อน";
+});
+$("recoveryForm").addEventListener("submit", saveRecoveryPassword);
+$("newPasswordToggle").addEventListener("click", ()=>{
+  const input=$("newPassword"); const showing=input.type === "text";
+  input.type=showing ? "password" : "text"; $("newPasswordToggle").textContent=showing ? "แสดง" : "ซ่อน";
+});
+$("confirmPasswordToggle").addEventListener("click", ()=>{
+  const input=$("confirmNewPassword"); const showing=input.type === "text";
+  input.type=showing ? "password" : "text"; $("confirmPasswordToggle").textContent=showing ? "แสดง" : "ซ่อน";
 });
 
-(async function(){
-  try{
-    const { data } = await supabaseClient.auth.getSession();
-    if(data?.session?.user){
-      try{
-        await checkAdmin(data.session.user);
-        window.location.replace("./admin-dashboard.html");
-      }catch(e){
-        await supabaseClient.auth.signOut();
-      }
-    }
-  }catch(e){ console.error(e); }
-})();
-</script>
+if(isRecovery()) showRecovery(); else showLogin();
 
+</script>
 </body>
 </html>
