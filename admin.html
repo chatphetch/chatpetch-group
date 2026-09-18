@@ -272,474 +272,6 @@ img{
 }
 
 
-/* =========================================================
-   PASSWORD RECOVERY
-========================================================= */
-
-function isPasswordRecoveryUrl(){
-
-  const hash =
-    String(
-      window.location.hash ||
-      ""
-    );
-
-  const search =
-    String(
-      window.location.search ||
-      ""
-    );
-
-  return (
-    /(?:^|&)type=recovery(?:&|$)/i.test(
-      hash.replace(/^#/,"")
-    ) ||
-    /(?:^|[?&])type=recovery(?:&|$)/i.test(
-      search
-    )
-  );
-
-}
-
-
-function showRecovery(){
-
-  passwordRecoveryMode =
-    true;
-
-  $("loading")
-    .classList
-    .add("hidden");
-
-  $("loginScreen")
-    .classList
-    .remove("show");
-
-  $("app")
-    .classList
-    .remove("show");
-
-  $("recoveryScreen")
-    .classList
-    .add("show");
-
-  $("newPassword")
-    .value = "";
-
-  $("confirmNewPassword")
-    .value = "";
-
-  $("recoveryMessage")
-    .classList
-    .remove("show");
-
-}
-
-
-function hideRecovery(){
-
-  passwordRecoveryMode =
-    false;
-
-  $("recoveryScreen")
-    .classList
-    .remove("show");
-
-}
-
-
-function showRecoveryMessage(
-  message,
-  success=false
-){
-
-  const box =
-    $("recoveryMessage");
-
-  box.textContent =
-    message;
-
-  box.style.color =
-    success
-      ? "#a8edc2"
-      : "#ff9999";
-
-  box.style.background =
-    success
-      ? "var(--green-bg)"
-      : "var(--red-bg)";
-
-  box.style.borderColor =
-    success
-      ? "rgba(85,217,133,.25)"
-      : "rgba(239,108,108,.3)";
-
-  box.classList
-    .add("show");
-
-}
-
-
-async function updatePassword(){
-
-  const password =
-    $("newPassword")
-      .value;
-
-  const confirmPassword =
-    $("confirmNewPassword")
-      .value;
-
-  const button =
-    $("recoveryButton");
-
-  if(
-    password.length < 6
-  ){
-
-    showRecoveryMessage(
-      "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"
-    );
-
-    return;
-
-  }
-
-  if(
-    password !==
-    confirmPassword
-  ){
-
-    showRecoveryMessage(
-      "รหัสผ่านทั้งสองช่องไม่ตรงกัน"
-    );
-
-    return;
-
-  }
-
-  button.disabled =
-    true;
-
-  button.textContent =
-    "กำลังบันทึก...";
-
-
-  try{
-
-    const {
-      error
-    } =
-      await supabaseClient
-        .auth
-        .updateUser({
-          password:
-            password
-        });
-
-
-    if(error){
-
-      throw error;
-
-    }
-
-
-    showRecoveryMessage(
-      "เปลี่ยนรหัสผ่านเรียบร้อยแล้ว กำลังกลับไปหน้าเข้าสู่ระบบ...",
-      true
-    );
-
-
-    /*
-     * จบ recovery session แล้วกลับไปหน้า Login
-     * เพื่อให้ผู้ใช้เข้าสู่ระบบใหม่ด้วยรหัสผ่านใหม่
-     */
-    setTimeout(
-      async ()=>{
-
-        try{
-
-          await supabaseClient
-            .auth
-            .signOut();
-
-        }catch(error){
-
-          console.error(
-            "RECOVERY SIGNOUT ERROR:",
-            error
-          );
-
-        }
-
-
-        window.history
-          .replaceState(
-            {},
-            document.title,
-            window.location.pathname
-          );
-
-
-        hideRecovery();
-
-        showLogin();
-
-        $("loginError")
-          .classList
-          .remove("show");
-
-        $("loginEmail")
-          .focus();
-
-      },
-      1200
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "PASSWORD UPDATE ERROR:",
-      error
-    );
-
-
-    showRecoveryMessage(
-      getLoginErrorMessage(
-        error
-      )
-    );
-
-
-  }finally{
-
-    button.disabled =
-      false;
-
-    button.textContent =
-      "บันทึกรหัสผ่านใหม่";
-
-  }
-
-}
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-const LOGIN_LOCK_KEY =
-  "chatpetch_admin_login_lock_until";
-
-let loginInProgress =
-  false;
-
-let loginLockTimer =
-  null;
-
-function getLoginLockUntil(){
-
-  const value =
-    Number(
-      localStorage.getItem(
-        LOGIN_LOCK_KEY
-      ) || 0
-    );
-
-  if(
-    !Number.isFinite(value) ||
-    value <= Date.now()
-  ){
-
-    localStorage.removeItem(
-      LOGIN_LOCK_KEY
-    );
-
-    return 0;
-
-  }
-
-  return value;
-
-}
-
-function getLoginRetrySeconds(){
-
-  const value =
-    getLoginLockUntil();
-
-  if(!value){
-
-    return 0;
-
-  }
-
-  return Math.max(
-    1,
-    Math.ceil(
-      (
-        value -
-        Date.now()
-      ) / 1000
-    )
-  );
-
-}
-
-function setLoginLock(seconds){
-
-  const safeSeconds =
-    Math.max(
-      1,
-      Math.min(
-        300,
-        Number(seconds) || 60
-      )
-    );
-
-  const until =
-    Date.now() +
-    (
-      safeSeconds *
-      1000
-    );
-
-  localStorage.setItem(
-    LOGIN_LOCK_KEY,
-    String(until)
-  );
-
-  renderLoginLock();
-
-}
-
-function clearLoginLock(){
-
-  localStorage.removeItem(
-    LOGIN_LOCK_KEY
-  );
-
-  if(loginLockTimer){
-
-    clearInterval(
-      loginLockTimer
-    );
-
-    loginLockTimer =
-      null;
-
-  }
-
-  renderLoginLock();
-
-}
-
-function renderLoginLock(){
-
-  const button =
-    $("loginButton");
-
-  if(!button){
-
-    return;
-
-  }
-
-  const seconds =
-    getLoginRetrySeconds();
-
-  if(seconds <= 0){
-
-    if(
-      loginLockTimer
-    ){
-
-      clearInterval(
-        loginLockTimer
-      );
-
-      loginLockTimer =
-        null;
-
-    }
-
-    button.disabled =
-      loginInProgress;
-
-    return;
-
-  }
-
-  button.disabled =
-    true;
-
-  button.textContent =
-    "รอ " +
-    seconds +
-    " วินาที";
-
-  if(
-    !loginLockTimer
-  ){
-
-    loginLockTimer =
-      setInterval(
-        renderLoginLock,
-        1000
-      );
-
-  }
-
-}
-
-function getAuthRateLimitSeconds(error){
-
-  const status =
-    Number(
-      error?.status ||
-      error?.statusCode ||
-      0
-    );
-
-  const code =
-    String(
-      error?.code ||
-      ""
-    ).toLowerCase();
-
-  const message =
-    String(
-      error?.message ||
-      ""
-    ).toLowerCase();
-
-  if(
-    status === 429 ||
-    code ===
-      "over_request_rate_limit" ||
-    message.includes(
-      "too many requests"
-    ) ||
-    message.includes(
-      "rate limit"
-    ) ||
-    message.includes(
-      "over_request_rate_limit"
-    )
-  ){
-
-    return 60;
-
-  }
-
-  return 0;
-
-}
-
-
-
 .login-screen{
 
   min-height:100vh;
@@ -4649,6 +4181,475 @@ function showApp(){
     .add("show");
 
 }
+
+
+/* =========================================================
+   PASSWORD RECOVERY
+========================================================= */
+
+function isPasswordRecoveryUrl(){
+
+  const hash =
+    String(
+      window.location.hash ||
+      ""
+    );
+
+  const search =
+    String(
+      window.location.search ||
+      ""
+    );
+
+  return (
+    /(?:^|&)type=recovery(?:&|$)/i.test(
+      hash.replace(/^#/,"")
+    ) ||
+    /(?:^|[?&])type=recovery(?:&|$)/i.test(
+      search
+    )
+  );
+
+}
+
+
+function showRecovery(){
+
+  passwordRecoveryMode =
+    true;
+
+  showLoading(false);
+
+  $("loginScreen")
+    .classList
+    .remove("show");
+
+  $("app")
+    .classList
+    .remove("show");
+
+  $("recoveryScreen")
+    .classList
+    .add("show");
+
+  $("newPassword")
+    .value = "";
+
+  $("confirmNewPassword")
+    .value = "";
+
+  $("recoveryMessage")
+    .classList
+    .remove("show");
+
+}
+
+
+function hideRecovery(){
+
+  passwordRecoveryMode =
+    false;
+
+  $("recoveryScreen")
+    .classList
+    .remove("show");
+
+}
+
+
+function showRecoveryMessage(
+  message,
+  success=false
+){
+
+  const box =
+    $("recoveryMessage");
+
+  box.textContent =
+    message;
+
+  box.style.color =
+    success
+      ? "#a8edc2"
+      : "#ff9999";
+
+  box.style.background =
+    success
+      ? "var(--green-bg)"
+      : "var(--red-bg)";
+
+  box.style.borderColor =
+    success
+      ? "rgba(85,217,133,.25)"
+      : "rgba(239,108,108,.3)";
+
+  box.classList
+    .add("show");
+
+}
+
+
+async function updatePassword(){
+
+  const password =
+    $("newPassword")
+      .value;
+
+  const confirmPassword =
+    $("confirmNewPassword")
+      .value;
+
+  const button =
+    $("recoveryButton");
+
+  if(
+    password.length < 6
+  ){
+
+    showRecoveryMessage(
+      "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"
+    );
+
+    return;
+
+  }
+
+  if(
+    password !==
+    confirmPassword
+  ){
+
+    showRecoveryMessage(
+      "รหัสผ่านทั้งสองช่องไม่ตรงกัน"
+    );
+
+    return;
+
+  }
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "กำลังบันทึก...";
+
+
+  try{
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .auth
+        .updateUser({
+          password:
+            password
+        });
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    showRecoveryMessage(
+      "เปลี่ยนรหัสผ่านเรียบร้อยแล้ว กำลังกลับไปหน้าเข้าสู่ระบบ...",
+      true
+    );
+
+
+    /*
+     * จบ recovery session แล้วกลับไปหน้า Login
+     * เพื่อให้ผู้ใช้เข้าสู่ระบบใหม่ด้วยรหัสผ่านใหม่
+     */
+    setTimeout(
+      async ()=>{
+
+        try{
+
+          await supabaseClient
+            .auth
+            .signOut();
+
+        }catch(error){
+
+          console.error(
+            "RECOVERY SIGNOUT ERROR:",
+            error
+          );
+
+        }
+
+
+        window.history
+          .replaceState(
+            {},
+            document.title,
+            window.location.pathname
+          );
+
+
+        hideRecovery();
+
+        showLogin();
+
+        $("loginError")
+          .classList
+          .remove("show");
+
+        $("loginEmail")
+          .focus();
+
+      },
+      1200
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "PASSWORD UPDATE ERROR:",
+      error
+    );
+
+
+    showRecoveryMessage(
+      getLoginErrorMessage(
+        error
+      )
+    );
+
+
+  }finally{
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "บันทึกรหัสผ่านใหม่";
+
+  }
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+const LOGIN_LOCK_KEY =
+  "chatpetch_admin_login_lock_until";
+
+let loginInProgress =
+  false;
+
+let loginLockTimer =
+  null;
+
+function getLoginLockUntil(){
+
+  const value =
+    Number(
+      localStorage.getItem(
+        LOGIN_LOCK_KEY
+      ) || 0
+    );
+
+  if(
+    !Number.isFinite(value) ||
+    value <= Date.now()
+  ){
+
+    localStorage.removeItem(
+      LOGIN_LOCK_KEY
+    );
+
+    return 0;
+
+  }
+
+  return value;
+
+}
+
+function getLoginRetrySeconds(){
+
+  const value =
+    getLoginLockUntil();
+
+  if(!value){
+
+    return 0;
+
+  }
+
+  return Math.max(
+    1,
+    Math.ceil(
+      (
+        value -
+        Date.now()
+      ) / 1000
+    )
+  );
+
+}
+
+function setLoginLock(seconds){
+
+  const safeSeconds =
+    Math.max(
+      1,
+      Math.min(
+        300,
+        Number(seconds) || 60
+      )
+    );
+
+  const until =
+    Date.now() +
+    (
+      safeSeconds *
+      1000
+    );
+
+  localStorage.setItem(
+    LOGIN_LOCK_KEY,
+    String(until)
+  );
+
+  renderLoginLock();
+
+}
+
+function clearLoginLock(){
+
+  localStorage.removeItem(
+    LOGIN_LOCK_KEY
+  );
+
+  if(loginLockTimer){
+
+    clearInterval(
+      loginLockTimer
+    );
+
+    loginLockTimer =
+      null;
+
+  }
+
+  renderLoginLock();
+
+}
+
+function renderLoginLock(){
+
+  const button =
+    $("loginButton");
+
+  if(!button){
+
+    return;
+
+  }
+
+  const seconds =
+    getLoginRetrySeconds();
+
+  if(seconds <= 0){
+
+    if(
+      loginLockTimer
+    ){
+
+      clearInterval(
+        loginLockTimer
+      );
+
+      loginLockTimer =
+        null;
+
+    }
+
+    button.disabled =
+      loginInProgress;
+
+    return;
+
+  }
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "รอ " +
+    seconds +
+    " วินาที";
+
+  if(
+    !loginLockTimer
+  ){
+
+    loginLockTimer =
+      setInterval(
+        renderLoginLock,
+        1000
+      );
+
+  }
+
+}
+
+function getAuthRateLimitSeconds(error){
+
+  const status =
+    Number(
+      error?.status ||
+      error?.statusCode ||
+      0
+    );
+
+  const code =
+    String(
+      error?.code ||
+      ""
+    ).toLowerCase();
+
+  const message =
+    String(
+      error?.message ||
+      ""
+    ).toLowerCase();
+
+  if(
+    status === 429 ||
+    code ===
+      "over_request_rate_limit" ||
+    message.includes(
+      "too many requests"
+    ) ||
+    message.includes(
+      "rate limit"
+    ) ||
+    message.includes(
+      "over_request_rate_limit"
+    )
+  ){
+
+    return 60;
+
+  }
+
+  return 0;
+
+}
+
+
+
+
 
 
 /* =========================================================
