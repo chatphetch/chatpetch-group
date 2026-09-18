@@ -30,7 +30,19 @@
   rel="stylesheet"
 >
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  onerror="
+    (function(){
+      var s=document.createElement('script');
+      s.src='https://unpkg.com/@supabase/supabase-js@2';
+      s.onerror=function(){
+        window.__supabaseLoadFailed=true;
+      };
+      document.head.appendChild(s);
+    })();
+  "
+></script>
 
 
 <style>
@@ -9776,7 +9788,102 @@ async function init(){
    START
 ========================================================= */
 
-init();
+async function waitForSupabaseAndInit(){
+
+  const startedAt =
+    Date.now();
+
+  const maxWait =
+    12000;
+
+  while(
+    !window.supabase &&
+    (
+      Date.now() -
+      startedAt
+    ) <
+    maxWait
+  ){
+
+    await new Promise(
+      resolve =>
+        setTimeout(
+          resolve,
+          100
+        )
+    );
+
+  }
+
+
+  if(
+    !window.supabase
+  ){
+
+    showLoading(false);
+
+    showLogin();
+
+    $("loginError")
+      .textContent =
+        "ไม่สามารถโหลด Supabase Auth ได้ กรุณารีเฟรชหน้าอีกครั้ง";
+
+    $("loginError")
+      .classList
+      .add("show");
+
+    return;
+
+  }
+
+
+  init();
+
+}
+
+
+/*
+ * Emergency watchdog:
+ * ไม่ให้หน้าเว็บค้างอยู่ที่ Loading ตลอดไป แม้ Auth/CDN
+ * หรือเครือข่ายจะไม่ตอบสนอง
+ */
+setTimeout(
+  ()=>{
+
+    const loading =
+      $("loading");
+
+    if(
+      loading &&
+      !loading.classList.contains(
+        "hidden"
+      )
+    ){
+
+      console.warn(
+        "AUTH LOADING WATCHDOG: timeout"
+      );
+
+      showLoading(false);
+
+      showLogin();
+
+      $("loginError")
+        .textContent =
+          "ระบบใช้เวลาตรวจสอบนานเกินไป กรุณารีเฟรชหน้าแล้วลองใหม่";
+
+      $("loginError")
+        .classList
+        .add("show");
+
+    }
+
+  },
+  15000
+);
+
+
+waitForSupabaseAndInit();
 
 </script>
 
