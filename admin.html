@@ -4480,6 +4480,9 @@ let confirmAction = null;
 let passwordRecoveryMode =
   false;
 
+let authProcessing =
+  false;
+
 
 /* =========================================================
    HELPERS
@@ -5057,11 +5060,8 @@ async function loadRole(){
   }
 
 
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
+  const roleQuery =
+    supabaseClient
       .from("admin_users")
       .select(
         "user_id,email,name,role,active"
@@ -5071,6 +5071,31 @@ async function loadRole(){
         currentUser.id
       )
       .maybeSingle();
+
+
+  const timeout =
+    new Promise(
+      resolve =>
+        setTimeout(
+          ()=>resolve({
+            data:null,
+            error:new Error(
+              "หมดเวลาตรวจสอบสิทธิ์ กรุณาตรวจสอบ RLS ของตาราง admin_users และการเชื่อมต่อ Supabase"
+            )
+          }),
+          10000
+        )
+    );
+
+
+  const {
+    data,
+    error
+  } =
+    await Promise.race([
+      roleQuery,
+      timeout
+    ]);
 
 
   if(error){
@@ -9397,13 +9422,123 @@ $("confirmPasswordToggle")
 
 
 /* =========================================================
+   AUTHENTICATED SESSION
+========================================================= */
+
+async function handleAuthenticatedSession(
+  session
+){
+
+  if(authProcessing){
+
+    return;
+
+  }
+
+  if(
+    !session?.user
+  ){
+
+    return;
+
+  }
+
+  authProcessing =
+    true;
+
+  currentUser =
+    session.user;
+
+  showLoading(true);
+
+  try{
+
+    if(
+      passwordRecoveryMode ||
+      isPasswordRecoveryUrl()
+    ){
+
+      showRecovery();
+
+      showLoading(false);
+
+      return;
+
+    }
+
+
+    await loadRole();
+
+    showApp();
+
+    showLoading(false);
+
+    await loadDashboard();
+
+  }catch(error){
+
+    console.error(
+      "AUTHORIZATION ERROR:",
+      error
+    );
+
+
+    currentUser =
+      null;
+
+    currentRole =
+      null;
+
+
+    showLoading(false);
+
+    showLogin();
+
+
+    $("loginError")
+      .textContent =
+        getLoginErrorMessage(
+          error
+        );
+
+    $("loginError")
+      .classList
+      .add("show");
+
+
+    try{
+
+      await supabaseClient
+        .auth
+        .signOut();
+
+    }catch(signOutError){
+
+      console.error(
+        "AUTH CLEANUP ERROR:",
+        signOutError
+      );
+
+    }
+
+  }finally{
+
+    authProcessing =
+      false;
+
+  }
+
+}
+
+
+/* =========================================================
    AUTH STATE
 ========================================================= */
 
 supabaseClient
   .auth
   .onAuthStateChange(
-    async (
+    (
       event,
       session
     )=>{
@@ -9425,6 +9560,9 @@ supabaseClient
         currentRole =
           null;
 
+        authProcessing =
+          false;
+
         showLogin();
 
         showLoading(false);
@@ -9445,95 +9583,42 @@ supabaseClient
 
         if(currentUser){
 
+          passwordRecoveryMode =
+            true;
+
           showRecovery();
 
           showLoading(false);
 
-          return;
-
         }
+
+        return;
 
       }
 
 
-      if(session?.user){
+      if(
+        session?.user
+      ){
 
-        currentUser =
-          session.user;
+        /*
+         * สำคัญ:
+         * ห้าม await Supabase API ภายใน onAuthStateChange
+         * เพราะอาจทำให้ Auth callback ค้างและหน้าเว็บค้างที่
+         * "กำลังตรวจสอบสิทธิ์ผู้ดูแลระบบ..."
+         *
+         * ใช้ setTimeout แยกออกจาก callback แทน
+         */
+        setTimeout(
+          ()=>{
 
-
-        if(
-          passwordRecoveryMode ||
-          isPasswordRecoveryUrl()
-        ){
-
-          showRecovery();
-
-          showLoading(false);
-
-          return;
-
-        }
-
-
-        try{
-
-          await loadRole();
-
-          showApp();
-
-          showLoading(false);
-
-          await loadDashboard();
-
-        }catch(error){
-
-          console.error(
-            "AUTHORIZATION ERROR:",
-            error
-          );
-
-
-          currentUser =
-            null;
-
-          currentRole =
-            null;
-
-
-          try{
-
-            await supabaseClient
-              .auth
-              .signOut();
-
-          }catch(signOutError){
-
-            console.error(
-              "AUTH CLEANUP ERROR:",
-              signOutError
+            handleAuthenticatedSession(
+              session
             );
 
-          }
-
-
-          showLogin();
-
-          showLoading(false);
-
-
-          $("loginError")
-            .textContent =
-              getLoginErrorMessage(
-                error
-              );
-
-
-          $("loginError")
-            .classList
-            .add("show");
-
-        }
+          },
+          0
+        );
 
       }
 
@@ -9562,37 +9647,39 @@ async function init(){
 
 
     if(error){
+
       throw error;
+
     }
 
 
     if(
-      data.session &&
-      data.session.user
+      data?.session?.user
     ){
-
-      currentUser =
-        data.session.user;
-
 
       if(
         isPasswordRecoveryUrl() ||
         passwordRecoveryMode
       ){
 
+        currentUser =
+          data.session.user;
+
+        passwordRecoveryMode =
+          true;
+
         showRecovery();
+
+        showLoading(false);
 
         return;
 
       }
 
 
-      await loadRole();
-
-
-      showApp();
-
-      await loadDashboard();
+      await handleAuthenticatedSession(
+        data.session
+      );
 
     }else{
 
@@ -9616,6 +9703,20 @@ async function init(){
       null;
 
 
+    showLogin();
+
+
+    $("loginError")
+      .textContent =
+        getLoginErrorMessage(
+          error
+        );
+
+    $("loginError")
+      .classList
+      .add("show");
+
+
     try{
 
       await supabaseClient
@@ -9630,21 +9731,6 @@ async function init(){
       );
 
     }
-
-
-    showLogin();
-
-
-    $("loginError")
-      .textContent =
-        getLoginErrorMessage(
-          error
-        );
-
-
-    $("loginError")
-      .classList
-      .add("show");
 
   }
 
