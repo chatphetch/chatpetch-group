@@ -1,50 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title>
-  CHATPHETCH GROUP — Admin
-</title>
-
-<link
-  rel="preconnect"
-  href="https://fonts.googleapis.com"
->
-
-<link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin
->
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
-  rel="stylesheet"
->
-
-<script
-  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-  onerror="
-    (function(){
-      var s=document.createElement('script');
-      s.src='https://unpkg.com/@supabase/supabase-js@2';
-      s.onerror=function(){
-        window.__supabaseLoadFailed=true;
-      };
-      document.head.appendChild(s);
-    })();
-  "
-></script>
-
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHATPHETCH GROUP — Admin Dashboard</title>
 <style>
+
 
 /* =========================================================
    ROOT
@@ -269,6 +230,474 @@ img{
   font-size:12px;
 
 }
+
+
+/* =========================================================
+   PASSWORD RECOVERY
+========================================================= */
+
+function isPasswordRecoveryUrl(){
+
+  const hash =
+    String(
+      window.location.hash ||
+      ""
+    );
+
+  const search =
+    String(
+      window.location.search ||
+      ""
+    );
+
+  return (
+    /(?:^|&)type=recovery(?:&|$)/i.test(
+      hash.replace(/^#/,"")
+    ) ||
+    /(?:^|[?&])type=recovery(?:&|$)/i.test(
+      search
+    )
+  );
+
+}
+
+
+function showRecovery(){
+
+  passwordRecoveryMode =
+    true;
+
+  $("loading")
+    .classList
+    .add("hidden");
+
+  $("loginScreen")
+    .classList
+    .remove("show");
+
+  $("app")
+    .classList
+    .remove("show");
+
+  $("recoveryScreen")
+    .classList
+    .add("show");
+
+  $("newPassword")
+    .value = "";
+
+  $("confirmNewPassword")
+    .value = "";
+
+  $("recoveryMessage")
+    .classList
+    .remove("show");
+
+}
+
+
+function hideRecovery(){
+
+  passwordRecoveryMode =
+    false;
+
+  $("recoveryScreen")
+    .classList
+    .remove("show");
+
+}
+
+
+function showRecoveryMessage(
+  message,
+  success=false
+){
+
+  const box =
+    $("recoveryMessage");
+
+  box.textContent =
+    message;
+
+  box.style.color =
+    success
+      ? "#a8edc2"
+      : "#ff9999";
+
+  box.style.background =
+    success
+      ? "var(--green-bg)"
+      : "var(--red-bg)";
+
+  box.style.borderColor =
+    success
+      ? "rgba(85,217,133,.25)"
+      : "rgba(239,108,108,.3)";
+
+  box.classList
+    .add("show");
+
+}
+
+
+async function updatePassword(){
+
+  const password =
+    $("newPassword")
+      .value;
+
+  const confirmPassword =
+    $("confirmNewPassword")
+      .value;
+
+  const button =
+    $("recoveryButton");
+
+  if(
+    password.length < 6
+  ){
+
+    showRecoveryMessage(
+      "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"
+    );
+
+    return;
+
+  }
+
+  if(
+    password !==
+    confirmPassword
+  ){
+
+    showRecoveryMessage(
+      "รหัสผ่านทั้งสองช่องไม่ตรงกัน"
+    );
+
+    return;
+
+  }
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "กำลังบันทึก...";
+
+
+  try{
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .auth
+        .updateUser({
+          password:
+            password
+        });
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    showRecoveryMessage(
+      "เปลี่ยนรหัสผ่านเรียบร้อยแล้ว กำลังกลับไปหน้าเข้าสู่ระบบ...",
+      true
+    );
+
+
+    /*
+     * จบ recovery session แล้วกลับไปหน้า Login
+     * เพื่อให้ผู้ใช้เข้าสู่ระบบใหม่ด้วยรหัสผ่านใหม่
+     */
+    setTimeout(
+      async ()=>{
+
+        try{
+
+          await supabaseClient
+            .auth
+            .signOut();
+
+        }catch(error){
+
+          console.error(
+            "RECOVERY SIGNOUT ERROR:",
+            error
+          );
+
+        }
+
+
+        window.history
+          .replaceState(
+            {},
+            document.title,
+            window.location.pathname
+          );
+
+
+        hideRecovery();
+
+        showLogin();
+
+        $("loginError")
+          .classList
+          .remove("show");
+
+        $("loginEmail")
+          .focus();
+
+      },
+      1200
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "PASSWORD UPDATE ERROR:",
+      error
+    );
+
+
+    showRecoveryMessage(
+      getLoginErrorMessage(
+        error
+      )
+    );
+
+
+  }finally{
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "บันทึกรหัสผ่านใหม่";
+
+  }
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+const LOGIN_LOCK_KEY =
+  "chatpetch_admin_login_lock_until";
+
+let loginInProgress =
+  false;
+
+let loginLockTimer =
+  null;
+
+function getLoginLockUntil(){
+
+  const value =
+    Number(
+      localStorage.getItem(
+        LOGIN_LOCK_KEY
+      ) || 0
+    );
+
+  if(
+    !Number.isFinite(value) ||
+    value <= Date.now()
+  ){
+
+    localStorage.removeItem(
+      LOGIN_LOCK_KEY
+    );
+
+    return 0;
+
+  }
+
+  return value;
+
+}
+
+function getLoginRetrySeconds(){
+
+  const value =
+    getLoginLockUntil();
+
+  if(!value){
+
+    return 0;
+
+  }
+
+  return Math.max(
+    1,
+    Math.ceil(
+      (
+        value -
+        Date.now()
+      ) / 1000
+    )
+  );
+
+}
+
+function setLoginLock(seconds){
+
+  const safeSeconds =
+    Math.max(
+      1,
+      Math.min(
+        300,
+        Number(seconds) || 60
+      )
+    );
+
+  const until =
+    Date.now() +
+    (
+      safeSeconds *
+      1000
+    );
+
+  localStorage.setItem(
+    LOGIN_LOCK_KEY,
+    String(until)
+  );
+
+  renderLoginLock();
+
+}
+
+function clearLoginLock(){
+
+  localStorage.removeItem(
+    LOGIN_LOCK_KEY
+  );
+
+  if(loginLockTimer){
+
+    clearInterval(
+      loginLockTimer
+    );
+
+    loginLockTimer =
+      null;
+
+  }
+
+  renderLoginLock();
+
+}
+
+function renderLoginLock(){
+
+  const button =
+    $("loginButton");
+
+  if(!button){
+
+    return;
+
+  }
+
+  const seconds =
+    getLoginRetrySeconds();
+
+  if(seconds <= 0){
+
+    if(
+      loginLockTimer
+    ){
+
+      clearInterval(
+        loginLockTimer
+      );
+
+      loginLockTimer =
+        null;
+
+    }
+
+    button.disabled =
+      loginInProgress;
+
+    return;
+
+  }
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "รอ " +
+    seconds +
+    " วินาที";
+
+  if(
+    !loginLockTimer
+  ){
+
+    loginLockTimer =
+      setInterval(
+        renderLoginLock,
+        1000
+      );
+
+  }
+
+}
+
+function getAuthRateLimitSeconds(error){
+
+  const status =
+    Number(
+      error?.status ||
+      error?.statusCode ||
+      0
+    );
+
+  const code =
+    String(
+      error?.code ||
+      ""
+    ).toLowerCase();
+
+  const message =
+    String(
+      error?.message ||
+      ""
+    ).toLowerCase();
+
+  if(
+    status === 429 ||
+    code ===
+      "over_request_rate_limit" ||
+    message.includes(
+      "too many requests"
+    ) ||
+    message.includes(
+      "rate limit"
+    ) ||
+    message.includes(
+      "over_request_rate_limit"
+    )
+  ){
+
+    return 60;
+
+  }
+
+  return 0;
+
+}
+
 
 
 .login-screen{
@@ -512,10 +941,6 @@ img{
 ========================================================= */
 
 #app{
-  display:none;
-}
-
-#app.show{
   display:block;
 }
 
@@ -2534,1214 +2959,573 @@ tbody tr:hover{
   display:block;
 }
 
-</style>
 
-<style>#app{display:block;}#app.show{display:block;}</style>
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-
-<div id="loading" class="hidden"><div class="loading-inner"><div class="loading-text" id="loadingText">กำลังตรวจสอบสิทธิ์ผู้ดูแลระบบ...</div></div></div>
-
-<!-- =======================================================
-     APP
-======================================================== -->
-
 <div id="app">
-
-
 <header class="admin-header">
-
-  <div class="header-inner">
-
-
-    <!-- BRAND -->
-
-    <a
-      href="admin.html"
-      class="brand"
-    >
-
-      <img
-        src="assets/logo.png"
-        class="brand-logo"
-        alt="CHATPHETCH GROUP"
-      >
-
-      <div>
-
-        <div class="brand-name">
+<div class="header-inner">
+<!-- BRAND -->
+<a class="brand" href="admin-dashboard.html">
+<img alt="CHATPHETCH GROUP" class="brand-logo" src="assets/logo.png"/>
+<div>
+<div class="brand-name">
           CHATPHETCH GROUP
           <span class="owner-badge">
             BACK OFFICE
           </span>
-        </div>
-
-        <div class="brand-sub">
+</div>
+<div class="brand-sub">
           ADMIN MANAGEMENT SYSTEM
         </div>
-
-      </div>
-
-    </a>
-
-
-    <!-- NAV -->
-
-    <nav class="admin-nav">
-
-      <button
-        class="nav-button active"
-        data-view="dashboard"
-      >
+</div>
+</a>
+<!-- NAV -->
+<nav class="admin-nav">
+<button class="nav-button active" data-view="dashboard">
         หน้าแรก
       </button>
-
-      <button
-        class="nav-button"
-        data-view="orders"
-      >
+<button class="nav-button" data-view="orders">
         คำสั่งซื้อ
       </button>
-
-      <button
-        class="nav-button"
-        data-view="products"
-      >
+<button class="nav-button" data-view="products">
         สินค้า
       </button>
-
-      <button
-        class="nav-button"
-        data-view="users"
-      >
+<button class="nav-button" data-view="users">
         ผู้ใช้งาน
       </button>
-
-    </nav>
-
-
-    <!-- RIGHT -->
-
-    <div class="header-right">
-
-      <span
-        class="role-badge"
-        id="headerRole"
-      >
+</nav>
+<!-- RIGHT -->
+<div class="header-right">
+<span class="role-badge" id="headerRole">
         OWNER
       </span>
-
-      <span
-        class="user-email"
-        id="headerEmail"
-      >
+<span class="user-email" id="headerEmail">
         -
       </span>
-
-      <button
-        class="logout"
-        id="logoutButton"
-      >
+<button class="logout" id="logoutButton">
         ออกจากระบบ
       </button>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
 </header>
-
-
 <main class="main">
-
-
 <!-- =====================================================
      DASHBOARD
 ===================================================== -->
-
-<section
-  class="view active"
-  id="view-dashboard"
->
-
-  <div class="page-header">
-
-    <div>
-
-      <div class="eyebrow">
+<section class="view active" id="view-dashboard">
+<div class="page-header">
+<div>
+<div class="eyebrow">
         ADMIN DASHBOARD
       </div>
-
-      <h1 class="page-title">
+<h1 class="page-title">
         หน้าแรก
       </h1>
-
-      <div class="page-description">
+<div class="page-description">
         ศูนย์กลางจัดการคำสั่งซื้อ สินค้า และผู้ใช้งานของ CHATPHETCH GROUP
       </div>
-
-    </div>
-
-    <div class="page-actions">
-
-      <button
-        class="btn"
-        id="refreshDashboard"
-      >
+</div>
+<div class="page-actions">
+<button class="btn" id="refreshDashboard">
         ↻ รีเฟรชข้อมูล
       </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="stats">
-
-    <div class="stat gold">
-
-      <div class="stat-label">
+</div>
+</div>
+<div class="stats">
+<div class="stat gold">
+<div class="stat-label">
         คำสั่งซื้อทั้งหมด
       </div>
-
-      <div
-        class="stat-number"
-        id="statOrders"
-      >
+<div class="stat-number" id="statOrders">
         0
       </div>
-
-      <div class="stat-sub">
+<div class="stat-sub">
         Orders
       </div>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div class="stat-label">
+</div>
+<div class="stat">
+<div class="stat-label">
         รอตรวจสอบ
       </div>
-
-      <div
-        class="stat-number"
-        id="statPending"
-      >
+<div class="stat-number" id="statPending">
         0
       </div>
-
-      <div class="stat-sub">
+<div class="stat-sub">
         Pending
       </div>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div class="stat-label">
+</div>
+<div class="stat">
+<div class="stat-label">
         กำลังจัดส่ง
       </div>
-
-      <div
-        class="stat-number"
-        id="statShipping"
-      >
+<div class="stat-number" id="statShipping">
         0
       </div>
-
-      <div class="stat-sub">
+<div class="stat-sub">
         Shipping
       </div>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div class="stat-label">
+</div>
+<div class="stat">
+<div class="stat-label">
         จัดส่งสำเร็จ
       </div>
-
-      <div
-        class="stat-number"
-        id="statCompleted"
-      >
+<div class="stat-number" id="statCompleted">
         0
       </div>
-
-      <div class="stat-sub">
+<div class="stat-sub">
         Completed
       </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="quick-grid">
-
-    <div
-      class="quick-card"
-      data-go="orders"
-    >
-
-      <div class="quick-icon">
+</div>
+</div>
+<div class="quick-grid">
+<div class="quick-card" data-go="orders">
+<div class="quick-icon">
         🛒
       </div>
-
-      <div class="quick-title">
+<div class="quick-title">
         จัดการคำสั่งซื้อ
       </div>
-
-      <div class="quick-text">
+<div class="quick-text">
         ตรวจสอบออเดอร์ ดูข้อมูลลูกค้า ตรวจสลิป เปลี่ยนสถานะ และลบออเดอร์ที่ผิดพลาด
       </div>
-
-    </div>
-
-
-    <div
-      class="quick-card"
-      data-go="products"
-    >
-
-      <div class="quick-icon">
+</div>
+<div class="quick-card" data-go="products">
+<div class="quick-icon">
         📦
       </div>
-
-      <div class="quick-title">
+<div class="quick-title">
         จัดการสินค้า
       </div>
-
-      <div class="quick-text">
+<div class="quick-text">
         เพิ่ม แก้ไข ซ่อน แสดง และลบสินค้าจากระบบ Admin ได้โดยตรง
       </div>
-
-    </div>
-
-
-    <div
-      class="quick-card"
-      data-go="users"
-    >
-
-      <div class="quick-icon">
+</div>
+<div class="quick-card" data-go="users">
+<div class="quick-icon">
         👤
       </div>
-
-      <div class="quick-title">
+<div class="quick-title">
         จัดการผู้ใช้งาน
       </div>
-
-      <div class="quick-text">
+<div class="quick-text">
         จัดการ Owner, Manager, Staff และ Viewer
       </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="panel">
-
-    <div class="panel-head">
-
-      <div>
-
-        <div class="panel-title">
+</div>
+</div>
+<div class="panel">
+<div class="panel-head">
+<div>
+<div class="panel-title">
           คำสั่งซื้อล่าสุด
         </div>
-
-        <div class="panel-sub">
+<div class="panel-sub">
           รายการล่าสุดจากระบบ
         </div>
-
-      </div>
-
-      <button
-        class="btn"
-        data-go="orders"
-      >
+</div>
+<button class="btn" data-go="orders">
         ดูทั้งหมด
       </button>
-
-    </div>
-
-    <div
-      class="table-wrap"
-      id="dashboardRecent"
-    ></div>
-
-  </div>
-
+</div>
+<div class="table-wrap" id="dashboardRecent"></div>
+</div>
 </section>
-
-
 <!-- =====================================================
      ORDERS
 ===================================================== -->
-
-<section
-  class="view"
-  id="view-orders"
->
-
-  <div class="page-header">
-
-    <div>
-
-      <div class="eyebrow">
+<section class="view" id="view-orders">
+<div class="page-header">
+<div>
+<div class="eyebrow">
         ORDER MANAGEMENT
       </div>
-
-      <h1 class="page-title">
+<h1 class="page-title">
         คำสั่งซื้อ
       </h1>
-
-      <div class="page-description">
+<div class="page-description">
         ตรวจสอบคำสั่งซื้อ การชำระเงิน และสถานะการจัดส่ง
       </div>
-
-    </div>
-
-    <div class="page-actions">
-
-      <button
-        class="btn"
-        id="refreshOrders"
-      >
+</div>
+<div class="page-actions">
+<button class="btn" id="refreshOrders">
         ↻ รีเฟรช
       </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="filter">
-
-    <div class="search">
-
-      <input
-        class="input"
-        id="orderSearch"
-        placeholder="ค้นหาเลขคำสั่งซื้อ / ชื่อลูกค้า / เบอร์โทร"
-      >
-
-    </div>
-
-
-    <select
-      class="select"
-      id="orderStatusFilter"
-      style="max-width:210px"
-    >
-
-      <option value="">
+</div>
+</div>
+<div class="filter">
+<div class="search">
+<input class="input" id="orderSearch" placeholder="ค้นหาเลขคำสั่งซื้อ / ชื่อลูกค้า / เบอร์โทร"/>
+</div>
+<select class="select" id="orderStatusFilter" style="max-width:210px">
+<option value="">
         ทุกสถานะ
       </option>
-
-      <option value="pending">
+<option value="pending">
         รอตรวจสอบ
       </option>
-
-      <option value="confirmed">
+<option value="confirmed">
         ยืนยันแล้ว
       </option>
-
-      <option value="preparing">
+<option value="preparing">
         กำลังเตรียมสินค้า
       </option>
-
-      <option value="shipping">
+<option value="shipping">
         กำลังจัดส่ง
       </option>
-
-      <option value="completed">
+<option value="completed">
         จัดส่งสำเร็จ
       </option>
-
-      <option value="cancelled">
+<option value="cancelled">
         ยกเลิก
       </option>
-
-    </select>
-
-  </div>
-
-
-  <div class="panel">
-
-    <div class="panel-head">
-
-      <div>
-
-        <div class="panel-title">
+</select>
+</div>
+<div class="panel">
+<div class="panel-head">
+<div>
+<div class="panel-title">
           รายการคำสั่งซื้อ
         </div>
-
-        <div
-          class="panel-sub"
-          id="orderCount"
-        >
+<div class="panel-sub" id="orderCount">
           0 รายการ
         </div>
-
-      </div>
-
-    </div>
-
-    <div
-      class="table-wrap"
-      id="ordersTable"
-    ></div>
-
-  </div>
-
+</div>
+</div>
+<div class="table-wrap" id="ordersTable"></div>
+</div>
 </section>
-
-
 <!-- =====================================================
      PRODUCTS
 ===================================================== -->
-
-<section
-  class="view"
-  id="view-products"
->
-
-  <div class="page-header">
-
-    <div>
-
-      <div class="eyebrow">
+<section class="view" id="view-products">
+<div class="page-header">
+<div>
+<div class="eyebrow">
         PRODUCT MANAGEMENT
       </div>
-
-      <h1 class="page-title">
+<h1 class="page-title">
         สินค้า
       </h1>
-
-      <div class="page-description">
+<div class="page-description">
         จัดการรายละเอียดสินค้า ราคา ตัวเลือก รูปภาพ และสถานะการแสดงผล
       </div>
-
-    </div>
-
-    <div class="page-actions">
-
-      <button
-        class="btn"
-        id="refreshProducts"
-      >
+</div>
+<div class="page-actions">
+<button class="btn" id="refreshProducts">
         ↻ รีเฟรช
       </button>
-
-      <button
-        class="btn gold"
-        id="addProductButton"
-      >
+<button class="btn gold" id="addProductButton">
         ＋ เพิ่มสินค้า
       </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="stats">
-
-    <div class="stat gold">
-
-      <div class="stat-label">
+</div>
+</div>
+<div class="stats">
+<div class="stat gold">
+<div class="stat-label">
         สินค้าทั้งหมด
       </div>
-
-      <div
-        class="stat-number"
-        id="productTotal"
-      >
+<div class="stat-number" id="productTotal">
         0
       </div>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div class="stat-label">
+</div>
+<div class="stat">
+<div class="stat-label">
         แสดงอยู่
       </div>
-
-      <div
-        class="stat-number"
-        id="productVisible"
-      >
+<div class="stat-number" id="productVisible">
         0
       </div>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div class="stat-label">
+</div>
+<div class="stat">
+<div class="stat-label">
         ซ่อนอยู่
       </div>
-
-      <div
-        class="stat-number"
-        id="productHidden"
-      >
+<div class="stat-number" id="productHidden">
         0
       </div>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div class="stat-label">
+</div>
+<div class="stat">
+<div class="stat-label">
         หมวดหมู่
       </div>
-
-      <div
-        class="stat-number"
-        id="productCategories"
-      >
+<div class="stat-number" id="productCategories">
         0
       </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="filter">
-
-    <div class="search">
-
-      <input
-        class="input"
-        id="productSearch"
-        placeholder="ค้นหาชื่อสินค้า / รหัสสินค้า"
-      >
-
-    </div>
-
-
-    <select
-      class="select"
-      id="productCategoryFilter"
-      style="max-width:210px"
-    >
-
-      <option value="">
+</div>
+</div>
+<div class="filter">
+<div class="search">
+<input class="input" id="productSearch" placeholder="ค้นหาชื่อสินค้า / รหัสสินค้า"/>
+</div>
+<select class="select" id="productCategoryFilter" style="max-width:210px">
+<option value="">
         ทุกหมวดหมู่
       </option>
-
-      <option value="floor">
+<option value="floor">
         พื้น
       </option>
-
-      <option value="coating">
+<option value="coating">
         น้ำยาเคลือบ
       </option>
-
-      <option value="waterproof">
+<option value="waterproof">
         กันรั่วซึม
       </option>
-
-      <option value="repair">
+<option value="repair">
         ซ่อมคอนกรีต
       </option>
-
-      <option value="sport">
+<option value="sport">
         พื้นสนามกีฬา
       </option>
-
-      <option value="traffic">
+<option value="traffic">
         เส้นจราจร
       </option>
-
-      <option value="other">
+<option value="other">
         อื่น ๆ
       </option>
-
-    </select>
-
-  </div>
-
-
-  <div
-    class="product-grid"
-    id="productGrid"
-  ></div>
-
+</select>
+</div>
+<div class="product-grid" id="productGrid"></div>
 </section>
-
-
 <!-- =====================================================
      USERS
 ===================================================== -->
-
-<section
-  class="view"
-  id="view-users"
->
-
-  <div class="page-header">
-
-    <div>
-
-      <div class="eyebrow">
+<section class="view" id="view-users">
+<div class="page-header">
+<div>
+<div class="eyebrow">
         USER MANAGEMENT
       </div>
-
-      <h1 class="page-title">
+<h1 class="page-title">
         ผู้ใช้งาน
       </h1>
-
-      <div class="page-description">
+<div class="page-description">
         จัดการสิทธิ์ผู้ดูแลระบบของ CHATPHETCH GROUP
       </div>
-
-    </div>
-
-    <div class="page-actions">
-
-      <button
-        class="btn"
-        id="refreshUsers"
-      >
+</div>
+<div class="page-actions">
+<button class="btn" id="refreshUsers">
         ↻ รีเฟรช
       </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="panel">
-
-    <div class="panel-head">
-
-      <div>
-
-        <div class="panel-title">
+</div>
+</div>
+<div class="panel">
+<div class="panel-head">
+<div>
+<div class="panel-title">
           รายชื่อผู้ใช้งาน
         </div>
-
-        <div class="panel-sub">
+<div class="panel-sub">
           OWNER / MANAGER / STAFF / VIEWER
         </div>
-
-      </div>
-
-    </div>
-
-    <div
-      class="table-wrap"
-      id="usersTable"
-    ></div>
-
-  </div>
-
-</section>
-
-
-</main>
-
 </div>
-
-
-<!-- =======================================================
-     ORDER MODAL
-======================================================== -->
-
-<div
-  class="modal"
-  id="orderModal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <div class="modal-title">
+</div>
+<div class="table-wrap" id="usersTable"></div>
+</div>
+</section>
+</main>
+</div>
+<div class="modal" id="orderModal">
+<div class="modal-box">
+<div class="modal-head">
+<div class="modal-title">
         รายละเอียดคำสั่งซื้อ
       </div>
-
-      <button
-        class="modal-close"
-        data-close="orderModal"
-      >
+<button class="modal-close" data-close="orderModal">
         ×
       </button>
-
-    </div>
-
-    <div
-      class="modal-body"
-      id="orderModalBody"
-    ></div>
-
-  </div>
-
 </div>
-
-
-<!-- =======================================================
-     PRODUCT MODAL
-======================================================== -->
-
-<div
-  class="modal"
-  id="productModal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <div
-        class="modal-title"
-        id="productModalTitle"
-      >
+<div class="modal-body" id="orderModalBody"></div>
+</div>
+</div>
+<div class="modal" id="productModal">
+<div class="modal-box">
+<div class="modal-head">
+<div class="modal-title" id="productModalTitle">
         เพิ่มสินค้า
       </div>
-
-      <button
-        class="modal-close"
-        data-close="productModal"
-      >
+<button class="modal-close" data-close="productModal">
         ×
       </button>
-
-    </div>
-
-    <div class="modal-body">
-
-
-      <form id="productForm">
-
-
-        <input
-          type="hidden"
-          id="productId"
-        >
-
-
-        <div class="form-grid">
-
-
-          <div class="form-group">
-
-            <label class="form-label">
+</div>
+<div class="modal-body">
+<form id="productForm">
+<input id="productId" type="hidden"/>
+<div class="form-grid">
+<div class="form-group">
+<label class="form-label">
               รหัสสินค้า
             </label>
-
-            <input
-              class="input"
-              id="productCode"
-              required
-              placeholder="เช่น 91428"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label class="form-label">
+<input class="input" id="productCode" placeholder="เช่น 91428" required=""/>
+</div>
+<div class="form-group">
+<label class="form-label">
               ชื่อสินค้า
             </label>
-
-            <input
-              class="input"
-              id="productName"
-              required
-              placeholder="ชื่อสินค้า"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label class="form-label">
+<input class="input" id="productName" placeholder="ชื่อสินค้า" required=""/>
+</div>
+<div class="form-group">
+<label class="form-label">
               หมวดหมู่
             </label>
-
-            <select
-              class="select"
-              id="productCategory"
-            >
-
-              <option value="floor">
+<select class="select" id="productCategory">
+<option value="floor">
                 พื้น
               </option>
-
-              <option value="coating">
+<option value="coating">
                 น้ำยาเคลือบ
               </option>
-
-              <option value="waterproof">
+<option value="waterproof">
                 กันรั่วซึม
               </option>
-
-              <option value="repair">
+<option value="repair">
                 ซ่อมคอนกรีต
               </option>
-
-              <option value="sport">
+<option value="sport">
                 พื้นสนามกีฬา
               </option>
-
-              <option value="traffic">
+<option value="traffic">
                 เส้นจราจร
               </option>
-
-              <option value="other">
+<option value="other">
                 อื่น ๆ
               </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label class="form-label">
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">
               ชื่อหมวดหมู่
             </label>
-
-            <input
-              class="input"
-              id="productCategoryLabel"
-              placeholder="เช่น พื้นตกแต่ง"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label class="form-label">
+<input class="input" id="productCategoryLabel" placeholder="เช่น พื้นตกแต่ง"/>
+</div>
+<div class="form-group">
+<label class="form-label">
               ราคาเริ่มต้น
             </label>
-
-            <input
-              class="input"
-              id="productPrice"
-              type="number"
-              min="0"
-              step="0.01"
-              placeholder="0"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label class="form-label">
+<input class="input" id="productPrice" min="0" placeholder="0" step="0.01" type="number"/>
+</div>
+<div class="form-group">
+<label class="form-label">
               ลำดับการแสดง
             </label>
-
-            <input
-              class="input"
-              id="productSort"
-              type="number"
-              value="0"
-            >
-
-          </div>
-
-
-          <div class="form-group full">
-
-            <label class="form-label">
+<input class="input" id="productSort" type="number" value="0"/>
+</div>
+<div class="form-group full">
+<label class="form-label">
               รูปสินค้า
             </label>
-
-            <input
-              class="input"
-              id="productImage"
-              placeholder="assets/products/ชื่อไฟล์.jpg"
-            >
-
-          </div>
-
-
-          <div class="form-group full">
-
-            <label class="form-label">
+<input class="input" id="productImage" placeholder="assets/products/ชื่อไฟล์.jpg"/>
+</div>
+<div class="form-group full">
+<label class="form-label">
               คำอธิบายสั้น
             </label>
-
-            <input
-              class="input"
-              id="productShort"
-              placeholder="คำอธิบายสั้นของสินค้า"
-            >
-
-          </div>
-
-
-          <div class="form-group full">
-
-            <label class="form-label">
+<input class="input" id="productShort" placeholder="คำอธิบายสั้นของสินค้า"/>
+</div>
+<div class="form-group full">
+<label class="form-label">
               รายละเอียดสินค้า
             </label>
-
-            <textarea
-              class="textarea"
-              id="productDescription"
-              placeholder="รายละเอียดสินค้า"
-            ></textarea>
-
-          </div>
-
-
-          <div class="form-group full">
-
-            <label class="form-label">
+<textarea class="textarea" id="productDescription" placeholder="รายละเอียดสินค้า"></textarea>
+</div>
+<div class="form-group full">
+<label class="form-label">
               การใช้งาน
             </label>
-
-            <textarea
-              class="textarea"
-              id="productUsage"
-              placeholder="ใช้สำหรับ..."
-            ></textarea>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label class="form-label">
+<textarea class="textarea" id="productUsage" placeholder="ใช้สำหรับ..."></textarea>
+</div>
+<div class="form-group">
+<label class="form-label">
               พื้นที่การใช้งาน / Coverage
             </label>
-
-            <input
-              class="input"
-              id="productCoverage"
-              placeholder="เช่น 8-10 ตร.ม./กระสอบ"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label class="form-label">
+<input class="input" id="productCoverage" placeholder="เช่น 8-10 ตร.ม./กระสอบ"/>
+</div>
+<div class="form-group">
+<label class="form-label">
               ขนาดบรรจุ
             </label>
-
-            <input
-              class="input"
-              id="productPackage"
-              placeholder="เช่น 25 กก."
-            >
-
-          </div>
-
-
-          <div class="form-group full">
-
-            <label class="form-label">
+<input class="input" id="productPackage" placeholder="เช่น 25 กก."/>
+</div>
+<div class="form-group full">
+<label class="form-label">
               คุณสมบัติเด่น
             </label>
-
-            <div id="featuresContainer"></div>
-
-            <button
-              type="button"
-              class="btn"
-              id="addFeature"
-            >
+<div id="featuresContainer"></div>
+<button class="btn" id="addFeature" type="button">
               ＋ เพิ่มคุณสมบัติ
             </button>
-
-          </div>
-
-
-          <div class="form-group full">
-
-            <label class="form-label">
+</div>
+<div class="form-group full">
+<label class="form-label">
               ตัวเลือกสินค้า / ขนาด / ราคา
             </label>
-
-            <div id="optionsContainer"></div>
-
-            <button
-              type="button"
-              class="btn"
-              id="addOption"
-            >
+<div id="optionsContainer"></div>
+<button class="btn" id="addOption" type="button">
               ＋ เพิ่มตัวเลือก
             </button>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label class="form-label">
+</div>
+<div class="form-group">
+<label class="form-label">
               สถานะ
             </label>
-
-            <select
-              class="select"
-              id="productVisible"
-            >
-
-              <option value="true">
+<select class="select" id="productVisible">
+<option value="true">
                 แสดงสินค้า
               </option>
-
-              <option value="false">
+<option value="false">
                 ซ่อนสินค้า
               </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label class="form-label">
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">
               Technical Data
             </label>
-
-            <textarea
-              class="textarea"
-              id="productTechnical"
-              placeholder="Compressive strength / Bond strength / Setting time / Opening time"
-            ></textarea>
-
-          </div>
-
-
-        </div>
-
-
-        <div class="form-footer">
-
-          <button
-            type="button"
-            class="btn"
-            data-close="productModal"
-          >
+<textarea class="textarea" id="productTechnical" placeholder="Compressive strength / Bond strength / Setting time / Opening time"></textarea>
+</div>
+</div>
+<div class="form-footer">
+<button class="btn" data-close="productModal" type="button">
             ยกเลิก
           </button>
-
-          <button
-            type="submit"
-            class="btn gold"
-            id="saveProductButton"
-          >
+<button class="btn gold" id="saveProductButton" type="submit">
             บันทึกสินค้า
           </button>
-
-        </div>
-
-
-      </form>
-
-    </div>
-
-  </div>
-
 </div>
-
-
-<!-- =======================================================
-     CONFIRM MODAL
-======================================================== -->
-
-<div
-  class="modal"
-  id="confirmModal"
->
-
-  <div class="modal-box small">
-
-    <div class="modal-head">
-
-      <div
-        class="modal-title"
-        id="confirmTitle"
-      >
+</form>
+</div>
+</div>
+</div>
+<div class="modal" id="confirmModal">
+<div class="modal-box small">
+<div class="modal-head">
+<div class="modal-title" id="confirmTitle">
         ยืนยัน
       </div>
-
-      <button
-        class="modal-close"
-        data-close="confirmModal"
-      >
+<button class="modal-close" data-close="confirmModal">
         ×
       </button>
-
-    </div>
-
-    <div class="modal-body">
-
-      <div
-        id="confirmText"
-        style="
+</div>
+<div class="modal-body">
+<div id="confirmText" style="
           color:#aaa;
           font-size:12px;
           line-height:1.8;
-        "
-      ></div>
-
-      <div
-        class="form-footer"
-        style="margin-top:20px"
-      >
-
-        <button
-          class="btn"
-          data-close="confirmModal"
-        >
+        "></div>
+<div class="form-footer" style="margin-top:20px">
+<button class="btn" data-close="confirmModal">
           ยกเลิก
         </button>
-
-        <button
-          class="btn gold"
-          id="confirmButton"
-        >
+<button class="btn gold" id="confirmButton">
           ยืนยัน
         </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
 </div>
-
-
-<!-- =======================================================
-     TOAST
-======================================================== -->
-
-<div
-  class="toast"
-  id="toast"
-></div>
-
-
+</div>
+</div>
+</div>
+<div class="toast" id="toast"></div>
 <script>
-
 /* =========================================================
    SUPABASE
 ========================================================= */
@@ -3753,7 +3537,18 @@ const SUPABASE_KEY =
   "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
 
 
-let supabaseClient = null;
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY,
+    {
+      auth:{
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true
+      }
+    }
+  );
 
 
 /* =========================================================
@@ -3773,12 +3568,6 @@ let products = [];
 let adminUsers = [];
 
 let confirmAction = null;
-
-let passwordRecoveryMode =
-  false;
-
-let authProcessing =
-  false;
 
 
 /* =========================================================
@@ -3906,57 +3695,18 @@ function showLogin(){
 
   showLoading(false);
 
-  window.location.replace("./admin.html");
+  $("loginScreen")
+    .classList
+    .add("show");
+
+  $("app")
+    .classList
+    .remove("show");
 
 }
 
 
 function showApp(){
-
-  showLoading(false);
-
-  const app = $("app");
-
-  if(app){
-    app.classList.add("show");
-  }
-
-}
-
-/* =========================================================
-   PASSWORD RECOVERY
-========================================================= */
-
-function isPasswordRecoveryUrl(){
-
-  const hash =
-    String(
-      window.location.hash ||
-      ""
-    );
-
-  const search =
-    String(
-      window.location.search ||
-      ""
-    );
-
-  return (
-    /(?:^|&)type=recovery(?:&|$)/i.test(
-      hash.replace(/^#/,"")
-    ) ||
-    /(?:^|[?&])type=recovery(?:&|$)/i.test(
-      search
-    )
-  );
-
-}
-
-
-function showRecovery(){
-
-  passwordRecoveryMode =
-    true;
 
   showLoading(false);
 
@@ -3966,714 +3716,131 @@ function showRecovery(){
 
   $("app")
     .classList
-    .remove("show");
-
-  $("recoveryScreen")
-    .classList
-    .add("show");
-
-  $("newPassword")
-    .value = "";
-
-  $("confirmNewPassword")
-    .value = "";
-
-  $("recoveryMessage")
-    .classList
-    .remove("show");
-
-}
-
-
-function hideRecovery(){
-
-  passwordRecoveryMode =
-    false;
-
-  $("recoveryScreen")
-    .classList
-    .remove("show");
-
-}
-
-
-function showRecoveryMessage(
-  message,
-  success=false
-){
-
-  const box =
-    $("recoveryMessage");
-
-  box.textContent =
-    message;
-
-  box.style.color =
-    success
-      ? "#a8edc2"
-      : "#ff9999";
-
-  box.style.background =
-    success
-      ? "var(--green-bg)"
-      : "var(--red-bg)";
-
-  box.style.borderColor =
-    success
-      ? "rgba(85,217,133,.25)"
-      : "rgba(239,108,108,.3)";
-
-  box.classList
     .add("show");
 
 }
 
 
-async function updatePassword(){
+/* =========================================================
+   LOAD ROLE
+========================================================= */
 
-  const password =
-    $("newPassword")
-      .value;
+async function loadRole(){
 
-  const confirmPassword =
-    $("confirmNewPassword")
-      .value;
-
-  const button =
-    $("recoveryButton");
-
-  if(
-    password.length < 6
-  ){
-
-    showRecoveryMessage(
-      "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"
+  if(!currentUser){
+    throw new Error(
+      "ไม่พบผู้ใช้งาน"
     );
-
-    return;
-
   }
 
-  if(
-    password !==
-    confirmPassword
-  ){
 
-    showRecoveryMessage(
-      "รหัสผ่านทั้งสองช่องไม่ตรงกัน"
-    );
-
-    return;
-
-  }
-
-  button.disabled =
-    true;
-
-  button.textContent =
-    "กำลังบันทึก...";
-
-
-  try{
-
-    const {
-      error
-    } =
-      await supabaseClient
-        .auth
-        .updateUser({
-          password:
-            password
-        });
-
-
-    if(error){
-
-      throw error;
-
-    }
-
-
-    showRecoveryMessage(
-      "เปลี่ยนรหัสผ่านเรียบร้อยแล้ว กำลังกลับไปหน้าเข้าสู่ระบบ...",
-      true
-    );
-
-
-    /*
-     * จบ recovery session แล้วกลับไปหน้า Login
-     * เพื่อให้ผู้ใช้เข้าสู่ระบบใหม่ด้วยรหัสผ่านใหม่
-     */
-    setTimeout(
-      async ()=>{
-
-        try{
-
-          await supabaseClient
-            .auth
-            .signOut();
-
-        }catch(error){
-
-          console.error(
-            "RECOVERY SIGNOUT ERROR:",
-            error
-          );
-
-        }
-
-
-        window.history
-          .replaceState(
-            {},
-            document.title,
-            window.location.pathname
-          );
-
-
-        hideRecovery();
-
-        showLogin();
-
-        $("loginError")
-          .classList
-          .remove("show");
-
-        $("loginEmail")
-          .focus();
-
-      },
-      1200
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "PASSWORD UPDATE ERROR:",
-      error
-    );
-
-
-    showRecoveryMessage(
-      getLoginErrorMessage(
-        error
+  const roleQuery =
+    supabaseClient
+      .from("admin_users")
+      .select(
+        "user_id,email,name,role,active"
       )
-    );
-
-
-  }finally{
-
-    button.disabled =
-      false;
-
-    button.textContent =
-      "บันทึกรหัสผ่านใหม่";
-
-  }
-
-}
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-const LOGIN_LOCK_KEY =
-  "chatpetch_admin_login_lock_until";
-
-/*
- * ล้าง client-side lock เก่าจากเวอร์ชันก่อนหน้าเมื่อเปิดหน้าใหม่
- * Rate limit จริงยังคงถูกควบคุมโดย Supabase ฝั่งเซิร์ฟเวอร์
- */
-(function clearLegacyLoginLock(){
-
-  localStorage.removeItem(
-    LOGIN_LOCK_KEY
-  );
-
-})();
-
-let loginInProgress =
-  false;
-
-let loginLockTimer =
-  null;
-
-function getLoginLockUntil(){
-
-  const value =
-    Number(
-      localStorage.getItem(
-        LOGIN_LOCK_KEY
-      ) || 0
-    );
-
-  if(
-    !Number.isFinite(value) ||
-    value <= Date.now()
-  ){
-
-    localStorage.removeItem(
-      LOGIN_LOCK_KEY
-    );
-
-    return 0;
-
-  }
-
-  return value;
-
-}
-
-function getLoginRetrySeconds(){
-
-  const value =
-    getLoginLockUntil();
-
-  if(!value){
-
-    return 0;
-
-  }
-
-  return Math.max(
-    1,
-    Math.ceil(
-      (
-        value -
-        Date.now()
-      ) / 1000
-    )
-  );
-
-}
-
-function setLoginLock(seconds){
-
-  const safeSeconds =
-    Math.max(
-      1,
-      Math.min(
-        300,
-        Number(seconds) || 60
+      .eq(
+        "user_id",
+        currentUser.id
       )
+      .maybeSingle();
+
+
+  const timeout =
+    new Promise(
+      resolve =>
+        setTimeout(
+          ()=>resolve({
+            data:null,
+            error:new Error(
+              "หมดเวลาตรวจสอบสิทธิ์ กรุณาตรวจสอบ RLS ของตาราง admin_users และการเชื่อมต่อ Supabase"
+            )
+          }),
+          10000
+        )
     );
 
-  const until =
-    Date.now() +
-    (
-      safeSeconds *
-      1000
+
+  const {
+    data,
+    error
+  } =
+    await Promise.race([
+      roleQuery,
+      timeout
+    ]);
+
+
+  if(error){
+    throw error;
+  }
+
+
+  if(!data){
+
+    throw new Error(
+      "บัญชีนี้ยังไม่ได้ถูกเพิ่มใน admin_users"
     );
 
-  localStorage.setItem(
-    LOGIN_LOCK_KEY,
-    String(until)
-  );
+  }
 
-  renderLoginLock();
 
-}
+  if(data.active !== true){
 
-function clearLoginLock(){
-
-  localStorage.removeItem(
-    LOGIN_LOCK_KEY
-  );
-
-  if(loginLockTimer){
-
-    clearInterval(
-      loginLockTimer
+    throw new Error(
+      "บัญชีนี้ถูกปิดการใช้งาน"
     );
 
-    loginLockTimer =
-      null;
-
   }
 
-  renderLoginLock();
 
-}
-
-function renderLoginLock(){
-
-  const button =
-    $("loginButton");
-
-  if(!button){
-
-    return;
-
-  }
-
-  const seconds =
-    getLoginRetrySeconds();
-
-  if(seconds <= 0){
-
-    if(
-      loginLockTimer
-    ){
-
-      clearInterval(
-        loginLockTimer
-      );
-
-      loginLockTimer =
-        null;
-
-    }
-
-    button.disabled =
-      loginInProgress;
-
-    return;
-
-  }
-
-  button.disabled =
-    true;
-
-  button.textContent =
-    "รอ " +
-    seconds +
-    " วินาที";
-
-  if(
-    !loginLockTimer
-  ){
-
-    loginLockTimer =
-      setInterval(
-        renderLoginLock,
-        1000
-      );
-
-  }
-
-}
-
-function getAuthRateLimitSeconds(error){
-
-  const status =
-    Number(
-      error?.status ||
-      error?.statusCode ||
-      0
-    );
-
-  const code =
+  currentRole =
     String(
-      error?.code ||
-      ""
-    ).toLowerCase();
-
-  const message =
-    String(
-      error?.message ||
-      ""
-    ).toLowerCase();
-
-  if(
-    status === 429 ||
-    code ===
-      "over_request_rate_limit" ||
-    message.includes(
-      "too many requests"
-    ) ||
-    message.includes(
-      "rate limit"
-    ) ||
-    message.includes(
-      "over_request_rate_limit"
-    )
-  ){
-
-    return 60;
-
-  }
-
-  return 0;
-
-}
-
-
-
-
-
-
-/* =========================================================
-   AUTH URL
-========================================================= */
-
-function getRedirectUrl(){
-
-  return (
-    "https://chatphetch.github.io/chatpetch-group/admin.html"
-  );
-
-}
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-function getLoginErrorMessage(error){
-
-  const message =
-    String(
-      error?.message || ""
-    ).toLowerCase();
-
-  if(
-    message.includes("invalid login credentials") ||
-    message.includes("invalid credentials")
-  ){
-    return "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
-  }
-
-  if(
-    message.includes("email not confirmed")
-  ){
-    return "อีเมลนี้ยังไม่ได้ยืนยัน กรุณาตรวจสอบอีเมลก่อนเข้าสู่ระบบ";
-  }
-
-  if(
-    Number(error?.status) === 429 ||
-    message.includes("too many requests") ||
-    message.includes("rate limit") ||
-    message.includes("over_request_rate_limit")
-  ){
-    return "Supabase จำกัดการเข้าสู่ระบบชั่วคราว เนื่องจากมีคำขอมากเกินไป กรุณารอให้ระบบปลด Rate Limit ก่อน แล้วจึงลองใหม่อีกครั้ง";
-  }
-
-  if(
-    message.includes("network") ||
-    message.includes("fetch")
-  ){
-    return "ไม่สามารถเชื่อมต่อระบบได้ กรุณาตรวจสอบอินเทอร์เน็ต";
-  }
-
-  return (
-    error?.message ||
-    "ไม่สามารถเข้าสู่ระบบได้"
-  );
-
-}
-
-
-async function login(){
-
-  const emailInput =
-    $("loginEmail");
-
-  const passwordInput =
-    $("loginPassword");
-
-  const button =
-    $("loginButton");
-
-  const errorBox =
-    $("loginError");
-
-
-  if(
-    loginInProgress
-  ){
-
-    return;
-
-  }
-
-
-  const email =
-    String(
-      emailInput?.value ||
+      data.role ||
       ""
     )
       .trim()
       .toLowerCase();
 
-  const password =
-    String(
-      passwordInput?.value ||
-      ""
-    );
 
-
-  errorBox.classList.remove(
-    "show"
-  );
+  const allowedRoles = [
+    "owner",
+    "manager",
+    "staff",
+    "viewer"
+  ];
 
 
   if(
-    !email ||
-    !emailInput.checkValidity()
+    !allowedRoles.includes(
+      currentRole
+    )
   ){
 
-    errorBox.textContent =
-      "กรุณากรอกอีเมลให้ถูกต้อง";
-
-    errorBox.classList.add(
-      "show"
+    throw new Error(
+      "บัญชีนี้มี Role ไม่ถูกต้อง"
     );
-
-    emailInput.focus();
-
-    return;
 
   }
 
 
-  if(!password){
+  $("headerRole")
+    .textContent =
+      currentRole.toUpperCase();
 
-    errorBox.textContent =
-      "กรุณากรอกรหัสผ่าน";
-
-    errorBox.classList.add(
-      "show"
-    );
-
-    passwordInput.focus();
-
-    return;
-
-  }
-
-
-  loginInProgress =
-    true;
-
-  button.disabled =
-    true;
-
-  button.textContent =
-    "กำลังเข้าสู่ระบบ...";
-
-  emailInput.disabled =
-    true;
-
-  passwordInput.disabled =
-    true;
-
-
-  try{
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .auth
-        .signInWithPassword({
-          email,
-          password
-        });
-
-
-    if(error){
-
-      throw error;
-
-    }
-
-
-    if(
-      !data?.user
-    ){
-
-      throw new Error(
-        "ไม่พบข้อมูลผู้ใช้งานหลังเข้าสู่ระบบ"
-      );
-
-    }
-
-
-    currentUser =
-      data.user;
-
-
-    await loadRole();
-
-
-    passwordInput.value =
+  $("headerEmail")
+    .textContent =
+      data.email ||
+      currentUser.email ||
       "";
 
-
-    showApp();
-
-    showLoading(false);
-
-    await loadDashboard();
-
-
-  }catch(error){
-
-    console.error(
-      "LOGIN ERROR:",
-      error
-    );
-
-
-    currentUser =
-      null;
-
-    currentRole =
-      null;
-
-
-    showLogin();
-
-    showLoading(false);
-
-
-    errorBox.textContent =
-      getLoginErrorMessage(
-        error
-      );
-
-    errorBox.classList.add(
-      "show"
-    );
-
-
-    const rateLimitHelp =
-      $("rateLimitHelp");
-
-    if(rateLimitHelp){
-
-      rateLimitHelp.style.display =
-        getAuthRateLimitSeconds(
-          error
-        ) > 0
-          ? "block"
-          : "none";
-
-    }
-
-  }finally{
-
-    loginInProgress =
-      false;
-
-    emailInput.disabled =
-      false;
-
-    passwordInput.disabled =
-      false;
-
-    button.disabled =
-      false;
-
-    button.textContent =
-      "เข้าสู่ระบบ";
-
-  }
-
 }
+
+
+/* =========================================================
+   PERMISSION
+========================================================= */
 
 function isOwner(){
 
@@ -6347,89 +5514,6 @@ async function verifyPayment(
 
 
   await loadOrders();
-
-}
-
-
-/* =========================================================
-   DELETE ORDER
-========================================================= */
-
-function deleteOrderConfirm(
-  orderId
-){
-
-  if(!isOwner()){
-
-    toast(
-      "เฉพาะ OWNER เท่านั้นที่สามารถลบออเดอร์ได้",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  const order =
-    orders.find(
-      item =>
-        item.id === orderId
-    );
-
-
-  if(!order){
-    return;
-  }
-
-
-  $("confirmTitle")
-    .textContent =
-      "ลบคำสั่งซื้อ";
-
-
-  $("confirmText")
-    .innerHTML = `
-
-      คุณกำลังจะลบคำสั่งซื้อ
-
-      <strong
-        style="
-          color:var(--gold-light)
-        "
-      >
-        #${escapeHtml(
-          order.order_number ||
-          order.id
-        )}
-      </strong>
-
-      <br><br>
-
-      การลบออเดอร์เป็นการลบข้อมูลออกจากฐานข้อมูล
-      และไม่ควรใช้กับออเดอร์จริงที่ต้องเก็บประวัติ
-
-      <br><br>
-
-      หากเป็นออเดอร์ทดสอบหรือออเดอร์ผิดพลาด
-      ให้กดยืนยันได้
-
-    `;
-
-
-  confirmAction =
-    async ()=>{
-
-      await deleteOrder(
-        orderId
-      );
-
-    };
-
-
-  openModal(
-    "confirmModal"
-  );
 
 }
 
@@ -8778,143 +7862,65 @@ $("refreshUsers")
   );
 
 
+
+
 /* =========================================================
-   LOGOUT
+   DASHBOARD LOGOUT
 ========================================================= */
 
 const logoutButton = $("logoutButton");
-
 if(logoutButton){
   logoutButton.addEventListener("click", async ()=>{
     logoutButton.disabled = true;
     try{
       await supabaseClient.auth.signOut();
     }finally{
-      window.location.replace("./admin.html");
+      window.location.replace("admin.html");
     }
   });
 }
 
 /* =========================================================
-   AUTHENTICATED SESSION
+   AUTHENTICATED DASHBOARD START
 ========================================================= */
 
-let dashboardAuthChecking = false;
-
-async function handleAuthenticatedSession(session){
-
-  if(dashboardAuthChecking){
-    return;
-  }
-
-  if(!session?.user){
-    showLogin();
-    return;
-  }
-
-  dashboardAuthChecking = true;
-  currentUser = session.user;
-  showLoading(true);
-
+async function startDashboard(){
   try{
+    const { data, error } = await supabaseClient.auth.getSession();
+    if(error) throw error;
+
+    if(!data?.session?.user){
+      window.location.replace("admin.html");
+      return;
+    }
+
+    currentUser = data.session.user;
     await loadRole();
-    showApp();
+
+    const app = $("app");
+    if(app) app.classList.add("show");
+
     await loadDashboard();
   }catch(error){
     console.error("DASHBOARD AUTH ERROR:", error);
-    currentUser = null;
-    currentRole = null;
-    showLogin();
-  }finally{
-    dashboardAuthChecking = false;
-    showLoading(false);
+    try{ await supabaseClient.auth.signOut(); }catch{}
+    window.location.replace("admin.html");
   }
 }
 
-
-/* =========================================================
-   INITIAL SESSION
-========================================================= */
-
-async function init(){
-
-  showLoading(true);
-
-  try{
-    const {data, error} = await supabaseClient.auth.getSession();
-
-    if(error){
-      throw error;
-    }
-
-    if(!data?.session?.user){
-      showLogin();
-      return;
-    }
-
-    await handleAuthenticatedSession(data.session);
-
-  }catch(error){
-    console.error("INIT ERROR:", error);
-    currentUser = null;
-    currentRole = null;
-    showLogin();
-  }finally{
-    showLoading(false);
-  }
-}
-
-
-/* =========================================================
-   START
-========================================================= */
-
-async function waitForSupabaseAndInit(){
-
-  const startedAt = Date.now();
-
-  while(!window.supabase && Date.now() - startedAt < 12000){
-    await new Promise(resolve=>setTimeout(resolve, 100));
-  }
-
-  if(!window.supabase){
-    showLogin();
+supabaseClient.auth.onAuthStateChange((event, session)=>{
+  if(event === "SIGNED_OUT"){
+    window.location.replace("admin.html");
     return;
   }
 
-  supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY,
-      {
-        auth:{
-          persistSession:true,
-          autoRefreshToken:true,
-          detectSessionInUrl:true
-        }
-      }
-    );
+  if(event === "TOKEN_REFRESHED" && !session){
+    window.location.replace("admin.html");
+  }
+});
 
-  supabaseClient.auth.onAuthStateChange((event, session)=>{
-
-    if(event === "SIGNED_OUT"){
-      currentUser = null;
-      currentRole = null;
-      window.location.replace("./admin.html");
-      return;
-    }
-
-    if(session?.user){
-      setTimeout(()=>handleAuthenticatedSession(session), 0);
-    }
-  });
-
-  init();
-}
-
-waitForSupabaseAndInit();
+startDashboard();
 
 </script>
-
 </body>
 </html>
