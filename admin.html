@@ -257,6 +257,260 @@ img{
 
 
 /* =========================================================
+   PASSWORD RECOVERY
+========================================================= */
+
+function isPasswordRecoveryUrl(){
+
+  const hash =
+    String(
+      window.location.hash ||
+      ""
+    );
+
+  const search =
+    String(
+      window.location.search ||
+      ""
+    );
+
+  return (
+    /(?:^|&)type=recovery(?:&|$)/i.test(
+      hash.replace(/^#/,"")
+    ) ||
+    /(?:^|[?&])type=recovery(?:&|$)/i.test(
+      search
+    )
+  );
+
+}
+
+
+function showRecovery(){
+
+  passwordRecoveryMode =
+    true;
+
+  $("loading")
+    .classList
+    .add("hidden");
+
+  $("loginScreen")
+    .classList
+    .remove("show");
+
+  $("app")
+    .classList
+    .remove("show");
+
+  $("recoveryScreen")
+    .classList
+    .add("show");
+
+  $("newPassword")
+    .value = "";
+
+  $("confirmNewPassword")
+    .value = "";
+
+  $("recoveryMessage")
+    .classList
+    .remove("show");
+
+}
+
+
+function hideRecovery(){
+
+  passwordRecoveryMode =
+    false;
+
+  $("recoveryScreen")
+    .classList
+    .remove("show");
+
+}
+
+
+function showRecoveryMessage(
+  message,
+  success=false
+){
+
+  const box =
+    $("recoveryMessage");
+
+  box.textContent =
+    message;
+
+  box.style.color =
+    success
+      ? "#a8edc2"
+      : "#ff9999";
+
+  box.style.background =
+    success
+      ? "var(--green-bg)"
+      : "var(--red-bg)";
+
+  box.style.borderColor =
+    success
+      ? "rgba(85,217,133,.25)"
+      : "rgba(239,108,108,.3)";
+
+  box.classList
+    .add("show");
+
+}
+
+
+async function updatePassword(){
+
+  const password =
+    $("newPassword")
+      .value;
+
+  const confirmPassword =
+    $("confirmNewPassword")
+      .value;
+
+  const button =
+    $("recoveryButton");
+
+  if(
+    password.length < 6
+  ){
+
+    showRecoveryMessage(
+      "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"
+    );
+
+    return;
+
+  }
+
+  if(
+    password !==
+    confirmPassword
+  ){
+
+    showRecoveryMessage(
+      "รหัสผ่านทั้งสองช่องไม่ตรงกัน"
+    );
+
+    return;
+
+  }
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "กำลังบันทึก...";
+
+
+  try{
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .auth
+        .updateUser({
+          password:
+            password
+        });
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    showRecoveryMessage(
+      "เปลี่ยนรหัสผ่านเรียบร้อยแล้ว กำลังกลับไปหน้าเข้าสู่ระบบ...",
+      true
+    );
+
+
+    /*
+     * จบ recovery session แล้วกลับไปหน้า Login
+     * เพื่อให้ผู้ใช้เข้าสู่ระบบใหม่ด้วยรหัสผ่านใหม่
+     */
+    setTimeout(
+      async ()=>{
+
+        try{
+
+          await supabaseClient
+            .auth
+            .signOut();
+
+        }catch(error){
+
+          console.error(
+            "RECOVERY SIGNOUT ERROR:",
+            error
+          );
+
+        }
+
+
+        window.history
+          .replaceState(
+            {},
+            document.title,
+            window.location.pathname
+          );
+
+
+        hideRecovery();
+
+        showLogin();
+
+        $("loginError")
+          .classList
+          .remove("show");
+
+        $("loginEmail")
+          .focus();
+
+      },
+      1200
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "PASSWORD UPDATE ERROR:",
+      error
+    );
+
+
+    showRecoveryMessage(
+      getLoginErrorMessage(
+        error
+      )
+    );
+
+
+  }finally{
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "บันทึกรหัสผ่านใหม่";
+
+  }
+
+}
+
+
+/* =========================================================
    LOGIN
 ========================================================= */
 
@@ -2379,6 +2633,150 @@ tbody tr:hover{
 
 }
 
+
+/* =========================================================
+   PASSWORD RECOVERY
+========================================================= */
+
+.recovery-screen{
+  position:fixed;
+  inset:0;
+  z-index:900;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(200,164,91,.08),
+      transparent 35%
+    ),
+    #050505;
+}
+
+.recovery-screen.show{
+  display:flex;
+}
+
+.recovery-card{
+  width:min(430px,100%);
+  padding:34px 30px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:18px;
+  background:rgba(16,16,16,.98);
+  box-shadow:0 30px 90px rgba(0,0,0,.45);
+  text-align:center;
+}
+
+.recovery-logo{
+  width:74px;
+  height:74px;
+  object-fit:contain;
+  margin:0 auto 18px;
+}
+
+.recovery-title{
+  margin:0 0 8px;
+  color:#fff;
+  font-size:25px;
+  font-weight:700;
+}
+
+.recovery-subtitle{
+  margin:0 0 24px;
+  color:#8d8d8d;
+  font-size:12px;
+  line-height:1.8;
+}
+
+.recovery-field{
+  margin-bottom:15px;
+  text-align:left;
+}
+
+.recovery-field label{
+  display:block;
+  margin-bottom:7px;
+  color:#cfcfcf;
+  font-size:12px;
+  font-weight:500;
+}
+
+.recovery-field input{
+  width:100%;
+  min-height:50px;
+  padding:0 14px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  outline:none;
+  background:#080808;
+  color:#fff;
+  font-family:inherit;
+  font-size:13px;
+  box-sizing:border-box;
+}
+
+.recovery-field input:focus{
+  border-color:var(--gold-line);
+  box-shadow:0 0 0 3px rgba(200,164,91,.07);
+}
+
+.recovery-password-wrap{
+  position:relative;
+}
+
+.recovery-password-wrap input{
+  padding-right:70px;
+}
+
+.recovery-toggle{
+  position:absolute;
+  top:50%;
+  right:9px;
+  transform:translateY(-50%);
+  border:0;
+  background:transparent;
+  color:var(--gold-light);
+  font-size:11px;
+  cursor:pointer;
+}
+
+.recovery-button{
+  width:100%;
+  min-height:52px;
+  margin-top:5px;
+  border:0;
+  border-radius:11px;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  color:#080808;
+  font-weight:700;
+  font-size:13px;
+  cursor:pointer;
+}
+
+.recovery-button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.recovery-message{
+  display:none;
+  margin-top:15px;
+  padding:13px 15px;
+  border-radius:10px;
+  border:1px solid rgba(239,108,108,.3);
+  background:var(--red-bg);
+  color:#ff9999;
+  font-size:11px;
+  line-height:1.7;
+  text-align:left;
+}
+
+.recovery-message.show{
+  display:block;
+}
+
 </style>
 
 </head>
@@ -2413,6 +2811,116 @@ tbody tr:hover{
   </div>
 
 </div>
+
+
+<!-- =======================================================
+     PASSWORD RECOVERY
+======================================================== -->
+
+<section
+  class="recovery-screen"
+  id="recoveryScreen"
+>
+
+  <div class="recovery-card">
+
+    <img
+      src="assets/logo.png"
+      class="recovery-logo"
+      alt="CHATPHETCH GROUP"
+    >
+
+    <h1 class="recovery-title">
+      ตั้งรหัสผ่านใหม่
+    </h1>
+
+    <div class="recovery-subtitle">
+      กรุณากำหนดรหัสผ่านใหม่สำหรับบัญชี Admin
+    </div>
+
+    <form
+      id="recoveryForm"
+      autocomplete="off"
+    >
+
+      <div class="recovery-field">
+
+        <label for="newPassword">
+          รหัสผ่านใหม่
+        </label>
+
+        <div class="recovery-password-wrap">
+
+          <input
+            type="password"
+            id="newPassword"
+            autocomplete="new-password"
+            minlength="6"
+            placeholder="อย่างน้อย 6 ตัวอักษร"
+            required
+          >
+
+          <button
+            type="button"
+            class="recovery-toggle"
+            id="newPasswordToggle"
+          >
+            แสดง
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="recovery-field">
+
+        <label for="confirmNewPassword">
+          ยืนยันรหัสผ่านใหม่
+        </label>
+
+        <div class="recovery-password-wrap">
+
+          <input
+            type="password"
+            id="confirmNewPassword"
+            autocomplete="new-password"
+            minlength="6"
+            placeholder="กรอกรหัสผ่านอีกครั้ง"
+            required
+          >
+
+          <button
+            type="button"
+            class="recovery-toggle"
+            id="confirmPasswordToggle"
+          >
+            แสดง
+          </button>
+
+        </div>
+
+      </div>
+
+      <button
+        type="submit"
+        class="recovery-button"
+        id="recoveryButton"
+      >
+        บันทึกรหัสผ่านใหม่
+      </button>
+
+    </form>
+
+    <div
+      class="recovery-message"
+      id="recoveryMessage"
+      role="alert"
+      aria-live="polite"
+    ></div>
+
+  </div>
+
+</section>
 
 
 <!-- =======================================================
@@ -3758,6 +4266,9 @@ let products = [];
 let adminUsers = [];
 
 let confirmAction = null;
+
+let passwordRecoveryMode =
+  false;
 
 
 /* =========================================================
@@ -8546,6 +9057,73 @@ $("logoutButton")
   );
 
 
+$("recoveryForm")
+  .addEventListener(
+    "submit",
+    async event=>{
+
+      event.preventDefault();
+
+      await updatePassword();
+
+    }
+  );
+
+
+$("newPasswordToggle")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      const input =
+        $("newPassword");
+
+      const showing =
+        input.type ===
+        "text";
+
+      input.type =
+        showing
+          ? "password"
+          : "text";
+
+      $("newPasswordToggle")
+        .textContent =
+          showing
+            ? "แสดง"
+            : "ซ่อน";
+
+    }
+  );
+
+
+$("confirmPasswordToggle")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      const input =
+        $("confirmNewPassword");
+
+      const showing =
+        input.type ===
+        "text";
+
+      input.type =
+        showing
+          ? "password"
+          : "text";
+
+      $("confirmPasswordToggle")
+        .textContent =
+          showing
+            ? "แสดง"
+            : "ซ่อน";
+
+    }
+  );
+
+
 /* =========================================================
    AUTH STATE
 ========================================================= */
@@ -8584,10 +9162,46 @@ supabaseClient
       }
 
 
+      if(
+        event ===
+        "PASSWORD_RECOVERY"
+      ){
+
+        currentUser =
+          session?.user ||
+          null;
+
+        if(currentUser){
+
+          showRecovery();
+
+          showLoading(false);
+
+          return;
+
+        }
+
+      }
+
+
       if(session?.user){
 
         currentUser =
           session.user;
+
+
+        if(
+          passwordRecoveryMode ||
+          isPasswordRecoveryUrl()
+        ){
+
+          showRecovery();
+
+          showLoading(false);
+
+          return;
+
+        }
 
 
         try{
@@ -8687,6 +9301,18 @@ async function init(){
 
       currentUser =
         data.session.user;
+
+
+      if(
+        isPasswordRecoveryUrl() ||
+        passwordRecoveryMode
+      ){
+
+        showRecovery();
+
+        return;
+
+      }
 
 
       await loadRole();
