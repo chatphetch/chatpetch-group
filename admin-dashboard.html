@@ -2536,13 +2536,11 @@ tbody tr:hover{
 
 </style>
 
-<style>#app{display:none;}#app.show{display:block;}</style>
+<style>#app{display:block;}#app.show{display:block;}</style>
 </head>
 <body>
 
-<section id="loginScreen" class="login-screen" style="display:none"><div id="loginError"></div><form id="loginForm"></form><button id="loginButton" type="button"></button><input id="loginEmail"><input id="loginPassword"><button id="passwordToggle" type="button"></button><button id="forgotPassword" type="button"></button></section>
-<section id="recoveryScreen" style="display:none"><input id="newPassword"><input id="confirmNewPassword"><button id="recoveryButton" type="button"></button><div id="recoveryMessage"></div></section>
-<div id="loading" class="hidden" style="display:none"><div id="loadingText"></div></div>
+<div id="loading" class="hidden"><div class="loading-inner"><div class="loading-text" id="loadingText">กำลังตรวจสอบสิทธิ์ผู้ดูแลระบบ...</div></div></div>
 
 <!-- =======================================================
      APP
@@ -3755,18 +3753,7 @@ const SUPABASE_KEY =
   "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
 
 
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY,
-    {
-      auth:{
-        persistSession:true,
-        autoRefreshToken:true,
-        detectSessionInUrl:true
-      }
-    }
-  );
+let supabaseClient = null;
 
 
 /* =========================================================
@@ -3919,15 +3906,7 @@ function showLogin(){
 
   showLoading(false);
 
-  if(!window.location.pathname.endsWith("/admin.html")){
-    window.location.replace("./admin.html");
-    return;
-  }
-
-  const loginScreen = $("loginScreen");
-  const app = $("app");
-  if(loginScreen) loginScreen.classList.add("show");
-  if(app) app.classList.remove("show");
+  window.location.replace("./admin.html");
 
 }
 
@@ -3936,16 +3915,13 @@ function showApp(){
 
   showLoading(false);
 
-  $("loginScreen")
-    .classList
-    .remove("show");
+  const app = $("app");
 
-  $("app")
-    .classList
-    .add("show");
+  if(app){
+    app.classList.add("show");
+  }
 
 }
-
 
 /* =========================================================
    PASSWORD RECOVERY
@@ -8803,369 +8779,57 @@ $("refreshUsers")
 
 
 /* =========================================================
-   LOGIN / LOGOUT
+   LOGOUT
 ========================================================= */
 
-$("loginForm")
-  .addEventListener(
-    "submit",
-    event => {
+const logoutButton = $("logoutButton");
 
-      event.preventDefault();
-
-      login();
-
+if(logoutButton){
+  logoutButton.addEventListener("click", async ()=>{
+    logoutButton.disabled = true;
+    try{
+      await supabaseClient.auth.signOut();
+    }finally{
+      window.location.replace("./admin.html");
     }
-  );
-
-$("loginButton")
-  .addEventListener(
-    "click",
-    event => {
-
-      event.preventDefault();
-
-      login();
-
-    }
-  );
-
-
-
-$("passwordToggle")
-  .addEventListener(
-    "click",
-    () => {
-
-      const input =
-        $("loginPassword");
-
-      const button =
-        $("passwordToggle");
-
-      const showing =
-        input.type === "text";
-
-
-      input.type =
-        showing
-          ? "password"
-          : "text";
-
-
-      button.textContent =
-        showing
-          ? "แสดง"
-          : "ซ่อน";
-
-
-      button.setAttribute(
-        "aria-label",
-        showing
-          ? "แสดงรหัสผ่าน"
-          : "ซ่อนรหัสผ่าน"
-      );
-
-
-      button.setAttribute(
-        "aria-pressed",
-        String(!showing)
-      );
-
-    }
-  );
-
-
-$("forgotPasswordButton")
-  .addEventListener(
-    "click",
-    forgotPassword
-  );
-
-
-$("logoutButton")
-  .addEventListener(
-    "click",
-    async ()=>{
-
-      await supabaseClient
-        .auth
-        .signOut();
-
-    }
-  );
-
-
-$("recoveryForm")
-  .addEventListener(
-    "submit",
-    async event=>{
-
-      event.preventDefault();
-
-      await updatePassword();
-
-    }
-  );
-
-
-$("newPasswordToggle")
-  .addEventListener(
-    "click",
-    ()=>{
-
-      const input =
-        $("newPassword");
-
-      const showing =
-        input.type ===
-        "text";
-
-      input.type =
-        showing
-          ? "password"
-          : "text";
-
-      $("newPasswordToggle")
-        .textContent =
-          showing
-            ? "แสดง"
-            : "ซ่อน";
-
-    }
-  );
-
-
-$("confirmPasswordToggle")
-  .addEventListener(
-    "click",
-    ()=>{
-
-      const input =
-        $("confirmNewPassword");
-
-      const showing =
-        input.type ===
-        "text";
-
-      input.type =
-        showing
-          ? "password"
-          : "text";
-
-      $("confirmPasswordToggle")
-        .textContent =
-          showing
-            ? "แสดง"
-            : "ซ่อน";
-
-    }
-  );
-
+  });
+}
 
 /* =========================================================
    AUTHENTICATED SESSION
 ========================================================= */
 
-async function handleAuthenticatedSession(
-  session
-){
+let dashboardAuthChecking = false;
 
-  if(authProcessing){
+async function handleAuthenticatedSession(session){
 
+  if(dashboardAuthChecking){
     return;
-
   }
 
-  if(
-    !session?.user
-  ){
-
+  if(!session?.user){
+    showLogin();
     return;
-
   }
 
-  authProcessing =
-    true;
-
-  currentUser =
-    session.user;
-
+  dashboardAuthChecking = true;
+  currentUser = session.user;
   showLoading(true);
 
   try{
-
-    if(
-      passwordRecoveryMode ||
-      isPasswordRecoveryUrl()
-    ){
-
-      showRecovery();
-
-      showLoading(false);
-
-      return;
-
-    }
-
-
     await loadRole();
-
     showApp();
-
-    showLoading(false);
-
     await loadDashboard();
-
   }catch(error){
-
-    console.error(
-      "AUTHORIZATION ERROR:",
-      error
-    );
-
-
-    currentUser =
-      null;
-
-    currentRole =
-      null;
-
-
-    showLoading(false);
-
+    console.error("DASHBOARD AUTH ERROR:", error);
+    currentUser = null;
+    currentRole = null;
     showLogin();
-
-
-    $("loginError")
-      .textContent =
-        getLoginErrorMessage(
-          error
-        );
-
-    $("loginError")
-      .classList
-      .add("show");
-
-
-    try{
-
-      await supabaseClient
-        .auth
-        .signOut();
-
-    }catch(signOutError){
-
-      console.error(
-        "AUTH CLEANUP ERROR:",
-        signOutError
-      );
-
-    }
-
   }finally{
-
-    authProcessing =
-      false;
-
+    dashboardAuthChecking = false;
+    showLoading(false);
   }
-
 }
-
-
-/* =========================================================
-   AUTH STATE
-========================================================= */
-
-supabaseClient
-  .auth
-  .onAuthStateChange(
-    (
-      event,
-      session
-    )=>{
-
-      console.log(
-        "AUTH:",
-        event
-      );
-
-
-      if(
-        event ===
-        "SIGNED_OUT"
-      ){
-
-        currentUser =
-          null;
-
-        currentRole =
-          null;
-
-        authProcessing =
-          false;
-
-        showLogin();
-
-        showLoading(false);
-
-        return;
-
-      }
-
-
-      if(
-        event ===
-        "PASSWORD_RECOVERY"
-      ){
-
-        currentUser =
-          session?.user ||
-          null;
-
-        if(currentUser){
-
-          passwordRecoveryMode =
-            true;
-
-          showRecovery();
-
-          showLoading(false);
-
-        }
-
-        return;
-
-      }
-
-
-      if(
-        session?.user
-      ){
-
-        /*
-         * สำคัญ:
-         * ห้าม await Supabase API ภายใน onAuthStateChange
-         * เพราะอาจทำให้ Auth callback ค้างและหน้าเว็บค้างที่
-         * "กำลังตรวจสอบสิทธิ์ผู้ดูแลระบบ..."
-         *
-         * ใช้ setTimeout แยกออกจาก callback แทน
-         */
-        setTimeout(
-          ()=>{
-
-            handleAuthenticatedSession(
-              session
-            );
-
-          },
-          0
-        );
-
-      }
-
-    }
-  );
 
 
 /* =========================================================
@@ -9176,133 +8840,28 @@ async function init(){
 
   showLoading(true);
 
-
   try{
-
-    const sessionRequest =
-      supabaseClient
-        .auth
-        .getSession();
-
-
-    const sessionTimeout =
-      new Promise(
-        resolve =>
-          setTimeout(
-            ()=>resolve({
-              data:{
-                session:null
-              },
-              error:new Error(
-                "การเชื่อมต่อ Supabase Auth ใช้เวลานานเกินไป กรุณารีเฟรชหน้าแล้วลองใหม่"
-              )
-            }),
-            10000
-          )
-      );
-
-
-    const {
-      data,
-      error
-    } =
-      await Promise.race([
-        sessionRequest,
-        sessionTimeout
-      ]);
-
+    const {data, error} = await supabaseClient.auth.getSession();
 
     if(error){
-
       throw error;
-
     }
 
-
-    if(
-      data?.session?.user
-    ){
-
-      if(
-        isPasswordRecoveryUrl() ||
-        passwordRecoveryMode
-      ){
-
-        currentUser =
-          data.session.user;
-
-        passwordRecoveryMode =
-          true;
-
-        showRecovery();
-
-        showLoading(false);
-
-        return;
-
-      }
-
-
-      await handleAuthenticatedSession(
-        data.session
-      );
-
-    }else{
-
+    if(!data?.session?.user){
       showLogin();
-
+      return;
     }
 
+    await handleAuthenticatedSession(data.session);
 
   }catch(error){
-
-    console.error(
-      "INIT ERROR:",
-      error
-    );
-
-
-    currentUser =
-      null;
-
-    currentRole =
-      null;
-
-
+    console.error("INIT ERROR:", error);
+    currentUser = null;
+    currentRole = null;
     showLogin();
-
-
-    $("loginError")
-      .textContent =
-        getLoginErrorMessage(
-          error
-        );
-
-    $("loginError")
-      .classList
-      .add("show");
-
-
-    try{
-
-      await supabaseClient
-        .auth
-        .signOut();
-
-    }catch(signOutError){
-
-      console.error(
-        "INIT AUTH CLEANUP ERROR:",
-        signOutError
-      );
-
-    }
-
+  }finally{
+    showLoading(false);
   }
-
-
-  showLoading(false);
-
 }
 
 
@@ -9312,98 +8871,46 @@ async function init(){
 
 async function waitForSupabaseAndInit(){
 
-  const startedAt =
-    Date.now();
+  const startedAt = Date.now();
 
-  const maxWait =
-    12000;
+  while(!window.supabase && Date.now() - startedAt < 12000){
+    await new Promise(resolve=>setTimeout(resolve, 100));
+  }
 
-  while(
-    !window.supabase &&
-    (
-      Date.now() -
-      startedAt
-    ) <
-    maxWait
-  ){
+  if(!window.supabase){
+    showLogin();
+    return;
+  }
 
-    await new Promise(
-      resolve =>
-        setTimeout(
-          resolve,
-          100
-        )
+  supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY,
+      {
+        auth:{
+          persistSession:true,
+          autoRefreshToken:true,
+          detectSessionInUrl:true
+        }
+      }
     );
 
-  }
+  supabaseClient.auth.onAuthStateChange((event, session)=>{
 
-
-  if(
-    !window.supabase
-  ){
-
-    showLoading(false);
-
-    showLogin();
-
-    $("loginError")
-      .textContent =
-        "ไม่สามารถโหลด Supabase Auth ได้ กรุณารีเฟรชหน้าอีกครั้ง";
-
-    $("loginError")
-      .classList
-      .add("show");
-
-    return;
-
-  }
-
-
-  init();
-
-}
-
-
-/*
- * Emergency watchdog:
- * ไม่ให้หน้าเว็บค้างอยู่ที่ Loading ตลอดไป แม้ Auth/CDN
- * หรือเครือข่ายจะไม่ตอบสนอง
- */
-setTimeout(
-  ()=>{
-
-    const loading =
-      $("loading");
-
-    if(
-      loading &&
-      !loading.classList.contains(
-        "hidden"
-      )
-    ){
-
-      console.warn(
-        "AUTH LOADING WATCHDOG: timeout"
-      );
-
-      showLoading(false);
-
-      showLogin();
-
-      $("loginError")
-        .textContent =
-          "ระบบใช้เวลาตรวจสอบนานเกินไป กรุณารีเฟรชหน้าแล้วลองใหม่";
-
-      $("loginError")
-        .classList
-        .add("show");
-
+    if(event === "SIGNED_OUT"){
+      currentUser = null;
+      currentRole = null;
+      window.location.replace("./admin.html");
+      return;
     }
 
-  },
-  15000
-);
+    if(session?.user){
+      setTimeout(()=>handleAuthenticatedSession(session), 0);
+    }
+  });
 
+  init();
+}
 
 waitForSupabaseAndInit();
 
