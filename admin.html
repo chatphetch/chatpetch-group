@@ -4316,13 +4316,38 @@ async function loadRole(){
 
 
   currentRole =
-    data.role;
+    String(
+      data.role ||
+      ""
+    )
+      .trim()
+      .toLowerCase();
+
+
+  const allowedRoles = [
+    "owner",
+    "manager",
+    "staff",
+    "viewer"
+  ];
+
+
+  if(
+    !allowedRoles.includes(
+      currentRole
+    )
+  ){
+
+    throw new Error(
+      "บัญชีนี้มี Role ไม่ถูกต้อง"
+    );
+
+  }
+
 
   $("headerRole")
     .textContent =
-      String(
-        currentRole
-      ).toUpperCase();
+      currentRole.toUpperCase();
 
   $("headerEmail")
     .textContent =
@@ -8578,8 +8603,32 @@ supabaseClient
         }catch(error){
 
           console.error(
+            "AUTHORIZATION ERROR:",
             error
           );
+
+
+          currentUser =
+            null;
+
+          currentRole =
+            null;
+
+
+          try{
+
+            await supabaseClient
+              .auth
+              .signOut();
+
+          }catch(signOutError){
+
+            console.error(
+              "AUTH CLEANUP ERROR:",
+              signOutError
+            );
+
+          }
 
 
           showLogin();
@@ -8662,13 +8711,37 @@ async function init(){
     );
 
 
+    currentUser =
+      null;
+
+    currentRole =
+      null;
+
+
+    try{
+
+      await supabaseClient
+        .auth
+        .signOut();
+
+    }catch(signOutError){
+
+      console.error(
+        "INIT AUTH CLEANUP ERROR:",
+        signOutError
+      );
+
+    }
+
+
     showLogin();
 
 
     $("loginError")
       .textContent =
-        error.message ||
-        "ไม่สามารถเริ่มระบบได้";
+        getLoginErrorMessage(
+          error
+        );
 
 
     $("loginError")
