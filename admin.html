@@ -4595,6 +4595,10 @@ function showLoading(show=true){
 
 function showLogin(){
 
+  $("loading")
+    .classList
+    .add("hidden");
+
   $("loginScreen")
     .classList
     .add("show");
@@ -4607,6 +4611,10 @@ function showLogin(){
 
 
 function showApp(){
+
+  $("loading")
+    .classList
+    .add("hidden");
 
   $("loginScreen")
     .classList
@@ -9637,13 +9645,37 @@ async function init(){
 
   try{
 
+    const sessionRequest =
+      supabaseClient
+        .auth
+        .getSession();
+
+
+    const sessionTimeout =
+      new Promise(
+        resolve =>
+          setTimeout(
+            ()=>resolve({
+              data:{
+                session:null
+              },
+              error:new Error(
+                "การเชื่อมต่อ Supabase Auth ใช้เวลานานเกินไป กรุณารีเฟรชหน้าแล้วลองใหม่"
+              )
+            }),
+            10000
+          )
+      );
+
+
     const {
       data,
       error
     } =
-      await supabaseClient
-        .auth
-        .getSession();
+      await Promise.race([
+        sessionRequest,
+        sessionTimeout
+      ]);
 
 
     if(error){
