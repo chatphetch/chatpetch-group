@@ -1,7 +1,8 @@
 /* ============================================================
    CHATPHETCH GROUP
    MASTER NAVIGATION
-   Header + Desktop Navigation + Mobile Navigation + Footer
+   Header + Desktop Navigation + Mobile Navigation
+   Footer - Corporate Premium Layout
    ============================================================ */
 
 (function () {
@@ -36,22 +37,18 @@
           label: "ดูบริการทั้งหมด",
           href: "services.html"
         },
-
         {
           label: "บริการระบบงานพื้น",
           href: "service-detail.html?service=industrial"
         },
-
         {
           label: "บริการเคลือบผิว / สี",
           href: "service-detail.html?service=coating"
         },
-
         {
           label: "ปรึกษาและเลือกวัสดุ",
           href: "service-detail.html?service=consulting"
         },
-
         {
           label: "คำปรึกษางานติดตั้ง",
           href: "service-detail.html?service=installation"
@@ -101,26 +98,14 @@
      HELPERS
      ========================================================== */
 
-  function escapeHTML(value) {
-
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
-  }
-
-
   function currentPage() {
 
-    const path =
+    return (
       window.location.pathname
         .split("/")
-        .pop();
-
-    return path || "index.html";
+        .pop() ||
+      "index.html"
+    );
 
   }
 
@@ -150,17 +135,19 @@
     try {
 
       const raw =
-        localStorage.getItem("chatpetch_cart");
+        localStorage.getItem(
+          "chatpetch_cart"
+        );
 
       if (!raw) {
         return [];
       }
 
-      const cart =
+      const data =
         JSON.parse(raw);
 
-      return Array.isArray(cart)
-        ? cart
+      return Array.isArray(data)
+        ? data
         : [];
 
     } catch (error) {
@@ -174,12 +161,10 @@
 
   function getCartCount() {
 
-    const cart = getCart();
-
-    return cart.reduce(
+    return getCart().reduce(
       function (total, item) {
 
-        const qty =
+        const quantity =
           Number(
             item.quantity ??
             item.qty ??
@@ -187,9 +172,11 @@
           );
 
         return total +
-          (Number.isFinite(qty)
-            ? Math.max(0, qty)
-            : 0);
+          (
+            Number.isFinite(quantity)
+              ? Math.max(0, quantity)
+              : 0
+          );
 
       },
       0
@@ -207,46 +194,60 @@
       .querySelectorAll(
         "[data-cart-count]"
       )
-      .forEach(function (element) {
+      .forEach(
+        function (badge) {
 
-        element.textContent =
-          String(count);
+          badge.textContent =
+            String(count);
 
-        element.hidden =
-          count <= 0;
+          badge.hidden =
+            count <= 0;
 
-      });
+        }
+      );
 
   }
 
 
   /* ==========================================================
-     CSS
+     MASTER CSS
      ========================================================== */
 
   const STYLE = `
+
   /* ==========================================================
-     CHATPHETCH MASTER NAV
+     VARIABLES
      ========================================================== */
 
   :root {
-    --cp-nav-bg: rgba(18, 12, 9, .91);
-    --cp-nav-bg-mobile: rgba(16, 11, 8, .98);
+
+    --cp-nav-bg:
+      rgba(14, 10, 8, .94);
+
+    --cp-nav-bg-mobile:
+      rgba(13, 9, 7, .99);
 
     --cp-nav-border:
-      rgba(225, 200, 149, .16);
+      rgba(198, 160, 106, .20);
+
+    --cp-nav-border-soft:
+      rgba(255, 255, 255, .09);
 
     --cp-nav-gold:
       #c6a06a;
 
     --cp-nav-gold-light:
-      #e1c895;
+      #e3c88f;
 
     --cp-nav-white:
-      #f6f0e8;
+      #f6f1e9;
 
-    --cp-nav-muted:
-      #aaa095;
+    --cp-nav-text:
+      #aaa197;
+
+    --cp-nav-dark:
+      #0a0806;
+
   }
 
 
@@ -269,12 +270,13 @@
     background:
       linear-gradient(
         180deg,
-        rgba(10, 7, 5, .96),
-        rgba(15, 10, 7, .88)
+        rgba(8, 6, 5, .97),
+        rgba(14, 10, 8, .91)
       );
 
     border-bottom:
-      1px solid var(--cp-nav-border);
+      1px solid
+      var(--cp-nav-border);
 
     backdrop-filter:
       blur(16px);
@@ -314,7 +316,7 @@
 
     justify-content: space-between;
 
-    gap: 28px;
+    gap: 25px;
 
   }
 
@@ -325,7 +327,8 @@
 
   .customer-brand {
 
-    flex: 0 0 auto;
+    flex:
+      0 0 auto;
 
     display: inline-flex;
 
@@ -333,9 +336,10 @@
 
     gap: 12px;
 
-    color: var(--cp-nav-white);
-
     min-width: 0;
+
+    color:
+      var(--cp-nav-white);
 
   }
 
@@ -345,9 +349,10 @@
     width: 54px;
     height: 54px;
 
-    object-fit: contain;
+    flex:
+      0 0 auto;
 
-    flex: 0 0 auto;
+    object-fit: contain;
 
   }
 
@@ -399,18 +404,19 @@
 
 
   /* ==========================================================
-     DESKTOP NAV
+     DESKTOP NAVIGATION
      ========================================================== */
 
   .customer-nav {
 
-    flex: 1 1 auto;
+    flex:
+      1 1 auto;
 
     display: flex;
 
-    justify-content: flex-end;
-
     align-items: center;
+
+    justify-content: flex-end;
 
   }
 
@@ -423,10 +429,9 @@
 
     justify-content: flex-end;
 
-    gap: 3px;
+    gap: 2px;
 
     margin: 0;
-
     padding: 0;
 
     list-style: none;
@@ -456,10 +461,10 @@
     min-height: 48px;
 
     padding:
-      0 10px;
+      0 9px;
 
     color:
-      rgba(246,240,232,.78);
+      rgba(246,241,233,.76);
 
     font-size: 12px;
 
@@ -479,8 +484,8 @@
 
     position: absolute;
 
-    left: 10px;
-    right: 10px;
+    left: 9px;
+    right: 9px;
 
     bottom: 7px;
 
@@ -576,27 +581,28 @@
 
     position: absolute;
 
-    top: calc(100% - 2px);
+    top:
+      calc(100% - 2px);
 
     left: 50%;
 
     min-width: 270px;
 
-    padding:
-      10px;
-
     margin: 0;
+    padding: 10px;
 
     list-style: none;
 
     background:
-      rgba(19, 13, 9, .98);
+      rgba(17, 12, 9, .99);
 
     border:
-      1px solid var(--cp-nav-border);
+      1px solid
+      var(--cp-nav-border);
 
     box-shadow:
-      0 20px 50px rgba(0,0,0,.40);
+      0 22px 55px
+      rgba(0,0,0,.45);
 
     transform:
       translate(-50%, 8px);
@@ -642,12 +648,13 @@
       0 14px;
 
     color:
-      rgba(246,240,232,.76);
+      rgba(246,241,233,.76);
 
     font-size: 12px;
 
     border-bottom:
-      1px solid rgba(255,255,255,.05);
+      1px solid
+      rgba(255,255,255,.05);
 
     transition:
       color .2s ease,
@@ -705,7 +712,7 @@
     border-radius: 50px;
 
     color:
-      #17100b;
+      #1b120a;
 
     background:
       var(--cp-nav-gold-light);
@@ -718,7 +725,7 @@
 
 
   /* ==========================================================
-     MOBILE TOGGLE
+     MOBILE MENU BUTTON
      ========================================================== */
 
   .customer-menu-toggle {
@@ -732,7 +739,8 @@
 
     border: 0;
 
-    background: transparent;
+    background:
+      transparent;
 
     cursor: pointer;
 
@@ -772,23 +780,15 @@
 
 
   .customer-menu-toggle-inner span:nth-child(1) {
-
     top: 0;
-
   }
-
 
   .customer-menu-toggle-inner span:nth-child(2) {
-
     top: 8px;
-
   }
 
-
   .customer-menu-toggle-inner span:nth-child(3) {
-
     top: 16px;
-
   }
 
 
@@ -840,7 +840,7 @@
     z-index: 8998;
 
     background:
-      rgba(0,0,0,.52);
+      rgba(0,0,0,.55);
 
   }
 
@@ -855,18 +855,21 @@
 
     z-index: 10;
 
+    width: 100%;
+
     color:
-      rgba(246,240,232,.78);
+      var(--cp-nav-text);
 
     background:
       linear-gradient(
         180deg,
-        rgba(11,8,6,.94),
-        rgba(7,5,4,.98)
+        rgba(8,7,6,.98),
+        rgba(4,4,3,1)
       );
 
     border-top:
-      1px solid var(--cp-nav-border);
+      1px solid
+      var(--cp-nav-border);
 
   }
 
@@ -882,124 +885,33 @@
     margin-inline: auto;
 
     padding:
-      65px 0 30px;
+      28px 0 26px;
 
   }
 
 
-  .customer-footer-top {
+  /* ==========================================================
+     FOOTER TOP LINE
+     ========================================================== */
 
-    display: grid;
+  .customer-footer-line {
 
-    grid-template-columns:
-      minmax(230px, 1.1fr)
-      minmax(0, 2fr);
+    width: 100%;
+    height: 1px;
 
-    gap: 60px;
+    margin-bottom: 25px;
 
-    padding-bottom: 45px;
-
-    border-bottom:
-      1px solid rgba(255,255,255,.08);
-
-  }
-
-
-  .customer-footer-brand {
-
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 15px;
+    background:
+      rgba(198,160,106,.24);
 
   }
 
 
-  .customer-footer-logo {
+  /* ==========================================================
+     FOOTER MAIN BAR
+     ========================================================== */
 
-    width: 58px;
-    height: 58px;
-
-    object-fit: contain;
-
-  }
-
-
-  .customer-footer-brand-name {
-
-    margin-top: 5px;
-
-    color:
-      var(--cp-nav-white);
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    letter-spacing:
-      .14em;
-
-  }
-
-
-  .customer-footer-brand-text {
-
-    max-width: 330px;
-
-    margin-top: 14px;
-
-    color:
-      #958b82;
-
-    font-size: 12px;
-
-    line-height: 1.8;
-
-  }
-
-
-  .customer-footer-links {
-
-    display: grid;
-
-    grid-template-columns:
-      repeat(4, minmax(0,1fr));
-
-    gap:
-      10px 20px;
-
-  }
-
-
-  .customer-footer-links a {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    min-height: 32px;
-
-    color:
-      #9e958b;
-
-    font-size: 11px;
-
-    transition:
-      color .2s ease;
-
-  }
-
-
-  .customer-footer-links a:hover {
-
-    color:
-      var(--cp-nav-gold-light);
-
-  }
-
-
-  .customer-footer-bottom {
+  .customer-footer-main {
 
     display: flex;
 
@@ -1007,22 +919,371 @@
 
     justify-content: space-between;
 
-    gap: 20px;
-
-    padding-top: 24px;
-
-    color:
-      #716961;
-
-    font-size: 10px;
+    gap: 28px;
 
   }
 
 
-  .customer-footer-credit {
+  /* ==========================================================
+     COPYRIGHT
+     ========================================================== */
+
+  .customer-footer-copyright {
+
+    flex:
+      1 1 auto;
+
+    min-width: 300px;
 
     color:
+      #77736f;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    white-space: nowrap;
+
+  }
+
+
+  .customer-footer-copyright strong {
+
+    color:
+      #c8c4bf;
+
+    font-weight: 600;
+
+  }
+
+
+  /* ==========================================================
+     LOCATION
+     ========================================================== */
+
+  .customer-footer-location {
+
+    flex:
+      0 1 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    min-width: 260px;
+
+    padding-right: 22px;
+
+    border-right:
+      1px solid
+      rgba(198,160,106,.20);
+
+    color:
+      #8b8580;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+  }
+
+
+  .customer-footer-location-icon {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+
+    color:
+      var(--cp-nav-gold-light);
+
+    font-size: 15px;
+
+  }
+
+
+  /* ==========================================================
+     FOOTER ACTIONS
+     ========================================================== */
+
+  .customer-footer-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding-right: 20px;
+
+    border-right:
+      1px solid
+      rgba(198,160,106,.20);
+
+  }
+
+
+  .customer-footer-action {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 40px;
+
+    padding:
+      0 20px;
+
+    border:
+      1px solid
+      rgba(198,160,106,.30);
+
+    border-radius: 11px;
+
+    color:
+      var(--cp-nav-gold-light);
+
+    background:
+      rgba(20,15,11,.40);
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+    transition:
+      border-color .25s ease,
+      background .25s ease,
+      color .25s ease,
+      transform .25s ease;
+
+  }
+
+
+  .customer-footer-action:hover {
+
+    border-color:
       var(--cp-nav-gold);
+
+    background:
+      rgba(198,160,106,.10);
+
+    color:
+      #fff4df;
+
+    transform:
+      translateY(-1px);
+
+  }
+
+
+  .customer-footer-action-icon {
+
+    font-size: 14px;
+
+  }
+
+
+  /* ==========================================================
+     SOCIAL
+     ========================================================== */
+
+  .customer-footer-social {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+  }
+
+
+  .customer-social {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 60px;
+    height: 60px;
+
+    border:
+      1px solid
+      rgba(198,160,106,.36);
+
+    border-radius: 50%;
+
+    color:
+      var(--cp-nav-gold-light);
+
+    background:
+      rgba(18,13,9,.35);
+
+    font-size: 19px;
+
+    transition:
+      border-color .25s ease,
+      background .25s ease,
+      color .25s ease,
+      transform .25s ease;
+
+  }
+
+
+  .customer-social:hover {
+
+    border-color:
+      var(--cp-nav-gold);
+
+    background:
+      rgba(198,160,106,.12);
+
+    color:
+      #fff3d8;
+
+    transform:
+      translateY(-2px);
+
+  }
+
+
+  .customer-social.line {
+
+    font-size: 15px;
+
+    letter-spacing:
+      -.03em;
+
+  }
+
+
+  .customer-social.youtube {
+
+    font-size: 17px;
+
+  }
+
+
+  /* ==========================================================
+     FOOTER SECONDARY MENU
+     ========================================================== */
+
+  .customer-footer-secondary {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 24px;
+
+    margin-top: 18px;
+
+    padding-top: 17px;
+
+    border-top:
+      1px solid
+      rgba(255,255,255,.055);
+
+  }
+
+
+  .customer-footer-secondary a {
+
+    color:
+      #69645f;
+
+    font-size: 10px;
+
+    transition:
+      color .2s ease;
+
+  }
+
+
+  .customer-footer-secondary a:hover {
+
+    color:
+      var(--cp-nav-gold-light);
+
+  }
+
+
+  /* ==========================================================
+     FLOATING PHONE BUTTON
+     ========================================================== */
+
+  .customer-floating-phone {
+
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    z-index: 8800;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 58px;
+    height: 58px;
+
+    border:
+      1px solid
+      rgba(198,160,106,.50);
+
+    border-radius: 50%;
+
+    color:
+      var(--cp-nav-gold-light);
+
+    background:
+      rgba(14,10,7,.92);
+
+    box-shadow:
+      0 10px 30px
+      rgba(0,0,0,.35);
+
+    backdrop-filter:
+      blur(10px);
+
+    font-size: 20px;
+
+    transition:
+      transform .25s ease,
+      background .25s ease,
+      border-color .25s ease;
+
+  }
+
+
+  .customer-floating-phone:hover {
+
+    transform:
+      translateY(-3px);
+
+    border-color:
+      var(--cp-nav-gold);
+
+    background:
+      rgba(198,160,106,.13);
 
   }
 
@@ -1077,7 +1338,8 @@
         var(--cp-nav-bg-mobile);
 
       border-top:
-        1px solid var(--cp-nav-border);
+        1px solid
+        var(--cp-nav-border);
 
       transform:
         translateY(-10px);
@@ -1114,8 +1376,10 @@
 
       display: block;
 
+      margin: 0;
+
       padding:
-        12px 16px 24px;
+        12px 16px 28px;
 
     }
 
@@ -1123,7 +1387,8 @@
     .customer-nav-item {
 
       border-bottom:
-        1px solid rgba(255,255,255,.06);
+        1px solid
+        rgba(255,255,255,.06);
 
     }
 
@@ -1132,7 +1397,7 @@
 
       width: 100%;
 
-      min-height: 52px;
+      min-height: 53px;
 
       justify-content: space-between;
 
@@ -1151,22 +1416,16 @@
     }
 
 
-    .customer-nav-item.has-dropdown >
-    .customer-nav-link {
-
-      cursor: pointer;
-
-    }
-
-
     .customer-dropdown {
 
       position: static;
 
       min-width: 0;
 
+      display: none;
+
       padding:
-        0 0 8px;
+        0 0 9px;
 
       background:
         transparent;
@@ -1182,8 +1441,6 @@
       visibility: visible;
 
       pointer-events: auto;
-
-      display: none;
 
     }
 
@@ -1204,7 +1461,7 @@
         0 18px 0 28px;
 
       color:
-        #958c82;
+        #928a82;
 
       border-bottom: 0;
 
@@ -1227,7 +1484,8 @@
 
       display: flex;
 
-      flex: 0 0 auto;
+      flex:
+        0 0 auto;
 
     }
 
@@ -1261,20 +1519,105 @@
     }
 
 
-    .customer-footer-top {
+    /* FOOTER MOBILE */
 
-      grid-template-columns:
-        1fr;
+    .customer-footer-inner {
 
-      gap: 35px;
+      width:
+        calc(100% - 32px);
 
     }
 
 
-    .customer-footer-links {
+    .customer-footer-main {
 
-      grid-template-columns:
-        repeat(3, minmax(0,1fr));
+      flex-wrap: wrap;
+
+      align-items: stretch;
+
+    }
+
+
+    .customer-footer-copyright {
+
+      min-width: 100%;
+
+      white-space: normal;
+
+      order: 1;
+
+    }
+
+
+    .customer-footer-location {
+
+      min-width: auto;
+
+      flex: 1 1 100%;
+
+      padding-right: 0;
+
+      padding-bottom: 15px;
+
+      border-right: 0;
+
+      border-bottom:
+        1px solid
+        rgba(198,160,106,.16);
+
+      order: 2;
+
+    }
+
+
+    .customer-footer-actions {
+
+      padding-right: 0;
+
+      border-right: 0;
+
+      order: 3;
+
+      flex-wrap: wrap;
+
+    }
+
+
+    .customer-footer-social {
+
+      order: 4;
+
+      margin-left: auto;
+
+    }
+
+
+    .customer-footer-secondary {
+
+      justify-content: flex-start;
+
+      flex-wrap: wrap;
+
+      gap: 12px 20px;
+
+    }
+
+
+    .customer-social {
+
+      width: 48px;
+      height: 48px;
+
+    }
+
+
+    .customer-floating-phone {
+
+      width: 52px;
+      height: 52px;
+
+      right: 17px;
+      bottom: 17px;
 
     }
 
@@ -1328,24 +1671,72 @@
       width:
         calc(100% - 28px);
 
-      padding-top: 48px;
+      padding:
+        24px 0 22px;
 
     }
 
 
-    .customer-footer-links {
+    .customer-footer-line {
+
+      margin-bottom: 20px;
+
+    }
+
+
+    .customer-footer-main {
+
+      display: grid;
 
       grid-template-columns:
-        repeat(2, minmax(0,1fr));
+        1fr;
+
+      gap: 18px;
 
     }
 
 
-    .customer-footer-bottom {
+    .customer-footer-location {
 
-      flex-direction: column;
+      width: 100%;
 
-      align-items: flex-start;
+    }
+
+
+    .customer-footer-actions {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      width: 100%;
+
+    }
+
+
+    .customer-footer-action {
+
+      width: 100%;
+
+      padding:
+        0 10px;
+
+    }
+
+
+    .customer-footer-social {
+
+      justify-content: flex-start;
+
+      margin-left: 0;
+
+    }
+
+
+    .customer-footer-secondary {
+
+      justify-content: flex-start;
 
     }
 
@@ -1401,10 +1792,61 @@
     }
 
 
-    .customer-footer-links {
+    .customer-footer-main {
+
+      gap: 16px;
+
+    }
+
+
+    .customer-footer-copyright {
+
+      font-size: 10px;
+
+    }
+
+
+    .customer-footer-location {
+
+      font-size: 10px;
+
+      white-space: normal;
+
+      line-height: 1.6;
+
+    }
+
+
+    .customer-footer-actions {
 
       grid-template-columns:
         1fr;
+
+    }
+
+
+    .customer-footer-action {
+
+      min-height: 44px;
+
+    }
+
+
+    .customer-social {
+
+      width: 46px;
+      height: 46px;
+
+    }
+
+
+    .customer-floating-phone {
+
+      width: 50px;
+      height: 50px;
+
+      right: 14px;
+      bottom: 14px;
 
     }
 
@@ -1418,10 +1860,13 @@
   .customer-nav-link:focus-visible,
   .customer-dropdown a:focus-visible,
   .customer-menu-toggle:focus-visible,
-  .customer-footer-links a:focus-visible {
+  .customer-footer-action:focus-visible,
+  .customer-social:focus-visible,
+  .customer-footer-secondary a:focus-visible {
 
     outline:
-      1px solid var(--cp-nav-gold-light);
+      1px solid
+      var(--cp-nav-gold-light);
 
     outline-offset: 3px;
 
@@ -1431,7 +1876,7 @@
 
 
   /* ==========================================================
-     INJECT CSS
+     INJECT STYLE
      ========================================================== */
 
   function injectStyles() {
@@ -1453,7 +1898,9 @@
     style.textContent =
       STYLE;
 
-    document.head.appendChild(style);
+    document.head.appendChild(
+      style
+    );
 
   }
 
@@ -1470,6 +1917,7 @@
     li.className =
       "customer-nav-item";
 
+
     if (item.dropdown) {
 
       li.classList.add(
@@ -1485,6 +1933,10 @@
     link.className =
       "customer-nav-link";
 
+    link.href =
+      item.href || "#";
+
+
     if (
       !item.dropdown &&
       isActive(item.href)
@@ -1497,11 +1949,8 @@
     }
 
 
-    link.href =
-      item.href || "#";
-
-    link.innerHTML =
-      escapeHTML(item.label);
+    link.textContent =
+      item.label;
 
 
     if (item.cart) {
@@ -1509,6 +1958,7 @@
       link.classList.add(
         "customer-cart-link"
       );
+
 
       const badge =
         document.createElement("span");
@@ -1521,11 +1971,15 @@
         ""
       );
 
+      const count =
+        getCartCount();
+
       badge.textContent =
-        String(getCartCount());
+        String(count);
 
       badge.hidden =
-        getCartCount() <= 0;
+        count <= 0;
+
 
       link.appendChild(
         badge
@@ -1542,9 +1996,11 @@
       arrow.className =
         "customer-dropdown-arrow";
 
+
       link.appendChild(
         arrow
       );
+
 
       link.addEventListener(
         "click",
@@ -1568,7 +2024,9 @@
     }
 
 
-    li.appendChild(link);
+    li.appendChild(
+      link
+    );
 
 
     if (item.dropdown) {
@@ -1586,6 +2044,7 @@
           const subLi =
             document.createElement("li");
 
+
           const subLink =
             document.createElement("a");
 
@@ -1594,6 +2053,7 @@
 
           subLink.textContent =
             subItem.label;
+
 
           subLi.appendChild(
             subLink
@@ -1655,7 +2115,9 @@
       "customer-nav-container";
 
 
-    /* BRAND */
+    /* --------------------------------------------------------
+       BRAND
+       -------------------------------------------------------- */
 
     const brand =
       document.createElement("a");
@@ -1698,9 +2160,6 @@
     brandName.className =
       "customer-brand-name";
 
-    /*
-      แก้ spelling ตรงนี้ให้ถูกต้อง
-    */
     brandName.textContent =
       "CHATPHETCH GROUP";
 
@@ -1733,7 +2192,9 @@
     );
 
 
-    /* NAV */
+    /* --------------------------------------------------------
+       NAV
+       -------------------------------------------------------- */
 
     const nav =
       document.createElement("nav");
@@ -1770,7 +2231,9 @@
     );
 
 
-    /* TOGGLE */
+    /* --------------------------------------------------------
+       MOBILE TOGGLE
+       -------------------------------------------------------- */
 
     const toggle =
       document.createElement("button");
@@ -1817,7 +2280,9 @@
     );
 
 
-    /* BACKDROP */
+    /* --------------------------------------------------------
+       BACKDROP
+       -------------------------------------------------------- */
 
     const backdrop =
       document.createElement("div");
@@ -1838,6 +2303,7 @@
       toggle
     );
 
+
     navbar.appendChild(
       container
     );
@@ -1857,7 +2323,7 @@
 
 
     /* ========================================================
-       MOBILE MENU EVENTS
+       MOBILE MENU FUNCTIONS
        ======================================================== */
 
     function closeMenu() {
@@ -1884,17 +2350,20 @@
         "customer-menu-open"
       );
 
+
       document
         .querySelectorAll(
           ".customer-nav-item.dropdown-open"
         )
-        .forEach(function (item) {
+        .forEach(
+          function (item) {
 
-          item.classList.remove(
-            "dropdown-open"
-          );
+            item.classList.remove(
+              "dropdown-open"
+            );
 
-        });
+          }
+        );
 
     }
 
@@ -1968,13 +2437,13 @@
         }
 
 
-        /*
-          ถ้าเป็น submenu ให้ปิด menu
-          เมื่อเลือกหน้าแล้ว
-        */
+        const parent =
+          link.parentElement;
+
+
         if (
           window.innerWidth <= 1050 &&
-          !link.parentElement.classList.contains(
+          !parent.classList.contains(
             "has-dropdown"
           )
         ) {
@@ -2034,102 +2503,316 @@
       "customer-footer-inner";
 
 
-    const top =
+    /* ========================================================
+       TOP GOLD LINE
+       ======================================================== */
+
+    const line =
       document.createElement("div");
 
-    top.className =
-      "customer-footer-top";
+    line.className =
+      "customer-footer-line";
 
 
     /* ========================================================
-       FOOTER BRAND
+       MAIN FOOTER BAR
        ======================================================== */
 
-    const brand =
+    const main =
       document.createElement("div");
 
-    brand.className =
-      "customer-footer-brand";
+    main.className =
+      "customer-footer-main";
 
 
-    const logo =
-      document.createElement("img");
+    /* ========================================================
+       COPYRIGHT
+       ======================================================== */
 
-    logo.className =
-      "customer-footer-logo";
-
-    logo.src =
-      "assets/logo.png";
-
-    logo.alt =
-      "CHATPHETCH GROUP";
-
-
-    const brandContent =
+    const copyright =
       document.createElement("div");
 
+    copyright.className =
+      "customer-footer-copyright";
 
-    const brandName =
+
+    const year =
+      new Date().getFullYear();
+
+
+    copyright.innerHTML =
+      "© " +
+      year +
+      " " +
+      "<strong>CHATPHETCH GROUP CO., LTD.</strong>" +
+      " All Rights Reserved.";
+
+
+    /* ========================================================
+       LOCATION
+       ======================================================== */
+
+    const location =
       document.createElement("div");
 
-    brandName.className =
-      "customer-footer-brand-name";
-
-    /*
-      แก้ spelling ให้ตรงกับ Header
-    */
-    brandName.textContent =
-      "CHATPHETCH GROUP";
+    location.className =
+      "customer-footer-location";
 
 
-    const description =
-      document.createElement("div");
+    const locationIcon =
+      document.createElement("span");
 
-    description.className =
-      "customer-footer-brand-text";
+    locationIcon.className =
+      "customer-footer-location-icon";
 
-    description.textContent =
-      "ระบบงานพื้น วัสดุ การเคลือบผิว งานก่อสร้าง และคำปรึกษาสำหรับพื้นที่คุณภาพ";
+    locationIcon.textContent =
+      "📍";
 
 
-    brandContent.appendChild(
-      brandName
+    const locationText =
+      document.createElement("span");
+
+    locationText.textContent =
+      "10/1 ม.9 ต.ท่าหม่อ อ.ท่าหม่อ จ.สงขลา 90310";
+
+
+    location.appendChild(
+      locationIcon
     );
 
-    brandContent.appendChild(
-      description
-    );
-
-
-    brand.appendChild(
-      logo
-    );
-
-    brand.appendChild(
-      brandContent
+    location.appendChild(
+      locationText
     );
 
 
     /* ========================================================
-       FOOTER LINKS
+       ACTIONS
        ======================================================== */
 
-    const links =
+    const actions =
+      document.createElement("div");
+
+    actions.className =
+      "customer-footer-actions";
+
+
+    /* CONTACT */
+
+    const contact =
+      document.createElement("a");
+
+    contact.className =
+      "customer-footer-action";
+
+    contact.href =
+      "contact.html";
+
+    contact.setAttribute(
+      "aria-label",
+      "ติดต่อเรา"
+    );
+
+
+    const contactIcon =
+      document.createElement("span");
+
+    contactIcon.className =
+      "customer-footer-action-icon";
+
+    contactIcon.textContent =
+      "☎";
+
+
+    const contactText =
+      document.createElement("span");
+
+    contactText.textContent =
+      "ติดต่อเรา";
+
+
+    contact.appendChild(
+      contactIcon
+    );
+
+    contact.appendChild(
+      contactText
+    );
+
+
+    /* ORDER */
+
+    const order =
+      document.createElement("a");
+
+    order.className =
+      "customer-footer-action";
+
+    order.href =
+      "order-status.html";
+
+    order.setAttribute(
+      "aria-label",
+      "ติดตามคำสั่งซื้อ"
+    );
+
+
+    const orderIcon =
+      document.createElement("span");
+
+    orderIcon.className =
+      "customer-footer-action-icon";
+
+    orderIcon.textContent =
+      "🔎";
+
+
+    const orderText =
+      document.createElement("span");
+
+    orderText.textContent =
+      "ติดตามคำสั่งซื้อ";
+
+
+    order.appendChild(
+      orderIcon
+    );
+
+    order.appendChild(
+      orderText
+    );
+
+
+    actions.appendChild(
+      contact
+    );
+
+    actions.appendChild(
+      order
+    );
+
+
+    /* ========================================================
+       SOCIAL
+       ======================================================== */
+
+    const social =
+      document.createElement("div");
+
+    social.className =
+      "customer-footer-social";
+
+
+    /* FACEBOOK */
+
+    const facebook =
+      document.createElement("a");
+
+    facebook.className =
+      "customer-social";
+
+    facebook.href =
+      "#";
+
+    facebook.setAttribute(
+      "aria-label",
+      "Facebook"
+    );
+
+    facebook.textContent =
+      "f";
+
+
+    /* YOUTUBE */
+
+    const youtube =
+      document.createElement("a");
+
+    youtube.className =
+      "customer-social youtube";
+
+    youtube.href =
+      "#";
+
+    youtube.setAttribute(
+      "aria-label",
+      "YouTube"
+    );
+
+    youtube.textContent =
+      "▶";
+
+
+    /* LINE */
+
+    const lineSocial =
+      document.createElement("a");
+
+    lineSocial.className =
+      "customer-social line";
+
+    lineSocial.href =
+      "#";
+
+    lineSocial.setAttribute(
+      "aria-label",
+      "LINE"
+    );
+
+    lineSocial.textContent =
+      "LINE";
+
+
+    social.appendChild(
+      facebook
+    );
+
+    social.appendChild(
+      youtube
+    );
+
+    social.appendChild(
+      lineSocial
+    );
+
+
+    /* ========================================================
+       APPEND MAIN
+       ======================================================== */
+
+    main.appendChild(
+      copyright
+    );
+
+    main.appendChild(
+      location
+    );
+
+    main.appendChild(
+      actions
+    );
+
+    main.appendChild(
+      social
+    );
+
+
+    /* ========================================================
+       SECONDARY FOOTER NAV
+       ======================================================== */
+
+    const secondary =
       document.createElement("nav");
 
-    links.className =
-      "customer-footer-links";
+    secondary.className =
+      "customer-footer-secondary";
 
-    links.setAttribute(
+    secondary.setAttribute(
       "aria-label",
-      "เมนูท้ายเว็บไซต์"
+      "เมนูเพิ่มเติม"
     );
 
 
-    /*
-      Footer ให้ครบชุดเดียวกับเมนูบน
-    */
-    const FOOTER_NAV = [
+    const secondaryLinks = [
 
       {
         label: "หน้าแรก",
@@ -2177,19 +2860,14 @@
       },
 
       {
-        label: "🔎 ติดตามคำสั่งซื้อ",
-        href: "order-status.html"
-      },
-
-      {
-        label: "🛒 ตะกร้า",
+        label: "ตะกร้า",
         href: "cart.html"
       }
 
     ];
 
 
-    FOOTER_NAV.forEach(
+    secondaryLinks.forEach(
       function (item) {
 
         const link =
@@ -2201,7 +2879,7 @@
         link.textContent =
           item.label;
 
-        links.appendChild(
+        secondary.appendChild(
           link
         );
 
@@ -2209,60 +2887,20 @@
     );
 
 
-    top.appendChild(
-      brand
-    );
-
-    top.appendChild(
-      links
-    );
-
-
     /* ========================================================
-       FOOTER BOTTOM
+       BUILD FOOTER
        ======================================================== */
 
-    const bottom =
-      document.createElement("div");
-
-    bottom.className =
-      "customer-footer-bottom";
-
-
-    const copyright =
-      document.createElement("div");
-
-    copyright.textContent =
-      "© " +
-      new Date().getFullYear() +
-      " CHATPHETCH GROUP. All rights reserved.";
-
-
-    const credit =
-      document.createElement("div");
-
-    credit.className =
-      "customer-footer-credit";
-
-    credit.textContent =
-      "QUALITY • DETAIL • SPACE";
-
-
-    bottom.appendChild(
-      copyright
-    );
-
-    bottom.appendChild(
-      credit
-    );
-
-
     inner.appendChild(
-      top
+      line
     );
 
     inner.appendChild(
-      bottom
+      main
+    );
+
+    inner.appendChild(
+      secondary
     );
 
 
@@ -2273,6 +2911,33 @@
 
     document.body.appendChild(
       footer
+    );
+
+
+    /* ========================================================
+       FLOATING PHONE
+       ======================================================== */
+
+    const phone =
+      document.createElement("a");
+
+    phone.className =
+      "customer-floating-phone";
+
+    phone.href =
+      "tel:";
+
+    phone.setAttribute(
+      "aria-label",
+      "โทรติดต่อ CHATPHETCH GROUP"
+    );
+
+    phone.textContent =
+      "☎";
+
+
+    document.body.appendChild(
+      phone
     );
 
   }
@@ -2296,7 +2961,7 @@
 
 
   /* ==========================================================
-     CART STORAGE CHANGE
+     CART EVENTS
      ========================================================== */
 
   window.addEventListener(
@@ -2315,10 +2980,6 @@
     }
   );
 
-
-  /* ==========================================================
-     CUSTOM CART EVENT
-     ========================================================== */
 
   window.addEventListener(
     "cartUpdated",
