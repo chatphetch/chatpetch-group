@@ -1,1735 +1,2746 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-  <meta charset="UTF-8">
-  <meta
+
+<meta charset="UTF-8">
+
+<meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
-  >
+>
 
-  <title>CHATPHETCH GROUP | Flooring & Construction</title>
+<title>
+    CHATPHETCH GROUP | Flooring & Construction
+</title>
 
-  <meta
+<meta
     name="description"
-    content="CHATPHETCH GROUP ผู้เชี่ยวชาญด้านระบบพื้น วัสดุงานพื้น งานเคลือบผิว และโซลูชันสำหรับงานก่อสร้าง"
-  >
+    content="CHATPHETCH GROUP วัสดุงานพื้น งานก่อสร้าง ระบบพื้น สินค้า ผลงาน และบริการให้คำปรึกษา"
+>
 
-  <link rel="icon" href="assets/logo.png">
+<meta
+    name="theme-color"
+    content="#070504"
+>
 
-  <style>
-    /* =========================================================
-       CHATPHETCH GROUP
-       INDEX PAGE
-       SINGLE BACKGROUND ARCHITECTURE
-       ========================================================= */
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
 
-    :root{
-      --cp-gold:#c9a45c;
-      --cp-gold-light:#ead28f;
-      --cp-gold-dark:#8f6c30;
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
 
-      --cp-black:#050505;
-      --cp-black-soft:#0b0b0b;
+<link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Prompt:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+>
 
-      --cp-white:#ffffff;
-      --cp-text:#e8e8e8;
-      --cp-muted:#a7a7a7;
-
-      --cp-line:rgba(255,255,255,.11);
-      --cp-gold-line:rgba(201,164,92,.32);
-
-      --cp-max:1280px;
-    }
-
-
-    /* =========================================================
-       RESET
-       ========================================================= */
-
-    *{
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      margin:0;
-      background:#050505;
-      color:#fff;
-      overflow-x:hidden;
-    }
-
-    img{
-      max-width:100%;
-      display:block;
-    }
-
-    a{
-      color:inherit;
-    }
+<link
+    rel="icon"
+    href="assets/logo.png"
+>
 
 
-    /* =========================================================
-       SINGLE PAGE BACKGROUND
-       ========================================================= */
+<style>
 
-    .cp-page{
-      position:relative;
-      isolation:isolate;
+/* =========================================================
+   CHATPHETCH GROUP
+   INDEX PAGE
+   PREMIUM ARCHITECTURAL VERSION
+   ========================================================= */
 
-      /*
-        ภาพเดียวทั้งหน้า
-        ไม่ใช้ hero image แยก
-        ไม่ใช้ floor image แยก
-      */
-      background:
+
+:root{
+
+    --black:
+        #050403;
+
+    --black-soft:
+        #0b0806;
+
+    --brown:
+        #24170e;
+
+    --gold:
+        #c9a45c;
+
+    --gold-light:
+        #e4c57f;
+
+    --gold-pale:
+        #f0d99e;
+
+    --white:
+        #f7f0e8;
+
+    --text:
+        #ded4c8;
+
+    --muted:
+        #a99e92;
+
+    --line:
+        rgba(201,164,92,.22);
+
+    --white-line:
+        rgba(255,255,255,.10);
+
+    --container:
+        1240px;
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+
+html{
+
+    margin:0;
+    padding:0;
+
+    scroll-behavior:smooth;
+
+}
+
+
+body{
+
+    margin:0;
+    padding:0;
+
+    overflow-x:hidden;
+
+    background:
+        var(--black);
+
+    color:
+        var(--text);
+
+    font-family:
+        "Prompt",
+        "Kanit",
+        sans-serif;
+
+}
+
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+
+img{
+
+    display:block;
+
+    max-width:100%;
+
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.cp-page{
+
+    position:relative;
+
+    width:100%;
+
+    overflow:hidden;
+
+    background:
+        var(--black);
+
+}
+
+
+/* =========================================================
+   HERO VISUAL
+   ========================================================= */
+
+.cp-hero{
+
+    position:relative;
+
+    min-height:
+        clamp(
+            650px,
+            75vh,
+            800px
+        );
+
+    overflow:hidden;
+
+    background:
+        #090705;
+
+}
+
+
+/*
+   Hero image
+*/
+
+.cp-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:0;
+
+    background-image:
+
         linear-gradient(
-          to bottom,
-          rgba(0,0,0,.28) 0%,
-          rgba(0,0,0,.20) 24%,
-          rgba(0,0,0,.25) 48%,
-          rgba(0,0,0,.58) 76%,
-          rgba(0,0,0,.90) 100%
+            90deg,
+            rgba(3,2,1,.46) 0%,
+            rgba(3,2,1,.20) 38%,
+            rgba(3,2,1,.05) 70%,
+            rgba(3,2,1,.18) 100%
         ),
-        url("assets/index-main-bg.png");
 
-      background-size:
+        linear-gradient(
+            180deg,
+            rgba(3,2,1,.20) 0%,
+            transparent 45%,
+            rgba(3,2,1,.28) 78%,
+            rgba(3,2,1,.70) 100%
+        ),
+
+        url("assets/home-hero-visual.jpg");
+
+    background-position:
+        center top,
+        center top,
+        center center;
+
+    background-size:
+        cover,
         cover,
         cover;
 
-      background-position:
-        center top,
-        center top;
-
-      background-repeat:
-        no-repeat,
+    background-repeat:
         no-repeat;
 
-      background-attachment:
-        scroll,
-        scroll;
-    }
+}
 
+
+/*
+   Slight cinematic darkening
+*/
+
+.cp-hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:1;
+
+    pointer-events:none;
+
+    background:
+
+        radial-gradient(
+            ellipse at 55% 40%,
+            transparent 20%,
+            rgba(0,0,0,.14) 65%,
+            rgba(0,0,0,.38) 100%
+        );
+
+}
+
+
+/* =========================================================
+   HERO CONTENT
+   ========================================================= */
+
+.cp-hero-inner{
+
+    position:relative;
+
+    z-index:3;
+
+    width:
+        min(
+            var(--container),
+            calc(100% - 80px)
+        );
+
+    min-height:
+        clamp(
+            650px,
+            75vh,
+            800px
+        );
+
+    margin:
+        0 auto;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+
+.cp-hero-copy{
+
+    width:
+        min(
+            650px,
+            100%
+        );
 
     /*
-      soft architectural darkening
-      ไม่ใช่ภาพใหม่
+       จุดนี้คือการเลื่อนข้อความลง
+       แต่ไม่เพิ่มความสูง Hero
     */
-    .cp-page::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:-1;
-      pointer-events:none;
 
-      background:
-        linear-gradient(
-          90deg,
-          rgba(0,0,0,.30) 0%,
-          rgba(0,0,0,.06) 45%,
-          rgba(0,0,0,.22) 100%
+    transform:
+        translateY(
+            clamp(
+                45px,
+                7vh,
+                85px
+            )
         );
-    }
+
+}
 
 
-    /* =========================================================
-       COMMON
-       ========================================================= */
+/* =========================================================
+   HERO KICKER
+   ========================================================= */
 
-    .cp-container{
-      width:min(
-        var(--cp-max),
-        calc(100% - 80px)
-      );
+.cp-kicker{
 
-      margin:0 auto;
-    }
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    margin-bottom:20px;
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        11px;
+
+    font-weight:
+        500;
+
+    letter-spacing:
+        .26em;
+
+}
 
 
-    .cp-section{
-      position:relative;
-      z-index:2;
-    }
+.cp-kicker::before{
+
+    content:"";
+
+    width:
+        42px;
+
+    height:
+        1px;
+
+    background:
+        var(--gold);
+
+}
 
 
-    .cp-eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
+/* =========================================================
+   HERO TITLE
+   ========================================================= */
 
-      color:var(--cp-gold-light);
+.cp-title{
 
-      font-family:
-        "Prompt",
+    margin:0;
+
+    color:
+        var(--white);
+
+    font-family:
         "Kanit",
+        "Prompt",
         sans-serif;
 
-      font-size:11px;
-      font-weight:500;
+    font-size:
+        clamp(
+            48px,
+            5.7vw,
+            82px
+        );
 
-      letter-spacing:3px;
-      text-transform:uppercase;
-    }
+    line-height:
+        1.02;
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        -.045em;
+
+    text-shadow:
+        0 8px 35px
+        rgba(0,0,0,.60);
+
+}
 
 
-    .cp-eyebrow::before{
-      content:"";
+.cp-title span{
 
-      width:32px;
-      height:1px;
+    display:block;
 
-      background:var(--cp-gold);
-    }
+    margin-top:4px;
+
+    color:
+        var(--gold-light);
+
+}
 
 
-    .cp-section-title{
-      margin:12px 0 0;
+/* =========================================================
+   HERO LINE
+   ========================================================= */
 
-      font-family:
+.cp-line{
+
+    width:
+        75px;
+
+    height:
+        1px;
+
+    margin-top:
+        24px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--gold),
+            transparent
+        );
+
+}
+
+
+/* =========================================================
+   HERO DESCRIPTION
+   ========================================================= */
+
+.cp-description{
+
+    max-width:
+        570px;
+
+    margin:
+        18px 0 0;
+
+    color:
+        rgba(247,240,232,.82);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.9;
+
+    text-shadow:
+        0 4px 18px
+        rgba(0,0,0,.72);
+
+}
+
+
+/* =========================================================
+   HERO ACTIONS
+   ========================================================= */
+
+.cp-actions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:11px;
+
+    margin-top:
+        25px;
+
+}
+
+
+.cp-button{
+
+    min-height:
+        46px;
+
+    padding:
+        0 22px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:
+        12px;
+
+    font-weight:
+        400;
+
+    transition:
+        .25s ease;
+
+}
+
+
+.cp-button-main{
+
+    color:
+        #170e07;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e4c57f,
+            #b18442
+        );
+
+    border:
+        1px solid
+        #e4c57f;
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.30);
+
+}
+
+
+.cp-button-main:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 16px 35px
+        rgba(0,0,0,.42);
+
+}
+
+
+.cp-button-sub{
+
+    color:
+        var(--white);
+
+    background:
+        rgba(7,5,3,.26);
+
+    border:
+        1px solid
+        rgba(228,197,127,.55);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+}
+
+
+.cp-button-sub:hover{
+
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(7,5,3,.52);
+
+    border-color:
+        var(--gold-light);
+
+}
+
+
+/* =========================================================
+   HERO SCROLL
+   ========================================================= */
+
+.cp-scroll{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:22px;
+
+    z-index:4;
+
+    transform:
+        translateX(-50%);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:
+        rgba(255,255,255,.48);
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        .24em;
+
+}
+
+
+.cp-scroll span{
+
+    width:1px;
+
+    height:30px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            var(--gold),
+            transparent
+        );
+
+}
+
+
+/* =========================================================
+   FLOOR TRANSITION
+   ========================================================= */
+
+.cp-floor{
+
+    position:relative;
+
+    min-height:
+        380px;
+
+    margin-top:
+        -105px;
+
+    padding-top:
+        145px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(5,3,2,0) 0%,
+            rgba(5,3,2,.35) 20%,
+            rgba(5,3,2,.72) 52%,
+            rgba(5,3,2,.96) 100%
+        ),
+
+        url("assets/index-floor-bg.png");
+
+    background-size:
+        cover;
+
+    background-position:
+        center top;
+
+    background-repeat:
+        no-repeat;
+
+}
+
+
+.cp-floor::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    right:0;
+
+    height:190px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,3,2,0),
+            rgba(5,3,2,.82)
+        );
+
+    pointer-events:none;
+
+}
+
+
+.cp-floor::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:150px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(5,3,2,.96)
+        );
+
+    pointer-events:none;
+
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.cp-content{
+
+    position:relative;
+
+    z-index:5;
+
+    margin-top:
+        -115px;
+
+}
+
+
+/* =========================================================
+   COMMON SECTION
+   ========================================================= */
+
+.cp-section{
+
+    width:
+        min(
+            var(--container),
+            calc(100% - 80px)
+        );
+
+    margin:
+        0 auto;
+
+    padding:
+        65px 0;
+
+}
+
+
+.cp-eyebrow{
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        10px;
+
+    font-weight:
+        500;
+
+    letter-spacing:
+        .25em;
+
+}
+
+
+.cp-heading{
+
+    margin:
+        0;
+
+    color:
+        var(--white);
+
+    font-family:
         "Kanit",
         "Prompt",
         sans-serif;
 
-      font-size:
-        clamp(34px, 4vw, 58px);
+    font-size:
+        clamp(
+            32px,
+            3.6vw,
+            50px
+        );
 
-      line-height:1.05;
-      font-weight:500;
+    line-height:
+        1.12;
 
-      letter-spacing:-.5px;
-    }
+    font-weight:
+        400;
+
+    letter-spacing:
+        -.035em;
+
+}
 
 
-    .cp-section-description{
-      max-width:640px;
+.cp-text{
 
-      margin:16px 0 0;
+    max-width:
+        650px;
 
-      color:#b9b9b9;
+    margin:
+        14px 0 0;
 
-      font-family:
-        "Prompt",
+    color:
+        rgba(245,239,231,.64);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.9;
+
+}
+
+
+/* =========================================================
+   SOLUTIONS
+   ========================================================= */
+
+.cp-solutions{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:1px;
+
+    margin-top:
+        32px;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        rgba(201,164,92,.22);
+
+    background:
+        rgba(201,164,92,.22);
+
+}
+
+
+.cp-card{
+
+    position:relative;
+
+    min-height:
+        250px;
+
+    padding:
+        26px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(38,25,15,.88),
+            rgba(8,5,3,.82)
+        );
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    transition:
+        .28s ease;
+
+}
+
+
+.cp-card:hover{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(58,37,19,.92),
+            rgba(9,5,3,.88)
+        );
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+.cp-card-number{
+
+    color:
+        rgba(228,197,127,.68);
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        .18em;
+
+}
+
+
+.cp-card-icon{
+
+    width:
+        39px;
+
+    height:
+        39px;
+
+    margin-top:
+        23px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:
+        var(--gold-light);
+
+    border:
+        1px solid
+        rgba(201,164,92,.32);
+
+}
+
+
+.cp-card h3{
+
+    margin:
+        15px 0 8px;
+
+    color:
+        var(--white);
+
+    font-family:
         "Kanit",
+        "Prompt",
         sans-serif;
 
-      font-size:14px;
-      line-height:1.9;
-    }
+    font-size:
+        19px;
+
+    font-weight:
+        400;
+
+}
 
 
-    /* =========================================================
-       HERO
-       ========================================================= */
+.cp-card p{
+
+    margin:
+        0;
+
+    color:
+        rgba(245,239,231,.57);
+
+    font-size:
+        11px;
+
+    line-height:
+        1.8;
+
+}
+
+
+.cp-card-link{
+
+    margin-top:
+        auto;
+
+    padding-top:
+        17px;
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        10px;
+
+}
+
+
+.cp-card-link:hover{
+
+    color:
+        var(--gold-pale);
+
+}
+
+
+/* =========================================================
+   WORK
+   ========================================================= */
+
+.cp-work{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:
+        12px;
+
+    margin-top:
+        32px;
+
+}
+
+
+.cp-work-card{
+
+    position:relative;
+
+    min-height:
+        250px;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        rgba(201,164,92,.18);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(44,27,15,.72),
+            rgba(7,4,2,.91)
+        );
+
+    transition:
+        .28s ease;
+
+}
+
+
+.cp-work-card:hover{
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        rgba(201,164,92,.42);
+
+}
+
+
+.cp-work-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+}
+
+
+.cp-work-card:nth-child(1)::before{
+
+    background:
+        radial-gradient(
+            circle at 50% 22%,
+            rgba(201,164,92,.18),
+            transparent 43%
+        );
+
+}
+
+
+.cp-work-card:nth-child(2)::before{
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 32px,
+            rgba(201,164,92,.05) 33px,
+            transparent 34px
+        );
+
+}
+
+
+.cp-work-card:nth-child(3)::before{
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 43%,
+            rgba(201,164,92,.13) 44%,
+            transparent 46%
+        );
+
+}
+
+
+.cp-work-card:nth-child(4)::before{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.04),
+            transparent 48%
+        );
+
+}
+
+
+.cp-work-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:
+        68%;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(0,0,0,.90)
+        );
+
+}
+
+
+.cp-work-inner{
+
+    position:absolute;
+
+    left:
+        22px;
+
+    right:
+        22px;
+
+    bottom:
+        22px;
+
+    z-index:3;
+
+}
+
+
+.cp-work-number{
+
+    margin-bottom:
+        6px;
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        .17em;
+
+}
+
+
+.cp-work-title{
+
+    color:
+        var(--white);
+
+    font-family:
+        "Kanit",
+        "Prompt",
+        sans-serif;
+
+    font-size:
+        18px;
+
+    font-weight:
+        400;
+
+    line-height:
+        1.35;
+
+}
+
+
+.cp-work-sub{
+
+    margin-top:
+        6px;
+
+    color:
+        rgba(245,239,231,.45);
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        .15em;
+
+}
+
+
+.cp-work-more{
+
+    margin-top:
+        16px;
+
+}
+
+
+.cp-work-more a{
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        10px;
+
+    border-bottom:
+        1px solid
+        rgba(201,164,92,.38);
+
+    padding-bottom:
+        4px;
+
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.cp-stats-section{
+
+    padding-top:
+        25px;
+
+    padding-bottom:
+        45px;
+
+}
+
+
+.cp-stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    border-top:
+        1px solid
+        rgba(201,164,92,.22);
+
+    border-bottom:
+        1px solid
+        rgba(201,164,92,.22);
+
+    background:
+        rgba(7,4,2,.18);
+
+    backdrop-filter:
+        blur(6px);
+
+    -webkit-backdrop-filter:
+        blur(6px);
+
+}
+
+
+.cp-stat{
+
+    padding:
+        31px 20px;
+
+    text-align:center;
+
+    border-right:
+        1px solid
+        rgba(201,164,92,.15);
+
+}
+
+
+.cp-stat:last-child{
+
+    border-right:
+        0;
+
+}
+
+
+.cp-stat strong{
+
+    display:block;
+
+    color:
+        var(--gold-light);
+
+    font-family:
+        "Kanit",
+        "Prompt",
+        sans-serif;
+
+    font-size:
+        clamp(
+            42px,
+            4.5vw,
+            62px
+        );
+
+    line-height:
+        1;
+
+    font-weight:
+        300;
+
+}
+
+
+.cp-stat span{
+
+    display:block;
+
+    margin-top:
+        9px;
+
+    color:
+        rgba(245,239,231,.53);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        .08em;
+
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.cp-cta-section{
+
+    padding-top:
+        38px;
+
+    padding-bottom:
+        90px;
+
+}
+
+
+.cp-cta{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:
+        clamp(
+            42px,
+            6vw,
+            70px
+        );
+
+    border:
+        1px solid
+        rgba(201,164,92,.28);
+
+    background:
+
+        linear-gradient(
+            120deg,
+            rgba(9,6,4,.90),
+            rgba(37,24,13,.62)
+        );
+
+    backdrop-filter:
+        blur(9px);
+
+    -webkit-backdrop-filter:
+        blur(9px);
+
+}
+
+
+.cp-cta::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:
+        250px;
+
+    height:
+        250px;
+
+    right:
+        -100px;
+
+    top:
+        -100px;
+
+    border:
+        1px solid
+        rgba(201,164,92,.28);
+
+    transform:
+        rotate(45deg);
+
+}
+
+
+.cp-cta::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:0;
+
+    width:
+        42%;
+
+    height:
+        2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--gold),
+            transparent
+        );
+
+}
+
+
+.cp-cta-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.cp-cta-title{
+
+    margin:
+        10px 0 0;
+
+    color:
+        var(--white);
+
+    font-family:
+        "Kanit",
+        "Prompt",
+        sans-serif;
+
+    font-size:
+        clamp(
+            35px,
+            4.5vw,
+            60px
+        );
+
+    line-height:
+        1.05;
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        -.035em;
+
+}
+
+
+.cp-cta-description{
+
+    max-width:
+        650px;
+
+    margin:
+        14px 0 0;
+
+    color:
+        rgba(245,239,231,.60);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.9;
+
+}
+
+
+.cp-cta-action{
+
+    margin-top:
+        24px;
+
+}
+
+
+/* =========================================================
+   DESKTOP LARGE
+   ========================================================= */
+
+@media(min-width:1400px){
 
     .cp-hero{
-      position:relative;
 
-      /*
-        Header สูงประมาณ 86px
-        แต่ไม่ทำให้เพดานสูงเกินไป
-      */
-      min-height:clamp(
-        650px,
-        72vh,
-        790px
-      );
+        min-height:
+            760px;
 
-      display:flex;
-      align-items:flex-start;
-
-      padding-top:86px;
     }
 
 
     .cp-hero-inner{
-      width:100%;
+
+        min-height:
+            760px;
+
     }
 
 
-    /*
-      จุดสำคัญ:
-      Hero content ถูกเลื่อน "ลง"
-      โดยไม่เพิ่มความสูง Hero
-      จึงไม่ทำให้ section ด้านล่างถูกผลักลง
-    */
     .cp-hero-copy{
-      width:min(650px,100%);
 
-      margin-top:
-        clamp(105px, 15vh, 155px);
+        transform:
+            translateY(78px);
 
-      transform:
-        translateY(
-          clamp(35px, 5vh, 70px)
-        );
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media(max-width:1050px){
+
+    .cp-hero{
+
+        min-height:
+            670px;
+
     }
 
 
-    .cp-hero-kicker{
-      display:flex;
-      align-items:center;
-      gap:12px;
+    .cp-hero-inner{
 
-      color:var(--cp-gold-light);
+        min-height:
+            670px;
 
-      font-family:
-        "Prompt",
-        "Kanit",
-        sans-serif;
+        width:
+            calc(100% - 50px);
 
-      font-size:12px;
-      font-weight:500;
-
-      letter-spacing:3.5px;
     }
 
 
-    .cp-hero-kicker::before{
-      content:"";
+    .cp-hero-copy{
 
-      width:42px;
-      height:1px;
+        transform:
+            translateY(55px);
 
-      background:var(--cp-gold);
     }
 
 
-    .cp-hero-title{
-      margin:18px 0 0;
+    .cp-section{
 
-      font-family:
-        "Kanit",
-        "Prompt",
-        sans-serif;
+        width:
+            calc(100% - 50px);
 
-      font-size:
-        clamp(44px, 6vw, 84px);
-
-      font-weight:500;
-
-      line-height:.98;
-
-      letter-spacing:-1.5px;
-
-      text-shadow:
-        0 8px 35px rgba(0,0,0,.45);
     }
 
 
-    .cp-hero-title span{
-      display:block;
+    .cp-solutions{
 
-      color:var(--cp-gold-light);
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
 
 
-    .cp-hero-line{
-      width:74px;
-      height:1px;
+    .cp-work{
 
-      margin-top:22px;
+        grid-template-columns:
+            repeat(2,1fr);
 
-      background:
-        linear-gradient(
-          90deg,
-          var(--cp-gold),
-          transparent
-        );
     }
 
 
-    .cp-hero-description{
-      max-width:570px;
+    .cp-floor{
 
-      margin:18px 0 0;
+        margin-top:
+            -80px;
 
-      color:#d0d0d0;
+        padding-top:
+            120px;
 
-      font-family:
-        "Prompt",
-        "Kanit",
-        sans-serif;
-
-      font-size:15px;
-
-      line-height:1.95;
-
-      text-shadow:
-        0 4px 20px rgba(0,0,0,.55);
     }
 
 
-    .cp-hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
+    .cp-content{
 
-      margin-top:24px;
+        margin-top:
+            -90px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:700px){
+
+    .cp-hero{
+
+        min-height:
+            650px;
+
+    }
+
+
+    .cp-hero-inner{
+
+        min-height:
+            650px;
+
+        width:
+            calc(100% - 30px);
+
+    }
+
+
+    .cp-hero-copy{
+
+        width:
+            100%;
+
+        transform:
+            translateY(35px);
+
+    }
+
+
+    .cp-title{
+
+        font-size:
+            clamp(
+                41px,
+                12.5vw,
+                60px
+            );
+
+    }
+
+
+    .cp-description{
+
+        max-width:
+            470px;
+
+        font-size:
+            12px;
+
+        line-height:
+            1.85;
+
+    }
+
+
+    .cp-actions{
+
+        margin-top:
+            21px;
+
     }
 
 
     .cp-button{
-      min-height:46px;
 
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+        min-height:
+            44px;
 
-      padding:0 21px;
+        padding:
+            0 17px;
 
-      border:1px solid
-        rgba(201,164,92,.48);
-
-      color:#fff;
-
-      text-decoration:none;
-
-      font-family:
-        "Prompt",
-        "Kanit",
-        sans-serif;
-
-      font-size:12px;
-      font-weight:500;
-
-      letter-spacing:.4px;
-
-      background:
-        rgba(0,0,0,.34);
-
-      backdrop-filter:blur(8px);
-      -webkit-backdrop-filter:blur(8px);
-
-      transition:
-        .25s ease;
     }
 
 
-    .cp-button:hover{
-      color:#000;
+    .cp-scroll{
 
-      background:
-        var(--cp-gold-light);
+        display:none;
 
-      border-color:
-        var(--cp-gold-light);
-
-      transform:
-        translateY(-2px);
     }
 
 
-    .cp-button.primary{
-      color:#050505;
+    .cp-floor{
 
-      background:
-        var(--cp-gold-light);
+        min-height:
+            300px;
 
-      border-color:
-        var(--cp-gold-light);
+        margin-top:
+            -65px;
+
+        padding-top:
+            105px;
+
+        background-position:
+            center top;
+
     }
 
 
-    .cp-button.primary:hover{
-      color:#fff;
+    .cp-content{
 
-      background:
-        rgba(0,0,0,.42);
+        margin-top:
+            -80px;
+
     }
 
 
-    /* =========================================================
-       HERO LOWER MARKER
-       ========================================================= */
+    .cp-section{
 
-    .cp-scroll-marker{
-      position:absolute;
+        width:
+            calc(100% - 30px);
 
-      left:50%;
+        padding:
+            50px 0;
 
-      bottom:25px;
-
-      transform:
-        translateX(-50%);
-
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:8px;
-
-      color:rgba(255,255,255,.48);
-
-      font-size:9px;
-
-      letter-spacing:2px;
-
-      text-transform:uppercase;
     }
 
-
-    .cp-scroll-marker span{
-      width:1px;
-      height:30px;
-
-      background:
-        linear-gradient(
-          to bottom,
-          var(--cp-gold),
-          transparent
-        );
-    }
-
-
-    /* =========================================================
-       SOLUTIONS
-       ========================================================= */
 
     .cp-solutions{
-      padding:
-        70px 0 85px;
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
 
 
-    .cp-section-head{
-      margin-bottom:34px;
+    .cp-card{
+
+        min-height:
+            225px;
+
+        padding:
+            21px;
+
     }
 
-
-    .cp-solution-grid{
-      display:grid;
-
-      grid-template-columns:
-        repeat(4, minmax(0,1fr));
-
-      gap:14px;
-    }
-
-
-    .cp-solution-card{
-      position:relative;
-
-      min-height:245px;
-
-      padding:28px 24px;
-
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-
-      overflow:hidden;
-
-      border:
-        1px solid
-        rgba(255,255,255,.13);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(20,20,20,.72),
-          rgba(0,0,0,.45)
-        );
-
-      backdrop-filter:blur(7px);
-      -webkit-backdrop-filter:blur(7px);
-
-      box-shadow:
-        0 25px 60px
-        rgba(0,0,0,.22);
-
-      transition:
-        transform .3s ease,
-        border-color .3s ease,
-        background .3s ease;
-    }
-
-
-    .cp-solution-card::before{
-      content:"";
-
-      position:absolute;
-
-      top:0;
-      left:0;
-
-      width:100%;
-      height:2px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          var(--cp-gold),
-          transparent
-        );
-
-      opacity:.7;
-    }
-
-
-    .cp-solution-card::after{
-      content:"";
-
-      position:absolute;
-
-      width:130px;
-      height:130px;
-
-      top:-55px;
-      right:-55px;
-
-      border:
-        1px solid
-        rgba(201,164,92,.20);
-
-      transform:rotate(45deg);
-    }
-
-
-    .cp-solution-card:hover{
-      transform:
-        translateY(-5px);
-
-      border-color:
-        rgba(201,164,92,.48);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(28,25,20,.82),
-          rgba(0,0,0,.54)
-        );
-    }
-
-
-    .cp-card-number{
-      position:absolute;
-
-      top:22px;
-      right:22px;
-
-      color:
-        rgba(255,255,255,.30);
-
-      font-family:
-        "Kanit",
-        sans-serif;
-
-      font-size:11px;
-
-      letter-spacing:2px;
-    }
-
-
-    .cp-card-icon{
-      margin-bottom:auto;
-
-      color:var(--cp-gold-light);
-
-      font-size:25px;
-
-      line-height:1;
-    }
-
-
-    .cp-solution-card h3{
-      margin:0;
-
-      font-family:
-        "Kanit",
-        "Prompt",
-        sans-serif;
-
-      font-size:22px;
-
-      font-weight:500;
-    }
-
-
-    .cp-solution-card p{
-      margin:8px 0 0;
-
-      color:#aaa;
-
-      font-family:
-        "Prompt",
-        "Kanit",
-        sans-serif;
-
-      font-size:12px;
-
-      line-height:1.75;
-    }
-
-
-    .cp-card-link{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-
-      width:max-content;
-
-      margin-top:16px;
-
-      color:var(--cp-gold-light);
-
-      font-size:11px;
-
-      text-decoration:none;
-
-      letter-spacing:.6px;
-    }
-
-
-    .cp-card-link span{
-      transition:.2s;
-    }
-
-
-    .cp-card-link:hover span{
-      transform:
-        translateX(5px);
-    }
-
-
-    /* =========================================================
-       WORK
-       ========================================================= */
 
     .cp-work{
-      padding:
-        35px 0 85px;
-    }
 
+        grid-template-columns:
+            repeat(2,1fr);
 
-    .cp-work-grid{
-      display:grid;
-
-      grid-template-columns:
-        repeat(4, minmax(0,1fr));
-
-      gap:14px;
     }
 
 
     .cp-work-card{
-      position:relative;
 
-      min-height:190px;
+        min-height:
+            220px;
 
-      overflow:hidden;
-
-      border:
-        1px solid
-        rgba(255,255,255,.11);
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(27,27,27,.80),
-          rgba(4,4,4,.62)
-        );
-
-      backdrop-filter:blur(6px);
-      -webkit-backdrop-filter:blur(6px);
     }
 
-
-    .cp-work-card::before{
-      content:"";
-
-      position:absolute;
-
-      inset:0;
-
-      background:
-        linear-gradient(
-          135deg,
-          transparent 0 47%,
-          rgba(201,164,92,.16) 48%,
-          transparent 49%
-        );
-
-      opacity:.7;
-    }
-
-
-    .cp-work-card::after{
-      content:"";
-
-      position:absolute;
-
-      left:20px;
-      right:20px;
-      bottom:17px;
-
-      height:1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          var(--cp-gold),
-          transparent
-        );
-    }
-
-
-    .cp-work-content{
-      position:absolute;
-
-      left:20px;
-      right:20px;
-      bottom:28px;
-
-      z-index:2;
-    }
-
-
-    .cp-work-content small{
-      display:block;
-
-      margin-bottom:5px;
-
-      color:var(--cp-gold);
-
-      font-size:9px;
-
-      letter-spacing:2px;
-    }
-
-
-    .cp-work-content strong{
-      display:block;
-
-      font-family:
-        "Kanit",
-        "Prompt",
-        sans-serif;
-
-      font-size:20px;
-
-      font-weight:500;
-    }
-
-
-    /* =========================================================
-       STATS
-       ========================================================= */
 
     .cp-stats{
-      padding:
-        25px 0 80px;
-    }
 
+        grid-template-columns:
+            1fr;
 
-    .cp-stats-grid{
-      display:grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      border-top:
-        1px solid
-        rgba(201,164,92,.24);
-
-      border-bottom:
-        1px solid
-        rgba(201,164,92,.24);
     }
 
 
     .cp-stat{
-      min-height:155px;
 
-      padding:28px;
+        border-right:
+            0;
 
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
+        border-bottom:
+            1px solid
+            rgba(201,164,92,.15);
 
-      border-right:
-        1px solid
-        rgba(255,255,255,.08);
     }
 
 
     .cp-stat:last-child{
-      border-right:0;
+
+        border-bottom:
+            0;
+
     }
 
 
-    .cp-stat-number{
-      color:var(--cp-gold-light);
+    .cp-cta-section{
 
-      font-family:
-        "Kanit",
-        "Prompt",
-        sans-serif;
+        padding-bottom:
+            65px;
 
-      font-size:
-        clamp(38px,5vw,60px);
-
-      font-weight:500;
-
-      line-height:1;
     }
 
-
-    .cp-stat-label{
-      margin-top:9px;
-
-      color:#aaa;
-
-      font-family:
-        "Prompt",
-        "Kanit",
-        sans-serif;
-
-      font-size:12px;
-
-      letter-spacing:.4px;
-    }
-
-
-    /* =========================================================
-       CTA
-       ========================================================= */
 
     .cp-cta{
-      padding:
-        25px 0 95px;
+
+        padding:
+            38px 25px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media(max-width:480px){
+
+    .cp-hero{
+
+        min-height:
+            620px;
+
     }
 
 
-    .cp-cta-box{
-      position:relative;
+    .cp-hero-inner{
 
-      padding:
-        clamp(40px,6vw,72px);
+        min-height:
+            620px;
 
-      overflow:hidden;
+        width:
+            calc(100% - 24px);
 
-      border:
-        1px solid
-        rgba(201,164,92,.30);
-
-      background:
-        linear-gradient(
-          120deg,
-          rgba(5,5,5,.78),
-          rgba(23,20,16,.55)
-        );
-
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
     }
 
 
-    .cp-cta-box::before{
-      content:"";
+    .cp-hero-copy{
 
-      position:absolute;
+        transform:
+            translateY(25px);
 
-      width:240px;
-      height:240px;
-
-      right:-95px;
-      top:-95px;
-
-      border:
-        1px solid
-        rgba(201,164,92,.30);
-
-      transform:
-        rotate(45deg);
     }
 
 
-    .cp-cta-box::after{
-      content:"";
+    .cp-kicker{
 
-      position:absolute;
+        font-size:
+            9px;
 
-      left:0;
-      bottom:0;
+        letter-spacing:
+            .20em;
 
-      width:42%;
-      height:2px;
-
-      background:
-        linear-gradient(
-          90deg,
-          var(--cp-gold),
-          transparent
-        );
     }
 
 
-    .cp-cta-content{
-      position:relative;
-      z-index:2;
+    .cp-kicker::before{
+
+        width:
+            30px;
+
+    }
+
+
+    .cp-title{
+
+        font-size:
+            39px;
+
+        line-height:
+            1.02;
+
+    }
+
+
+    .cp-description{
+
+        font-size:
+            11.5px;
+
+    }
+
+
+    .cp-actions{
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .cp-button{
+
+        width:
+            auto;
+
+    }
+
+
+    .cp-floor{
+
+        min-height:
+            250px;
+
+        margin-top:
+            -45px;
+
+        padding-top:
+            80px;
+
+    }
+
+
+    .cp-content{
+
+        margin-top:
+            -65px;
+
+    }
+
+
+    .cp-section{
+
+        width:
+            calc(100% - 24px);
+
+        padding:
+            43px 0;
+
+    }
+
+
+    .cp-heading{
+
+        font-size:
+            31px;
+
+    }
+
+
+    .cp-text{
+
+        font-size:
+            11.5px;
+
+    }
+
+
+    .cp-solutions{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cp-card{
+
+        min-height:
+            205px;
+
+    }
+
+
+    .cp-work{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .cp-work-card{
+
+        min-height:
+            205px;
+
+    }
+
+
+    .cp-stat{
+
+        padding:
+            26px 15px;
+
     }
 
 
     .cp-cta-title{
-      margin:12px 0 0;
 
-      font-family:
-        "Kanit",
-        "Prompt",
-        sans-serif;
+        font-size:
+            34px;
 
-      font-size:
-        clamp(34px,4.5vw,60px);
-
-      font-weight:500;
-
-      line-height:1.05;
     }
 
 
     .cp-cta-description{
-      max-width:650px;
 
-      margin:14px 0 0;
-
-      color:#aaa;
-
-      font-family:
-        "Prompt",
-        "Kanit",
-        sans-serif;
-
-      font-size:14px;
-
-      line-height:1.9;
-    }
-
-
-    .cp-cta-actions{
-      margin-top:24px;
-    }
-
-
-    /* =========================================================
-       INDEX FOOTER TRANSITION
-       ========================================================= */
-
-    .cp-footer-transition{
-      height:70px;
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(5,5,5,0),
-          rgba(5,5,5,.88)
-        );
-
-      pointer-events:none;
-    }
-
-
-    /* =========================================================
-       TABLET
-       ========================================================= */
-
-    @media(max-width:1050px){
-
-      .cp-container{
-        width:
-          calc(100% - 40px);
-      }
-
-
-      .cp-hero{
-        min-height:680px;
-
-        padding-top:78px;
-      }
-
-
-      .cp-hero-copy{
-        margin-top:95px;
-
-        transform:
-          translateY(48px);
-      }
-
-
-      .cp-solution-grid{
-        grid-template-columns:
-          repeat(2,minmax(0,1fr));
-      }
-
-
-      .cp-work-grid{
-        grid-template-columns:
-          repeat(2,minmax(0,1fr));
-      }
-    }
-
-
-    /* =========================================================
-       MOBILE
-       ========================================================= */
-
-    @media(max-width:700px){
-
-      .cp-container{
-        width:
-          calc(100% - 28px);
-      }
-
-
-      .cp-page{
-        background-position:
-          center top,
-          center top;
-      }
-
-
-      .cp-hero{
-        min-height:650px;
-
-        padding-top:72px;
-      }
-
-
-      .cp-hero-copy{
-        width:100%;
-
-        margin-top:78px;
-
-        transform:
-          translateY(34px);
-      }
-
-
-      .cp-hero-title{
         font-size:
-          clamp(40px,13vw,62px);
+            11.5px;
 
-        line-height:1;
-      }
-
-
-      .cp-hero-description{
-        font-size:13px;
-
-        max-width:470px;
-      }
-
-
-      .cp-hero-actions{
-        margin-top:20px;
-      }
-
-
-      .cp-button{
-        min-height:44px;
-
-        padding:0 17px;
-      }
-
-
-      .cp-scroll-marker{
-        display:none;
-      }
-
-
-      .cp-solutions{
-        padding:
-          50px 0 65px;
-      }
-
-
-      .cp-work{
-        padding:
-          20px 0 65px;
-      }
-
-
-      .cp-stats{
-        padding:
-          15px 0 60px;
-      }
-
-
-      .cp-stats-grid{
-        grid-template-columns:
-          1fr;
-      }
-
-
-      .cp-stat{
-        min-height:115px;
-
-        border-right:0;
-
-        border-bottom:
-          1px solid
-          rgba(255,255,255,.08);
-      }
-
-
-      .cp-stat:last-child{
-        border-bottom:0;
-      }
-
-
-      .cp-cta{
-        padding:
-          15px 0 70px;
-      }
-
-
-      .cp-cta-box{
-        padding:34px 25px;
-      }
     }
 
+}
 
-    /* =========================================================
-       SMALL MOBILE
-       ========================================================= */
+</style>
 
-    @media(max-width:480px){
-
-      .cp-hero{
-        min-height:625px;
-      }
-
-
-      .cp-hero-copy{
-        margin-top:70px;
-
-        transform:
-          translateY(28px);
-      }
-
-
-      .cp-hero-kicker{
-        font-size:10px;
-
-        letter-spacing:2.5px;
-      }
-
-
-      .cp-hero-title{
-        font-size:
-          clamp(38px,13vw,54px);
-      }
-
-
-      .cp-hero-description{
-        font-size:12px;
-
-        line-height:1.85;
-      }
-
-
-      .cp-hero-actions{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-
-      .cp-button{
-        width:auto;
-      }
-
-
-      .cp-solution-grid,
-      .cp-work-grid{
-        grid-template-columns:1fr;
-      }
-
-
-      .cp-solution-card{
-        min-height:210px;
-      }
-
-
-      .cp-work-card{
-        min-height:175px;
-      }
-
-
-      .cp-section-title{
-        font-size:36px;
-      }
-
-
-      .cp-section-description{
-        font-size:12px;
-      }
-    }
-  </style>
 </head>
 
 
 <body>
 
-  <!-- =======================================================
-       SINGLE BACKGROUND PAGE
-       ======================================================= -->
 
-  <div class="cp-page">
+<div class="cp-page">
+
 
     <!-- =====================================================
          HERO
          ===================================================== -->
 
-    <main>
+    <section class="cp-hero">
 
-      <section class="cp-section cp-hero">
+        <div class="cp-hero-inner">
 
-        <div class="cp-container cp-hero-inner">
+            <div class="cp-hero-copy">
 
-          <div class="cp-hero-copy">
+                <div class="cp-kicker">
 
-            <div class="cp-hero-kicker">
-              FLOORING &amp; CONSTRUCTION
+                    FLOORING &amp; CONSTRUCTION
+
+                </div>
+
+
+                <h1 class="cp-title">
+
+                    วัสดุงานพื้น
+                    <span>และงานก่อสร้าง</span>
+
+                </h1>
+
+
+                <div class="cp-line"></div>
+
+
+                <p class="cp-description">
+
+                    โซลูชันด้านวัสดุงานพื้น
+                    และงานก่อสร้างสำหรับบ้าน
+                    อาคารพาณิชย์ โรงงาน
+                    และโครงการขนาดใหญ่
+                    พร้อมทีมงานดูแลตั้งแต่
+                    การเลือกวัสดุจนถึงการติดตั้ง
+
+                </p>
+
+
+                <div class="cp-actions">
+
+                    <a
+                        href="products.html"
+                        class="cp-button cp-button-main"
+                    >
+                        ดูผลิตภัณฑ์ →
+                    </a>
+
+
+                    <a
+                        href="contact.html"
+                        class="cp-button cp-button-sub"
+                    >
+                        ติดต่อเรา
+                    </a>
+
+                </div>
+
             </div>
-
-            <h1 class="cp-hero-title">
-              BUILDING
-              <span>BETTER SPACE.</span>
-            </h1>
-
-            <div class="cp-hero-line"></div>
-
-            <p class="cp-hero-description">
-              โซลูชันด้านระบบพื้น วัสดุงานพื้น
-              งานเคลือบผิว และบริการให้คำปรึกษา
-              เพื่อสร้างพื้นที่ที่ตอบโจทย์ทั้งคุณภาพ
-              การใช้งาน และภาพลักษณ์ของโครงการ
-            </p>
-
-            <div class="cp-hero-actions">
-
-              <a
-                href="services.html"
-                class="cp-button primary"
-              >
-                ดูบริการของเรา →
-              </a>
-
-              <a
-                href="contact.html"
-                class="cp-button"
-              >
-                ปรึกษาเรา
-              </a>
-
-            </div>
-
-          </div>
 
         </div>
 
 
-        <div class="cp-scroll-marker">
-          SCROLL
-          <span></span>
-        </div>
+        <div class="cp-scroll">
 
-      </section>
+            SCROLL
 
-
-      <!-- ===================================================
-           SOLUTIONS
-           =================================================== -->
-
-      <section
-        id="solutions"
-        class="cp-section cp-solutions"
-      >
-
-        <div class="cp-container">
-
-          <div class="cp-section-head">
-
-            <div class="cp-eyebrow">
-              OUR SOLUTIONS
-            </div>
-
-            <h2 class="cp-section-title">
-              โซลูชันสำหรับพื้นที่
-            </h2>
-
-            <p class="cp-section-description">
-              ตั้งแต่งานระบบพื้น วัสดุ งานก่อสร้าง
-              ไปจนถึงคำปรึกษา เราช่วยวางแนวทาง
-              ให้เหมาะกับลักษณะพื้นที่และการใช้งาน
-            </p>
-
-          </div>
-
-
-          <div class="cp-solution-grid">
-
-            <!-- CARD 01 -->
-
-            <article class="cp-solution-card">
-
-              <div class="cp-card-number">
-                01
-              </div>
-
-              <div class="cp-card-icon">
-                ◇
-              </div>
-
-              <h3>
-                ระบบงานพื้น
-              </h3>
-
-              <p>
-                โซลูชันระบบพื้นสำหรับพื้นที่
-                และลักษณะการใช้งานที่หลากหลาย
-              </p>
-
-              <a
-                href="services.html"
-                class="cp-card-link"
-              >
-                ดูบริการ
-                <span>→</span>
-              </a>
-
-            </article>
-
-
-            <!-- CARD 02 -->
-
-            <article class="cp-solution-card">
-
-              <div class="cp-card-number">
-                02
-              </div>
-
-              <div class="cp-card-icon">
-                ◈
-              </div>
-
-              <h3>
-                สินค้า
-              </h3>
-
-              <p>
-                วัสดุและผลิตภัณฑ์สำหรับงานพื้น
-                และงานก่อสร้าง
-              </p>
-
-              <a
-                href="products.html"
-                class="cp-card-link"
-              >
-                ดูสินค้า
-                <span>→</span>
-              </a>
-
-            </article>
-
-
-            <!-- CARD 03 -->
-
-            <article class="cp-solution-card">
-
-              <div class="cp-card-number">
-                03
-              </div>
-
-              <div class="cp-card-icon">
-                ◇
-              </div>
-
-              <h3>
-                ผลงาน
-              </h3>
-
-              <p>
-                สำรวจแนวทางและผลงานที่เรา
-                มีส่วนร่วมในการสร้างพื้นที่
-              </p>
-
-              <a
-                href="projects.html"
-                class="cp-card-link"
-              >
-                ดูผลงาน
-                <span>→</span>
-              </a>
-
-            </article>
-
-
-            <!-- CARD 04 -->
-
-            <article class="cp-solution-card">
-
-              <div class="cp-card-number">
-                04
-              </div>
-
-              <div class="cp-card-icon">
-                ◎
-              </div>
-
-              <h3>
-                คำปรึกษา
-              </h3>
-
-              <p>
-                ช่วยเลือกวัสดุและโซลูชัน
-                ให้เหมาะกับพื้นที่ของคุณ
-              </p>
-
-              <a
-                href="service-detail.html?service=consulting"
-                class="cp-card-link"
-              >
-                ปรึกษาเรา
-                <span>→</span>
-              </a>
-
-            </article>
-
-          </div>
+            <span></span>
 
         </div>
 
-      </section>
-
-
-      <!-- ===================================================
-           WORK
-           =================================================== -->
-
-      <section
-        id="work"
-        class="cp-section cp-work"
-      >
-
-        <div class="cp-container">
-
-          <div class="cp-section-head">
-
-            <div class="cp-eyebrow">
-              OUR WORK
-            </div>
-
-            <h2 class="cp-section-title">
-              งานที่ออกแบบเพื่อการใช้งานจริง
-            </h2>
-
-            <p class="cp-section-description">
-              เรามองทั้งรายละเอียดของวัสดุ
-              ระบบงาน และประสบการณ์ของผู้ใช้งาน
-              เพื่อให้พื้นที่ใช้งานได้ดีในระยะยาว
-            </p>
-
-          </div>
-
-
-          <div class="cp-work-grid">
-
-            <article class="cp-work-card">
-
-              <div class="cp-work-content">
-
-                <small>
-                  INDUSTRIAL
-                </small>
-
-                <strong>
-                  ระบบพื้นโรงงาน
-                </strong>
-
-              </div>
-
-            </article>
-
-
-            <article class="cp-work-card">
-
-              <div class="cp-work-content">
-
-                <small>
-                  COMMERCIAL
-                </small>
-
-                <strong>
-                  พื้นที่เชิงพาณิชย์
-                </strong>
-
-              </div>
-
-            </article>
-
-
-            <article class="cp-work-card">
-
-              <div class="cp-work-content">
-
-                <small>
-                  INTERIOR
-                </small>
-
-                <strong>
-                  พื้นที่ภายใน
-                </strong>
-
-              </div>
-
-            </article>
-
-
-            <article class="cp-work-card">
-
-              <div class="cp-work-content">
-
-                <small>
-                  CONSTRUCTION
-                </small>
-
-                <strong>
-                  งานก่อสร้าง
-                </strong>
-
-              </div>
-
-            </article>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           STATS
-           =================================================== -->
-
-      <section
-        class="cp-section cp-stats"
-      >
-
-        <div class="cp-container">
-
-          <div class="cp-stats-grid">
-
-            <div class="cp-stat">
-
-              <div class="cp-stat-number">
-                500+
-              </div>
-
-              <div class="cp-stat-label">
-                งานและพื้นที่ที่ให้บริการ
-              </div>
-
-            </div>
-
-
-            <div class="cp-stat">
-
-              <div class="cp-stat-number">
-                10+
-              </div>
-
-              <div class="cp-stat-label">
-                ปีแห่งประสบการณ์
-              </div>
-
-            </div>
-
-
-            <div class="cp-stat">
-
-              <div class="cp-stat-number">
-                100%
-              </div>
-
-              <div class="cp-stat-label">
-                ใส่ใจในรายละเอียดของงาน
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           CTA
-           =================================================== -->
-
-      <section
-        class="cp-section cp-cta"
-      >
-
-        <div class="cp-container">
-
-          <div class="cp-cta-box">
-
-            <div class="cp-cta-content">
-
-              <div class="cp-eyebrow">
-                LET'S BUILD
-              </div>
-
-              <h2 class="cp-cta-title">
-                สร้างพื้นที่ที่ดีกว่า
-              </h2>
-
-              <p class="cp-cta-description">
-                ให้เราช่วยเลือกวัสดุและโซลูชัน
-                ที่เหมาะสมกับพื้นที่ของคุณ
-              </p>
-
-              <div class="cp-cta-actions">
-
-                <a
-                  href="contact.html"
-                  class="cp-button primary"
-                >
-                  ปรึกษาเราได้วันนี้ →
-                </a>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-    </main>
+    </section>
 
 
     <!-- =====================================================
-         TRANSITION TO MASTER FOOTER
+         FLOOR / VISUAL TRANSITION
          ===================================================== -->
 
-    <div class="cp-footer-transition"></div>
+    <section
+        class="cp-floor"
+        aria-hidden="true"
+    >
+    </section>
 
-  </div>
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <div class="cp-content">
 
 
-  <!-- =======================================================
-       MASTER HEADER / FOOTER
-       ======================================================= -->
+        <!-- =================================================
+             OUR SOLUTIONS
+             ================================================= -->
 
-  <script src="assets/customer-master-nav.js"></script>
+        <section
+            id="solutions"
+            class="cp-section"
+        >
+
+            <div class="cp-eyebrow">
+
+                OUR SOLUTIONS
+
+            </div>
+
+
+            <h2 class="cp-heading">
+
+                ครบทุกความต้องการ
+                <br>
+                เรื่องพื้น และงานก่อสร้าง
+
+            </h2>
+
+
+            <p class="cp-text">
+
+                วัสดุ บริการ และโซลูชัน
+                สำหรับงานพื้นและงานก่อสร้าง
+                ที่เหมาะกับลักษณะของแต่ละโครงการ
+
+            </p>
+
+
+            <div class="cp-solutions">
+
+
+                <!-- CARD 01 -->
+
+                <article class="cp-card">
+
+                    <div class="cp-card-number">
+
+                        01 / FLOORING
+
+                    </div>
+
+
+                    <div class="cp-card-icon">
+
+                        ▱
+
+                    </div>
+
+
+                    <h3>
+
+                        ระบบงานพื้น
+
+                    </h3>
+
+
+                    <p>
+
+                        ระบบพื้นสำหรับพื้นที่
+                        หลากหลายประเภท ทั้งงานอุตสาหกรรม
+                        อาคาร พื้นที่พาณิชย์
+                        และพื้นที่ใช้งานทั่วไป
+
+                    </p>
+
+
+                    <a
+                        href="services.html"
+                        class="cp-card-link"
+                    >
+
+                        ดูบริการ →
+
+                    </a>
+
+                </article>
+
+
+                <!-- CARD 02 -->
+
+                <article class="cp-card">
+
+                    <div class="cp-card-number">
+
+                        02 / PRODUCTS
+
+                    </div>
+
+
+                    <div class="cp-card-icon">
+
+                        ◈
+
+                    </div>
+
+
+                    <h3>
+
+                        สินค้า
+
+                    </h3>
+
+
+                    <p>
+
+                        วัสดุและผลิตภัณฑ์สำหรับ
+                        งานพื้น งานก่อสร้าง
+                        และงานตกแต่ง
+                        คัดเลือกให้เหมาะกับแต่ละโครงการ
+
+                    </p>
+
+
+                    <a
+                        href="products.html"
+                        class="cp-card-link"
+                    >
+
+                        ดูสินค้า →
+
+                    </a>
+
+                </article>
+
+
+                <!-- CARD 03 -->
+
+                <article class="cp-card">
+
+                    <div class="cp-card-number">
+
+                        03 / PROJECTS
+
+                    </div>
+
+
+                    <div class="cp-card-icon">
+
+                        □
+
+                    </div>
+
+
+                    <h3>
+
+                        ผลงาน
+
+                    </h3>
+
+
+                    <p>
+
+                        ชมตัวอย่างผลงานด้านระบบพื้น
+                        งานก่อสร้าง และโครงการ
+                        จากการใช้งานจริง
+
+                    </p>
+
+
+                    <a
+                        href="projects.html"
+                        class="cp-card-link"
+                    >
+
+                        ดูผลงาน →
+
+                    </a>
+
+                </article>
+
+
+                <!-- CARD 04 -->
+
+                <article class="cp-card">
+
+                    <div class="cp-card-number">
+
+                        04 / CONSULT
+
+                    </div>
+
+
+                    <div class="cp-card-icon">
+
+                        +
+
+                    </div>
+
+
+                    <h3>
+
+                        คำปรึกษา
+
+                    </h3>
+
+
+                    <p>
+
+                        ให้คำแนะนำด้านวัสดุ
+                        ระบบพื้น และแนวทางการใช้งาน
+                        ให้เหมาะสมกับแต่ละพื้นที่
+
+                    </p>
+
+
+                    <a
+                        href="service-detail.html?service=consulting"
+                        class="cp-card-link"
+                    >
+
+                        ปรึกษาเรา →
+
+                    </a>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             OUR WORK
+             ================================================= -->
+
+        <section
+            id="work"
+            class="cp-section"
+        >
+
+            <div class="cp-eyebrow">
+
+                OUR WORK
+
+            </div>
+
+
+            <h2 class="cp-heading">
+
+                ผลงานของเรา
+
+            </h2>
+
+
+            <p class="cp-text">
+
+                ตัวอย่างงานด้านพื้น
+                งานเคลือบผิว และงานก่อสร้าง
+                จากหลากหลายประเภทโครงการ
+
+            </p>
+
+
+            <div class="cp-work">
+
+
+                <!-- WORK 01 -->
+
+                <article class="cp-work-card">
+
+                    <div class="cp-work-inner">
+
+                        <div class="cp-work-number">
+
+                            01
+
+                        </div>
+
+
+                        <div class="cp-work-title">
+
+                            พื้นโรงงานอุตสาหกรรม
+
+                        </div>
+
+
+                        <div class="cp-work-sub">
+
+                            INDUSTRIAL FLOOR
+
+                        </div>
+
+
+                        <div class="cp-work-more">
+
+                            <a href="projects.html">
+
+                                VIEW PROJECTS →
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- WORK 02 -->
+
+                <article class="cp-work-card">
+
+                    <div class="cp-work-inner">
+
+                        <div class="cp-work-number">
+
+                            02
+
+                        </div>
+
+
+                        <div class="cp-work-title">
+
+                            พื้นพาณิชย์ / อาคาร
+
+                        </div>
+
+
+                        <div class="cp-work-sub">
+
+                            COMMERCIAL FLOOR
+
+                        </div>
+
+
+                        <div class="cp-work-more">
+
+                            <a href="projects.html">
+
+                                VIEW PROJECTS →
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- WORK 03 -->
+
+                <article class="cp-work-card">
+
+                    <div class="cp-work-inner">
+
+                        <div class="cp-work-number">
+
+                            03
+
+                        </div>
+
+
+                        <div class="cp-work-title">
+
+                            งานพื้นและการเคลือบผิว
+
+                        </div>
+
+
+                        <div class="cp-work-sub">
+
+                            SURFACE SYSTEM
+
+                        </div>
+
+
+                        <div class="cp-work-more">
+
+                            <a href="projects.html">
+
+                                VIEW PROJECTS →
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- WORK 04 -->
+
+                <article class="cp-work-card">
+
+                    <div class="cp-work-inner">
+
+                        <div class="cp-work-number">
+
+                            04
+
+                        </div>
+
+
+                        <div class="cp-work-title">
+
+                            งานก่อสร้าง
+
+                        </div>
+
+
+                        <div class="cp-work-sub">
+
+                            CONSTRUCTION
+
+                        </div>
+
+
+                        <div class="cp-work-more">
+
+                            <a href="projects.html">
+
+                                VIEW PROJECTS →
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             STATS
+             ================================================= -->
+
+        <section
+            class="cp-section cp-stats-section"
+        >
+
+            <div class="cp-stats">
+
+
+                <div class="cp-stat">
+
+                    <strong>
+
+                        500+
+
+                    </strong>
+
+                    <span>
+
+                        PROJECTS
+
+                    </span>
+
+                </div>
+
+
+                <div class="cp-stat">
+
+                    <strong>
+
+                        10+
+
+                    </strong>
+
+                    <span>
+
+                        YEARS EXPERIENCE
+
+                    </span>
+
+                </div>
+
+
+                <div class="cp-stat">
+
+                    <strong>
+
+                        100%
+
+                    </strong>
+
+                    <span>
+
+                        COMMITMENT
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CTA
+             ================================================= -->
+
+        <section
+            class="cp-section cp-cta-section"
+        >
+
+            <div class="cp-cta">
+
+                <div class="cp-cta-content">
+
+                    <div class="cp-eyebrow">
+
+                        LET'S BUILD
+
+                    </div>
+
+
+                    <h2 class="cp-cta-title">
+
+                        พื้นที่ที่ดี
+                        เริ่มต้นจากวัสดุที่ใช่
+
+                    </h2>
+
+
+                    <p class="cp-cta-description">
+
+                        ทีมงานของเราพร้อมให้คำแนะนำ
+                        และเสนอแนวทางที่เหมาะสม
+                        กับโครงการของคุณ
+
+                    </p>
+
+
+                    <div class="cp-cta-action">
+
+                        <a
+                            href="contact.html"
+                            class="cp-button cp-button-main"
+                        >
+
+                            ปรึกษาเราได้วันนี้ →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MASTER NAV
+     ========================================================= -->
+
+<script src="assets/customer-master-nav.js"></script>
+
 
 </body>
+
 </html>
