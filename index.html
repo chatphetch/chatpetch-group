@@ -16,7 +16,7 @@
 
 <meta
     name="description"
-    content="CHATPHETCH GROUP วัสดุงานพื้น งานก่อสร้าง ระบบพื้น สีและการเคลือบผิว วัสดุก่อสร้าง และบริการให้คำปรึกษา"
+    content="CHATPHETCH GROUP วัสดุงานพื้น งานก่อสร้าง ระบบงานพื้น สินค้า ผลงาน และบริการให้คำปรึกษา"
 >
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,6 +82,8 @@ body{
     margin:0;
     padding:0;
 
+    background:#070504;
+
     color:var(--text);
 
     font-family:
@@ -89,16 +91,8 @@ body{
         "Kanit",
         sans-serif;
 
-    background:
-        #070504;
-
     overflow-x:hidden;
 
-}
-
-body,
-body *{
-    box-sizing:border-box;
 }
 
 a{
@@ -122,27 +116,20 @@ img{
 
     width:100%;
 
+    min-height:100vh;
+
     overflow:hidden;
 
-    background:
-        transparent;
+    background:#090604;
 
 }
 
 
 /* =========================================================
    FLOOR BACKGROUND
-   =========================================================
-
-   สำคัญ:
-
-   index-floor-bg.png ไม่ได้เป็น section อีกต่อไป
-
-   แต่เป็นภาพพื้นหลัง Layer เดียว
+   ---------------------------------------------------------
+   index-floor-bg.png เป็น Background Layer เดียว
    อยู่ด้านหลังตั้งแต่ Hero ลงมาถึง CTA
-
-   ใช้ 100% 100%
-   เพื่อให้พื้นหลังเต็มพื้นที่ของหน้า Index
    ========================================================= */
 
 .cp-page::before{
@@ -163,10 +150,16 @@ img{
 
         linear-gradient(
             180deg,
-            rgba(5,3,2,.08) 0%,
-            rgba(7,4,2,.16) 25%,
-            rgba(7,4,2,.30) 55%,
-            rgba(5,3,2,.60) 100%
+
+            rgba(7,4,2,.08) 0%,
+
+            rgba(7,4,2,.12) 25%,
+
+            rgba(7,4,2,.22) 48%,
+
+            rgba(5,3,2,.42) 72%,
+
+            rgba(4,2,1,.70) 100%
         ),
 
         url("assets/index-floor-bg.png");
@@ -189,78 +182,12 @@ img{
 
 
 /* =========================================================
-   CONTENT LAYERS
+   CONTENT LAYER
    ========================================================= */
 
 .cp-page > *{
     position:relative;
     z-index:1;
-}
-
-
-/* =========================================================
-   MASTER HEADER
-   ========================================================= */
-
-.header{
-
-    position:
-        absolute !important;
-
-    top:0;
-    left:0;
-    right:0;
-
-    z-index:1000;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(3,2,1,.68),
-            rgba(3,2,1,.10)
-        ) !important;
-
-    border-bottom:
-        1px solid
-        rgba(201,164,92,.10) !important;
-
-    box-shadow:none !important;
-
-    backdrop-filter:
-        blur(4px);
-
-    -webkit-backdrop-filter:
-        blur(4px);
-
-    transition:
-        background .35s ease,
-        box-shadow .35s ease;
-
-}
-
-
-.header.cp-scrolled{
-
-    position:
-        fixed !important;
-
-    background:
-        rgba(5,4,3,.94) !important;
-
-    border-bottom:
-        1px solid
-        rgba(201,164,92,.20) !important;
-
-    box-shadow:
-        0 12px 40px
-        rgba(0,0,0,.40) !important;
-
-    backdrop-filter:
-        blur(18px);
-
-    -webkit-backdrop-filter:
-        blur(18px);
-
 }
 
 
@@ -277,21 +204,24 @@ img{
     min-height:
         clamp(
             650px,
-            48.9vw,
+            49vw,
             900px
         );
 
     overflow:hidden;
 
     background:
-        #17100b;
+        transparent;
 
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    HERO IMAGE
-   --------------------------------------------------------- */
+   ---------------------------------------------------------
+   Fade ด้านล่าง เพื่อให้ภาพ Hero กลืนเข้ากับ
+   index-floor-bg.png ด้านหลัง
+   ========================================================= */
 
 .cp-hero-image{
 
@@ -310,12 +240,50 @@ img{
 
     z-index:0;
 
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+
+            #000 0%,
+
+            #000 68%,
+
+            rgba(0,0,0,.98) 76%,
+
+            rgba(0,0,0,.88) 84%,
+
+            rgba(0,0,0,.58) 91%,
+
+            rgba(0,0,0,.25) 97%,
+
+            transparent 100%
+        );
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+
+            #000 0%,
+
+            #000 68%,
+
+            rgba(0,0,0,.98) 76%,
+
+            rgba(0,0,0,.88) 84%,
+
+            rgba(0,0,0,.58) 91%,
+
+            rgba(0,0,0,.25) 97%,
+
+            transparent 100%
+        );
+
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    HERO OVERLAY
-   --------------------------------------------------------- */
+   ========================================================= */
 
 .cp-hero-overlay{
 
@@ -332,38 +300,78 @@ img{
         linear-gradient(
             90deg,
 
-            rgba(3,2,1,.95)
+            rgba(3,2,1,.94)
             0%,
 
-            rgba(5,3,2,.84)
+            rgba(5,3,2,.82)
             18%,
 
-            rgba(9,6,3,.58)
-            38%,
+            rgba(9,6,3,.56)
+            37%,
 
-            rgba(14,8,4,.24)
-            60%,
+            rgba(14,8,4,.22)
+            58%,
 
             rgba(18,10,5,.05)
             82%,
 
             rgba(18,10,5,0)
             100%
-        ),
-
-        linear-gradient(
-            180deg,
-            rgba(0,0,0,.28),
-            rgba(0,0,0,0) 35%,
-            rgba(0,0,0,.08) 100%
         );
 
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
+   HERO BOTTOM BLEND
+   ========================================================= */
+
+.cp-hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:190px;
+
+    z-index:4;
+
+    pointer-events:none;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+
+            rgba(11,7,4,0)
+            0%,
+
+            rgba(11,7,4,.05)
+            28%,
+
+            rgba(11,7,4,.16)
+            50%,
+
+            rgba(11,7,4,.42)
+            72%,
+
+            rgba(11,7,4,.76)
+            90%,
+
+            rgba(11,7,4,.94)
+            100%
+        );
+
+}
+
+
+/* =========================================================
    HERO TOP SHADE
-   --------------------------------------------------------- */
+   ========================================================= */
 
 .cp-hero-top{
 
@@ -383,16 +391,16 @@ img{
 
         linear-gradient(
             180deg,
-            rgba(0,0,0,.40),
+            rgba(0,0,0,.36),
             rgba(0,0,0,0)
         );
 
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    HERO CONTENT
-   --------------------------------------------------------- */
+   ========================================================= */
 
 .cp-hero-content{
 
@@ -409,7 +417,7 @@ img{
     min-height:
         clamp(
             650px,
-            48.9vw,
+            49vw,
             900px
         );
 
@@ -432,9 +440,9 @@ img{
 }
 
 
-/* ---------------------------------------------------------
-   KICKER
-   --------------------------------------------------------- */
+/* =========================================================
+   HERO KICKER
+   ========================================================= */
 
 .cp-kicker{
 
@@ -472,9 +480,9 @@ img{
 }
 
 
-/* ---------------------------------------------------------
-   TITLE
-   --------------------------------------------------------- */
+/* =========================================================
+   HERO TITLE
+   ========================================================= */
 
 .cp-title{
 
@@ -509,9 +517,9 @@ img{
 }
 
 
-/* ---------------------------------------------------------
-   LINE
-   --------------------------------------------------------- */
+/* =========================================================
+   HERO LINE
+   ========================================================= */
 
 .cp-line{
 
@@ -527,9 +535,9 @@ img{
 }
 
 
-/* ---------------------------------------------------------
-   DESCRIPTION
-   --------------------------------------------------------- */
+/* =========================================================
+   HERO DESCRIPTION
+   ========================================================= */
 
 .cp-description{
 
@@ -548,9 +556,9 @@ img{
 }
 
 
-/* ---------------------------------------------------------
-   HERO BUTTONS
-   --------------------------------------------------------- */
+/* =========================================================
+   BUTTONS
+   ========================================================= */
 
 .cp-actions{
 
@@ -598,8 +606,7 @@ img{
 
 .cp-button-main{
 
-    color:
-        #170f08;
+    color:#170f08;
 
     background:
 
@@ -618,11 +625,10 @@ img{
 
 .cp-button-sub{
 
-    color:
-        #f5eee5;
+    color:#f5eee5;
 
     background:
-        rgba(10,6,3,.18);
+        rgba(10,6,3,.16);
 
     border:
         1px solid
@@ -635,7 +641,7 @@ img{
 
 
 /* =========================================================
-   MAIN CONTENT
+   CONTENT
    ========================================================= */
 
 .cp-content{
@@ -644,14 +650,13 @@ img{
 
     z-index:2;
 
-    background:
-        transparent;
+    background:transparent;
 
 }
 
 
 /* =========================================================
-   SECTION
+   GENERAL SECTION
    ========================================================= */
 
 .cp-section{
@@ -666,7 +671,7 @@ img{
         0 auto;
 
     padding:
-        72px 0;
+        65px 0;
 
 }
 
@@ -730,37 +735,7 @@ img{
 
 
 /* =========================================================
-   GLASS PANEL
-   ========================================================= */
-
-.cp-glass{
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(35,22,13,.76),
-            rgba(8,5,3,.76)
-        );
-
-    border:
-        1px solid
-        rgba(201,164,92,.17);
-
-    box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.20);
-
-    backdrop-filter:
-        blur(5px);
-
-    -webkit-backdrop-filter:
-        blur(5px);
-
-}
-
-
-/* =========================================================
-   OUR SOLUTIONS
+   SOLUTIONS
    ========================================================= */
 
 .cp-solutions{
@@ -775,18 +750,22 @@ img{
     margin-top:40px;
 
     background:
-        rgba(201,164,92,.20);
+        rgba(201,164,92,.22);
 
     border:
         1px solid
-        rgba(201,164,92,.20);
+        rgba(201,164,92,.22);
 
 }
 
 
+/* =========================================================
+   SOLUTION CARD
+   ========================================================= */
+
 .cp-card{
 
-    min-height:255px;
+    min-height:270px;
 
     padding:30px;
 
@@ -794,13 +773,14 @@ img{
 
         linear-gradient(
             145deg,
-            rgba(40,24,14,.86),
-            rgba(12,7,4,.82)
+            rgba(38,23,14,.88),
+            rgba(11,7,4,.86)
         );
 
     transition:
         transform .30s ease,
-        background .30s ease;
+        background .30s ease,
+        border-color .30s ease;
 
 }
 
@@ -814,8 +794,8 @@ img{
 
         linear-gradient(
             145deg,
-            rgba(57,34,18,.90),
-            rgba(17,9,5,.88)
+            rgba(55,33,18,.92),
+            rgba(15,8,4,.90)
         );
 
 }
@@ -824,7 +804,7 @@ img{
 .cp-card-number{
 
     color:
-        rgba(228,197,127,.62);
+        rgba(228,197,127,.68);
 
     font-size:10px;
 
@@ -835,11 +815,11 @@ img{
 
 .cp-card-icon{
 
-    width:40px;
+    width:50px;
 
-    height:40px;
+    height:50px;
 
-    margin-top:27px;
+    margin-top:28px;
 
     display:flex;
 
@@ -852,9 +832,9 @@ img{
 
     border:
         1px solid
-        rgba(201,164,92,.32);
+        rgba(201,164,92,.36);
 
-    font-size:17px;
+    font-size:18px;
 
 }
 
@@ -867,7 +847,7 @@ img{
     color:
         var(--white);
 
-    font-size:20px;
+    font-size:21px;
 
     line-height:1.3;
 
@@ -885,7 +865,7 @@ img{
 
     font-size:12px;
 
-    line-height:1.8;
+    line-height:1.85;
 
 }
 
@@ -941,7 +921,7 @@ img{
         translateY(-5px);
 
     border-color:
-        rgba(201,164,92,.38);
+        rgba(201,164,92,.40);
 
 }
 
@@ -958,8 +938,8 @@ img{
 
         radial-gradient(
             circle at 50% 18%,
-            rgba(201,164,92,.17),
-            transparent 40%
+            rgba(201,164,92,.18),
+            transparent 42%
         );
 
 }
@@ -982,7 +962,7 @@ img{
         linear-gradient(
             180deg,
             transparent,
-            rgba(0,0,0,.85)
+            rgba(0,0,0,.88)
         );
 
 }
@@ -1049,9 +1029,9 @@ img{
 
 .cp-stats-section{
 
-    padding-top:35px;
+    padding-top:25px;
 
-    padding-bottom:35px;
+    padding-bottom:45px;
 
 }
 
@@ -1166,15 +1146,15 @@ img{
 
         linear-gradient(
             135deg,
-            rgba(35,21,12,.84),
-            rgba(7,4,2,.84)
+            rgba(35,21,12,.78),
+            rgba(7,4,2,.78)
         );
 
     backdrop-filter:
-        blur(3px);
+        blur(4px);
 
     -webkit-backdrop-filter:
-        blur(3px);
+        blur(4px);
 
 }
 
@@ -1245,33 +1225,64 @@ img{
 
 
 /* =========================================================
-   FOOTER AREA
+   MASTER FOOTER OVERRIDE
    ========================================================= */
-
-/*
-   ทำให้ Footer ที่ Master Nav สร้างขึ้น
-   กลืนกับ background ของหน้า
-*/
 
 footer,
 .footer{
 
     position:relative;
 
-    z-index:5;
+    z-index:10;
 
     background:
-        rgba(5,3,2,.78) !important;
+        rgba(5,3,2,.88) !important;
 
     border-top:
         1px solid
         rgba(201,164,92,.18) !important;
 
     backdrop-filter:
-        blur(8px);
+        blur(10px);
 
     -webkit-backdrop-filter:
-        blur(8px);
+        blur(10px);
+
+}
+
+
+/* =========================================================
+   FOOTER MENU
+   ========================================================= */
+
+.footer-links{
+
+    display:flex !important;
+
+    flex-direction:column !important;
+
+    align-items:flex-start !important;
+
+    gap:3px !important;
+
+}
+
+
+.footer-links a{
+
+    color:#999 !important;
+
+    font-size:13px !important;
+
+    line-height:1.8 !important;
+
+}
+
+
+.footer-links a:hover{
+
+    color:
+        var(--gold-light) !important;
 
 }
 
@@ -1334,7 +1345,7 @@ footer,
             calc(100% - 40px);
 
         padding:
-            58px 0;
+            55px 0;
 
     }
 
@@ -1435,7 +1446,7 @@ footer,
 
     .cp-card{
 
-        min-height:220px;
+        min-height:225px;
 
     }
 
@@ -1469,6 +1480,13 @@ footer,
     .cp-stat-note{
 
         font-size:17px;
+
+    }
+
+
+    .cp-hero::after{
+
+        height:150px;
 
     }
 
@@ -1624,7 +1642,7 @@ footer,
 
 
 <!-- =====================================================
-     CONTENT
+     MAIN CONTENT
      ===================================================== -->
 
 <section class="cp-content">
@@ -1663,57 +1681,45 @@ footer,
     <div class="cp-solutions">
 
 
+        <!-- =================================================
+             01 ระบบงานพื้น
+             ================================================= -->
+
         <a
             href="services.html"
             class="cp-card"
         >
 
             <div class="cp-card-number">
-                01 / SYSTEM
+                01 / FLOORING
             </div>
+
 
             <div class="cp-card-icon">
                 ▱
             </div>
 
+
             <h3>
-                ระบบพื้น
+                ระบบงานพื้น
             </h3>
 
+
             <p>
+
                 ระบบพื้นสำหรับพื้นที่หลากหลายประเภท
                 ทั้งงานอุตสาหกรรม อาคาร
-                พื้นที่พาณิชย์ และพื้นที่ใช้งานทั่วไป
+                พื้นที่พาณิชย์
+                และพื้นที่ใช้งานทั่วไป
+
             </p>
 
         </a>
 
 
-        <a
-            href="service-detail.html?service=coating"
-            class="cp-card"
-        >
-
-            <div class="cp-card-number">
-                02 / SURFACE
-            </div>
-
-            <div class="cp-card-icon">
-                ◈
-            </div>
-
-            <h3>
-                สีและการเคลือบผิว
-            </h3>
-
-            <p>
-                เพิ่มความสวยงาม ความทนทาน
-                และช่วยยืดอายุการใช้งาน
-                ของพื้นผิวแต่ละประเภท
-            </p>
-
-        </a>
-
+        <!-- =================================================
+             02 สินค้า
+             ================================================= -->
 
         <a
             href="products.html"
@@ -1721,25 +1727,69 @@ footer,
         >
 
             <div class="cp-card-number">
-                03 / MATERIAL
+                02 / PRODUCTS
             </div>
+
+
+            <div class="cp-card-icon">
+                ◈
+            </div>
+
+
+            <h3>
+                สินค้า
+            </h3>
+
+
+            <p>
+
+                วัสดุและผลิตภัณฑ์สำหรับงานพื้น
+                งานก่อสร้าง และงานตกแต่ง
+                คัดเลือกให้เหมาะกับแต่ละโครงการ
+
+            </p>
+
+        </a>
+
+
+        <!-- =================================================
+             03 ผลงาน
+             ================================================= -->
+
+        <a
+            href="projects.html"
+            class="cp-card"
+        >
+
+            <div class="cp-card-number">
+                03 / PROJECTS
+            </div>
+
 
             <div class="cp-card-icon">
                 □
             </div>
 
+
             <h3>
-                วัสดุก่อสร้าง
+                ผลงาน
             </h3>
 
+
             <p>
-                วัสดุสำหรับงานก่อสร้าง
-                และงานตกแต่งที่เลือกให้เหมาะสม
-                กับประเภทของโครงการ
+
+                ชมตัวอย่างผลงานด้านระบบพื้น
+                งานก่อสร้าง และโครงการ
+                จากการใช้งานจริง
+
             </p>
 
         </a>
 
+
+        <!-- =================================================
+             04 คำปรึกษา
+             ================================================= -->
 
         <a
             href="service-detail.html?service=consulting"
@@ -1750,18 +1800,23 @@ footer,
                 04 / CONSULT
             </div>
 
+
             <div class="cp-card-icon">
                 +
             </div>
+
 
             <h3>
                 คำปรึกษา
             </h3>
 
+
             <p>
+
                 ให้คำแนะนำด้านวัสดุ ระบบพื้น
                 และแนวทางการใช้งาน
-                ตามความต้องการของแต่ละพื้นที่
+                ให้เหมาะสมกับแต่ละพื้นที่
+
             </p>
 
         </a>
@@ -2019,24 +2074,21 @@ footer,
 
 
 <!-- =====================================================
-     MASTER NAV
+     MASTER HEADER + FOOTER
      ===================================================== -->
 
 <script src="assets/customer-master-nav.js"></script>
 
 
 <!-- =====================================================
-     MASTER NAV FIX
+     INDEX MASTER NAV FIX
      =====================================================
 
-     ไม่สร้าง Header / Footer ใหม่
+     customer-master-nav.js เดิมยังมีข้อความ
+     CHATPETCH GROUP อยู่ใน Header / Footer
 
-     ใช้ Master Nav เดิม
-     แต่แก้เฉพาะ:
-       - ชื่อแบรนด์
-       - รูปโลโก้
-       - Footer menu ให้ครบ
-
+     ตรงนี้แก้เฉพาะข้อความ
+     ไม่สร้าง Header ใหม่
      ===================================================== -->
 
 <script>
@@ -2046,134 +2098,83 @@ footer,
     "use strict";
 
 
-    function fixBrandText(){
+    function fixBrand(){
 
-        /*
-         * เปลี่ยนข้อความทุกจุดที่มีคำว่า
-         * CHATPETCH GROUP
-         * ให้เป็น CHATPHETCH GROUP
-         */
-
-        document
-            .querySelectorAll("body *")
-            .forEach(function(el){
-
-                if(
-                    el.children.length === 0 &&
-                    el.textContent
-                ){
-
-                    const text =
-                        el.textContent.trim();
-
-                    if(
-                        text ===
-                        "CHATPETCH GROUP"
-                    ){
-
-                        el.textContent =
-                            "CHATPHETCH GROUP";
-
-                    }
-
-                }
-
-            });
-
-    }
-
-
-    function fixLogo(){
-
-        /*
-         * บังคับใช้ logo.png
-         * ซึ่งเป็นไฟล์โลโก้จริงของบริษัท
-         */
+        /* Header */
 
         document
             .querySelectorAll(
-                "header img, .header img, footer img, .footer img"
+                ".customer-brand-text strong"
             )
-            .forEach(function(img){
+            .forEach(function(el){
 
-                const src =
-                    img.getAttribute("src") || "";
-
-                if(
-                    src.includes("logo") ||
-                    src.includes("Logo") ||
-                    src.includes("brand")
-                ){
-
-                    img.src =
-                        "assets/logo.png";
-
-                    img.alt =
-                        "CHATPHETCH GROUP";
-
-                }
+                el.textContent =
+                    "CHATPHETCH GROUP";
 
             });
 
-    }
+
+        /* Footer */
+
+        document
+            .querySelectorAll(
+                ".footer-brand .logo-text strong"
+            )
+            .forEach(function(el){
+
+                el.textContent =
+                    "CHATPHETCH GROUP";
+
+            });
 
 
-    function findFooterLinks(){
+        /* Logo */
 
-        /*
-         * พยายามค้นหา footer links
-         * จาก Master Nav เดิม
-         */
+        document
+            .querySelectorAll(
+                ".customer-brand img, .footer-brand .logo img"
+            )
+            .forEach(function(img){
 
-        const selectors = [
+                img.src =
+                    "assets/logo.png";
 
-            ".footer-links",
+                img.alt =
+                    "CHATPHETCH GROUP";
 
-            ".footer-menu",
-
-            "footer .links",
-
-            "footer nav",
-
-            ".footer nav"
-
-        ];
+            });
 
 
-        for(
-            let i = 0;
-            i < selectors.length;
-            i++
-        ){
+        /* Footer copyright */
 
-            const el =
-                document.querySelector(
-                    selectors[i]
-                );
+        document
+            .querySelectorAll(
+                ".footer-bottom"
+            )
+            .forEach(function(el){
 
-            if(el){
+                el.innerHTML =
+                    el.innerHTML.replace(
+                        /CHATPETCH GROUP/g,
+                        "CHATPHETCH GROUP"
+                    );
 
-                return el;
-
-            }
-
-        }
-
-
-        return null;
+            });
 
     }
 
 
     function fixFooterMenu(){
 
-        const container =
-            findFooterLinks();
+        const menu =
+            document.querySelector(
+                ".footer .footer-links"
+            );
 
 
         if(
-            !container ||
-            container.dataset.cpFooterFixed
+            !menu ||
+            menu.dataset.cpFixed === "1"
         ){
 
             return;
@@ -2181,11 +2182,11 @@ footer,
         }
 
 
-        container.dataset.cpFooterFixed =
-            "true";
+        menu.dataset.cpFixed =
+            "1";
 
 
-        container.innerHTML = `
+        menu.innerHTML = `
 
             <a href="index.html">
                 หน้าแรก
@@ -2249,27 +2250,12 @@ footer,
 
         `;
 
-
-        container.style.display =
-            "flex";
-
-        container.style.flexDirection =
-            "column";
-
-        container.style.alignItems =
-            "flex-start";
-
-        container.style.gap =
-            "3px";
-
     }
 
 
     function runFix(){
 
-        fixBrandText();
-
-        fixLogo();
+        fixBrand();
 
         fixFooterMenu();
 
@@ -2277,9 +2263,9 @@ footer,
 
 
     /*
-     * Master Nav เป็น JS ภายนอก
-     * จึงตรวจหลายรอบเพื่อให้แน่ใจว่า
-     * Header / Footer สร้างเสร็จแล้ว
+     * Master Nav โหลดตอน DOMContentLoaded
+     * จึงตรวจซ้ำเพื่อให้ Header/Footer
+     * สร้างเสร็จแน่นอน
      */
 
     document.addEventListener(
@@ -2293,19 +2279,22 @@ footer,
 
             setTimeout(
                 runFix,
-                300
+                250
             );
 
             setTimeout(
                 runFix,
-                800
+                600
             );
 
             setTimeout(
                 runFix,
-                1500
+                1200
             );
 
+        },
+        {
+            once:true
         }
     );
 
@@ -2321,87 +2310,10 @@ footer,
 
             setTimeout(
                 runFix,
-                600
+                500
             );
 
         }
-    );
-
-
-})();
-
-</script>
-
-
-<!-- =====================================================
-     HEADER SCROLL
-     ===================================================== -->
-
-<script>
-
-(function(){
-
-    "use strict";
-
-
-    function updateHeader(){
-
-        const header =
-            document.querySelector(
-                ".header"
-            );
-
-
-        if(!header){
-
-            return;
-
-        }
-
-
-        if(
-            window.scrollY > 35
-        ){
-
-            header.classList.add(
-                "cp-scrolled"
-            );
-
-        }else{
-
-            header.classList.remove(
-                "cp-scrolled"
-            );
-
-        }
-
-    }
-
-
-    window.addEventListener(
-        "scroll",
-        updateHeader,
-        {
-            passive:true
-        }
-    );
-
-
-    window.addEventListener(
-        "load",
-        updateHeader
-    );
-
-
-    setTimeout(
-        updateHeader,
-        100
-    );
-
-
-    setTimeout(
-        updateHeader,
-        500
     );
 
 
