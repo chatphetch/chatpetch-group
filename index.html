@@ -16,7 +16,12 @@
 
 <meta
     name="description"
-    content="CHATPHETCH GROUP วัสดุงานพื้น งานก่อสร้าง ระบบงานพื้น สินค้า ผลงาน และบริการให้คำปรึกษา"
+    content="CHATPHETCH GROUP วัสดุงานพื้น งานก่อสร้าง ระบบพื้น สินค้า ผลงาน และบริการให้คำปรึกษา"
+>
+
+<meta
+    name="theme-color"
+    content="#080604"
 >
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,6 +43,12 @@
 /* =========================================================
    CHATPHETCH GROUP
    INDEX PAGE
+   SINGLE BACKGROUND VERSION
+   ========================================================= */
+
+
+/* =========================================================
+   ROOT
    ========================================================= */
 
 :root{
@@ -46,7 +57,7 @@
     --black-soft:#0a0705;
 
     --brown:#160d08;
-    --brown-light:#24150c;
+    --brown-light:#28170d;
 
     --gold:#c9a45c;
     --gold-light:#e4c57f;
@@ -82,8 +93,6 @@ body{
     margin:0;
     padding:0;
 
-    background:#070504;
-
     color:var(--text);
 
     font-family:
@@ -91,8 +100,15 @@ body{
         "Kanit",
         sans-serif;
 
+    background:#070504;
+
     overflow-x:hidden;
 
+}
+
+body,
+body *{
+    box-sizing:border-box;
 }
 
 a{
@@ -107,7 +123,21 @@ img{
 
 
 /* =========================================================
-   MAIN PAGE
+   SINGLE PAGE BACKGROUND
+   =========================================================
+
+   สำคัญ:
+
+   ใช้ภาพเดียวคือ
+
+   assets/index-main-bg.png
+
+   ไม่มี:
+   - home-hero-visual.jpg
+   - index-floor-bg.png
+
+   ภาพนี้จะอยู่ด้านหลังตั้งแต่ด้านบน
+   ต่อเนื่องลงมาจนถึงส่วน CTA
    ========================================================= */
 
 .cp-page{
@@ -120,16 +150,13 @@ img{
 
     overflow:hidden;
 
-    background:#090604;
+    background:#070504;
 
 }
 
 
 /* =========================================================
-   FLOOR BACKGROUND
-   ---------------------------------------------------------
-   index-floor-bg.png เป็น Background Layer เดียว
-   อยู่ด้านหลังตั้งแต่ Hero ลงมาถึง CTA
+   BACKGROUND IMAGE
    ========================================================= */
 
 .cp-page::before{
@@ -138,11 +165,7 @@ img{
 
     position:absolute;
 
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
+    inset:0;
 
     z-index:0;
 
@@ -150,19 +173,15 @@ img{
 
         linear-gradient(
             180deg,
-
-            rgba(7,4,2,.08) 0%,
-
-            rgba(7,4,2,.12) 25%,
-
-            rgba(7,4,2,.22) 48%,
-
-            rgba(5,3,2,.42) 72%,
-
-            rgba(4,2,1,.70) 100%
+            rgba(4,3,2,.18) 0%,
+            rgba(5,3,2,.12) 18%,
+            rgba(6,4,2,.16) 38%,
+            rgba(6,4,2,.28) 58%,
+            rgba(5,3,2,.48) 78%,
+            rgba(4,2,1,.78) 100%
         ),
 
-        url("assets/index-floor-bg.png");
+        url("assets/index-main-bg.png");
 
     background-position:
         center top,
@@ -170,7 +189,7 @@ img{
 
     background-size:
         100% 100%,
-        100% 100%;
+        cover;
 
     background-repeat:
         no-repeat,
@@ -182,12 +201,91 @@ img{
 
 
 /* =========================================================
-   CONTENT LAYER
+   SECONDARY ATMOSPHERE
+   ========================================================= */
+
+.cp-page::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:1;
+
+    pointer-events:none;
+
+    background:
+
+        radial-gradient(
+            circle at 70% 20%,
+            rgba(201,164,92,.10),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.52),
+            transparent 34%,
+            transparent 72%,
+            rgba(0,0,0,.18)
+        );
+
+}
+
+
+/* =========================================================
+   ALL PAGE CONTENT
    ========================================================= */
 
 .cp-page > *{
     position:relative;
-    z-index:1;
+    z-index:2;
+}
+
+
+/* =========================================================
+   MASTER HEADER
+   =========================================================
+
+   ใช้ Header จาก
+   assets/customer-master-nav.js
+
+   ไม่สร้าง Header ใหม่
+   ========================================================= */
+
+.header{
+
+    position:fixed !important;
+
+    top:0 !important;
+
+    left:0 !important;
+
+    right:0 !important;
+
+    z-index:5000 !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(3,2,1,.76),
+            rgba(3,2,1,.34)
+        ) !important;
+
+    border-bottom:
+        1px solid
+        rgba(201,164,92,.12) !important;
+
+    box-shadow:none !important;
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
 }
 
 
@@ -203,197 +301,18 @@ img{
 
     min-height:
         clamp(
-            650px,
-            49vw,
+            720px,
+            72vh,
             900px
         );
 
+    display:flex;
+
+    align-items:center;
+
     overflow:hidden;
 
-    background:
-        transparent;
-
-}
-
-
-/* =========================================================
-   HERO IMAGE
-   ---------------------------------------------------------
-   Fade ด้านล่าง เพื่อให้ภาพ Hero กลืนเข้ากับ
-   index-floor-bg.png ด้านหลัง
-   ========================================================= */
-
-.cp-hero-image{
-
-    position:absolute;
-
-    top:0;
-    left:0;
-
-    width:100%;
-
-    height:auto;
-
-    min-width:100%;
-
-    max-width:none;
-
-    z-index:0;
-
-    -webkit-mask-image:
-        linear-gradient(
-            to bottom,
-
-            #000 0%,
-
-            #000 68%,
-
-            rgba(0,0,0,.98) 76%,
-
-            rgba(0,0,0,.88) 84%,
-
-            rgba(0,0,0,.58) 91%,
-
-            rgba(0,0,0,.25) 97%,
-
-            transparent 100%
-        );
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-
-            #000 0%,
-
-            #000 68%,
-
-            rgba(0,0,0,.98) 76%,
-
-            rgba(0,0,0,.88) 84%,
-
-            rgba(0,0,0,.58) 91%,
-
-            rgba(0,0,0,.25) 97%,
-
-            transparent 100%
-        );
-
-}
-
-
-/* =========================================================
-   HERO OVERLAY
-   ========================================================= */
-
-.cp-hero-overlay{
-
-    position:absolute;
-
-    inset:0;
-
-    z-index:2;
-
-    pointer-events:none;
-
-    background:
-
-        linear-gradient(
-            90deg,
-
-            rgba(3,2,1,.94)
-            0%,
-
-            rgba(5,3,2,.82)
-            18%,
-
-            rgba(9,6,3,.56)
-            37%,
-
-            rgba(14,8,4,.22)
-            58%,
-
-            rgba(18,10,5,.05)
-            82%,
-
-            rgba(18,10,5,0)
-            100%
-        );
-
-}
-
-
-/* =========================================================
-   HERO BOTTOM BLEND
-   ========================================================= */
-
-.cp-hero::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    right:0;
-    bottom:0;
-
-    height:190px;
-
-    z-index:4;
-
-    pointer-events:none;
-
-    background:
-
-        linear-gradient(
-            to bottom,
-
-            rgba(11,7,4,0)
-            0%,
-
-            rgba(11,7,4,.05)
-            28%,
-
-            rgba(11,7,4,.16)
-            50%,
-
-            rgba(11,7,4,.42)
-            72%,
-
-            rgba(11,7,4,.76)
-            90%,
-
-            rgba(11,7,4,.94)
-            100%
-        );
-
-}
-
-
-/* =========================================================
-   HERO TOP SHADE
-   ========================================================= */
-
-.cp-hero-top{
-
-    position:absolute;
-
-    top:0;
-    left:0;
-    right:0;
-
-    height:160px;
-
-    z-index:3;
-
-    pointer-events:none;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            rgba(0,0,0,.36),
-            rgba(0,0,0,0)
-        );
+    background:transparent;
 
 }
 
@@ -406,7 +325,7 @@ img{
 
     position:relative;
 
-    z-index:10;
+    z-index:5;
 
     width:
         min(
@@ -416,13 +335,12 @@ img{
 
     min-height:
         clamp(
-            650px,
-            49vw,
+            720px,
+            72vh,
             900px
         );
 
-    margin:
-        0 auto;
+    margin:0 auto;
 
     display:flex;
 
@@ -433,9 +351,9 @@ img{
 
 .cp-hero-copy{
 
-    width:620px;
+    width:650px;
 
-    margin-top:20px;
+    padding-top:70px;
 
 }
 
@@ -452,10 +370,9 @@ img{
 
     gap:14px;
 
-    margin-bottom:22px;
+    margin-bottom:24px;
 
-    color:
-        var(--gold-light);
+    color:var(--gold-light);
 
     font-size:12px;
 
@@ -470,12 +387,11 @@ img{
 
     content:"";
 
-    width:48px;
+    width:52px;
 
     height:1px;
 
-    background:
-        var(--gold);
+    background:var(--gold);
 
 }
 
@@ -488,13 +404,12 @@ img{
 
     margin:0;
 
-    color:
-        var(--white);
+    color:var(--white);
 
     font-size:
         clamp(
             48px,
-            5.8vw,
+            6vw,
             88px
         );
 
@@ -504,6 +419,10 @@ img{
 
     letter-spacing:-.045em;
 
+    text-shadow:
+        0 8px 30px
+        rgba(0,0,0,.45);
+
 }
 
 
@@ -511,8 +430,7 @@ img{
 
     display:block;
 
-    color:
-        var(--gold-light);
+    color:var(--gold-light);
 
 }
 
@@ -523,14 +441,19 @@ img{
 
 .cp-line{
 
-    width:80px;
+    width:90px;
 
     height:1px;
 
-    margin-top:28px;
+    margin-top:30px;
 
     background:
-        var(--gold);
+
+        linear-gradient(
+            90deg,
+            var(--gold),
+            transparent
+        );
 
 }
 
@@ -541,23 +464,26 @@ img{
 
 .cp-description{
 
-    max-width:570px;
+    max-width:600px;
 
-    margin:
-        25px 0 0;
+    margin:25px 0 0;
 
     color:
-        rgba(245,239,231,.78);
+        rgba(247,240,232,.78);
 
-    font-size:16px;
+    font-size:15px;
 
-    line-height:1.9;
+    line-height:1.95;
+
+    text-shadow:
+        0 3px 20px
+        rgba(0,0,0,.65);
 
 }
 
 
 /* =========================================================
-   BUTTONS
+   HERO BUTTONS
    ========================================================= */
 
 .cp-actions{
@@ -568,12 +494,17 @@ img{
 
     gap:13px;
 
-    margin-top:31px;
+    margin-top:32px;
 
 }
 
 
 .cp-button{
+
+    min-height:50px;
+
+    padding:
+        0 26px;
 
     display:inline-flex;
 
@@ -581,17 +512,13 @@ img{
 
     justify-content:center;
 
-    min-height:50px;
-
-    padding:
-        0 25px;
-
     font-size:13px;
 
     transition:
         transform .25s ease,
         background .25s ease,
-        border-color .25s ease;
+        border-color .25s ease,
+        box-shadow .25s ease;
 
 }
 
@@ -599,7 +526,7 @@ img{
 .cp-button:hover{
 
     transform:
-        translateY(-2px);
+        translateY(-3px);
 
 }
 
@@ -620,6 +547,19 @@ img{
         1px solid
         #dfbd76;
 
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.28);
+
+}
+
+
+.cp-button-main:hover{
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.40);
+
 }
 
 
@@ -628,14 +568,17 @@ img{
     color:#f5eee5;
 
     background:
-        rgba(10,6,3,.16);
+        rgba(8,5,3,.28);
 
     border:
         1px solid
-        rgba(220,184,111,.58);
+        rgba(220,184,111,.60);
 
     backdrop-filter:
-        blur(4px);
+        blur(6px);
+
+    -webkit-backdrop-filter:
+        blur(6px);
 
 }
 
@@ -648,7 +591,7 @@ img{
 
     position:relative;
 
-    z-index:2;
+    z-index:3;
 
     background:transparent;
 
@@ -656,7 +599,7 @@ img{
 
 
 /* =========================================================
-   GENERAL SECTION
+   SECTION
    ========================================================= */
 
 .cp-section{
@@ -667,11 +610,10 @@ img{
             calc(100% - 80px)
         );
 
-    margin:
-        0 auto;
+    margin:0 auto;
 
     padding:
-        65px 0;
+        80px 0;
 
 }
 
@@ -684,12 +626,11 @@ img{
 
     margin-bottom:13px;
 
-    color:
-        var(--gold-light);
+    color:var(--gold-light);
 
     font-size:11px;
 
-    letter-spacing:.26em;
+    letter-spacing:.28em;
 
 }
 
@@ -698,8 +639,7 @@ img{
 
     margin:0;
 
-    color:
-        var(--white);
+    color:var(--white);
 
     font-size:
         clamp(
@@ -714,6 +654,10 @@ img{
 
     letter-spacing:-.035em;
 
+    text-shadow:
+        0 5px 25px
+        rgba(0,0,0,.45);
+
 }
 
 
@@ -725,7 +669,7 @@ img{
         18px 0 0;
 
     color:
-        rgba(245,239,231,.68);
+        rgba(245,239,231,.72);
 
     font-size:14px;
 
@@ -747,40 +691,47 @@ img{
 
     gap:1px;
 
-    margin-top:40px;
+    margin-top:42px;
 
     background:
-        rgba(201,164,92,.22);
+        rgba(201,164,92,.28);
 
     border:
         1px solid
         rgba(201,164,92,.22);
 
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.28);
+
 }
 
 
-/* =========================================================
-   SOLUTION CARD
-   ========================================================= */
-
 .cp-card{
+
+    position:relative;
 
     min-height:270px;
 
-    padding:30px;
+    padding:31px;
 
     background:
 
         linear-gradient(
             145deg,
-            rgba(38,23,14,.88),
-            rgba(11,7,4,.86)
+            rgba(36,22,13,.80),
+            rgba(8,5,3,.70)
         );
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
 
     transition:
         transform .30s ease,
-        background .30s ease,
-        border-color .30s ease;
+        background .30s ease;
 
 }
 
@@ -788,14 +739,14 @@ img{
 .cp-card:hover{
 
     transform:
-        translateY(-4px);
+        translateY(-5px);
 
     background:
 
         linear-gradient(
             145deg,
-            rgba(55,33,18,.92),
-            rgba(15,8,4,.90)
+            rgba(56,34,18,.88),
+            rgba(11,7,4,.82)
         );
 
 }
@@ -804,20 +755,20 @@ img{
 .cp-card-number{
 
     color:
-        rgba(228,197,127,.68);
+        rgba(228,197,127,.70);
 
     font-size:10px;
 
-    letter-spacing:.18em;
+    letter-spacing:.20em;
 
 }
 
 
 .cp-card-icon{
 
-    width:50px;
+    width:44px;
 
-    height:50px;
+    height:44px;
 
     margin-top:28px;
 
@@ -827,14 +778,16 @@ img{
 
     justify-content:center;
 
-    color:
-        var(--gold-light);
+    color:var(--gold-light);
 
     border:
         1px solid
-        rgba(201,164,92,.36);
+        rgba(201,164,92,.38);
 
-    font-size:18px;
+    font-size:17px;
+
+    background:
+        rgba(201,164,92,.035);
 
 }
 
@@ -842,14 +795,13 @@ img{
 .cp-card h3{
 
     margin:
-        18px 0 10px;
+        19px 0 10px;
 
-    color:
-        var(--white);
+    color:var(--white);
 
-    font-size:21px;
+    font-size:20px;
 
-    line-height:1.3;
+    line-height:1.35;
 
     font-weight:400;
 
@@ -870,6 +822,37 @@ img{
 }
 
 
+.cp-card-link{
+
+    position:absolute;
+
+    left:31px;
+
+    bottom:26px;
+
+    color:var(--gold-light);
+
+    font-size:11px;
+
+    letter-spacing:.06em;
+
+    transition:
+        color .2s ease,
+        transform .2s ease;
+
+}
+
+
+.cp-card:hover .cp-card-link{
+
+    transform:
+        translateX(4px);
+
+    color:#fff;
+
+}
+
+
 /* =========================================================
    OUR WORK
    ========================================================= */
@@ -883,7 +866,7 @@ img{
 
     gap:14px;
 
-    margin-top:40px;
+    margin-top:42px;
 
 }
 
@@ -892,21 +875,31 @@ img{
 
     position:relative;
 
-    min-height:280px;
+    min-height:300px;
 
     overflow:hidden;
 
     border:
         1px solid
-        rgba(201,164,92,.17);
+        rgba(201,164,92,.20);
 
     background:
 
         linear-gradient(
             145deg,
-            rgba(42,25,14,.88),
-            rgba(8,5,3,.90)
+            rgba(45,27,15,.78),
+            rgba(7,4,2,.84)
         );
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.24);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
 
     transition:
         transform .30s ease,
@@ -918,13 +911,15 @@ img{
 .cp-work-card:hover{
 
     transform:
-        translateY(-5px);
+        translateY(-6px);
 
     border-color:
-        rgba(201,164,92,.40);
+        rgba(201,164,92,.48);
 
 }
 
+
+/* Decorative architectural background */
 
 .cp-work-card::before{
 
@@ -936,14 +931,24 @@ img{
 
     background:
 
-        radial-gradient(
-            circle at 50% 18%,
-            rgba(201,164,92,.18),
-            transparent 42%
+        linear-gradient(
+            135deg,
+            transparent 0%,
+            rgba(201,164,92,.07) 45%,
+            transparent 46%
+        ),
+
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255,255,255,.025) 50%,
+            transparent 51%
         );
 
 }
 
+
+/* Floor line */
 
 .cp-work-card::after{
 
@@ -952,10 +957,12 @@ img{
     position:absolute;
 
     left:0;
+
     right:0;
+
     bottom:0;
 
-    height:65%;
+    height:48%;
 
     background:
 
@@ -968,15 +975,87 @@ img{
 }
 
 
+/* Different visual identities */
+
+.cp-work-card:nth-child(1)::before{
+
+    background:
+
+        linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(201,164,92,.13) 31%,
+            transparent 32%
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(201,164,92,.04),
+            transparent 45%
+        );
+
+}
+
+
+.cp-work-card:nth-child(2)::before{
+
+    background:
+
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 28px,
+            rgba(201,164,92,.055) 29px,
+            transparent 30px
+        );
+
+}
+
+
+.cp-work-card:nth-child(3)::before{
+
+    background:
+
+        radial-gradient(
+            ellipse at 50% 25%,
+            rgba(201,164,92,.16),
+            transparent 50%
+        );
+
+}
+
+
+.cp-work-card:nth-child(4)::before{
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.035),
+            transparent 42%
+        ),
+
+        linear-gradient(
+            45deg,
+            transparent 48%,
+            rgba(201,164,92,.08) 49%,
+            transparent 50%
+        );
+
+}
+
+
 .cp-work-inner{
 
     position:absolute;
 
-    left:24px;
-    right:24px;
-    bottom:23px;
+    left:25px;
 
-    z-index:3;
+    right:25px;
+
+    bottom:25px;
+
+    z-index:5;
 
 }
 
@@ -985,24 +1064,22 @@ img{
 
     margin-bottom:8px;
 
-    color:
-        var(--gold-light);
+    color:var(--gold-light);
 
     font-size:10px;
 
-    letter-spacing:.16em;
+    letter-spacing:.18em;
 
 }
 
 
 .cp-work-title{
 
-    color:
-        var(--white);
+    color:var(--white);
 
     font-size:19px;
 
-    line-height:1.35;
+    line-height:1.4;
 
     font-weight:400;
 
@@ -1014,11 +1091,58 @@ img{
     margin-top:7px;
 
     color:
-        rgba(245,239,231,.48);
+        rgba(245,239,231,.50);
 
     font-size:9px;
 
-    letter-spacing:.14em;
+    letter-spacing:.12em;
+
+}
+
+
+/* =========================================================
+   WORK LINK
+   ========================================================= */
+
+.cp-work-more{
+
+    margin-top:25px;
+
+    text-align:right;
+
+}
+
+
+.cp-work-more a{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:var(--gold-light);
+
+    font-size:12px;
+
+    border-bottom:
+        1px solid
+        rgba(201,164,92,.45);
+
+    padding-bottom:5px;
+
+    transition:
+        color .2s ease,
+        border-color .2s ease;
+
+}
+
+
+.cp-work-more a:hover{
+
+    color:#fff;
+
+    border-color:#fff;
 
 }
 
@@ -1029,7 +1153,7 @@ img{
 
 .cp-stats-section{
 
-    padding-top:25px;
+    padding-top:45px;
 
     padding-bottom:45px;
 
@@ -1045,11 +1169,20 @@ img{
 
     border-top:
         1px solid
-        rgba(201,164,92,.22);
+        rgba(201,164,92,.25);
 
     border-bottom:
         1px solid
-        rgba(201,164,92,.22);
+        rgba(201,164,92,.25);
+
+    background:
+        rgba(7,4,2,.20);
+
+    backdrop-filter:
+        blur(6px);
+
+    -webkit-backdrop-filter:
+        blur(6px);
 
 }
 
@@ -1057,7 +1190,7 @@ img{
 .cp-stat{
 
     padding:
-        40px 20px;
+        42px 20px;
 
     text-align:center;
 
@@ -1079,8 +1212,7 @@ img{
 
     display:block;
 
-    color:
-        var(--gold-light);
+    color:var(--gold-light);
 
     font-size:
         clamp(
@@ -1100,10 +1232,10 @@ img{
 
     display:block;
 
-    margin-top:11px;
+    margin-top:12px;
 
     color:
-        rgba(245,239,231,.52);
+        rgba(245,239,231,.58);
 
     font-size:10px;
 
@@ -1114,12 +1246,11 @@ img{
 
 .cp-stat-note{
 
-    margin-top:23px;
+    margin-top:25px;
 
     text-align:center;
 
-    color:
-        var(--white);
+    color:var(--white);
 
     font-size:20px;
 
@@ -1136,25 +1267,31 @@ img{
 
     position:relative;
 
-    z-index:2;
+    z-index:3;
+
+    margin-top:15px;
 
     border-top:
         1px solid
-        rgba(201,164,92,.20);
+        rgba(201,164,92,.24);
+
+    border-bottom:
+        1px solid
+        rgba(201,164,92,.18);
 
     background:
 
         linear-gradient(
             135deg,
-            rgba(35,21,12,.78),
-            rgba(7,4,2,.78)
+            rgba(37,22,13,.76),
+            rgba(6,4,2,.78)
         );
 
     backdrop-filter:
-        blur(4px);
+        blur(9px);
 
     -webkit-backdrop-filter:
-        blur(4px);
+        blur(9px);
 
 }
 
@@ -1167,11 +1304,10 @@ img{
             calc(100% - 80px)
         );
 
-    margin:
-        0 auto;
+    margin:0 auto;
 
     padding:
-        58px 0;
+        68px 0;
 
     display:flex;
 
@@ -1184,48 +1320,76 @@ img{
 }
 
 
+.cp-cta-copy{
+
+    max-width:750px;
+
+}
+
+
+.cp-cta-label{
+
+    margin-bottom:12px;
+
+    color:var(--gold-light);
+
+    font-size:11px;
+
+    letter-spacing:.28em;
+
+}
+
+
 .cp-cta h2{
 
     margin:0;
 
-    color:
-        var(--white);
+    color:var(--white);
 
     font-size:
         clamp(
-            32px,
+            34px,
             4vw,
             55px
         );
 
-    line-height:1.06;
+    line-height:1.15;
 
     font-weight:400;
 
-    letter-spacing:-.035em;
+    letter-spacing:-.025em;
 
 }
 
 
 .cp-cta p{
 
-    max-width:600px;
-
     margin:
-        15px 0 0;
+        16px 0 0;
 
     color:
-        rgba(245,239,231,.58);
+        rgba(245,239,231,.66);
 
-    font-size:13px;
+    font-size:14px;
 
-    line-height:1.8;
+    line-height:1.85;
+
+}
+
+
+.cp-cta-button{
+
+    flex:0 0 auto;
 
 }
 
 
 /* =========================================================
-   MASTER FOOTER OVERRIDE
+   FOOTER
+   =========================================================
+
+   Master Nav เป็นผู้สร้าง Footer
+   เราเพียงทำให้ Footer กลืนกับภาพ
    ========================================================= */
 
 footer,
@@ -1233,62 +1397,26 @@ footer,
 
     position:relative;
 
-    z-index:10;
+    z-index:5;
 
     background:
-        rgba(5,3,2,.88) !important;
+        rgba(4,3,2,.84) !important;
 
     border-top:
         1px solid
         rgba(201,164,92,.18) !important;
 
     backdrop-filter:
-        blur(10px);
+        blur(12px);
 
     -webkit-backdrop-filter:
-        blur(10px);
+        blur(12px);
 
 }
 
 
 /* =========================================================
-   FOOTER MENU
-   ========================================================= */
-
-.footer-links{
-
-    display:flex !important;
-
-    flex-direction:column !important;
-
-    align-items:flex-start !important;
-
-    gap:3px !important;
-
-}
-
-
-.footer-links a{
-
-    color:#999 !important;
-
-    font-size:13px !important;
-
-    line-height:1.8 !important;
-
-}
-
-
-.footer-links a:hover{
-
-    color:
-        var(--gold-light) !important;
-
-}
-
-
-/* =========================================================
-   RESPONSIVE
+   MOBILE / TABLET
    ========================================================= */
 
 @media(max-width:1100px){
@@ -1313,10 +1441,18 @@ footer,
 
 @media(max-width:800px){
 
+    .cp-page::before{
+
+        background-position:
+            center top,
+            58% top;
+
+    }
+
+
     .cp-hero{
 
-        min-height:
-            680px;
+        min-height:680px;
 
     }
 
@@ -1326,8 +1462,7 @@ footer,
         width:
             calc(100% - 40px);
 
-        min-height:
-            680px;
+        min-height:680px;
 
     }
 
@@ -1335,6 +1470,8 @@ footer,
     .cp-hero-copy{
 
         width:100%;
+
+        padding-top:80px;
 
     }
 
@@ -1345,7 +1482,7 @@ footer,
             calc(100% - 40px);
 
         padding:
-            55px 0;
+            60px 0;
 
     }
 
@@ -1356,10 +1493,9 @@ footer,
             calc(100% - 40px);
 
         padding:
-            52px 0;
+            55px 0;
 
-        flex-direction:
-            column;
+        flex-direction:column;
 
         align-items:flex-start;
 
@@ -1370,21 +1506,27 @@ footer,
 
 @media(max-width:600px){
 
+    .cp-page::before{
+
+        background-position:
+            center top,
+            60% top;
+
+    }
+
+
     .cp-hero{
 
-        min-height:
-            650px;
+        min-height:650px;
 
     }
 
 
     .cp-hero-content{
 
-        min-height:
-            650px;
+        min-height:650px;
 
-        padding-top:
-            80px;
+        padding-top:55px;
 
     }
 
@@ -1405,15 +1547,14 @@ footer,
 
         font-size:13px;
 
-        line-height:1.8;
+        line-height:1.85;
 
     }
 
 
     .cp-actions{
 
-        flex-direction:
-            column;
+        flex-direction:column;
 
         align-items:flex-start;
 
@@ -1422,39 +1563,35 @@ footer,
 
     .cp-button{
 
-        min-width:
-            185px;
+        min-width:190px;
 
     }
 
 
     .cp-solutions{
 
-        grid-template-columns:
-            1fr;
+        grid-template-columns:1fr;
 
     }
 
 
     .cp-work{
 
-        grid-template-columns:
-            1fr;
+        grid-template-columns:1fr;
 
     }
 
 
     .cp-card{
 
-        min-height:225px;
+        min-height:235px;
 
     }
 
 
     .cp-stats{
 
-        grid-template-columns:
-            1fr;
+        grid-template-columns:1fr;
 
     }
 
@@ -1484,9 +1621,9 @@ footer,
     }
 
 
-    .cp-hero::after{
+    .cp-work-card{
 
-        height:150px;
+        min-height:270px;
 
     }
 
@@ -1532,6 +1669,13 @@ footer,
 
     }
 
+
+    .cp-card-link{
+
+        left:26px;
+
+    }
+
 }
 
 </style>
@@ -1545,781 +1689,556 @@ footer,
 <main class="cp-page">
 
 
-<!-- =====================================================
-     HERO
-     ===================================================== -->
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
 
-<section class="cp-hero">
+    <section class="cp-hero">
 
+        <div class="cp-hero-content">
 
-    <img
-        class="cp-hero-image"
-        src="assets/home-hero-visual.jpg"
-        alt="CHATPHETCH GROUP Flooring & Construction"
-        fetchpriority="high"
-    >
+            <div class="cp-hero-copy">
 
-
-    <div
-        class="cp-hero-overlay"
-        aria-hidden="true">
-    </div>
+                <div class="cp-kicker">
+                    CHATPHETCH GROUP
+                </div>
 
 
-    <div
-        class="cp-hero-top"
-        aria-hidden="true">
-    </div>
+                <h1 class="cp-title">
+
+                    วัสดุงานพื้น
+
+                    <span>
+                        และงานก่อสร้าง
+                    </span>
+
+                </h1>
 
 
-    <div class="cp-hero-content">
+                <div class="cp-line"></div>
 
 
-        <div class="cp-hero-copy">
+                <p class="cp-description">
+
+                    โซลูชันด้านวัสดุงานพื้น
+                    และงานก่อสร้างสำหรับบ้าน
+                    อาคารพาณิชย์ โรงงาน
+                    และโครงการขนาดใหญ่
+                    พร้อมทีมงานดูแลตั้งแต่การเลือกวัสดุ
+                    จนถึงการติดตั้ง
+
+                </p>
 
 
-            <div class="cp-kicker">
-                CHATPHETCH GROUP
-            </div>
+                <div class="cp-actions">
+
+                    <a
+                        href="products.html"
+                        class="cp-button cp-button-main"
+                    >
+                        ดูสินค้า
+                    </a>
 
 
-            <h1 class="cp-title">
+                    <a
+                        href="contact.html"
+                        class="cp-button cp-button-sub"
+                    >
+                        ปรึกษาเรา
+                    </a>
 
-                วัสดุงานพื้น
-
-                <span>
-                    และงานก่อสร้าง
-                </span>
-
-            </h1>
-
-
-            <div class="cp-line">
-            </div>
-
-
-            <p class="cp-description">
-
-                โซลูชันด้านวัสดุงานพื้น
-                และงานก่อสร้างสำหรับบ้าน
-                อาคารพาณิชย์ โรงงาน
-                และโครงการขนาดใหญ่
-                พร้อมทีมงานดูแลตั้งแต่การเลือกวัสดุ
-                จนถึงการติดตั้ง
-
-            </p>
-
-
-            <div class="cp-actions">
-
-
-                <a
-                    href="products.html"
-                    class="cp-button cp-button-main"
-                >
-                    ดูผลิตภัณฑ์
-                </a>
-
-
-                <a
-                    href="contact.html"
-                    class="cp-button cp-button-sub"
-                >
-                    ติดต่อเรา
-                </a>
-
+                </div>
 
             </div>
-
 
         </div>
 
-
-    </div>
-
-
-</section>
+    </section>
 
 
-<!-- =====================================================
-     MAIN CONTENT
-     ===================================================== -->
 
-<section class="cp-content">
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
 
-
-<!-- =====================================================
-     OUR SOLUTIONS
-     ===================================================== -->
-
-<section class="cp-section">
-
-
-    <div class="cp-eyebrow">
-        OUR SOLUTIONS
-    </div>
-
-
-    <h2 class="cp-heading">
-
-        ครบทุกความต้องการ
-        <br>
-        เรื่องพื้น และงานก่อสร้าง
-
-    </h2>
-
-
-    <p class="cp-text">
-
-        วัสดุ บริการ และโซลูชัน
-        สำหรับงานพื้นและงานก่อสร้าง
-        ที่เหมาะกับลักษณะของแต่ละโครงการ
-
-    </p>
-
-
-    <div class="cp-solutions">
+    <div class="cp-content">
 
 
         <!-- =================================================
-             01 ระบบงานพื้น
+             OUR SOLUTIONS
              ================================================= -->
 
-        <a
-            href="services.html"
-            class="cp-card"
-        >
+        <section class="cp-section">
 
-            <div class="cp-card-number">
-                01 / FLOORING
+            <div class="cp-eyebrow">
+                OUR SOLUTIONS
             </div>
 
 
-            <div class="cp-card-icon">
-                ▱
-            </div>
+            <h2 class="cp-heading">
 
-
-            <h3>
-                ระบบงานพื้น
-            </h3>
-
-
-            <p>
-
-                ระบบพื้นสำหรับพื้นที่หลากหลายประเภท
-                ทั้งงานอุตสาหกรรม อาคาร
-                พื้นที่พาณิชย์
-                และพื้นที่ใช้งานทั่วไป
-
-            </p>
-
-        </a>
-
-
-        <!-- =================================================
-             02 สินค้า
-             ================================================= -->
-
-        <a
-            href="products.html"
-            class="cp-card"
-        >
-
-            <div class="cp-card-number">
-                02 / PRODUCTS
-            </div>
-
-
-            <div class="cp-card-icon">
-                ◈
-            </div>
-
-
-            <h3>
-                สินค้า
-            </h3>
-
-
-            <p>
-
-                วัสดุและผลิตภัณฑ์สำหรับงานพื้น
-                งานก่อสร้าง และงานตกแต่ง
-                คัดเลือกให้เหมาะกับแต่ละโครงการ
-
-            </p>
-
-        </a>
-
-
-        <!-- =================================================
-             03 ผลงาน
-             ================================================= -->
-
-        <a
-            href="projects.html"
-            class="cp-card"
-        >
-
-            <div class="cp-card-number">
-                03 / PROJECTS
-            </div>
-
-
-            <div class="cp-card-icon">
-                □
-            </div>
-
-
-            <h3>
-                ผลงาน
-            </h3>
-
-
-            <p>
-
-                ชมตัวอย่างผลงานด้านระบบพื้น
-                งานก่อสร้าง และโครงการ
-                จากการใช้งานจริง
-
-            </p>
-
-        </a>
-
-
-        <!-- =================================================
-             04 คำปรึกษา
-             ================================================= -->
-
-        <a
-            href="service-detail.html?service=consulting"
-            class="cp-card"
-        >
-
-            <div class="cp-card-number">
-                04 / CONSULT
-            </div>
-
-
-            <div class="cp-card-icon">
-                +
-            </div>
-
-
-            <h3>
-                คำปรึกษา
-            </h3>
-
-
-            <p>
-
-                ให้คำแนะนำด้านวัสดุ ระบบพื้น
-                และแนวทางการใช้งาน
-                ให้เหมาะสมกับแต่ละพื้นที่
-
-            </p>
-
-        </a>
-
-
-    </div>
-
-
-</section>
-
-
-<!-- =====================================================
-     OUR WORK
-     ===================================================== -->
-
-<section class="cp-section">
-
-
-    <div class="cp-eyebrow">
-        OUR WORK
-    </div>
-
-
-    <h2 class="cp-heading">
-        ผลงานของเรา
-    </h2>
-
-
-    <p class="cp-text">
-
-        ตัวอย่างงานด้านพื้น
-        งานเคลือบผิว และงานก่อสร้าง
-        จากหลากหลายประเภทโครงการ
-
-    </p>
-
-
-    <div class="cp-work">
-
-
-        <a
-            href="projects.html"
-            class="cp-work-card"
-        >
-
-            <div class="cp-work-inner">
-
-                <div class="cp-work-number">
-                    01
-                </div>
-
-                <div class="cp-work-title">
-                    พื้นโรงงานอุตสาหกรรม
-                </div>
-
-                <div class="cp-work-sub">
-                    INDUSTRIAL FLOOR
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a
-            href="projects.html"
-            class="cp-work-card"
-        >
-
-            <div class="cp-work-inner">
-
-                <div class="cp-work-number">
-                    02
-                </div>
-
-                <div class="cp-work-title">
-                    พื้นพาณิชย์ / อาคาร
-                </div>
-
-                <div class="cp-work-sub">
-                    COMMERCIAL FLOOR
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a
-            href="projects.html"
-            class="cp-work-card"
-        >
-
-            <div class="cp-work-inner">
-
-                <div class="cp-work-number">
-                    03
-                </div>
-
-                <div class="cp-work-title">
-                    งานพื้นและการเคลือบผิว
-                </div>
-
-                <div class="cp-work-sub">
-                    SURFACE SYSTEM
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a
-            href="projects.html"
-            class="cp-work-card"
-        >
-
-            <div class="cp-work-inner">
-
-                <div class="cp-work-number">
-                    04
-                </div>
-
-                <div class="cp-work-title">
-                    งานก่อสร้าง
-                </div>
-
-                <div class="cp-work-sub">
-                    CONSTRUCTION
-                </div>
-
-            </div>
-
-        </a>
-
-
-    </div>
-
-
-</section>
-
-
-<!-- =====================================================
-     STATS
-     ===================================================== -->
-
-<section class="cp-section cp-stats-section">
-
-
-    <div class="cp-stats">
-
-
-        <div class="cp-stat">
-
-            <strong>
-                500+
-            </strong>
-
-            <span>
-                PROJECTS
-            </span>
-
-        </div>
-
-
-        <div class="cp-stat">
-
-            <strong>
-                10+
-            </strong>
-
-            <span>
-                YEARS EXPERIENCE
-            </span>
-
-        </div>
-
-
-        <div class="cp-stat">
-
-            <strong>
-                100%
-            </strong>
-
-            <span>
-                COMMITMENT
-            </span>
-
-        </div>
-
-
-    </div>
-
-
-    <div class="cp-stat-note">
-        พื้นที่ที่ดี เริ่มต้นจากวัสดุที่ใช่
-    </div>
-
-
-</section>
-
-
-<!-- =====================================================
-     CTA
-     ===================================================== -->
-
-<section class="cp-cta">
-
-
-    <div class="cp-cta-inner">
-
-
-        <div>
-
-
-            <h2>
-
-                LET'S BUILD
+                ครบทุกความต้องการ
                 <br>
-                A BETTER SPACE
+                เรื่องพื้น และงานก่อสร้าง
 
             </h2>
 
 
-            <p>
+            <p class="cp-text">
 
-                ทีมงานของเราพร้อมให้คำแนะนำ
-                และเสนอแนวทางที่เหมาะสม
-                กับโครงการของคุณ
+                เลือกดูระบบงานพื้น สินค้า
+                ผลงานที่ผ่านมา หรือขอคำปรึกษา
+                เพื่อหาแนวทางที่เหมาะสมกับพื้นที่
+                และโครงการของคุณ
 
             </p>
 
 
-        </div>
+            <div class="cp-solutions">
 
 
-        <a
-            href="contact.html"
-            class="cp-button cp-button-main"
-        >
-            ปรึกษาเราได้วันนี้ →
-        </a>
+                <!-- 01 -->
+
+                <a
+                    href="services.html"
+                    class="cp-card"
+                >
+
+                    <div class="cp-card-number">
+                        01 / SYSTEM
+                    </div>
+
+
+                    <div class="cp-card-icon">
+                        ◇
+                    </div>
+
+
+                    <h3>
+                        ระบบงานพื้น
+                    </h3>
+
+
+                    <p>
+                        ระบบพื้นสำหรับบ้าน
+                        อาคาร โรงงาน และพื้นที่ใช้งาน
+                        ที่ต้องการความเหมาะสม
+                        ทั้งด้านวัสดุและการใช้งาน
+                    </p>
+
+
+                    <div class="cp-card-link">
+                        ดูบริการ →
+                    </div>
+
+                </a>
+
+
+
+                <!-- 02 -->
+
+                <a
+                    href="products.html"
+                    class="cp-card"
+                >
+
+                    <div class="cp-card-number">
+                        02 / PRODUCTS
+                    </div>
+
+
+                    <div class="cp-card-icon">
+                        □
+                    </div>
+
+
+                    <h3>
+                        สินค้า
+                    </h3>
+
+
+                    <p>
+                        รวมวัสดุงานพื้น
+                        และผลิตภัณฑ์สำหรับงานก่อสร้าง
+                        พร้อมข้อมูลสำหรับช่วยเลือกวัสดุ
+                        ให้เหมาะกับแต่ละพื้นที่
+                    </p>
+
+
+                    <div class="cp-card-link">
+                        ดูสินค้า →
+                    </div>
+
+                </a>
+
+
+
+                <!-- 03 -->
+
+                <a
+                    href="projects.html"
+                    class="cp-card"
+                >
+
+                    <div class="cp-card-number">
+                        03 / PROJECTS
+                    </div>
+
+
+                    <div class="cp-card-icon">
+                        ✦
+                    </div>
+
+
+                    <h3>
+                        ผลงาน
+                    </h3>
+
+
+                    <p>
+                        ชมตัวอย่างผลงาน
+                        และโครงการที่เกี่ยวข้องกับ
+                        งานพื้น งานเคลือบผิว
+                        และงานก่อสร้าง
+                    </p>
+
+
+                    <div class="cp-card-link">
+                        ดูผลงาน →
+                    </div>
+
+                </a>
+
+
+
+                <!-- 04 -->
+
+                <a
+                    href="service-detail.html?service=consulting"
+                    class="cp-card"
+                >
+
+                    <div class="cp-card-number">
+                        04 / CONSULT
+                    </div>
+
+
+                    <div class="cp-card-icon">
+                        +
+                    </div>
+
+
+                    <h3>
+                        คำปรึกษา
+                    </h3>
+
+
+                    <p>
+                        ให้คำแนะนำด้านวัสดุ
+                        ระบบงานพื้น และแนวทางการใช้งาน
+                        เพื่อช่วยให้เลือกโซลูชัน
+                        ได้เหมาะกับโครงการ
+                    </p>
+
+
+                    <div class="cp-card-link">
+                        ปรึกษาเรา →
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             OUR WORK
+             ================================================= -->
+
+        <section class="cp-section">
+
+            <div class="cp-eyebrow">
+                OUR WORK
+            </div>
+
+
+            <h2 class="cp-heading">
+
+                ผลงานที่สะท้อน
+                <br>
+                คุณภาพของพื้นที่
+
+            </h2>
+
+
+            <p class="cp-text">
+
+                ดูตัวอย่างงานและโครงการ
+                เพื่อเห็นภาพการประยุกต์ใช้วัสดุ
+                และระบบงานพื้นในพื้นที่จริง
+
+            </p>
+
+
+            <div class="cp-work">
+
+
+                <!-- WORK 01 -->
+
+                <a
+                    href="projects.html"
+                    class="cp-work-card"
+                >
+
+                    <div class="cp-work-inner">
+
+                        <div class="cp-work-number">
+                            01
+                        </div>
+
+                        <div class="cp-work-title">
+                            งานพื้นอาคาร
+                        </div>
+
+                        <div class="cp-work-sub">
+                            FLOORING PROJECT
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- WORK 02 -->
+
+                <a
+                    href="projects.html"
+                    class="cp-work-card"
+                >
+
+                    <div class="cp-work-inner">
+
+                        <div class="cp-work-number">
+                            02
+                        </div>
+
+                        <div class="cp-work-title">
+                            งานพื้นโรงงาน
+                        </div>
+
+                        <div class="cp-work-sub">
+                            INDUSTRIAL FLOOR
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- WORK 03 -->
+
+                <a
+                    href="projects.html"
+                    class="cp-work-card"
+                >
+
+                    <div class="cp-work-inner">
+
+                        <div class="cp-work-number">
+                            03
+                        </div>
+
+                        <div class="cp-work-title">
+                            งานเคลือบผิว
+                        </div>
+
+                        <div class="cp-work-sub">
+                            SURFACE SYSTEM
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- WORK 04 -->
+
+                <a
+                    href="projects.html"
+                    class="cp-work-card"
+                >
+
+                    <div class="cp-work-inner">
+
+                        <div class="cp-work-number">
+                            04
+                        </div>
+
+                        <div class="cp-work-title">
+                            งานก่อสร้าง
+                        </div>
+
+                        <div class="cp-work-sub">
+                            CONSTRUCTION
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+
+            <div class="cp-work-more">
+
+                <a href="projects.html">
+                    ดูผลงานทั้งหมด →
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STATS
+             ================================================= -->
+
+        <section class="cp-section cp-stats-section">
+
+            <div class="cp-stats">
+
+
+                <div class="cp-stat">
+
+                    <strong>
+                        500+
+                    </strong>
+
+                    <span>
+                        PROJECTS &amp; APPLICATIONS
+                    </span>
+
+                </div>
+
+
+                <div class="cp-stat">
+
+                    <strong>
+                        10+
+                    </strong>
+
+                    <span>
+                        YEARS OF EXPERIENCE
+                    </span>
+
+                </div>
+
+
+                <div class="cp-stat">
+
+                    <strong>
+                        100%
+                    </strong>
+
+                    <span>
+                        CONSULTING &amp; SUPPORT
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="cp-stat-note">
+
+                ดูแลตั้งแต่การเลือกวัสดุ
+                จนถึงการนำไปใช้งานจริง
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CTA
+             ================================================= -->
+
+        <section class="cp-cta">
+
+            <div class="cp-cta-inner">
+
+
+                <div class="cp-cta-copy">
+
+                    <div class="cp-cta-label">
+                        START YOUR PROJECT
+                    </div>
+
+
+                    <h2>
+                        สร้างพื้นที่ที่ดีกว่า
+                        <br>
+                        เริ่มต้นกับเรา
+                    </h2>
+
+
+                    <p>
+
+                        ให้เราช่วยเลือกวัสดุ
+                        และโซลูชันที่เหมาะสม
+                        กับพื้นที่ของคุณ
+
+                    </p>
+
+                </div>
+
+
+                <div class="cp-cta-button">
+
+                    <a
+                        href="contact.html"
+                        class="cp-button cp-button-main"
+                    >
+                        ปรึกษาเราได้วันนี้ →
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
 
 
     </div>
-
-
-</section>
-
-
-</section>
 
 
 </main>
 
 
 <!-- =====================================================
-     MASTER HEADER + FOOTER
+     MASTER NAV
+     =====================================================
+
+     ใช้เมนูเดิมทั้งหมด
+     Header + Footer
+     Desktop + Mobile
+     Dropdown
+     Cart
      ===================================================== -->
 
 <script src="assets/customer-master-nav.js"></script>
-
-
-<!-- =====================================================
-     INDEX MASTER NAV FIX
-     =====================================================
-
-     customer-master-nav.js เดิมยังมีข้อความ
-     CHATPETCH GROUP อยู่ใน Header / Footer
-
-     ตรงนี้แก้เฉพาะข้อความ
-     ไม่สร้าง Header ใหม่
-     ===================================================== -->
-
-<script>
-
-(function(){
-
-    "use strict";
-
-
-    function fixBrand(){
-
-        /* Header */
-
-        document
-            .querySelectorAll(
-                ".customer-brand-text strong"
-            )
-            .forEach(function(el){
-
-                el.textContent =
-                    "CHATPHETCH GROUP";
-
-            });
-
-
-        /* Footer */
-
-        document
-            .querySelectorAll(
-                ".footer-brand .logo-text strong"
-            )
-            .forEach(function(el){
-
-                el.textContent =
-                    "CHATPHETCH GROUP";
-
-            });
-
-
-        /* Logo */
-
-        document
-            .querySelectorAll(
-                ".customer-brand img, .footer-brand .logo img"
-            )
-            .forEach(function(img){
-
-                img.src =
-                    "assets/logo.png";
-
-                img.alt =
-                    "CHATPHETCH GROUP";
-
-            });
-
-
-        /* Footer copyright */
-
-        document
-            .querySelectorAll(
-                ".footer-bottom"
-            )
-            .forEach(function(el){
-
-                el.innerHTML =
-                    el.innerHTML.replace(
-                        /CHATPETCH GROUP/g,
-                        "CHATPHETCH GROUP"
-                    );
-
-            });
-
-    }
-
-
-    function fixFooterMenu(){
-
-        const menu =
-            document.querySelector(
-                ".footer .footer-links"
-            );
-
-
-        if(
-            !menu ||
-            menu.dataset.cpFixed === "1"
-        ){
-
-            return;
-
-        }
-
-
-        menu.dataset.cpFixed =
-            "1";
-
-
-        menu.innerHTML = `
-
-            <a href="index.html">
-                หน้าแรก
-            </a>
-
-            <a href="about.html">
-                เกี่ยวกับเรา
-            </a>
-
-            <a href="products.html">
-                สินค้า
-            </a>
-
-            <a href="services.html">
-                บริการ
-            </a>
-
-            <a href="service-detail.html?service=industrial">
-                &nbsp;&nbsp;บริการระบบงานพื้น
-            </a>
-
-            <a href="service-detail.html?service=coating">
-                &nbsp;&nbsp;บริการเคลือบผิว / สี
-            </a>
-
-            <a href="service-detail.html?service=consulting">
-                &nbsp;&nbsp;ปรึกษาและเลือกวัสดุ
-            </a>
-
-            <a href="service-detail.html?service=installation">
-                &nbsp;&nbsp;คำปรึกษางานติดตั้ง
-            </a>
-
-            <a href="projects.html">
-                ผลงาน
-            </a>
-
-            <a href="reference.html">
-                โครงการอ้างอิง
-            </a>
-
-            <a href="technical-center.html">
-                ศูนย์เทคนิค
-            </a>
-
-            <a href="knowledge.html">
-                คลังความรู้
-            </a>
-
-            <a href="contact.html">
-                ติดต่อเรา
-            </a>
-
-            <a href="order-status.html">
-                🔎 ติดตามคำสั่งซื้อ
-            </a>
-
-            <a href="cart.html">
-                🛒 ตะกร้า
-            </a>
-
-        `;
-
-    }
-
-
-    function runFix(){
-
-        fixBrand();
-
-        fixFooterMenu();
-
-    }
-
-
-    /*
-     * Master Nav โหลดตอน DOMContentLoaded
-     * จึงตรวจซ้ำเพื่อให้ Header/Footer
-     * สร้างเสร็จแน่นอน
-     */
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        function(){
-
-            setTimeout(
-                runFix,
-                50
-            );
-
-            setTimeout(
-                runFix,
-                250
-            );
-
-            setTimeout(
-                runFix,
-                600
-            );
-
-            setTimeout(
-                runFix,
-                1200
-            );
-
-        },
-        {
-            once:true
-        }
-    );
-
-
-    window.addEventListener(
-        "load",
-        function(){
-
-            setTimeout(
-                runFix,
-                100
-            );
-
-            setTimeout(
-                runFix,
-                500
-            );
-
-        }
-    );
-
-
-})();
-
-</script>
 
 
 </body>
