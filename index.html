@@ -21,7 +21,7 @@
 
 <meta
     name="theme-color"
-    content="#070504"
+    content="#080604"
 >
 
 <link
@@ -50,10 +50,14 @@
 
 /* =========================================================
    CHATPHETCH GROUP
-   INDEX PAGE
-   PREMIUM ARCHITECTURAL VERSION
+   INDEX
+   SINGLE IMAGE / PREMIUM ARCHITECTURAL
    ========================================================= */
 
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
 
 :root{
 
@@ -62,9 +66,6 @@
 
     --black-soft:
         #0b0806;
-
-    --brown:
-        #24170e;
 
     --gold:
         #c9a45c;
@@ -85,7 +86,7 @@
         #a99e92;
 
     --line:
-        rgba(201,164,92,.22);
+        rgba(201,164,92,.20);
 
     --white-line:
         rgba(255,255,255,.10);
@@ -155,7 +156,7 @@ img{
 
 
 /* =========================================================
-   PAGE
+   MAIN PAGE
    ========================================================= */
 
 .cp-page{
@@ -163,6 +164,8 @@ img{
     position:relative;
 
     width:100%;
+
+    min-height:100vh;
 
     overflow:hidden;
 
@@ -173,33 +176,25 @@ img{
 
 
 /* =========================================================
-   HERO VISUAL
+   ONE BACKGROUND IMAGE
+   =========================================================
+
+   ใช้ index-main-bg.png เพียงภาพเดียว
+
+   ไม่ใช้:
+   - home-hero-visual.jpg
+   - index-floor-bg.png
+
+   ---------------------------------------------------------
+   จุดสำคัญ:
+   background-size: cover
+   ถูกใช้เฉพาะตัวภาพตาม viewport
+
+   overlay แยกออกจาก image
+   เพื่อไม่ทำให้ภาพมืดเกินไป
    ========================================================= */
 
-.cp-hero{
-
-    position:relative;
-
-    min-height:
-        clamp(
-            650px,
-            75vh,
-            800px
-        );
-
-    overflow:hidden;
-
-    background:
-        #090705;
-
-}
-
-
-/*
-   Hero image
-*/
-
-.cp-hero::before{
+.cp-page::before{
 
     content:"";
 
@@ -209,47 +204,28 @@ img{
 
     z-index:0;
 
+    pointer-events:none;
+
     background-image:
-
-        linear-gradient(
-            90deg,
-            rgba(3,2,1,.46) 0%,
-            rgba(3,2,1,.20) 38%,
-            rgba(3,2,1,.05) 70%,
-            rgba(3,2,1,.18) 100%
-        ),
-
-        linear-gradient(
-            180deg,
-            rgba(3,2,1,.20) 0%,
-            transparent 45%,
-            rgba(3,2,1,.28) 78%,
-            rgba(3,2,1,.70) 100%
-        ),
-
-        url("assets/home-hero-visual.jpg");
-
-    background-position:
-        center top,
-        center top,
-        center center;
-
-    background-size:
-        cover,
-        cover,
-        cover;
+        url("assets/index-main-bg.png");
 
     background-repeat:
         no-repeat;
 
+    background-position:
+        center top;
+
+    background-size:
+        cover;
+
 }
 
 
-/*
-   Slight cinematic darkening
-*/
+/* =========================================================
+   GLOBAL IMAGE DARKEN
+   ========================================================= */
 
-.cp-hero::after{
+.cp-page::after{
 
     content:"";
 
@@ -263,25 +239,54 @@ img{
 
     background:
 
-        radial-gradient(
-            ellipse at 55% 40%,
-            transparent 20%,
-            rgba(0,0,0,.14) 65%,
-            rgba(0,0,0,.38) 100%
+        linear-gradient(
+            180deg,
+            rgba(3,2,1,.18) 0%,
+            rgba(3,2,1,.05) 25%,
+            rgba(3,2,1,.08) 48%,
+            rgba(3,2,1,.28) 70%,
+            rgba(3,2,1,.72) 100%
         );
 
 }
 
 
 /* =========================================================
-   HERO CONTENT
+   CONTENT ABOVE BACKGROUND
    ========================================================= */
 
-.cp-hero-inner{
+.cp-page > *{
 
     position:relative;
 
-    z-index:3;
+    z-index:2;
+
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.cp-hero{
+
+    position:relative;
+
+    min-height:
+        clamp(
+            640px,
+            70vh,
+            760px
+        );
+
+}
+
+
+/* =========================================================
+   HERO CONTAINER
+   ========================================================= */
+
+.cp-hero-content{
 
     width:
         min(
@@ -291,9 +296,9 @@ img{
 
     min-height:
         clamp(
-            650px,
-            75vh,
-            800px
+            640px,
+            70vh,
+            760px
         );
 
     margin:
@@ -306,6 +311,16 @@ img{
 }
 
 
+/* =========================================================
+   HERO COPY
+   =========================================================
+
+   จุดนี้ตั้งใจให้ลงมา
+
+   ไม่ลดความสูง Hero
+   แต่ขยับตัวหนังสือลง
+   ========================================================= */
+
 .cp-hero-copy{
 
     width:
@@ -314,17 +329,12 @@ img{
             100%
         );
 
-    /*
-       จุดนี้คือการเลื่อนข้อความลง
-       แต่ไม่เพิ่มความสูง Hero
-    */
-
     transform:
         translateY(
             clamp(
-                45px,
+                50px,
                 7vh,
-                85px
+                78px
             )
         );
 
@@ -332,7 +342,7 @@ img{
 
 
 /* =========================================================
-   HERO KICKER
+   KICKER
    ========================================================= */
 
 .cp-kicker{
@@ -341,21 +351,22 @@ img{
 
     align-items:center;
 
-    gap:13px;
+    gap:12px;
 
-    margin-bottom:20px;
+    margin-bottom:
+        17px;
 
     color:
         var(--gold-light);
 
     font-size:
-        11px;
+        10px;
 
     font-weight:
         500;
 
     letter-spacing:
-        .26em;
+        .27em;
 
 }
 
@@ -365,7 +376,7 @@ img{
     content:"";
 
     width:
-        42px;
+        38px;
 
     height:
         1px;
@@ -394,9 +405,9 @@ img{
 
     font-size:
         clamp(
-            48px,
-            5.7vw,
-            82px
+            46px,
+            5.2vw,
+            76px
         );
 
     line-height:
@@ -409,8 +420,8 @@ img{
         -.045em;
 
     text-shadow:
-        0 8px 35px
-        rgba(0,0,0,.60);
+        0 8px 32px
+        rgba(0,0,0,.62);
 
 }
 
@@ -419,7 +430,8 @@ img{
 
     display:block;
 
-    margin-top:4px;
+    margin-top:
+        3px;
 
     color:
         var(--gold-light);
@@ -428,19 +440,19 @@ img{
 
 
 /* =========================================================
-   HERO LINE
+   GOLD LINE
    ========================================================= */
 
 .cp-line{
 
     width:
-        75px;
+        68px;
 
     height:
         1px;
 
     margin-top:
-        24px;
+        22px;
 
     background:
         linear-gradient(
@@ -462,26 +474,26 @@ img{
         570px;
 
     margin:
-        18px 0 0;
+        17px 0 0;
 
     color:
         rgba(247,240,232,.82);
 
     font-size:
-        14px;
+        13px;
 
     line-height:
         1.9;
 
     text-shadow:
-        0 4px 18px
+        0 4px 20px
         rgba(0,0,0,.72);
 
 }
 
 
 /* =========================================================
-   HERO ACTIONS
+   HERO BUTTONS
    ========================================================= */
 
 .cp-actions{
@@ -490,10 +502,11 @@ img{
 
     flex-wrap:wrap;
 
-    gap:11px;
+    gap:
+        10px;
 
     margin-top:
-        25px;
+        23px;
 
 }
 
@@ -501,10 +514,10 @@ img{
 .cp-button{
 
     min-height:
-        46px;
+        45px;
 
     padding:
-        0 22px;
+        0 21px;
 
     display:inline-flex;
 
@@ -513,7 +526,7 @@ img{
     justify-content:center;
 
     font-size:
-        12px;
+        11px;
 
     font-weight:
         400;
@@ -527,7 +540,7 @@ img{
 .cp-button-main{
 
     color:
-        #170e07;
+        #160e08;
 
     background:
         linear-gradient(
@@ -541,8 +554,8 @@ img{
         #e4c57f;
 
     box-shadow:
-        0 12px 30px
-        rgba(0,0,0,.30);
+        0 10px 28px
+        rgba(0,0,0,.28);
 
 }
 
@@ -553,8 +566,8 @@ img{
         translateY(-2px);
 
     box-shadow:
-        0 16px 35px
-        rgba(0,0,0,.42);
+        0 15px 34px
+        rgba(0,0,0,.38);
 
 }
 
@@ -565,17 +578,17 @@ img{
         var(--white);
 
     background:
-        rgba(7,5,3,.26);
+        rgba(6,4,2,.22);
 
     border:
         1px solid
-        rgba(228,197,127,.55);
+        rgba(228,197,127,.52);
 
     backdrop-filter:
-        blur(8px);
+        blur(7px);
 
     -webkit-backdrop-filter:
-        blur(8px);
+        blur(7px);
 
 }
 
@@ -586,7 +599,7 @@ img{
         translateY(-2px);
 
     background:
-        rgba(7,5,3,.52);
+        rgba(6,4,2,.46);
 
     border-color:
         var(--gold-light);
@@ -595,7 +608,7 @@ img{
 
 
 /* =========================================================
-   HERO SCROLL
+   SCROLL MARKER
    ========================================================= */
 
 .cp-scroll{
@@ -604,9 +617,8 @@ img{
 
     left:50%;
 
-    bottom:22px;
-
-    z-index:4;
+    bottom:
+        20px;
 
     transform:
         translateX(-50%);
@@ -617,25 +629,27 @@ img{
 
     align-items:center;
 
-    gap:8px;
+    gap:7px;
 
     color:
-        rgba(255,255,255,.48);
+        rgba(255,255,255,.45);
 
     font-size:
         8px;
 
     letter-spacing:
-        .24em;
+        .25em;
 
 }
 
 
 .cp-scroll span{
 
-    width:1px;
+    width:
+        1px;
 
-    height:30px;
+    height:
+        28px;
 
     background:
         linear-gradient(
@@ -648,99 +662,6 @@ img{
 
 
 /* =========================================================
-   FLOOR TRANSITION
-   ========================================================= */
-
-.cp-floor{
-
-    position:relative;
-
-    min-height:
-        380px;
-
-    margin-top:
-        -105px;
-
-    padding-top:
-        145px;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            rgba(5,3,2,0) 0%,
-            rgba(5,3,2,.35) 20%,
-            rgba(5,3,2,.72) 52%,
-            rgba(5,3,2,.96) 100%
-        ),
-
-        url("assets/index-floor-bg.png");
-
-    background-size:
-        cover;
-
-    background-position:
-        center top;
-
-    background-repeat:
-        no-repeat;
-
-}
-
-
-.cp-floor::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:0;
-
-    right:0;
-
-    height:190px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(5,3,2,0),
-            rgba(5,3,2,.82)
-        );
-
-    pointer-events:none;
-
-}
-
-
-.cp-floor::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    right:0;
-
-    bottom:0;
-
-    height:150px;
-
-    background:
-        linear-gradient(
-            180deg,
-            transparent,
-            rgba(5,3,2,.96)
-        );
-
-    pointer-events:none;
-
-}
-
-
-/* =========================================================
    CONTENT
    ========================================================= */
 
@@ -748,16 +669,13 @@ img{
 
     position:relative;
 
-    z-index:5;
-
-    margin-top:
-        -115px;
+    z-index:3;
 
 }
 
 
 /* =========================================================
-   COMMON SECTION
+   SECTION
    ========================================================= */
 
 .cp-section{
@@ -772,21 +690,25 @@ img{
         0 auto;
 
     padding:
-        65px 0;
+        62px 0;
 
 }
 
 
+/* =========================================================
+   SECTION HEADER
+   ========================================================= */
+
 .cp-eyebrow{
 
     margin-bottom:
-        10px;
+        9px;
 
     color:
         var(--gold-light);
 
     font-size:
-        10px;
+        9px;
 
     font-weight:
         500;
@@ -799,8 +721,7 @@ img{
 
 .cp-heading{
 
-    margin:
-        0;
+    margin:0;
 
     color:
         var(--white);
@@ -812,9 +733,9 @@ img{
 
     font-size:
         clamp(
-            32px,
-            3.6vw,
-            50px
+            31px,
+            3.5vw,
+            49px
         );
 
     line-height:
@@ -826,22 +747,26 @@ img{
     letter-spacing:
         -.035em;
 
+    text-shadow:
+        0 5px 25px
+        rgba(0,0,0,.45);
+
 }
 
 
 .cp-text{
 
     max-width:
-        650px;
+        620px;
 
     margin:
-        14px 0 0;
+        13px 0 0;
 
     color:
-        rgba(245,239,231,.64);
+        rgba(245,239,231,.66);
 
     font-size:
-        13px;
+        12px;
 
     line-height:
         1.9;
@@ -860,10 +785,11 @@ img{
     grid-template-columns:
         repeat(4,1fr);
 
-    gap:1px;
+    gap:
+        1px;
 
     margin-top:
-        32px;
+        30px;
 
     overflow:hidden;
 
@@ -877,15 +803,19 @@ img{
 }
 
 
+/* =========================================================
+   SOLUTION CARD
+   ========================================================= */
+
 .cp-card{
 
     position:relative;
 
     min-height:
-        250px;
+        235px;
 
     padding:
-        26px;
+        24px;
 
     display:flex;
 
@@ -894,8 +824,8 @@ img{
     background:
         linear-gradient(
             145deg,
-            rgba(38,25,15,.88),
-            rgba(8,5,3,.82)
+            rgba(28,20,14,.67),
+            rgba(6,4,3,.60)
         );
 
     backdrop-filter:
@@ -905,7 +835,7 @@ img{
         blur(8px);
 
     transition:
-        .28s ease;
+        .25s ease;
 
 }
 
@@ -915,8 +845,8 @@ img{
     background:
         linear-gradient(
             145deg,
-            rgba(58,37,19,.92),
-            rgba(9,5,3,.88)
+            rgba(48,31,17,.82),
+            rgba(7,4,2,.72)
         );
 
     transform:
@@ -928,13 +858,13 @@ img{
 .cp-card-number{
 
     color:
-        rgba(228,197,127,.68);
+        rgba(228,197,127,.67);
 
     font-size:
-        9px;
+        8px;
 
     letter-spacing:
-        .18em;
+        .17em;
 
 }
 
@@ -942,13 +872,13 @@ img{
 .cp-card-icon{
 
     width:
-        39px;
+        37px;
 
     height:
-        39px;
+        37px;
 
     margin-top:
-        23px;
+        22px;
 
     display:flex;
 
@@ -961,7 +891,7 @@ img{
 
     border:
         1px solid
-        rgba(201,164,92,.32);
+        rgba(201,164,92,.30);
 
 }
 
@@ -969,7 +899,7 @@ img{
 .cp-card h3{
 
     margin:
-        15px 0 8px;
+        14px 0 7px;
 
     color:
         var(--white);
@@ -980,7 +910,10 @@ img{
         sans-serif;
 
     font-size:
-        19px;
+        18px;
+
+    line-height:
+        1.35;
 
     font-weight:
         400;
@@ -990,17 +923,16 @@ img{
 
 .cp-card p{
 
-    margin:
-        0;
+    margin:0;
 
     color:
-        rgba(245,239,231,.57);
+        rgba(245,239,231,.56);
 
     font-size:
-        11px;
+        10.5px;
 
     line-height:
-        1.8;
+        1.75;
 
 }
 
@@ -1011,21 +943,13 @@ img{
         auto;
 
     padding-top:
-        17px;
+        16px;
 
     color:
         var(--gold-light);
 
     font-size:
-        10px;
-
-}
-
-
-.cp-card-link:hover{
-
-    color:
-        var(--gold-pale);
+        9.5px;
 
 }
 
@@ -1042,10 +966,10 @@ img{
         repeat(4,1fr);
 
     gap:
-        12px;
+        11px;
 
     margin-top:
-        32px;
+        30px;
 
 }
 
@@ -1055,23 +979,29 @@ img{
     position:relative;
 
     min-height:
-        250px;
+        230px;
 
     overflow:hidden;
 
     border:
         1px solid
-        rgba(201,164,92,.18);
+        rgba(201,164,92,.17);
 
     background:
         linear-gradient(
             145deg,
-            rgba(44,27,15,.72),
-            rgba(7,4,2,.91)
+            rgba(35,23,14,.63),
+            rgba(5,3,2,.76)
         );
 
+    backdrop-filter:
+        blur(6px);
+
+    -webkit-backdrop-filter:
+        blur(6px);
+
     transition:
-        .28s ease;
+        .25s ease;
 
 }
 
@@ -1082,7 +1012,7 @@ img{
         translateY(-4px);
 
     border-color:
-        rgba(201,164,92,.42);
+        rgba(201,164,92,.38);
 
 }
 
@@ -1095,16 +1025,11 @@ img{
 
     inset:0;
 
-}
-
-
-.cp-work-card:nth-child(1)::before{
-
     background:
         radial-gradient(
-            circle at 50% 22%,
-            rgba(201,164,92,.18),
-            transparent 43%
+            circle at 50% 20%,
+            rgba(201,164,92,.14),
+            transparent 44%
         );
 
 }
@@ -1116,9 +1041,9 @@ img{
         repeating-linear-gradient(
             90deg,
             transparent 0,
-            transparent 32px,
-            rgba(201,164,92,.05) 33px,
-            transparent 34px
+            transparent 34px,
+            rgba(201,164,92,.04) 35px,
+            transparent 36px
         );
 
 }
@@ -1129,8 +1054,8 @@ img{
     background:
         linear-gradient(
             135deg,
-            transparent 43%,
-            rgba(201,164,92,.13) 44%,
+            transparent 44%,
+            rgba(201,164,92,.10) 45%,
             transparent 46%
         );
 
@@ -1142,8 +1067,8 @@ img{
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.04),
-            transparent 48%
+            rgba(255,255,255,.035),
+            transparent 46%
         );
 
 }
@@ -1156,17 +1081,19 @@ img{
     position:absolute;
 
     left:0;
+
     right:0;
+
     bottom:0;
 
     height:
-        68%;
+        65%;
 
     background:
         linear-gradient(
             180deg,
             transparent,
-            rgba(0,0,0,.90)
+            rgba(0,0,0,.82)
         );
 
 }
@@ -1177,13 +1104,13 @@ img{
     position:absolute;
 
     left:
-        22px;
+        21px;
 
     right:
-        22px;
+        21px;
 
     bottom:
-        22px;
+        20px;
 
     z-index:3;
 
@@ -1193,16 +1120,16 @@ img{
 .cp-work-number{
 
     margin-bottom:
-        6px;
+        5px;
 
     color:
         var(--gold-light);
 
     font-size:
-        9px;
+        8px;
 
     letter-spacing:
-        .17em;
+        .16em;
 
 }
 
@@ -1218,10 +1145,7 @@ img{
         sans-serif;
 
     font-size:
-        18px;
-
-    font-weight:
-        400;
+        17px;
 
     line-height:
         1.35;
@@ -1232,16 +1156,16 @@ img{
 .cp-work-sub{
 
     margin-top:
-        6px;
+        5px;
 
     color:
-        rgba(245,239,231,.45);
+        rgba(245,239,231,.43);
 
     font-size:
         8px;
 
     letter-spacing:
-        .15em;
+        .14em;
 
 }
 
@@ -1249,7 +1173,7 @@ img{
 .cp-work-more{
 
     margin-top:
-        16px;
+        17px;
 
 }
 
@@ -1260,11 +1184,11 @@ img{
         var(--gold-light);
 
     font-size:
-        10px;
+        9.5px;
 
     border-bottom:
         1px solid
-        rgba(201,164,92,.38);
+        rgba(201,164,92,.35);
 
     padding-bottom:
         4px;
@@ -1279,10 +1203,10 @@ img{
 .cp-stats-section{
 
     padding-top:
-        25px;
+        28px;
 
     padding-bottom:
-        45px;
+        42px;
 
 }
 
@@ -1296,14 +1220,14 @@ img{
 
     border-top:
         1px solid
-        rgba(201,164,92,.22);
+        rgba(201,164,92,.21);
 
     border-bottom:
         1px solid
-        rgba(201,164,92,.22);
+        rgba(201,164,92,.21);
 
     background:
-        rgba(7,4,2,.18);
+        rgba(7,4,2,.12);
 
     backdrop-filter:
         blur(6px);
@@ -1317,7 +1241,7 @@ img{
 .cp-stat{
 
     padding:
-        31px 20px;
+        29px 20px;
 
     text-align:center;
 
@@ -1351,8 +1275,8 @@ img{
     font-size:
         clamp(
             42px,
-            4.5vw,
-            62px
+            4.4vw,
+            60px
         );
 
     line-height:
@@ -1369,16 +1293,35 @@ img{
     display:block;
 
     margin-top:
-        9px;
+        8px;
 
     color:
-        rgba(245,239,231,.53);
+        rgba(245,239,231,.47);
 
     font-size:
-        10px;
+        8px;
 
     letter-spacing:
-        .08em;
+        .14em;
+
+}
+
+
+.cp-stat-note{
+
+    margin-top:
+        16px;
+
+    text-align:center;
+
+    color:
+        rgba(247,240,232,.80);
+
+    font-size:
+        15px;
+
+    font-weight:
+        300;
 
 }
 
@@ -1387,118 +1330,86 @@ img{
    CTA
    ========================================================= */
 
-.cp-cta-section{
-
-    padding-top:
-        38px;
-
-    padding-bottom:
-        90px;
-
-}
-
-
 .cp-cta{
 
     position:relative;
 
-    overflow:hidden;
+    z-index:3;
 
-    padding:
-        clamp(
-            42px,
-            6vw,
-            70px
-        );
-
-    border:
+    border-top:
         1px solid
-        rgba(201,164,92,.28);
+        rgba(201,164,92,.19);
 
     background:
-
         linear-gradient(
-            120deg,
-            rgba(9,6,4,.90),
-            rgba(37,24,13,.62)
+            135deg,
+            rgba(32,19,11,.52),
+            rgba(5,3,2,.64)
         );
 
     backdrop-filter:
-        blur(9px);
+        blur(8px);
 
     -webkit-backdrop-filter:
-        blur(9px);
+        blur(8px);
 
 }
 
 
-.cp-cta::before{
-
-    content:"";
-
-    position:absolute;
+.cp-cta-inner{
 
     width:
-        250px;
-
-    height:
-        250px;
-
-    right:
-        -100px;
-
-    top:
-        -100px;
-
-    border:
-        1px solid
-        rgba(201,164,92,.28);
-
-    transform:
-        rotate(45deg);
-
-}
-
-
-.cp-cta::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    bottom:0;
-
-    width:
-        42%;
-
-    height:
-        2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--gold),
-            transparent
+        min(
+            var(--container),
+            calc(100% - 80px)
         );
 
-}
-
-
-.cp-cta-content{
-
-    position:relative;
-
-    z-index:2;
-
-}
-
-
-.cp-cta-title{
-
     margin:
-        10px 0 0;
+        0 auto;
+
+    padding:
+        48px 0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:
+        35px;
+
+}
+
+
+.cp-cta-copy{
+
+    max-width:
+        680px;
+
+}
+
+
+.cp-cta-label{
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        .23em;
+
+}
+
+
+.cp-cta h2{
+
+    margin:0;
 
     color:
         var(--white);
@@ -1510,123 +1421,57 @@ img{
 
     font-size:
         clamp(
-            35px,
-            4.5vw,
-            60px
+            30px,
+            3.5vw,
+            48px
         );
 
     line-height:
-        1.05;
+        1.12;
 
     font-weight:
         400;
 
-    letter-spacing:
-        -.035em;
-
 }
 
 
-.cp-cta-description{
+.cp-cta p{
 
     max-width:
-        650px;
+        560px;
 
     margin:
-        14px 0 0;
+        11px 0 0;
 
     color:
-        rgba(245,239,231,.60);
+        rgba(245,239,231,.58);
 
     font-size:
-        13px;
+        11.5px;
 
     line-height:
-        1.9;
-
-}
-
-
-.cp-cta-action{
-
-    margin-top:
-        24px;
+        1.8;
 
 }
 
 
 /* =========================================================
-   DESKTOP LARGE
+   MASTER NAV SAFETY
+   =========================================================
+
+   สำคัญ:
+   ไม่บังคับ position ของ Header
+   ไม่บังคับ style ของ Footer
+
+   Master Nav เป็นคนควบคุมเอง
    ========================================================= */
-
-@media(min-width:1400px){
-
-    .cp-hero{
-
-        min-height:
-            760px;
-
-    }
-
-
-    .cp-hero-inner{
-
-        min-height:
-            760px;
-
-    }
-
-
-    .cp-hero-copy{
-
-        transform:
-            translateY(78px);
-
-    }
-
-}
 
 
 /* =========================================================
    TABLET
    ========================================================= */
 
-@media(max-width:1050px){
-
-    .cp-hero{
-
-        min-height:
-            670px;
-
-    }
-
-
-    .cp-hero-inner{
-
-        min-height:
-            670px;
-
-        width:
-            calc(100% - 50px);
-
-    }
-
-
-    .cp-hero-copy{
-
-        transform:
-            translateY(55px);
-
-    }
-
-
-    .cp-section{
-
-        width:
-            calc(100% - 50px);
-
-    }
-
+@media(max-width:1100px){
 
     .cp-solutions{
 
@@ -1640,25 +1485,6 @@ img{
 
         grid-template-columns:
             repeat(2,1fr);
-
-    }
-
-
-    .cp-floor{
-
-        margin-top:
-            -80px;
-
-        padding-top:
-            120px;
-
-    }
-
-
-    .cp-content{
-
-        margin-top:
-            -90px;
 
     }
 
@@ -1669,34 +1495,115 @@ img{
    MOBILE
    ========================================================= */
 
-@media(max-width:700px){
+@media(max-width:800px){
 
-    .cp-hero{
+    .cp-page::before{
 
-        min-height:
-            650px;
+        background-position:
+            58% top;
+
+        background-size:
+            cover;
 
     }
 
 
-    .cp-hero-inner{
+    .cp-hero{
 
         min-height:
-            650px;
+            620px;
+
+    }
+
+
+    .cp-hero-content{
 
         width:
-            calc(100% - 30px);
+            calc(100% - 40px);
+
+        min-height:
+            620px;
+
+    }
+
+
+    /*
+      มือถือยังเลื่อน Hero ลง
+      แต่ลดจำนวน px เพื่อไม่ให้ชนพื้น
+    */
+
+    .cp-hero-copy{
+
+        transform:
+            translateY(38px);
+
+    }
+
+
+    .cp-section{
+
+        width:
+            calc(100% - 40px);
+
+        padding:
+            50px 0;
+
+    }
+
+
+    .cp-cta-inner{
+
+        width:
+            calc(100% - 40px);
+
+        padding:
+            42px 0;
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media(max-width:600px){
+
+    .cp-page::before{
+
+        background-position:
+            60% top;
+
+    }
+
+
+    .cp-hero{
+
+        min-height:
+            610px;
+
+    }
+
+
+    .cp-hero-content{
+
+        min-height:
+            610px;
 
     }
 
 
     .cp-hero-copy{
 
-        width:
-            100%;
-
         transform:
-            translateY(35px);
+            translateY(30px);
 
     }
 
@@ -1705,9 +1612,9 @@ img{
 
         font-size:
             clamp(
-                41px,
-                12.5vw,
-                60px
+                39px,
+                11vw,
+                55px
             );
 
     }
@@ -1715,76 +1622,11 @@ img{
 
     .cp-description{
 
-        max-width:
-            470px;
-
         font-size:
-            12px;
+            11.5px;
 
         line-height:
-            1.85;
-
-    }
-
-
-    .cp-actions{
-
-        margin-top:
-            21px;
-
-    }
-
-
-    .cp-button{
-
-        min-height:
-            44px;
-
-        padding:
-            0 17px;
-
-    }
-
-
-    .cp-scroll{
-
-        display:none;
-
-    }
-
-
-    .cp-floor{
-
-        min-height:
-            300px;
-
-        margin-top:
-            -65px;
-
-        padding-top:
-            105px;
-
-        background-position:
-            center top;
-
-    }
-
-
-    .cp-content{
-
-        margin-top:
-            -80px;
-
-    }
-
-
-    .cp-section{
-
-        width:
-            calc(100% - 30px);
-
-        padding:
-            50px 0;
+            1.8;
 
     }
 
@@ -1792,18 +1634,7 @@ img{
     .cp-solutions{
 
         grid-template-columns:
-            repeat(2,1fr);
-
-    }
-
-
-    .cp-card{
-
-        min-height:
-            225px;
-
-        padding:
-            21px;
+            1fr;
 
     }
 
@@ -1811,15 +1642,7 @@ img{
     .cp-work{
 
         grid-template-columns:
-            repeat(2,1fr);
-
-    }
-
-
-    .cp-work-card{
-
-        min-height:
-            220px;
+            1fr;
 
     }
 
@@ -1851,46 +1674,27 @@ img{
 
     }
 
-
-    .cp-cta-section{
-
-        padding-bottom:
-            65px;
-
-    }
-
-
-    .cp-cta{
-
-        padding:
-            38px 25px;
-
-    }
-
 }
 
 
 /* =========================================================
-   SMALL MOBILE
+   VERY SMALL MOBILE
    ========================================================= */
 
 @media(max-width:480px){
 
-    .cp-hero{
+    .cp-page::before{
 
-        min-height:
-            620px;
+        background-position:
+            61% top;
 
     }
 
 
-    .cp-hero-inner{
-
-        min-height:
-            620px;
+    .cp-hero-content{
 
         width:
-            calc(100% - 24px);
+            calc(100% - 28px);
 
     }
 
@@ -1906,7 +1710,7 @@ img{
     .cp-kicker{
 
         font-size:
-            9px;
+            8.5px;
 
         letter-spacing:
             .20em;
@@ -1917,7 +1721,7 @@ img{
     .cp-kicker::before{
 
         width:
-            30px;
+            29px;
 
     }
 
@@ -1925,18 +1729,7 @@ img{
     .cp-title{
 
         font-size:
-            39px;
-
-        line-height:
-            1.02;
-
-    }
-
-
-    .cp-description{
-
-        font-size:
-            11.5px;
+            38px;
 
     }
 
@@ -1954,30 +1747,11 @@ img{
 
     .cp-button{
 
-        width:
-            auto;
-
-    }
-
-
-    .cp-floor{
-
         min-height:
-            250px;
+            43px;
 
-        margin-top:
-            -45px;
-
-        padding-top:
-            80px;
-
-    }
-
-
-    .cp-content{
-
-        margin-top:
-            -65px;
+        padding:
+            0 17px;
 
     }
 
@@ -1985,7 +1759,7 @@ img{
     .cp-section{
 
         width:
-            calc(100% - 24px);
+            calc(100% - 28px);
 
         padding:
             43px 0;
@@ -1996,7 +1770,7 @@ img{
     .cp-heading{
 
         font-size:
-            31px;
+            30px;
 
     }
 
@@ -2004,15 +1778,7 @@ img{
     .cp-text{
 
         font-size:
-            11.5px;
-
-    }
-
-
-    .cp-solutions{
-
-        grid-template-columns:
-            1fr;
+            11px;
 
     }
 
@@ -2020,15 +1786,7 @@ img{
     .cp-card{
 
         min-height:
-            205px;
-
-    }
-
-
-    .cp-work{
-
-        grid-template-columns:
-            1fr;
+            215px;
 
     }
 
@@ -2036,31 +1794,15 @@ img{
     .cp-work-card{
 
         min-height:
-            205px;
+            210px;
 
     }
 
 
-    .cp-stat{
+    .cp-cta-inner{
 
-        padding:
-            26px 15px;
-
-    }
-
-
-    .cp-cta-title{
-
-        font-size:
-            34px;
-
-    }
-
-
-    .cp-cta-description{
-
-        font-size:
-            11.5px;
+        width:
+            calc(100% - 28px);
 
     }
 
@@ -2074,7 +1816,7 @@ img{
 <body>
 
 
-<div class="cp-page">
+<main class="cp-page">
 
 
     <!-- =====================================================
@@ -2083,13 +1825,16 @@ img{
 
     <section class="cp-hero">
 
-        <div class="cp-hero-inner">
+
+        <div class="cp-hero-content">
+
 
             <div class="cp-hero-copy">
 
+
                 <div class="cp-kicker">
 
-                    FLOORING &amp; CONSTRUCTION
+                    CHATPHETCH GROUP
 
                 </div>
 
@@ -2097,7 +1842,10 @@ img{
                 <h1 class="cp-title">
 
                     วัสดุงานพื้น
-                    <span>และงานก่อสร้าง</span>
+
+                    <span>
+                        และงานก่อสร้าง
+                    </span>
 
                 </h1>
 
@@ -2111,19 +1859,22 @@ img{
                     และงานก่อสร้างสำหรับบ้าน
                     อาคารพาณิชย์ โรงงาน
                     และโครงการขนาดใหญ่
-                    พร้อมทีมงานดูแลตั้งแต่
-                    การเลือกวัสดุจนถึงการติดตั้ง
+                    พร้อมทีมงานดูแลตั้งแต่การเลือกวัสดุ
+                    จนถึงการติดตั้ง
 
                 </p>
 
 
                 <div class="cp-actions">
 
+
                     <a
                         href="products.html"
                         class="cp-button cp-button-main"
                     >
-                        ดูผลิตภัณฑ์ →
+
+                        ดูสินค้า →
+
                     </a>
 
 
@@ -2131,12 +1882,17 @@ img{
                         href="contact.html"
                         class="cp-button cp-button-sub"
                     >
+
                         ติดต่อเรา
+
                     </a>
+
 
                 </div>
 
+
             </div>
+
 
         </div>
 
@@ -2149,22 +1905,12 @@ img{
 
         </div>
 
+
     </section>
 
 
     <!-- =====================================================
-         FLOOR / VISUAL TRANSITION
-         ===================================================== -->
-
-    <section
-        class="cp-floor"
-        aria-hidden="true"
-    >
-    </section>
-
-
-    <!-- =====================================================
-         MAIN CONTENT
+         CONTENT
          ===================================================== -->
 
     <div class="cp-content">
@@ -2174,10 +1920,8 @@ img{
              OUR SOLUTIONS
              ================================================= -->
 
-        <section
-            id="solutions"
-            class="cp-section"
-        >
+        <section class="cp-section">
+
 
             <div class="cp-eyebrow">
 
@@ -2207,9 +1951,12 @@ img{
             <div class="cp-solutions">
 
 
-                <!-- CARD 01 -->
+                <!-- 01 -->
 
-                <article class="cp-card">
+                <a
+                    href="services.html"
+                    class="cp-card"
+                >
 
                     <div class="cp-card-number">
 
@@ -2220,7 +1967,7 @@ img{
 
                     <div class="cp-card-icon">
 
-                        ▱
+                        ◇
 
                     </div>
 
@@ -2234,29 +1981,29 @@ img{
 
                     <p>
 
-                        ระบบพื้นสำหรับพื้นที่
-                        หลากหลายประเภท ทั้งงานอุตสาหกรรม
-                        อาคาร พื้นที่พาณิชย์
-                        และพื้นที่ใช้งานทั่วไป
+                        ระบบพื้นสำหรับพื้นที่หลากหลายประเภท
+                        ทั้งงานอุตสาหกรรม อาคาร
+                        พื้นที่พาณิชย์ และพื้นที่ใช้งานทั่วไป
 
                     </p>
 
 
-                    <a
-                        href="services.html"
-                        class="cp-card-link"
-                    >
+                    <div class="cp-card-link">
 
                         ดูบริการ →
 
-                    </a>
-
-                </article>
+                    </div>
 
 
-                <!-- CARD 02 -->
+                </a>
 
-                <article class="cp-card">
+
+                <!-- 02 -->
+
+                <a
+                    href="products.html"
+                    class="cp-card"
+                >
 
                     <div class="cp-card-number">
 
@@ -2267,7 +2014,7 @@ img{
 
                     <div class="cp-card-icon">
 
-                        ◈
+                        □
 
                     </div>
 
@@ -2281,29 +2028,29 @@ img{
 
                     <p>
 
-                        วัสดุและผลิตภัณฑ์สำหรับ
-                        งานพื้น งานก่อสร้าง
-                        และงานตกแต่ง
+                        วัสดุและผลิตภัณฑ์สำหรับงานพื้น
+                        งานก่อสร้าง และงานตกแต่ง
                         คัดเลือกให้เหมาะกับแต่ละโครงการ
 
                     </p>
 
 
-                    <a
-                        href="products.html"
-                        class="cp-card-link"
-                    >
+                    <div class="cp-card-link">
 
                         ดูสินค้า →
 
-                    </a>
-
-                </article>
+                    </div>
 
 
-                <!-- CARD 03 -->
+                </a>
 
-                <article class="cp-card">
+
+                <!-- 03 -->
+
+                <a
+                    href="projects.html"
+                    class="cp-card"
+                >
 
                     <div class="cp-card-number">
 
@@ -2314,7 +2061,7 @@ img{
 
                     <div class="cp-card-icon">
 
-                        □
+                        ✦
 
                     </div>
 
@@ -2335,21 +2082,22 @@ img{
                     </p>
 
 
-                    <a
-                        href="projects.html"
-                        class="cp-card-link"
-                    >
+                    <div class="cp-card-link">
 
                         ดูผลงาน →
 
-                    </a>
-
-                </article>
+                    </div>
 
 
-                <!-- CARD 04 -->
+                </a>
 
-                <article class="cp-card">
+
+                <!-- 04 -->
+
+                <a
+                    href="service-detail.html?service=consulting"
+                    class="cp-card"
+                >
 
                     <div class="cp-card-number">
 
@@ -2381,19 +2129,18 @@ img{
                     </p>
 
 
-                    <a
-                        href="service-detail.html?service=consulting"
-                        class="cp-card-link"
-                    >
+                    <div class="cp-card-link">
 
                         ปรึกษาเรา →
 
-                    </a>
+                    </div>
 
-                </article>
+
+                </a>
 
 
             </div>
+
 
         </section>
 
@@ -2402,10 +2149,8 @@ img{
              OUR WORK
              ================================================= -->
 
-        <section
-            id="work"
-            class="cp-section"
-        >
+        <section class="cp-section">
+
 
             <div class="cp-eyebrow">
 
@@ -2433,9 +2178,12 @@ img{
             <div class="cp-work">
 
 
-                <!-- WORK 01 -->
+                <!-- 01 -->
 
-                <article class="cp-work-card">
+                <a
+                    href="projects.html"
+                    class="cp-work-card"
+                >
 
                     <div class="cp-work-inner">
 
@@ -2460,24 +2208,17 @@ img{
                         </div>
 
 
-                        <div class="cp-work-more">
-
-                            <a href="projects.html">
-
-                                VIEW PROJECTS →
-
-                            </a>
-
-                        </div>
-
                     </div>
 
-                </article>
+                </a>
 
 
-                <!-- WORK 02 -->
+                <!-- 02 -->
 
-                <article class="cp-work-card">
+                <a
+                    href="projects.html"
+                    class="cp-work-card"
+                >
 
                     <div class="cp-work-inner">
 
@@ -2502,24 +2243,17 @@ img{
                         </div>
 
 
-                        <div class="cp-work-more">
-
-                            <a href="projects.html">
-
-                                VIEW PROJECTS →
-
-                            </a>
-
-                        </div>
-
                     </div>
 
-                </article>
+                </a>
 
 
-                <!-- WORK 03 -->
+                <!-- 03 -->
 
-                <article class="cp-work-card">
+                <a
+                    href="projects.html"
+                    class="cp-work-card"
+                >
 
                     <div class="cp-work-inner">
 
@@ -2544,24 +2278,17 @@ img{
                         </div>
 
 
-                        <div class="cp-work-more">
-
-                            <a href="projects.html">
-
-                                VIEW PROJECTS →
-
-                            </a>
-
-                        </div>
-
                     </div>
 
-                </article>
+                </a>
 
 
-                <!-- WORK 04 -->
+                <!-- 04 -->
 
-                <article class="cp-work-card">
+                <a
+                    href="projects.html"
+                    class="cp-work-card"
+                >
 
                     <div class="cp-work-inner">
 
@@ -2586,22 +2313,24 @@ img{
                         </div>
 
 
-                        <div class="cp-work-more">
-
-                            <a href="projects.html">
-
-                                VIEW PROJECTS →
-
-                            </a>
-
-                        </div>
-
                     </div>
 
-                </article>
+                </a>
 
 
             </div>
+
+
+            <div class="cp-work-more">
+
+                <a href="projects.html">
+
+                    ดูผลงานทั้งหมด →
+
+                </a>
+
+            </div>
+
 
         </section>
 
@@ -2610,9 +2339,8 @@ img{
              STATS
              ================================================= -->
 
-        <section
-            class="cp-section cp-stats-section"
-        >
+        <section class="cp-section cp-stats-section">
+
 
             <div class="cp-stats">
 
@@ -2620,15 +2348,11 @@ img{
                 <div class="cp-stat">
 
                     <strong>
-
                         500+
-
                     </strong>
 
                     <span>
-
                         PROJECTS
-
                     </span>
 
                 </div>
@@ -2637,15 +2361,11 @@ img{
                 <div class="cp-stat">
 
                     <strong>
-
                         10+
-
                     </strong>
 
                     <span>
-
                         YEARS EXPERIENCE
-
                     </span>
 
                 </div>
@@ -2654,21 +2374,25 @@ img{
                 <div class="cp-stat">
 
                     <strong>
-
                         100%
-
                     </strong>
 
                     <span>
-
                         COMMITMENT
-
                     </span>
 
                 </div>
 
 
             </div>
+
+
+            <div class="cp-stat-note">
+
+                พื้นที่ที่ดี เริ่มต้นจากวัสดุที่ใช่
+
+            </div>
+
 
         </section>
 
@@ -2677,68 +2401,78 @@ img{
              CTA
              ================================================= -->
 
-        <section
-            class="cp-section cp-cta-section"
-        >
+        <section class="cp-cta">
 
-            <div class="cp-cta">
 
-                <div class="cp-cta-content">
+            <div class="cp-cta-inner">
 
-                    <div class="cp-eyebrow">
 
-                        LET'S BUILD
+                <div class="cp-cta-copy">
+
+
+                    <div class="cp-cta-label">
+
+                        START YOUR PROJECT
 
                     </div>
 
 
-                    <h2 class="cp-cta-title">
+                    <h2>
 
-                        พื้นที่ที่ดี
-                        เริ่มต้นจากวัสดุที่ใช่
+                        สร้างพื้นที่ที่ดีกว่า
+                        <br>
+                        เริ่มต้นกับเรา
 
                     </h2>
 
 
-                    <p class="cp-cta-description">
+                    <p>
 
-                        ทีมงานของเราพร้อมให้คำแนะนำ
-                        และเสนอแนวทางที่เหมาะสม
-                        กับโครงการของคุณ
+                        ให้เราช่วยเลือกวัสดุ
+                        และโซลูชันที่เหมาะสม
+                        กับพื้นที่ของคุณ
 
                     </p>
 
 
-                    <div class="cp-cta-action">
+                </div>
 
-                        <a
-                            href="contact.html"
-                            class="cp-button cp-button-main"
-                        >
 
-                            ปรึกษาเราได้วันนี้ →
+                <div class="cp-cta-button">
 
-                        </a>
 
-                    </div>
+                    <a
+                        href="contact.html"
+                        class="cp-button cp-button-main"
+                    >
+
+                        ปรึกษาเราได้วันนี้ →
+
+                    </a>
+
 
                 </div>
 
+
             </div>
+
 
         </section>
 
 
     </div>
 
-</div>
+
+</main>
 
 
 <!-- =========================================================
      MASTER NAV
      ========================================================= -->
 
-<script src="assets/customer-master-nav.js"></script>
+<script
+    src="assets/customer-master-nav.js"
+></script>
 
 
 </body>
