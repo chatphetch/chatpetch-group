@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
 
   <meta charset="UTF-8">
@@ -15,7 +16,7 @@
 
   <meta
     name="description"
-    content="CHATPHETCH GROUP วัสดุงานพื้น ระบบพื้น งานก่อสร้าง และบริการให้คำปรึกษาแบบครบวงจร"
+    content="CHATPHETCH GROUP วัสดุงานพื้น ระบบพื้น งานก่อสร้าง และบริการให้คำปรึกษา"
   >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,70 +36,65 @@
   <style>
 
     /* =========================================================
-       ROOT
+       BASE
     ========================================================= */
 
     :root {
 
-      --black:
-        #090705;
+      --bg:
+        #120d09;
 
-      --black-soft:
-        #100c09;
+      --bg-2:
+        #19100a;
 
-      --brown:
-        #1b130d;
-
-      --brown-light:
-        #291b11;
+      --bg-3:
+        #21140c;
 
       --gold:
         #c8a05a;
 
       --gold-light:
-        #e3c483;
-
-      --gold-soft:
-        rgba(200,160,90,.22);
+        #e2c17d;
 
       --white:
-        #f5f0e8;
+        #f5eee4;
 
       --text:
-        #e9e1d5;
+        #e8dfd2;
 
       --muted:
-        #a99f91;
+        #a79b8c;
 
       --line:
         rgba(200,160,90,.22);
 
-      --max:
-        1320px;
+      --container:
+        1280px;
     }
 
-
-    /* =========================================================
-       RESET
-    ========================================================= */
 
     * {
       box-sizing:
         border-box;
     }
 
+
     html {
       scroll-behavior:
         smooth;
     }
+
 
     body {
 
       margin:
         0;
 
+      padding:
+        0;
+
       background:
-        var(--black);
+        var(--bg);
 
       color:
         var(--text);
@@ -111,7 +107,19 @@
         hidden;
     }
 
+
+    body::selection {
+
+      background:
+        var(--gold);
+
+      color:
+        #100b07;
+    }
+
+
     a {
+
       color:
         inherit;
 
@@ -119,7 +127,9 @@
         none;
     }
 
+
     img {
+
       display:
         block;
 
@@ -129,51 +139,19 @@
 
 
     /* =========================================================
-       HEADER OVERRIDE
-       
-       ใช้ HEADER จาก customer-master-nav.js
-       แต่ปรับเฉพาะพื้นหลังให้โปร่งใสบน HERO
+       CONTAINER
     ========================================================= */
 
-    .header {
+    .cp-container {
 
-      background:
-        transparent !important;
+      width:
+        min(
+          var(--container),
+          calc(100% - 80px)
+        );
 
-      border-bottom:
-        1px solid
-        transparent !important;
-
-      backdrop-filter:
-        none !important;
-
-      -webkit-backdrop-filter:
-        none !important;
-
-      transition:
-        background .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease;
-    }
-
-    .header.scrolled {
-
-      background:
-        rgba(7,5,4,.94) !important;
-
-      border-bottom:
-        1px solid
-        rgba(200,160,90,.18) !important;
-
-      backdrop-filter:
-        blur(16px) !important;
-
-      -webkit-backdrop-filter:
-        blur(16px) !important;
-
-      box-shadow:
-        0 12px 40px
-        rgba(0,0,0,.30);
+      margin:
+        0 auto;
     }
 
 
@@ -181,7 +159,7 @@
        HERO
     ========================================================= */
 
-    .home-hero {
+    .cp-hero {
 
       position:
         relative;
@@ -190,7 +168,7 @@
         100vh;
 
       min-height:
-        760px;
+        820px;
 
       display:
         flex;
@@ -202,42 +180,56 @@
         hidden;
 
       background:
-        #0b0806;
+        #21140c;
 
       isolation:
         isolate;
     }
 
 
-    .home-hero-image {
+    /*
+      ภาพ Hero จริง
+    */
+
+    .cp-hero-image {
 
       position:
         absolute;
 
       inset:
-        0;
+        -2%;
 
       z-index:
-        -3;
+        -10;
 
       background-image:
         url("assets/home-hero-visual.jpg");
 
-      background-size:
-        cover;
-
-      background-position:
-        center center;
-
       background-repeat:
         no-repeat;
 
+      background-size:
+        cover;
+
+      /*
+        จัดตำแหน่งภาพให้ส่วนล่าง
+        มีพื้นที่สีน้ำตาล/พื้นมากขึ้น
+      */
+
+      background-position:
+        center 57%;
+
       transform:
-        scale(1.015);
+        scale(1.045);
     }
 
 
-    .home-hero-overlay {
+    /*
+      Overlay ชั้นที่ 1
+      ทำให้ฝั่งข้อความอ่านง่าย
+    */
+
+    .cp-hero-overlay-left {
 
       position:
         absolute;
@@ -246,295 +238,112 @@
         0;
 
       z-index:
-        -2;
+        -9;
 
       background:
-
         linear-gradient(
           90deg,
-          rgba(8,6,4,.93) 0%,
-          rgba(12,8,5,.82) 28%,
-          rgba(18,12,8,.50) 52%,
-          rgba(12,8,5,.18) 75%,
-          rgba(8,6,4,.38) 100%
-        ),
-
-        linear-gradient(
-          180deg,
-          rgba(0,0,0,.24) 0%,
-          transparent 42%,
-          rgba(7,5,4,.35) 76%,
-          rgba(9,7,5,.88) 100%
+          rgba(7,5,3,.94) 0%,
+          rgba(13,8,5,.86) 25%,
+          rgba(24,14,8,.62) 48%,
+          rgba(30,18,10,.27) 70%,
+          rgba(22,13,8,.22) 100%
         );
     }
 
 
-    .home-hero-content {
+    /*
+      Overlay ชั้นที่ 2
+      ทำให้ Hero มีโทนน้ำตาล
+      ไม่ใช่ดำล้วน
+    */
+
+    .cp-hero-overlay-brown {
 
       position:
-        relative;
+        absolute;
+
+      inset:
+        0;
 
       z-index:
-        5;
+        -8;
 
-      width:
-        min(
-          var(--max),
-          calc(100% - 80px)
+      background:
+        linear-gradient(
+          180deg,
+          rgba(7,5,3,.18) 0%,
+          rgba(20,12,7,.04) 30%,
+          rgba(35,21,12,.16) 57%,
+          rgba(45,27,15,.55) 78%,
+          #21140c 100%
         );
-
-      margin:
-        0 auto;
-
-      padding:
-        150px 0 125px;
     }
 
 
-    .home-hero-copy {
+    /*
+      จุดสำคัญที่สุดของ Hero
+      ทำให้ภาพด้านล่างกลืนกับภาพพื้น
+    */
 
-      width:
-        min(
-          700px,
+    .cp-hero-bottom-transition {
+
+      position:
+        absolute;
+
+      left:
+        0;
+
+      right:
+        0;
+
+      bottom:
+        -1px;
+
+      height:
+        310px;
+
+      z-index:
+        4;
+
+      pointer-events:
+        none;
+
+      background:
+
+        linear-gradient(
+          to bottom,
+
+          rgba(33,20,12,0)
+          0%,
+
+          rgba(33,20,12,.08)
+          16%,
+
+          rgba(33,20,12,.22)
+          34%,
+
+          rgba(33,20,12,.43)
+          51%,
+
+          rgba(33,20,12,.67)
+          69%,
+
+          rgba(33,20,12,.88)
+          86%,
+
+          #21140c
           100%
         );
     }
 
 
-    .hero-kicker {
-
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      gap:
-        14px;
-
-      margin-bottom:
-        26px;
-
-      color:
-        var(--gold-light);
-
-      font-family:
-        "Montserrat",
-        sans-serif;
-
-      font-size:
-        12px;
-
-      font-weight:
-        600;
-
-      letter-spacing:
-        3.5px;
-    }
-
-
-    .hero-kicker::before {
-
-      content:
-        "";
-
-      width:
-        52px;
-
-      height:
-        1px;
-
-      flex:
-        0 0 52px;
-
-      background:
-        var(--gold);
-    }
-
-
-    .home-hero h1 {
-
-      margin:
-        0;
-
-      font-size:
-        clamp(
-          50px,
-          7vw,
-          100px
-        );
-
-      line-height:
-        .98;
-
-      font-weight:
-        500;
-
-      letter-spacing:
-        -2px;
-
-      color:
-        var(--white);
-    }
-
-
-    .home-hero h1 span {
-
-      display:
-        block;
-
-      color:
-        var(--gold-light);
-    }
-
-
-    .hero-rule {
-
-      width:
-        92px;
-
-      height:
-        1px;
-
-      margin:
-        28px 0 25px;
-
-      background:
-        var(--gold);
-    }
-
-
-    .home-hero-description {
-
-      width:
-        min(
-          620px,
-          100%
-        );
-
-      margin:
-        0;
-
-      color:
-        rgba(245,239,229,.76);
-
-      font-size:
-        17px;
-
-      font-weight:
-        300;
-
-      line-height:
-        1.9;
-    }
-
-
-    .hero-buttons {
-
-      display:
-        flex;
-
-      flex-wrap:
-        wrap;
-
-      align-items:
-        center;
-
-      gap:
-        12px;
-
-      margin-top:
-        34px;
-    }
-
-
-    .hero-button {
-
-      display:
-        inline-flex;
-
-      align-items:
-        center;
-
-      justify-content:
-        center;
-
-      min-height:
-        50px;
-
-      padding:
-        0 26px;
-
-      border:
-        1px solid
-        var(--gold);
-
-      border-radius:
-        2px;
-
-      font-size:
-        14px;
-
-      font-weight:
-        400;
-
-      transition:
-        all .25s ease;
-    }
-
-
-    .hero-button-primary {
-
-      background:
-        var(--gold);
-
-      color:
-        #171008;
-    }
-
-
-    .hero-button-primary:hover {
-
-      background:
-        var(--gold-light);
-
-      border-color:
-        var(--gold-light);
-
-      transform:
-        translateY(-2px);
-    }
-
-
-    .hero-button-outline {
-
-      color:
-        var(--gold-light);
-
-      background:
-        rgba(0,0,0,.10);
-    }
-
-
-    .hero-button-outline:hover {
-
-      background:
-        rgba(200,160,90,.12);
-
-      transform:
-        translateY(-2px);
-    }
-
-
-    /* =========================================================
-       HERO BOTTOM FADE
-       
-       จุดสำคัญ:
-       ไม่สร้างแถบดำคั่น
-       ให้ภาพ Hero ค่อย ๆ ต่อเข้าภาพพื้น
-    ========================================================= */
-
-    .hero-bottom-fade {
+    /*
+      แสงบาง ๆ ตรงรอยต่อ
+      ช่วยลดความรู้สึกว่ามีเส้นแบ่ง
+    */
+
+    .cp-hero-bottom-glow {
 
       position:
         absolute;
@@ -549,33 +358,293 @@
         0;
 
       height:
-        180px;
+        220px;
 
       z-index:
-        4;
+        5;
 
       pointer-events:
         none;
 
+      opacity:
+        .55;
+
       background:
-        linear-gradient(
-          to bottom,
-          rgba(9,7,5,0),
-          rgba(9,7,5,.62) 52%,
-          #100c09 100%
+        radial-gradient(
+          ellipse at center bottom,
+          rgba(190,145,75,.16),
+          rgba(100,65,32,.06) 35%,
+          transparent 72%
         );
     }
 
 
+    /*
+      Hero content
+    */
+
+    .cp-hero-content {
+
+      position:
+        relative;
+
+      z-index:
+        10;
+
+      width:
+        min(
+          var(--container),
+          calc(100% - 80px)
+        );
+
+      margin:
+        0 auto;
+
+      padding:
+        155px 0 190px;
+    }
+
+
+    .cp-hero-copy {
+
+      width:
+        min(
+          720px,
+          100%
+        );
+    }
+
+
+    .cp-kicker {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        14px;
+
+      margin-bottom:
+        28px;
+
+      color:
+        var(--gold-light);
+
+      font-family:
+        "Montserrat",
+        sans-serif;
+
+      font-size:
+        11px;
+
+      font-weight:
+        600;
+
+      letter-spacing:
+        3.5px;
+    }
+
+
+    .cp-kicker::before {
+
+      content:
+        "";
+
+      width:
+        54px;
+
+      height:
+        1px;
+
+      flex:
+        0 0 54px;
+
+      background:
+        var(--gold);
+    }
+
+
+    .cp-hero h1 {
+
+      margin:
+        0;
+
+      color:
+        var(--white);
+
+      font-size:
+        clamp(
+          52px,
+          7vw,
+          98px
+        );
+
+      font-weight:
+        500;
+
+      line-height:
+        .98;
+
+      letter-spacing:
+        -2px;
+    }
+
+
+    .cp-hero h1 span {
+
+      display:
+        block;
+
+      color:
+        var(--gold-light);
+    }
+
+
+    .cp-hero-line {
+
+      width:
+        92px;
+
+      height:
+        1px;
+
+      margin:
+        29px 0 25px;
+
+      background:
+        var(--gold);
+    }
+
+
+    .cp-hero-description {
+
+      width:
+        min(
+          620px,
+          100%
+        );
+
+      margin:
+        0;
+
+      color:
+        rgba(245,238,227,.76);
+
+      font-size:
+        17px;
+
+      font-weight:
+        300;
+
+      line-height:
+        1.9;
+    }
+
+
+    .cp-hero-actions {
+
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      align-items:
+        center;
+
+      gap:
+        12px;
+
+      margin-top:
+        36px;
+    }
+
+
+    .cp-button {
+
+      min-height:
+        50px;
+
+      padding:
+        0 27px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border:
+        1px solid
+        var(--gold);
+
+      font-size:
+        14px;
+
+      transition:
+        .25s ease;
+    }
+
+
+    .cp-button-primary {
+
+      background:
+        var(--gold);
+
+      color:
+        #160f08;
+    }
+
+
+    .cp-button-primary:hover {
+
+      background:
+        var(--gold-light);
+
+      border-color:
+        var(--gold-light);
+
+      transform:
+        translateY(-2px);
+    }
+
+
+    .cp-button-outline {
+
+      background:
+        rgba(25,15,8,.22);
+
+      color:
+        var(--gold-light);
+    }
+
+
+    .cp-button-outline:hover {
+
+      background:
+        rgba(200,160,90,.13);
+
+      transform:
+        translateY(-2px);
+    }
+
+
     /* =========================================================
-       CONTINUOUS FLOOR IMAGE
+       FLOOR IMAGE
        
-       ใช้ภาพเต็มความกว้าง
+       สำคัญ:
+       ไม่มี margin
+       ไม่มี padding
+       ไม่มี black section
        ไม่ crop
-       ไม่มี black spacer
     ========================================================= */
 
-    .floor-continuation {
+    .cp-floor {
 
       position:
         relative;
@@ -590,20 +659,65 @@
         0;
 
       background:
-        #100c09;
-
-      line-height:
-        0;
+        #21140c;
 
       overflow:
         hidden;
+
+      line-height:
+        0;
     }
 
 
-    .floor-continuation img {
+    /*
+      overlay ด้านบนของ floor
+      ต้องอยู่ทับรูป ไม่ใช่สร้าง section ใหม่
+    */
 
-      display:
-        block;
+    .cp-floor::before {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      top:
+        0;
+
+      left:
+        0;
+
+      right:
+        0;
+
+      height:
+        210px;
+
+      z-index:
+        3;
+
+      pointer-events:
+        none;
+
+      background:
+        linear-gradient(
+          to bottom,
+          #21140c 0%,
+          rgba(33,20,12,.86) 14%,
+          rgba(33,20,12,.52) 34%,
+          rgba(33,20,12,.20) 62%,
+          transparent 100%
+        );
+    }
+
+
+    /*
+      ภาพเต็ม 100%
+      ไม่ crop
+    */
+
+    .cp-floor img {
 
       width:
         100%;
@@ -619,44 +733,70 @@
 
       object-fit:
         contain;
+
+      transform:
+        translateY(-1px);
+    }
+
+
+    /*
+      gradient ด้านล่างของภาพพื้น
+      ทำให้ต่อเข้า section ถัดไปอย่างนุ่ม
+    */
+
+    .cp-floor::after {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      left:
+        0;
+
+      right:
+        0;
+
+      bottom:
+        0;
+
+      height:
+        100px;
+
+      z-index:
+        3;
+
+      pointer-events:
+        none;
+
+      background:
+        linear-gradient(
+          to bottom,
+          transparent,
+          rgba(24,15,9,.55)
+        );
     }
 
 
     /* =========================================================
-       INTRO
+       SECTION COMMON
     ========================================================= */
 
-    .intro {
+    .cp-section {
 
       position:
         relative;
 
       padding:
-        125px 0 135px;
+        130px 0;
 
       background:
-        linear-gradient(
-          180deg,
-          #100c09 0%,
-          #17100b 100%
-        );
+        var(--bg-2);
     }
 
 
-    .container {
-
-      width:
-        min(
-          var(--max),
-          calc(100% - 80px)
-        );
-
-      margin:
-        0 auto;
-    }
-
-
-    .eyebrow {
+    .cp-eyebrow {
 
       display:
         inline-flex;
@@ -675,7 +815,7 @@
         sans-serif;
 
       font-size:
-        11px;
+        10px;
 
       font-weight:
         600;
@@ -685,7 +825,7 @@
     }
 
 
-    .eyebrow::before {
+    .cp-eyebrow::before {
 
       content:
         "";
@@ -701,24 +841,40 @@
     }
 
 
-    .intro-grid {
+    /* =========================================================
+       INTRO
+    ========================================================= */
+
+    .cp-intro {
+
+      padding:
+        125px 0 135px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #21140c 0%,
+          #1b110a 55%,
+          #17100b 100%
+        );
+    }
+
+
+    .cp-intro-grid {
 
       display:
         grid;
 
       grid-template-columns:
-        .8fr
-        1.4fr;
+        .72fr
+        1.5fr;
 
       gap:
-        90px;
-
-      align-items:
-        start;
+        100px;
     }
 
 
-    .intro-index {
+    .cp-index {
 
       color:
         var(--gold);
@@ -728,14 +884,14 @@
         sans-serif;
 
       font-size:
-        11px;
+        10px;
 
       letter-spacing:
         3px;
     }
 
 
-    .intro-index-line {
+    .cp-index-line {
 
       width:
         70px;
@@ -744,20 +900,20 @@
         1px;
 
       margin:
-        22px 0;
+        20px 0;
 
       background:
         var(--gold);
     }
 
 
-    .intro-index-text {
+    .cp-index-text {
 
       max-width:
-        260px;
+        270px;
 
       color:
-        #84796d;
+        #887b6d;
 
       font-size:
         14px;
@@ -770,43 +926,43 @@
     }
 
 
-    .intro h2 {
+    .cp-intro h2 {
 
       margin:
         18px 0 0;
 
+      color:
+        var(--white);
+
       font-size:
         clamp(
-          38px,
+          40px,
           5vw,
           72px
         );
 
       line-height:
-        1.04;
+        1.03;
 
       font-weight:
         400;
-
-      letter-spacing:
-        -1px;
     }
 
 
-    .intro h2 span {
+    .cp-intro h2 span {
 
       color:
         var(--gold-light);
     }
 
 
-    .intro-text {
+    .cp-intro-text {
 
       max-width:
         760px;
 
-      margin-top:
-        26px;
+      margin:
+        26px 0 0;
 
       color:
         var(--muted);
@@ -826,7 +982,7 @@
        SOLUTIONS
     ========================================================= */
 
-    .solutions {
+    .cp-solutions {
 
       padding:
         0 0 140px;
@@ -836,47 +992,50 @@
     }
 
 
-    .solutions-heading {
-
-      text-align:
-        center;
+    .cp-centered-heading {
 
       max-width:
         850px;
 
       margin:
         0 auto 65px;
+
+      text-align:
+        center;
     }
 
 
-    .solutions-heading h2 {
+    .cp-centered-heading h2 {
 
       margin:
         17px 0 0;
 
+      color:
+        var(--white);
+
       font-size:
         clamp(
-          36px,
+          38px,
           5vw,
           66px
         );
 
       line-height:
-        1.06;
+        1.05;
 
       font-weight:
         400;
     }
 
 
-    .solutions-heading h2 span {
+    .cp-centered-heading h2 span {
 
       color:
         var(--gold-light);
     }
 
 
-    .solutions-heading p {
+    .cp-centered-heading p {
 
       max-width:
         650px;
@@ -898,13 +1057,13 @@
     }
 
 
-    .solution-grid {
+    .cp-solution-grid {
 
       display:
         grid;
 
       grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4,1fr);
 
       border-top:
         1px solid
@@ -916,7 +1075,7 @@
     }
 
 
-    .solution-card {
+    .cp-solution {
 
       min-height:
         340px;
@@ -936,12 +1095,11 @@
         rgba(20,13,8,.28);
 
       transition:
-        background .3s ease,
-        transform .3s ease;
+        .3s ease;
     }
 
 
-    .solution-card:hover {
+    .cp-solution:hover {
 
       background:
         rgba(200,160,90,.055);
@@ -951,7 +1109,7 @@
     }
 
 
-    .solution-number {
+    .cp-solution-number {
 
       color:
         var(--gold);
@@ -968,7 +1126,7 @@
     }
 
 
-    .solution-icon {
+    .cp-solution-icon {
 
       width:
         52px;
@@ -977,7 +1135,7 @@
         52px;
 
       margin:
-        55px 0 24px;
+        54px 0 23px;
 
       display:
         grid;
@@ -997,11 +1155,11 @@
         sans-serif;
 
       font-size:
-        19px;
+        18px;
     }
 
 
-    .solution-card h3 {
+    .cp-solution h3 {
 
       margin:
         0 0 10px;
@@ -1017,7 +1175,7 @@
     }
 
 
-    .solution-card p {
+    .cp-solution p {
 
       margin:
         0;
@@ -1036,13 +1194,13 @@
     }
 
 
-    .solution-link {
+    .cp-solution-link {
 
       display:
         inline-block;
 
       margin-top:
-        21px;
+        20px;
 
       color:
         var(--gold-light);
@@ -1060,10 +1218,10 @@
 
 
     /* =========================================================
-       PROJECT / WORK
+       PROJECTS
     ========================================================= */
 
-    .projects {
+    .cp-projects {
 
       padding:
         135px 0;
@@ -1073,7 +1231,7 @@
     }
 
 
-    .projects-header {
+    .cp-projects-head {
 
       display:
         flex;
@@ -1092,10 +1250,13 @@
     }
 
 
-    .projects-header h2 {
+    .cp-projects-head h2 {
 
       margin:
         17px 0 0;
+
+      color:
+        var(--white);
 
       font-size:
         clamp(
@@ -1112,14 +1273,14 @@
     }
 
 
-    .projects-header h2 span {
+    .cp-projects-head h2 span {
 
       color:
         var(--gold-light);
     }
 
 
-    .projects-header p {
+    .cp-projects-head p {
 
       max-width:
         470px;
@@ -1141,13 +1302,13 @@
     }
 
 
-    .projects-grid {
+    .cp-project-grid {
 
       display:
         grid;
 
       grid-template-columns:
-        repeat(2, 1fr);
+        repeat(2,1fr);
 
       gap:
         1px;
@@ -1157,7 +1318,7 @@
     }
 
 
-    .project-card {
+    .cp-project {
 
       position:
         relative;
@@ -1173,7 +1334,7 @@
     }
 
 
-    .project-card::before {
+    .cp-project::before {
 
       content:
         "";
@@ -1184,38 +1345,34 @@
       inset:
         0;
 
-      background-image:
-        url("assets/index-floor-bg.png");
-
-      background-size:
-        cover;
-
-      background-position:
-        center;
+      background:
+        url("assets/index-floor-bg.png")
+        center /
+        cover
+        no-repeat;
 
       opacity:
-        .34;
+        .30;
 
       transform:
         scale(1.02);
 
       transition:
-        transform .7s ease,
-        opacity .7s ease;
+        .7s ease;
     }
 
 
-    .project-card:hover::before {
+    .cp-project:hover::before {
 
       transform:
         scale(1.08);
 
       opacity:
-        .48;
+        .44;
     }
 
 
-    .project-card::after {
+    .cp-project::after {
 
       content:
         "";
@@ -1230,12 +1387,12 @@
         linear-gradient(
           to top,
           rgba(5,4,3,.97),
-          rgba(5,4,3,.12)
+          rgba(5,4,3,.10)
         );
     }
 
 
-    .project-content {
+    .cp-project-content {
 
       position:
         absolute;
@@ -1254,7 +1411,7 @@
     }
 
 
-    .project-number {
+    .cp-project-number {
 
       margin-bottom:
         12px;
@@ -1274,7 +1431,7 @@
     }
 
 
-    .project-content h3 {
+    .cp-project h3 {
 
       margin:
         0 0 7px;
@@ -1290,13 +1447,13 @@
     }
 
 
-    .project-content p {
+    .cp-project p {
 
       margin:
         0;
 
       color:
-        rgba(255,255,255,.50);
+        rgba(255,255,255,.48);
 
       font-family:
         "Montserrat",
@@ -1314,7 +1471,7 @@
        ABOUT
     ========================================================= */
 
-    .about {
+    .cp-about {
 
       padding:
         140px 0;
@@ -1322,19 +1479,19 @@
       background:
         linear-gradient(
           135deg,
-          #24180e,
-          #100b08 70%
+          #24170e,
+          #100b08 72%
         );
     }
 
 
-    .about-grid {
+    .cp-about-grid {
 
       display:
         grid;
 
       grid-template-columns:
-        .75fr
+        .72fr
         1.5fr;
 
       gap:
@@ -1342,7 +1499,7 @@
     }
 
 
-    .about-label {
+    .cp-about-index {
 
       color:
         var(--gold);
@@ -1352,14 +1509,14 @@
         sans-serif;
 
       font-size:
-        11px;
+        10px;
 
       letter-spacing:
         3px;
     }
 
 
-    .about-label-line {
+    .cp-about-line {
 
       width:
         70px;
@@ -1368,17 +1525,20 @@
         1px;
 
       margin:
-        22px 0;
+        21px 0;
 
       background:
         var(--gold);
     }
 
 
-    .about-main h2 {
+    .cp-about h2 {
 
       margin:
         17px 0 0;
+
+      color:
+        var(--white);
 
       font-size:
         clamp(
@@ -1395,14 +1555,14 @@
     }
 
 
-    .about-main h2 span {
+    .cp-about h2 span {
 
       color:
         var(--gold-light);
     }
 
 
-    .about-main > p {
+    .cp-about-description {
 
       max-width:
         780px;
@@ -1424,13 +1584,13 @@
     }
 
 
-    .about-points {
+    .cp-about-points {
 
       display:
         grid;
 
       grid-template-columns:
-        repeat(3, 1fr);
+        repeat(3,1fr);
 
       gap:
         1px;
@@ -1443,7 +1603,7 @@
     }
 
 
-    .about-point {
+    .cp-about-point {
 
       padding:
         28px;
@@ -1453,7 +1613,7 @@
     }
 
 
-    .about-point small {
+    .cp-about-point small {
 
       display:
         block;
@@ -1476,7 +1636,7 @@
     }
 
 
-    .about-point strong {
+    .cp-about-point strong {
 
       display:
         block;
@@ -1499,7 +1659,7 @@
        KNOWLEDGE
     ========================================================= */
 
-    .knowledge {
+    .cp-knowledge {
 
       padding:
         130px 0;
@@ -1509,7 +1669,7 @@
     }
 
 
-    .knowledge-heading {
+    .cp-knowledge-head {
 
       display:
         flex;
@@ -1528,10 +1688,13 @@
     }
 
 
-    .knowledge-heading h2 {
+    .cp-knowledge-head h2 {
 
       margin:
         17px 0 0;
+
+      color:
+        var(--white);
 
       font-size:
         clamp(
@@ -1548,14 +1711,14 @@
     }
 
 
-    .knowledge-heading h2 span {
+    .cp-knowledge-head h2 span {
 
       color:
         var(--gold-light);
     }
 
 
-    .knowledge-heading p {
+    .cp-knowledge-head p {
 
       max-width:
         470px;
@@ -1577,20 +1740,20 @@
     }
 
 
-    .knowledge-grid {
+    .cp-knowledge-grid {
 
       display:
         grid;
 
       grid-template-columns:
-        repeat(3, 1fr);
+        repeat(3,1fr);
 
       gap:
         18px;
     }
 
 
-    .knowledge-card {
+    .cp-knowledge-card {
 
       min-height:
         280px;
@@ -1610,12 +1773,11 @@
         );
 
       transition:
-        transform .3s ease,
-        border-color .3s ease;
+        .3s ease;
     }
 
 
-    .knowledge-card:hover {
+    .cp-knowledge-card:hover {
 
       transform:
         translateY(-4px);
@@ -1625,7 +1787,7 @@
     }
 
 
-    .knowledge-number {
+    .cp-knowledge-number {
 
       color:
         var(--gold);
@@ -1642,7 +1804,7 @@
     }
 
 
-    .knowledge-card h3 {
+    .cp-knowledge-card h3 {
 
       margin:
         65px 0 12px;
@@ -1661,7 +1823,7 @@
     }
 
 
-    .knowledge-card p {
+    .cp-knowledge-card p {
 
       margin:
         0;
@@ -1681,10 +1843,10 @@
 
 
     /* =========================================================
-       CTA
+       CONTACT
     ========================================================= */
 
-    .contact-cta {
+    .cp-contact {
 
       position:
         relative;
@@ -1704,7 +1866,7 @@
     }
 
 
-    .contact-cta::before {
+    .cp-contact::before {
 
       content:
         "";
@@ -1719,7 +1881,7 @@
         600px;
 
       right:
-        -260px;
+        -280px;
 
       top:
         -300px;
@@ -1739,7 +1901,7 @@
     }
 
 
-    .cta-inner {
+    .cp-contact-inner {
 
       position:
         relative;
@@ -1761,7 +1923,7 @@
     }
 
 
-    .cta-kicker {
+    .cp-contact-kicker {
 
       margin-bottom:
         17px;
@@ -1781,10 +1943,13 @@
     }
 
 
-    .cta-inner h2 {
+    .cp-contact h2 {
 
       margin:
         0;
+
+      color:
+        var(--white);
 
       font-size:
         clamp(
@@ -1801,14 +1966,14 @@
     }
 
 
-    .cta-inner h2 span {
+    .cp-contact h2 span {
 
       color:
         var(--gold-light);
     }
 
 
-    .cta-inner p {
+    .cp-contact p {
 
       max-width:
         600px;
@@ -1830,10 +1995,16 @@
     }
 
 
-    .cta-button {
+    .cp-contact-button {
 
       flex:
         0 0 auto;
+
+      min-width:
+        190px;
+
+      min-height:
+        54px;
 
       display:
         inline-flex;
@@ -1844,16 +2015,11 @@
       justify-content:
         center;
 
-      min-width:
-        190px;
-
-      min-height:
-        54px;
-
-      padding:
-        0 28px;
-
       background:
+        var(--gold);
+
+      border:
+        1px solid
         var(--gold);
 
       color:
@@ -1862,16 +2028,12 @@
       font-size:
         14px;
 
-      border:
-        1px solid
-        var(--gold);
-
       transition:
-        all .25s ease;
+        .25s ease;
     }
 
 
-    .cta-button:hover {
+    .cp-contact-button:hover {
 
       background:
         var(--gold-light);
@@ -1885,87 +2047,56 @@
 
 
     /* =========================================================
-       MASTER NAV FOOTER
-       
-       ป้องกันหน้า index ไปเปลี่ยนหน้าตา Footer เดิม
-    ========================================================= */
-
-    .footer {
-
-      position:
-        relative;
-
-      z-index:
-        10;
-    }
-
-
-    /* =========================================================
        RESPONSIVE
     ========================================================= */
 
     @media (max-width: 1050px) {
 
-      .home-hero-content {
-
-        width:
-          calc(100% - 40px);
-      }
-
-      .container {
-
-        width:
-          calc(100% - 40px);
-      }
-
-      .solution-grid {
+      .cp-solution-grid {
 
         grid-template-columns:
-          repeat(2, 1fr);
+          repeat(2,1fr);
       }
 
-      .intro-grid {
+
+      .cp-intro-grid,
+      .cp-about-grid {
 
         grid-template-columns:
           1fr;
 
         gap:
-          35px;
+          40px;
       }
 
-      .about-grid {
 
-        grid-template-columns:
-          1fr;
-
-        gap:
-          45px;
-      }
-
-      .projects-header,
-      .knowledge-heading {
+      .cp-projects-head,
+      .cp-knowledge-head {
 
         display:
           block;
       }
 
-      .projects-header p,
-      .knowledge-heading p {
+
+      .cp-projects-head p,
+      .cp-knowledge-head p {
 
         margin-top:
           20px;
       }
 
-      .cta-inner {
+
+      .cp-contact-inner {
 
         display:
           block;
       }
 
-      .cta-button {
+
+      .cp-contact-button {
 
         margin-top:
-          32px;
+          30px;
       }
 
     }
@@ -1973,38 +2104,61 @@
 
     @media (max-width: 700px) {
 
-      .home-hero {
+      .cp-container {
+
+        width:
+          calc(100% - 28px);
+      }
+
+
+      .cp-hero {
 
         min-height:
           760px;
       }
 
-      .home-hero-content {
 
-        padding:
-          125px 0 100px;
+      .cp-hero-image {
+
+        background-position:
+          56% 56%;
+
+        transform:
+          scale(1.07);
       }
 
-      .home-hero h1 {
+
+      .cp-hero-content {
+
+        width:
+          calc(100% - 28px);
+
+        padding:
+          125px 0 180px;
+      }
+
+
+      .cp-hero h1 {
 
         font-size:
-          clamp(
-            44px,
-            13vw,
-            68px
-          );
+          44px;
 
         letter-spacing:
           -1px;
       }
 
-      .home-hero-description {
+
+      .cp-hero-description {
 
         font-size:
           15px;
+
+        line-height:
+          1.8;
       }
 
-      .hero-buttons {
+
+      .cp-hero-actions {
 
         display:
           grid;
@@ -2013,100 +2167,120 @@
           1fr;
       }
 
-      .hero-button {
+
+      .cp-button {
 
         width:
           100%;
       }
 
-      .floor-continuation img {
 
-        width:
-          100%;
+      .cp-hero-bottom-transition {
 
         height:
-          auto;
+          300px;
       }
 
-      .intro {
+
+      .cp-hero-bottom-glow {
+
+        height:
+          180px;
+      }
+
+
+      .cp-floor::before {
+
+        height:
+          160px;
+      }
+
+
+      .cp-intro {
 
         padding:
           90px 0 95px;
       }
 
-      .solutions {
+
+      .cp-solutions {
 
         padding-bottom:
           90px;
       }
 
-      .solution-grid {
+
+      .cp-solution-grid {
 
         grid-template-columns:
           1fr;
       }
 
-      .solution-card {
+
+      .cp-solution {
 
         min-height:
           275px;
       }
 
-      .solution-icon {
 
-        margin-top:
-          38px;
-      }
-
-      .projects {
+      .cp-projects {
 
         padding:
           90px 0;
       }
 
-      .projects-grid {
+
+      .cp-project-grid {
 
         grid-template-columns:
           1fr;
       }
 
-      .project-card {
+
+      .cp-project {
 
         min-height:
           330px;
       }
 
-      .about {
+
+      .cp-about {
 
         padding:
           90px 0;
       }
 
-      .about-points {
+
+      .cp-about-points {
 
         grid-template-columns:
           1fr;
       }
 
-      .knowledge {
+
+      .cp-knowledge {
 
         padding:
           90px 0;
       }
 
-      .knowledge-grid {
+
+      .cp-knowledge-grid {
 
         grid-template-columns:
           1fr;
       }
 
-      .knowledge-card {
+
+      .cp-knowledge-card {
 
         min-height:
           245px;
       }
 
-      .contact-cta {
+
+      .cp-contact {
 
         padding:
           90px 0;
@@ -2114,52 +2288,6 @@
 
     }
 
-
-    @media (max-width: 480px) {
-
-      .container {
-
-        width:
-          calc(100% - 28px);
-      }
-
-      .home-hero-content {
-
-        width:
-          calc(100% - 28px);
-      }
-
-      .hero-kicker {
-
-        font-size:
-          10px;
-
-        letter-spacing:
-          2.5px;
-      }
-
-      .home-hero h1 {
-
-        font-size:
-          43px;
-      }
-
-      .home-hero-description {
-
-        line-height:
-          1.8;
-      }
-
-      .project-content {
-
-        left:
-          24px;
-
-        right:
-          24px;
-      }
-
-    }
 
   </style>
 
@@ -2170,37 +2298,47 @@
 
 
   <!-- =======================================================
-       HERO
-       
-       Header/Footer ไม่เขียนเอง
-       ใช้ customer-master-nav.js ด้านล่าง
+       MAIN
   ======================================================== -->
 
   <main>
 
 
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
     <section
-      class="home-hero"
+      class="cp-hero"
       id="home"
     >
 
-      <div
-        class="home-hero-image"
-        aria-hidden="true"
-      ></div>
 
       <div
-        class="home-hero-overlay"
+        class="cp-hero-image"
         aria-hidden="true"
       ></div>
 
 
-      <div class="home-hero-content">
+      <div
+        class="cp-hero-overlay-left"
+        aria-hidden="true"
+      ></div>
 
-        <div class="home-hero-copy">
+
+      <div
+        class="cp-hero-overlay-brown"
+        aria-hidden="true"
+      ></div>
 
 
-          <div class="hero-kicker">
+      <div class="cp-hero-content">
+
+
+        <div class="cp-hero-copy">
+
+
+          <div class="cp-kicker">
             CHATPHETCH GROUP
           </div>
 
@@ -2216,25 +2354,26 @@
           </h1>
 
 
-          <div class="hero-rule"></div>
+          <div class="cp-hero-line"></div>
 
 
-          <p class="home-hero-description">
+          <p class="cp-hero-description">
 
             CHATPHETCH GROUP
             ให้บริการด้านวัสดุงานพื้น ระบบพื้น
             งานก่อสร้าง และการให้คำปรึกษา
-            โดยเลือกใช้วัสดุและระบบงาน
-            ให้เหมาะสมกับพื้นที่และลักษณะการใช้งาน
+            เลือกใช้วัสดุสำหรับงานแต่ละประเภท
+            ให้เหมาะสมกับพื้นที่และการใช้งาน
 
           </p>
 
 
-          <div class="hero-buttons">
+          <div class="cp-hero-actions">
+
 
             <a
               href="products.html"
-              class="hero-button hero-button-primary"
+              class="cp-button cp-button-primary"
             >
               ดูสินค้า →
             </a>
@@ -2242,7 +2381,7 @@
 
             <a
               href="services.html"
-              class="hero-button hero-button-outline"
+              class="cp-button cp-button-outline"
             >
               ดูบริการ
             </a>
@@ -2250,23 +2389,32 @@
 
             <a
               href="about.html"
-              class="hero-button hero-button-outline"
+              class="cp-button cp-button-outline"
             >
               รู้จักบริษัท
             </a>
+
 
           </div>
 
 
         </div>
 
+
       </div>
 
 
       <div
-        class="hero-bottom-fade"
+        class="cp-hero-bottom-transition"
         aria-hidden="true"
       ></div>
+
+
+      <div
+        class="cp-hero-bottom-glow"
+        aria-hidden="true"
+      ></div>
+
 
     </section>
 
@@ -2275,14 +2423,11 @@
     <!-- =====================================================
          FLOOR IMAGE
          
-         สำคัญ:
-         ภาพนี้ต่อจาก HERO โดยตรง
-         ไม่มี section สีดำคั่น
-         ไม่ crop
+         ต่อ Hero ทันที
     ====================================================== -->
 
     <section
-      class="floor-continuation"
+      class="cp-floor"
       aria-label="CHATPHETCH FLOORING"
     >
 
@@ -2300,40 +2445,42 @@
     ====================================================== -->
 
     <section
-      class="intro"
-      id="company-intro"
+      class="cp-intro"
+      id="company"
     >
 
-      <div class="container">
+      <div class="cp-container">
 
 
-        <div class="intro-grid">
+        <div class="cp-intro-grid">
 
 
           <div>
 
-            <div class="intro-index">
+
+            <div class="cp-index">
               01 / COMPANY
             </div>
 
 
-            <div class="intro-index-line"></div>
+            <div class="cp-index-line"></div>
 
 
-            <p class="intro-index-text">
+            <p class="cp-index-text">
 
-              พื้นที่ที่ดี
-              เริ่มต้นจากวัสดุ
-              และระบบงานที่เหมาะสม
+              พื้นที่ดี
+              เริ่มต้นจากวัสดุที่ใช่
 
             </p>
+
 
           </div>
 
 
           <div>
 
-            <div class="eyebrow">
+
+            <div class="cp-eyebrow">
               ABOUT CHATPHETCH GROUP
             </div>
 
@@ -2349,21 +2496,23 @@
             </h2>
 
 
-            <p class="intro-text">
+            <p class="cp-intro-text">
 
               CHATPHETCH GROUP
               ให้บริการด้านวัสดุงานพื้น
               งานก่อสร้าง และการให้คำปรึกษา
               โดยมุ่งเน้นการเลือกวัสดุ
-              และระบบงานให้เหมาะกับ
-              ลักษณะการใช้งานของแต่ละพื้นที่
+              และระบบให้เหมาะสมกับลักษณะ
+              การใช้งานของแต่ละพื้นที่
 
             </p>
+
 
           </div>
 
 
         </div>
+
 
       </div>
 
@@ -2376,16 +2525,17 @@
     ====================================================== -->
 
     <section
-      class="solutions"
+      class="cp-solutions"
       id="solutions"
     >
 
-      <div class="container">
+      <div class="cp-container">
 
 
-        <div class="solutions-heading">
+        <div class="cp-centered-heading">
 
-          <div class="eyebrow">
+
+          <div class="cp-eyebrow">
             OUR SOLUTIONS
           </div>
 
@@ -2405,146 +2555,180 @@
 
           <p>
 
-            วัสดุ ระบบพื้น บริการ
-            และแนวทางการใช้งาน
-            สำหรับโครงการหลากหลายประเภท
+            วัสดุ บริการ และโซลูชัน
+            สำหรับงานพื้นและงานก่อสร้าง
+            ที่เหมาะกับลักษณะของแต่ละโครงการ
 
           </p>
+
 
         </div>
 
 
 
-        <div class="solution-grid">
+        <div class="cp-solution-grid">
 
 
-          <article class="solution-card">
+          <article class="cp-solution">
 
-            <div class="solution-number">
+
+            <div class="cp-solution-number">
               01 / SYSTEM
             </div>
 
-            <div class="solution-icon">
+
+            <div class="cp-solution-icon">
               ▱
             </div>
+
 
             <h3>
               ระบบพื้น
             </h3>
 
+
             <p>
+
               ระบบพื้นสำหรับพื้นที่
               หลากหลายประเภท
               ทั้งงานอุตสาหกรรม อาคาร
               และพื้นที่ใช้งานทั่วไป
+
             </p>
+
 
             <a
               href="services.html"
-              class="solution-link"
+              class="cp-solution-link"
             >
-              ดูบริการ →
+              ดูเพิ่มเติม →
             </a>
+
 
           </article>
 
 
 
-          <article class="solution-card">
+          <article class="cp-solution">
 
-            <div class="solution-number">
+
+            <div class="cp-solution-number">
               02 / SURFACE
             </div>
 
-            <div class="solution-icon">
+
+            <div class="cp-solution-icon">
               ◈
             </div>
+
 
             <h3>
               สีและการเคลือบผิว
             </h3>
 
+
             <p>
+
               เพิ่มความสวยงาม
               ความทนทาน
               และช่วยยืดอายุการใช้งาน
               ของพื้นผิว
+
             </p>
+
 
             <a
               href="service-detail.html?service=coating"
-              class="solution-link"
+              class="cp-solution-link"
             >
-              ดูบริการ →
+              ดูเพิ่มเติม →
             </a>
+
 
           </article>
 
 
 
-          <article class="solution-card">
+          <article class="cp-solution">
 
-            <div class="solution-number">
+
+            <div class="cp-solution-number">
               03 / MATERIAL
             </div>
 
-            <div class="solution-icon">
+
+            <div class="cp-solution-icon">
               □
             </div>
+
 
             <h3>
               วัสดุก่อสร้าง
             </h3>
 
+
             <p>
+
               วัสดุสำหรับงานก่อสร้าง
               และงานตกแต่ง
               ที่เลือกให้เหมาะกับโครงการ
+
             </p>
+
 
             <a
               href="products.html"
-              class="solution-link"
+              class="cp-solution-link"
             >
-              ดูสินค้า →
+              ดูเพิ่มเติม →
             </a>
+
 
           </article>
 
 
 
-          <article class="solution-card">
+          <article class="cp-solution">
 
-            <div class="solution-number">
+
+            <div class="cp-solution-number">
               04 / CONSULT
             </div>
 
-            <div class="solution-icon">
+
+            <div class="cp-solution-icon">
               +
             </div>
+
 
             <h3>
               คำปรึกษา
             </h3>
 
+
             <p>
+
               ให้คำแนะนำด้านวัสดุ
               ระบบพื้น
               และแนวทางการใช้งาน
               ตามความต้องการ
+
             </p>
+
 
             <a
               href="service-detail.html?service=consulting"
-              class="solution-link"
+              class="cp-solution-link"
             >
-              ปรึกษาเรา →
+              ดูเพิ่มเติม →
             </a>
+
 
           </article>
 
 
         </div>
+
 
       </div>
 
@@ -2557,19 +2741,19 @@
     ====================================================== -->
 
     <section
-      class="projects"
+      class="cp-projects"
       id="projects"
     >
 
-      <div class="container">
+      <div class="cp-container">
 
 
-        <div class="projects-header">
+        <div class="cp-projects-head">
 
 
           <div>
 
-            <div class="eyebrow">
+            <div class="cp-eyebrow">
               OUR WORK
             </div>
 
@@ -2589,9 +2773,9 @@
 
           <p>
 
-            ผลงานด้านระบบพื้น
-            วัสดุ และงานก่อสร้าง
-            สำหรับโครงการหลากหลายรูปแบบ
+            ความไว้วางใจจากหลากหลายโครงการ
+            ด้านวัสดุ ระบบพื้น
+            และงานก่อสร้าง
 
           </p>
 
@@ -2600,22 +2784,22 @@
 
 
 
-        <div class="projects-grid">
+        <div class="cp-project-grid">
 
 
           <a
             href="projects.html"
-            class="project-card"
+            class="cp-project"
           >
 
-            <div class="project-content">
+            <div class="cp-project-content">
 
-              <div class="project-number">
+              <div class="cp-project-number">
                 01
               </div>
 
               <h3>
-                งานพื้นอุตสาหกรรม
+                พื้นงานอุตสาหกรรม
               </h3>
 
               <p>
@@ -2630,17 +2814,17 @@
 
           <a
             href="projects.html"
-            class="project-card"
+            class="cp-project"
           >
 
-            <div class="project-content">
+            <div class="cp-project-content">
 
-              <div class="project-number">
+              <div class="cp-project-number">
                 02
               </div>
 
               <h3>
-                งานพื้นอาคาร
+                พื้นพาณิชย์ / อาคาร
               </h3>
 
               <p>
@@ -2655,17 +2839,17 @@
 
           <a
             href="projects.html"
-            class="project-card"
+            class="cp-project"
           >
 
-            <div class="project-content">
+            <div class="cp-project-content">
 
-              <div class="project-number">
+              <div class="cp-project-number">
                 03
               </div>
 
               <h3>
-                งานเคลือบผิว
+                งานพื้นและการเคลือบผิว
               </h3>
 
               <p>
@@ -2680,12 +2864,12 @@
 
           <a
             href="projects.html"
-            class="project-card"
+            class="cp-project"
           >
 
-            <div class="project-content">
+            <div class="cp-project-content">
 
-              <div class="project-number">
+              <div class="cp-project-number">
                 04
               </div>
 
@@ -2704,6 +2888,7 @@
 
         </div>
 
+
       </div>
 
     </section>
@@ -2715,30 +2900,32 @@
     ====================================================== -->
 
     <section
-      class="about"
+      class="cp-about"
       id="about"
     >
 
-      <div class="container">
+      <div class="cp-container">
 
 
-        <div class="about-grid">
+        <div class="cp-about-grid">
 
 
           <div>
 
-            <div class="about-label">
+            <div class="cp-about-index">
               02 / APPROACH
             </div>
 
-            <div class="about-label-line"></div>
+
+            <div class="cp-about-line"></div>
 
           </div>
 
 
-          <div class="about-main">
+          <div>
 
-            <div class="eyebrow">
+
+            <div class="cp-eyebrow">
               WHY CHATPHETCH
             </div>
 
@@ -2754,7 +2941,7 @@
             </h2>
 
 
-            <p>
+            <p class="cp-about-description">
 
               เราให้ความสำคัญกับการทำความเข้าใจ
               ลักษณะพื้นที่ การใช้งาน และความต้องการ
@@ -2765,10 +2952,10 @@
             </p>
 
 
-            <div class="about-points">
+            <div class="cp-about-points">
 
 
-              <div class="about-point">
+              <div class="cp-about-point">
 
                 <small>
                   PEOPLE
@@ -2782,7 +2969,7 @@
               </div>
 
 
-              <div class="about-point">
+              <div class="cp-about-point">
 
                 <small>
                   MATERIAL
@@ -2796,7 +2983,7 @@
               </div>
 
 
-              <div class="about-point">
+              <div class="cp-about-point">
 
                 <small>
                   SOLUTION
@@ -2812,10 +2999,12 @@
 
             </div>
 
+
           </div>
 
 
         </div>
+
 
       </div>
 
@@ -2828,19 +3017,19 @@
     ====================================================== -->
 
     <section
-      class="knowledge"
+      class="cp-knowledge"
       id="knowledge"
     >
 
-      <div class="container">
+      <div class="cp-container">
 
 
-        <div class="knowledge-heading">
+        <div class="cp-knowledge-head">
 
 
           <div>
 
-            <div class="eyebrow">
+            <div class="cp-eyebrow">
               KNOWLEDGE
             </div>
 
@@ -2871,22 +3060,24 @@
 
 
 
-        <div class="knowledge-grid">
+        <div class="cp-knowledge-grid">
 
 
           <a
             href="knowledge.html"
-            class="knowledge-card"
+            class="cp-knowledge-card"
           >
 
-            <div class="knowledge-number">
+            <div class="cp-knowledge-number">
               01 / FLOOR
             </div>
+
 
             <h3>
               เลือกระบบพื้น
               ให้เหมาะกับพื้นที่
             </h3>
+
 
             <p>
               ทำความเข้าใจปัจจัยสำคัญ
@@ -2894,22 +3085,25 @@
               สำหรับโครงการ
             </p>
 
+
           </a>
 
 
 
           <a
             href="knowledge.html"
-            class="knowledge-card"
+            class="cp-knowledge-card"
           >
 
-            <div class="knowledge-number">
+            <div class="cp-knowledge-number">
               02 / MATERIAL
             </div>
+
 
             <h3>
               วัสดุและการใช้งาน
             </h3>
+
 
             <p>
               ทำความเข้าใจคุณสมบัติ
@@ -2917,22 +3111,25 @@
               ของวัสดุแต่ละประเภท
             </p>
 
+
           </a>
 
 
 
           <a
             href="knowledge.html"
-            class="knowledge-card"
+            class="cp-knowledge-card"
           >
 
-            <div class="knowledge-number">
+            <div class="cp-knowledge-number">
               03 / PROJECT
             </div>
+
 
             <h3>
               วางแผนงานก่อสร้าง
             </h3>
+
 
             <p>
               แนวทางเบื้องต้นสำหรับ
@@ -2940,10 +3137,12 @@
               และระบบงาน
             </p>
 
+
           </a>
 
 
         </div>
+
 
       </div>
 
@@ -2952,23 +3151,24 @@
 
 
     <!-- =====================================================
-         CONTACT CTA
+         CONTACT
     ====================================================== -->
 
     <section
-      class="contact-cta"
+      class="cp-contact"
       id="contact"
     >
 
-      <div class="container">
+      <div class="cp-container">
 
 
-        <div class="cta-inner">
+        <div class="cp-contact-inner">
 
 
           <div>
 
-            <div class="cta-kicker">
+
+            <div class="cp-contact-kicker">
               LET'S BUILD A BETTER SPACE
             </div>
 
@@ -2987,23 +3187,25 @@
             <p>
 
               ทีมงานของเราพร้อมให้คำแนะนำ
-              และช่วยเลือกแนวทางด้านวัสดุ
-              และระบบพื้นที่เหมาะกับโครงการของคุณ
+              และเสนอแนวทางที่เหมาะสม
+              กับโครงการของคุณ
 
             </p>
+
 
           </div>
 
 
           <a
             href="contact.html"
-            class="cta-button"
+            class="cp-contact-button"
           >
             ติดต่อเรา →
           </a>
 
 
         </div>
+
 
       </div>
 
@@ -3015,44 +3217,187 @@
 
 
   <!-- =======================================================
-       MASTER HEADER + FOOTER
+       MASTER NAV
        
+       ตัวนี้ต้องเป็นของเดิม
        ห้ามลบ
-       ตัวนี้คือเมนูหลักของเว็บเดิม
-    ======================================================== -->
+  ======================================================== -->
 
   <script
     src="assets/customer-master-nav.js"
   ></script>
 
 
+
   <!-- =======================================================
-       HEADER SCROLL EFFECT
+       IMPORTANT:
+       CSS ตัวนี้อยู่ "หลัง" customer-master-nav.js
+       เพื่อ override เฉพาะ Header บนหน้าแรก
        
-       ไม่เปลี่ยนเมนู
-       เปลี่ยนเฉพาะพื้นหลัง Header ตอน scroll
-    ======================================================== -->
+       ไม่เปลี่ยนรายการเมนู
+       ไม่เปลี่ยน Dropdown
+       ไม่เปลี่ยน Footer
+  ======================================================== -->
+
+  <style>
+
+    /*
+      HEADER ตอนอยู่บน HERO
+      โปร่งใส
+    */
+
+    .header {
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(8,6,4,.38),
+          rgba(8,6,4,.08)
+        ) !important;
+
+      border-bottom:
+        1px solid
+        rgba(201,164,92,.08) !important;
+
+      backdrop-filter:
+        blur(3px) !important;
+
+      -webkit-backdrop-filter:
+        blur(3px) !important;
+
+      box-shadow:
+        none !important;
+    }
+
+
+    /*
+      เมื่อ scroll ลง
+      เปลี่ยนเป็น dark glass
+    */
+
+    .header.cp-scrolled {
+
+      background:
+        rgba(5,4,3,.94) !important;
+
+      border-bottom:
+        1px solid
+        rgba(201,164,92,.20) !important;
+
+      backdrop-filter:
+        blur(18px) !important;
+
+      -webkit-backdrop-filter:
+        blur(18px) !important;
+
+      box-shadow:
+        0 15px 45px
+        rgba(0,0,0,.30) !important;
+    }
+
+
+    /*
+      ทำให้ Logo / Menu บน Hero
+      อ่านง่ายแต่ไม่ทำเป็นแถบดำ
+    */
+
+    .header .customer-brand,
+    .header .customer-nav > a,
+    .header .nav-drop-trigger {
+
+      text-shadow:
+        0 2px 12px
+        rgba(0,0,0,.55);
+    }
+
+
+    /*
+      Active หน้าแรก
+    */
+
+    .header .customer-nav > a.active {
+
+      color:
+        #e9cf8b !important;
+    }
+
+
+    /*
+      Dropdown ยังคงใช้ระบบเดิม
+    */
+
+    .header .nav-submenu {
+
+      background:
+        rgba(7,6,5,.98) !important;
+
+      border-color:
+        rgba(201,164,92,.35) !important;
+    }
+
+
+    /*
+      Mobile
+    */
+
+    @media (max-width: 900px) {
+
+      .header {
+
+        background:
+          rgba(5,4,3,.92) !important;
+
+        backdrop-filter:
+          blur(16px) !important;
+
+        -webkit-backdrop-filter:
+          blur(16px) !important;
+      }
+
+    }
+
+  </style>
+
+
+
+  <!-- =======================================================
+       HEADER SCROLL
+       
+       ไม่สร้าง Header ใหม่
+       แค่เพิ่ม class เพื่อเปลี่ยน background
+  ======================================================== -->
 
   <script>
 
     (function () {
 
-      function updateHeader() {
+      "use strict";
+
+
+      function updateMasterHeader() {
 
         const header =
           document.querySelector(".header");
 
+
         if (!header) {
+
           return;
+
         }
+
 
         if (window.scrollY > 35) {
 
-          header.classList.add("scrolled");
+          header.classList.add(
+            "cp-scrolled"
+          );
 
         } else {
 
-          header.classList.remove("scrolled");
+          header.classList.remove(
+            "cp-scrolled"
+          );
 
         }
 
@@ -3061,7 +3406,7 @@
 
       window.addEventListener(
         "scroll",
-        updateHeader,
+        updateMasterHeader,
         {
           passive: true
         }
@@ -3070,14 +3415,25 @@
 
       window.addEventListener(
         "load",
-        updateHeader
+        updateMasterHeader
+      );
+
+
+      /*
+        เผื่อ master nav ใช้เวลาสร้าง DOM
+      */
+
+      setTimeout(
+        updateMasterHeader,
+        100
       );
 
 
       setTimeout(
-        updateHeader,
-        100
+        updateMasterHeader,
+        500
       );
+
 
     })();
 
@@ -3085,4 +3441,5 @@
 
 
 </body>
+
 </html>
