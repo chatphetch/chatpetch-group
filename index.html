@@ -6,27 +6,24 @@
 
 <title>CHATPHETCH GROUP | Flooring & Construction</title>
 
-<meta name="description"
-content="CHATPHETCH GROUP วัสดุงานพื้น ระบบพื้น งานก่อสร้าง และบริการให้คำปรึกษา">
+<meta
+    name="description"
+    content="CHATPHETCH GROUP วัสดุงานพื้น งานก่อสร้าง ระบบพื้น และบริการให้คำปรึกษา"
+>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
-:root{
-    --black:#0a0908;
-    --dark:#11100e;
-    --dark2:#181511;
-    --gold:#d6a54d;
-    --gold-light:#f0c875;
-    --cream:#f4eee2;
-    --text:#eee9df;
-    --muted:#aaa39a;
-    --line:rgba(214,165,77,.35);
-}
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
     margin:0;
@@ -40,9 +37,9 @@ html{
 
 body{
     margin:0;
-    background:#0a0908;
-    color:var(--text);
-    font-family:'Kanit',sans-serif;
+    background:#0b0907;
+    color:#f1ece3;
+    font-family:"Kanit",sans-serif;
     overflow-x:hidden;
 }
 
@@ -52,1055 +49,2083 @@ a{
 }
 
 img{
-    max-width:100%;
     display:block;
+    max-width:100%;
 }
 
-/* =====================================================
-   GLOBAL
-===================================================== */
 
-.container{
-    width:min(1320px, calc(100% - 80px));
-    margin:auto;
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+
+    --black:#080706;
+    --dark:#0d0b09;
+    --dark2:#15110d;
+
+    --brown:#21180f;
+    --brown2:#302116;
+
+    --gold:#c9963f;
+    --gold2:#e7bd6d;
+    --gold3:#f2d18c;
+
+    --white:#f4efe7;
+    --muted:#aaa198;
+
+    --line:rgba(224,184,105,.25);
+
 }
 
-.gold{
-    color:var(--gold-light);
-}
 
-.english{
-    font-family:'Montserrat',sans-serif;
-    letter-spacing:.18em;
-}
+/* =========================================================
+   GLOBAL BACKGROUND
+========================================================= */
 
-.section{
-    position:relative;
-    overflow:hidden;
-}
+body::before{
 
-.section-title{
-    font-size:clamp(34px,4vw,64px);
-    line-height:1.05;
-    font-weight:600;
-}
+    content:"";
 
-.section-subtitle{
-    margin-top:18px;
-    color:var(--muted);
-    font-size:17px;
-    line-height:1.8;
-}
-
-/* =====================================================
-   BACKGROUND
-===================================================== */
-
-.site-bg{
     position:fixed;
     inset:0;
-    z-index:-10;
+
+    z-index:-20;
+
     background:
         radial-gradient(
             circle at 70% 20%,
-            rgba(160,110,45,.12),
+            rgba(187,128,46,.10),
             transparent 35%
         ),
         linear-gradient(
             180deg,
-            #090807 0%,
-            #15120f 45%,
-            #0b0a09 100%
+            #080706 0%,
+            #16110c 50%,
+            #0b0907 100%
         );
+
 }
 
-.site-bg::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    opacity:.18;
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        );
-    background-size:100% 5px;
-    pointer-events:none;
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container{
+
+    width:min(
+        1320px,
+        calc(100% - 80px)
+    );
+
+    margin:auto;
+
 }
 
-/* =====================================================
+
+/* =========================================================
    HEADER
-===================================================== */
+========================================================= */
 
 .header{
+
     position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
+
     z-index:1000;
 
-    transition:.35s ease;
+    transition:
+        background .35s ease,
+        border .35s ease,
+        backdrop-filter .35s ease;
 
-    border-bottom:1px solid transparent;
+    border-bottom:
+        1px solid transparent;
+
 }
+
 
 .header.scrolled{
-    background:rgba(8,7,6,.88);
-    backdrop-filter:blur(18px);
-    border-color:rgba(214,165,77,.16);
+
+    background:
+        rgba(7,6,5,.82);
+
+    backdrop-filter:
+        blur(18px);
+
+    border-bottom:
+        1px solid
+        rgba(214,165,77,.18);
+
 }
 
+
 .nav{
-    width:min(1420px, calc(100% - 60px));
-    margin:auto;
+
+    width:min(
+        1420px,
+        calc(100% - 60px)
+    );
 
     height:88px;
 
+    margin:auto;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
+    gap:30px;
+
 }
+
 
 .brand{
+
     display:flex;
+
     align-items:center;
-    gap:14px;
+
+    gap:13px;
+
+    flex-shrink:0;
+
 }
+
 
 .brand img{
-    width:58px;
+
+    width:56px;
+
     height:auto;
+
 }
 
-.brand-text{
-    line-height:1.1;
+
+.brand-info{
+
+    display:flex;
+
+    flex-direction:column;
+
 }
+
 
 .brand-name{
-    font-family:'Montserrat',sans-serif;
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:16px;
+
     font-weight:600;
-    font-size:17px;
-    color:var(--gold-light);
+
     letter-spacing:.04em;
+
+    color:var(--gold3);
+
 }
+
 
 .brand-sub{
-    font-family:'Montserrat',sans-serif;
-    font-size:9px;
-    color:#c7bba6;
-    letter-spacing:.12em;
-    margin-top:5px;
+
+    margin-top:4px;
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:8px;
+
+    letter-spacing:.16em;
+
+    color:#b7ab98;
+
 }
+
 
 .nav-links{
+
     display:flex;
+
     align-items:center;
-    gap:34px;
+
+    gap:30px;
+
 }
 
-.nav-links a{
-    font-size:15px;
-    color:#ddd7cd;
+
+.nav-links > a{
+
     position:relative;
+
+    font-size:14px;
+
+    color:#e2ddd5;
+
     transition:.25s ease;
+
 }
 
-.nav-links a::after{
+
+.nav-links > a::after{
+
     content:"";
+
     position:absolute;
+
     left:0;
+
     bottom:-8px;
+
     width:0;
+
     height:1px;
-    background:var(--gold-light);
+
+    background:var(--gold2);
+
     transition:.25s ease;
+
 }
 
-.nav-links a:hover{
+
+.nav-links > a:hover{
+
     color:#fff;
+
 }
 
-.nav-links a:hover::after{
+
+.nav-links > a:hover::after{
+
     width:100%;
+
 }
+
 
 .quote-btn{
-    border:1px solid rgba(214,165,77,.7);
-    padding:13px 22px;
+
+    padding:
+        12px 20px;
+
+    border:
+        1px solid
+        rgba(224,184,105,.65);
+
     border-radius:4px;
-    color:var(--gold-light);
-    transition:.25s ease;
+
+    color:var(--gold3) !important;
+
 }
+
+
+.quote-btn::after{
+
+    display:none;
+
+}
+
 
 .quote-btn:hover{
-    background:var(--gold);
-    color:#111;
+
+    background:
+        rgba(224,184,105,.10);
+
 }
+
 
 .menu-toggle{
+
     display:none;
+
     border:0;
+
     background:none;
+
     color:#fff;
-    font-size:28px;
+
+    font-size:27px;
+
+    cursor:pointer;
+
 }
 
-/* =====================================================
+
+/* =========================================================
    HERO
-===================================================== */
+========================================================= */
 
 .hero{
-    min-height:100vh;
+
     position:relative;
 
+    min-height:100vh;
+
     display:flex;
+
     align-items:center;
 
+    overflow:hidden;
+
     background-image:
+
         linear-gradient(
             90deg,
-            rgba(5,5,4,.92) 0%,
-            rgba(5,5,4,.72) 35%,
-            rgba(5,5,4,.18) 70%,
-            rgba(5,5,4,.45) 100%
+            rgba(4,4,3,.94) 0%,
+            rgba(5,4,3,.80) 27%,
+            rgba(5,4,3,.35) 58%,
+            rgba(5,4,3,.35) 100%
         ),
+
         url("assets/home-hero-visual.jpg");
 
     background-size:cover;
+
     background-position:center;
+
 }
 
-.hero::after{
+
+.hero::before{
+
     content:"";
+
     position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(
+            circle at 75% 45%,
+            rgba(226,177,84,.08),
+            transparent 30%
+        );
+
+    pointer-events:none;
+
+}
+
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
     left:0;
     right:0;
     bottom:0;
-    height:230px;
+
+    height:280px;
 
     background:
         linear-gradient(
             to bottom,
-            transparent,
-            #11100e
+            rgba(10,8,6,0),
+            #17110c
         );
 
     pointer-events:none;
+
 }
+
 
 .hero-content{
+
     position:relative;
-    z-index:2;
-    width:min(1320px, calc(100% - 80px));
+
+    z-index:3;
+
+    width:min(
+        1320px,
+        calc(100% - 80px)
+    );
+
     margin:auto;
 
-    padding-top:80px;
+    padding-top:90px;
+
 }
+
 
 .hero-copy{
-    max-width:680px;
+
+    max-width:700px;
+
 }
 
-.kicker{
+
+.eyebrow{
+
     display:flex;
+
     align-items:center;
-    gap:15px;
 
-    color:var(--gold-light);
-    font-family:'Montserrat',sans-serif;
-    font-size:14px;
-    letter-spacing:.2em;
+    gap:14px;
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:13px;
+
+    letter-spacing:.22em;
+
+    color:var(--gold3);
+
 }
 
-.kicker::before{
+
+.eyebrow::before{
+
     content:"";
+
     width:52px;
+
     height:1px;
-    background:var(--gold);
+
+    background:var(--gold2);
+
 }
+
 
 .hero h1{
-    margin-top:24px;
 
-    font-size:clamp(52px,7vw,105px);
+    margin-top:25px;
+
+    font-size:
+        clamp(
+            54px,
+            7vw,
+            105px
+        );
+
     line-height:.98;
+
+    letter-spacing:-.035em;
+
     font-weight:600;
-    letter-spacing:-.025em;
+
 }
+
 
 .hero h1 span{
+
     display:block;
-    color:var(--gold-light);
+
+    color:var(--gold2);
+
 }
+
 
 .hero-description{
+
+    max-width:640px;
+
     margin-top:30px;
 
-    max-width:610px;
+    font-size:17px;
 
-    font-size:18px;
-    line-height:1.8;
-    color:#e1dcd3;
+    line-height:1.85;
+
+    color:#ded8cf;
+
 }
+
 
 .hero-buttons{
+
     display:flex;
-    gap:16px;
-    margin-top:35px;
+
     flex-wrap:wrap;
+
+    gap:14px;
+
+    margin-top:34px;
+
 }
 
+
 .btn{
+
     display:inline-flex;
+
     align-items:center;
+
     justify-content:center;
 
     min-width:140px;
 
-    padding:15px 25px;
+    padding:
+        14px 24px;
 
     border-radius:4px;
 
     font-size:15px;
 
     transition:.3s ease;
+
 }
+
 
 .btn-gold{
-    background:linear-gradient(
-        135deg,
-        #f0c875,
-        #c9923c
-    );
 
-    color:#16120c;
+    color:#16110a;
+
     font-weight:600;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1cc7d,
+            #c68f37
+        );
+
 }
+
 
 .btn-gold:hover{
-    transform:translateY(-2px);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.25);
+
 }
+
 
 .btn-outline{
-    border:1px solid rgba(240,200,117,.65);
-    color:#f0dfbd;
+
+    border:
+        1px solid
+        rgba(235,194,113,.65);
+
+    color:#eadfcf;
+
 }
+
 
 .btn-outline:hover{
-    background:rgba(214,165,77,.12);
+
+    background:
+        rgba(220,172,75,.10);
+
 }
 
-.scroll-indicator{
-    position:absolute;
-    bottom:50px;
-    left:50%;
 
-    transform:translateX(-50%);
+.scroll-indicator{
+
+    position:absolute;
 
     z-index:4;
 
+    left:50%;
+
+    bottom:35px;
+
+    transform:
+        translateX(-50%);
+
     text-align:center;
 
-    font-family:'Montserrat',sans-serif;
+    font-family:"Montserrat",sans-serif;
+
     font-size:9px;
+
     letter-spacing:.5em;
-    color:#ddd4c5;
+
+    color:#d7cec0;
+
 }
+
 
 .scroll-line{
-    width:1px;
-    height:45px;
-    background:linear-gradient(
-        #d6a54d,
-        transparent
-    );
 
-    margin:auto auto 12px;
+    width:1px;
+
+    height:45px;
+
+    margin:
+        0 auto 12px;
+
+    background:
+        linear-gradient(
+            var(--gold2),
+            transparent
+        );
+
 }
 
-/* =====================================================
-   CONTINUOUS MATERIAL SECTION
-===================================================== */
 
-.material-section{
+/* =========================================================
+   CONTINUOUS FLOOR TRANSITION
+========================================================= */
+
+.floor-transition{
+
     position:relative;
+
+    width:100%;
+
+    margin-top:-2px;
+
+    overflow:hidden;
+
+    line-height:0;
+
+    background:#20170f;
+
+}
+
+
+.floor-transition img{
+
+    width:100%;
+
+    height:auto;
+
+    min-height:110px;
+
+    object-fit:fill;
+
+}
+
+
+/* =========================================================
+   MAIN MATERIAL AREA
+========================================================= */
+
+.main-area{
+
+    position:relative;
+
     margin-top:-1px;
 
     background:
-        linear-gradient(
-            rgba(15,12,10,.72),
-            rgba(15,12,10,.88)
-        ),
-        url("assets/index-floor-bg.png");
 
-    background-size:cover;
-    background-position:center top;
+        linear-gradient(
+            180deg,
+            rgba(31,23,16,.90),
+            rgba(18,13,9,.96) 28%,
+            rgba(10,8,6,.98) 100%
+        );
+
 }
 
-.material-section::before{
+
+.main-area::before{
+
     content:"";
+
     position:absolute;
-    inset:0;
+
+    left:0;
+    right:0;
+    top:0;
+
+    height:180px;
 
     background:
         linear-gradient(
-            180deg,
-            rgba(10,8,7,.9) 0%,
-            rgba(10,8,7,.38) 20%,
-            rgba(10,8,7,.55) 100%
+            to bottom,
+            rgba(28,20,13,.15),
+            rgba(28,20,13,0)
         );
+
 }
 
-.material-content{
+
+.main-content{
+
     position:relative;
+
     z-index:2;
 
-    padding:140px 0 120px;
+    padding:
+        115px 0 0;
+
 }
 
-/* =====================================================
+
+/* =========================================================
    SOLUTIONS
-===================================================== */
+========================================================= */
 
-.center-heading{
-    text-align:center;
+.section-heading{
+
     max-width:850px;
-    margin:0 auto 70px;
+
+    margin:
+        0 auto 70px;
+
+    text-align:center;
+
 }
 
-.center-heading .eyebrow{
-    color:var(--gold-light);
-    font-family:'Montserrat',sans-serif;
-    font-size:12px;
-    letter-spacing:.35em;
+
+.section-heading .label{
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:11px;
+
+    letter-spacing:.36em;
+
+    color:var(--gold2);
+
 }
 
-.center-heading h2{
-    margin-top:15px;
-    font-size:clamp(38px,5vw,68px);
+
+.section-heading h2{
+
+    margin-top:16px;
+
+    font-size:
+        clamp(
+            38px,
+            5vw,
+            67px
+        );
+
     line-height:1.05;
+
+    font-weight:600;
+
 }
 
-.center-heading h2 span{
-    color:var(--gold-light);
+
+.section-heading h2 span{
+
+    display:block;
+
+    color:var(--gold2);
+
 }
 
-.center-heading p{
-    margin-top:20px;
-    color:#bdb5aa;
+
+.section-heading p{
+
+    max-width:700px;
+
+    margin:
+        20px auto 0;
+
+    color:#aaa197;
+
+    font-size:16px;
+
     line-height:1.8;
+
 }
+
 
 .solution-grid{
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
 }
 
-.solution{
-    padding:20px 38px;
+
+.solution-card{
+
+    padding:
+        10px 35px 25px;
 
     text-align:center;
 
-    border-right:1px solid rgba(225,193,137,.35);
+    border-right:
+        1px solid
+        rgba(224,184,105,.25);
+
 }
 
-.solution:last-child{
+
+.solution-card:last-child{
+
     border-right:0;
+
 }
+
 
 .solution-icon{
-    width:48px;
-    height:48px;
-    margin:0 auto 25px;
 
-    border:1px solid var(--gold);
+    width:54px;
 
-    transform:rotate(45deg);
+    height:54px;
+
+    margin:
+        0 auto 27px;
+
+    border:
+        1px solid
+        var(--gold2);
+
+    transform:
+        rotate(45deg);
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
 }
+
 
 .solution-icon span{
-    transform:rotate(-45deg);
-    font-size:20px;
-    color:var(--gold-light);
+
+    transform:
+        rotate(-45deg);
+
+    color:var(--gold2);
+
+    font-size:21px;
+
 }
 
-.solution h3{
-    font-size:20px;
+
+.solution-card h3{
+
+    font-size:19px;
+
     font-weight:500;
+
 }
 
-.solution p{
+
+.solution-card p{
+
     margin-top:10px;
-    color:#aaa198;
+
+    color:#958d83;
+
     font-size:14px;
+
     line-height:1.7;
+
 }
 
-.solution a{
+
+.solution-link{
+
     display:inline-block;
+
     margin-top:18px;
 
-    color:var(--gold-light);
+    color:var(--gold2);
 
     font-size:13px;
+
 }
 
-/* =====================================================
-   WORK
-===================================================== */
 
-.work{
-    padding-top:150px;
+/* =========================================================
+   WORK SECTION
+========================================================= */
+
+.work-section{
+
+    padding-top:145px;
+
 }
 
-.work-head{
+
+.work-heading{
+
     display:flex;
+
     align-items:end;
+
     justify-content:space-between;
+
     gap:40px;
-    margin-bottom:50px;
+
+    margin-bottom:45px;
+
 }
+
 
 .work-label{
-    font-family:'Montserrat',sans-serif;
-    font-size:12px;
-    color:var(--gold-light);
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:11px;
+
     letter-spacing:.35em;
+
+    color:var(--gold2);
+
 }
 
-.work-title{
-    margin-top:12px;
-    font-size:clamp(40px,5vw,66px);
+
+.work-heading h2{
+
+    margin-top:13px;
+
+    font-size:
+        clamp(
+            38px,
+            5vw,
+            66px
+        );
+
     line-height:1;
+
 }
 
-.work-desc{
+
+.work-heading p{
+
     margin-top:12px;
-    color:#b0a79d;
+
+    color:#958c81;
+
 }
 
-.view-all{
-    border:1px solid rgba(214,165,77,.6);
-    padding:13px 20px;
-    border-radius:4px;
+
+.work-all{
 
     white-space:nowrap;
 
-    color:#dfc17f;
+    padding:
+        12px 19px;
+
+    border:
+        1px solid
+        rgba(224,184,105,.5);
+
+    color:var(--gold2);
+
+    border-radius:4px;
+
 }
 
-/* =====================================================
-   PROJECT CARDS
-===================================================== */
 
-.project-grid{
+/* =========================================================
+   WORK VISUALS
+========================================================= */
+
+.work-grid{
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:14px;
+
 }
 
-.project{
+
+.work-card{
+
     position:relative;
-    min-height:300px;
+
+    min-height:285px;
+
     overflow:hidden;
 
-    background:#111;
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(78,55,32,.75),
+            rgba(13,10,8,.96)
+        );
+
 }
 
-.project img{
-    width:100%;
-    height:100%;
-    min-height:300px;
-    object-fit:cover;
 
-    transition:transform .7s ease;
+.work-card:nth-child(2){
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(109,79,42,.68),
+            rgba(17,12,8,.98)
+        );
+
 }
 
-.project:hover img{
-    transform:scale(1.06);
+
+.work-card:nth-child(3){
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(69,68,60,.72),
+            rgba(16,12,9,.98)
+        );
+
 }
 
-.project::after{
+
+.work-card:nth-child(4){
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(100,78,49,.7),
+            rgba(15,11,8,.98)
+        );
+
+}
+
+
+.work-card::before{
+
     content:"";
+
     position:absolute;
+
+    inset:0;
+
+    background-image:
+
+        url("assets/index-floor-bg.png");
+
+    background-size:
+        auto 100%;
+
+    background-position:center;
+
+    opacity:.25;
+
+    mix-blend-mode:screen;
+
+    transition:.6s ease;
+
+}
+
+
+.work-card:hover::before{
+
+    opacity:.45;
+
+    transform:
+        scale(1.08);
+
+}
+
+
+.work-card::after{
+
+    content:"";
+
+    position:absolute;
+
     inset:0;
 
     background:
         linear-gradient(
+            to bottom,
             transparent 30%,
-            rgba(0,0,0,.9)
+            rgba(5,4,3,.92) 100%
         );
+
 }
 
-.project-info{
+
+.work-number{
+
     position:absolute;
-    z-index:2;
+
+    z-index:3;
+
+    top:22px;
 
     left:22px;
-    right:22px;
-    bottom:22px;
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:10px;
+
+    letter-spacing:.2em;
+
+    color:var(--gold2);
+
 }
 
-.project-info h3{
-    font-size:18px;
-    font-weight:500;
-}
 
-.project-info p{
-    margin-top:5px;
-
-    font-family:'Montserrat',sans-serif;
-    font-size:9px;
-    letter-spacing:.12em;
-
-    color:var(--gold-light);
-}
-
-/* =====================================================
-   STATS
-===================================================== */
-
-.stats{
-    margin-top:80px;
-
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-
-    border-top:1px solid rgba(214,165,77,.25);
-    border-bottom:1px solid rgba(214,165,77,.25);
-}
-
-.stat{
-    text-align:center;
-    padding:45px 20px;
-
-    border-right:1px solid rgba(214,165,77,.25);
-}
-
-.stat:last-child{
-    border-right:0;
-}
-
-.stat-number{
-    font-family:'Montserrat',sans-serif;
-    font-size:45px;
-    font-weight:600;
-    color:var(--gold-light);
-}
-
-.stat-label{
-    margin-top:7px;
-    color:#b6aea4;
-    font-size:14px;
-}
-
-/* =====================================================
-   CONSULT CTA
-===================================================== */
-
-.consult{
-    padding:110px 0 100px;
-}
-
-.consult-box{
-    position:relative;
-
-    padding:55px 50px;
-
-    border:1px solid rgba(214,165,77,.35);
-
-    background:
-        linear-gradient(
-            110deg,
-            rgba(13,11,9,.95),
-            rgba(45,32,18,.55)
-        );
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    gap:40px;
-}
-
-.consult-box::after{
-    content:"PEOPLE\nMATERIAL\nSOLUTION\nFOR A BETTER TOMORROW";
+.work-card-content{
 
     position:absolute;
-    right:-170px;
-    bottom:15px;
 
-    white-space:pre-line;
+    z-index:4;
 
-    font-family:'Montserrat',sans-serif;
+    left:22px;
+
+    right:22px;
+
+    bottom:22px;
+
+}
+
+
+.work-card h3{
+
+    font-size:18px;
+
+    font-weight:500;
+
+}
+
+
+.work-card p{
+
+    margin-top:5px;
+
+    font-family:"Montserrat",sans-serif;
+
     font-size:9px;
-    letter-spacing:.25em;
-    line-height:2;
 
-    color:#9e9589;
+    letter-spacing:.14em;
+
+    color:var(--gold2);
+
 }
 
-.consult-small{
-    font-family:'Montserrat',sans-serif;
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    margin-top:75px;
+
+    border-top:
+        1px solid
+        rgba(224,184,105,.23);
+
+    border-bottom:
+        1px solid
+        rgba(224,184,105,.23);
+
+}
+
+
+.stat{
+
+    text-align:center;
+
+    padding:
+        40px 15px;
+
+    border-right:
+        1px solid
+        rgba(224,184,105,.23);
+
+}
+
+
+.stat:last-child{
+
+    border-right:0;
+
+}
+
+
+.stat-number{
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:43px;
+
+    font-weight:600;
+
+    color:var(--gold2);
+
+}
+
+
+.stat-text{
+
+    margin-top:7px;
+
+    color:#aaa197;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+
+    padding:
+        145px 0 80px;
+
+}
+
+
+.about-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:80px;
+
+    align-items:center;
+
+}
+
+
+.about-label{
+
+    font-family:"Montserrat",sans-serif;
+
     font-size:11px;
-    letter-spacing:.28em;
-    color:var(--gold-light);
+
+    letter-spacing:.35em;
+
+    color:var(--gold2);
+
 }
 
-.consult h2{
-    margin-top:10px;
-    font-size:42px;
+
+.about h2{
+
+    margin-top:15px;
+
+    font-size:
+        clamp(
+            40px,
+            5vw,
+            70px
+        );
+
+    line-height:1.02;
+
 }
 
-.consult p{
-    margin-top:10px;
-    color:#aaa29a;
+
+.about h2 span{
+
+    color:var(--gold2);
+
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
 
-.footer{
-    position:relative;
+.about-copy{
 
-    border-top:1px solid rgba(214,165,77,.2);
-
-    padding:45px 0 25px;
-
-    background:rgba(6,5,4,.85);
-}
-
-.footer-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:40px;
-}
-
-.footer-brand{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-.footer-brand img{
-    width:60px;
-}
-
-.footer-brand strong{
-    color:var(--gold-light);
-    font-family:'Montserrat',sans-serif;
-    font-size:14px;
-}
-
-.footer-brand small{
-    display:block;
-    margin-top:4px;
-
-    color:#777067;
-
-    font-family:'Montserrat',sans-serif;
-    font-size:8px;
-    letter-spacing:.15em;
-}
-
-.footer-nav{
-    display:flex;
-    gap:25px;
+    margin-top:25px;
 
     color:#aaa198;
 
+    line-height:1.9;
+
+    font-size:16px;
+
+}
+
+
+.about-points{
+
+    display:grid;
+
+    gap:16px;
+
+}
+
+
+.about-point{
+
+    padding:
+        20px 22px;
+
+    border:
+        1px solid
+        rgba(224,184,105,.18);
+
+    background:
+        rgba(255,255,255,.025);
+
+}
+
+
+.about-point strong{
+
+    display:block;
+
+    color:#e9d09a;
+
+    font-size:17px;
+
+    font-weight:500;
+
+}
+
+
+.about-point span{
+
+    display:block;
+
+    margin-top:5px;
+
+    color:#888078;
+
     font-size:13px;
+
+    line-height:1.6;
+
 }
 
-.footer-social{
-    display:flex;
-    gap:10px;
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta{
+
+    padding:
+        50px 0 110px;
+
 }
 
-.social{
-    width:34px;
-    height:34px;
 
-    border:1px solid rgba(214,165,77,.3);
+.cta-box{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:
+        58px 50px;
+
+    border:
+        1px solid
+        rgba(224,184,105,.32);
+
+    background:
+
+        linear-gradient(
+            110deg,
+            rgba(10,8,6,.96),
+            rgba(61,42,22,.55)
+        );
 
     display:flex;
+
     align-items:center;
-    justify-content:center;
 
-    color:#d3b56f;
-    border-radius:50%;
-}
-
-.footer-bottom{
-    margin-top:35px;
-    padding-top:20px;
-
-    border-top:1px solid rgba(255,255,255,.08);
-
-    display:flex;
     justify-content:space-between;
 
-    color:#66615b;
+    gap:40px;
 
-    font-family:'Montserrat',sans-serif;
-    font-size:9px;
 }
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+
+.cta-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    right:-100px;
+
+    top:-100px;
+
+    width:350px;
+
+    height:350px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(220,170,72,.18),
+            transparent 65%
+        );
+
+}
+
+
+.cta-label{
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:10px;
+
+    letter-spacing:.3em;
+
+    color:var(--gold2);
+
+}
+
+
+.cta h2{
+
+    margin-top:10px;
+
+    font-size:42px;
+
+}
+
+
+.cta p{
+
+    margin-top:10px;
+
+    color:#958d83;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+
+    position:relative;
+
+    padding:
+        48px 0 25px;
+
+    background:
+        rgba(5,4,3,.92);
+
+    border-top:
+        1px solid
+        rgba(224,184,105,.18);
+
+}
+
+
+.footer-top{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:40px;
+
+}
+
+
+.footer-brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+}
+
+
+.footer-brand img{
+
+    width:58px;
+
+}
+
+
+.footer-brand-name{
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:14px;
+
+    color:var(--gold2);
+
+    font-weight:600;
+
+}
+
+
+.footer-brand-sub{
+
+    margin-top:4px;
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:8px;
+
+    letter-spacing:.14em;
+
+    color:#766e64;
+
+}
+
+
+.footer-nav{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    color:#999188;
+
+    font-size:12px;
+
+}
+
+
+.footer-nav a:hover{
+
+    color:#e2c17a;
+
+}
+
+
+.footer-social{
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+
+.social{
+
+    width:32px;
+
+    height:32px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:
+        1px solid
+        rgba(224,184,105,.25);
+
+    border-radius:50%;
+
+    color:var(--gold2);
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:12px;
+
+}
+
+
+.footer-bottom{
+
+    margin-top:35px;
+
+    padding-top:18px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.06);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    color:#5f5a54;
+
+    font-family:"Montserrat",sans-serif;
+
+    font-size:8px;
+
+    letter-spacing:.04em;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:1100px){
 
     .nav-links{
-        gap:18px;
-    }
 
-    .project-grid{
-        grid-template-columns:repeat(2,1fr);
+        gap:17px;
+
     }
 
     .solution-grid{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
 
-    .solution:nth-child(2){
+    .solution-card:nth-child(2){
+
         border-right:0;
+
     }
 
-    .solution:nth-child(-n+2){
-        border-bottom:1px solid rgba(225,193,137,.25);
+    .solution-card:nth-child(-n+2){
+
         padding-bottom:40px;
+
+        border-bottom:
+            1px solid
+            rgba(224,184,105,.20);
+
     }
 
-    .solution:nth-child(n+3){
+    .solution-card:nth-child(n+3){
+
         padding-top:40px;
+
+    }
+
+    .work-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
 
     .stats{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
 
     .stat:nth-child(2){
+
         border-right:0;
+
     }
 
     .stat:nth-child(-n+2){
-        border-bottom:1px solid rgba(214,165,77,.25);
+
+        border-bottom:
+            1px solid
+            rgba(224,184,105,.20);
+
     }
 
 }
+
 
 @media(max-width:800px){
 
-    .container,
-    .hero-content{
-        width:min(100% - 40px, 1320px);
+    .container{
+
+        width:
+            calc(100% - 40px);
+
     }
+
 
     .nav{
-        width:calc(100% - 40px);
+
+        width:
+            calc(100% - 40px);
+
+        height:76px;
+
     }
 
+
+    .brand-info{
+
+        display:none;
+
+    }
+
+
+    .menu-toggle{
+
+        display:block;
+
+    }
+
+
     .nav-links{
+
         position:absolute;
 
-        top:88px;
+        top:76px;
+
         left:20px;
+
         right:20px;
 
         display:none;
+
         flex-direction:column;
 
         align-items:stretch;
 
-        padding:25px;
+        gap:0;
 
-        background:rgba(10,9,8,.97);
-        border:1px solid rgba(214,165,77,.2);
+        padding:20px;
+
+        background:
+            rgba(8,7,6,.97);
+
+        border:
+            1px solid
+            rgba(224,184,105,.20);
+
+        backdrop-filter:
+            blur(15px);
+
     }
+
 
     .nav-links.active{
+
         display:flex;
+
     }
 
-    .nav-links a{
-        padding:10px 0;
+
+    .nav-links > a{
+
+        padding:11px 0;
+
     }
+
 
     .quote-btn{
+
         text-align:center;
+
+        margin-top:8px;
+
     }
 
-    .menu-toggle{
-        display:block;
-    }
 
     .hero{
+
         min-height:850px;
 
-        background-position:center;
+        background-position:
+            58% center;
+
     }
+
 
     .hero-content{
-        padding-top:120px;
+
+        width:
+            calc(100% - 40px);
+
+        padding-top:90px;
+
     }
+
 
     .hero h1{
-        font-size:54px;
+
+        font-size:
+            clamp(
+                46px,
+                13vw,
+                68px
+            );
+
     }
+
 
     .hero-description{
-        font-size:16px;
+
+        font-size:15px;
+
     }
 
-    .material-content{
-        padding-top:100px;
+
+    .hero::after{
+
+        height:220px;
+
     }
+
+
+    .floor-transition img{
+
+        min-height:75px;
+
+    }
+
+
+    .main-content{
+
+        padding-top:90px;
+
+    }
+
+
+    .section-heading{
+
+        margin-bottom:50px;
+
+    }
+
 
     .solution-grid{
+
         grid-template-columns:1fr;
+
     }
 
-    .solution{
+
+    .solution-card{
+
         border-right:0 !important;
-        border-bottom:1px solid rgba(225,193,137,.25);
-        padding:35px 15px !important;
+
+        border-bottom:
+            1px solid
+            rgba(224,184,105,.20);
+
+        padding:
+            30px 15px !important;
+
     }
 
-    .solution:last-child{
+
+    .solution-card:last-child{
+
         border-bottom:0;
+
     }
 
-    .work{
+
+    .work-section{
+
         padding-top:100px;
+
     }
 
-    .work-head{
-        align-items:start;
+
+    .work-heading{
+
         flex-direction:column;
+
+        align-items:flex-start;
+
     }
 
-    .project-grid{
+
+    .work-grid{
+
         grid-template-columns:1fr;
+
     }
 
-    .project{
-        min-height:280px;
-    }
 
     .stats{
-        grid-template-columns:1fr 1fr;
+
+        grid-template-columns:
+            1fr 1fr;
+
     }
+
 
     .stat{
-        padding:30px 10px;
+
+        padding:
+            30px 10px;
+
     }
+
 
     .stat-number{
+
         font-size:32px;
+
     }
 
-    .consult-box{
+
+    .about{
+
+        padding-top:100px;
+
+    }
+
+
+    .about-grid{
+
+        grid-template-columns:1fr;
+
+        gap:45px;
+
+    }
+
+
+    .cta{
+
+        padding-top:30px;
+
+    }
+
+
+    .cta-box{
+
         flex-direction:column;
+
         align-items:flex-start;
-        padding:35px 25px;
+
+        padding:
+            35px 25px;
+
     }
 
-    .consult-box::after{
-        display:none;
-    }
 
-    .consult h2{
+    .cta h2{
+
         font-size:34px;
+
     }
+
 
     .footer-top{
+
         flex-direction:column;
+
         align-items:flex-start;
+
     }
 
-    .footer-nav{
-        flex-wrap:wrap;
-    }
 
     .footer-bottom{
+
         flex-direction:column;
-        gap:10px;
+
+        align-items:flex-start;
+
     }
 
 }
+
 
 @media(max-width:500px){
 
-    .brand-text{
-        display:none;
-    }
-
-    .hero h1{
-        font-size:45px;
-    }
-
     .hero-buttons{
+
         flex-direction:column;
+
         align-items:stretch;
+
     }
+
 
     .btn{
+
         width:100%;
+
     }
+
 
     .stats{
+
         grid-template-columns:1fr;
+
     }
+
 
     .stat{
+
         border-right:0 !important;
-        border-bottom:1px solid rgba(214,165,77,.25);
+
+        border-bottom:
+            1px solid
+            rgba(224,184,105,.20);
+
     }
 
+
     .stat:last-child{
+
         border-bottom:0;
+
+    }
+
+
+    .footer-nav{
+
+        gap:14px;
+
     }
 
 }
 
-/* =====================================================
+
+/* =========================================================
    ANIMATION
-===================================================== */
+========================================================= */
 
 @keyframes fadeUp{
+
     from{
+
         opacity:0;
-        transform:translateY(25px);
+
+        transform:
+            translateY(24px);
+
     }
 
     to{
+
         opacity:1;
-        transform:translateY(0);
+
+        transform:
+            translateY(0);
+
     }
+
 }
 
+
 .hero-copy{
-    animation:fadeUp 1s ease both;
+
+    animation:
+        fadeUp .9s ease both;
+
 }
 
 </style>
 </head>
 
+
 <body>
 
-<div class="site-bg"></div>
 
-<!-- ==================================================
+<!-- =====================================================
      HEADER
-================================================== -->
+===================================================== -->
 
 <header class="header" id="header">
 
@@ -1108,9 +2133,13 @@ img{
 
         <a href="index.html" class="brand">
 
-            <img src="assets/logo.png" alt="CHATPHETCH GROUP">
+            <img
+                src="assets/logo.png"
+                alt="CHATPHETCH GROUP"
+            >
 
-            <div class="brand-text">
+            <div class="brand-info">
+
                 <div class="brand-name">
                     CHATPHETCH GROUP
                 </div>
@@ -1118,19 +2147,24 @@ img{
                 <div class="brand-sub">
                     FLOORING & CONSTRUCTION
                 </div>
+
             </div>
 
         </a>
 
 
-        <button class="menu-toggle" id="menuToggle">
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="เปิดเมนู"
+        >
             ☰
         </button>
 
 
         <div class="nav-links" id="navLinks">
 
-            <a href="index.html">
+            <a href="#home">
                 หน้าแรก
             </a>
 
@@ -1150,7 +2184,7 @@ img{
                 ผลงาน
             </a>
 
-            <a href="#work">
+            <a href="#knowledge">
                 คลังความรู้
             </a>
 
@@ -1158,7 +2192,10 @@ img{
                 ติดต่อเรา
             </a>
 
-            <a href="#contact" class="quote-btn">
+            <a
+                href="#contact"
+                class="quote-btn"
+            >
                 ขอใบเสนอราคา
             </a>
 
@@ -1169,17 +2206,21 @@ img{
 </header>
 
 
-<!-- ==================================================
-     HERO
-================================================== -->
 
-<section class="hero">
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+    class="hero"
+    id="home"
+>
 
     <div class="hero-content">
 
         <div class="hero-copy">
 
-            <div class="kicker">
+            <div class="eyebrow">
                 CHATPHETCH GROUP
             </div>
 
@@ -1199,22 +2240,32 @@ img{
 
                 CHATPHETCH GROUP ให้บริการด้านวัสดุงานพื้น
                 ระบบพื้น งานก่อสร้าง และการให้คำปรึกษา
-                เลือกใช้วัสดุสำหรับงานแต่ละประเภทอย่างเหมาะสม
+                เลือกใช้วัสดุสำหรับงานแต่ละประเภท
+                อย่างเหมาะสมกับพื้นที่และการใช้งาน
 
             </p>
 
 
             <div class="hero-buttons">
 
-                <a href="#solutions" class="btn btn-gold">
+                <a
+                    href="#solutions"
+                    class="btn btn-gold"
+                >
                     ดูสินค้า →
                 </a>
 
-                <a href="#solutions" class="btn btn-outline">
+                <a
+                    href="#solutions"
+                    class="btn btn-outline"
+                >
                     ดูบริการ
                 </a>
 
-                <a href="#about" class="btn btn-outline">
+                <a
+                    href="#about"
+                    class="btn btn-outline"
+                >
                     รู้จักบริษัท
                 </a>
 
@@ -1236,142 +2287,190 @@ img{
 </section>
 
 
-<!-- ==================================================
-     MAIN MATERIAL SECTION
-================================================== -->
 
-<section class="material-section section" id="solutions">
+<!-- =====================================================
+     FLOOR IMAGE
+     ใช้ภาพจริง index-floor-bg.png
+     เต็มความกว้าง และไม่ crop
+===================================================== -->
 
-    <div class="material-content">
+<div class="floor-transition">
+
+    <img
+        src="assets/index-floor-bg.png"
+        alt=""
+    >
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN AREA
+===================================================== -->
+
+<main class="main-area">
+
+    <div class="main-content">
 
         <div class="container">
 
 
-            <!-- SOLUTIONS -->
+            <!-- =================================================
+                 SOLUTIONS
+            ================================================== -->
 
-            <div class="center-heading">
+            <section
+                id="solutions"
+                class="solutions"
+            >
 
-                <div class="eyebrow">
-                    OUR SOLUTIONS
-                </div>
+                <div class="section-heading">
 
-                <h2>
-                    ครบทุกความต้องการ
-                    <span>
-                        เรื่องพื้น และงานก่อสร้าง
-                    </span>
-                </h2>
-
-                <p>
-                    วัสดุ บริการ และโซลูชันที่ออกแบบมา
-                    เพื่อให้เหมาะกับพื้นที่และลักษณะของแต่ละโครงการ
-                </p>
-
-            </div>
-
-
-            <div class="solution-grid">
-
-
-                <div class="solution">
-
-                    <div class="solution-icon">
-                        <span>▱</span>
+                    <div class="label">
+                        OUR SOLUTIONS
                     </div>
 
-                    <h3>
-                        ระบบพื้น
-                    </h3>
+                    <h2>
+
+                        ครบทุกความต้องการ
+
+                        <span>
+                            เรื่องพื้น และงานก่อสร้าง
+                        </span>
+
+                    </h2>
 
                     <p>
-                        พื้นคอนกรีต พื้นพิเศษ
-                        พื้นอุตสาหกรรม และระบบพื้นต่าง ๆ
-                    </p>
 
-                    <a href="#">
-                        ดูเพิ่มเติม →
-                    </a>
+                        วัสดุ บริการ และโซลูชัน
+                        สำหรับงานพื้นและงานก่อสร้าง
+                        ที่เหมาะกับลักษณะของแต่ละโครงการ
+
+                    </p>
 
                 </div>
 
 
-                <div class="solution">
+                <div class="solution-grid">
 
-                    <div class="solution-icon">
-                        <span>▰</span>
-                    </div>
 
-                    <h3>
-                        สีและการเคลือบผิว
-                    </h3>
+                    <article class="solution-card">
 
-                    <p>
-                        เพิ่มความสวยงาม
-                        ความทนทาน และอายุการใช้งาน
-                    </p>
+                        <div class="solution-icon">
+                            <span>▱</span>
+                        </div>
 
-                    <a href="#">
-                        ดูเพิ่มเติม →
-                    </a>
+                        <h3>
+                            ระบบพื้น
+                        </h3>
+
+                        <p>
+                            ระบบพื้นสำหรับพื้นที่หลากหลายประเภท
+                            ทั้งงานอุตสาหกรรม อาคาร และพื้นที่ใช้งานทั่วไป
+                        </p>
+
+                        <a
+                            href="#contact"
+                            class="solution-link"
+                        >
+                            ดูเพิ่มเติม →
+                        </a>
+
+                    </article>
+
+
+                    <article class="solution-card">
+
+                        <div class="solution-icon">
+                            <span>▰</span>
+                        </div>
+
+                        <h3>
+                            สีและการเคลือบผิว
+                        </h3>
+
+                        <p>
+                            เพิ่มความสวยงาม ความทนทาน
+                            และช่วยยืดอายุการใช้งานของพื้นผิว
+                        </p>
+
+                        <a
+                            href="#contact"
+                            class="solution-link"
+                        >
+                            ดูเพิ่มเติม →
+                        </a>
+
+                    </article>
+
+
+                    <article class="solution-card">
+
+                        <div class="solution-icon">
+                            <span>□</span>
+                        </div>
+
+                        <h3>
+                            วัสดุก่อสร้าง
+                        </h3>
+
+                        <p>
+                            วัสดุสำหรับงานก่อสร้าง
+                            และงานตกแต่งที่เลือกให้เหมาะกับโครงการ
+                        </p>
+
+                        <a
+                            href="#contact"
+                            class="solution-link"
+                        >
+                            ดูเพิ่มเติม →
+                        </a>
+
+                    </article>
+
+
+                    <article class="solution-card">
+
+                        <div class="solution-icon">
+                            <span>•••</span>
+                        </div>
+
+                        <h3>
+                            คำปรึกษา
+                        </h3>
+
+                        <p>
+                            ให้คำแนะนำด้านวัสดุ ระบบพื้น
+                            และแนวทางการใช้งานตามความต้องการ
+                        </p>
+
+                        <a
+                            href="#contact"
+                            class="solution-link"
+                        >
+                            ดูเพิ่มเติม →
+                        </a>
+
+                    </article>
+
 
                 </div>
 
-
-                <div class="solution">
-
-                    <div class="solution-icon">
-                        <span>□</span>
-                    </div>
-
-                    <h3>
-                        วัสดุก่อสร้าง
-                    </h3>
-
-                    <p>
-                        วัสดุคุณภาพ
-                        สำหรับงานก่อสร้างและตกแต่ง
-                    </p>
-
-                    <a href="#">
-                        ดูเพิ่มเติม →
-                    </a>
-
-                </div>
+            </section>
 
 
-                <div class="solution">
 
-                    <div class="solution-icon">
-                        <span>•••</span>
-                    </div>
-
-                    <h3>
-                        คำปรึกษา
-                    </h3>
-
-                    <p>
-                        แนะนำวัสดุและระบบ
-                        โดยผู้มีประสบการณ์
-                    </p>
-
-                    <a href="#">
-                        ดูเพิ่มเติม →
-                    </a>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- ==================================================
+            <!-- =================================================
                  WORK
             ================================================== -->
 
-            <div class="work" id="work">
+            <section
+                id="work"
+                class="work-section"
+            >
 
-
-                <div class="work-head">
+                <div class="work-heading">
 
                     <div>
 
@@ -1379,39 +2478,40 @@ img{
                             OUR WORK
                         </div>
 
-                        <h2 class="work-title">
+                        <h2>
                             ผลงานที่สะท้อนคุณภาพ
                         </h2>
 
-                        <p class="work-desc">
+                        <p>
                             ความไว้วางใจจากหลากหลายโครงการ
                         </p>
 
                     </div>
 
 
-                    <a href="#" class="view-all">
+                    <a
+                        href="#contact"
+                        class="work-all"
+                    >
                         ดูผลงานทั้งหมด →
                     </a>
 
                 </div>
 
 
-                <div class="project-grid">
+                <div class="work-grid">
 
 
-                    <article class="project">
+                    <article class="work-card">
 
-                        <img
-                            src="assets/project-industrial.jpg"
-                            alt="พื้นโรงงานอุตสาหกรรม"
-                            onerror="this.style.display='none'"
-                        >
+                        <div class="work-number">
+                            01
+                        </div>
 
-                        <div class="project-info">
+                        <div class="work-card-content">
 
                             <h3>
-                                พื้นโรงงานอุตสาหกรรม
+                                พื้นงานอุตสาหกรรม
                             </h3>
 
                             <p>
@@ -1423,15 +2523,13 @@ img{
                     </article>
 
 
-                    <article class="project">
+                    <article class="work-card">
 
-                        <img
-                            src="assets/project-commercial.jpg"
-                            alt="พื้นพาณิชย์"
-                            onerror="this.style.display='none'"
-                        >
+                        <div class="work-number">
+                            02
+                        </div>
 
-                        <div class="project-info">
+                        <div class="work-card-content">
 
                             <h3>
                                 พื้นพาณิชย์ / อาคาร
@@ -1446,22 +2544,20 @@ img{
                     </article>
 
 
-                    <article class="project">
+                    <article class="work-card">
 
-                        <img
-                            src="assets/project-stamped.jpg"
-                            alt="พื้นพิมพ์ลาย"
-                            onerror="this.style.display='none'"
-                        >
+                        <div class="work-number">
+                            03
+                        </div>
 
-                        <div class="project-info">
+                        <div class="work-card-content">
 
                             <h3>
-                                พื้นพิมพ์ลาย
+                                งานพื้นและการเคลือบผิว
                             </h3>
 
                             <p>
-                                STAMPED CONCRETE
+                                SURFACE SYSTEM
                             </p>
 
                         </div>
@@ -1469,18 +2565,16 @@ img{
                     </article>
 
 
-                    <article class="project">
+                    <article class="work-card">
 
-                        <img
-                            src="assets/project-construction.jpg"
-                            alt="งานก่อสร้าง"
-                            onerror="this.style.display='none'"
-                        >
+                        <div class="work-number">
+                            04
+                        </div>
 
-                        <div class="project-info">
+                        <div class="work-card-content">
 
                             <h3>
-                                งานก่อสร้างและภูมิทัศน์
+                                งานก่อสร้าง
                             </h3>
 
                             <p>
@@ -1495,9 +2589,10 @@ img{
                 </div>
 
 
-                <!-- ==================================================
+
+                <!-- =============================================
                      STATS
-                ================================================== -->
+                ============================================== -->
 
                 <div class="stats">
 
@@ -1508,7 +2603,7 @@ img{
                             500+
                         </div>
 
-                        <div class="stat-label">
+                        <div class="stat-text">
                             โครงการที่แล้วเสร็จ
                         </div>
 
@@ -1521,7 +2616,7 @@ img{
                             10+
                         </div>
 
-                        <div class="stat-label">
+                        <div class="stat-text">
                             ปีแห่งประสบการณ์
                         </div>
 
@@ -1534,8 +2629,8 @@ img{
                             100%
                         </div>
 
-                        <div class="stat-label">
-                            ความพึงพอใจจากลูกค้า
+                        <div class="stat-text">
+                            ใส่ใจในทุกโครงการ
                         </div>
 
                     </div>
@@ -1547,7 +2642,7 @@ img{
                             01
                         </div>
 
-                        <div class="stat-label">
+                        <div class="stat-text">
                             พื้นที่ดีเริ่มต้นจากวัสดุที่ใช่
                         </div>
 
@@ -1556,21 +2651,158 @@ img{
 
                 </div>
 
+            </section>
 
-            </div>
 
 
-            <!-- ==================================================
-                 CONSULT
+            <!-- =================================================
+                 ABOUT
             ================================================== -->
 
-            <div class="consult" id="contact">
+            <section
+                id="about"
+                class="about"
+            >
 
-                <div class="consult-box">
+                <div class="about-grid">
+
 
                     <div>
 
-                        <div class="consult-small">
+                        <div class="about-label">
+                            ABOUT CHATPHETCH GROUP
+                        </div>
+
+                        <h2>
+
+                            สร้างพื้นที่
+
+                            <span>
+                                ที่ดีกว่า
+                            </span>
+
+                        </h2>
+
+                        <p class="about-copy">
+
+                            CHATPHETCH GROUP
+                            ให้บริการด้านวัสดุงานพื้น
+                            งานก่อสร้าง และการให้คำปรึกษา
+                            โดยมุ่งเน้นการเลือกวัสดุและระบบ
+                            ที่เหมาะสมกับลักษณะการใช้งานของแต่ละพื้นที่
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="about-points">
+
+
+                        <div class="about-point">
+
+                            <strong>
+                                PEOPLE
+                            </strong>
+
+                            <span>
+                                ทีมงานพร้อมให้ข้อมูลและคำแนะนำ
+                                เพื่อช่วยให้การตัดสินใจด้านวัสดุชัดเจนขึ้น
+                            </span>
+
+                        </div>
+
+
+                        <div class="about-point">
+
+                            <strong>
+                                MATERIAL
+                            </strong>
+
+                            <span>
+                                ให้ความสำคัญกับการเลือกวัสดุ
+                                ให้เหมาะกับประเภทพื้นที่และการใช้งาน
+                            </span>
+
+                        </div>
+
+
+                        <div class="about-point">
+
+                            <strong>
+                                SOLUTION
+                            </strong>
+
+                            <span>
+                                มองทั้งระบบของงาน
+                                เพื่อให้ได้แนวทางที่เหมาะกับแต่ละโครงการ
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 KNOWLEDGE
+            ================================================== -->
+
+            <section
+                id="knowledge"
+                class="about"
+                style="padding-top:60px;"
+            >
+
+                <div class="section-heading">
+
+                    <div class="label">
+                        KNOWLEDGE
+                    </div>
+
+                    <h2>
+
+                        ความรู้เรื่องพื้น
+
+                        <span>
+                            และวัสดุก่อสร้าง
+                        </span>
+
+                    </h2>
+
+                    <p>
+
+                        ข้อมูลพื้นฐานสำหรับช่วยวางแผน
+                        และเลือกวัสดุให้เหมาะกับพื้นที่ของคุณ
+
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CTA
+            ================================================== -->
+
+            <section
+                id="contact"
+                class="cta"
+            >
+
+                <div class="cta-box">
+
+
+                    <div>
+
+                        <div class="cta-label">
                             LET'S BUILD A BETTER SPACE
                         </div>
 
@@ -1586,59 +2818,30 @@ img{
                     </div>
 
 
-                    <a href="#" class="btn btn-gold">
+                    <a
+                        href="mailto:info@chatpetchgroup.com"
+                        class="btn btn-gold"
+                    >
                         ติดต่อเรา →
                     </a>
 
+
                 </div>
 
-            </div>
+            </section>
 
 
         </div>
 
     </div>
 
-</section>
+</main>
 
 
-<!-- ==================================================
-     ABOUT
-================================================== -->
 
-<section class="section" id="about">
-
-    <div class="container" style="padding:120px 0;">
-
-        <div class="center-heading" style="margin-bottom:0;">
-
-            <div class="eyebrow">
-                ABOUT CHATPHETCH GROUP
-            </div>
-
-            <h2>
-                สร้างพื้นที่
-                <span>
-                    ที่ดีกว่า
-                </span>
-            </h2>
-
-            <p>
-                CHATPHETCH GROUP ดำเนินธุรกิจด้านวัสดุงานพื้น
-                พร้อมให้บริการข้อมูล คำปรึกษา
-                และแนวทางสำหรับงานพื้นและวัสดุก่อสร้าง
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ==================================================
+<!-- =====================================================
      FOOTER
-================================================== -->
+===================================================== -->
 
 <footer class="footer">
 
@@ -1648,7 +2851,10 @@ img{
         <div class="footer-top">
 
 
-            <a href="index.html" class="footer-brand">
+            <a
+                href="#home"
+                class="footer-brand"
+            >
 
                 <img
                     src="assets/logo.png"
@@ -1657,22 +2863,22 @@ img{
 
                 <div>
 
-                    <strong>
+                    <div class="footer-brand-name">
                         CHATPHETCH GROUP
-                    </strong>
+                    </div>
 
-                    <small>
+                    <div class="footer-brand-sub">
                         FLOORING & CONSTRUCTION
-                    </small>
+                    </div>
 
                 </div>
 
             </a>
 
 
-            <div class="footer-nav">
+            <nav class="footer-nav">
 
-                <a href="index.html">
+                <a href="#home">
                     หน้าแรก
                 </a>
 
@@ -1692,25 +2898,41 @@ img{
                     ผลงาน
                 </a>
 
+                <a href="#knowledge">
+                    คลังความรู้
+                </a>
+
                 <a href="#contact">
                     ติดต่อเรา
                 </a>
 
-            </div>
+            </nav>
 
 
             <div class="footer-social">
 
-                <a href="#" class="social">
+                <a
+                    href="#"
+                    class="social"
+                    aria-label="Facebook"
+                >
                     f
                 </a>
 
-                <a href="#" class="social">
+                <a
+                    href="#"
+                    class="social"
+                    aria-label="Instagram"
+                >
                     ◎
                 </a>
 
-                <a href="#" class="social">
-                    ◉
+                <a
+                    href="#"
+                    class="social"
+                    aria-label="Line"
+                >
+                    L
                 </a>
 
             </div>
@@ -1723,7 +2945,6 @@ img{
 
             <span>
                 © 2026 CHATPHETCH GROUP CO., LTD.
-                All Rights Reserved.
             </span>
 
             <span>
@@ -1738,81 +2959,113 @@ img{
 </footer>
 
 
+
 <script>
 
-/* =====================================================
+/* =========================================================
    HEADER SCROLL
-===================================================== */
+========================================================= */
 
-const header = document.getElementById("header");
+const header =
+    document.getElementById("header");
 
-window.addEventListener("scroll", () => {
+window.addEventListener(
+    "scroll",
+    function(){
 
-    if(window.scrollY > 50){
+        if(window.scrollY > 40){
 
-        header.classList.add("scrolled");
+            header.classList.add("scrolled");
 
-    }else{
+        }else{
 
-        header.classList.remove("scrolled");
-
-    }
-
-});
-
-
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-
-menuToggle.addEventListener("click", () => {
-
-    navLinks.classList.toggle("active");
-
-});
-
-
-/* Close menu after click */
-
-document.querySelectorAll(".nav-links a").forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        navLinks.classList.remove("active");
-
-    });
-
-});
-
-
-/* =====================================================
-   SMOOTH SCROLL
-===================================================== */
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-    anchor.addEventListener("click", function(e){
-
-        const target = document.querySelector(
-            this.getAttribute("href")
-        );
-
-        if(target){
-
-            e.preventDefault();
-
-            target.scrollIntoView({
-                behavior:"smooth"
-            });
+            header.classList.remove("scrolled");
 
         }
 
-    });
+    }
+);
 
-});
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+menuToggle.addEventListener(
+    "click",
+    function(){
+
+        navLinks.classList.toggle("active");
+
+    }
+);
+
+
+/* =========================================================
+   CLOSE MOBILE MENU
+========================================================= */
+
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(
+        function(link){
+
+            link.addEventListener(
+                "click",
+                function(){
+
+                    navLinks.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   SMOOTH SCROLL
+========================================================= */
+
+document
+    .querySelectorAll('a[href^="#"]')
+    .forEach(
+        function(anchor){
+
+            anchor.addEventListener(
+                "click",
+                function(event){
+
+                    const target =
+                        document.querySelector(
+                            this.getAttribute("href")
+                        );
+
+                    if(target){
+
+                        event.preventDefault();
+
+                        target.scrollIntoView({
+                            behavior:"smooth",
+                            block:"start"
+                        });
+
+                    }
+
+                }
+            );
+
+        }
+    );
 
 </script>
 
