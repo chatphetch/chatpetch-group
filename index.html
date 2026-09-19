@@ -1,37 +1,63 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CHATPHETCH GROUP | Flooring & Construction</title>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-<meta name="description"
-      content="CHATPHETCH GROUP วัสดุงานพื้น งานก่อสร้าง ระบบพื้นอุตสาหกรรม และงานเคลือบพื้น">
+<title>
+    CHATPHETCH GROUP | Flooring & Construction
+</title>
+
+<meta
+    name="description"
+    content="CHATPHETCH GROUP วัสดุงานพื้น งานก่อสร้าง ระบบพื้น และโซลูชันสำหรับโครงการ"
+>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Prompt:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+>
+
 
 <style>
 
 /* =========================================================
    CHATPHETCH GROUP
-   NEW HOMEPAGE
+   HOMEPAGE
    ========================================================= */
 
 :root{
-    --black:#090706;
-    --brown:#1b1009;
-    --brown2:#25160c;
-    --brown3:#332014;
 
-    --gold:#c6a05d;
-    --gold2:#e0c27f;
-    --gold3:#a98043;
+    --black:#050403;
+    --black-2:#0b0806;
 
-    --cream:#f4eee5;
-    --text:#ddd2c4;
-    --muted:#a99c8d;
+    --brown:#17100b;
+    --brown-2:#21150d;
 
-    --max:1320px;
+    --gold:#c9a45c;
+    --gold-light:#e4c57f;
+
+    --white:#f5efe7;
+    --text:#ddd3c7;
+    --muted:#a99d90;
+
+    --container:1280px;
+
 }
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
 
 *{
     box-sizing:border-box;
@@ -42,19 +68,23 @@ html{
 }
 
 body{
+
     margin:0;
     padding:0;
-    background:var(--black);
-    color:var(--cream);
-    font-family:
-        "Noto Sans Thai",
-        "Sarabun",
-        Arial,
-        sans-serif;
-}
 
-img{
-    max-width:100%;
+    background:
+        var(--black);
+
+    color:
+        var(--text);
+
+    font-family:
+        "Prompt",
+        "Kanit",
+        sans-serif;
+
+    overflow-x:hidden;
+
 }
 
 a{
@@ -62,202 +92,255 @@ a{
     text-decoration:none;
 }
 
-button{
-    font:inherit;
+img{
+    display:block;
+    max-width:100%;
 }
+
 
 /* =========================================================
    MASTER HEADER
+   ใช้ customer-master-nav.js ของเดิม
    ========================================================= */
 
-.header{
-    position:fixed !important;
-    top:0;
-    left:0;
-    right:0;
+/*
+   ไม่เปลี่ยนโครงสร้างเมนู
+   แค่ทำให้ Header กลืนกับ Hero
+*/
 
-    z-index:9999;
+.header{
 
     background:
         linear-gradient(
             180deg,
-            rgba(4,3,2,.70),
-            rgba(4,3,2,.16)
+            rgba(4,3,2,.62),
+            rgba(4,3,2,.08)
         ) !important;
 
     border-bottom:
         1px solid
-        rgba(210,170,92,.10) !important;
+        rgba(201,164,92,.10) !important;
 
     box-shadow:none !important;
 
-    backdrop-filter:blur(5px);
-    -webkit-backdrop-filter:blur(5px);
+    backdrop-filter:
+        blur(3px);
+
+    -webkit-backdrop-filter:
+        blur(3px);
 
     transition:
-        background .45s ease,
-        backdrop-filter .45s ease,
-        box-shadow .45s ease;
+        background .35s ease,
+        box-shadow .35s ease;
+
 }
 
-.header.cp-header-scrolled{
+
+.header.cp-scrolled{
+
     background:
-        rgba(8,6,4,.94) !important;
+        rgba(5,4,3,.94) !important;
 
     border-bottom:
         1px solid
-        rgba(210,170,92,.20) !important;
+        rgba(201,164,92,.20) !important;
 
     box-shadow:
         0 12px 40px
-        rgba(0,0,0,.38) !important;
+        rgba(0,0,0,.32) !important;
 
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
 }
 
 
 /* =========================================================
-   HERO + FLOOR MASTER STAGE
-
-   IMPORTANT:
-   Hero and floor are inside ONE visual stage.
-   There is no black gap between them.
+   HERO / FLOOR VISUAL
    ========================================================= */
 
-.cp-visual-stage{
+.cp-visual{
 
     position:relative;
 
-    background:
-        #21140b;
+    width:100%;
 
     overflow:hidden;
 
-    isolation:isolate;
+    background:
+        #21150d;
+
 }
 
 
 /* =========================================================
    HERO
+
+   IMPORTANT
+
+   ภาพต้นฉบับ home-hero-visual.jpg
+   มีสัดส่วนประมาณ 778 : 656
+
+   ส่วนบนของภาพคือ Interior
+   ส่วนล่างคือพื้น
+
+   เราจะไม่ใช้ background-size: cover
+   เพราะมันจะ crop ภาพผิดตำแหน่ง
+
+   ใช้ background-size: 100% auto
+   เพื่อให้ perspective ตรงกับ floor image
    ========================================================= */
 
 .cp-hero{
 
     position:relative;
 
-    min-height:100svh;
-    height:920px;
+    width:100%;
 
-    display:flex;
-    align-items:center;
+    /*
+       จุดตัดของภาพ Hero
+
+       ค่าประมาณนี้เลือกจากภาพต้นฉบับจริง
+       เพื่อให้ส่วนพื้นของ Hero หยุดตรงกับ
+       จุดเริ่มต้นของ index-floor-bg.png
+    */
+
+    height:
+        clamp(
+            650px,
+            48.9vw,
+            940px
+        );
 
     overflow:hidden;
 
-    background:#21140b;
+    background:
+        #21150d;
 
-    isolation:isolate;
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    HERO IMAGE
-   --------------------------------------------------------- */
+   ========================================================= */
 
-.cp-hero-photo{
+.cp-hero-image{
 
     position:absolute;
 
-    inset:-3%;
+    top:0;
+    left:0;
 
-    z-index:-10;
+    width:100%;
+
+    /*
+       ห้าม cover
+       ห้าม scale
+       ห้าม translate
+
+       เพราะต้องให้ pixel geometry
+       ของฉากตรงกับ floor image
+    */
+
+    height:auto;
+
+    min-width:100%;
+    max-width:none;
 
     background-image:
         url("assets/home-hero-visual.jpg");
 
     background-repeat:no-repeat;
 
-    background-size:cover;
-
-    /*
-       IMPORTANT:
-       Keep the lower architectural/floor area visible.
-    */
     background-position:
-        center 54%;
+        center top;
 
-    transform:
-        scale(1.045);
+    background-size:
+        100% auto;
+
+    z-index:0;
+
 }
 
 
-/* ---------------------------------------------------------
-   DARK CINEMATIC OVERLAY
-   --------------------------------------------------------- */
+/* =========================================================
+   HERO DARK SIDE
 
-.cp-hero-dark{
+   เฉพาะด้านข้อความ
+   ไม่ลากลงมาปิดรอยต่อพื้น
+   ========================================================= */
+
+.cp-hero-overlay{
 
     position:absolute;
 
     inset:0;
 
-    z-index:-9;
+    z-index:2;
+
+    pointer-events:none;
 
     background:
 
         linear-gradient(
             90deg,
 
-            rgba(4,3,2,.97) 0%,
+            rgba(3,2,1,.94)
+            0%,
 
-            rgba(7,5,3,.91) 19%,
+            rgba(5,3,2,.82)
+            18%,
 
-            rgba(13,8,5,.75) 39%,
+            rgba(10,6,3,.57)
+            37%,
 
-            rgba(23,13,7,.42) 61%,
+            rgba(16,9,5,.22)
+            58%,
 
-            rgba(29,17,9,.17) 82%,
+            rgba(20,11,6,.04)
+            82%,
 
-            rgba(29,17,9,.10) 100%
+            rgba(20,11,6,0)
+            100%
         );
+
 }
 
 
-/* ---------------------------------------------------------
-   WARM BROWN COLOR GRADE
-   --------------------------------------------------------- */
+/* =========================================================
+   TOP SHADOW
+   ========================================================= */
 
-.cp-hero-warm{
+.cp-hero-top{
 
     position:absolute;
 
-    inset:0;
+    top:0;
+    left:0;
+    right:0;
 
-    z-index:-8;
+    height:150px;
+
+    z-index:3;
+
+    pointer-events:none;
 
     background:
-
         linear-gradient(
             180deg,
-
-            rgba(7,5,3,.20) 0%,
-
-            rgba(20,11,6,.02) 35%,
-
-            rgba(35,20,11,.12) 55%,
-
-            rgba(53,31,16,.40) 73%,
-
-            rgba(48,28,15,.72) 88%,
-
-            rgba(35,21,12,.96) 100%
+            rgba(0,0,0,.38),
+            rgba(0,0,0,0)
         );
+
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    HERO CONTENT
-   --------------------------------------------------------- */
+   ========================================================= */
 
 .cp-hero-content{
 
@@ -265,30 +348,34 @@ button{
 
     z-index:10;
 
-    width:min(
-        var(--max),
-        calc(100% - 80px)
-    );
+    width:
+        min(
+            var(--container),
+            calc(100% - 80px)
+        );
 
-    margin:0 auto;
+    height:100%;
 
-    padding-top:80px;
+    margin:
+        0 auto;
 
     display:flex;
 
     align-items:center;
+
 }
 
 
 .cp-hero-copy{
 
-    width:min(680px,100%);
+    width:
+        620px;
 
-    padding-left:20px;
+    margin-top:
+        20px;
+
 }
 
-
-/* kicker */
 
 .cp-kicker{
 
@@ -296,18 +383,19 @@ button{
 
     align-items:center;
 
-    gap:15px;
+    gap:14px;
 
-    margin-bottom:25px;
+    margin-bottom:22px;
 
-    color:var(--gold2);
+    color:
+        var(--gold-light);
 
     font-size:12px;
 
-    letter-spacing:
-        .30em;
+    font-weight:500;
 
-    font-weight:600;
+    letter-spacing:.28em;
+
 }
 
 
@@ -315,103 +403,92 @@ button{
 
     content:"";
 
-    display:block;
-
-    width:52px;
+    width:48px;
 
     height:1px;
 
     background:
         var(--gold);
+
 }
 
 
-/* title */
-
-.cp-hero h1{
+.cp-title{
 
     margin:0;
+
+    color:
+        var(--white);
 
     font-size:
         clamp(
             48px,
-            6.2vw,
-            94px
+            5.8vw,
+            88px
         );
 
-    line-height:1.05;
+    line-height:
+        1.04;
+
+    font-weight:400;
 
     letter-spacing:
         -.045em;
 
-    font-weight:500;
-
-    color:#f7f0e6;
 }
 
 
-.cp-hero h1 span{
+.cp-title span{
 
     display:block;
 
-    color:var(--gold2);
-
-    font-weight:500;
-}
-
-
-/* description */
-
-.cp-hero-description{
-
-    max-width:560px;
-
-    margin-top:28px;
-
     color:
-        rgba(244,238,229,.76);
+        var(--gold-light);
 
-    font-size:
-        clamp(
-            15px,
-            1.25vw,
-            18px
-        );
-
-    line-height:1.9;
 }
 
 
-/* gold line */
+.cp-line{
 
-.cp-hero-rule{
-
-    width:90px;
+    width:80px;
 
     height:1px;
 
-    margin-top:30px;
+    margin-top:28px;
 
     background:
-        linear-gradient(
-            90deg,
-            var(--gold),
-            transparent
-        );
+        var(--gold);
+
 }
 
 
-/* buttons */
+.cp-description{
 
-.cp-hero-actions{
+    max-width:570px;
+
+    margin:
+        25px 0 0;
+
+    color:
+        rgba(245,239,231,.78);
+
+    font-size:16px;
+
+    line-height:1.9;
+
+}
+
+
+.cp-actions{
 
     display:flex;
 
     flex-wrap:wrap;
 
-    gap:14px;
+    gap:13px;
 
-    margin-top:34px;
+    margin-top:31px;
+
 }
 
 
@@ -426,329 +503,246 @@ button{
     min-height:50px;
 
     padding:
-        0 26px;
-
-    border:
-        1px solid
-        rgba(220,185,115,.65);
+        0 25px;
 
     font-size:13px;
 
-    letter-spacing:.04em;
-
     transition:
-        .3s ease;
+        transform .25s ease,
+        background .25s ease,
+        border-color .25s ease;
+
 }
 
 
-.cp-button-primary{
-
-    background:
-        linear-gradient(
-            135deg,
-            #d5b16d,
-            #a77d3e
-        );
-
-    border-color:
-        #d8b676;
-
-    color:#160e08;
-
-    font-weight:600;
-}
-
-
-.cp-button-primary:hover{
+.cp-button:hover{
 
     transform:
         translateY(-2px);
 
-    filter:
-        brightness(1.08);
 }
 
 
-.cp-button-secondary{
-
-    background:
-        rgba(20,12,7,.28);
+.cp-button-main{
 
     color:
-        #f0e5d5;
+        #170f08;
 
-    backdrop-filter:
-        blur(5px);
+    background:
+        linear-gradient(
+            135deg,
+            #dfbd76,
+            #ae8344
+        );
+
+    border:
+        1px solid
+        #dfbd76;
+
 }
 
 
-.cp-button-secondary:hover{
+.cp-button-sub{
+
+    color:
+        #f5eee5;
 
     background:
-        rgba(190,145,73,.12);
+        rgba(10,6,3,.20);
 
-    border-color:
-        var(--gold2);
+    border:
+        1px solid
+        rgba(220,184,111,.58);
+
+    backdrop-filter:
+        blur(3px);
+
 }
 
 
 /* =========================================================
-   THE MOST IMPORTANT PART
-   HERO → FLOOR TRANSITION
+   FLOOR
 
-   The floor image starts BEFORE the hero actually ends.
-   It is visually layered into the bottom of the hero.
+   สำคัญมาก:
+
+   ไม่มี gradient
+   ไม่มี black overlay
+   ไม่มี negative margin
+
+   ภาพต่อจาก Hero โดยตรง
    ========================================================= */
 
-.cp-floor-wrap{
-
-    position:relative;
-
-    margin-top:-210px;
-
-    z-index:20;
-
-    background:
-        transparent;
-
-    line-height:0;
-}
-
-
-/*
-   Huge top feather.
-
-   This is not a black overlay.
-   It uses the same warm brown family as the Hero.
-*/
-
-.cp-floor-feather{
-
-    position:absolute;
-
-    left:0;
-    right:0;
-
-    top:-1px;
-
-    height:280px;
-
-    z-index:5;
-
-    pointer-events:none;
-
-    background:
-
-        linear-gradient(
-            to bottom,
-
-            rgba(33,20,11,0) 0%,
-
-            rgba(33,20,11,.06) 12%,
-
-            rgba(33,20,11,.16) 25%,
-
-            rgba(33,20,11,.31) 39%,
-
-            rgba(33,20,11,.50) 54%,
-
-            rgba(33,20,11,.70) 70%,
-
-            rgba(33,20,11,.87) 84%,
-
-            rgba(33,20,11,1) 100%
-        );
-}
-
-
-/*
-   Floor image itself.
-*/
-
-.cp-floor-image{
+.cp-floor{
 
     position:relative;
 
     width:100%;
 
-    height:auto;
+    margin:0;
+    padding:0;
+
+    background:
+        #21150d;
+
+    line-height:0;
+
+    overflow:hidden;
+
+}
+
+
+.cp-floor img{
 
     display:block;
 
-    margin:0;
+    width:100%;
 
-    padding:0;
+    height:auto;
 
     max-width:none;
 
-    object-fit:contain;
+    margin:0;
+    padding:0;
 
     /*
-       Very small overlap removes mathematical seam.
+       สำคัญ:
+       ให้ภาพแสดงตามสัดส่วนจริง
     */
-    transform:
-        translateY(-1px);
-}
 
+    object-fit:
+        contain;
 
-/*
-   Warm glow where the two images meet.
-*/
-
-.cp-floor-glow{
-
-    position:absolute;
-
-    left:0;
-    right:0;
-
-    top:0;
-
-    height:360px;
-
-    z-index:6;
-
-    pointer-events:none;
-
-    background:
-
-        radial-gradient(
-            ellipse
-            at 50% 4%,
-
-            rgba(198,160,93,.13)
-            0%,
-
-            rgba(112,72,35,.08)
-            25%,
-
-            rgba(33,20,11,0)
-            66%
-        );
-
-    mix-blend-mode:
-        screen;
-
-    opacity:.8;
-}
-
-
-/*
-   Side vignette.
-
-   Helps both images feel like one architectural scene.
-*/
-
-.cp-floor-vignette{
-
-    position:absolute;
-
-    inset:0;
-
-    z-index:7;
-
-    pointer-events:none;
-
-    background:
-
-        linear-gradient(
-            90deg,
-
-            rgba(14,8,5,.30),
-            transparent 17%,
-
-            transparent 83%,
-
-            rgba(14,8,5,.30)
-        );
 }
 
 
 /* =========================================================
-   CONTENT BELOW FLOOR
+   MICRO COLOR MATCH
+
+   ไม่ใช่แถบ transition
+   แค่ปรับโทนตรงรอยต่อบางมาก
+
+   opacity ต่ำมาก เพื่อไม่ให้เกิดแถบ
+   ========================================================= */
+
+.cp-floor::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:18px;
+
+    z-index:2;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(27,17,10,.10),
+            rgba(27,17,10,0)
+        );
+
+}
+
+
+/* =========================================================
+   CONTENT AFTER FLOOR
    ========================================================= */
 
 .cp-content{
 
     position:relative;
 
-    margin-top:0;
-
     background:
+
         linear-gradient(
             180deg,
-            #1c110a 0%,
-            #120b07 100%
+            #17100b 0%,
+            #0b0806 100%
         );
 
-    color:var(--cream);
 }
 
 
 /* =========================================================
-   GENERIC SECTIONS
+   GENERAL SECTION
    ========================================================= */
 
 .cp-section{
 
-    width:min(
-        var(--max),
-        calc(100% - 80px)
-    );
+    width:
+        min(
+            var(--container),
+            calc(100% - 80px)
+        );
 
-    margin:0 auto;
+    margin:
+        0 auto;
 
     padding:
-        120px 0;
+        110px 0;
+
 }
 
 
-.cp-section-eyebrow{
+.cp-eyebrow{
 
-    margin-bottom:14px;
+    margin-bottom:15px;
 
-    color:var(--gold);
+    color:
+        var(--gold);
 
     font-size:11px;
 
-    letter-spacing:
-        .25em;
+    letter-spacing:.25em;
 
-    text-transform:
-        uppercase;
 }
 
 
-.cp-section-title{
+.cp-heading{
 
     margin:0;
+
+    color:
+        var(--white);
 
     font-size:
         clamp(
             34px,
             4vw,
-            60px
+            58px
         );
 
-    line-height:1.08;
+    line-height:
+        1.12;
 
     font-weight:400;
 
-    letter-spacing:-.03em;
+    letter-spacing:
+        -.03em;
+
 }
 
 
-.cp-section-text{
+.cp-text{
 
-    max-width:680px;
+    max-width:690px;
 
-    margin-top:24px;
+    margin:
+        23px 0 0;
 
-    color:var(--muted);
+    color:
+        var(--muted);
 
-    font-size:16px;
+    font-size:15px;
 
-    line-height:1.9;
+    line-height:1.95;
+
 }
 
 
@@ -765,80 +759,91 @@ button{
 
     gap:1px;
 
-    margin-top:55px;
+    margin-top:52px;
 
     background:
-        rgba(198,160,93,.16);
+        rgba(201,164,92,.16);
 
     border:
         1px solid
-        rgba(198,160,93,.16);
+        rgba(201,164,92,.16);
+
 }
 
 
-.cp-solution{
+.cp-card{
 
-    min-height:260px;
+    min-height:270px;
 
     padding:38px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(46,28,16,.82),
-            rgba(20,12,7,.96)
+            #2b1a0e,
+            #120b07
         );
 
     transition:
-        .35s ease;
+        transform .3s ease,
+        background .3s ease;
+
 }
 
 
-.cp-solution:hover{
+.cp-card:hover{
+
+    transform:
+        translateY(-4px);
 
     background:
         linear-gradient(
             145deg,
-            rgba(73,46,25,.9),
-            rgba(24,14,8,.98)
+            #3a2412,
+            #160d08
         );
 
-    transform:
-        translateY(-3px);
 }
 
 
-.cp-solution-number{
+.cp-card-number{
 
     color:
-        rgba(198,160,93,.52);
+        rgba(201,164,92,.60);
 
-    font-size:12px;
+    font-size:11px;
 
-    letter-spacing:.15em;
+    letter-spacing:.18em;
+
 }
 
 
-.cp-solution h3{
+.cp-card h3{
 
     margin:
-        40px 0 14px;
+        42px 0 13px;
 
-    font-size:23px;
+    color:
+        var(--white);
+
+    font-size:22px;
 
     font-weight:400;
+
 }
 
 
-.cp-solution p{
+.cp-card p{
 
     margin:0;
 
-    color:var(--muted);
-
-    line-height:1.8;
+    color:
+        var(--muted);
 
     font-size:14px;
+
+    line-height:1.85;
+
 }
 
 
@@ -855,23 +860,26 @@ button{
 
     border-top:
         1px solid
-        rgba(198,160,93,.18);
+        rgba(201,164,92,.18);
 
     border-bottom:
         1px solid
-        rgba(198,160,93,.18);
+        rgba(201,164,92,.18);
+
 }
 
 
 .cp-stat{
 
-    padding:55px 35px;
+    padding:
+        50px 25px;
 
     text-align:center;
 
     border-right:
         1px solid
-        rgba(198,160,93,.15);
+        rgba(201,164,92,.15);
+
 }
 
 
@@ -884,18 +892,20 @@ button{
 
     display:block;
 
-    color:var(--gold2);
+    color:
+        var(--gold-light);
 
     font-size:
         clamp(
             44px,
             5vw,
-            72px
+            70px
         );
 
-    font-weight:400;
+    font-weight:300;
 
     line-height:1;
+
 }
 
 
@@ -903,13 +913,15 @@ button{
 
     display:block;
 
-    margin-top:14px;
+    margin-top:13px;
 
-    color:var(--muted);
+    color:
+        var(--muted);
 
-    font-size:13px;
+    font-size:12px;
 
-    letter-spacing:.08em;
+    letter-spacing:.12em;
+
 }
 
 
@@ -924,9 +936,10 @@ button{
     grid-template-columns:
         1fr 1fr;
 
-    gap:90px;
+    gap:80px;
 
     align-items:center;
+
 }
 
 
@@ -936,16 +949,17 @@ button{
 
     height:1px;
 
-    margin-top:30px;
+    margin-top:28px;
 
     background:
         var(--gold);
+
 }
 
 
-.cp-about-box{
+.cp-about-panel{
 
-    min-height:430px;
+    min-height:390px;
 
     display:flex;
 
@@ -953,43 +967,44 @@ button{
 
     justify-content:center;
 
-    padding:50px;
-
     border:
         1px solid
-        rgba(198,160,93,.16);
+        rgba(201,164,92,.16);
 
     background:
 
         radial-gradient(
-            circle at 70% 25%,
-            rgba(198,160,93,.12),
-            transparent 40%
+            circle at 65% 35%,
+            rgba(201,164,92,.14),
+            transparent 42%
         ),
 
         linear-gradient(
             145deg,
-            rgba(46,28,16,.7),
-            rgba(13,8,5,.95)
+            #2a190d,
+            #0d0805
         );
+
 }
 
 
-.cp-about-box span{
+.cp-about-panel strong{
 
     color:
-        rgba(224,194,127,.28);
+        rgba(228,197,127,.28);
 
     font-size:
         clamp(
-            70px,
-            9vw,
+            80px,
+            10vw,
             150px
         );
 
     font-weight:300;
 
-    letter-spacing:-.08em;
+    letter-spacing:
+        -.08em;
+
 }
 
 
@@ -997,43 +1012,48 @@ button{
    KNOWLEDGE
    ========================================================= */
 
-.cp-knowledge-grid{
+.cp-knowledge{
 
     display:grid;
 
     grid-template-columns:
         repeat(3,1fr);
 
-    gap:22px;
+    gap:20px;
 
-    margin-top:55px;
+    margin-top:50px;
+
 }
 
 
 .cp-knowledge-card{
 
-    padding:30px;
+    min-height:230px;
 
-    min-height:220px;
+    padding:30px;
 
     border:
         1px solid
-        rgba(198,160,93,.15);
+        rgba(201,164,92,.15);
 
     background:
-        rgba(28,17,10,.70);
+        rgba(24,15,9,.76);
 
-    transition:.3s ease;
+    transition:
+        transform .3s ease,
+        border-color .3s ease;
+
 }
 
 
 .cp-knowledge-card:hover{
 
-    border-color:
-        rgba(198,160,93,.40);
-
     transform:
         translateY(-4px);
+
+    border-color:
+        rgba(201,164,92,.42);
+
 }
 
 
@@ -1042,23 +1062,29 @@ button{
     color:
         var(--gold);
 
-    letter-spacing:
-        .15em;
+    letter-spacing:.16em;
+
 }
 
 
 .cp-knowledge-card h3{
 
     margin:
-        32px 0 12px;
+        30px 0 12px;
 
-    font-size:20px;
+    color:
+        var(--white);
+
+    font-size:19px;
 
     font-weight:400;
+
 }
 
 
 .cp-knowledge-card p{
+
+    margin:0;
 
     color:
         var(--muted);
@@ -1067,63 +1093,58 @@ button{
 
     line-height:1.8;
 
-    margin:0;
 }
 
 
 /* =========================================================
-   FINAL CTA
+   CTA
    ========================================================= */
 
 .cp-cta{
 
-    position:relative;
-
-    overflow:hidden;
-
     border-top:
         1px solid
-        rgba(198,160,93,.16);
+        rgba(201,164,92,.17);
 
     border-bottom:
         1px solid
-        rgba(198,160,93,.16);
+        rgba(201,164,92,.17);
 
     background:
 
         radial-gradient(
             ellipse at 75% 50%,
-            rgba(174,125,55,.16),
-            transparent 45%
+            rgba(201,164,92,.13),
+            transparent 43%
         ),
 
-        linear-gradient(
-            120deg,
-            #21140c,
-            #0e0906
-        );
+        #17100b;
+
 }
 
 
 .cp-cta-inner{
 
-    width:min(
-        var(--max),
-        calc(100% - 80px)
-    );
+    width:
+        min(
+            var(--container),
+            calc(100% - 80px)
+        );
 
-    margin:auto;
+    margin:
+        0 auto;
 
     padding:
-        105px 0;
+        100px 0;
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
 
+    justify-content:space-between;
+
     gap:40px;
+
 }
 
 
@@ -1131,39 +1152,35 @@ button{
 
     margin:0;
 
+    color:
+        var(--white);
+
     font-size:
         clamp(
             34px,
             4.5vw,
-            65px
+            62px
         );
 
+    line-height:1.08;
+
     font-weight:400;
+
 }
 
 
 .cp-cta p{
 
-    max-width:550px;
+    max-width:560px;
 
     margin:
-        18px 0 0;
+        20px 0 0;
 
-    color:var(--muted);
+    color:
+        var(--muted);
 
-    line-height:1.8;
-}
+    line-height:1.85;
 
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.footer{
-
-    position:relative;
-
-    z-index:10;
 }
 
 
@@ -1175,14 +1192,36 @@ button{
 
     .cp-hero{
 
-        min-height:
-            820px;
+        /*
+           Mobile ไม่พยายามรักษา desktop crop
+           เพราะจอแคบเกินไป
+
+           ใช้ภาพเต็มพื้นที่แบบ top-aligned
+        */
 
         height:
-            820px;
+            720px;
 
-        align-items:
-            flex-start;
+    }
+
+
+    .cp-hero-image{
+
+        width:auto;
+
+        min-width:100%;
+
+        height:100%;
+
+        max-width:none;
+
+        object-fit:cover;
+
+        object-position:
+            center top;
+
+        background:none;
+
     }
 
 
@@ -1191,49 +1230,38 @@ button{
         width:
             calc(100% - 40px);
 
+        align-items:
+            flex-start;
+
         padding-top:
-            180px;
+            160px;
+
     }
 
 
     .cp-hero-copy{
 
-        padding-left:0;
+        width:100%;
+
     }
 
 
-    .cp-hero h1{
+    .cp-title{
 
         font-size:
             clamp(
-                42px,
-                12vw,
+                44px,
+                11vw,
                 68px
             );
+
     }
 
 
-    .cp-floor-wrap{
+    .cp-description{
 
-        margin-top:
-            -140px;
-    }
+        font-size:14px;
 
-
-    .cp-floor-feather{
-
-        height:
-            220px;
-    }
-
-
-    .cp-section{
-
-        width:
-            calc(100% - 40px);
-
-        padding:
-            80px 0;
     }
 
 
@@ -1241,6 +1269,7 @@ button{
 
         grid-template-columns:
             1fr;
+
     }
 
 
@@ -1248,6 +1277,7 @@ button{
 
         grid-template-columns:
             1fr;
+
     }
 
 
@@ -1257,13 +1287,15 @@ button{
 
         border-bottom:
             1px solid
-            rgba(198,160,93,.15);
+            rgba(201,164,92,.15);
+
     }
 
 
     .cp-stat:last-child{
 
         border-bottom:0;
+
     }
 
 
@@ -1273,13 +1305,15 @@ button{
             1fr;
 
         gap:45px;
+
     }
 
 
-    .cp-knowledge-grid{
+    .cp-knowledge{
 
         grid-template-columns:
             1fr;
+
     }
 
 
@@ -1296,76 +1330,81 @@ button{
 
         align-items:
             flex-start;
+
     }
+
 }
 
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
 
 @media(max-width:600px){
 
     .cp-hero{
 
-        min-height:
-            760px;
-
         height:
-            760px;
+            690px;
+
     }
 
 
     .cp-hero-content{
 
         padding-top:
-            150px;
+            140px;
+
     }
 
 
-    .cp-hero-description{
-
-        font-size:14px;
-
-        line-height:1.8;
-    }
-
-
-    .cp-hero-actions{
+    .cp-actions{
 
         flex-direction:
             column;
 
         align-items:
             flex-start;
+
     }
 
 
     .cp-button{
 
-        width:
-            auto;
-
         min-width:
             190px;
+
     }
 
 
-    .cp-floor-wrap{
+    .cp-section{
 
-        margin-top:
-            -105px;
+        width:
+            calc(100% - 40px);
+
+        padding:
+            75px 0;
+
     }
 
+}
 
-    .cp-floor-feather{
 
-        height:
-            180px;
-    }
+/* =========================================================
+   PREVENT OLD HOMEPAGE CSS FROM INTERFERING
+   ========================================================= */
+
+/*
+   ถ้า index.html เดิมมี class เหลืออยู่
+   ไม่ให้มันสร้าง spacing แทรก Hero/Floor
+*/
+
+.cp-visual > *{
+    box-sizing:border-box;
+}
+
+.cp-floor + *{
+    margin-top:0;
 }
 
 </style>
+
 </head>
 
 
@@ -1373,63 +1412,67 @@ button{
 
 
 <!-- =====================================================
-     MASTER NAV
-     DO NOT REBUILD THE ORIGINAL MENU
+     MASTER HEADER / FOOTER
+
+     ห้ามสร้าง Header ใหม่
      ===================================================== -->
 
-<script src="assets/customer-master-nav.js"></script>
 
 
 <!-- =====================================================
-     ONE CONTINUOUS VISUAL STAGE
+     VISUAL HERO
      ===================================================== -->
 
-<main class="cp-visual-stage">
+<main class="cp-visual">
 
-
-    <!-- =================================================
-         HERO
-         ================================================= -->
 
     <section class="cp-hero">
 
 
-        <!-- Hero photograph -->
+        <!--
+            ภาพ Hero
+
+            ใช้ <img> ไม่ใช้ background cover
+            เพื่อรักษาสัดส่วนภาพจริง
+        -->
+
+        <img
+            class="cp-hero-image"
+            src="assets/home-hero-visual.jpg"
+            alt=""
+            fetchpriority="high"
+        >
+
+
+        <!-- dark เฉพาะบริเวณข้อความ -->
 
         <div
-            class="cp-hero-photo"
+            class="cp-hero-overlay"
             aria-hidden="true">
         </div>
 
 
-        <!-- cinematic dark grade -->
+        <!-- top shadow -->
 
         <div
-            class="cp-hero-dark"
+            class="cp-hero-top"
             aria-hidden="true">
         </div>
 
 
-        <!-- warm brown grade -->
-
-        <div
-            class="cp-hero-warm"
-            aria-hidden="true">
-        </div>
-
-
-        <!-- Hero copy -->
+        <!-- Hero text -->
 
         <div class="cp-hero-content">
 
             <div class="cp-hero-copy">
+
 
                 <div class="cp-kicker">
                     CHATPHETCH GROUP
                 </div>
 
 
-                <h1>
+                <h1 class="cp-title">
 
                     วัสดุงานพื้น
 
@@ -1440,25 +1483,29 @@ button{
                 </h1>
 
 
-                <div class="cp-hero-rule"></div>
+                <div
+                    class="cp-line">
+                </div>
 
 
-                <p class="cp-hero-description">
+                <p class="cp-description">
 
-                    โซลูชันด้านวัสดุงานพื้นและงานก่อสร้าง
-                    สำหรับบ้าน อาคารพาณิชย์ โรงงาน
+                    โซลูชันด้านวัสดุงานพื้น
+                    และงานก่อสร้างสำหรับบ้าน
+                    อาคารพาณิชย์ โรงงาน
                     และโครงการขนาดใหญ่
-                    พร้อมทีมงานที่ดูแลตั้งแต่การเลือกวัสดุ
+                    พร้อมทีมงานดูแลตั้งแต่การเลือกวัสดุ
                     จนถึงการติดตั้ง
 
                 </p>
 
 
-                <div class="cp-hero-actions">
+                <div class="cp-actions">
+
 
                     <a
-                        class="cp-button cp-button-primary"
-                        href="products.html">
+                        href="products.html"
+                        class="cp-button cp-button-main">
 
                         ดูผลิตภัณฑ์
 
@@ -1466,14 +1513,16 @@ button{
 
 
                     <a
-                        class="cp-button cp-button-secondary"
-                        href="contact.html">
+                        href="contact.html"
+                        class="cp-button cp-button-sub">
 
                         ติดต่อเรา
 
                     </a>
 
+
                 </div>
+
 
             </div>
 
@@ -1485,47 +1534,20 @@ button{
 
 
     <!-- =================================================
-         FLOOR
+         FLOOR IMAGE
 
-         THIS IS NOT A SEPARATE SECTION.
-
-         It overlaps the Hero by -210px.
+         ต่อจาก Hero โดยตรง
+         ไม่มีแถบสีคั่น
          ================================================= -->
 
-    <section class="cp-floor-wrap">
+    <section class="cp-floor">
 
-
-        <!-- transition -->
-
-        <div
-            class="cp-floor-feather"
-            aria-hidden="true">
-        </div>
-
-
-        <!-- warm light -->
-
-        <div
-            class="cp-floor-glow"
-            aria-hidden="true">
-        </div>
-
-
-        <!-- actual floor image -->
 
         <img
-            class="cp-floor-image"
             src="assets/index-floor-bg.png"
             alt=""
-            loading="eager">
-
-
-        <!-- side vignette -->
-
-        <div
-            class="cp-floor-vignette"
-            aria-hidden="true">
-        </div>
+            loading="eager"
+        >
 
 
     </section>
@@ -1549,24 +1571,27 @@ button{
     <section class="cp-section">
 
 
-        <div class="cp-section-eyebrow">
+        <div class="cp-eyebrow">
             OUR SOLUTIONS
         </div>
 
 
-        <h2 class="cp-section-title">
+        <h2 class="cp-heading">
+
             ระบบพื้นและวัสดุก่อสร้าง
             <br>
-            ที่ออกแบบเพื่อการใช้งานจริง
+            สำหรับการใช้งานจริง
+
         </h2>
 
 
-        <p class="cp-section-text">
+        <p class="cp-text">
 
             เราคัดสรรวัสดุและระบบงานที่เหมาะสม
             สำหรับแต่ละประเภทโครงการ
-            ตั้งแต่งานบ้านพักอาศัย
-            ไปจนถึงพื้นที่อุตสาหกรรมและอาคารขนาดใหญ่
+            ตั้งแต่งานพักอาศัย
+            อาคารพาณิชย์
+            ไปจนถึงพื้นที่อุตสาหกรรม
 
         </p>
 
@@ -1574,66 +1599,74 @@ button{
         <div class="cp-solutions">
 
 
-            <article class="cp-solution">
+            <article class="cp-card">
 
-                <div class="cp-solution-number">
+                <div class="cp-card-number">
                     01 / FLOORING
                 </div>
+
 
                 <h3>
                     ระบบงานพื้น
                 </h3>
 
+
                 <p>
-                    ระบบพื้นสำหรับพื้นที่พักอาศัย
-                    อาคารสำนักงาน
-                    พื้นที่พาณิชย์
-                    และพื้นที่ที่ต้องการความทนทานสูง
+                    วัสดุและระบบพื้นสำหรับพื้นที่พักอาศัย
+                    อาคารสำนักงาน พื้นที่พาณิชย์
+                    และโครงการที่ต้องการความสวยงาม
+                    ควบคู่กับการใช้งาน
                 </p>
 
             </article>
 
 
-            <article class="cp-solution">
+            <article class="cp-card">
 
-                <div class="cp-solution-number">
+                <div class="cp-card-number">
                     02 / INDUSTRIAL
                 </div>
+
 
                 <h3>
                     พื้นอุตสาหกรรม
                 </h3>
 
+
                 <p>
-                    โซลูชันพื้นสำหรับโรงงาน
-                    คลังสินค้า
+                    ระบบพื้นที่รองรับการใช้งานหนัก
+                    โรงงาน คลังสินค้า
                     พื้นที่ผลิต
-                    และพื้นที่ที่ต้องรับน้ำหนักและการใช้งานต่อเนื่อง
+                    และพื้นที่ที่ต้องการความทนทาน
                 </p>
 
             </article>
 
 
-            <article class="cp-solution">
+            <article class="cp-card">
 
-                <div class="cp-solution-number">
+                <div class="cp-card-number">
                     03 / CONSTRUCTION
                 </div>
+
 
                 <h3>
                     วัสดุก่อสร้าง
                 </h3>
 
+
                 <p>
-                    วัสดุและผลิตภัณฑ์สำหรับงานก่อสร้าง
-                    พร้อมคำแนะนำด้านการเลือกใช้
-                    ให้เหมาะกับลักษณะของโครงการ
+                    วัสดุสำหรับงานก่อสร้าง
+                    พร้อมแนวทางการเลือกใช้
+                    ให้เหมาะสมกับประเภทพื้นที่
+                    และลักษณะของโครงการ
                 </p>
 
             </article>
 
 
         </div>
+
 
     </section>
 
@@ -1690,6 +1723,7 @@ button{
 
         </div>
 
+
     </section>
 
 
@@ -1706,12 +1740,13 @@ button{
 
             <div>
 
-                <div class="cp-section-eyebrow">
+
+                <div class="cp-eyebrow">
                     ABOUT CHATPHETCH GROUP
                 </div>
 
 
-                <h2 class="cp-section-title">
+                <h2 class="cp-heading">
 
                     เราไม่ได้ขายเพียงวัสดุ
                     <br>
@@ -1720,33 +1755,36 @@ button{
                 </h2>
 
 
-                <div class="cp-about-line"></div>
+                <div class="cp-about-line">
+                </div>
 
 
-                <p class="cp-section-text">
+                <p class="cp-text">
 
                     CHATPHETCH GROUP
                     ให้บริการด้านวัสดุงานพื้น
-                    และงานก่อสร้าง
-                    โดยให้ความสำคัญกับคุณภาพ
-                    ความเหมาะสมของระบบ
-                    และการใช้งานจริงของแต่ละโครงการ
+                    งานก่อสร้าง
+                    และโซลูชันสำหรับโครงการ
+                    โดยมุ่งเน้นการเลือกวัสดุ
+                    ให้เหมาะกับการใช้งานจริง
 
                 </p>
+
 
             </div>
 
 
-            <div class="cp-about-box">
+            <div class="cp-about-panel">
 
-                <span>
+                <strong>
                     CP
-                </span>
+                </strong>
 
             </div>
 
 
         </div>
+
 
     </section>
 
@@ -1759,18 +1797,21 @@ button{
     <section class="cp-section">
 
 
-        <div class="cp-section-eyebrow">
+        <div class="cp-eyebrow">
             KNOWLEDGE
         </div>
 
 
-        <h2 class="cp-section-title">
-            ความรู้สำหรับงานพื้น
-            และงานก่อสร้าง
+        <h2 class="cp-heading">
+
+            ความรู้สำหรับ
+            <br>
+            งานพื้นและงานก่อสร้าง
+
         </h2>
 
 
-        <div class="cp-knowledge-grid">
+        <div class="cp-knowledge">
 
 
             <article class="cp-knowledge-card">
@@ -1779,14 +1820,15 @@ button{
                     01
                 </small>
 
+
                 <h3>
                     เลือกระบบพื้นอย่างไร
                 </h3>
 
+
                 <p>
-                    ทำความเข้าใจปัจจัยสำคัญ
-                    ก่อนเลือกวัสดุและระบบพื้น
-                    ให้เหมาะกับการใช้งาน
+                    ปัจจัยสำคัญที่ควรพิจารณา
+                    ก่อนเลือกระบบพื้นสำหรับโครงการ
                 </p>
 
             </article>
@@ -1798,13 +1840,15 @@ button{
                     02
                 </small>
 
+
                 <h3>
                     การเตรียมพื้นผิว
                 </h3>
 
+
                 <p>
-                    พื้นผิวที่ดีคือจุดเริ่มต้น
-                    ของระบบพื้นที่มีอายุการใช้งานที่เหมาะสม
+                    พื้นผิวที่เหมาะสมคือพื้นฐานสำคัญ
+                    ของระบบพื้นที่มีประสิทธิภาพ
                 </p>
 
             </article>
@@ -1816,19 +1860,22 @@ button{
                     03
                 </small>
 
+
                 <h3>
-                    ดูแลพื้นให้ใช้งานได้นาน
+                    การดูแลรักษาพื้น
                 </h3>
 
+
                 <p>
-                    แนวทางดูแลรักษาพื้น
-                    เพื่อลดปัญหาและคงสภาพการใช้งาน
+                    แนวทางดูแลรักษาเพื่อให้พื้น
+                    คงสภาพและพร้อมใช้งานในระยะยาว
                 </p>
 
             </article>
 
 
         </div>
+
 
     </section>
 
@@ -1846,32 +1893,38 @@ button{
 
             <div>
 
+
                 <h2>
+
                     เริ่มต้นโครงการ
                     <br>
-                    กับเรา
+                    กับ CHATPHETCH GROUP
+
                 </h2>
 
 
                 <p>
-                    หากคุณกำลังมองหาวัสดุงานพื้น
-                    หรือระบบก่อสร้างสำหรับโครงการ
-                    ติดต่อทีมงานของเราเพื่อพูดคุยรายละเอียด
+
+                    ติดต่อทีมงานเพื่อพูดคุยเกี่ยวกับ
+                    วัสดุ ระบบพื้น และแนวทางสำหรับโครงการของคุณ
+
                 </p>
+
 
             </div>
 
 
             <a
                 href="contact.html"
-                class="cp-button cp-button-primary">
+                class="cp-button cp-button-main">
 
-                ติดต่อ CHATPHETCH GROUP
+                ติดต่อเรา
 
             </a>
 
 
         </div>
+
 
     </section>
 
@@ -1881,20 +1934,17 @@ button{
 
 
 <!-- =====================================================
-     MASTER FOOTER
-
-     customer-master-nav.js เป็นผู้จัดการ footer เดิม
+     MASTER NAVIGATION + FOOTER
      ===================================================== -->
 
+<script src="assets/customer-master-nav.js"></script>
+
+
+<!-- =====================================================
+     HEADER SCROLL
+     ===================================================== -->
 
 <script>
-
-/*
-===========================================================
-HEADER SCROLL EFFECT
-ไม่เปลี่ยนโครงสร้างเมนู
-===========================================================
-*/
 
 (function(){
 
@@ -1907,16 +1957,16 @@ HEADER SCROLL EFFECT
             return;
         }
 
-        if(window.scrollY > 35){
+        if(window.scrollY > 30){
 
             header.classList.add(
-                "cp-header-scrolled"
+                "cp-scrolled"
             );
 
         }else{
 
             header.classList.remove(
-                "cp-header-scrolled"
+                "cp-scrolled"
             );
 
         }
@@ -1937,7 +1987,16 @@ HEADER SCROLL EFFECT
     );
 
 
-    updateHeader();
+    setTimeout(
+        updateHeader,
+        100
+    );
+
+
+    setTimeout(
+        updateHeader,
+        500
+    );
 
 })();
 
@@ -1945,4 +2004,5 @@ HEADER SCROLL EFFECT
 
 
 </body>
+
 </html>
