@@ -1,19 +1,27 @@
 /* ============================================================
    CHATPHETCH GROUP
    MASTER NAVIGATION
-   Header + Desktop Navigation + Mobile Navigation
-   Footer - Corporate Premium Layout
+   PREMIUM CORPORATE VERSION
+
+   Header
+   Desktop Navigation
+   Mobile Navigation
+   Footer
+   Floating Contact Buttons
+   Cart Badge
    ============================================================ */
 
 (function () {
+
   "use strict";
 
 
   /* ==========================================================
-     NAVIGATION DATA
+     NAVIGATION
      ========================================================== */
 
   const NAV = [
+
     {
       label: "หน้าแรก",
       href: "index.html"
@@ -32,27 +40,34 @@
     {
       label: "บริการ",
       dropdown: true,
+
       items: [
+
         {
           label: "ดูบริการทั้งหมด",
           href: "services.html"
         },
+
         {
           label: "บริการระบบงานพื้น",
           href: "service-detail.html?service=industrial"
         },
+
         {
           label: "บริการเคลือบผิว / สี",
           href: "service-detail.html?service=coating"
         },
+
         {
           label: "ปรึกษาและเลือกวัสดุ",
           href: "service-detail.html?service=consulting"
         },
+
         {
           label: "คำปรึกษางานติดตั้ง",
           href: "service-detail.html?service=installation"
         }
+
       ]
     },
 
@@ -91,6 +106,46 @@
       href: "cart.html",
       cart: true
     }
+
+  ];
+
+
+  /* ==========================================================
+     FOOTER MENU
+     ========================================================== */
+
+  const FOOTER_MENU = [
+
+    {
+      label: "หน้าแรก",
+      href: "index.html"
+    },
+
+    {
+      label: "เกี่ยวกับเรา",
+      href: "about.html"
+    },
+
+    {
+      label: "สินค้า",
+      href: "products.html"
+    },
+
+    {
+      label: "บริการ",
+      href: "services.html"
+    },
+
+    {
+      label: "ผลงาน",
+      href: "projects.html"
+    },
+
+    {
+      label: "ติดต่อเรา",
+      href: "contact.html"
+    }
+
   ];
 
 
@@ -98,7 +153,7 @@
      HELPERS
      ========================================================== */
 
-  function currentPage() {
+  function getCurrentPage() {
 
     return (
       window.location.pathname
@@ -121,7 +176,10 @@
         .split("?")[0]
         .split("#")[0];
 
-    return cleanHref === currentPage();
+    return (
+      cleanHref ===
+      getCurrentPage()
+    );
 
   }
 
@@ -143,11 +201,11 @@
         return [];
       }
 
-      const data =
+      const cart =
         JSON.parse(raw);
 
-      return Array.isArray(data)
-        ? data
+      return Array.isArray(cart)
+        ? cart
         : [];
 
     } catch (error) {
@@ -162,7 +220,10 @@
   function getCartCount() {
 
     return getCart().reduce(
-      function (total, item) {
+      function (
+        total,
+        item
+      ) {
 
         const quantity =
           Number(
@@ -171,12 +232,23 @@
             1
           );
 
-        return total +
-          (
-            Number.isFinite(quantity)
-              ? Math.max(0, quantity)
-              : 0
-          );
+        if (
+          !Number.isFinite(
+            quantity
+          )
+        ) {
+
+          return total;
+
+        }
+
+        return (
+          total +
+          Math.max(
+            0,
+            quantity
+          )
+        );
 
       },
       0
@@ -210,43 +282,46 @@
 
 
   /* ==========================================================
-     MASTER CSS
+     CSS
      ========================================================== */
 
   const STYLE = `
 
   /* ==========================================================
-     VARIABLES
+     CHATPHETCH MASTER NAV
      ========================================================== */
 
   :root {
 
-    --cp-nav-bg:
-      rgba(14, 10, 8, .94);
-
-    --cp-nav-bg-mobile:
-      rgba(13, 9, 7, .99);
-
-    --cp-nav-border:
-      rgba(198, 160, 106, .20);
-
-    --cp-nav-border-soft:
-      rgba(255, 255, 255, .09);
-
-    --cp-nav-gold:
+    --cp-gold:
       #c6a06a;
 
-    --cp-nav-gold-light:
+    --cp-gold-light:
       #e3c88f;
 
-    --cp-nav-white:
-      #f6f1e9;
+    --cp-gold-bright:
+      #f0d397;
 
-    --cp-nav-text:
-      #aaa197;
+    --cp-white:
+      #f7f2ea;
 
-    --cp-nav-dark:
-      #0a0806;
+    --cp-text:
+      #9b948d;
+
+    --cp-text-light:
+      #b7b0a9;
+
+    --cp-black:
+      #050504;
+
+    --cp-black-2:
+      #090806;
+
+    --cp-border:
+      rgba(198,160,106,.26);
+
+    --cp-border-soft:
+      rgba(198,160,106,.14);
 
   }
 
@@ -268,15 +343,11 @@
     width: 100%;
 
     background:
-      linear-gradient(
-        180deg,
-        rgba(8, 6, 5, .97),
-        rgba(14, 10, 8, .91)
-      );
+      rgba(9,7,5,.94);
 
     border-bottom:
       1px solid
-      var(--cp-nav-border);
+      rgba(198,160,106,.18);
 
     backdrop-filter:
       blur(16px);
@@ -316,13 +387,13 @@
 
     justify-content: space-between;
 
-    gap: 25px;
+    gap: 24px;
 
   }
 
 
   /* ==========================================================
-     BRAND
+     HEADER BRAND
      ========================================================== */
 
   .customer-brand {
@@ -336,10 +407,8 @@
 
     gap: 12px;
 
-    min-width: 0;
-
     color:
-      var(--cp-nav-white);
+      var(--cp-white);
 
   }
 
@@ -349,10 +418,10 @@
     width: 54px;
     height: 54px;
 
+    object-fit: contain;
+
     flex:
       0 0 auto;
-
-    object-fit: contain;
 
   }
 
@@ -373,7 +442,7 @@
   .customer-brand-name {
 
     color:
-      var(--cp-nav-white);
+      var(--cp-white);
 
     font-size: 14px;
 
@@ -390,7 +459,7 @@
     margin-top: 6px;
 
     color:
-      var(--cp-nav-gold);
+      var(--cp-gold);
 
     font-size: 8px;
 
@@ -404,7 +473,7 @@
 
 
   /* ==========================================================
-     DESKTOP NAVIGATION
+     DESKTOP NAV
      ========================================================== */
 
   .customer-nav {
@@ -464,7 +533,7 @@
       0 9px;
 
     color:
-      rgba(246,241,233,.76);
+      rgba(247,242,234,.76);
 
     font-size: 12px;
 
@@ -473,7 +542,7 @@
     white-space: nowrap;
 
     transition:
-      color .2s ease;
+      color .22s ease;
 
   }
 
@@ -492,7 +561,7 @@
     height: 1px;
 
     background:
-      var(--cp-nav-gold);
+      var(--cp-gold);
 
     transform:
       scaleX(0);
@@ -509,7 +578,7 @@
   .customer-nav-link:hover {
 
     color:
-      var(--cp-nav-white);
+      var(--cp-white);
 
   }
 
@@ -526,7 +595,7 @@
   .customer-nav-link.active {
 
     color:
-      var(--cp-nav-gold-light);
+      var(--cp-gold-light);
 
   }
 
@@ -586,26 +655,27 @@
 
     left: 50%;
 
-    min-width: 270px;
+    min-width: 275px;
 
     margin: 0;
+
     padding: 10px;
 
     list-style: none;
 
     background:
-      rgba(17, 12, 9, .99);
+      rgba(13,10,8,.99);
 
     border:
       1px solid
-      var(--cp-nav-border);
+      var(--cp-border);
 
     box-shadow:
-      0 22px 55px
-      rgba(0,0,0,.45);
+      0 25px 60px
+      rgba(0,0,0,.48);
 
     transform:
-      translate(-50%, 8px);
+      translate(-50%, 9px);
 
     opacity: 0;
 
@@ -642,19 +712,19 @@
 
     align-items: center;
 
-    min-height: 43px;
+    min-height: 44px;
 
     padding:
       0 14px;
 
     color:
-      rgba(246,241,233,.76);
+      rgba(247,242,234,.75);
 
     font-size: 12px;
 
     border-bottom:
       1px solid
-      rgba(255,255,255,.05);
+      rgba(255,255,255,.055);
 
     transition:
       color .2s ease,
@@ -674,12 +744,13 @@
   .customer-dropdown a:hover {
 
     color:
-      var(--cp-nav-gold-light);
+      var(--cp-gold-light);
 
     background:
       rgba(198,160,106,.08);
 
-    padding-left: 18px;
+    padding-left:
+      18px;
 
   }
 
@@ -712,10 +783,10 @@
     border-radius: 50px;
 
     color:
-      #1b120a;
+      #1a120b;
 
     background:
-      var(--cp-nav-gold-light);
+      var(--cp-gold-light);
 
     font-size: 9px;
 
@@ -725,7 +796,7 @@
 
 
   /* ==========================================================
-     MOBILE MENU BUTTON
+     MOBILE TOGGLE
      ========================================================== */
 
   .customer-menu-toggle {
@@ -769,26 +840,37 @@
     height: 1px;
 
     background:
-      var(--cp-nav-white);
+      var(--cp-white);
 
     transition:
+      top .25s ease,
       transform .25s ease,
-      opacity .25s ease,
-      top .25s ease;
+      opacity .25s ease;
 
   }
 
 
-  .customer-menu-toggle-inner span:nth-child(1) {
+  .customer-menu-toggle-inner
+  span:nth-child(1) {
+
     top: 0;
+
   }
 
-  .customer-menu-toggle-inner span:nth-child(2) {
+
+  .customer-menu-toggle-inner
+  span:nth-child(2) {
+
     top: 8px;
+
   }
 
-  .customer-menu-toggle-inner span:nth-child(3) {
+
+  .customer-menu-toggle-inner
+  span:nth-child(3) {
+
     top: 16px;
+
   }
 
 
@@ -840,7 +922,17 @@
     z-index: 8998;
 
     background:
-      rgba(0,0,0,.55);
+      rgba(0,0,0,.56);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+      opacity .2s ease,
+      visibility .2s ease;
 
   }
 
@@ -857,19 +949,19 @@
 
     width: 100%;
 
-    color:
-      var(--cp-nav-text);
-
     background:
       linear-gradient(
         180deg,
-        rgba(8,7,6,.98),
-        rgba(4,4,3,1)
+        #080807 0%,
+        #050504 100%
       );
+
+    color:
+      var(--cp-text);
 
     border-top:
       1px solid
-      var(--cp-nav-border);
+      rgba(198,160,106,.14);
 
   }
 
@@ -885,41 +977,348 @@
     margin-inline: auto;
 
     padding:
-      28px 0 26px;
+      58px 0 20px;
 
   }
 
 
   /* ==========================================================
-     FOOTER TOP LINE
+     FOOTER UPPER AREA
      ========================================================== */
 
-  .customer-footer-line {
+  .customer-footer-upper {
 
-    width: 100%;
-    height: 1px;
+    display: grid;
 
-    margin-bottom: 25px;
+    grid-template-columns:
+      minmax(0, 1fr)
+      320px;
 
-    background:
-      rgba(198,160,106,.24);
+    gap: 90px;
+
+    min-height: 300px;
 
   }
 
 
   /* ==========================================================
-     FOOTER MAIN BAR
+     FOOTER BRAND AREA
      ========================================================== */
 
-  .customer-footer-main {
+  .customer-footer-brand-area {
+
+    padding-top: 4px;
+
+  }
+
+
+  .customer-footer-brand {
 
     display: flex;
 
     align-items: center;
 
-    justify-content: space-between;
+    gap: 20px;
 
-    gap: 28px;
+  }
+
+
+  .customer-footer-logo {
+
+    width: 100px;
+    height: 100px;
+
+    object-fit: contain;
+
+    flex:
+      0 0 auto;
+
+  }
+
+
+  .customer-footer-brand-copy {
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+
+  .customer-footer-brand-name {
+
+    color:
+      #f5f1eb;
+
+    font-size: 31px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing:
+      -.025em;
+
+  }
+
+
+  .customer-footer-brand-sub {
+
+    margin-top: 12px;
+
+    color:
+      var(--cp-gold-light);
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    letter-spacing:
+      .20em;
+
+  }
+
+
+  /* ==========================================================
+     FOOTER COMPANY INFORMATION
+     ========================================================== */
+
+  .customer-footer-info {
+
+    margin-top: 40px;
+
+  }
+
+
+  .customer-footer-company-line {
+
+    color:
+      #89837d;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+  }
+
+
+  .customer-footer-company-line.strong {
+
+    color:
+      #a39c95;
+
+    font-size: 14px;
+
+  }
+
+
+  .customer-footer-company-line + 
+  .customer-footer-company-line {
+
+    margin-top: 22px;
+
+  }
+
+
+  .customer-footer-company-line .flower {
+
+    margin-right: 12px;
+
+  }
+
+
+  .customer-footer-company-line .spade {
+
+    margin-right: 12px;
+
+  }
+
+
+  .customer-footer-service-line {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 34px;
+
+    color:
+      #918a84;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+  }
+
+
+  .customer-footer-service-item {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+  }
+
+
+  .customer-footer-service-item .icon {
+
+    color:
+      #7770ae;
+
+    font-size: 20px;
+
+  }
+
+
+  /* ==========================================================
+     FOOTER MENU
+     ========================================================== */
+
+  .customer-footer-menu {
+
+    padding-top: 1px;
+
+  }
+
+
+  .customer-footer-menu-title {
+
+    display: inline-block;
+
+    position: relative;
+
+    padding-bottom: 17px;
+
+    color:
+      var(--cp-gold-light);
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    letter-spacing:
+      .08em;
+
+    text-transform:
+      uppercase;
+
+  }
+
+
+  .customer-footer-menu-title::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 53px;
+    height: 2px;
+
+    background:
+      var(--cp-gold);
+
+  }
+
+
+  .customer-footer-menu-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 17px;
+
+    margin: 30px 0 0;
+    padding: 0;
+
+    list-style: none;
+
+  }
+
+
+  .customer-footer-menu-list li {
+
+    margin: 0;
+    padding: 0;
+
+  }
+
+
+  .customer-footer-menu-list a {
+
+    display: inline-block;
+
+    color:
+      #78736e;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+    transition:
+      color .2s ease,
+      transform .2s ease;
+
+  }
+
+
+  .customer-footer-menu-list a:hover {
+
+    color:
+      var(--cp-gold-light);
+
+    transform:
+      translateX(3px);
+
+  }
+
+
+  /* ==========================================================
+     FOOTER DIVIDER
+     ========================================================== */
+
+  .customer-footer-divider {
+
+    width: 100%;
+
+    height: 1px;
+
+    margin:
+      15px 0 25px;
+
+    background:
+      rgba(198,160,106,.30);
+
+  }
+
+
+  /* ==========================================================
+     FOOTER BOTTOM BAR
+     ========================================================== */
+
+  .customer-footer-bottom {
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(270px, 1.25fr)
+      minmax(220px, .9fr)
+      auto
+      auto;
+
+    align-items: center;
+
+    column-gap: 28px;
 
   }
 
@@ -930,13 +1329,8 @@
 
   .customer-footer-copyright {
 
-    flex:
-      1 1 auto;
-
-    min-width: 300px;
-
     color:
-      #77736f;
+      #77726c;
 
     font-size: 12px;
 
@@ -950,7 +1344,7 @@
   .customer-footer-copyright strong {
 
     color:
-      #c8c4bf;
+      #c9c4be;
 
     font-weight: 600;
 
@@ -958,13 +1352,10 @@
 
 
   /* ==========================================================
-     LOCATION
+     ADDRESS
      ========================================================== */
 
-  .customer-footer-location {
-
-    flex:
-      0 1 auto;
+  .customer-footer-address {
 
     display: flex;
 
@@ -972,16 +1363,10 @@
 
     gap: 11px;
 
-    min-width: 260px;
-
-    padding-right: 22px;
-
-    border-right:
-      1px solid
-      rgba(198,160,106,.20);
+    min-width: 0;
 
     color:
-      #8b8580;
+      #858079;
 
     font-size: 12px;
 
@@ -990,27 +1375,21 @@
   }
 
 
-  .customer-footer-location-icon {
+  .customer-footer-address-icon {
 
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    width: 18px;
-    height: 18px;
+    flex:
+      0 0 auto;
 
     color:
-      var(--cp-nav-gold-light);
+      #f05b82;
 
-    font-size: 15px;
+    font-size: 17px;
 
   }
 
 
   /* ==========================================================
-     FOOTER ACTIONS
+     BOTTOM ACTIONS
      ========================================================== */
 
   .customer-footer-actions {
@@ -1021,11 +1400,11 @@
 
     gap: 14px;
 
-    padding-right: 20px;
+    padding-left: 28px;
 
-    border-right:
+    border-left:
       1px solid
-      rgba(198,160,106,.20);
+      rgba(198,160,106,.18);
 
   }
 
@@ -1040,46 +1419,47 @@
 
     gap: 7px;
 
-    min-height: 40px;
+    min-height: 42px;
 
     padding:
       0 20px;
 
     border:
       1px solid
-      rgba(198,160,106,.30);
+      rgba(198,160,106,.32);
 
-    border-radius: 11px;
+    border-radius:
+      12px;
 
     color:
-      var(--cp-nav-gold-light);
+      var(--cp-gold-light);
 
     background:
-      rgba(20,15,11,.40);
+      rgba(16,12,9,.52);
 
     font-size: 12px;
 
     white-space: nowrap;
 
     transition:
-      border-color .25s ease,
-      background .25s ease,
-      color .25s ease,
-      transform .25s ease;
+      color .2s ease,
+      background .2s ease,
+      border-color .2s ease,
+      transform .2s ease;
 
   }
 
 
   .customer-footer-action:hover {
 
-    border-color:
-      var(--cp-nav-gold);
+    color:
+      #fff5df;
 
     background:
       rgba(198,160,106,.10);
 
-    color:
-      #fff4df;
+    border-color:
+      var(--cp-gold);
 
     transform:
       translateY(-1px);
@@ -1106,6 +1486,12 @@
 
     gap: 10px;
 
+    padding-left: 26px;
+
+    border-left:
+      1px solid
+      rgba(198,160,106,.18);
+
   }
 
 
@@ -1122,50 +1508,40 @@
 
     border:
       1px solid
-      rgba(198,160,106,.36);
+      rgba(198,160,106,.38);
 
     border-radius: 50%;
 
     color:
-      var(--cp-nav-gold-light);
+      var(--cp-gold-light);
 
     background:
-      rgba(18,13,9,.35);
+      rgba(15,11,8,.42);
 
     font-size: 19px;
 
     transition:
-      border-color .25s ease,
-      background .25s ease,
-      color .25s ease,
-      transform .25s ease;
+      color .2s ease,
+      background .2s ease,
+      border-color .2s ease,
+      transform .2s ease;
 
   }
 
 
   .customer-social:hover {
 
-    border-color:
-      var(--cp-nav-gold);
+    color:
+      #fff5df;
 
     background:
-      rgba(198,160,106,.12);
+      rgba(198,160,106,.10);
 
-    color:
-      #fff3d8;
+    border-color:
+      var(--cp-gold);
 
     transform:
       translateY(-2px);
-
-  }
-
-
-  .customer-social.line {
-
-    font-size: 15px;
-
-    letter-spacing:
-      -.03em;
 
   }
 
@@ -1177,54 +1553,20 @@
   }
 
 
-  /* ==========================================================
-     FOOTER SECONDARY MENU
-     ========================================================== */
+  .customer-social.line {
 
-  .customer-footer-secondary {
+    font-size: 14px;
 
-    display: flex;
+    font-weight: 500;
 
-    align-items: center;
-
-    justify-content: flex-end;
-
-    gap: 24px;
-
-    margin-top: 18px;
-
-    padding-top: 17px;
-
-    border-top:
-      1px solid
-      rgba(255,255,255,.055);
-
-  }
-
-
-  .customer-footer-secondary a {
-
-    color:
-      #69645f;
-
-    font-size: 10px;
-
-    transition:
-      color .2s ease;
-
-  }
-
-
-  .customer-footer-secondary a:hover {
-
-    color:
-      var(--cp-nav-gold-light);
+    letter-spacing:
+      -.02em;
 
   }
 
 
   /* ==========================================================
-     FLOATING PHONE BUTTON
+     FLOATING BUTTONS
      ========================================================== */
 
   .customer-floating-phone {
@@ -1232,7 +1574,7 @@
     position: fixed;
 
     right: 24px;
-    bottom: 24px;
+    bottom: 92px;
 
     z-index: 8800;
 
@@ -1247,18 +1589,18 @@
 
     border:
       1px solid
-      rgba(198,160,106,.50);
+      rgba(198,160,106,.45);
 
     border-radius: 50%;
 
     color:
-      var(--cp-nav-gold-light);
+      var(--cp-gold-light);
 
     background:
-      rgba(14,10,7,.92);
+      rgba(10,8,6,.94);
 
     box-shadow:
-      0 10px 30px
+      0 10px 35px
       rgba(0,0,0,.35);
 
     backdrop-filter:
@@ -1267,9 +1609,9 @@
     font-size: 20px;
 
     transition:
-      transform .25s ease,
-      background .25s ease,
-      border-color .25s ease;
+      transform .2s ease,
+      border-color .2s ease,
+      background .2s ease;
 
   }
 
@@ -1280,16 +1622,16 @@
       translateY(-3px);
 
     border-color:
-      var(--cp-nav-gold);
+      var(--cp-gold);
 
     background:
-      rgba(198,160,106,.13);
+      rgba(198,160,106,.10);
 
   }
 
 
   /* ==========================================================
-     MOBILE
+     MOBILE NAV
      ========================================================== */
 
   @media (max-width: 1050px) {
@@ -1335,11 +1677,11 @@
       overflow-y: auto;
 
       background:
-        var(--cp-nav-bg-mobile);
+        rgba(10,8,6,.99);
 
       border-top:
         1px solid
-        var(--cp-nav-border);
+        var(--cp-border);
 
       transform:
         translateY(-10px);
@@ -1376,10 +1718,8 @@
 
       display: block;
 
-      margin: 0;
-
       padding:
-        12px 16px 28px;
+        12px 16px 25px;
 
     }
 
@@ -1420,9 +1760,9 @@
 
       position: static;
 
-      min-width: 0;
-
       display: none;
+
+      min-width: 0;
 
       padding:
         0 0 9px;
@@ -1461,9 +1801,9 @@
         0 18px 0 28px;
 
       color:
-        #928a82;
+        #8d8780;
 
-      border-bottom: 0;
+      border: 0;
 
       font-size: 12px;
 
@@ -1494,16 +1834,6 @@
 
       display: block;
 
-      opacity: 0;
-
-      visibility: hidden;
-
-      pointer-events: none;
-
-      transition:
-        opacity .2s ease,
-        visibility .2s ease;
-
     }
 
 
@@ -1519,110 +1849,85 @@
     }
 
 
-    /* FOOTER MOBILE */
+    /* ========================================================
+       FOOTER TABLET
+       ======================================================== */
 
     .customer-footer-inner {
 
       width:
-        calc(100% - 32px);
+        calc(100% - 36px);
 
     }
 
 
-    .customer-footer-main {
+    .customer-footer-upper {
 
-      flex-wrap: wrap;
+      grid-template-columns:
+        minmax(0,1fr)
+        250px;
 
-      align-items: stretch;
+      gap: 50px;
+
+    }
+
+
+    .customer-footer-brand-name {
+
+      font-size: 26px;
+
+    }
+
+
+    .customer-footer-bottom {
+
+      grid-template-columns:
+        1fr 1fr;
+
+      row-gap: 20px;
 
     }
 
 
     .customer-footer-copyright {
 
-      min-width: 100%;
-
       white-space: normal;
-
-      order: 1;
 
     }
 
 
-    .customer-footer-location {
+    .customer-footer-address {
 
-      min-width: auto;
-
-      flex: 1 1 100%;
-
-      padding-right: 0;
-
-      padding-bottom: 15px;
-
-      border-right: 0;
-
-      border-bottom:
-        1px solid
-        rgba(198,160,106,.16);
-
-      order: 2;
+      white-space: normal;
 
     }
 
 
     .customer-footer-actions {
 
-      padding-right: 0;
+      padding-left: 0;
 
-      border-right: 0;
-
-      order: 3;
-
-      flex-wrap: wrap;
+      border-left: 0;
 
     }
 
 
     .customer-footer-social {
 
-      order: 4;
+      padding-left: 0;
 
-      margin-left: auto;
+      border-left: 0;
 
-    }
-
-
-    .customer-footer-secondary {
-
-      justify-content: flex-start;
-
-      flex-wrap: wrap;
-
-      gap: 12px 20px;
-
-    }
-
-
-    .customer-social {
-
-      width: 48px;
-      height: 48px;
-
-    }
-
-
-    .customer-floating-phone {
-
-      width: 52px;
-      height: 52px;
-
-      right: 17px;
-      bottom: 17px;
+      justify-content: flex-end;
 
     }
 
   }
 
+
+  /* ==========================================================
+     MOBILE 700
+     ========================================================== */
 
   @media (max-width: 700px) {
 
@@ -1666,44 +1971,163 @@
     }
 
 
+    /* FOOTER */
+
     .customer-footer-inner {
 
       width:
         calc(100% - 28px);
 
       padding:
-        24px 0 22px;
+        48px 0 20px;
 
     }
 
 
-    .customer-footer-line {
-
-      margin-bottom: 20px;
-
-    }
-
-
-    .customer-footer-main {
+    .customer-footer-upper {
 
       display: grid;
 
       grid-template-columns:
         1fr;
 
+      gap: 50px;
+
+      min-height: auto;
+
+    }
+
+
+    .customer-footer-brand {
+
+      gap: 15px;
+
+    }
+
+
+    .customer-footer-logo {
+
+      width: 78px;
+      height: 78px;
+
+    }
+
+
+    .customer-footer-brand-name {
+
+      font-size: 25px;
+
+    }
+
+
+    .customer-footer-brand-sub {
+
+      font-size: 10px;
+
+      letter-spacing:
+        .17em;
+
+    }
+
+
+    .customer-footer-info {
+
+      margin-top: 30px;
+
+    }
+
+
+    .customer-footer-company-line {
+
+      font-size: 13px;
+
+    }
+
+
+    .customer-footer-service-line {
+
+      gap: 15px 25px;
+
+      font-size: 12px;
+
+    }
+
+
+    .customer-footer-menu {
+
+      padding-top: 0;
+
+    }
+
+
+    .customer-footer-menu-list {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        14px 20px;
+
+      margin-top: 25px;
+
+    }
+
+
+    .customer-footer-menu-list a {
+
+      font-size: 13px;
+
+    }
+
+
+    .customer-footer-divider {
+
+      margin:
+        40px 0 22px;
+
+    }
+
+
+    .customer-footer-bottom {
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: stretch;
+
       gap: 18px;
 
     }
 
 
-    .customer-footer-location {
+    .customer-footer-copyright {
 
-      width: 100%;
+      order: 1;
+
+      font-size: 10px;
+
+      white-space: normal;
+
+    }
+
+
+    .customer-footer-address {
+
+      order: 2;
+
+      font-size: 11px;
+
+      white-space: normal;
 
     }
 
 
     .customer-footer-actions {
+
+      order: 3;
 
       display: grid;
 
@@ -1712,36 +2136,66 @@
 
       width: 100%;
 
+      gap: 10px;
+
     }
 
 
     .customer-footer-action {
+
+      min-height: 44px;
 
       width: 100%;
 
       padding:
         0 10px;
 
+      font-size: 11px;
+
     }
 
 
     .customer-footer-social {
 
+      order: 4;
+
       justify-content: flex-start;
 
-      margin-left: 0;
+      padding-left: 0;
+
+      border-left: 0;
 
     }
 
 
-    .customer-footer-secondary {
+    .customer-social {
 
-      justify-content: flex-start;
+      width: 48px;
+      height: 48px;
+
+      font-size: 17px;
+
+    }
+
+
+    .customer-floating-phone {
+
+      width: 52px;
+      height: 52px;
+
+      right: 17px;
+      bottom: 17px;
+
+      font-size: 18px;
 
     }
 
   }
 
+
+  /* ==========================================================
+     MOBILE 480
+     ========================================================== */
 
   @media (max-width: 480px) {
 
@@ -1787,55 +2241,95 @@
 
     .customer-nav-list {
 
-      padding-inline: 10px;
+      padding:
+        10px 10px 25px;
 
     }
 
 
-    .customer-footer-main {
+    .customer-footer-inner {
 
-      gap: 16px;
+      width:
+        calc(100% - 24px);
 
-    }
-
-
-    .customer-footer-copyright {
-
-      font-size: 10px;
+      padding-top: 40px;
 
     }
 
 
-    .customer-footer-location {
+    .customer-footer-brand {
 
-      font-size: 10px;
-
-      white-space: normal;
-
-      line-height: 1.6;
+      align-items: flex-start;
 
     }
 
 
-    .customer-footer-actions {
+    .customer-footer-logo {
+
+      width: 67px;
+      height: 67px;
+
+    }
+
+
+    .customer-footer-brand-name {
+
+      font-size: 21px;
+
+    }
+
+
+    .customer-footer-brand-sub {
+
+      margin-top: 9px;
+
+      font-size: 8px;
+
+    }
+
+
+    .customer-footer-company-line {
+
+      font-size: 11px;
+
+    }
+
+
+    .customer-footer-service-line {
+
+      display: grid;
 
       grid-template-columns:
         1fr;
+
+      gap: 8px;
+
+      font-size: 11px;
+
+    }
+
+
+    .customer-footer-menu-list {
+
+      grid-template-columns:
+        1fr;
+
+      gap: 12px;
 
     }
 
 
     .customer-footer-action {
 
-      min-height: 44px;
+      font-size: 10px;
 
     }
 
 
     .customer-social {
 
-      width: 46px;
-      height: 46px;
+      width: 45px;
+      height: 45px;
 
     }
 
@@ -1860,13 +2354,14 @@
   .customer-nav-link:focus-visible,
   .customer-dropdown a:focus-visible,
   .customer-menu-toggle:focus-visible,
+  .customer-footer-menu-list a:focus-visible,
   .customer-footer-action:focus-visible,
   .customer-social:focus-visible,
-  .customer-footer-secondary a:focus-visible {
+  .customer-floating-phone:focus-visible {
 
     outline:
       1px solid
-      var(--cp-nav-gold-light);
+      var(--cp-gold-light);
 
     outline-offset: 3px;
 
@@ -1876,7 +2371,7 @@
 
 
   /* ==========================================================
-     INJECT STYLE
+     INSERT CSS
      ========================================================== */
 
   function injectStyles() {
@@ -1886,11 +2381,16 @@
         "chatpetch-master-nav-style"
       )
     ) {
+
       return;
+
     }
 
+
     const style =
-      document.createElement("style");
+      document.createElement(
+        "style"
+      );
 
     style.id =
       "chatpetch-master-nav-style";
@@ -1906,13 +2406,15 @@
 
 
   /* ==========================================================
-     BUILD NAV ITEM
+     CREATE NAV ITEM
      ========================================================== */
 
   function buildNavItem(item) {
 
     const li =
-      document.createElement("li");
+      document.createElement(
+        "li"
+      );
 
     li.className =
       "customer-nav-item";
@@ -1928,13 +2430,18 @@
 
 
     const link =
-      document.createElement("a");
+      document.createElement(
+        "a"
+      );
 
     link.className =
       "customer-nav-link";
 
     link.href =
       item.href || "#";
+
+    link.textContent =
+      item.label;
 
 
     if (
@@ -1949,9 +2456,7 @@
     }
 
 
-    link.textContent =
-      item.label;
-
+    /* CART */
 
     if (item.cart) {
 
@@ -1961,7 +2466,9 @@
 
 
       const badge =
-        document.createElement("span");
+        document.createElement(
+          "span"
+        );
 
       badge.className =
         "customer-cart-badge";
@@ -1971,8 +2478,10 @@
         ""
       );
 
+
       const count =
         getCartCount();
+
 
       badge.textContent =
         String(count);
@@ -1988,10 +2497,14 @@
     }
 
 
+    /* DROPDOWN */
+
     if (item.dropdown) {
 
       const arrow =
-        document.createElement("span");
+        document.createElement(
+          "span"
+        );
 
       arrow.className =
         "customer-dropdown-arrow";
@@ -2007,7 +2520,8 @@
         function (event) {
 
           if (
-            window.innerWidth <= 1050
+            window.innerWidth <=
+            1050
           ) {
 
             event.preventDefault();
@@ -2029,10 +2543,14 @@
     );
 
 
+    /* SUBMENU */
+
     if (item.dropdown) {
 
       const dropdown =
-        document.createElement("ul");
+        document.createElement(
+          "ul"
+        );
 
       dropdown.className =
         "customer-dropdown";
@@ -2042,11 +2560,16 @@
         function (subItem) {
 
           const subLi =
-            document.createElement("li");
+            document.createElement(
+              "li"
+            );
 
 
           const subLink =
-            document.createElement("a");
+            document.createElement(
+              "a"
+            );
+
 
           subLink.href =
             subItem.href;
@@ -2058,6 +2581,7 @@
           subLi.appendChild(
             subLink
           );
+
 
           dropdown.appendChild(
             subLi
@@ -2090,37 +2614,47 @@
         ".customer-header"
       )
     ) {
+
       return;
+
     }
 
 
     const header =
-      document.createElement("header");
+      document.createElement(
+        "header"
+      );
 
     header.className =
       "customer-header";
 
 
     const navbar =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     navbar.className =
       "customer-navbar";
 
 
     const container =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     container.className =
       "customer-nav-container";
 
 
-    /* --------------------------------------------------------
+    /* ========================================================
        BRAND
-       -------------------------------------------------------- */
+       ======================================================== */
 
     const brand =
-      document.createElement("a");
+      document.createElement(
+        "a"
+      );
 
     brand.className =
       "customer-brand";
@@ -2135,7 +2669,9 @@
 
 
     const logo =
-      document.createElement("img");
+      document.createElement(
+        "img"
+      );
 
     logo.className =
       "customer-brand-logo";
@@ -2148,14 +2684,18 @@
 
 
     const brandCopy =
-      document.createElement("span");
+      document.createElement(
+        "span"
+      );
 
     brandCopy.className =
       "customer-brand-copy";
 
 
     const brandName =
-      document.createElement("span");
+      document.createElement(
+        "span"
+      );
 
     brandName.className =
       "customer-brand-name";
@@ -2165,13 +2705,15 @@
 
 
     const brandSub =
-      document.createElement("span");
+      document.createElement(
+        "span"
+      );
 
     brandSub.className =
       "customer-brand-sub";
 
     brandSub.textContent =
-      "Flooring • Surface • Construction";
+      "FLOORING • SURFACE • CONSTRUCTION";
 
 
     brandCopy.appendChild(
@@ -2192,12 +2734,14 @@
     );
 
 
-    /* --------------------------------------------------------
+    /* ========================================================
        NAV
-       -------------------------------------------------------- */
+       ======================================================== */
 
     const nav =
-      document.createElement("nav");
+      document.createElement(
+        "nav"
+      );
 
     nav.className =
       "customer-nav";
@@ -2209,7 +2753,9 @@
 
 
     const navList =
-      document.createElement("ul");
+      document.createElement(
+        "ul"
+      );
 
     navList.className =
       "customer-nav-list";
@@ -2231,12 +2777,14 @@
     );
 
 
-    /* --------------------------------------------------------
+    /* ========================================================
        MOBILE TOGGLE
-       -------------------------------------------------------- */
+       ======================================================== */
 
     const toggle =
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
 
     toggle.type =
       "button";
@@ -2256,7 +2804,9 @@
 
 
     const toggleInner =
-      document.createElement("span");
+      document.createElement(
+        "span"
+      );
 
     toggleInner.className =
       "customer-menu-toggle-inner";
@@ -2269,7 +2819,9 @@
     ) {
 
       toggleInner.appendChild(
-        document.createElement("span")
+        document.createElement(
+          "span"
+        )
       );
 
     }
@@ -2280,16 +2832,22 @@
     );
 
 
-    /* --------------------------------------------------------
+    /* ========================================================
        BACKDROP
-       -------------------------------------------------------- */
+       ======================================================== */
 
     const backdrop =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     backdrop.className =
       "customer-mobile-backdrop";
 
+
+    /* ========================================================
+       BUILD HEADER
+       ======================================================== */
 
     container.appendChild(
       brand
@@ -2308,6 +2866,7 @@
       container
     );
 
+
     header.appendChild(
       navbar
     );
@@ -2323,7 +2882,7 @@
 
 
     /* ========================================================
-       MOBILE MENU FUNCTIONS
+       MENU CONTROL
        ======================================================== */
 
     function closeMenu() {
@@ -2432,6 +2991,7 @@
             "a"
           );
 
+
         if (!link) {
           return;
         }
@@ -2442,7 +3002,8 @@
 
 
         if (
-          window.innerWidth <= 1050 &&
+          window.innerWidth <=
+          1050 &&
           !parent.classList.contains(
             "has-dropdown"
           )
@@ -2461,7 +3022,8 @@
       function () {
 
         if (
-          window.innerWidth > 1050
+          window.innerWidth >
+          1050
         ) {
 
           closeMenu();
@@ -2485,44 +3047,370 @@
         ".customer-footer"
       )
     ) {
+
       return;
+
     }
 
 
     const footer =
-      document.createElement("footer");
+      document.createElement(
+        "footer"
+      );
 
     footer.className =
       "customer-footer";
 
 
     const inner =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     inner.className =
       "customer-footer-inner";
 
 
     /* ========================================================
-       TOP GOLD LINE
+       UPPER
        ======================================================== */
 
-    const line =
-      document.createElement("div");
+    const upper =
+      document.createElement(
+        "div"
+      );
 
-    line.className =
-      "customer-footer-line";
+    upper.className =
+      "customer-footer-upper";
 
 
     /* ========================================================
-       MAIN FOOTER BAR
+       LEFT BRAND AREA
        ======================================================== */
 
-    const main =
-      document.createElement("div");
+    const brandArea =
+      document.createElement(
+        "div"
+      );
 
-    main.className =
-      "customer-footer-main";
+    brandArea.className =
+      "customer-footer-brand-area";
+
+
+    /* BRAND */
+
+    const brand =
+      document.createElement(
+        "div"
+      );
+
+    brand.className =
+      "customer-footer-brand";
+
+
+    const logo =
+      document.createElement(
+        "img"
+      );
+
+    logo.className =
+      "customer-footer-logo";
+
+    logo.src =
+      "assets/logo.png";
+
+    logo.alt =
+      "CHATPHETCH GROUP";
+
+
+    const brandCopy =
+      document.createElement(
+        "div"
+      );
+
+    brandCopy.className =
+      "customer-footer-brand-copy";
+
+
+    const brandName =
+      document.createElement(
+        "div"
+      );
+
+    brandName.className =
+      "customer-footer-brand-name";
+
+    brandName.textContent =
+      "CHATPHETCH GROUP";
+
+
+    const brandSub =
+      document.createElement(
+        "div"
+      );
+
+    brandSub.className =
+      "customer-footer-brand-sub";
+
+    brandSub.textContent =
+      "FLOORING & CONSTRUCTION";
+
+
+    brandCopy.appendChild(
+      brandName
+    );
+
+    brandCopy.appendChild(
+      brandSub
+    );
+
+
+    brand.appendChild(
+      logo
+    );
+
+    brand.appendChild(
+      brandCopy
+    );
+
+
+    /* ========================================================
+       COMPANY INFO
+       ======================================================== */
+
+    const info =
+      document.createElement(
+        "div"
+      );
+
+    info.className =
+      "customer-footer-info";
+
+
+    const companyLine =
+      document.createElement(
+        "div"
+      );
+
+    companyLine.className =
+      "customer-footer-company-line";
+
+    companyLine.innerHTML =
+      '<span class="flower">🌹</span>' +
+      'โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท ' +
+      '<span class="flower">🌹</span>';
+
+
+    const serviceLine =
+      document.createElement(
+        "div"
+      );
+
+    serviceLine.className =
+      "customer-footer-service-line";
+
+
+    const service1 =
+      document.createElement(
+        "span"
+      );
+
+    service1.className =
+      "customer-footer-service-item";
+
+    service1.innerHTML =
+      '<span class="icon">♠</span>' +
+      '<span>สร้างสรรค์ผลงาน</span>';
+
+
+    const service2 =
+      document.createElement(
+        "span"
+      );
+
+    service2.className =
+      "customer-footer-service-item";
+
+    service2.innerHTML =
+      '<span class="icon">♠</span>' +
+      '<span>มาตรฐานเข้าถึง</span>';
+
+
+    const service3 =
+      document.createElement(
+        "span"
+      );
+
+    service3.className =
+      "customer-footer-service-item";
+
+    service3.innerHTML =
+      '<span class="icon">♠</span>' +
+      '<span>ยืน 1 คุณภาพ</span>';
+
+
+    serviceLine.appendChild(
+      service1
+    );
+
+    serviceLine.appendChild(
+      service2
+    );
+
+    serviceLine.appendChild(
+      service3
+    );
+
+
+    const detailLine =
+      document.createElement(
+        "div"
+      );
+
+    detailLine.className =
+      "customer-footer-company-line strong";
+
+    detailLine.textContent =
+      "บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร";
+
+
+    info.appendChild(
+      companyLine
+    );
+
+    info.appendChild(
+      serviceLine
+    );
+
+    info.appendChild(
+      detailLine
+    );
+
+
+    brandArea.appendChild(
+      brand
+    );
+
+    brandArea.appendChild(
+      info
+    );
+
+
+    /* ========================================================
+       RIGHT MENU
+       ======================================================== */
+
+    const menu =
+      document.createElement(
+        "div"
+      );
+
+    menu.className =
+      "customer-footer-menu";
+
+
+    const menuTitle =
+      document.createElement(
+        "div"
+      );
+
+    menuTitle.className =
+      "customer-footer-menu-title";
+
+    menuTitle.textContent =
+      "MENU";
+
+
+    const menuList =
+      document.createElement(
+        "ul"
+      );
+
+    menuList.className =
+      "customer-footer-menu-list";
+
+
+    FOOTER_MENU.forEach(
+      function (item) {
+
+        const li =
+          document.createElement(
+            "li"
+          );
+
+
+        const link =
+          document.createElement(
+            "a"
+          );
+
+
+        link.href =
+          item.href;
+
+        link.textContent =
+          item.label;
+
+
+        li.appendChild(
+          link
+        );
+
+
+        menuList.appendChild(
+          li
+        );
+
+      }
+    );
+
+
+    menu.appendChild(
+      menuTitle
+    );
+
+    menu.appendChild(
+      menuList
+    );
+
+
+    /* ========================================================
+       APPEND UPPER
+       ======================================================== */
+
+    upper.appendChild(
+      brandArea
+    );
+
+    upper.appendChild(
+      menu
+    );
+
+
+    /* ========================================================
+       GOLD DIVIDER
+       ======================================================== */
+
+    const divider =
+      document.createElement(
+        "div"
+      );
+
+    divider.className =
+      "customer-footer-divider";
+
+
+    /* ========================================================
+       BOTTOM
+       ======================================================== */
+
+    const bottom =
+      document.createElement(
+        "div"
+      );
+
+    bottom.className =
+      "customer-footer-bottom";
 
 
     /* ========================================================
@@ -2530,67 +3418,73 @@
        ======================================================== */
 
     const copyright =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     copyright.className =
       "customer-footer-copyright";
 
 
-    const year =
-      new Date().getFullYear();
-
-
     copyright.innerHTML =
       "© " +
-      year +
+      new Date().getFullYear() +
       " " +
       "<strong>CHATPHETCH GROUP CO., LTD.</strong>" +
       " All Rights Reserved.";
 
 
     /* ========================================================
-       LOCATION
+       ADDRESS
        ======================================================== */
 
-    const location =
-      document.createElement("div");
+    const address =
+      document.createElement(
+        "div"
+      );
 
-    location.className =
-      "customer-footer-location";
+    address.className =
+      "customer-footer-address";
 
 
-    const locationIcon =
-      document.createElement("span");
+    const addressIcon =
+      document.createElement(
+        "span"
+      );
 
-    locationIcon.className =
-      "customer-footer-location-icon";
+    addressIcon.className =
+      "customer-footer-address-icon";
 
-    locationIcon.textContent =
+    addressIcon.textContent =
       "📍";
 
 
-    const locationText =
-      document.createElement("span");
+    const addressText =
+      document.createElement(
+        "span"
+      );
 
-    locationText.textContent =
+    addressText.textContent =
       "10/1 ม.9 ต.ท่าหม่อ อ.ท่าหม่อ จ.สงขลา 90310";
 
 
-    location.appendChild(
-      locationIcon
+    address.appendChild(
+      addressIcon
     );
 
-    location.appendChild(
-      locationText
+    address.appendChild(
+      addressText
     );
 
 
     /* ========================================================
-       ACTIONS
+       ACTION BUTTONS
        ======================================================== */
 
     const actions =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     actions.className =
       "customer-footer-actions";
@@ -2599,7 +3493,9 @@
     /* CONTACT */
 
     const contact =
-      document.createElement("a");
+      document.createElement(
+        "a"
+      );
 
     contact.className =
       "customer-footer-action";
@@ -2614,7 +3510,9 @@
 
 
     const contactIcon =
-      document.createElement("span");
+      document.createElement(
+        "span"
+      );
 
     contactIcon.className =
       "customer-footer-action-icon";
@@ -2624,7 +3522,9 @@
 
 
     const contactText =
-      document.createElement("span");
+      document.createElement(
+        "span"
+      );
 
     contactText.textContent =
       "ติดต่อเรา";
@@ -2642,7 +3542,9 @@
     /* ORDER */
 
     const order =
-      document.createElement("a");
+      document.createElement(
+        "a"
+      );
 
     order.className =
       "customer-footer-action";
@@ -2657,7 +3559,9 @@
 
 
     const orderIcon =
-      document.createElement("span");
+      document.createElement(
+        "span"
+      );
 
     orderIcon.className =
       "customer-footer-action-icon";
@@ -2667,7 +3571,9 @@
 
 
     const orderText =
-      document.createElement("span");
+      document.createElement(
+        "span"
+      );
 
     orderText.textContent =
       "ติดตามคำสั่งซื้อ";
@@ -2696,7 +3602,9 @@
        ======================================================== */
 
     const social =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     social.className =
       "customer-footer-social";
@@ -2705,7 +3613,9 @@
     /* FACEBOOK */
 
     const facebook =
-      document.createElement("a");
+      document.createElement(
+        "a"
+      );
 
     facebook.className =
       "customer-social";
@@ -2725,7 +3635,9 @@
     /* YOUTUBE */
 
     const youtube =
-      document.createElement("a");
+      document.createElement(
+        "a"
+      );
 
     youtube.className =
       "customer-social youtube";
@@ -2744,21 +3656,24 @@
 
     /* LINE */
 
-    const lineSocial =
-      document.createElement("a");
+    const line =
+      document.createElement(
+        "a"
+      );
 
-    lineSocial.className =
+    line.className =
       "customer-social line";
 
-    lineSocial.href =
+    line.href =
       "#";
 
-    lineSocial.setAttribute(
+    line.setAttribute(
       "aria-label",
       "LINE"
+
     );
 
-    lineSocial.textContent =
+    line.textContent =
       "LINE";
 
 
@@ -2771,136 +3686,45 @@
     );
 
     social.appendChild(
-      lineSocial
+      line
     );
 
 
     /* ========================================================
-       APPEND MAIN
+       BUILD BOTTOM
        ======================================================== */
 
-    main.appendChild(
+    bottom.appendChild(
       copyright
     );
 
-    main.appendChild(
-      location
+    bottom.appendChild(
+      address
     );
 
-    main.appendChild(
+    bottom.appendChild(
       actions
     );
 
-    main.appendChild(
+    bottom.appendChild(
       social
     );
 
 
     /* ========================================================
-       SECONDARY FOOTER NAV
-       ======================================================== */
-
-    const secondary =
-      document.createElement("nav");
-
-    secondary.className =
-      "customer-footer-secondary";
-
-    secondary.setAttribute(
-      "aria-label",
-      "เมนูเพิ่มเติม"
-    );
-
-
-    const secondaryLinks = [
-
-      {
-        label: "หน้าแรก",
-        href: "index.html"
-      },
-
-      {
-        label: "เกี่ยวกับเรา",
-        href: "about.html"
-      },
-
-      {
-        label: "สินค้า",
-        href: "products.html"
-      },
-
-      {
-        label: "บริการ",
-        href: "services.html"
-      },
-
-      {
-        label: "ผลงาน",
-        href: "projects.html"
-      },
-
-      {
-        label: "โครงการอ้างอิง",
-        href: "reference.html"
-      },
-
-      {
-        label: "ศูนย์เทคนิค",
-        href: "technical-center.html"
-      },
-
-      {
-        label: "คลังความรู้",
-        href: "knowledge.html"
-      },
-
-      {
-        label: "ติดต่อเรา",
-        href: "contact.html"
-      },
-
-      {
-        label: "ตะกร้า",
-        href: "cart.html"
-      }
-
-    ];
-
-
-    secondaryLinks.forEach(
-      function (item) {
-
-        const link =
-          document.createElement("a");
-
-        link.href =
-          item.href;
-
-        link.textContent =
-          item.label;
-
-        secondary.appendChild(
-          link
-        );
-
-      }
-    );
-
-
-    /* ========================================================
-       BUILD FOOTER
+       FOOTER BUILD
        ======================================================== */
 
     inner.appendChild(
-      line
+      upper
     );
 
     inner.appendChild(
-      main
+      divider
     );
 
     inner.appendChild(
-      secondary
+      bottom
     );
 
 
@@ -2918,26 +3742,28 @@
        FLOATING PHONE
        ======================================================== */
 
-    const phone =
-      document.createElement("a");
+    const floatingPhone =
+      document.createElement(
+        "a"
+      );
 
-    phone.className =
+    floatingPhone.className =
       "customer-floating-phone";
 
-    phone.href =
+    floatingPhone.href =
       "tel:";
 
-    phone.setAttribute(
+    floatingPhone.setAttribute(
       "aria-label",
-      "โทรติดต่อ CHATPHETCH GROUP"
+      "โทรหา CHATPHETCH GROUP"
     );
 
-    phone.textContent =
+    floatingPhone.textContent =
       "☎";
 
 
     document.body.appendChild(
-      phone
+      floatingPhone
     );
 
   }
@@ -2961,7 +3787,7 @@
 
 
   /* ==========================================================
-     CART EVENTS
+     CART STORAGE EVENT
      ========================================================== */
 
   window.addEventListener(
@@ -2980,6 +3806,10 @@
     }
   );
 
+
+  /* ==========================================================
+     CUSTOM CART EVENT
+     ========================================================== */
 
   window.addEventListener(
     "cartUpdated",
