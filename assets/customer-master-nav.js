@@ -282,13 +282,13 @@
 
 
   /* ==========================================================
-     CSS
+     MASTER CSS
      ========================================================== */
 
   const STYLE = `
 
   /* ==========================================================
-     CHATPHETCH MASTER NAV
+     ROOT
      ========================================================== */
 
   :root {
@@ -409,6 +409,8 @@
 
     color:
       var(--cp-white);
+
+    text-decoration: none;
 
   }
 
@@ -540,6 +542,8 @@
     font-weight: 400;
 
     white-space: nowrap;
+
+    text-decoration: none;
 
     transition:
       color .22s ease;
@@ -726,6 +730,8 @@
       1px solid
       rgba(255,255,255,.055);
 
+    text-decoration: none;
+
     transition:
       color .2s ease,
       background .2s ease,
@@ -756,7 +762,7 @@
 
 
   /* ==========================================================
-     CART BADGE
+     CART
      ========================================================== */
 
   .customer-cart-link {
@@ -796,7 +802,7 @@
 
 
   /* ==========================================================
-     MOBILE TOGGLE
+     MOBILE MENU BUTTON
      ========================================================== */
 
   .customer-menu-toggle {
@@ -966,6 +972,10 @@
   }
 
 
+  /* ==========================================================
+     FOOTER INNER
+     ========================================================== */
+
   .customer-footer-inner {
 
     width:
@@ -976,14 +986,19 @@
 
     margin-inline: auto;
 
+    /*
+      ลดจาก 58px
+      ให้ Footer กระชับขึ้น
+    */
+
     padding:
-      58px 0 20px;
+      38px 0 18px;
 
   }
 
 
   /* ==========================================================
-     FOOTER UPPER AREA
+     FOOTER UPPER
      ========================================================== */
 
   .customer-footer-upper {
@@ -996,18 +1011,23 @@
 
     gap: 90px;
 
-    min-height: 300px;
+    /*
+      ลดจาก 300px
+      เพื่อให้เส้นทองเลื่อนขึ้น
+    */
+
+    min-height: 220px;
 
   }
 
 
   /* ==========================================================
-     FOOTER BRAND AREA
+     FOOTER BRAND
      ========================================================== */
 
   .customer-footer-brand-area {
 
-    padding-top: 4px;
+    padding-top: 2px;
 
   }
 
@@ -1064,7 +1084,7 @@
 
   .customer-footer-brand-sub {
 
-    margin-top: 12px;
+    margin-top: 11px;
 
     color:
       var(--cp-gold-light);
@@ -1080,12 +1100,16 @@
 
 
   /* ==========================================================
-     FOOTER COMPANY INFORMATION
+     COMPANY INFORMATION
      ========================================================== */
 
   .customer-footer-info {
 
-    margin-top: 40px;
+    /*
+      ลดจาก 40px
+    */
+
+    margin-top: 28px;
 
   }
 
@@ -1097,7 +1121,7 @@
 
     font-size: 15px;
 
-    line-height: 1.8;
+    line-height: 1.7;
 
   }
 
@@ -1112,24 +1136,17 @@
   }
 
 
-  .customer-footer-company-line + 
+  .customer-footer-company-line +
   .customer-footer-company-line {
 
-    margin-top: 22px;
+    margin-top: 16px;
 
   }
 
 
   .customer-footer-company-line .flower {
 
-    margin-right: 12px;
-
-  }
-
-
-  .customer-footer-company-line .spade {
-
-    margin-right: 12px;
+    margin-right: 10px;
 
   }
 
@@ -1142,14 +1159,14 @@
 
     align-items: center;
 
-    gap: 34px;
+    gap: 28px;
 
     color:
       #918a84;
 
     font-size: 14px;
 
-    line-height: 1.8;
+    line-height: 1.7;
 
   }
 
@@ -1160,7 +1177,7 @@
 
     align-items: center;
 
-    gap: 10px;
+    gap: 9px;
 
   }
 
@@ -1170,7 +1187,7 @@
     color:
       #7770ae;
 
-    font-size: 20px;
+    font-size: 19px;
 
   }
 
@@ -1181,7 +1198,7 @@
 
   .customer-footer-menu {
 
-    padding-top: 1px;
+    padding-top: 0;
 
   }
 
@@ -1192,7 +1209,7 @@
 
     position: relative;
 
-    padding-bottom: 17px;
+    padding-bottom: 14px;
 
     color:
       var(--cp-gold-light);
@@ -1236,9 +1253,15 @@
 
     align-items: flex-start;
 
-    gap: 17px;
+    /*
+      ลดระยะห่างเมนู
+    */
 
-    margin: 30px 0 0;
+    gap: 13px;
+
+    margin:
+      22px 0 0;
+
     padding: 0;
 
     list-style: none;
@@ -1263,7 +1286,9 @@
 
     font-size: 15px;
 
-    line-height: 1.5;
+    line-height: 1.45;
+
+    text-decoration: none;
 
     transition:
       color .2s ease,
@@ -1293,8 +1318,12 @@
 
     height: 1px;
 
+    /*
+      ลดระยะจากเนื้อหาด้านบน
+    */
+
     margin:
-      15px 0 25px;
+      8px 0 20px;
 
     background:
       rgba(198,160,106,.30);
@@ -1303,7 +1332,7 @@
 
 
   /* ==========================================================
-     FOOTER BOTTOM BAR
+     FOOTER BOTTOM
      ========================================================== */
 
   .customer-footer-bottom {
@@ -1361,7 +1390,7 @@
 
     align-items: center;
 
-    gap: 11px;
+    gap: 10px;
 
     min-width: 0;
 
@@ -1389,7 +1418,7 @@
 
 
   /* ==========================================================
-     BOTTOM ACTIONS
+     ACTIONS
      ========================================================== */
 
   .customer-footer-actions {
@@ -1440,6 +1469,8 @@
     font-size: 12px;
 
     white-space: nowrap;
+
+    text-decoration: none;
 
     transition:
       color .2s ease,
@@ -1520,6 +1551,8 @@
 
     font-size: 19px;
 
+    text-decoration: none;
+
     transition:
       color .2s ease,
       background .2s ease,
@@ -1566,7 +1599,7 @@
 
 
   /* ==========================================================
-     FLOATING BUTTONS
+     FLOATING PHONE
      ========================================================== */
 
   .customer-floating-phone {
@@ -1574,6 +1607,7 @@
     position: fixed;
 
     right: 24px;
+
     bottom: 92px;
 
     z-index: 8800;
@@ -1608,6 +1642,8 @@
 
     font-size: 20px;
 
+    text-decoration: none;
+
     transition:
       transform .2s ease,
       border-color .2s ease,
@@ -1631,7 +1667,7 @@
 
 
   /* ==========================================================
-     MOBILE NAV
+     TABLET / MOBILE NAV
      ========================================================== */
 
   @media (max-width: 1050px) {
@@ -1849,9 +1885,7 @@
     }
 
 
-    /* ========================================================
-       FOOTER TABLET
-       ======================================================== */
+    /* FOOTER TABLET */
 
     .customer-footer-inner {
 
@@ -1868,6 +1902,8 @@
         250px;
 
       gap: 50px;
+
+      min-height: 190px;
 
     }
 
@@ -1979,7 +2015,7 @@
         calc(100% - 28px);
 
       padding:
-        48px 0 20px;
+        38px 0 18px;
 
     }
 
@@ -1991,7 +2027,7 @@
       grid-template-columns:
         1fr;
 
-      gap: 50px;
+      gap: 38px;
 
       min-height: auto;
 
@@ -2032,7 +2068,7 @@
 
     .customer-footer-info {
 
-      margin-top: 30px;
+      margin-top: 25px;
 
     }
 
@@ -2046,7 +2082,7 @@
 
     .customer-footer-service-line {
 
-      gap: 15px 25px;
+      gap: 12px 22px;
 
       font-size: 12px;
 
@@ -2068,9 +2104,9 @@
         1fr 1fr;
 
       gap:
-        14px 20px;
+        12px 20px;
 
-      margin-top: 25px;
+      margin-top: 22px;
 
     }
 
@@ -2085,7 +2121,7 @@
     .customer-footer-divider {
 
       margin:
-        40px 0 22px;
+        32px 0 20px;
 
     }
 
@@ -2098,7 +2134,7 @@
 
       align-items: stretch;
 
-      gap: 18px;
+      gap: 16px;
 
     }
 
@@ -2184,6 +2220,7 @@
       height: 52px;
 
       right: 17px;
+
       bottom: 17px;
 
       font-size: 18px;
@@ -2252,7 +2289,8 @@
       width:
         calc(100% - 24px);
 
-      padding-top: 40px;
+      padding:
+        32px 0 16px;
 
     }
 
@@ -2281,7 +2319,7 @@
 
     .customer-footer-brand-sub {
 
-      margin-top: 9px;
+      margin-top: 8px;
 
       font-size: 8px;
 
@@ -2302,7 +2340,7 @@
       grid-template-columns:
         1fr;
 
-      gap: 8px;
+      gap: 7px;
 
       font-size: 11px;
 
@@ -2314,7 +2352,7 @@
       grid-template-columns:
         1fr;
 
-      gap: 12px;
+      gap: 10px;
 
     }
 
@@ -2340,6 +2378,7 @@
       height: 50px;
 
       right: 14px;
+
       bottom: 14px;
 
     }
@@ -2371,7 +2410,7 @@
 
 
   /* ==========================================================
-     INSERT CSS
+     INJECT STYLE
      ========================================================== */
 
   function injectStyles() {
@@ -2406,7 +2445,7 @@
 
 
   /* ==========================================================
-     CREATE NAV ITEM
+     BUILD NAV ITEM
      ========================================================== */
 
   function buildNavItem(item) {
@@ -2604,7 +2643,7 @@
 
 
   /* ==========================================================
-     HEADER
+     BUILD HEADER
      ========================================================== */
 
   function buildHeader() {
@@ -2846,7 +2885,7 @@
 
 
     /* ========================================================
-       BUILD HEADER
+       APPEND HEADER
        ======================================================== */
 
     container.appendChild(
@@ -2882,7 +2921,7 @@
 
 
     /* ========================================================
-       MENU CONTROL
+       MENU FUNCTIONS
        ======================================================== */
 
     function closeMenu() {
@@ -3037,7 +3076,7 @@
 
 
   /* ==========================================================
-     FOOTER
+     BUILD FOOTER
      ========================================================== */
 
   function buildFooter() {
@@ -3085,7 +3124,7 @@
 
 
     /* ========================================================
-       LEFT BRAND AREA
+       LEFT
        ======================================================== */
 
     const brandArea =
@@ -3096,8 +3135,6 @@
     brandArea.className =
       "customer-footer-brand-area";
 
-
-    /* BRAND */
 
     const brand =
       document.createElement(
@@ -3375,7 +3412,7 @@
 
 
     /* ========================================================
-       APPEND UPPER
+       UPPER APPEND
        ======================================================== */
 
     upper.appendChild(
@@ -3388,7 +3425,7 @@
 
 
     /* ========================================================
-       GOLD DIVIDER
+       DIVIDER
        ======================================================== */
 
     const divider =
@@ -3413,9 +3450,7 @@
       "customer-footer-bottom";
 
 
-    /* ========================================================
-       COPYRIGHT
-       ======================================================== */
+    /* COPYRIGHT */
 
     const copyright =
       document.createElement(
@@ -3425,7 +3460,6 @@
     copyright.className =
       "customer-footer-copyright";
 
-
     copyright.innerHTML =
       "© " +
       new Date().getFullYear() +
@@ -3434,9 +3468,7 @@
       " All Rights Reserved.";
 
 
-    /* ========================================================
-       ADDRESS
-       ======================================================== */
+    /* ADDRESS */
 
     const address =
       document.createElement(
@@ -3477,9 +3509,7 @@
     );
 
 
-    /* ========================================================
-       ACTION BUTTONS
-       ======================================================== */
+    /* ACTIONS */
 
     const actions =
       document.createElement(
@@ -3489,8 +3519,6 @@
     actions.className =
       "customer-footer-actions";
 
-
-    /* CONTACT */
 
     const contact =
       document.createElement(
@@ -3503,43 +3531,10 @@
     contact.href =
       "contact.html";
 
-    contact.setAttribute(
-      "aria-label",
-      "ติดต่อเรา"
-    );
+    contact.innerHTML =
+      '<span class="customer-footer-action-icon">☎</span>' +
+      '<span>ติดต่อเรา</span>';
 
-
-    const contactIcon =
-      document.createElement(
-        "span"
-      );
-
-    contactIcon.className =
-      "customer-footer-action-icon";
-
-    contactIcon.textContent =
-      "☎";
-
-
-    const contactText =
-      document.createElement(
-        "span"
-      );
-
-    contactText.textContent =
-      "ติดต่อเรา";
-
-
-    contact.appendChild(
-      contactIcon
-    );
-
-    contact.appendChild(
-      contactText
-    );
-
-
-    /* ORDER */
 
     const order =
       document.createElement(
@@ -3552,40 +3547,9 @@
     order.href =
       "order-status.html";
 
-    order.setAttribute(
-      "aria-label",
-      "ติดตามคำสั่งซื้อ"
-    );
-
-
-    const orderIcon =
-      document.createElement(
-        "span"
-      );
-
-    orderIcon.className =
-      "customer-footer-action-icon";
-
-    orderIcon.textContent =
-      "🔎";
-
-
-    const orderText =
-      document.createElement(
-        "span"
-      );
-
-    orderText.textContent =
-      "ติดตามคำสั่งซื้อ";
-
-
-    order.appendChild(
-      orderIcon
-    );
-
-    order.appendChild(
-      orderText
-    );
+    order.innerHTML =
+      '<span class="customer-footer-action-icon">🔎</span>' +
+      '<span>ติดตามคำสั่งซื้อ</span>';
 
 
     actions.appendChild(
@@ -3597,9 +3561,7 @@
     );
 
 
-    /* ========================================================
-       SOCIAL
-       ======================================================== */
+    /* SOCIAL */
 
     const social =
       document.createElement(
@@ -3609,8 +3571,6 @@
     social.className =
       "customer-footer-social";
 
-
-    /* FACEBOOK */
 
     const facebook =
       document.createElement(
@@ -3632,8 +3592,6 @@
       "f";
 
 
-    /* YOUTUBE */
-
     const youtube =
       document.createElement(
         "a"
@@ -3654,8 +3612,6 @@
       "▶";
 
 
-    /* LINE */
-
     const line =
       document.createElement(
         "a"
@@ -3670,7 +3626,6 @@
     line.setAttribute(
       "aria-label",
       "LINE"
-
     );
 
     line.textContent =
@@ -3712,7 +3667,7 @@
 
 
     /* ========================================================
-       FOOTER BUILD
+       BUILD FOOTER
        ======================================================== */
 
     inner.appendChild(
@@ -3787,7 +3742,7 @@
 
 
   /* ==========================================================
-     CART STORAGE EVENT
+     CART EVENTS
      ========================================================== */
 
   window.addEventListener(
@@ -3806,10 +3761,6 @@
     }
   );
 
-
-  /* ==========================================================
-     CUSTOM CART EVENT
-     ========================================================== */
 
   window.addEventListener(
     "cartUpdated",
