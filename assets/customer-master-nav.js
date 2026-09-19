@@ -1,56 +1,57 @@
-/* =========================================================
-   CHATPETCH GROUP
-   CUSTOMER MASTER HEADER + FOOTER
-   Responsive Navigation
-   Desktop = เมนูด้านบน
-   Mobile  = Hamburger Menu ☰
-   ========================================================= */
+/* ============================================================
+   CHATPHETCH GROUP
+   MASTER NAVIGATION
+   Header + Desktop Navigation + Mobile Navigation + Footer
+   ============================================================ */
 
 (function () {
   "use strict";
 
-  const currentPage =
-    (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+
+  /* ==========================================================
+     NAVIGATION DATA
+     ========================================================== */
 
   const NAV = [
     {
-      key: "home",
       label: "หน้าแรก",
       href: "index.html"
     },
 
     {
-      key: "about",
       label: "เกี่ยวกับเรา",
       href: "about.html"
     },
 
     {
-      key: "products",
       label: "สินค้า",
       href: "products.html"
     },
 
     {
-      key: "services",
       label: "บริการ",
-      dropdown: [
+      dropdown: true,
+      items: [
         {
           label: "ดูบริการทั้งหมด",
           href: "services.html"
         },
+
         {
           label: "บริการระบบงานพื้น",
           href: "service-detail.html?service=industrial"
         },
+
         {
           label: "บริการเคลือบผิว / สี",
           href: "service-detail.html?service=coating"
         },
+
         {
           label: "ปรึกษาและเลือกวัสดุ",
           href: "service-detail.html?service=consulting"
         },
+
         {
           label: "คำปรึกษางานติดตั้ง",
           href: "service-detail.html?service=installation"
@@ -59,1473 +60,1611 @@
     },
 
     {
-      key: "projects",
       label: "ผลงาน",
       href: "projects.html"
     },
 
     {
-      key: "reference",
       label: "โครงการอ้างอิง",
       href: "reference.html"
     },
 
     {
-      key: "technical",
       label: "ศูนย์เทคนิค",
       href: "technical-center.html"
     },
 
     {
-      key: "knowledge",
       label: "คลังความรู้",
       href: "knowledge.html"
     },
 
     {
-      key: "contact",
       label: "ติดต่อเรา",
       href: "contact.html"
     },
 
     {
-      key: "order",
       label: "🔎 ติดตามคำสั่งซื้อ",
       href: "order-status.html"
     },
 
     {
-      key: "cart",
       label: "🛒 ตะกร้า",
       href: "cart.html",
       cart: true
     }
   ];
 
-  const PAGE_KEY = {
-    "index.html": "home",
-    "about.html": "about",
-    "services.html": "services",
-    "service-detail.html": "services",
-    "products.html": "products",
-    "product-detail.html": "products",
-    "projects.html": "projects",
-    "project-detail.html": "projects",
-    "reference.html": "reference",
-    "technical-center.html": "technical",
-    "knowledge.html": "knowledge",
-    "knowledge-detail.html": "knowledge",
-    "contact.html": "contact",
-    "cart.html": "cart",
-    "checkout.html": "cart",
-    "order-status.html": "order"
-  };
 
-  const activeKey =
-    PAGE_KEY[currentPage] || "";
+  /* ==========================================================
+     HELPERS
+     ========================================================== */
 
-  /* =========================================================
-     MASTER CSS
-     ========================================================= */
+  function escapeHTML(value) {
 
-  const style =
-    document.createElement("style");
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
 
-  style.id =
-    "chatpetch-master-layout-style";
+  }
 
-  style.textContent = `
 
-    @import url(
-      'https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap'
+  function currentPage() {
+
+    const path =
+      window.location.pathname
+        .split("/")
+        .pop();
+
+    return path || "index.html";
+
+  }
+
+
+  function isActive(href) {
+
+    if (!href) {
+      return false;
+    }
+
+    const cleanHref =
+      href
+        .split("?")[0]
+        .split("#")[0];
+
+    return cleanHref === currentPage();
+
+  }
+
+
+  /* ==========================================================
+     CART
+     ========================================================== */
+
+  function getCart() {
+
+    try {
+
+      const raw =
+        localStorage.getItem("chatpetch_cart");
+
+      if (!raw) {
+        return [];
+      }
+
+      const cart =
+        JSON.parse(raw);
+
+      return Array.isArray(cart)
+        ? cart
+        : [];
+
+    } catch (error) {
+
+      return [];
+
+    }
+
+  }
+
+
+  function getCartCount() {
+
+    const cart = getCart();
+
+    return cart.reduce(
+      function (total, item) {
+
+        const qty =
+          Number(
+            item.quantity ??
+            item.qty ??
+            1
+          );
+
+        return total +
+          (Number.isFinite(qty)
+            ? Math.max(0, qty)
+            : 0);
+
+      },
+      0
     );
 
-    :root{
-      --black:#030303;
-      --black2:#080808;
-      --dark:#101010;
+  }
 
-      --gold:#c9a45c;
-      --gold2:#e9cf8b;
-      --gold3:#8d6b2f;
 
-      --white:#fff;
-      --muted:#a6a6a6;
+  function updateCartBadges() {
 
-      --line:rgba(255,255,255,.10);
-      --gold-line:rgba(201,164,92,.35);
+    const count =
+      getCartCount();
 
-      --max:1280px;
+    document
+      .querySelectorAll(
+        "[data-cart-count]"
+      )
+      .forEach(function (element) {
+
+        element.textContent =
+          String(count);
+
+        element.hidden =
+          count <= 0;
+
+      });
+
+  }
+
+
+  /* ==========================================================
+     CSS
+     ========================================================== */
+
+  const STYLE = `
+  /* ==========================================================
+     CHATPHETCH MASTER NAV
+     ========================================================== */
+
+  :root {
+    --cp-nav-bg: rgba(18, 12, 9, .91);
+    --cp-nav-bg-mobile: rgba(16, 11, 8, .98);
+
+    --cp-nav-border:
+      rgba(225, 200, 149, .16);
+
+    --cp-nav-gold:
+      #c6a06a;
+
+    --cp-nav-gold-light:
+      #e1c895;
+
+    --cp-nav-white:
+      #f6f0e8;
+
+    --cp-nav-muted:
+      #aaa095;
+  }
+
+
+  /* ==========================================================
+     HEADER
+     ========================================================== */
+
+  .customer-header {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 9000;
+
+    width: 100%;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(10, 7, 5, .96),
+        rgba(15, 10, 7, .88)
+      );
+
+    border-bottom:
+      1px solid var(--cp-nav-border);
+
+    backdrop-filter:
+      blur(16px);
+
+    -webkit-backdrop-filter:
+      blur(16px);
+
+  }
+
+
+  .customer-navbar {
+
+    width: 100%;
+
+    min-height: 86px;
+
+    display: flex;
+
+    align-items: center;
+
+  }
+
+
+  .customer-nav-container {
+
+    width:
+      min(
+        calc(100% - 48px),
+        1440px
+      );
+
+    margin-inline: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 28px;
+
+  }
+
+
+  /* ==========================================================
+     BRAND
+     ========================================================== */
+
+  .customer-brand {
+
+    flex: 0 0 auto;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: var(--cp-nav-white);
+
+    min-width: 0;
+
+  }
+
+
+  .customer-brand-logo {
+
+    width: 54px;
+    height: 54px;
+
+    object-fit: contain;
+
+    flex: 0 0 auto;
+
+  }
+
+
+  .customer-brand-copy {
+
+    display: flex;
+
+    flex-direction: column;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+  }
+
+
+  .customer-brand-name {
+
+    color:
+      var(--cp-nav-white);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    letter-spacing:
+      .15em;
+
+  }
+
+
+  .customer-brand-sub {
+
+    margin-top: 6px;
+
+    color:
+      var(--cp-nav-gold);
+
+    font-size: 8px;
+
+    letter-spacing:
+      .20em;
+
+    text-transform:
+      uppercase;
+
+  }
+
+
+  /* ==========================================================
+     DESKTOP NAV
+     ========================================================== */
+
+  .customer-nav {
+
+    flex: 1 1 auto;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+  }
+
+
+  .customer-nav-list {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 3px;
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+
+  }
+
+
+  .customer-nav-item {
+
+    position: relative;
+
+    list-style: none;
+
+  }
+
+
+  .customer-nav-link {
+
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 48px;
+
+    padding:
+      0 10px;
+
+    color:
+      rgba(246,240,232,.78);
+
+    font-size: 12px;
+
+    font-weight: 400;
+
+    white-space: nowrap;
+
+    transition:
+      color .2s ease;
+
+  }
+
+
+  .customer-nav-link::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 10px;
+    right: 10px;
+
+    bottom: 7px;
+
+    height: 1px;
+
+    background:
+      var(--cp-nav-gold);
+
+    transform:
+      scaleX(0);
+
+    transform-origin:
+      center;
+
+    transition:
+      transform .25s ease;
+
+  }
+
+
+  .customer-nav-link:hover {
+
+    color:
+      var(--cp-nav-white);
+
+  }
+
+
+  .customer-nav-link:hover::after,
+  .customer-nav-link.active::after {
+
+    transform:
+      scaleX(1);
+
+  }
+
+
+  .customer-nav-link.active {
+
+    color:
+      var(--cp-nav-gold-light);
+
+  }
+
+
+  /* ==========================================================
+     DROPDOWN
+     ========================================================== */
+
+  .customer-nav-item.has-dropdown >
+  .customer-nav-link {
+
+    gap: 7px;
+
+  }
+
+
+  .customer-dropdown-arrow {
+
+    display: inline-block;
+
+    width: 6px;
+    height: 6px;
+
+    margin-top: -3px;
+
+    border-right:
+      1px solid currentColor;
+
+    border-bottom:
+      1px solid currentColor;
+
+    transform:
+      rotate(45deg);
+
+    transition:
+      transform .2s ease;
+
+  }
+
+
+  .customer-nav-item:hover
+  .customer-dropdown-arrow {
+
+    transform:
+      rotate(225deg)
+      translate(-1px,-1px);
+
+  }
+
+
+  .customer-dropdown {
+
+    position: absolute;
+
+    top: calc(100% - 2px);
+
+    left: 50%;
+
+    min-width: 270px;
+
+    padding:
+      10px;
+
+    margin: 0;
+
+    list-style: none;
+
+    background:
+      rgba(19, 13, 9, .98);
+
+    border:
+      1px solid var(--cp-nav-border);
+
+    box-shadow:
+      0 20px 50px rgba(0,0,0,.40);
+
+    transform:
+      translate(-50%, 8px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+      opacity .2s ease,
+      transform .2s ease,
+      visibility .2s ease;
+
+  }
+
+
+  .customer-nav-item:hover
+  .customer-dropdown {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform:
+      translate(-50%, 0);
+
+  }
+
+
+  .customer-dropdown a {
+
+    display: flex;
+
+    align-items: center;
+
+    min-height: 43px;
+
+    padding:
+      0 14px;
+
+    color:
+      rgba(246,240,232,.76);
+
+    font-size: 12px;
+
+    border-bottom:
+      1px solid rgba(255,255,255,.05);
+
+    transition:
+      color .2s ease,
+      background .2s ease,
+      padding .2s ease;
+
+  }
+
+
+  .customer-dropdown li:last-child a {
+
+    border-bottom: 0;
+
+  }
+
+
+  .customer-dropdown a:hover {
+
+    color:
+      var(--cp-nav-gold-light);
+
+    background:
+      rgba(198,160,106,.08);
+
+    padding-left: 18px;
+
+  }
+
+
+  /* ==========================================================
+     CART BADGE
+     ========================================================== */
+
+  .customer-cart-link {
+
+    gap: 6px;
+
+  }
+
+
+  .customer-cart-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 17px;
+    height: 17px;
+
+    padding:
+      0 4px;
+
+    border-radius: 50px;
+
+    color:
+      #17100b;
+
+    background:
+      var(--cp-nav-gold-light);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+  }
+
+
+  /* ==========================================================
+     MOBILE TOGGLE
+     ========================================================== */
+
+  .customer-menu-toggle {
+
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+  }
+
+
+  .customer-menu-toggle-inner {
+
+    position: relative;
+
+    width: 24px;
+    height: 18px;
+
+    margin: auto;
+
+  }
+
+
+  .customer-menu-toggle-inner span {
+
+    position: absolute;
+
+    left: 0;
+
+    width: 24px;
+    height: 1px;
+
+    background:
+      var(--cp-nav-white);
+
+    transition:
+      transform .25s ease,
+      opacity .25s ease,
+      top .25s ease;
+
+  }
+
+
+  .customer-menu-toggle-inner span:nth-child(1) {
+
+    top: 0;
+
+  }
+
+
+  .customer-menu-toggle-inner span:nth-child(2) {
+
+    top: 8px;
+
+  }
+
+
+  .customer-menu-toggle-inner span:nth-child(3) {
+
+    top: 16px;
+
+  }
+
+
+  .customer-menu-toggle.open
+  .customer-menu-toggle-inner
+  span:nth-child(1) {
+
+    top: 8px;
+
+    transform:
+      rotate(45deg);
+
+  }
+
+
+  .customer-menu-toggle.open
+  .customer-menu-toggle-inner
+  span:nth-child(2) {
+
+    opacity: 0;
+
+  }
+
+
+  .customer-menu-toggle.open
+  .customer-menu-toggle-inner
+  span:nth-child(3) {
+
+    top: 8px;
+
+    transform:
+      rotate(-45deg);
+
+  }
+
+
+  /* ==========================================================
+     MOBILE BACKDROP
+     ========================================================== */
+
+  .customer-mobile-backdrop {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 8998;
+
+    background:
+      rgba(0,0,0,.52);
+
+  }
+
+
+  /* ==========================================================
+     FOOTER
+     ========================================================== */
+
+  .customer-footer {
+
+    position: relative;
+
+    z-index: 10;
+
+    color:
+      rgba(246,240,232,.78);
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(11,8,6,.94),
+        rgba(7,5,4,.98)
+      );
+
+    border-top:
+      1px solid var(--cp-nav-border);
+
+  }
+
+
+  .customer-footer-inner {
+
+    width:
+      min(
+        calc(100% - 48px),
+        1440px
+      );
+
+    margin-inline: auto;
+
+    padding:
+      65px 0 30px;
+
+  }
+
+
+  .customer-footer-top {
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(230px, 1.1fr)
+      minmax(0, 2fr);
+
+    gap: 60px;
+
+    padding-bottom: 45px;
+
+    border-bottom:
+      1px solid rgba(255,255,255,.08);
+
+  }
+
+
+  .customer-footer-brand {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+  }
+
+
+  .customer-footer-logo {
+
+    width: 58px;
+    height: 58px;
+
+    object-fit: contain;
+
+  }
+
+
+  .customer-footer-brand-name {
+
+    margin-top: 5px;
+
+    color:
+      var(--cp-nav-white);
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    letter-spacing:
+      .14em;
+
+  }
+
+
+  .customer-footer-brand-text {
+
+    max-width: 330px;
+
+    margin-top: 14px;
+
+    color:
+      #958b82;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+  }
+
+
+  .customer-footer-links {
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(4, minmax(0,1fr));
+
+    gap:
+      10px 20px;
+
+  }
+
+
+  .customer-footer-links a {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 32px;
+
+    color:
+      #9e958b;
+
+    font-size: 11px;
+
+    transition:
+      color .2s ease;
+
+  }
+
+
+  .customer-footer-links a:hover {
+
+    color:
+      var(--cp-nav-gold-light);
+
+  }
+
+
+  .customer-footer-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-top: 24px;
+
+    color:
+      #716961;
+
+    font-size: 10px;
+
+  }
+
+
+  .customer-footer-credit {
+
+    color:
+      var(--cp-nav-gold);
+
+  }
+
+
+  /* ==========================================================
+     MOBILE
+     ========================================================== */
+
+  @media (max-width: 1050px) {
+
+    .customer-navbar {
+
+      min-height: 78px;
+
     }
 
 
-    *{
-      box-sizing:border-box;
-    }
-
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-
-    body{
-      margin:0;
-
-      font-family:
-        'Prompt',
-        'Kanit',
-        sans-serif !important;
-
-      background:#030303 !important;
-
-      color:#fff !important;
-
-      overflow-x:hidden;
-    }
-
-
-    body::before{
-      content:"";
-
-      position:fixed;
-
-      inset:0;
-
-      pointer-events:none;
-
-      z-index:-10;
-
-      background-image:
-        linear-gradient(
-          rgba(255,255,255,.025)
-          1px,
-          transparent 1px
-        ),
-
-        linear-gradient(
-          90deg,
-          rgba(255,255,255,.025)
-          1px,
-          transparent 1px
-        );
-
-      background-size:60px 60px;
-
-      mask-image:
-        linear-gradient(
-          to bottom,
-          black,
-          rgba(0,0,0,.5),
-          transparent
-        );
-    }
-
-
-    /* =====================================================
-       HEADER
-       ===================================================== */
-
-    .header{
-
-      position:fixed !important;
-
-      top:0 !important;
-
-      left:0 !important;
-
-      width:100% !important;
-
-      z-index:5000 !important;
-
-      background:
-        rgba(3,3,3,.88)
-        !important;
-
-      backdrop-filter:blur(18px);
-
-      -webkit-backdrop-filter:blur(18px);
-
-      border-bottom:
-        1px solid
-        rgba(201,164,92,.16)
-        !important;
-    }
-
-
-    .header .container{
+    .customer-nav-container {
 
       width:
-        min(
-          var(--max),
-          calc(100% - 80px)
-        );
+        calc(100% - 32px);
 
-      margin:auto;
     }
 
 
-    .navbar{
+    .customer-brand-logo {
 
-      min-height:86px;
+      width: 52px;
+      height: 52px;
 
-      display:flex;
-
-      align-items:center;
-
-      justify-content:space-between;
-
-      gap:20px;
-
-      position:relative;
     }
 
 
-    /* =====================================================
-       BRAND
-       ===================================================== */
+    .customer-nav {
 
-    .customer-brand{
+      position: fixed;
 
-      display:flex;
+      top: 78px;
+      left: 0;
+      right: 0;
 
-      align-items:center;
+      z-index: 8999;
 
-      gap:14px;
+      display: block;
 
-      flex:0 0 auto;
+      max-height:
+        calc(100vh - 78px);
 
-      color:inherit;
+      overflow-y: auto;
 
-      text-decoration:none;
-    }
+      background:
+        var(--cp-nav-bg-mobile);
 
-
-    .customer-brand img{
-
-      width:72px !important;
-
-      height:72px !important;
-
-      max-width:72px !important;
-
-      max-height:72px !important;
-
-      object-fit:contain !important;
-
-      display:block;
-
-      flex:0 0 72px;
-    }
-
-
-    .customer-brand-text strong{
-
-      display:block;
-
-      font-size:18px;
-
-      line-height:1.15;
-
-      letter-spacing:1.8px;
-
-      font-weight:600;
-
-      white-space:nowrap;
-    }
-
-
-    .customer-brand-text small{
-
-      display:block;
-
-      color:var(--gold);
-
-      font-size:9px;
-
-      line-height:1.2;
-
-      letter-spacing:2px;
-
-      margin-top:4px;
-
-      white-space:nowrap;
-    }
-
-
-    /* =====================================================
-       DESKTOP NAV
-       ===================================================== */
-
-    .customer-nav{
-
-      display:flex;
-
-      align-items:center;
-
-      justify-content:flex-end;
-
-      gap:2px;
-
-      min-width:0;
-    }
-
-
-    .customer-nav > a,
-    .nav-drop-trigger{
-
-      position:relative;
-
-      min-height:46px;
-
-      padding:11px 10px;
-
-      display:inline-flex;
-
-      align-items:center;
-
-      justify-content:center;
-
-      gap:6px;
-
-      color:#cfcfcf;
-
-      font-family:
-        'Prompt',
-        'Kanit',
-        sans-serif;
-
-      font-size:12px;
-
-      font-weight:400;
-
-      line-height:1.2;
-
-      background:transparent;
-
-      border:0;
-
-      cursor:pointer;
-
-      text-decoration:none;
-
-      white-space:nowrap;
-
-      transition:.25s;
-    }
-
-
-    .customer-nav > a::after,
-    .nav-drop-trigger::after{
-
-      content:"";
-
-      position:absolute;
-
-      left:10px;
-
-      right:10px;
-
-      bottom:4px;
-
-      height:1px;
-
-      background:var(--gold);
-
-      transform:scaleX(0);
-
-      transform-origin:center;
-
-      transition:.25s;
-    }
-
-
-    .customer-nav > a:hover,
-    .customer-nav > a.active,
-    .nav-drop-trigger:hover,
-    .nav-dropdown.open .nav-drop-trigger{
-
-      color:#fff;
-    }
-
-
-    .customer-nav > a:hover::after,
-    .customer-nav > a.active::after,
-    .nav-dropdown.open
-    .nav-drop-trigger::after{
-
-      transform:scaleX(1);
-    }
-
-
-    /* =====================================================
-       CART
-       ===================================================== */
-
-    .nav-shop{
-
-      border:
-        1px solid
-        rgba(201,164,92,.4)
-        !important;
-
-      color:
-        var(--gold2)
-        !important;
-
-      margin-left:5px;
-    }
-
-
-    .nav-shop::after{
-
-      display:none !important;
-    }
-
-
-    .cart-count{
-
-      display:inline-grid;
-
-      place-items:center;
-
-      min-width:18px;
-
-      height:18px;
-
-      margin-left:3px;
-
-      padding:0 4px;
-
-      border-radius:50%;
-
-      background:var(--gold);
-
-      color:#000;
-
-      font-size:10px;
-
-      font-weight:700;
-    }
-
-
-    /* =====================================================
-       DROPDOWN
-       ===================================================== */
-
-    .nav-dropdown{
-
-      position:relative;
-    }
-
-
-    .nav-drop-trigger .arrow{
-
-      color:var(--gold);
-
-      font-size:8px;
-
-      transition:.25s;
-    }
-
-
-    .nav-dropdown.open
-    .nav-drop-trigger
-    .arrow{
-
-      transform:rotate(180deg);
-    }
-
-
-    .nav-submenu{
-
-      position:absolute;
-
-      top:calc(100% + 2px);
-
-      left:50%;
+      border-top:
+        1px solid var(--cp-nav-border);
 
       transform:
-        translateX(-50%)
-        translateY(8px);
+        translateY(-10px);
 
-      width:245px;
+      opacity: 0;
 
-      padding:8px;
+      visibility: hidden;
 
-      background:
-        rgba(8,8,8,.98);
-
-      border:
-        1px solid
-        rgba(201,164,92,.35);
-
-      box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.65);
-
-      opacity:0;
-
-      visibility:hidden;
-
-      pointer-events:none;
-
-      transition:.25s;
-    }
-
-
-    .nav-dropdown:hover
-    .nav-submenu,
-    .nav-dropdown.open
-    .nav-submenu{
-
-      opacity:1;
-
-      visibility:visible;
-
-      pointer-events:auto;
-
-      transform:
-        translateX(-50%)
-        translateY(0);
-    }
-
-
-    .nav-submenu a{
-
-      display:flex;
-
-      align-items:center;
-
-      min-height:42px;
-
-      padding:9px 12px;
-
-      color:#cfcfcf;
-
-      font-size:12px;
-
-      line-height:1.35;
-
-      text-decoration:none;
-
-      border-bottom:
-        1px solid
-        rgba(255,255,255,.06);
-
-      transition:.2s;
-    }
-
-
-    .nav-submenu a:last-child{
-
-      border-bottom:0;
-    }
-
-
-    .nav-submenu a:hover{
-
-      color:var(--gold2);
-
-      background:
-        rgba(201,164,92,.07);
-
-      padding-left:16px;
-    }
-
-
-    /* =====================================================
-       HAMBURGER
-       ===================================================== */
-
-    .menu-toggle{
-
-      display:none;
-
-      width:44px;
-
-      height:44px;
-
-      flex:0 0 44px;
-
-      padding:0;
-
-      border:
-        1px solid
-        var(--gold-line);
-
-      border-radius:10px;
-
-      background:
-        rgba(255,255,255,.035);
-
-      color:#fff;
-
-      cursor:pointer;
-
-      align-items:center;
-
-      justify-content:center;
-
-      flex-direction:column;
-
-      gap:5px;
-
-      transition:.25s;
-
-      position:relative;
-
-      z-index:6000;
-    }
-
-
-    .menu-toggle:hover{
-
-      border-color:var(--gold);
-
-      background:
-        rgba(201,164,92,.08);
-    }
-
-
-    .menu-toggle span{
-
-      display:block;
-
-      width:21px;
-
-      height:2px;
-
-      border-radius:2px;
-
-      background:#fff;
+      pointer-events: none;
 
       transition:
-        transform .25s,
-        opacity .2s,
-        background .25s;
+        opacity .22s ease,
+        transform .22s ease,
+        visibility .22s ease;
+
     }
 
 
-    .menu-toggle.open{
+    .customer-nav.open {
 
-      border-color:var(--gold);
+      opacity: 1;
 
-      background:
-        rgba(201,164,92,.08);
-    }
+      visibility: visible;
 
-
-    .menu-toggle.open span{
-
-      background:var(--gold2);
-    }
-
-
-    .menu-toggle.open
-    span:nth-child(1){
+      pointer-events: auto;
 
       transform:
-        translateY(7px)
-        rotate(45deg);
+        translateY(0);
+
     }
 
 
-    .menu-toggle.open
-    span:nth-child(2){
+    .customer-nav-list {
 
-      opacity:0;
+      display: block;
+
+      padding:
+        12px 16px 24px;
+
     }
 
 
-    .menu-toggle.open
-    span:nth-child(3){
+    .customer-nav-item {
 
-      transform:
-        translateY(-7px)
-        rotate(-45deg);
+      border-bottom:
+        1px solid rgba(255,255,255,.06);
+
     }
 
 
-    /* =====================================================
-       MOBILE BACKDROP
-       ===================================================== */
+    .customer-nav-link {
 
-    .mobile-menu-backdrop{
+      width: 100%;
 
-      display:none;
+      min-height: 52px;
 
-      position:fixed;
+      justify-content: space-between;
 
-      inset:0;
+      padding:
+        0 8px;
 
-      z-index:4900;
+      font-size: 13px;
+
+    }
+
+
+    .customer-nav-link::after {
+
+      display: none;
+
+    }
+
+
+    .customer-nav-item.has-dropdown >
+    .customer-nav-link {
+
+      cursor: pointer;
+
+    }
+
+
+    .customer-dropdown {
+
+      position: static;
+
+      min-width: 0;
+
+      padding:
+        0 0 8px;
 
       background:
-        rgba(0,0,0,.55);
+        transparent;
 
-      backdrop-filter:blur(2px);
+      border: 0;
 
-      -webkit-backdrop-filter:blur(2px);
+      box-shadow: none;
+
+      transform: none;
+
+      opacity: 1;
+
+      visibility: visible;
+
+      pointer-events: auto;
+
+      display: none;
+
     }
 
 
-    .mobile-menu-backdrop.show{
+    .customer-nav-item.dropdown-open
+    .customer-dropdown {
 
-      display:block;
+      display: block;
+
     }
 
 
-    /* =====================================================
-       CONTENT OFFSET
-       ===================================================== */
+    .customer-dropdown a {
 
-    main{
+      min-height: 45px;
 
-      position:relative;
+      padding:
+        0 18px 0 28px;
+
+      color:
+        #958c82;
+
+      border-bottom: 0;
+
+      font-size: 12px;
+
     }
 
 
-    /* =====================================================
-       FOOTER
-       ===================================================== */
+    .customer-dropdown a:hover {
 
-    .footer{
+      padding-left: 32px;
 
-      border-top:
-        1px solid
-        rgba(201,164,92,.22);
+      background:
+        transparent;
 
-      background:#070707;
-
-      padding:65px 0 28px;
     }
 
 
-    .footer .container{
+    .customer-menu-toggle {
 
-      width:
-        min(
-          var(--max),
-          calc(100% - 80px)
-        );
+      display: flex;
 
-      margin:auto;
+      flex: 0 0 auto;
+
     }
 
 
-    .footer-main{
+    .customer-mobile-backdrop {
 
-      display:grid;
+      display: block;
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      pointer-events: none;
+
+      transition:
+        opacity .2s ease,
+        visibility .2s ease;
+
+    }
+
+
+    body.customer-menu-open
+    .customer-mobile-backdrop {
+
+      opacity: 1;
+
+      visibility: visible;
+
+      pointer-events: auto;
+
+    }
+
+
+    .customer-footer-top {
 
       grid-template-columns:
-        minmax(0,1fr)
-        430px;
+        1fr;
 
-      gap:8px;
+      gap: 35px;
 
-      align-items:start;
     }
 
 
-    .footer-brand .logo{
+    .customer-footer-links {
 
-      display:flex;
+      grid-template-columns:
+        repeat(3, minmax(0,1fr));
 
-      align-items:center;
+    }
 
-      gap:14px;
+  }
 
-      color:inherit;
 
-      text-decoration:none;
+  @media (max-width: 700px) {
 
-      margin-bottom:20px;
+    .customer-navbar {
+
+      min-height: 72px;
+
     }
 
 
-    .footer-brand .logo img{
+    .customer-nav-container {
 
-      width:50px;
+      width:
+        calc(100% - 28px);
 
-      height:50px;
-
-      object-fit:contain;
     }
 
 
-    .footer-brand .logo-text strong{
+    .customer-brand-logo {
 
-      display:block;
+      width: 56px;
+      height: 56px;
 
-      font-size:18px;
-
-      letter-spacing:2px;
     }
 
 
-    .footer-brand .logo-text small{
+    .customer-nav {
 
-      display:block;
+      top: 72px;
 
-      color:var(--gold);
+      max-height:
+        calc(100vh - 72px);
 
-      font-size:9px;
-
-      letter-spacing:2px;
-
-      margin-top:3px;
     }
 
 
-    .footer-description{
+    .customer-brand-sub {
 
-      max-width:560px;
+      display: none;
 
-      color:#999;
-
-      font-size:14px;
-
-      line-height:2;
     }
 
 
-    .footer-title{
+    .customer-footer-inner {
 
-      color:var(--gold2);
+      width:
+        calc(100% - 28px);
 
-      font-size:12px;
+      padding-top: 48px;
 
-      letter-spacing:2px;
-
-      margin-bottom:16px;
-
-      text-transform:uppercase;
     }
 
 
-    .footer-menu{
+    .customer-footer-links {
 
-      justify-self:start;
+      grid-template-columns:
+        repeat(2, minmax(0,1fr));
 
-      margin-left:0;
     }
 
 
-    .footer-links{
+    .customer-footer-bottom {
 
-      display:flex;
+      flex-direction: column;
 
-      flex-direction:column;
+      align-items: flex-start;
 
-      align-items:flex-start;
+    }
 
-      gap:5px;
+  }
+
+
+  @media (max-width: 480px) {
+
+    .customer-navbar {
+
+      min-height: 68px;
+
     }
 
 
-    .footer-links a{
+    .customer-nav-container {
 
-      color:#999;
+      width:
+        calc(100% - 20px);
 
-      font-size:13px;
-
-      line-height:1.8;
-
-      text-decoration:none;
-
-      transition:.2s;
     }
 
 
-    .footer-links a:hover{
+    .customer-brand-logo {
 
-      color:var(--gold2);
+      width: 52px;
+      height: 52px;
+
     }
 
 
-    .footer-bottom{
+    .customer-brand-copy {
 
-      margin-top:45px;
+      display: none;
 
-      padding-top:20px;
-
-      border-top:
-        1px solid
-        var(--line);
-
-      display:flex;
-
-      align-items:center;
-
-      justify-content:space-between;
-
-      gap:20px;
-
-      color:#666;
-
-      font-size:11px;
     }
 
 
-    .footer-address{
+    .customer-nav {
 
-      color:#777;
+      top: 68px;
+
+      max-height:
+        calc(100vh - 68px);
+
     }
 
 
-    .footer-actions{
+    .customer-nav-list {
 
-      display:flex;
+      padding-inline: 10px;
 
-      flex-wrap:wrap;
-
-      align-items:center;
-
-      gap:8px;
     }
 
 
-    .footer-action{
+    .customer-footer-links {
 
-      display:inline-flex;
+      grid-template-columns:
+        1fr;
 
-      align-items:center;
-
-      justify-content:center;
-
-      min-height:38px;
-
-      padding:0 14px;
-
-      border:
-        1px solid
-        rgba(201,164,92,.35);
-
-      color:var(--gold2);
-
-      font-size:12px;
-
-      text-decoration:none;
-
-      transition:.25s;
     }
 
+  }
 
-    .footer-action:hover{
 
-      background:
-        rgba(201,164,92,.09);
+  /* ==========================================================
+     ACCESSIBILITY
+     ========================================================== */
 
-      border-color:var(--gold);
-    }
+  .customer-nav-link:focus-visible,
+  .customer-dropdown a:focus-visible,
+  .customer-menu-toggle:focus-visible,
+  .customer-footer-links a:focus-visible {
 
+    outline:
+      1px solid var(--cp-nav-gold-light);
 
-    .footer-social{
+    outline-offset: 3px;
 
-      display:flex;
-
-      gap:7px;
-    }
-
-
-    .footer-social a{
-
-      width:36px;
-
-      height:36px;
-
-      display:grid;
-
-      place-items:center;
-
-      border:
-        1px solid
-        rgba(201,164,92,.3);
-
-      color:var(--gold2);
-
-      text-decoration:none;
-
-      font-size:12px;
-    }
-
-
-    /* =====================================================
-       TABLET / MOBILE
-       ===================================================== */
-
-    @media(max-width:1250px){
-
-      .header .container{
-
-        width:
-          min(
-            var(--max),
-            calc(100% - 40px)
-          );
-      }
-
-
-      .customer-nav > a,
-      .nav-drop-trigger{
-
-        padding-left:7px;
-
-        padding-right:7px;
-
-        font-size:11px;
-      }
-
-
-      .customer-brand-text strong{
-
-        font-size:16px;
-      }
-
-
-      .footer .container{
-
-        width:
-          min(
-            var(--max),
-            calc(100% - 40px)
-          );
-      }
-    }
-
-
-    /* =====================================================
-       MOBILE MENU BREAKPOINT
-       ===================================================== */
-
-    @media(max-width:1050px){
-
-      .header{
-
-        top:0 !important;
-      }
-
-
-      .navbar{
-
-        min-height:78px;
-
-        height:78px;
-      }
-
-
-      .customer-nav{
-
-        display:none;
-
-        position:absolute;
-
-        top:calc(100% + 1px);
-
-        left:0;
-
-        right:0;
-
-        width:100%;
-
-        max-height:
-          calc(100vh - 78px);
-
-        overflow-y:auto;
-
-        overflow-x:hidden;
-
-        padding:12px 14px 20px;
-
-        flex-direction:column;
-
-        align-items:stretch;
-
-        justify-content:flex-start;
-
-        gap:3px;
-
-        background:
-          rgba(5,5,5,.98);
-
-        border-bottom:
-          1px solid
-          rgba(201,164,92,.3);
-
-        box-shadow:
-          0 25px 60px
-          rgba(0,0,0,.55);
-
-        overscroll-behavior:contain;
-      }
-
-
-      .customer-nav.show{
-
-        display:flex;
-      }
-
-
-      .customer-nav > a,
-      .nav-drop-trigger{
-
-        width:100%;
-
-        min-height:48px;
-
-        justify-content:flex-start;
-
-        padding:12px 14px;
-
-        font-size:13px;
-
-        border-radius:8px;
-      }
-
-
-      .customer-nav > a::after,
-      .nav-drop-trigger::after{
-
-        left:14px;
-
-        right:auto;
-
-        width:34px;
-
-        bottom:4px;
-      }
-
-
-      .customer-nav > a:hover,
-      .customer-nav > a.active,
-      .nav-drop-trigger:hover,
-      .nav-dropdown.open
-      .nav-drop-trigger{
-
-        background:
-          rgba(201,164,92,.055);
-      }
-
-
-      .nav-shop{
-
-        margin-left:0;
-
-        margin-top:6px;
-
-        border:
-          1px solid
-          rgba(201,164,92,.4)
-          !important;
-      }
-
-
-      .nav-dropdown{
-
-        width:100%;
-      }
-
-
-      .nav-drop-trigger{
-
-        justify-content:space-between;
-      }
-
-
-      .nav-submenu{
-
-        position:static;
-
-        width:100%;
-
-        transform:none !important;
-
-        display:none;
-
-        opacity:1;
-
-        visibility:visible;
-
-        pointer-events:auto;
-
-        margin:0 0 4px;
-
-        box-shadow:none;
-
-        background:
-          rgba(255,255,255,.025);
-
-        border:
-          1px solid
-          rgba(201,164,92,.16);
-
-        border-radius:8px;
-
-        padding:5px;
-      }
-
-
-      .nav-dropdown.open
-      .nav-submenu{
-
-        display:block;
-      }
-
-
-      .nav-submenu a{
-
-        min-height:43px;
-
-        border-bottom:
-          1px solid
-          rgba(255,255,255,.06);
-
-        border-radius:6px;
-
-        padding:9px 12px;
-      }
-
-
-      .nav-submenu a:hover{
-
-        padding-left:16px;
-
-        background:
-          rgba(201,164,92,.07);
-      }
-
-
-      .menu-toggle{
-
-        display:flex;
-      }
-
-
-      .footer-main{
-
-        grid-template-columns:
-          1fr 300px;
-      }
-    }
-
-
-    /* =====================================================
-       SMALL MOBILE
-       ===================================================== */
-
-    @media(max-width:700px){
-
-      .header .container{
-
-        width:
-          calc(100% - 28px);
-      }
-
-
-      .navbar{
-
-        min-height:72px;
-
-        height:72px;
-
-        gap:10px;
-      }
-
-
-      .customer-brand{
-
-        gap:10px;
-
-        min-width:0;
-      }
-
-
-      .customer-brand img{
-
-        width:56px !important;
-
-        height:56px !important;
-
-        max-width:56px !important;
-
-        max-height:56px !important;
-
-        flex-basis:56px;
-      }
-
-
-      .customer-brand-text{
-
-        min-width:0;
-      }
-
-
-      .customer-brand-text strong{
-
-        font-size:14px;
-
-        letter-spacing:1.3px;
-      }
-
-
-      .customer-brand-text small{
-
-        font-size:8px;
-
-        letter-spacing:1.5px;
-      }
-
-
-      .menu-toggle{
-
-        width:42px;
-
-        height:42px;
-
-        flex-basis:42px;
-      }
-
-
-      .customer-nav{
-
-        top:calc(100% + 1px);
-
-        max-height:
-          calc(100vh - 72px);
-      }
-
-
-      .footer .container{
-
-        width:
-          calc(100% - 28px);
-      }
-
-
-      .footer-main{
-
-        grid-template-columns:1fr;
-
-        gap:35px;
-      }
-
-
-      .footer-bottom{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-      }
-    }
-
-
-    /* =====================================================
-       VERY SMALL MOBILE
-       ===================================================== */
-
-    @media(max-width:480px){
-
-      .customer-brand-text{
-
-        display:none;
-      }
-
-
-      .customer-brand img{
-
-        width:52px !important;
-
-        height:52px !important;
-
-        max-width:52px !important;
-
-        max-height:52px !important;
-
-        flex-basis:52px;
-      }
-
-
-      .navbar{
-
-        min-height:68px;
-
-        height:68px;
-      }
-
-
-      .customer-nav{
-
-        top:calc(100% + 1px);
-
-        max-height:
-          calc(100vh - 68px);
-
-        padding-left:10px;
-
-        padding-right:10px;
-      }
-
-
-      .menu-toggle{
-
-        width:40px;
-
-        height:40px;
-
-        flex-basis:40px;
-      }
-    }
+  }
 
   `;
 
-  document.head.appendChild(style);
+
+  /* ==========================================================
+     INJECT CSS
+     ========================================================== */
+
+  function injectStyles() {
+
+    if (
+      document.getElementById(
+        "chatpetch-master-nav-style"
+      )
+    ) {
+      return;
+    }
+
+    const style =
+      document.createElement("style");
+
+    style.id =
+      "chatpetch-master-nav-style";
+
+    style.textContent =
+      STYLE;
+
+    document.head.appendChild(style);
+
+  }
 
 
-  /* =========================================================
+  /* ==========================================================
+     BUILD NAV ITEM
+     ========================================================== */
+
+  function buildNavItem(item) {
+
+    const li =
+      document.createElement("li");
+
+    li.className =
+      "customer-nav-item";
+
+    if (item.dropdown) {
+
+      li.classList.add(
+        "has-dropdown"
+      );
+
+    }
+
+
+    const link =
+      document.createElement("a");
+
+    link.className =
+      "customer-nav-link";
+
+    if (
+      !item.dropdown &&
+      isActive(item.href)
+    ) {
+
+      link.classList.add(
+        "active"
+      );
+
+    }
+
+
+    link.href =
+      item.href || "#";
+
+    link.innerHTML =
+      escapeHTML(item.label);
+
+
+    if (item.cart) {
+
+      link.classList.add(
+        "customer-cart-link"
+      );
+
+      const badge =
+        document.createElement("span");
+
+      badge.className =
+        "customer-cart-badge";
+
+      badge.setAttribute(
+        "data-cart-count",
+        ""
+      );
+
+      badge.textContent =
+        String(getCartCount());
+
+      badge.hidden =
+        getCartCount() <= 0;
+
+      link.appendChild(
+        badge
+      );
+
+    }
+
+
+    if (item.dropdown) {
+
+      const arrow =
+        document.createElement("span");
+
+      arrow.className =
+        "customer-dropdown-arrow";
+
+      link.appendChild(
+        arrow
+      );
+
+      link.addEventListener(
+        "click",
+        function (event) {
+
+          if (
+            window.innerWidth <= 1050
+          ) {
+
+            event.preventDefault();
+
+            li.classList.toggle(
+              "dropdown-open"
+            );
+
+          }
+
+        }
+      );
+
+    }
+
+
+    li.appendChild(link);
+
+
+    if (item.dropdown) {
+
+      const dropdown =
+        document.createElement("ul");
+
+      dropdown.className =
+        "customer-dropdown";
+
+
+      item.items.forEach(
+        function (subItem) {
+
+          const subLi =
+            document.createElement("li");
+
+          const subLink =
+            document.createElement("a");
+
+          subLink.href =
+            subItem.href;
+
+          subLink.textContent =
+            subItem.label;
+
+          subLi.appendChild(
+            subLink
+          );
+
+          dropdown.appendChild(
+            subLi
+          );
+
+        }
+      );
+
+
+      li.appendChild(
+        dropdown
+      );
+
+    }
+
+
+    return li;
+
+  }
+
+
+  /* ==========================================================
      HEADER
-     ========================================================= */
+     ========================================================== */
 
-  function createHeader() {
+  function buildHeader() {
 
-    document
-      .querySelectorAll("header")
-      .forEach(el => el.remove());
+    if (
+      document.querySelector(
+        ".customer-header"
+      )
+    ) {
+      return;
+    }
 
 
     const header =
       document.createElement("header");
 
     header.className =
-      "header";
+      "customer-header";
+
+
+    const navbar =
+      document.createElement("div");
+
+    navbar.className =
+      "customer-navbar";
 
 
     const container =
       document.createElement("div");
 
     container.className =
-      "container";
+      "customer-nav-container";
 
 
-    const nav =
-      document.createElement("nav");
-
-    nav.className =
-      "navbar";
-
-
-    /* =====================================================
-       BRAND
-       ===================================================== */
+    /* BRAND */
 
     const brand =
       document.createElement("a");
 
-    brand.href =
-      "index.html";
-
     brand.className =
       "customer-brand";
+
+    brand.href =
+      "index.html";
 
     brand.setAttribute(
       "aria-label",
@@ -1533,408 +1672,277 @@
     );
 
 
-    brand.innerHTML = `
+    const logo =
+      document.createElement("img");
 
-      <img
-        src="assets/logo.png"
-        alt="CHATPHETCH GROUP"
-        width="72"
-        height="72"
-      >
+    logo.className =
+      "customer-brand-logo";
 
-      <div class="customer-brand-text">
+    logo.src =
+      "assets/logo.png";
 
-        <strong>
-          CHATPETCH GROUP
-        </strong>
-
-        <small>
-          FLOORING &amp; CONSTRUCTION
-        </small>
-
-      </div>
-
-    `;
+    logo.alt =
+      "CHATPHETCH GROUP";
 
 
-    /* =====================================================
-       NAV MENU
-       ===================================================== */
+    const brandCopy =
+      document.createElement("span");
 
-    const navMenu =
-      document.createElement("div");
+    brandCopy.className =
+      "customer-brand-copy";
 
-    navMenu.className =
+
+    const brandName =
+      document.createElement("span");
+
+    brandName.className =
+      "customer-brand-name";
+
+    /*
+      แก้ spelling ตรงนี้ให้ถูกต้อง
+    */
+    brandName.textContent =
+      "CHATPHETCH GROUP";
+
+
+    const brandSub =
+      document.createElement("span");
+
+    brandSub.className =
+      "customer-brand-sub";
+
+    brandSub.textContent =
+      "Flooring • Surface • Construction";
+
+
+    brandCopy.appendChild(
+      brandName
+    );
+
+    brandCopy.appendChild(
+      brandSub
+    );
+
+
+    brand.appendChild(
+      logo
+    );
+
+    brand.appendChild(
+      brandCopy
+    );
+
+
+    /* NAV */
+
+    const nav =
+      document.createElement("nav");
+
+    nav.className =
       "customer-nav";
 
-    navMenu.id =
-      "navMenu";
+    nav.setAttribute(
+      "aria-label",
+      "เมนูหลัก"
+    );
 
 
-    NAV.forEach(item => {
+    const navList =
+      document.createElement("ul");
 
-      /* -----------------------------------------------
-         DROPDOWN
-         ----------------------------------------------- */
-
-      if (item.dropdown) {
-
-        const wrap =
-          document.createElement("div");
-
-        wrap.className =
-          "nav-dropdown";
+    navList.className =
+      "customer-nav-list";
 
 
-        const button =
-          document.createElement("button");
+    NAV.forEach(
+      function (item) {
 
-        button.type =
-          "button";
-
-        button.className =
-          "nav-drop-trigger";
-
-        button.setAttribute(
-          "aria-expanded",
-          "false"
+        navList.appendChild(
+          buildNavItem(item)
         );
 
-
-        button.innerHTML = `
-
-          <span>
-            ${item.label}
-          </span>
-
-          <span class="arrow">
-            ▼
-          </span>
-
-        `;
-
-
-        const submenu =
-          document.createElement("div");
-
-        submenu.className =
-          "nav-submenu";
-
-
-        item.dropdown.forEach(child => {
-
-          const a =
-            document.createElement("a");
-
-          a.href =
-            child.href;
-
-          a.textContent =
-            child.label;
-
-          submenu.appendChild(a);
-
-        });
-
-
-        button.addEventListener(
-          "click",
-          function (e) {
-
-            e.stopPropagation();
-
-
-            const wasOpen =
-              wrap.classList.contains("open");
-
-
-            document
-              .querySelectorAll(
-                ".nav-dropdown.open"
-              )
-              .forEach(other => {
-
-                if (other !== wrap) {
-
-                  other
-                    .classList
-                    .remove("open");
-
-                  const trigger =
-                    other.querySelector(
-                      ".nav-drop-trigger"
-                    );
-
-                  trigger?.setAttribute(
-                    "aria-expanded",
-                    "false"
-                  );
-                }
-              });
-
-
-            wrap.classList.toggle(
-              "open",
-              !wasOpen
-            );
-
-
-            button.setAttribute(
-              "aria-expanded",
-              String(!wasOpen)
-            );
-
-          }
-        );
-
-
-        wrap.appendChild(button);
-
-        wrap.appendChild(submenu);
-
-        navMenu.appendChild(wrap);
-
-
-        if (activeKey === item.key) {
-
-          button.classList.add(
-            "active"
-          );
-        }
-
-
-        return;
       }
+    );
 
 
-      /* -----------------------------------------------
-         NORMAL LINK
-         ----------------------------------------------- */
-
-      const a =
-        document.createElement("a");
-
-      a.href =
-        item.href;
-
-      a.textContent =
-        item.label;
+    nav.appendChild(
+      navList
+    );
 
 
-      if (activeKey === item.key) {
+    /* TOGGLE */
 
-        a.classList.add(
-          "active"
-        );
-      }
-
-
-      /* -----------------------------------------------
-         CART
-         ----------------------------------------------- */
-
-      if (item.cart) {
-
-        a.classList.add(
-          "nav-shop"
-        );
-
-
-        a.innerHTML = `
-
-          🛒 ตะกร้า
-
-          <span
-            class="cart-count"
-            id="cartCount"
-          >
-            0
-          </span>
-
-        `;
-      }
-
-
-      navMenu.appendChild(a);
-
-    });
-
-
-    /* =====================================================
-       HAMBURGER BUTTON
-       ===================================================== */
-
-    const menuToggle =
+    const toggle =
       document.createElement("button");
 
-    menuToggle.type =
+    toggle.type =
       "button";
 
-    menuToggle.className =
-      "menu-toggle";
+    toggle.className =
+      "customer-menu-toggle";
 
-    menuToggle.id =
-      "menuToggle";
-
-    menuToggle.setAttribute(
+    toggle.setAttribute(
       "aria-label",
       "เปิดเมนู"
     );
 
-    menuToggle.setAttribute(
+    toggle.setAttribute(
       "aria-expanded",
       "false"
     );
 
 
-    menuToggle.innerHTML = `
+    const toggleInner =
+      document.createElement("span");
 
-      <span></span>
-
-      <span></span>
-
-      <span></span>
-
-    `;
+    toggleInner.className =
+      "customer-menu-toggle-inner";
 
 
-    /* =====================================================
-       MOBILE BACKDROP
-       ===================================================== */
+    for (
+      let i = 0;
+      i < 3;
+      i++
+    ) {
+
+      toggleInner.appendChild(
+        document.createElement("span")
+      );
+
+    }
+
+
+    toggle.appendChild(
+      toggleInner
+    );
+
+
+    /* BACKDROP */
 
     const backdrop =
       document.createElement("div");
 
     backdrop.className =
-      "mobile-menu-backdrop";
-
-    backdrop.id =
-      "mobileMenuBackdrop";
+      "customer-mobile-backdrop";
 
 
-    /* =====================================================
-       CLOSE MENU
-       ===================================================== */
+    container.appendChild(
+      brand
+    );
+
+    container.appendChild(
+      nav
+    );
+
+    container.appendChild(
+      toggle
+    );
+
+    navbar.appendChild(
+      container
+    );
+
+    header.appendChild(
+      navbar
+    );
+
+
+    document.body.prepend(
+      header
+    );
+
+    document.body.appendChild(
+      backdrop
+    );
+
+
+    /* ========================================================
+       MOBILE MENU EVENTS
+       ======================================================== */
 
     function closeMenu() {
 
-      navMenu
-        .classList
-        .remove("show");
+      nav.classList.remove(
+        "open"
+      );
 
+      toggle.classList.remove(
+        "open"
+      );
 
-      menuToggle
-        .classList
-        .remove("open");
-
-
-      menuToggle.setAttribute(
+      toggle.setAttribute(
         "aria-expanded",
         "false"
       );
 
-
-      menuToggle.setAttribute(
+      toggle.setAttribute(
         "aria-label",
         "เปิดเมนู"
       );
 
-
-      backdrop
-        .classList
-        .remove("show");
-
+      document.body.classList.remove(
+        "customer-menu-open"
+      );
 
       document
         .querySelectorAll(
-          ".nav-dropdown.open"
+          ".customer-nav-item.dropdown-open"
         )
-        .forEach(dropdown => {
+        .forEach(function (item) {
 
-          dropdown
-            .classList
-            .remove("open");
+          item.classList.remove(
+            "dropdown-open"
+          );
 
-
-          dropdown
-            .querySelector(
-              ".nav-drop-trigger"
-            )
-            ?.setAttribute(
-              "aria-expanded",
-              "false"
-            );
         });
 
-
-      document.body.style.overflow = "";
-
     }
 
 
-    /* =====================================================
-       TOGGLE MENU
-       ===================================================== */
+    function openMenu() {
 
-    function toggleMenu() {
+      nav.classList.add(
+        "open"
+      );
 
-      const isOpen =
-        navMenu
-          .classList
-          .toggle("show");
+      toggle.classList.add(
+        "open"
+      );
 
-
-      menuToggle
-        .classList
-        .toggle(
-          "open",
-          isOpen
-        );
-
-
-      backdrop
-        .classList
-        .toggle(
-          "show",
-          isOpen
-        );
-
-
-      menuToggle.setAttribute(
+      toggle.setAttribute(
         "aria-expanded",
-        String(isOpen)
+        "true"
       );
 
-
-      menuToggle.setAttribute(
+      toggle.setAttribute(
         "aria-label",
-        isOpen
-          ? "ปิดเมนู"
-          : "เปิดเมนู"
+        "ปิดเมนู"
       );
 
-
-      if (isOpen) {
-
-        document.body.style.overflow =
-          "hidden";
-
-      } else {
-
-        closeMenu();
-
-      }
+      document.body.classList.add(
+        "customer-menu-open"
+      );
 
     }
 
 
-    menuToggle.addEventListener(
+    toggle.addEventListener(
       "click",
-      function (e) {
+      function () {
 
-        e.stopPropagation();
+        if (
+          nav.classList.contains(
+            "open"
+          )
+        ) {
 
-        toggleMenu();
+          closeMenu();
+
+        } else {
+
+          openMenu();
+
+        }
 
       }
     );
@@ -1942,84 +1950,34 @@
 
     backdrop.addEventListener(
       "click",
-      function () {
-
-        closeMenu();
-
-      }
+      closeMenu
     );
 
 
-    /* =====================================================
-       LINK EVENTS
-       ===================================================== */
-
-    navMenu
-      .querySelectorAll("a")
-      .forEach(link => {
-
-        link.addEventListener(
-          "click",
-          function () {
-
-            closeMenu();
-
-          }
-        );
-
-      });
-
-
-    /* =====================================================
-       OUTSIDE CLICK
-       ===================================================== */
-
-    document.addEventListener(
+    nav.addEventListener(
       "click",
-      function (e) {
+      function (event) {
 
-        if (
-          !navMenu.contains(e.target) &&
-          !menuToggle.contains(e.target)
-        ) {
+        const link =
+          event.target.closest(
+            "a"
+          );
 
-          document
-            .querySelectorAll(
-              ".nav-dropdown.open"
-            )
-            .forEach(dropdown => {
-
-              dropdown
-                .classList
-                .remove("open");
-
-
-              dropdown
-                .querySelector(
-                  ".nav-drop-trigger"
-                )
-                ?.setAttribute(
-                  "aria-expanded",
-                  "false"
-                );
-
-            });
-
+        if (!link) {
+          return;
         }
 
-      }
-    );
 
-
-    /* =====================================================
-       ESC KEY
-       ===================================================== */
-
-    document.addEventListener(
-      "keydown",
-      function (e) {
-
-        if (e.key === "Escape") {
+        /*
+          ถ้าเป็น submenu ให้ปิด menu
+          เมื่อเลือกหน้าแล้ว
+        */
+        if (
+          window.innerWidth <= 1050 &&
+          !link.parentElement.classList.contains(
+            "has-dropdown"
+          )
+        ) {
 
           closeMenu();
 
@@ -2028,16 +1986,14 @@
       }
     );
 
-
-    /* =====================================================
-       RESIZE
-       ===================================================== */
 
     window.addEventListener(
       "resize",
       function () {
 
-        if (window.innerWidth > 1050) {
+        if (
+          window.innerWidth > 1050
+        ) {
 
           closeMenu();
 
@@ -2046,222 +2002,273 @@
       }
     );
 
-
-    /* =====================================================
-       BUILD HEADER
-       ===================================================== */
-
-    nav.appendChild(brand);
-
-    nav.appendChild(navMenu);
-
-    nav.appendChild(menuToggle);
-
-    container.appendChild(nav);
-
-    header.appendChild(container);
-
-
-    document.body.insertBefore(
-      header,
-      document.body.firstChild
-    );
-
-
-    document.body.insertBefore(
-      backdrop,
-      header.nextSibling
-    );
-
   }
 
 
-  /* =========================================================
+  /* ==========================================================
      FOOTER
-     ========================================================= */
+     ========================================================== */
 
-  function createFooter() {
+  function buildFooter() {
 
-    document
-      .querySelectorAll("footer")
-      .forEach(el => el.remove());
+    if (
+      document.querySelector(
+        ".customer-footer"
+      )
+    ) {
+      return;
+    }
 
 
     const footer =
       document.createElement("footer");
 
     footer.className =
-      "footer";
+      "customer-footer";
 
 
-    footer.innerHTML = `
+    const inner =
+      document.createElement("div");
 
-      <div class="container">
-
-        <div class="footer-main">
-
-          <div class="footer-brand">
-
-            <a
-              href="index.html"
-              class="logo"
-              aria-label="CHATPHETCH GROUP"
-            >
-
-              <img
-                src="assets/logo.png"
-                alt="CHATPHETCH GROUP"
-                width="72"
-                height="72"
-              >
-
-              <div class="logo-text">
-
-                <strong>
-                  CHATPETCH GROUP
-                </strong>
-
-                <small>
-                  FLOORING &amp; CONSTRUCTION
-                </small>
-
-              </div>
-
-            </a>
+    inner.className =
+      "customer-footer-inner";
 
 
-            <p class="footer-description">
+    const top =
+      document.createElement("div");
 
-              🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹
-              <br>
-
-              ♠️ สร้างสรรค์ผลงาน
-              &nbsp;&nbsp;
-
-              ♠️ มาตรฐานเข้าถึง
-              &nbsp;&nbsp;
-
-              ♠️ ยืน 1 คุณภาพ
-
-              <br>
-
-              บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
-
-            </p>
-
-          </div>
+    top.className =
+      "customer-footer-top";
 
 
-          <div class="footer-menu">
+    /* ========================================================
+       FOOTER BRAND
+       ======================================================== */
 
-            <div class="footer-title">
-              MENU
-            </div>
+    const brand =
+      document.createElement("div");
 
-
-            <div class="footer-links">
-
-              <a href="index.html">
-                หน้าแรก
-              </a>
-
-              <a href="about.html">
-                เกี่ยวกับเรา
-              </a>
-
-              <a href="products.html">
-                สินค้า
-              </a>
-
-              <a href="services.html">
-                บริการ
-              </a>
-
-              <a href="projects.html">
-                ผลงาน
-              </a>
-
-              <a href="contact.html">
-                ติดต่อเรา
-              </a>
-
-            </div>
-
-          </div>
-
-        </div>
+    brand.className =
+      "customer-footer-brand";
 
 
-        <div class="footer-bottom">
+    const logo =
+      document.createElement("img");
 
-          <div>
-            © 2026 CHATPETCH GROUP CO., LTD.
-          </div>
+    logo.className =
+      "customer-footer-logo";
 
+    logo.src =
+      "assets/logo.png";
 
-          <div class="footer-address">
-
-            10/1 ม.9 ต.นาหม่อม
-            อ.นาหม่อม
-            จ.สงขลา 90310
-
-          </div>
+    logo.alt =
+      "CHATPHETCH GROUP";
 
 
-          <div class="footer-actions">
-
-            <a
-              href="contact.html"
-              class="footer-action"
-            >
-              ☎ ติดต่อเรา
-            </a>
+    const brandContent =
+      document.createElement("div");
 
 
-            <a
-              href="order-status.html"
-              class="footer-action"
-            >
-              🔎 ติดตามคำสั่งซื้อ
-            </a>
+    const brandName =
+      document.createElement("div");
+
+    brandName.className =
+      "customer-footer-brand-name";
+
+    /*
+      แก้ spelling ให้ตรงกับ Header
+    */
+    brandName.textContent =
+      "CHATPHETCH GROUP";
 
 
-            <div class="footer-social">
+    const description =
+      document.createElement("div");
 
-              <a
-                href="https://www.facebook.com/ChatphetchGroup"
-                target="_blank"
-                rel="noopener"
-                aria-label="Facebook"
-              >
-                f
-              </a>
+    description.className =
+      "customer-footer-brand-text";
+
+    description.textContent =
+      "ระบบงานพื้น วัสดุ การเคลือบผิว งานก่อสร้าง และคำปรึกษาสำหรับพื้นที่คุณภาพ";
 
 
-              <a
-                href="#"
-                aria-label="YouTube"
-              >
-                ▶
-              </a>
+    brandContent.appendChild(
+      brandName
+    );
+
+    brandContent.appendChild(
+      description
+    );
 
 
-              <a
-                href="#"
-                aria-label="LINE"
-              >
-                LINE
-              </a>
+    brand.appendChild(
+      logo
+    );
 
-            </div>
+    brand.appendChild(
+      brandContent
+    );
 
-          </div>
 
-        </div>
+    /* ========================================================
+       FOOTER LINKS
+       ======================================================== */
 
-      </div>
+    const links =
+      document.createElement("nav");
 
-    `;
+    links.className =
+      "customer-footer-links";
+
+    links.setAttribute(
+      "aria-label",
+      "เมนูท้ายเว็บไซต์"
+    );
+
+
+    /*
+      Footer ให้ครบชุดเดียวกับเมนูบน
+    */
+    const FOOTER_NAV = [
+
+      {
+        label: "หน้าแรก",
+        href: "index.html"
+      },
+
+      {
+        label: "เกี่ยวกับเรา",
+        href: "about.html"
+      },
+
+      {
+        label: "สินค้า",
+        href: "products.html"
+      },
+
+      {
+        label: "บริการ",
+        href: "services.html"
+      },
+
+      {
+        label: "ผลงาน",
+        href: "projects.html"
+      },
+
+      {
+        label: "โครงการอ้างอิง",
+        href: "reference.html"
+      },
+
+      {
+        label: "ศูนย์เทคนิค",
+        href: "technical-center.html"
+      },
+
+      {
+        label: "คลังความรู้",
+        href: "knowledge.html"
+      },
+
+      {
+        label: "ติดต่อเรา",
+        href: "contact.html"
+      },
+
+      {
+        label: "🔎 ติดตามคำสั่งซื้อ",
+        href: "order-status.html"
+      },
+
+      {
+        label: "🛒 ตะกร้า",
+        href: "cart.html"
+      }
+
+    ];
+
+
+    FOOTER_NAV.forEach(
+      function (item) {
+
+        const link =
+          document.createElement("a");
+
+        link.href =
+          item.href;
+
+        link.textContent =
+          item.label;
+
+        links.appendChild(
+          link
+        );
+
+      }
+    );
+
+
+    top.appendChild(
+      brand
+    );
+
+    top.appendChild(
+      links
+    );
+
+
+    /* ========================================================
+       FOOTER BOTTOM
+       ======================================================== */
+
+    const bottom =
+      document.createElement("div");
+
+    bottom.className =
+      "customer-footer-bottom";
+
+
+    const copyright =
+      document.createElement("div");
+
+    copyright.textContent =
+      "© " +
+      new Date().getFullYear() +
+      " CHATPHETCH GROUP. All rights reserved.";
+
+
+    const credit =
+      document.createElement("div");
+
+    credit.className =
+      "customer-footer-credit";
+
+    credit.textContent =
+      "QUALITY • DETAIL • SPACE";
+
+
+    bottom.appendChild(
+      copyright
+    );
+
+    bottom.appendChild(
+      credit
+    );
+
+
+    inner.appendChild(
+      top
+    );
+
+    inner.appendChild(
+      bottom
+    );
+
+
+    footer.appendChild(
+      inner
+    );
 
 
     document.body.appendChild(
@@ -2271,198 +2278,61 @@
   }
 
 
-  /* =========================================================
-     CART COUNT
-     ========================================================= */
-
-  function updateCartCount() {
-
-    const targets =
-      document.querySelectorAll(
-        "#cartCount"
-      );
-
-
-    let count = 0;
-
-
-    try {
-
-      const raw =
-        localStorage.getItem(
-          "chatpetch_cart"
-        );
-
-
-      if (raw) {
-
-        const cart =
-          JSON.parse(raw);
-
-
-        if (Array.isArray(cart)) {
-
-          count =
-            cart.reduce(
-              (sum, item) => {
-
-                return (
-                  sum +
-                  Number(
-                    item.quantity || 1
-                  )
-                );
-
-              },
-              0
-            );
-
-        } else if (
-          cart &&
-          typeof cart === "object"
-        ) {
-
-          count =
-            Object.values(cart)
-              .reduce(
-                (sum, item) => {
-
-                  if (
-                    typeof item === "number"
-                  ) {
-
-                    return sum + item;
-
-                  }
-
-
-                  return (
-                    sum +
-                    Number(
-                      item?.quantity || 0
-                    )
-                  );
-
-                },
-                0
-              );
-
-        }
-
-      }
-
-    } catch (error) {
-
-      console.warn(
-        "Cart count error:",
-        error
-      );
-
-    }
-
-
-    targets.forEach(el => {
-
-      el.textContent =
-        count;
-
-    });
-
-  }
-
-
-  /* =========================================================
-     GLOBAL NAV BEHAVIOR
-     ========================================================= */
-
-  function initNavigation() {
-
-    document.addEventListener(
-      "click",
-      function (e) {
-
-        const dropdown =
-          e.target.closest(
-            ".nav-dropdown"
-          );
-
-
-        if (!dropdown) {
-
-          document
-            .querySelectorAll(
-              ".nav-dropdown.open"
-            )
-            .forEach(el => {
-
-              el.classList.remove(
-                "open"
-              );
-
-
-              el.querySelector(
-                ".nav-drop-trigger"
-              )?.setAttribute(
-                "aria-expanded",
-                "false"
-              );
-
-            });
-
-        }
-
-
-        const link =
-          e.target.closest(
-            ".customer-nav a"
-          );
-
-
-        if (link) {
-
-          document
-            .getElementById(
-              "navMenu"
-            )
-            ?.classList
-            .remove("show");
-
-        }
-
-      }
-    );
-
-
-    window.addEventListener(
-      "storage",
-      updateCartCount
-    );
-
-
-    window.addEventListener(
-      "pageshow",
-      updateCartCount
-    );
-
-  }
-
-
-  /* =========================================================
-     RUN
-     ========================================================= */
+  /* ==========================================================
+     INITIALIZE
+     ========================================================== */
 
   function init() {
 
-    createHeader();
+    injectStyles();
 
-    createFooter();
+    buildHeader();
 
-    updateCartCount();
+    buildFooter();
 
-    initNavigation();
+    updateCartBadges();
 
   }
 
+
+  /* ==========================================================
+     CART STORAGE CHANGE
+     ========================================================== */
+
+  window.addEventListener(
+    "storage",
+    function (event) {
+
+      if (
+        event.key ===
+        "chatpetch_cart"
+      ) {
+
+        updateCartBadges();
+
+      }
+
+    }
+  );
+
+
+  /* ==========================================================
+     CUSTOM CART EVENT
+     ========================================================== */
+
+  window.addEventListener(
+    "cartUpdated",
+    function () {
+
+      updateCartBadges();
+
+    }
+  );
+
+
+  /* ==========================================================
+     START
+     ========================================================== */
 
   if (
     document.readyState ===
@@ -2471,10 +2341,7 @@
 
     document.addEventListener(
       "DOMContentLoaded",
-      init,
-      {
-        once:true
-      }
+      init
     );
 
   } else {
@@ -2482,5 +2349,6 @@
     init();
 
   }
+
 
 })();
