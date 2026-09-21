@@ -1148,5 +1148,56 @@ loadProducts();
 
 <script src="assets/customer-master-nav.js"></script>
 
+
+<script>
+/* ==========================================================
+   CHATPHETCH PRODUCTS — FACEBOOK FOOTER LINK
+   customer-master-nav.js creates the footer dynamically.
+   ========================================================== */
+(function () {
+  "use strict";
+
+  const FACEBOOK_URL = "https://www.facebook.com/ChatphetchGroup";
+
+  function connectFacebook() {
+    const social = document.querySelector(".customer-footer-social");
+    if (!social) return false;
+
+    const items = social.querySelectorAll(".customer-social");
+    if (!items.length) return false;
+
+    const facebook = items[0];
+    if (!facebook) return false;
+
+    facebook.setAttribute("href", FACEBOOK_URL);
+    facebook.setAttribute("target", "_blank");
+    facebook.setAttribute("rel", "noopener noreferrer");
+    facebook.removeAttribute("aria-disabled");
+    facebook.style.pointerEvents = "auto";
+    facebook.style.cursor = "pointer";
+    facebook.title = "Facebook - CHATPHETCH GROUP";
+
+    return true;
+  }
+
+  if (connectFacebook()) return;
+
+  const observer = new MutationObserver(function () {
+    if (connectFacebook()) {
+      observer.disconnect();
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  setTimeout(connectFacebook, 250);
+  setTimeout(connectFacebook, 800);
+  setTimeout(connectFacebook, 1600);
+})();
+</script>
+
 </body>
 </html>
