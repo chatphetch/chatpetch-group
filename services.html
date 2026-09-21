@@ -148,6 +148,104 @@ a{color:inherit;text-decoration:none}
   text-align:right;
 }
 
+
+/* SERVICE IMAGE CARDS */
+.service-card{
+  padding:0;
+  min-height:430px;
+}
+.service-image{
+  position:relative;
+  height:235px;
+  overflow:hidden;
+  background:
+    linear-gradient(145deg,rgba(40,25,14,.9),rgba(8,6,4,.95));
+}
+.service-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.02) 20%,rgba(0,0,0,.15) 48%,rgba(5,4,3,.94) 100%);
+  pointer-events:none;
+}
+.service-image img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  transition:transform .55s ease,filter .35s ease;
+  filter:saturate(.92) contrast(1.03);
+}
+.service-card:hover .service-image img{
+  transform:scale(1.045);
+  filter:saturate(1) contrast(1.05);
+}
+.service-image-label{
+  position:absolute;
+  left:18px;
+  bottom:15px;
+  z-index:2;
+  padding:6px 10px;
+  border:1px solid rgba(228,201,121,.42);
+  border-radius:999px;
+  color:#fff8ef;
+  background:rgba(7,5,3,.55);
+  backdrop-filter:blur(7px);
+  font-size:10px;
+  letter-spacing:.08em;
+}
+.service-body{
+  display:flex;
+  flex:1;
+  flex-direction:column;
+  padding:18px 20px 20px;
+  background:linear-gradient(180deg,rgba(10,7,5,.98),rgba(8,6,4,.94));
+}
+.service-number{
+  top:14px;
+  right:16px;
+  z-index:3;
+  color:rgba(228,201,121,.18);
+}
+.service-code{
+  font-size:10px;
+}
+.service-card h3{
+  margin-top:9px;
+  font-size:22px;
+}
+.service-card p{
+  margin-top:10px;
+}
+.service-card .tags{
+  padding-top:14px;
+}
+.service-card .card-link{
+  margin-top:15px;
+}
+.service-loading{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  display:grid;
+  place-items:center;
+  color:rgba(255,248,239,.55);
+  font-size:11px;
+  letter-spacing:.12em;
+}
+.service-image.is-ready .service-loading{display:none}
+.service-image.no-image img{display:none}
+.service-image.no-image .service-loading{
+  color:rgba(228,201,121,.72);
+}
+@media (max-width:700px){
+  .service-card{min-height:0}
+  .service-image{height:190px}
+  .service-body{padding:17px 18px 19px}
+  .service-card h3{font-size:21px}
+}
+
 /* SERVICE TYPES */
 .service-grid{
   display:grid;
@@ -522,113 +620,124 @@ a{color:inherit;text-decoration:none}
 
   <div class="service-grid">
 
-    <article class="service-card">
-      <div class="service-number">01</div>
-      <div class="service-code">SERVICE 01</div>
-      <h3>พื้นอุตสาหกรรม <small>/ อีพ็อกซี่ / พียู</small></h3>
-      <p>
-        ระบบพื้นสำหรับพื้นที่อุตสาหกรรมและพื้นที่ที่ต้องการคุณสมบัติเฉพาะ
-        โดยควรเลือกชนิดระบบให้เหมาะกับการใช้งาน
-      </p>
-      <div class="tags">
-        <span class="tag">EPOXY</span>
-        <span class="tag">PU</span>
-        <span class="tag">INDUSTRIAL</span>
+    <article class="service-card" data-project-folders="Epoxy self|Epoxy anti static|PU Self">
+      <div class="service-image">
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานพื้นอุตสาหกรรม อีพ็อกซี่ และพียู">
+        <div class="service-image-label">PROJECT REFERENCE</div>
       </div>
-      <a class="card-link" href="service-detail.html?service=industrial">
-        ดูรายละเอียด <span>→</span>
-      </a>
+      <div class="service-body">
+        <div class="service-number">01</div>
+        <div class="service-code">SERVICE 01</div>
+        <h3>พื้นอุตสาหกรรม <small>/ อีพ็อกซี่ / พียู</small></h3>
+        <p>ตัวอย่างงานพื้นระบบ Epoxy และ PU สำหรับพื้นที่โรงงาน คลังสินค้า และพื้นที่ใช้งานหนัก</p>
+        <div class="tags">
+          <span class="tag">EPOXY</span>
+          <span class="tag">PU</span>
+          <span class="tag">INDUSTRIAL</span>
+        </div>
+        <a class="card-link" href="service-detail.html?service=industrial">ดูรายละเอียด <span>→</span></a>
+      </div>
     </article>
 
-    <article class="service-card">
-      <div class="service-number">02</div>
-      <div class="service-code">SERVICE 02</div>
-      <h3>งานกันรั่วซึม <small>ดาดฟ้า หลังคา พื้นอาคาร</small></h3>
-      <p>
-        งานระบบกันรั่วซึมสำหรับดาดฟ้า หลังคา และพื้นที่อาคาร
-        โดยต้องตรวจสอบสภาพและต้นเหตุของปัญหาก่อนเลือกวิธีแก้ไข
-      </p>
-      <div class="tags">
-        <span class="tag">WATERPROOF</span>
-        <span class="tag">ROOF</span>
-        <span class="tag">DECK</span>
+    <article class="service-card" data-project-folders="งานกันซึม Fiberglass">
+      <div class="service-image">
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานกันรั่วซึมและงานกันซึม Fiberglass">
+        <div class="service-image-label">PROJECT REFERENCE</div>
       </div>
-      <a class="card-link" href="service-detail.html?service=waterproof">
-        ดูรายละเอียด <span>→</span>
-      </a>
+      <div class="service-body">
+        <div class="service-number">02</div>
+        <div class="service-code">SERVICE 02</div>
+        <h3>งานกันรั่วซึม <small>ดาดฟ้า หลังคา พื้นอาคาร</small></h3>
+        <p>ตัวอย่างงานกันซึมจากโครงการจริง สำหรับดาดฟ้า หลังคา และพื้นที่อาคารที่ต้องการป้องกันน้ำรั่วซึม</p>
+        <div class="tags">
+          <span class="tag">WATERPROOF</span>
+          <span class="tag">FIBERGLASS</span>
+          <span class="tag">ROOF</span>
+        </div>
+        <a class="card-link" href="service-detail.html?service=waterproof">ดูรายละเอียด <span>→</span></a>
+      </div>
     </article>
 
-    <article class="service-card">
-      <div class="service-number">03</div>
-      <div class="service-code">SERVICE 03</div>
-      <h3>งานซ่อมปรับปรุง <small>งานคอนกรีต</small></h3>
-      <p>
-        งานซ่อมและปรับปรุงพื้นคอนกรีต เช่น Epoxy Injection
-        และ Cement Self โดยพิจารณาตามสภาพปัญหาของพื้นที่
-      </p>
-      <div class="tags">
-        <span class="tag">EPOXY INJECTION</span>
-        <span class="tag">CEMENT SELF</span>
-        <span class="tag">CONCRETE</span>
+    <article class="service-card" data-project-folders="งาน Polishing|Epoxy self">
+      <div class="service-image">
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานซ่อมปรับปรุงและงานคอนกรีต">
+        <div class="service-image-label">PROJECT REFERENCE</div>
       </div>
-      <a class="card-link" href="service-detail.html?service=repair">
-        ดูรายละเอียด <span>→</span>
-      </a>
+      <div class="service-body">
+        <div class="service-number">03</div>
+        <div class="service-code">SERVICE 03</div>
+        <h3>งานซ่อมปรับปรุง <small>งานคอนกรีต</small></h3>
+        <p>ตัวอย่างงานปรับปรุงผิวพื้นและงานคอนกรีตจากหน้างานจริง เพื่อเตรียมพื้นให้พร้อมสำหรับระบบใช้งาน</p>
+        <div class="tags">
+          <span class="tag">CONCRETE</span>
+          <span class="tag">POLISHING</span>
+          <span class="tag">REPAIR</span>
+        </div>
+        <a class="card-link" href="service-detail.html?service=repair">ดูรายละเอียด <span>→</span></a>
+      </div>
     </article>
 
-    <article class="service-card">
-      <div class="service-number">04</div>
-      <div class="service-code">SERVICE 04</div>
-      <h3>พื้นสนามกีฬา</h3>
-      <p>
-        ระบบพื้นสำหรับสนามกีฬาและพื้นที่กิจกรรม
-        โดยต้องพิจารณาประเภทกีฬาและรูปแบบการใช้งาน
-      </p>
-      <div class="tags">
-        <span class="tag">SPORT FLOOR</span>
-        <span class="tag">SPORTS</span>
-        <span class="tag">ACTIVITY</span>
+    <article class="service-card" data-project-folders="PU Self|PU Coating">
+      <div class="service-image">
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานพื้น PU สำหรับพื้นที่กิจกรรมและสนามกีฬา">
+        <div class="service-image-label">PROJECT REFERENCE</div>
       </div>
-      <a class="card-link" href="service-detail.html?service=sports">
-        ดูรายละเอียด <span>→</span>
-      </a>
+      <div class="service-body">
+        <div class="service-number">04</div>
+        <div class="service-code">SERVICE 04</div>
+        <h3>พื้นสนามกีฬา</h3>
+        <p>ตัวอย่างงานระบบพื้น PU จากโครงการจริง ซึ่งสามารถพิจารณาใช้กับพื้นที่กิจกรรมและสนามกีฬาได้ตามเงื่อนไขหน้างาน</p>
+        <div class="tags">
+          <span class="tag">SPORT FLOOR</span>
+          <span class="tag">PU</span>
+          <span class="tag">ACTIVITY</span>
+        </div>
+        <a class="card-link" href="service-detail.html?service=sports">ดูรายละเอียด <span>→</span></a>
+      </div>
     </article>
 
-    <article class="service-card">
-      <div class="service-number">05</div>
-      <div class="service-code">SERVICE 05</div>
-      <h3>พื้นตกแต่ง <small>เพื่อความสวยงาม</small></h3>
-      <p>
-        งานพื้นคอนกรีตพิมพ์ลาย PSC, PMC รวมถึงระบบพื้น Flake
-        และ Aura Sand สำหรับงานตกแต่งตามรูปแบบที่ต้องการ
-      </p>
-      <div class="tags">
-        <span class="tag">PSC</span>
-        <span class="tag">PMC</span>
-        <span class="tag">FLAKE</span>
-        <span class="tag">AURA SAND</span>
+    <article class="service-card" data-project-folders="งาน Stamped Concrete">
+      <div class="service-image">
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานพื้นคอนกรีตพิมพ์ลายและงานพื้นตกแต่ง">
+        <div class="service-image-label">PROJECT REFERENCE</div>
       </div>
-      <a class="card-link" href="service-detail.html?service=decorative">
-        ดูรายละเอียด <span>→</span>
-      </a>
+      <div class="service-body">
+        <div class="service-number">05</div>
+        <div class="service-code">SERVICE 05</div>
+        <h3>พื้นตกแต่ง <small>เพื่อความสวยงาม</small></h3>
+        <p>ตัวอย่างงานพื้นคอนกรีตพิมพ์ลายจากโครงการจริง สำหรับพื้นที่ที่ต้องการความสวยงามและเอกลักษณ์</p>
+        <div class="tags">
+          <span class="tag">STAMPED</span>
+          <span class="tag">PSC</span>
+          <span class="tag">DECORATIVE</span>
+        </div>
+        <a class="card-link" href="service-detail.html?service=decorative">ดูรายละเอียด <span>→</span></a>
+      </div>
     </article>
 
-    <article class="service-card">
-      <div class="service-number">06</div>
-      <div class="service-code">SERVICE 06</div>
-      <h3>ระบบงานสัญลักษณ์ <small>และเส้นจราจร</small></h3>
-      <p>
-        งานตีเส้นจราจร สัญลักษณ์ และการกำหนดพื้นที่ใช้งานบนพื้น
-        เพื่อช่วยจัดระเบียบพื้นที่
-      </p>
-      <div class="tags">
-        <span class="tag">TRAFFIC</span>
-        <span class="tag">LINE MARKING</span>
-        <span class="tag">SIGNAGE</span>
+    <article class="service-card" data-project-folders="PU Coating|Epoxy anti static">
+      <div class="service-image">
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานเคลือบพื้นและระบบสัญลักษณ์เส้นจราจร">
+        <div class="service-image-label">PROJECT REFERENCE</div>
       </div>
-      <a class="card-link" href="service-detail.html?service=traffic">
-        ดูรายละเอียด <span>→</span>
-      </a>
+      <div class="service-body">
+        <div class="service-number">06</div>
+        <div class="service-code">SERVICE 06</div>
+        <h3>ระบบงานสัญลักษณ์ <small>และเส้นจราจร</small></h3>
+        <p>ตัวอย่างงานเคลือบพื้นจากโครงการจริง สำหรับพื้นที่ที่สามารถต่อยอดการตีเส้นจราจรและกำหนดโซนการใช้งาน</p>
+        <div class="tags">
+          <span class="tag">TRAFFIC</span>
+          <span class="tag">LINE MARKING</span>
+          <span class="tag">FLOOR COATING</span>
+        </div>
+        <a class="card-link" href="service-detail.html?service=traffic">ดูรายละเอียด <span>→</span></a>
+      </div>
     </article>
 
   </div>
@@ -723,6 +832,92 @@ a{color:inherit;text-decoration:none}
 </div>
 
 <script src="assets/customer-master-nav.js"></script>
+
+
+<script>
+/*
+  PROJECT IMAGE LOADER
+  ดึงรูปจริงจาก assets/Projects ที่อัปโหลดไว้ใน GitHub
+  แต่ละบริการจะพยายามเลือกโฟลเดอร์ที่ตรงกับประเภทงานก่อน
+*/
+(function(){
+  const API_BASE = "https://api.github.com/repos/chatphetch/chatpetch-group/contents/assets/Projects";
+  const RAW_BASE = "https://raw.githubusercontent.com/chatphetch/chatpetch-group/main/assets/Projects";
+
+  function encodePath(path){
+    return path.split("/").map(encodeURIComponent).join("/");
+  }
+
+  async function getJson(url){
+    const res = await fetch(url, {
+      headers:{Accept:"application/vnd.github+json"}
+    });
+    if(!res.ok) throw new Error("GitHub API "+res.status);
+    return res.json();
+  }
+
+  async function getImages(folder){
+    const data = await getJson(API_BASE + "/" + encodePath(folder));
+    return data
+      .filter(item => item.type === "file" && /\.(jpe?g|png|webp|gif)$/i.test(item.name))
+      .map(item => item.name)
+      .sort((a,b) => a.localeCompare(b, undefined, {numeric:true}));
+  }
+
+  async function loadServiceImages(){
+    const cards = [...document.querySelectorAll(".service-card[data-project-folders]")];
+    if(!cards.length) return;
+
+    const folderCache = {};
+
+    async function firstImageFromFolders(folders){
+      for(const folder of folders){
+        try{
+          if(!folderCache[folder]){
+            folderCache[folder] = await getImages(folder);
+          }
+          const files = folderCache[folder];
+          if(files.length){
+            return {
+              folder,
+              file:files[0]
+            };
+          }
+        }catch(err){
+          console.warn("Cannot load project folder:", folder, err);
+        }
+      }
+      return null;
+    }
+
+    await Promise.all(cards.map(async card => {
+      const folders = card.dataset.projectFolders.split("|").map(v => v.trim()).filter(Boolean);
+      const imageBox = card.querySelector(".service-image");
+      const img = card.querySelector("img");
+      const result = await firstImageFromFolders(folders);
+
+      if(result){
+        img.src = RAW_BASE + "/" + encodePath(result.folder) + "/" + encodeURIComponent(result.file);
+        img.onload = function(){
+          imageBox.classList.add("is-ready");
+        };
+        img.onerror = function(){
+          imageBox.classList.add("no-image","is-ready");
+          const loading = imageBox.querySelector(".service-loading");
+          if(loading) loading.textContent = "PROJECT IMAGE";
+        };
+        img.title = "ภาพตัวอย่างจาก " + result.folder;
+      }else{
+        imageBox.classList.add("no-image","is-ready");
+        const loading = imageBox.querySelector(".service-loading");
+        if(loading) loading.textContent = "PROJECT IMAGE";
+      }
+    }));
+  }
+
+  loadServiceImages();
+})();
+</script>
 
 <script>
 /* Facebook footer link — Master Nav creates the footer dynamically. */
