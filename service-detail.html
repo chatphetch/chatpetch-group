@@ -2,121 +2,684 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>รายละเอียดบริการ | CHATPHETCH GROUP</title>
 <meta name="description" content="รายละเอียดบริการระบบงานพื้น บริษัท ฉัตรเพชร กรุ๊ป จำกัด">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap');
-:root{--black:#030303;--dark:#101010;--gold:#c9a45c;--gold2:#e9cf8b;--gold3:#8d6b2f;--white:#fff;--muted:#999;--line:rgba(255,255,255,.10);--gold-line:rgba(201,164,92,.35);--max:1280px}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:#030303;color:#fff;font-family:'Prompt','Kanit',sans-serif;overflow-x:hidden}
-a{color:inherit;text-decoration:none}button{font-family:inherit}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-10;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;mask-image:linear-gradient(to bottom,black,rgba(0,0,0,.5),transparent)}
-.bg-glow{position:fixed;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,rgba(201,164,92,.18),rgba(201,164,92,.07) 30%,transparent 70%);filter:blur(30px);pointer-events:none;z-index:-5}.glow-one{top:-250px;right:-150px}.glow-two{top:600px;left:-350px}
-.top-line{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;background:linear-gradient(90deg,transparent,var(--gold),var(--gold2),var(--gold),transparent);box-shadow:0 0 15px rgba(201,164,92,.8)}
-.side-line{position:fixed;top:15%;bottom:15%;left:18px;width:1px;background:linear-gradient(transparent,rgba(201,164,92,.6),transparent);opacity:.7;z-index:20}
-.container{width:min(var(--max),calc(100% - 80px));margin:auto}
+:root{
+  --gold:#c9a85a;
+  --gold2:#e4c979;
+  --cream:#f4ecdf;
+  --text:#f7f0e8;
+  --muted:rgba(247,240,232,.74);
+  --line:rgba(201,168,90,.28);
+  --panel:rgba(10,7,5,.80);
+  --max:1280px;
+}
 
-/* MASTER CUSTOMER HEADER */
-.header{position:fixed;top:3px;left:0;width:100%;z-index:1000;background:rgba(3,3,3,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(201,164,92,.16)}
-.navbar{height:86px;display:flex;align-items:center;justify-content:space-between}
-.customer-brand{display:flex;align-items:center;gap:14px;flex:0 0 auto}
-.customer-brand img{width:72px;height:72px;max-width:72px;max-height:72px;object-fit:contain;display:block;flex:0 0 72px}
-.customer-brand-text strong{display:block;font-size:18px;letter-spacing:1.8px;font-weight:600}
-.customer-brand-text small{display:block;color:var(--gold);font-size:9px;letter-spacing:2px;margin-top:2px}
-.customer-nav{display:flex;align-items:center;gap:2px}
-.customer-nav>a,.nav-drop-trigger{position:relative;min-height:46px;padding:11px 10px;display:flex;align-items:center;background:transparent;border:0;color:#cfcfcf;font-size:12px;cursor:pointer;white-space:nowrap;transition:.3s}
-.customer-nav>a:after,.nav-drop-trigger:after{content:"";position:absolute;bottom:4px;left:10px;right:10px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:center;transition:.3s}
-.customer-nav>a:hover,.nav-drop-trigger:hover,.customer-nav>a.active{color:#fff}.customer-nav>a:hover:after,.nav-drop-trigger:hover:after,.customer-nav>a.active:after{transform:scaleX(1)}
-.nav-dropdown{position:relative}.nav-drop-trigger .arrow{color:var(--gold2);font-size:9px;margin-left:7px}
-.nav-submenu{position:absolute;top:100%;left:0;width:305px;background:rgba(5,5,5,.98);border:1px solid rgba(201,164,92,.35);box-shadow:0 20px 50px rgba(0,0,0,.65);opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s;z-index:1100}
-.nav-dropdown:hover .nav-submenu,.nav-dropdown.open .nav-submenu{opacity:1;visibility:visible;transform:translateY(0)}
-.nav-submenu a{display:block;padding:16px 20px;color:#cfcfcf;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);transition:.25s}
-.nav-submenu a:last-child{border-bottom:0}.nav-submenu a:hover{background:rgba(201,164,92,.08);color:var(--gold2);padding-left:25px}
-.nav-shop{border:1px solid rgba(201,164,92,.4)!important;color:var(--gold2)!important;margin-left:5px}.cart-count{display:inline-grid;place-items:center;min-width:18px;height:18px;margin-left:5px;border-radius:50%;background:var(--gold);color:#000;font-size:10px;font-weight:700}
-.menu-toggle{display:none;width:44px;height:44px;border:1px solid var(--gold-line);background:rgba(255,255,255,.03);color:#fff;cursor:pointer}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  color:var(--text);
+  background:#0d0906;
+  font-family:"Prompt",sans-serif;
+}
+a{color:inherit;text-decoration:none}
 
-/* PAGE */
-main{position:relative}.page-hero{position:relative;padding:155px 0 72px;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(circle at 82% 25%,rgba(201,164,92,.10),transparent 34%),linear-gradient(180deg,rgba(255,255,255,.012),transparent)}
-.page-hero:before{content:"SERVICES";position:absolute;right:-20px;bottom:-42px;font-family:'Kanit';font-size:150px;line-height:1;font-weight:700;letter-spacing:5px;color:rgba(255,255,255,.018);pointer-events:none}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold2);font-size:11px;letter-spacing:3px;margin-bottom:18px}.eyebrow:before{content:"";width:42px;height:1px;background:var(--gold)}
-h1,h2,h3{font-family:'Kanit',sans-serif}.page-hero h1{font-size:clamp(44px,6vw,76px);line-height:1.15;font-weight:500;margin-bottom:18px}.page-hero h1 span{color:var(--gold2)}.page-hero p{max-width:760px;color:#929292;font-size:14px;line-height:1.95}
-.detail{padding:75px 0 120px}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.panel{padding:32px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));min-height:100%}.panel h2{font-size:28px;font-weight:500;margin-bottom:16px}.panel p{color:#999;font-size:13px;line-height:1.9}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}.tag{padding:7px 11px;border:1px solid var(--gold-line);color:var(--gold2);font-size:10px;letter-spacing:1px}
-.list{display:grid;gap:12px}.list-item{padding:16px;border-left:2px solid var(--gold);background:rgba(255,255,255,.025)}.list-item strong{display:block;font-size:14px;margin-bottom:5px}.list-item span{display:block;color:#8e8e8e;font-size:12px;line-height:1.8}
-.section{margin-top:22px}.section h3{font-size:22px;font-weight:500;margin-bottom:16px}.bullets{display:grid;gap:9px}.bullets div{padding:12px 14px;border:1px solid rgba(255,255,255,.08);color:#aaa;font-size:12px}
-.cta{margin-top:22px;padding:30px;border:1px solid rgba(201,164,92,.3);background:linear-gradient(120deg,rgba(201,164,92,.10),rgba(255,255,255,.02))}.cta h2{font-size:30px;font-weight:500;margin-bottom:10px}.cta p{color:#999;font-size:13px;line-height:1.8;margin-bottom:20px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border:1px solid var(--gold-line);color:var(--gold2);margin-right:8px;font-size:12px;transition:.3s}.btn:hover{transform:translateY(-2px);border-color:var(--gold);background:rgba(201,164,92,.08)}
-.footer{border-top:1px solid var(--line);padding:70px 0 25px;background:rgba(0,0,0,.45)}.footer-main{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:8px}.footer-brand img{width:72px;height:72px;object-fit:contain;margin-bottom:15px}.footer-brand strong{display:block;font-size:18px;letter-spacing:1.8px}.footer-brand small{display:block;color:var(--gold);font-size:9px;letter-spacing:2px;margin-top:2px}.footer-brand p{color:#999;font-size:12px;line-height:1.9;margin-top:16px}.footer-menu{justify-self:start}.footer-menu h3{font-size:12px;color:var(--gold2);letter-spacing:2px;margin-bottom:15px}.footer-menu a{display:block;color:#aaa;font-size:12px;margin-bottom:11px}.footer-menu a:hover{color:var(--gold2)}.footer-bottom{display:grid;grid-template-columns:auto 1fr auto auto;gap:18px;align-items:center;border-top:1px solid var(--line);margin-top:45px;padding-top:18px;color:#777;font-size:10px}.footer-actions{display:flex;gap:8px}.footer-actions a{border:1px solid var(--gold-line);padding:9px 12px;color:var(--gold2)}.social{display:flex;gap:7px}.social a{display:grid;place-items:center;width:31px;height:31px;border:1px solid var(--line);color:#aaa;font-size:10px}
-@media(max-width:1250px){.customer-nav>a,.nav-drop-trigger{padding-left:7px;padding-right:7px;font-size:11px}.customer-brand img{width:64px;height:64px;flex-basis:64px}.customer-brand-text strong{font-size:16px}}
-@media(max-width:1050px){.container{width:min(var(--max),calc(100% - 40px))}.menu-toggle{display:block}.customer-nav{position:fixed;top:89px;left:20px;right:20px;display:none;flex-direction:column;align-items:stretch;gap:0;padding:12px;background:rgba(5,5,5,.98);border:1px solid var(--gold-line);box-shadow:0 25px 70px rgba(0,0,0,.7);max-height:calc(100vh - 110px);overflow:auto}.customer-nav.show{display:flex}.customer-nav>a,.nav-drop-trigger{width:100%;min-height:48px;padding:12px 14px}.nav-submenu{position:static;width:100%;display:none;opacity:1;visibility:visible;transform:none;margin-bottom:5px}.nav-dropdown.open .nav-submenu{display:block}.nav-dropdown:hover .nav-submenu{opacity:1;visibility:visible}.footer-main{grid-template-columns:1fr}.footer-menu{justify-self:start}.footer-bottom{grid-template-columns:1fr 1fr}.footer-actions{grid-column:1/-1}}
-@media(max-width:650px){.container{width:calc(100% - 28px)}.customer-brand img{width:48px;height:48px;flex-basis:48px}.customer-brand-text strong{font-size:13px;letter-spacing:1px}.customer-brand-text small{font-size:7px;letter-spacing:1.3px}.page-hero{padding:120px 0 55px}.page-hero h1{font-size:44px}.detail{padding:50px 0 80px}.detail-grid{grid-template-columns:1fr}.panel{padding:23px}.footer-bottom{grid-template-columns:1fr}.footer-actions{grid-column:auto;flex-wrap:wrap}}
+.cp-page{
+  position:relative;
+  min-height:100vh;
+  isolation:isolate;
+  overflow:hidden;
+}
+.cp-page::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  background:url("assets/index-main-bg.png") center top/cover no-repeat;
+}
+.cp-page::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.50) 0%,
+      rgba(0,0,0,.34) 25%,
+      rgba(0,0,0,.56) 55%,
+      rgba(0,0,0,.90) 100%
+    );
+  pointer-events:none;
+}
+.page-inner{
+  width:min(var(--max),calc(100% - 48px));
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+
+/* HERO */
+.detail-hero{
+  min-height:clamp(470px,65vh,690px);
+  display:flex;
+  align-items:flex-end;
+  padding:145px 0 68px;
+}
+.hero-copy{
+  position:relative;
+  max-width:900px;
+  padding:32px 45px 35px 0;
+}
+.hero-copy::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:-180px;
+  top:-90px;
+  width:950px;
+  height:510px;
+  background:radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,.80) 0%,
+    rgba(0,0,0,.50) 40%,
+    rgba(0,0,0,0) 77%
+  );
+}
+.kicker{
+  color:var(--gold2);
+  font-size:12px;
+  letter-spacing:.24em;
+  font-weight:600;
+}
+.hero-copy h1{
+  margin-top:12px;
+  max-width:850px;
+  font-size:clamp(42px,6vw,76px);
+  line-height:1.02;
+  letter-spacing:-.035em;
+  font-weight:600;
+  text-shadow:0 5px 28px rgba(0,0,0,.92);
+}
+.hero-copy h1 span{
+  display:block;
+  margin-top:12px;
+  color:var(--gold2);
+  font-size:.30em;
+  letter-spacing:.24em;
+  font-weight:500;
+}
+.hero-copy p{
+  max-width:760px;
+  margin-top:22px;
+  color:#fff8ef;
+  font-size:15px;
+  line-height:1.85;
+  text-shadow:0 3px 18px rgba(0,0,0,.92);
+}
+
+/* DETAIL */
+.detail{
+  padding:18px 0 82px;
+}
+.detail-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.panel{
+  min-height:100%;
+  padding:28px;
+  border:1px solid rgba(201,168,90,.25);
+  border-radius:21px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(24,14,8,.94),
+      rgba(8,6,4,.88)
+    );
+  box-shadow:0 24px 65px rgba(0,0,0,.30);
+  backdrop-filter:blur(9px);
+}
+.panel h2{
+  font-size:28px;
+  line-height:1.15;
+  font-weight:600;
+}
+.panel-intro{
+  margin-top:14px;
+  color:rgba(255,248,239,.72);
+  font-size:13.5px;
+  line-height:1.85;
+}
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:20px 0 27px;
+}
+.tag{
+  padding:7px 11px;
+  border:1px solid rgba(201,168,90,.34);
+  border-radius:999px;
+  color:var(--gold2);
+  background:rgba(255,255,255,.025);
+  font-size:10px;
+  letter-spacing:.07em;
+}
+.subsection{
+  margin-top:25px;
+}
+.subsection h3{
+  margin-bottom:13px;
+  color:#fff8ef;
+  font-family:"Kanit",sans-serif;
+  font-size:20px;
+  font-weight:500;
+}
+.problem-list{
+  display:grid;
+  gap:10px;
+}
+.problem-item{
+  padding:15px;
+  border-left:2px solid var(--gold);
+  border-radius:0 10px 10px 0;
+  background:rgba(255,255,255,.035);
+}
+.problem-item strong{
+  display:block;
+  font-size:13px;
+  line-height:1.45;
+}
+.problem-item span{
+  display:block;
+  margin-top:5px;
+  color:rgba(255,248,239,.61);
+  font-size:12px;
+  line-height:1.75;
+}
+.bullet-list{
+  display:grid;
+  gap:9px;
+}
+.bullet-list div{
+  padding:12px 14px;
+  border:1px solid rgba(201,168,90,.15);
+  border-radius:10px;
+  color:rgba(255,248,239,.73);
+  background:rgba(255,255,255,.025);
+  font-size:12.5px;
+  line-height:1.6;
+}
+.bullet-list.suitable div::first-letter{color:var(--gold2)}
+.bullet-list.not-suitable div{
+  border-color:rgba(255,255,255,.08);
+}
+
+/* CTA */
+.detail-cta{
+  margin-top:18px;
+  padding:35px;
+  border:1px solid rgba(201,168,90,.30);
+  border-radius:22px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(28,17,9,.92),
+      rgba(8,6,4,.86)
+    );
+  box-shadow:0 25px 65px rgba(0,0,0,.30);
+}
+.detail-cta h2{
+  font-family:"Kanit",sans-serif;
+  font-size:32px;
+  line-height:1.08;
+  font-weight:600;
+}
+.detail-cta p{
+  max-width:760px;
+  margin-top:12px;
+  color:rgba(255,248,239,.68);
+  font-size:13.5px;
+  line-height:1.8;
+}
+.cta-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:21px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:10px 17px;
+  border:1px solid rgba(201,168,90,.40);
+  border-radius:11px;
+  color:var(--gold2);
+  background:rgba(255,255,255,.025);
+  font-size:12px;
+  font-weight:600;
+  transition:.2s ease;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  border-color:var(--gold2);
+  background:rgba(201,168,90,.08);
+}
+.btn.primary{
+  color:#17100a;
+  border-color:var(--gold2);
+  background:var(--gold2);
+}
+.btn.primary:hover{background:#f0d990}
+
+/* MOBILE */
+@media(max-width:800px){
+  .detail-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .cp-page::before{background-position:center top}
+  .page-inner{width:min(100% - 28px,680px)}
+  .detail-hero{
+    min-height:560px;
+    padding:125px 0 50px;
+  }
+  .hero-copy{
+    padding:28px 18px 28px 0;
+  }
+  .hero-copy::before{
+    left:-95px;
+    top:-65px;
+    width:650px;
+    height:470px;
+  }
+  .hero-copy h1{
+    font-size:clamp(38px,12vw,56px);
+  }
+  .hero-copy p{
+    font-size:13.5px;
+    line-height:1.8;
+  }
+  .detail{padding-bottom:60px}
+  .panel{padding:21px 18px;border-radius:17px}
+  .panel h2{font-size:24px}
+  .panel-intro{font-size:13px}
+  .detail-cta{
+    padding:28px 20px;
+    border-radius:18px;
+  }
+  .detail-cta h2{font-size:29px}
+  .detail-cta p{font-size:13px}
+  .cta-actions{
+    flex-direction:column;
+  }
+  .cta-actions > *{width:100%}
+}
+@media(max-width:480px){
+  .hero-copy h1{font-size:37px}
+  .hero-copy h1 span{
+    font-size:11px;
+    letter-spacing:.18em;
+  }
+  .hero-copy p{font-size:13px}
+  .problem-item{padding:13px}
+  .problem-item strong{font-size:12.5px}
+  .problem-item span{font-size:11.5px}
+  .bullet-list div{font-size:12px}
+}
 </style>
 </head>
+
 <body>
-<div class="top-line"></div><div class="side-line"></div><div class="bg-glow glow-one"></div><div class="bg-glow glow-two"></div>
 
-<header class="header">
-<div class="container"><nav class="navbar">
-<a href="index.html" class="customer-brand" aria-label="CHATPHETCH GROUP">
-<img src="assets/logo.png" alt="CHATPHETCH GROUP" width="72" height="72">
-<div class="customer-brand-text"><strong>CHATPHETCH GROUP</strong><small>FLOORING &amp; CONSTRUCTION</small></div>
-</a>
-<div class="customer-nav" id="navMenu">
-<a href="index.html">หน้าแรก</a><a href="about.html">เกี่ยวกับเรา</a><a href="products.html">สินค้า</a>
-<div class="nav-dropdown"><button type="button" class="nav-drop-trigger">บริการ <span class="arrow">▼</span></button><div class="nav-submenu">
-<a href="services.html">ดูบริการทั้งหมด</a><a href="service-detail.html?service=industrial">บริการระบบงานพื้น</a><a href="service-detail.html?service=coating">บริการเคลือบผิว / สี</a><a href="service-detail.html?service=consulting">ปรึกษาและเลือกวัสดุ</a><a href="service-detail.html?service=installation">คำปรึกษางานติดตั้ง</a>
-</div></div>
-<div class="nav-dropdown"><button type="button" class="nav-drop-trigger">ผลงาน <span class="arrow">▼</span></button><div class="nav-submenu">
-<a href="projects.html">ดูผลงานทั้งหมด</a><a href="projects.html?category=flooring">ผลงานระบบพื้น</a><a href="projects.html?category=stamped">ผลงานพื้นพิมพ์ลาย</a><a href="projects.html?category=coating">ผลงานสี / น้ำยา</a><a href="projects.html?category=construction">ผลงานงานก่อสร้าง</a>
-</div></div>
-<a href="reference.html">โครงการอ้างอิง</a><a href="technical-center.html">ศูนย์เทคนิค</a><a href="knowledge.html">คลังความรู้</a><a href="contact.html">ติดต่อเรา</a><a href="order-status.html">🔎 ติดตามคำสั่งซื้อ</a><a href="cart.html" class="nav-shop">🛒 ตะกร้า <span class="cart-count" id="cartCount">0</span></a>
-</div><button class="menu-toggle" id="menuToggle" aria-label="เปิดเมนู">☰</button>
-</nav></div></header>
-
+<div class="cp-page">
 <main>
-<section class="page-hero"><div class="container">
-<div class="eyebrow">SERVICE DETAIL</div><h1 id="serviceTitle">รายละเอียดบริการ <span>SERVICE</span></h1><p id="serviceShort">เลือกบริการจากเมนูด้านบนเพื่อดูรายละเอียด</p>
-</div></section>
-<section class="detail"><div class="container">
-<div class="detail-grid">
-<div class="panel"><h2>ระบบบริการ</h2><p id="serviceDescription"></p><div class="tags" id="serviceTags"></div><div class="section"><h3>ลักษณะปัญหา / งานที่พิจารณา</h3><div class="list" id="problems"></div></div></div>
-<div class="panel"><h2>ความเหมาะสมของงาน</h2><div class="section"><h3>เหมาะกับ</h3><div class="bullets" id="suitable"></div></div><div class="section"><h3>ควรตรวจสอบก่อน</h3><div class="bullets" id="notSuitable"></div></div></div>
-</div>
-<div class="cta"><h2>ต้องการปรึกษาระบบงานพื้น?</h2><p>สามารถติดต่อบริษัทเพื่อให้ข้อมูลพื้นที่และลักษณะการใช้งาน แล้วพิจารณาระบบที่เหมาะสมกับหน้างาน</p><a class="btn" href="contact.html">☎ ติดต่อเรา</a><a class="btn" href="technical-center.html">ศูนย์เทคนิค</a><a class="btn" href="services.html">ดูบริการทั้งหมด</a></div>
-</div></section>
-</main>
+<div class="page-inner">
 
-<footer class="footer"><div class="container">
-<div class="footer-main"><div class="footer-brand"><img src="assets/logo.png" alt="CHATPHETCH GROUP"><strong>CHATPHETCH GROUP</strong><small>FLOORING &amp; CONSTRUCTION</small><p>🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹<br>♠️ สร้างสรรค์ผลงาน ♠️ มาตรฐานเข้าถึง ♠️ ยืน 1 คุณภาพ<br>บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร</p></div>
-<div class="footer-menu"><h3>MENU</h3><a href="index.html">หน้าแรก</a><a href="about.html">เกี่ยวกับเรา</a><a href="products.html">สินค้า</a><a href="services.html">บริการ</a><a href="projects.html">ผลงาน</a><a href="contact.html">ติดต่อเรา</a></div></div>
-<div class="footer-bottom"><div>© 2026 CHATPHETCH GROUP CO., LTD.</div><div>10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310</div><div class="footer-actions"><a href="contact.html">☎ ติดต่อเรา</a><a href="order-status.html">🔎 ติดตามคำสั่งซื้อ</a></div><div class="social"><a href="https://www.facebook.com/ChatphetchGroup" target="_blank" rel="noopener">f</a><a href="#">▶</a><a href="#">LINE</a></div></div>
-</div></footer>
+<section class="detail-hero">
+  <div class="hero-copy">
+    <div class="kicker">SERVICE DETAIL</div>
+    <h1 id="serviceTitle">
+      รายละเอียดบริการ
+      <span>SERVICE</span>
+    </h1>
+    <p id="serviceShort">
+      เลือกบริการจากเมนูด้านบนเพื่อดูรายละเอียด
+    </p>
+  </div>
+</section>
+
+<section class="detail">
+
+  <div class="detail-grid">
+
+    <article class="panel">
+      <div class="kicker">SERVICE SYSTEM</div>
+      <h2 style="margin-top:8px">ระบบบริการ</h2>
+      <p class="panel-intro" id="serviceDescription"></p>
+
+      <div class="tags" id="serviceTags"></div>
+
+      <div class="subsection">
+        <h3>ลักษณะปัญหา / งานที่พิจารณา</h3>
+        <div class="problem-list" id="problems"></div>
+      </div>
+    </article>
+
+    <article class="panel">
+      <div class="kicker">SUITABILITY</div>
+      <h2 style="margin-top:8px">ความเหมาะสมของงาน</h2>
+
+      <div class="subsection">
+        <h3>เหมาะกับ</h3>
+        <div class="bullet-list suitable" id="suitable"></div>
+      </div>
+
+      <div class="subsection">
+        <h3>ควรตรวจสอบก่อน</h3>
+        <div class="bullet-list not-suitable" id="notSuitable"></div>
+      </div>
+    </article>
+
+  </div>
+
+  <section class="detail-cta">
+    <div class="kicker">START YOUR PROJECT</div>
+    <h2>ต้องการปรึกษาระบบงานพื้น?</h2>
+    <p>
+      สามารถติดต่อบริษัทเพื่อให้ข้อมูลพื้นที่และลักษณะการใช้งาน
+      แล้วพิจารณาระบบที่เหมาะสมกับหน้างาน
+    </p>
+
+    <div class="cta-actions">
+      <a class="btn primary" href="contact.html">☎ ติดต่อเรา</a>
+      <a class="btn" href="technical-center.html">ศูนย์เทคนิค</a>
+      <a class="btn" href="services.html">← ดูบริการทั้งหมด</a>
+    </div>
+  </section>
+
+</section>
+
+</div>
+</main>
+</div>
+
+<script src="assets/customer-master-nav.js"></script>
 
 <script>
-const services={
-industrial:{number:"01",title:"พื้นอุตสาหกรรม / อีพ็อกซี่ / พียู",short:"ระบบพื้นสำหรับพื้นที่ใช้งานหลากหลายประเภท โดยต้องเลือกชนิดระบบให้เหมาะกับสภาพพื้นและลักษณะการใช้งาน",tags:["EPOXY","PU","INDUSTRIAL FLOOR"],problems:[["พื้นต้องการผิวสำหรับการใช้งานเฉพาะ","ควรเลือกชนิดวัสดุและระบบให้เหมาะกับการใช้งานของพื้นที่"],["พื้นเดิมเสื่อมสภาพ","ต้องประเมินพื้นเดิมก่อนกำหนดวิธีเตรียมผิวและระบบที่จะใช้"],["ต้องการปรับปรุงพื้นที่","สามารถพิจารณาระบบพื้นตามลักษณะการใช้งานและเงื่อนไขหน้างาน"]],suitable:["โรงงานและพื้นที่อุตสาหกรรม","พื้นที่ที่ต้องการระบบพื้นเฉพาะทาง","พื้นที่ที่สามารถเตรียมพื้นเดิมได้ตามข้อกำหนด"],notSuitable:["พื้นที่ที่ยังมีปัญหาความชื้นและยังไม่ได้ตรวจสอบ","พื้นเดิมที่ไม่แข็งแรงหรือมีปัญหาโครงสร้าง","พื้นที่ที่ยังไม่ทราบลักษณะการใช้งานจริง"]},
-waterproof:{number:"02",title:"งานกันรั่วซึม ดาดฟ้า หลังคา พื้นอาคาร",short:"ระบบสำหรับงานกันรั่วซึม โดยต้องตรวจสอบจุดรั่ว สภาพพื้นเดิม รอยแตกร้าว และรายละเอียดบริเวณรอยต่อก่อนเลือกวิธีแก้ไข",tags:["WATERPROOF","ROOF","DECK"],problems:[["น้ำรั่วซึมจากพื้นที่ด้านบน","ต้องหาตำแหน่งและสาเหตุของน้ำรั่วก่อนเลือกวิธีซ่อม"],["รอยต่อหรือจุดรายละเอียดมีปัญหา","จุดต่อและรายละเอียดรอบพื้นที่ควรได้รับการตรวจสอบเป็นพิเศษ"],["ชั้นกันน้ำเดิมเสื่อมสภาพ","ต้องประเมินสภาพระบบเดิมก่อนวางแนวทางปรับปรุง"]],suitable:["ดาดฟ้าและพื้นที่อาคาร","หลังคาหรือพื้นที่ที่ต้องการระบบกันน้ำ","พื้นที่ที่สามารถตรวจสอบต้นเหตุของปัญหาได้"],notSuitable:["พื้นที่ที่ยังไม่สามารถระบุแหล่งน้ำได้","พื้นผิวที่มีปัญหาโครงสร้างรุนแรง","พื้นที่ที่ยังไม่ได้เตรียมผิวตามข้อกำหนด"]},
-concrete:{number:"03",title:"งานซ่อมปรับปรุงงานคอนกรีต",short:"งานซ่อมและปรับปรุงพื้นคอนกรีต เช่น Epoxy Injection และระบบ Cement Self ตามสภาพปัญหาของพื้นที่",tags:["EPOXY INJECTION","CEMENT SELF","CONCRETE REPAIR"],problems:[["พบรอยแตกร้าวบนคอนกรีต","ต้องประเมินลักษณะและสาเหตุของรอยร้าวก่อนกำหนดวิธีซ่อม"],["พื้นไม่เรียบหรือมีตำหนิ","สามารถพิจารณาวิธีปรับปรุงผิวตามสภาพพื้นเดิม"],["ต้องการฟื้นฟูพื้นคอนกรีต","เลือกวิธีซ่อมตามประเภทและความรุนแรงของปัญหา"]],suitable:["พื้นคอนกรีตที่ต้องการซ่อมแซม","พื้นที่ที่ต้องการปรับปรุงสภาพผิว","งานที่สามารถตรวจสอบสาเหตุของปัญหาได้"],notSuitable:["ปัญหาที่เกี่ยวข้องกับโครงสร้างและยังไม่ได้รับการประเมิน","พื้นผิวที่ไม่แข็งแรง","พื้นที่ที่มีความชื้นหรือเงื่อนไขพิเศษโดยยังไม่มีข้อมูล"]},
-sports:{number:"04",title:"พื้นสนามกีฬา",short:"ระบบพื้นสำหรับสนามกีฬาและพื้นที่กิจกรรม โดยควรพิจารณาประเภทกีฬา ลักษณะการใช้งาน และสภาพพื้นเดิม",tags:["SPORT FLOOR","SPORTS","OUTDOOR / INDOOR"],problems:[["ต้องการปรับปรุงพื้นสนาม","ประเมินพื้นเดิมและลักษณะการใช้งานก่อนกำหนดระบบ"],["พื้นต้องรองรับกิจกรรมกีฬา","ควรพิจารณาคุณสมบัติของระบบให้สอดคล้องกับประเภทกีฬา"],["พื้นเดิมเสื่อมสภาพ","ต้องเตรียมและปรับปรุงพื้นเดิมให้เหมาะกับระบบใหม่"]],suitable:["สนามกีฬา","พื้นที่กิจกรรม","พื้นที่ที่สามารถเตรียมพื้นและกำหนดระบบได้ตามประเภทการใช้งาน"],notSuitable:["พื้นที่ที่มีปัญหาโครงสร้าง","พื้นที่ที่ยังไม่ทราบประเภทการใช้งาน","พื้นที่ที่ยังมีปัญหาความชื้นโดยไม่ได้ตรวจสอบ"]},
-decorative:{number:"05",title:"พื้นตกแต่งเพื่อความสวยงาม",short:"งานพื้นคอนกรีตพิมพ์ลาย PSC, PMC รวมถึงระบบพื้น Flake และ Aura Sand สำหรับงานตกแต่งตามรูปแบบที่ต้องการ",tags:["PSC","PMC","FLAKE","AURA SAND"],problems:[["ต้องการพื้นตกแต่ง","เลือกพื้นผิว สี และรูปแบบให้เหมาะกับพื้นที่และภาพรวมของโครงการ"],["ต้องการปรับภาพลักษณ์พื้นที่","สามารถเลือกแนวทางตกแต่งตามลักษณะพื้นที่และความต้องการ"],["พื้นเดิมต้องการปรับปรุง","ต้องประเมินพื้นเดิมก่อนเลือกวิธีการติดตั้งระบบ"]],suitable:["พื้นที่ที่ต้องการความสวยงาม","พื้นที่ภายนอกหรือพื้นที่ตกแต่งตามประเภทระบบ","โครงการที่ต้องการกำหนดรูปแบบและสี"],notSuitable:["พื้นที่ที่พื้นเดิมยังไม่พร้อม","พื้นที่ที่มีปัญหาโครงสร้าง","พื้นที่ที่ยังไม่ได้กำหนดรูปแบบการใช้งาน"]},
-traffic:{number:"06",title:"ระบบงานสัญลักษณ์และเส้นจราจร",short:"งานตีเส้นและสัญลักษณ์สำหรับพื้นที่ใช้งาน โดยควรพิจารณาผังพื้นที่ ลักษณะการจราจร และสภาพพื้นเดิม",tags:["TRAFFIC LINE","MARKING","SAFETY"],problems:[["ต้องการจัดระเบียบพื้นที่","ควรกำหนดผังและรูปแบบสัญลักษณ์ให้สอดคล้องกับการใช้งาน"],["เส้นเดิมเสื่อมสภาพ","ต้องประเมินพื้นผิวและสภาพเส้นเดิมก่อนปรับปรุง"],["ต้องการเพิ่มความชัดเจนของพื้นที่","เลือกตำแหน่งและรูปแบบเครื่องหมายตามการใช้งานจริง"]],suitable:["พื้นที่โรงงานและอาคาร","พื้นที่จอดรถและทางสัญจร","พื้นที่ที่สามารถเตรียมพื้นผิวได้"],notSuitable:["พื้นผิวที่ไม่พร้อมสำหรับการทำงาน","พื้นที่ที่ยังไม่มีผังหรือรูปแบบการใช้งาน","พื้นที่ที่มีปัญหาโครงสร้างและยังไม่ได้แก้ไข"]},
-coating:{number:"—",title:"บริการเคลือบผิว / สี",short:"ปรึกษาและพิจารณาระบบเคลือบผิวหรือสีให้เหมาะกับพื้นและลักษณะการใช้งาน",tags:["COATING","COLOR","SURFACE"],problems:[["ต้องการปกป้องผิวพื้น","พิจารณาระบบตามสภาพพื้นและลักษณะการใช้งาน"],["ต้องการปรับรูปลักษณ์","เลือกชนิดและสีให้เหมาะกับพื้นที่"],["พื้นเดิมต้องเตรียมผิว","ต้องประเมินพื้นเดิมก่อนดำเนินงาน"]],suitable:["พื้นที่ที่ต้องการระบบเคลือบผิว","พื้นที่ที่ต้องการปรับสีหรือรูปลักษณ์"],notSuitable:["พื้นเดิมที่ไม่พร้อม","พื้นที่ที่ยังไม่ทราบเงื่อนไขหน้างาน"]},
-consulting:{number:"—",title:"ปรึกษาและเลือกวัสดุ",short:"ให้คำปรึกษาเกี่ยวกับการเลือกวัสดุงานพื้น โดยพิจารณาจากพื้นที่และลักษณะการใช้งาน",tags:["CONSULTING","MATERIAL","FLOOR"],problems:[["ยังไม่ทราบว่าจะเลือกวัสดุใด","ควรให้ข้อมูลพื้นที่และลักษณะการใช้งานเพื่อประกอบการพิจารณา"],["มีหลายระบบให้เลือก","เปรียบเทียบแนวทางตามเงื่อนไขของพื้นที่"],["ต้องการข้อมูลก่อนเริ่มงาน","สามารถติดต่อเพื่อปรึกษาเบื้องต้นได้"]],suitable:["ผู้ที่ต้องการคำแนะนำก่อนเลือกวัสดุ","โครงการที่ต้องการพิจารณาหลายระบบ"],notSuitable:["กรณีที่ยังไม่มีข้อมูลพื้นที่หรือการใช้งานเพียงพอ"]},
-installation:{number:"—",title:"คำปรึกษางานติดตั้ง",short:"ให้คำปรึกษาเกี่ยวกับแนวทางงานติดตั้งและการเตรียมข้อมูลหน้างานก่อนดำเนินงาน",tags:["INSTALLATION","SITE","CONSULT"],problems:[["ต้องการวางแผนก่อนติดตั้ง","ควรเตรียมข้อมูลพื้นที่และลักษณะงาน"],["ไม่แน่ใจเรื่องการเตรียมพื้น","ต้องประเมินพื้นเดิมก่อนเลือกแนวทาง"],["ต้องการคำปรึกษาหน้างาน","สามารถติดต่อเพื่อพูดคุยรายละเอียดได้"]],suitable:["โครงการที่กำลังเตรียมงานติดตั้ง","พื้นที่ที่ต้องการวางแนวทางก่อนเริ่มงาน"],notSuitable:["พื้นที่ที่ยังไม่มีข้อมูลสภาพหน้างานเพียงพอ"]}
-};
-const params=new URLSearchParams(location.search);const key=params.get("service")||"industrial";const s=services[key]||services.industrial;
-document.title=s.title+" | CHATPHETCH GROUP";
-document.getElementById("serviceTitle").innerHTML=s.title+' <span>SERVICE</span>';
-document.getElementById("serviceShort").textContent=s.short;document.getElementById("serviceDescription").textContent=s.short;
-document.getElementById("serviceTags").innerHTML=s.tags.map(x=>`<span class="tag">${x}</span>`).join("");
-document.getElementById("problems").innerHTML=s.problems.map(x=>`<div class="list-item"><strong>${x[0]}</strong><span>${x[1]}</span></div>`).join("");
-document.getElementById("suitable").innerHTML=s.suitable.map(x=>`<div>✓ ${x}</div>`).join("");
-document.getElementById("notSuitable").innerHTML=s.notSuitable.map(x=>`<div>• ${x}</div>`).join("");
+const services = {
+  industrial:{
+    number:"01",
+    title:"พื้นอุตสาหกรรม / อีพ็อกซี่ / พียู",
+    short:"ระบบพื้นสำหรับพื้นที่ใช้งานหลากหลายประเภท โดยต้องเลือกชนิดระบบให้เหมาะกับสภาพพื้นและลักษณะการใช้งาน",
+    tags:["EPOXY","PU","INDUSTRIAL FLOOR"],
+    problems:[
+      ["พื้นต้องการผิวสำหรับการใช้งานเฉพาะ","ควรเลือกชนิดวัสดุและระบบให้เหมาะกับการใช้งานของพื้นที่"],
+      ["พื้นเดิมเสื่อมสภาพ","ต้องประเมินพื้นเดิมก่อนกำหนดวิธีเตรียมผิวและระบบที่จะใช้"],
+      ["ต้องการปรับปรุงพื้นที่","สามารถพิจารณาระบบพื้นตามลักษณะการใช้งานและเงื่อนไขหน้างาน"]
+    ],
+    suitable:[
+      "โรงงานและพื้นที่อุตสาหกรรม",
+      "พื้นที่ที่ต้องการระบบพื้นเฉพาะทาง",
+      "พื้นที่ที่สามารถเตรียมพื้นเดิมได้ตามข้อกำหนด"
+    ],
+    notSuitable:[
+      "พื้นที่ที่ยังมีปัญหาความชื้นและยังไม่ได้ตรวจสอบ",
+      "พื้นเดิมที่ไม่แข็งแรงหรือมีปัญหาโครงสร้าง",
+      "พื้นที่ที่ยังไม่ทราบลักษณะการใช้งานจริง"
+    ]
+  },
 
-const menuToggle=document.getElementById("menuToggle"),navMenu=document.getElementById("navMenu");
-menuToggle.addEventListener("click",()=>navMenu.classList.toggle("show"));
-document.querySelectorAll(".nav-drop-trigger").forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();const parent=btn.closest(".nav-dropdown");document.querySelectorAll(".nav-dropdown").forEach(x=>{if(x!==parent)x.classList.remove("open")});parent.classList.toggle("open")}));
-document.addEventListener("click",e=>{if(!e.target.closest(".nav-dropdown"))document.querySelectorAll(".nav-dropdown").forEach(x=>x.classList.remove("open"));});
-document.querySelectorAll(".customer-nav a").forEach(a=>a.addEventListener("click",()=>navMenu.classList.remove("show")));
-try{const cart=JSON.parse(localStorage.getItem("chatpetch_cart")||"[]");document.getElementById("cartCount").textContent=cart.reduce((n,x)=>n+Number(x.quantity||x.qty||1),0)}catch(e){}
+  waterproof:{
+    number:"02",
+    title:"งานกันรั่วซึม ดาดฟ้า หลังคา พื้นอาคาร",
+    short:"ระบบสำหรับงานกันรั่วซึม โดยต้องตรวจสอบจุดรั่ว สภาพพื้นเดิม รอยแตกร้าว และรายละเอียดบริเวณรอยต่อก่อนเลือกวิธีแก้ไข",
+    tags:["WATERPROOF","ROOF","DECK"],
+    problems:[
+      ["น้ำรั่วซึมจากพื้นที่ด้านบน","ต้องหาตำแหน่งและสาเหตุของน้ำรั่วก่อนเลือกวิธีซ่อม"],
+      ["รอยต่อหรือจุดรายละเอียดมีปัญหา","จุดต่อและรายละเอียดรอบพื้นที่ควรได้รับการตรวจสอบเป็นพิเศษ"],
+      ["ชั้นกันน้ำเดิมเสื่อมสภาพ","ต้องประเมินสภาพระบบเดิมก่อนวางแนวทางปรับปรุง"]
+    ],
+    suitable:[
+      "ดาดฟ้าและพื้นที่อาคาร",
+      "หลังคาหรือพื้นที่ที่ต้องการระบบกันน้ำ",
+      "พื้นที่ที่สามารถตรวจสอบต้นเหตุของปัญหาได้"
+    ],
+    notSuitable:[
+      "พื้นที่ที่ยังไม่สามารถระบุแหล่งน้ำได้",
+      "พื้นผิวที่มีปัญหาโครงสร้างรุนแรง",
+      "พื้นที่ที่ยังไม่ได้เตรียมผิวตามข้อกำหนด"
+    ]
+  },
+
+  concrete:{
+    number:"03",
+    title:"งานซ่อมปรับปรุงงานคอนกรีต",
+    short:"งานซ่อมและปรับปรุงพื้นคอนกรีต เช่น Epoxy Injection และระบบ Cement Self ตามสภาพปัญหาของพื้นที่",
+    tags:["EPOXY INJECTION","CEMENT SELF","CONCRETE REPAIR"],
+    problems:[
+      ["พบรอยแตกร้าวบนคอนกรีต","ต้องประเมินลักษณะและสาเหตุของรอยร้าวก่อนกำหนดวิธีซ่อม"],
+      ["พื้นไม่เรียบหรือมีตำหนิ","สามารถพิจารณาวิธีปรับปรุงผิวตามสภาพพื้นเดิม"],
+      ["ต้องการฟื้นฟูพื้นคอนกรีต","เลือกวิธีซ่อมตามประเภทและความรุนแรงของปัญหา"]
+    ],
+    suitable:[
+      "พื้นคอนกรีตที่ต้องการซ่อมแซม",
+      "พื้นที่ที่ต้องการปรับปรุงสภาพผิว",
+      "งานที่สามารถตรวจสอบสาเหตุของปัญหาได้"
+    ],
+    notSuitable:[
+      "ปัญหาที่เกี่ยวข้องกับโครงสร้างและยังไม่ได้รับการประเมิน",
+      "พื้นผิวที่ไม่แข็งแรง",
+      "พื้นที่ที่มีความชื้นหรือเงื่อนไขพิเศษโดยยังไม่มีข้อมูล"
+    ]
+  },
+
+  sports:{
+    number:"04",
+    title:"พื้นสนามกีฬา",
+    short:"ระบบพื้นสำหรับสนามกีฬาและพื้นที่กิจกรรม โดยควรพิจารณาประเภทกีฬา ลักษณะการใช้งาน และสภาพพื้นเดิม",
+    tags:["SPORT FLOOR","SPORTS","OUTDOOR / INDOOR"],
+    problems:[
+      ["ต้องการปรับปรุงพื้นสนาม","ประเมินพื้นเดิมและลักษณะการใช้งานก่อนกำหนดระบบ"],
+      ["พื้นต้องรองรับกิจกรรมกีฬา","ควรพิจารณาคุณสมบัติของระบบให้สอดคล้องกับประเภทกีฬา"],
+      ["พื้นเดิมเสื่อมสภาพ","ต้องเตรียมและปรับปรุงพื้นเดิมให้เหมาะกับระบบใหม่"]
+    ],
+    suitable:[
+      "สนามกีฬา",
+      "พื้นที่กิจกรรม",
+      "พื้นที่ที่สามารถเตรียมพื้นและกำหนดระบบได้ตามประเภทการใช้งาน"
+    ],
+    notSuitable:[
+      "พื้นที่ที่มีปัญหาโครงสร้าง",
+      "พื้นที่ที่ยังไม่ทราบประเภทการใช้งาน",
+      "พื้นที่ที่ยังมีปัญหาความชื้นโดยไม่ได้ตรวจสอบ"
+    ]
+  },
+
+  decorative:{
+    number:"05",
+    title:"พื้นตกแต่งเพื่อความสวยงาม",
+    short:"งานพื้นคอนกรีตพิมพ์ลาย PSC, PMC รวมถึงระบบพื้น Flake และ Aura Sand สำหรับงานตกแต่งตามรูปแบบที่ต้องการ",
+    tags:["PSC","PMC","FLAKE","AURA SAND"],
+    problems:[
+      ["ต้องการพื้นตกแต่ง","เลือกพื้นผิว สี และรูปแบบให้เหมาะกับพื้นที่และภาพรวมของโครงการ"],
+      ["ต้องการปรับภาพลักษณ์พื้นที่","สามารถเลือกแนวทางตกแต่งตามลักษณะพื้นที่และความต้องการ"],
+      ["พื้นเดิมต้องการปรับปรุง","ต้องประเมินพื้นเดิมก่อนเลือกวิธีการติดตั้งระบบ"]
+    ],
+    suitable:[
+      "พื้นที่ที่ต้องการความสวยงาม",
+      "พื้นที่ภายนอกหรือพื้นที่ตกแต่งตามประเภทระบบ",
+      "โครงการที่ต้องการกำหนดรูปแบบและสี"
+    ],
+    notSuitable:[
+      "พื้นที่ที่พื้นเดิมยังไม่พร้อม",
+      "พื้นที่ที่มีปัญหาโครงสร้าง",
+      "พื้นที่ที่ยังไม่ได้กำหนดรูปแบบการใช้งาน"
+    ]
+  },
+
+  traffic:{
+    number:"06",
+    title:"ระบบงานสัญลักษณ์และเส้นจราจร",
+    short:"งานตีเส้นและสัญลักษณ์สำหรับพื้นที่ใช้งาน โดยควรพิจารณาผังพื้นที่ ลักษณะการจราจร และสภาพพื้นเดิม",
+    tags:["TRAFFIC LINE","MARKING","SAFETY"],
+    problems:[
+      ["ต้องการจัดระเบียบพื้นที่","ควรกำหนดผังและรูปแบบสัญลักษณ์ให้สอดคล้องกับการใช้งาน"],
+      ["เส้นเดิมเสื่อมสภาพ","ต้องประเมินพื้นผิวและสภาพเส้นเดิมก่อนปรับปรุง"],
+      ["ต้องการเพิ่มความชัดเจนของพื้นที่","เลือกตำแหน่งและรูปแบบเครื่องหมายตามการใช้งานจริง"]
+    ],
+    suitable:[
+      "พื้นที่โรงงานและอาคาร",
+      "พื้นที่จอดรถและทางสัญจร",
+      "พื้นที่ที่สามารถเตรียมพื้นผิวได้"
+    ],
+    notSuitable:[
+      "พื้นผิวที่ไม่พร้อมสำหรับการทำงาน",
+      "พื้นที่ที่ยังไม่มีผังหรือรูปแบบการใช้งาน",
+      "พื้นที่ที่มีปัญหาโครงสร้างและยังไม่ได้แก้ไข"
+    ]
+  },
+
+  coating:{
+    number:"—",
+    title:"บริการเคลือบผิว / สี",
+    short:"ปรึกษาและพิจารณาระบบเคลือบผิวหรือสีให้เหมาะกับพื้นและลักษณะการใช้งาน",
+    tags:["COATING","COLOR","SURFACE"],
+    problems:[
+      ["ต้องการปกป้องผิวพื้น","พิจารณาระบบตามสภาพพื้นและลักษณะการใช้งาน"],
+      ["ต้องการปรับรูปลักษณ์","เลือกชนิดและสีให้เหมาะกับพื้นที่"],
+      ["พื้นเดิมต้องเตรียมผิว","ต้องประเมินพื้นเดิมก่อนดำเนินงาน"]
+    ],
+    suitable:[
+      "พื้นที่ที่ต้องการระบบเคลือบผิว",
+      "พื้นที่ที่ต้องการปรับสีหรือรูปลักษณ์"
+    ],
+    notSuitable:[
+      "พื้นเดิมที่ไม่พร้อม",
+      "พื้นที่ที่ยังไม่ทราบเงื่อนไขหน้างาน"
+    ]
+  },
+
+  consulting:{
+    number:"—",
+    title:"ปรึกษาและเลือกวัสดุ",
+    short:"ให้คำปรึกษาเกี่ยวกับการเลือกวัสดุงานพื้น โดยพิจารณาจากพื้นที่และลักษณะการใช้งาน",
+    tags:["CONSULTING","MATERIAL","FLOOR"],
+    problems:[
+      ["ยังไม่ทราบว่าจะเลือกวัสดุใด","ควรให้ข้อมูลพื้นที่และลักษณะการใช้งานเพื่อประกอบการพิจารณา"],
+      ["มีหลายระบบให้เลือก","เปรียบเทียบแนวทางตามเงื่อนไขของพื้นที่"],
+      ["ต้องการข้อมูลก่อนเริ่มงาน","สามารถติดต่อเพื่อปรึกษาเบื้องต้นได้"]
+    ],
+    suitable:[
+      "ผู้ที่ต้องการคำแนะนำก่อนเลือกวัสดุ",
+      "โครงการที่ต้องการพิจารณาหลายระบบ"
+    ],
+    notSuitable:[
+      "กรณีที่ยังไม่มีข้อมูลพื้นที่หรือการใช้งานเพียงพอ"
+    ]
+  },
+
+  installation:{
+    number:"—",
+    title:"คำปรึกษางานติดตั้ง",
+    short:"ให้คำปรึกษาเกี่ยวกับแนวทางงานติดตั้งและการเตรียมข้อมูลหน้างานก่อนดำเนินงาน",
+    tags:["INSTALLATION","SITE","CONSULT"],
+    problems:[
+      ["ต้องการวางแผนก่อนติดตั้ง","ควรเตรียมข้อมูลพื้นที่และลักษณะงาน"],
+      ["ไม่แน่ใจเรื่องการเตรียมพื้น","ต้องประเมินพื้นเดิมก่อนเลือกแนวทาง"],
+      ["ต้องการคำปรึกษาหน้างาน","สามารถติดต่อเพื่อพูดคุยรายละเอียดได้"]
+    ],
+    suitable:[
+      "โครงการที่กำลังเตรียมงานติดตั้ง",
+      "พื้นที่ที่ต้องการวางแนวทางก่อนเริ่มงาน"
+    ],
+    notSuitable:[
+      "พื้นที่ที่ยังไม่มีข้อมูลสภาพหน้างานเพียงพอ"
+    ]
+  }
+};
+
+const params = new URLSearchParams(location.search);
+const key = params.get("service") || "industrial";
+const s = services[key] || services.industrial;
+
+document.title = s.title + " | CHATPHETCH GROUP";
+
+document.getElementById("serviceTitle").innerHTML =
+  s.title + ' <span>SERVICE</span>';
+
+document.getElementById("serviceShort").textContent = s.short;
+document.getElementById("serviceDescription").textContent = s.short;
+
+document.getElementById("serviceTags").innerHTML =
+  s.tags.map(x => `<span class="tag">${x}</span>`).join("");
+
+document.getElementById("problems").innerHTML =
+  s.problems.map(x => `
+    <div class="problem-item">
+      <strong>${x[0]}</strong>
+      <span>${x[1]}</span>
+    </div>
+  `).join("");
+
+document.getElementById("suitable").innerHTML =
+  s.suitable.map(x => `<div>✓ ${x}</div>`).join("");
+
+document.getElementById("notSuitable").innerHTML =
+  s.notSuitable.map(x => `<div>• ${x}</div>`).join("");
 </script>
+
+<script>
+/* Facebook footer link — customer-master-nav.js creates the footer dynamically. */
+(function(){
+  const FACEBOOK_URL = "https://www.facebook.com/ChatphetchGroup";
+
+  function connectFacebook(){
+    const social = document.querySelector(".customer-footer-social");
+    if(!social) return false;
+
+    const items = social.querySelectorAll(".customer-social");
+    if(!items.length) return false;
+
+    const facebook = items[0];
+    facebook.href = FACEBOOK_URL;
+    facebook.target = "_blank";
+    facebook.rel = "noopener noreferrer";
+    facebook.style.pointerEvents = "auto";
+    facebook.style.cursor = "pointer";
+    facebook.title = "Facebook - CHATPHETCH GROUP";
+
+    return true;
+  }
+
+  if(connectFacebook()) return;
+
+  const observer = new MutationObserver(function(){
+    if(connectFacebook()) observer.disconnect();
+  });
+
+  observer.observe(document.body,{childList:true,subtree:true});
+
+  setTimeout(connectFacebook,300);
+  setTimeout(connectFacebook,900);
+  setTimeout(connectFacebook,1800);
+})();
+</script>
+
+<script src="assets/customer-master-nav.js"></script>
+
 </body>
 </html>
