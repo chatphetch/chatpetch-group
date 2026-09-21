@@ -74,7 +74,7 @@ a{
 .cp-page::before{
   content:"";
 
-  position:absolute;
+  position:fixed;
   inset:0;
 
   z-index:0;
@@ -107,11 +107,11 @@ a{
   background:
     linear-gradient(
       180deg,
-      rgba(0,0,0,.16) 0%,
-      rgba(0,0,0,.04) 24%,
-      rgba(0,0,0,.08) 48%,
-      rgba(0,0,0,.30) 72%,
-      rgba(0,0,0,.78) 100%
+      rgba(0,0,0,.30) 0%,
+      rgba(0,0,0,.16) 24%,
+      rgba(0,0,0,.24) 48%,
+      rgba(0,0,0,.56) 72%,
+      rgba(0,0,0,.92) 100%
     );
 }
 
@@ -158,12 +158,27 @@ a{
   แต่ไม่เพิ่มความสูงของ section
 */
 .cp-hero-copy{
+  position:relative;
+  z-index:3;
   width:min(650px,100%);
+  padding:38px 48px 42px 0;
 
   transform:
     translateY(
       clamp(55px,7vh,85px)
     );
+}
+
+.cp-hero-copy::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:-180px;
+  top:-70px;
+  width:850px;
+  height:480px;
+  pointer-events:none;
+  background:radial-gradient(ellipse at center, rgba(0,0,0,.78) 0%, rgba(0,0,0,.55) 42%, rgba(0,0,0,.18) 70%, transparent 82%);
 }
 
 
@@ -246,7 +261,7 @@ a{
   margin:17px 0 0;
 
   color:
-    rgba(247,240,232,.84);
+    rgba(255,249,242,.94);
 
   font-size:14px;
 
@@ -426,7 +441,7 @@ a{
   margin:14px 0 0;
 
   color:
-    rgba(245,239,231,.65);
+    rgba(255,249,242,.84);
 
   font-size:13px;
 
@@ -540,7 +555,7 @@ a{
   margin:0;
 
   color:
-    rgba(245,239,231,.57);
+    rgba(255,249,242,.78);
 
   font-size:11px;
 
@@ -711,7 +726,7 @@ a{
   margin-top:5px;
 
   color:
-    rgba(255,255,255,.42);
+    rgba(255,255,255,.68);
 
   font-size:8px;
 
@@ -740,7 +755,7 @@ a{
     rgba(201,164,92,.22);
 
   background:
-    rgba(4,3,2,.18);
+    rgba(4,3,2,.58);
 
   backdrop-filter:blur(7px);
 }
@@ -787,7 +802,7 @@ a{
   margin-top:9px;
 
   color:
-    rgba(255,255,255,.46);
+    rgba(255,255,255,.72);
 
   font-size:9px;
 
@@ -861,7 +876,7 @@ a{
   margin:14px 0 0;
 
   color:
-    rgba(255,255,255,.60);
+    rgba(255,255,255,.80);
 
   font-size:13px;
 
@@ -916,8 +931,8 @@ a{
 @media(max-width:700px){
 
   .cp-page::before{
-    background-position:
-      58% top;
+    background-position:58% top;
+    background-size:auto 100vh;
   }
 
   .cp-hero{
@@ -943,6 +958,18 @@ a{
 
   .cp-description{
     font-size:12px;
+  }
+
+  .cp-hero-copy{
+    padding:28px 22px 30px 0;
+  }
+
+  .cp-hero-copy::before{
+    left:-90px;
+    top:-35px;
+    width:560px;
+    height:420px;
+    background:radial-gradient(ellipse at center, rgba(0,0,0,.80) 0%, rgba(0,0,0,.54) 48%, transparent 78%);
   }
 
   .cp-scroll{
@@ -1005,8 +1032,8 @@ a{
 @media(max-width:480px){
 
   .cp-page::before{
-    background-position:
-      60% top;
+    background-position:60% top;
+    background-size:auto 100vh;
   }
 
   .cp-hero{
@@ -1063,6 +1090,478 @@ a{
   .cp-cta{
     width:
       calc(100% - 24px);
+  }
+}
+
+
+
+/* =========================================================
+   FINAL TYPOGRAPHY + MOBILE READABILITY
+   ========================================================= */
+
+/* Desktop: make all important copy clearly readable */
+.cp-kicker{
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:2.6px;
+  text-shadow:0 2px 12px rgba(0,0,0,.85);
+}
+
+.cp-title{
+  font-size:clamp(52px,6vw,84px);
+  line-height:1.04;
+  text-shadow:
+    0 3px 12px rgba(0,0,0,.95),
+    0 10px 35px rgba(0,0,0,.90);
+}
+
+.cp-description{
+  max-width:640px;
+  color:rgba(255,255,255,.94);
+  font-size:16px;
+  line-height:1.9;
+  text-shadow:
+    0 2px 8px rgba(0,0,0,.95),
+    0 5px 20px rgba(0,0,0,.90);
+}
+
+.cp-button{
+  min-height:50px;
+  padding:0 24px;
+  font-size:13px;
+  font-weight:500;
+}
+
+.cp-eyebrow{
+  font-size:12px;
+  font-weight:600;
+  text-shadow:0 2px 10px rgba(0,0,0,.85);
+}
+
+.cp-heading{
+  font-size:clamp(38px,4vw,54px);
+  text-shadow:
+    0 3px 12px rgba(0,0,0,.95),
+    0 8px 24px rgba(0,0,0,.80);
+}
+
+.cp-text{
+  color:rgba(255,255,255,.90);
+  font-size:15px;
+  line-height:1.95;
+  text-shadow:0 2px 8px rgba(0,0,0,.90);
+}
+
+.cp-card{
+  padding:30px;
+  background:linear-gradient(
+    145deg,
+    rgba(20,13,8,.88),
+    rgba(3,2,1,.84)
+  );
+}
+
+.cp-card-number{
+  color:var(--gold2);
+  font-size:11px;
+  font-weight:600;
+}
+
+.cp-card h3{
+  font-size:22px;
+  text-shadow:0 2px 10px rgba(0,0,0,.90);
+}
+
+.cp-card p{
+  color:rgba(255,255,255,.88);
+  font-size:13px;
+  line-height:1.9;
+  text-shadow:0 2px 7px rgba(0,0,0,.85);
+}
+
+.cp-card-link{
+  font-size:12px;
+  font-weight:500;
+}
+
+.cp-work-title{
+  font-size:20px;
+  text-shadow:0 2px 10px rgba(0,0,0,.95);
+}
+
+.cp-work-sub{
+  color:rgba(255,255,255,.72);
+  font-size:10px;
+}
+
+.cp-stat span{
+  color:rgba(255,255,255,.78);
+  font-size:11px;
+  font-weight:500;
+}
+
+.cp-cta-label{
+  font-size:11px;
+  font-weight:600;
+}
+
+.cp-cta h2{
+  font-size:clamp(38px,4.2vw,58px);
+  text-shadow:0 3px 12px rgba(0,0,0,.95);
+}
+
+.cp-cta p{
+  color:rgba(255,255,255,.88);
+  font-size:15px;
+  line-height:1.95;
+  text-shadow:0 2px 8px rgba(0,0,0,.90);
+}
+
+/* Keep the single image as a viewport backdrop instead of stretching it
+   to the full document height. This is especially important on phones. */
+.cp-page::before{
+  position:fixed;
+  inset:0;
+  background-size:cover;
+  background-position:center center;
+}
+
+/* Stronger separation between the photo and all page content */
+.cp-page::after{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.38) 0%,
+      rgba(0,0,0,.22) 18%,
+      rgba(0,0,0,.32) 42%,
+      rgba(0,0,0,.62) 70%,
+      rgba(0,0,0,.94) 100%
+    );
+}
+
+.cp-hero-copy{
+  position:relative;
+  z-index:3;
+  padding:42px 55px 45px 0;
+}
+
+.cp-hero-copy::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:-190px;
+  top:-85px;
+  width:900px;
+  height:520px;
+  pointer-events:none;
+  background:radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,.78) 0%,
+    rgba(0,0,0,.58) 42%,
+    rgba(0,0,0,.18) 68%,
+    transparent 82%
+  );
+}
+
+/* =========================================================
+   PHONE / MOBILE
+   ========================================================= */
+
+@media(max-width:700px){
+
+  .cp-page::before{
+    position:fixed;
+    inset:0;
+    background-size:auto 100vh;
+    background-position:58% center;
+  }
+
+  .cp-page::after{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,.52) 0%,
+        rgba(0,0,0,.38) 25%,
+        rgba(0,0,0,.48) 52%,
+        rgba(0,0,0,.78) 78%,
+        rgba(0,0,0,.96) 100%
+      );
+  }
+
+  .cp-hero{
+    min-height:700px;
+  }
+
+  .cp-hero-inner{
+    min-height:700px;
+    width:calc(100% - 30px);
+    padding-top:70px;
+  }
+
+  .cp-hero-copy{
+    width:100%;
+    padding:34px 22px 36px 0;
+    transform:translateY(45px);
+  }
+
+  .cp-hero-copy::before{
+    left:-85px;
+    top:-55px;
+    width:620px;
+    height:500px;
+    background:radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,.88) 0%,
+      rgba(0,0,0,.68) 44%,
+      rgba(0,0,0,.28) 68%,
+      transparent 84%
+    );
+  }
+
+  .cp-kicker{
+    font-size:11px;
+    letter-spacing:2px;
+    margin-bottom:16px;
+  }
+
+  .cp-title{
+    font-size:clamp(44px,13vw,58px);
+    line-height:1.08;
+    letter-spacing:-1px;
+  }
+
+  .cp-line{
+    margin-top:20px;
+  }
+
+  .cp-description{
+    max-width:100%;
+    margin-top:18px;
+    color:rgba(255,255,255,.96);
+    font-size:14.5px;
+    line-height:1.9;
+  }
+
+  .cp-actions{
+    gap:10px;
+    margin-top:22px;
+  }
+
+  .cp-button{
+    min-height:50px;
+    padding:0 22px;
+    font-size:13px;
+  }
+
+  .cp-section{
+    width:calc(100% - 30px);
+    padding:58px 0;
+  }
+
+  .cp-eyebrow{
+    font-size:11px;
+    letter-spacing:2.4px;
+  }
+
+  .cp-heading{
+    font-size:clamp(34px,10vw,46px);
+    line-height:1.16;
+  }
+
+  .cp-text{
+    margin-top:16px;
+    color:rgba(255,255,255,.90);
+    font-size:14px;
+    line-height:1.95;
+  }
+
+  /* One column on phones: much easier to read than two cramped cards. */
+  .cp-solutions,
+  .cp-work{
+    grid-template-columns:1fr;
+    gap:10px;
+    margin-top:26px;
+  }
+
+  .cp-card{
+    min-height:0;
+    padding:27px 24px;
+  }
+
+  .cp-card-number{
+    font-size:10px;
+  }
+
+  .cp-card-icon{
+    width:42px;
+    height:42px;
+    margin-top:18px;
+  }
+
+  .cp-card h3{
+    margin-top:15px;
+    font-size:22px;
+  }
+
+  .cp-card p{
+    color:rgba(255,255,255,.90);
+    font-size:13.5px;
+    line-height:1.9;
+  }
+
+  .cp-card-link{
+    padding-top:18px;
+    font-size:12px;
+  }
+
+  .cp-work-card{
+    min-height:220px;
+  }
+
+  .cp-work-inner{
+    left:20px;
+    right:20px;
+    bottom:20px;
+  }
+
+  .cp-work-number{
+    font-size:10px;
+  }
+
+  .cp-work-title{
+    font-size:21px;
+  }
+
+  .cp-work-sub{
+    margin-top:6px;
+    color:rgba(255,255,255,.76);
+    font-size:10px;
+  }
+
+  .cp-stats{
+    grid-template-columns:1fr;
+  }
+
+  .cp-stat{
+    padding:28px 18px;
+  }
+
+  .cp-stat strong{
+    font-size:48px;
+  }
+
+  .cp-stat span{
+    margin-top:10px;
+    color:rgba(255,255,255,.82);
+    font-size:11px;
+  }
+
+  .cp-cta{
+    width:calc(100% - 30px);
+    margin-bottom:55px;
+    padding:40px 25px;
+    background:linear-gradient(
+      135deg,
+      rgba(22,14,8,.92),
+      rgba(3,2,1,.90)
+    );
+  }
+
+  .cp-cta-label{
+    font-size:10px;
+  }
+
+  .cp-cta h2{
+    font-size:clamp(34px,10vw,46px);
+    line-height:1.16;
+  }
+
+  .cp-cta p{
+    color:rgba(255,255,255,.90);
+    font-size:14px;
+    line-height:1.9;
+  }
+}
+
+@media(max-width:480px){
+
+  .cp-page::before{
+    background-size:auto 100vh;
+    background-position:60% center;
+  }
+
+  .cp-hero{
+    min-height:690px;
+  }
+
+  .cp-hero-inner{
+    min-height:690px;
+    width:calc(100% - 24px);
+  }
+
+  .cp-hero-copy{
+    padding-right:16px;
+    transform:translateY(42px);
+  }
+
+  .cp-kicker{
+    font-size:10px;
+    letter-spacing:1.8px;
+  }
+
+  .cp-title{
+    font-size:43px;
+  }
+
+  .cp-description{
+    font-size:14px;
+    line-height:1.9;
+  }
+
+  .cp-section{
+    width:calc(100% - 24px);
+    padding:52px 0;
+  }
+
+  .cp-heading{
+    font-size:35px;
+  }
+
+  .cp-text{
+    font-size:13.5px;
+  }
+
+  .cp-card{
+    padding:25px 21px;
+  }
+
+  .cp-card h3{
+    font-size:21px;
+  }
+
+  .cp-card p{
+    font-size:13px;
+  }
+
+  .cp-work-card{
+    min-height:205px;
+  }
+
+  .cp-work-title{
+    font-size:20px;
+  }
+
+  .cp-cta{
+    width:calc(100% - 24px);
+    padding:36px 21px;
+  }
+
+  .cp-cta h2{
+    font-size:35px;
+  }
+
+  .cp-cta p{
+    font-size:13.5px;
   }
 }
 
