@@ -1,513 +1,235 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="เกี่ยวกับ CHATPHETCH GROUP บริษัท ฉัตรเพชร กรุ๊ป จำกัด ผู้ผลิตและจำหน่ายวัสดุงานพื้น พร้อมให้คำปรึกษาระบบพื้นและงานก่อสร้าง">
-<meta name="theme-color" content="#070605">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080706">
 <title>เกี่ยวกับเรา | CHATPHETCH GROUP</title>
-
+<meta name="description" content="รู้จักบริษัท ฉัตรเพชร กรุ๊ป จำกัด ประวัติ บริษัท โรงงาน ทีมงาน และแนวทางการทำงานด้านระบบพื้นและวัสดุก่อสร้าง">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="assets/customer-master-nav.js"></script>
 <style>
 :root{
-  --gold:#c6a06a;
-  --gold2:#e4c98e;
-  --gold3:#f0d79e;
-  --cream:#f8f2e8;
-  --text:#d8d0c7;
-  --muted:#aaa199;
-  --black:#050504;
-  --panel:rgba(10,8,6,.72);
-  --panel2:rgba(12,10,8,.86);
-  --line:rgba(214,176,111,.22);
+  --bg:#070605;
+  --panel:rgba(12,10,8,.78);
+  --panel2:rgba(18,14,11,.88);
+  --gold:#c9a56a;
+  --gold2:#e3c995;
+  --cream:#f5efe5;
+  --muted:#c8beb0;
+  --line:rgba(225,198,145,.22);
   --max:1280px;
 }
-
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;background:#050504}
-body{
-  margin:0;
-  background:#050504;
-  color:var(--cream);
-  font-family:"Prompt","Kanit",system-ui,sans-serif;
-  overflow-x:hidden;
-}
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-5;
-  background:url("assets/index-main-bg.png") center top / cover no-repeat;
-  transform:translateZ(0);
-}
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-4;
-  pointer-events:none;
-  background:
-    linear-gradient(180deg,
-      rgba(0,0,0,.62) 0%,
-      rgba(0,0,0,.34) 18%,
-      rgba(0,0,0,.56) 44%,
-      rgba(0,0,0,.78) 72%,
-      rgba(0,0,0,.94) 100%);
-}
-
+html{scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--cream);font-family:"Prompt","Kanit",sans-serif;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.container{width:min(var(--max),calc(100% - 56px));margin:0 auto}
 
-.about-page{position:relative;isolation:isolate;min-height:100vh}
-.about-page::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-3;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at 78% 17%,rgba(226,190,126,.14),transparent 28%),
-    radial-gradient(circle at 18% 45%,rgba(198,160,106,.08),transparent 32%);
-}
+.about-page{position:relative;min-height:100vh;background:#070605;overflow:hidden}
+.about-page::before{content:"";position:fixed;inset:0;z-index:0;background:url("assets/index-main-bg.png") center top/cover no-repeat;transform:translateZ(0)}
+.about-page::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.40) 0%,rgba(0,0,0,.22) 25%,rgba(0,0,0,.45) 60%,rgba(0,0,0,.88) 100%)}
+.about-page>*{position:relative;z-index:2}
 
-/* HERO */
-.about-hero{
-  min-height:clamp(610px,78vh,820px);
-  display:flex;
-  align-items:flex-end;
-  position:relative;
-  overflow:hidden;
-}
-.about-hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(90deg,rgba(0,0,0,.80) 0%,rgba(0,0,0,.46) 45%,rgba(0,0,0,.12) 100%),
-    linear-gradient(180deg,rgba(0,0,0,.18) 0%,transparent 44%,rgba(0,0,0,.72) 100%);
-  z-index:0;
-}
-.about-hero-inner{
-  position:relative;
-  z-index:1;
-  width:min(820px,100%);
-  padding:0 0 100px;
-}
-.eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:12px;
-  color:var(--gold3);
-  font-size:13px;
-  font-weight:600;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  margin-bottom:22px;
-}
-.eyebrow::before{content:"";width:42px;height:1px;background:var(--gold)}
-.about-hero h1{
-  margin:0;
-  font-size:clamp(58px,8vw,118px);
-  line-height:.95;
-  font-weight:500;
-  letter-spacing:-.035em;
-  text-shadow:0 10px 40px rgba(0,0,0,.9);
-}
-.about-hero h1 span{color:var(--gold2)}
-.hero-rule{width:110px;height:2px;background:linear-gradient(90deg,var(--gold3),transparent);margin:30px 0 24px}
-.about-hero p{
-  max-width:720px;
-  margin:0;
-  color:#f2ebe1;
-  font-size:18px;
-  line-height:1.9;
-  text-shadow:0 4px 22px rgba(0,0,0,.95);
-}
+.wrap{width:min(var(--max),calc(100% - 80px));margin:auto}
 
-/* SECTIONS */
+/* HERO — ใช้ภาษาภาพเดียวกับ Index */
+.about-hero{min-height:700px;display:flex;align-items:center;padding:150px 0 90px}
+.hero-copy{max-width:760px;padding:44px 52px 48px 0;position:relative}
+.hero-copy::before{content:"";position:absolute;z-index:-1;left:-180px;top:-70px;width:900px;height:520px;background:radial-gradient(ellipse at center,rgba(0,0,0,.78) 0%,rgba(0,0,0,.48) 48%,rgba(0,0,0,0) 76%)}
+.kicker{display:flex;align-items:center;gap:12px;color:var(--gold2);font-size:12px;letter-spacing:3px;font-weight:500;margin-bottom:18px}
+.kicker::before{content:"";width:44px;height:1px;background:var(--gold)}
+.hero-copy h1{font-family:"Kanit","Prompt",sans-serif;font-weight:400;font-size:clamp(52px,7vw,92px);line-height:.98;letter-spacing:-2px;margin:0 0 24px;text-shadow:0 8px 35px rgba(0,0,0,.9)}
+.hero-copy p{font-size:18px;line-height:1.85;color:#f3ece2;max-width:700px;margin:0;text-shadow:0 4px 18px rgba(0,0,0,.95)}
+
+/* section system */
 .section{padding:105px 0;position:relative}
-.section + .section{border-top:1px solid rgba(222,185,119,.16)}
-.section-head{max-width:840px;margin-bottom:48px}
-.section-kicker{
-  color:var(--gold2);
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:.18em;
-  margin-bottom:14px;
-}
-.section-title{
-  margin:0;
-  color:var(--cream);
-  font-size:clamp(34px,4.6vw,62px);
-  line-height:1.1;
-  font-weight:500;
-  letter-spacing:-.025em;
-  text-shadow:0 5px 25px rgba(0,0,0,.75);
-}
-.section-title span{color:var(--gold2)}
-.section-description{
-  margin:20px 0 0;
-  color:#d2cac1;
-  font-size:16px;
-  line-height:1.95;
-  max-width:760px;
-  text-shadow:0 3px 16px rgba(0,0,0,.8);
-}
+.section.dark{background:linear-gradient(180deg,rgba(5,4,3,.38),rgba(5,4,3,.92))}
+.section.soft{background:rgba(5,4,3,.82)}
+.section-head{max-width:820px;margin-bottom:46px}
+.eyebrow{font-size:11px;letter-spacing:3px;color:var(--gold2);margin-bottom:12px;font-weight:500}
+.section h2{font-family:"Kanit","Prompt",sans-serif;font-size:clamp(38px,5vw,64px);font-weight:400;line-height:1.05;letter-spacing:-1px;margin:0 0 18px;text-shadow:0 5px 25px rgba(0,0,0,.8)}
+.section-lead{font-size:16px;line-height:1.9;color:#ded4c7;margin:0}
 
-/* INTRO */
-.intro-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-.intro-card{
-  position:relative;
-  padding:36px;
-  min-height:270px;
-  border:1px solid var(--line);
-  background:linear-gradient(145deg,rgba(10,8,6,.84),rgba(17,13,9,.62));
-  box-shadow:0 22px 55px rgba(0,0,0,.25);
-  overflow:hidden;
-}
-.intro-card::after{
-  content:"";
-  position:absolute;
-  right:-100px;bottom:-120px;width:280px;height:280px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(211,174,106,.16),transparent 68%);
-}
-.card-number{color:var(--gold2);font-size:11px;letter-spacing:.16em;font-weight:600}
-.intro-card h2{margin:32px 0 12px;font-size:29px;font-weight:500;color:#fff}
-.intro-card p{margin:0;max-width:560px;color:#d0c8bf;font-size:15px;line-height:1.9}
+/* who */
+.who-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:26px}
+.who-main,.info-panel,.timeline-card,.feature-card,.team-card,.doc-card,.profile-box{background:linear-gradient(145deg,rgba(17,13,10,.90),rgba(6,5,4,.78));border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.who-main{padding:42px}
+.who-main p{font-size:16px;line-height:2;color:#e5dbce;margin:0 0 24px}
+.mini-label{font-size:11px;letter-spacing:2.5px;color:var(--gold2);margin-bottom:10px}
+.pill-row{display:flex;flex-wrap:wrap;gap:10px}
+.pill{border:1px solid rgba(225,198,145,.28);padding:9px 14px;color:#eee3d5;font-size:13px;background:rgba(0,0,0,.22)}
+.who-side{display:grid;gap:26px}
+.feature-card{padding:30px}
+.feature-no{color:var(--gold);font-size:12px;letter-spacing:2px}
+.feature-card h3{font-family:"Kanit";font-size:29px;font-weight:400;margin:10px 0 10px}
+.feature-card p{margin:0;color:#cfc5b8;line-height:1.8;font-size:14px}
 
-/* COMPANY */
-.company-layout{
-  display:grid;
-  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
-  gap:70px;
-  align-items:start;
-}
-.company-label{color:var(--gold2);font-size:12px;font-weight:600;letter-spacing:.18em;margin-bottom:18px}
-.company-big{font-size:clamp(34px,4vw,58px);line-height:1.15;font-weight:500;letter-spacing:-.03em}
-.company-big span{display:block;color:var(--gold2)}
-.company-note{color:#c9c0b7;line-height:1.9;font-size:15px;margin:22px 0 0}
-.company-data{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.data-item{padding:22px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(8,7,5,.55)}
-.data-item small{display:block;color:#938b82;font-size:10px;letter-spacing:.13em;margin-bottom:9px}
-.data-item strong{display:block;color:#f1e9df;font-size:15px;line-height:1.6;font-weight:500}
+/* company */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.info-panel{border-top:0;border-left:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:25px 28px;background:rgba(10,8,6,.72)}
+.info-label{font-size:10px;letter-spacing:2px;color:var(--gold2);margin-bottom:7px}
+.info-value{font-size:16px;line-height:1.6;color:#f0e8dc}
+.info-panel.full{grid-column:1/-1}
 
-/* HISTORY */
-.history{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
-.history::before{content:"";position:absolute;left:0;right:0;top:19px;height:1px;background:rgba(221,183,113,.16)}
-.history-item{position:relative;padding:48px 28px 10px 0;margin-right:28px}
-.history-item:not(:last-child){border-right:1px solid var(--line)}
-.history-year{position:relative;z-index:1;display:inline-flex;padding:7px 13px;background:#0b0907;border:1px solid rgba(220,181,110,.45);color:var(--gold2);font-size:12px;letter-spacing:.08em;margin-bottom:24px}
-.history-item h3{margin:0 0 12px;font-size:23px;font-weight:500;color:#fff}
-.history-item p{margin:0;color:#c3bbb2;font-size:14px;line-height:1.9;max-width:330px}
+/* history */
+.timeline{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.timeline::before{content:"";position:absolute;left:10%;right:10%;top:26px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
+.timeline-card{position:relative;padding:58px 30px 32px;background:rgba(9,7,5,.80)}
+.timeline-year{position:absolute;top:12px;left:26px;color:var(--gold2);font-size:14px;letter-spacing:2px}
+.timeline-card h3{font-family:"Kanit";font-size:27px;font-weight:400;margin:0 0 12px}
+.timeline-card p{font-size:14px;line-height:1.85;color:#cfc5b8;margin:0}
 
-/* FACTORY */
-.factory-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:22px}
-.factory-visual{
-  min-height:440px;
-  position:relative;
-  overflow:hidden;
-  border:1px solid var(--line);
-  background:
-    linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.18)),
-    url("assets/index-main-bg.png") center 62% / cover no-repeat;
-}
-.factory-visual::after{content:"";position:absolute;inset:auto 0 0;height:55%;background:linear-gradient(transparent,rgba(0,0,0,.9))}
-.factory-caption{position:absolute;left:34px;right:34px;bottom:30px;z-index:1}
-.factory-caption small{color:var(--gold2);font-size:11px;letter-spacing:.15em}
-.factory-caption h3{margin:8px 0 8px;font-size:30px;font-weight:500}
-.factory-caption p{margin:0;color:#d2c9c0;line-height:1.8;font-size:14px;max-width:620px}
-.factory-points{display:grid;gap:14px}
-.factory-point{padding:28px;border:1px solid var(--line);background:rgba(8,7,5,.76);min-height:calc((440px - 28px)/3)}
-.factory-point span{display:block;color:var(--gold2);font-size:11px;letter-spacing:.14em;margin-bottom:10px}
-.factory-point h3{margin:0 0 8px;font-size:21px;font-weight:500}
-.factory-point p{margin:0;color:#c4bcb3;font-size:13.5px;line-height:1.8}
+/* factory / stock — no broken external images */
+.factory{display:grid;grid-template-columns:1.2fr .8fr;gap:26px}
+.visual-panel{min-height:440px;border:1px solid var(--line);position:relative;overflow:hidden;background:url("assets/index-main-bg.png") center/cover no-repeat;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.visual-panel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.80))}
+.visual-caption{position:absolute;z-index:2;left:32px;right:32px;bottom:30px}.visual-caption span{font-size:11px;letter-spacing:2.5px;color:var(--gold2)}.visual-caption h3{font-family:"Kanit";font-weight:400;font-size:34px;margin:6px 0 0}
+.stock-list{display:grid;gap:16px}
+.stock-card{border:1px solid var(--line);padding:27px;background:rgba(10,8,6,.84)}
+.stock-card strong{font-family:"Kanit";font-size:25px;font-weight:400;display:block;margin-bottom:8px}.stock-card p{margin:0;color:#cfc5b8;font-size:14px;line-height:1.8}
 
-/* TEAM */
-.team-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.team-card{border:1px solid var(--line);background:rgba(8,7,5,.75);min-height:280px;position:relative;overflow:hidden}
-.team-top{height:112px;background:linear-gradient(135deg,#21170d,#0b0907);position:relative}
-.team-top::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 20%,rgba(228,201,142,.2),transparent 35%)}
-.team-mark{position:absolute;left:28px;bottom:-28px;width:56px;height:56px;border:1px solid rgba(228,201,142,.6);background:#0a0806;color:var(--gold2);display:grid;place-items:center;font-size:18px;font-weight:600;z-index:1}
-.team-info{padding:48px 28px 28px}
-.team-info small{color:var(--gold2);font-size:10px;letter-spacing:.15em}
-.team-info h3{margin:10px 0 10px;font-size:22px;font-weight:500}
-.team-info p{margin:0;color:#c4bcb3;font-size:13.5px;line-height:1.85}
+/* team */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.team-card{padding:30px;min-height:230px;background:linear-gradient(145deg,rgba(16,12,9,.9),rgba(7,6,5,.82))}
+.team-number{font-size:11px;color:var(--gold2);letter-spacing:2px}.team-card h3{font-family:"Kanit";font-weight:400;font-size:28px;margin:14px 0 10px}.team-card p{font-size:14px;line-height:1.85;color:#cfc5b8;margin:0}
 
-/* DOCUMENTS */
-.documents{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.document{padding:30px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(13,10,7,.86),rgba(6,6,5,.68));min-height:280px}
-.document-icon{font-size:28px;margin-bottom:26px;filter:grayscale(.2)}
-.document h3{margin:0 0 10px;font-size:22px;font-weight:500}
-.document p{margin:0;color:#c2bab1;font-size:13.5px;line-height:1.85}
-.document a{display:inline-flex;margin-top:24px;color:var(--gold2);font-size:13px;font-weight:500}
-.document a:hover{text-decoration:underline;text-underline-offset:5px}
-.document-disabled{color:#8f877e!important;cursor:default;text-decoration:none!important}
+/* docs */
+.docs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.doc-card{padding:30px;background:rgba(10,8,6,.82)}.doc-icon{font-size:26px}.doc-card h3{font-family:"Kanit";font-size:25px;font-weight:400;margin:14px 0 8px}.doc-card p{font-size:14px;line-height:1.8;color:#cfc5b8;margin:0 0 22px}.doc-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold2);font-size:13px;border-bottom:1px solid rgba(225,198,145,.35);padding-bottom:5px}
 
 /* CTA */
-.profile-box{
-  position:relative;
-  overflow:hidden;
-  padding:60px;
-  border:1px solid rgba(225,188,118,.36);
-  background:
-    linear-gradient(90deg,rgba(7,6,5,.93),rgba(7,6,5,.68)),
-    url("assets/index-main-bg.png") center 74% / cover no-repeat;
-  box-shadow:0 30px 80px rgba(0,0,0,.32);
-}
-.profile-box::after{content:"";position:absolute;right:-90px;top:-90px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(231,195,128,.18),transparent 68%)}
-.profile-kicker{color:var(--gold2);font-size:11px;letter-spacing:.18em;font-weight:600}
-.profile-box h2{position:relative;z-index:1;margin:15px 0 12px;font-size:clamp(34px,4vw,56px);font-weight:500;line-height:1.1}
-.profile-box p{position:relative;z-index:1;margin:0;max-width:720px;color:#d2cac1;font-size:15px;line-height:1.9}
-.cta-row{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border:1px solid rgba(228,201,142,.62);background:rgba(198,160,106,.12);color:#f5e7cd;font-size:13px;font-weight:500;transition:.2s ease}
-.btn:hover{background:var(--gold);color:#15100a}
-.btn.secondary{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:#eee7df}
+.cta{padding:110px 0 130px;background:linear-gradient(180deg,rgba(4,3,2,.92),rgba(4,3,2,.98))}.cta-box{position:relative;padding:70px 70px;border:1px solid rgba(225,198,145,.25);background:radial-gradient(circle at 80% 20%,rgba(175,135,73,.12),transparent 40%),rgba(13,10,8,.9);overflow:hidden}.cta-box::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.20),transparent)}.cta-box>*{position:relative}.cta-kicker{font-size:11px;letter-spacing:3px;color:var(--gold2)}.cta h2{font-family:"Kanit";font-size:clamp(40px,5vw,68px);font-weight:400;margin:12px 0 10px}.cta p{font-size:16px;color:#d8cec1;margin:0 0 28px}.cta-btn{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--gold);padding:14px 22px;color:#fff;background:rgba(0,0,0,.24);font-size:13px}.cta-btn:hover{background:rgba(201,165,106,.12)}
 
-/* RESPONSIVE */
-@media (max-width:1050px){
-  .container{width:min(var(--max),calc(100% - 42px))}
-  .company-layout{grid-template-columns:1fr;gap:42px}
-  .factory-grid{grid-template-columns:1fr}
-  .factory-visual{min-height:400px}
+@media(max-width:900px){
+  .wrap{width:min(var(--max),calc(100% - 42px))}.about-hero{min-height:650px;padding:130px 0 80px}.hero-copy{padding-right:0}.hero-copy h1{font-size:clamp(46px,10vw,72px)}.hero-copy p{font-size:16px}.who-grid,.factory{grid-template-columns:1fr}.timeline,.team-grid,.docs{grid-template-columns:1fr}.timeline::before{display:none}.section{padding:82px 0}.visual-panel{min-height:340px}.cta-box{padding:48px 34px}
 }
-
-@media (max-width:760px){
-  .container{width:calc(100% - 32px)}
-  .about-hero{min-height:690px}
-  .about-hero-inner{padding-bottom:72px}
-  .eyebrow{font-size:11px;letter-spacing:.12em;margin-bottom:18px}
-  .eyebrow::before{width:26px}
-  .about-hero h1{font-size:56px;line-height:.98}
-  .about-hero p{font-size:15px;line-height:1.8;max-width:100%}
-  .section{padding:72px 0}
-  .section-head{margin-bottom:32px}
-  .section-title{font-size:38px}
-  .section-description{font-size:14px;line-height:1.85}
-  .intro-grid,.team-grid,.documents{grid-template-columns:1fr}
-  .intro-card{min-height:auto;padding:28px}
-  .intro-card h2{font-size:25px;margin-top:24px}
-  .intro-card p{font-size:14px}
-  .company-data{grid-template-columns:1fr}
-  .data-item{padding:19px}
-  .data-item strong{font-size:14px}
-  .history{grid-template-columns:1fr;gap:0}
-  .history::before{display:none}
-  .history-item{padding:28px 0 30px;margin:0;border-right:0!important;border-bottom:1px solid var(--line)}
-  .history-item:last-child{border-bottom:0!important}
-  .history-item h3{font-size:21px}
-  .factory-visual{min-height:360px}
-  .factory-caption{left:24px;right:24px;bottom:24px}
-  .factory-caption h3{font-size:25px}
-  .factory-point{min-height:auto;padding:24px}
-  .profile-box{padding:36px 24px}
-  .profile-box h2{font-size:34px}
-  .profile-box p{font-size:14px}
-  .btn{width:100%;min-height:50px}
+@media(max-width:600px){
+  .about-page::before{position:fixed;background-position:center top;background-size:cover}
+  .about-page::after{background:linear-gradient(180deg,rgba(0,0,0,.48) 0%,rgba(0,0,0,.32) 28%,rgba(0,0,0,.62) 66%,rgba(0,0,0,.94) 100%)}
+  .wrap{width:calc(100% - 30px)}
+  .about-hero{min-height:620px;padding:125px 0 55px;align-items:flex-end}
+  .hero-copy{padding:32px 20px 30px 0}.hero-copy::before{left:-90px;top:-45px;width:560px;height:390px;background:radial-gradient(ellipse at center,rgba(0,0,0,.82),rgba(0,0,0,.40) 52%,transparent 78%)}
+  .kicker{font-size:10px;letter-spacing:2.2px}.hero-copy h1{font-size:48px;letter-spacing:-1px;margin-bottom:18px}.hero-copy p{font-size:14px;line-height:1.85}
+  .section{padding:65px 0}.section-head{margin-bottom:30px}.section h2{font-size:39px}.section-lead{font-size:14px;line-height:1.85}
+  .who-main{padding:27px}.who-main p{font-size:14px;line-height:1.9}.feature-card{padding:25px}.feature-card h3{font-size:25px}.feature-card p,.timeline-card p,.team-card p,.doc-card p,.stock-card p{font-size:13.5px}
+  .info-grid{grid-template-columns:1fr}.info-panel.full{grid-column:auto}.info-panel{padding:21px}.info-value{font-size:14px}
+  .timeline-card{padding:48px 24px 26px}.timeline-card h3{font-size:24px}
+  .visual-panel{min-height:300px}.visual-caption{left:22px;right:22px;bottom:22px}.visual-caption h3{font-size:29px}
+  .team-card,.doc-card{padding:25px}.team-card h3{font-size:25px}.doc-card h3{font-size:23px}
+  .cta{padding:70px 0 90px}.cta-box{padding:38px 24px}.cta h2{font-size:43px}.cta p{font-size:14px;line-height:1.8}.cta-btn{width:100%;justify-content:center}
 }
-
-@media (max-width:480px){
-  body::before{background-position:center top;background-size:auto 100vh}
-  body::after{background:linear-gradient(180deg,rgba(0,0,0,.66),rgba(0,0,0,.42) 30%,rgba(0,0,0,.72) 68%,rgba(0,0,0,.95))}
-  .about-hero{min-height:650px}
-  .about-hero-inner{padding-bottom:58px}
-  .about-hero h1{font-size:50px}
-  .section{padding:62px 0}
-  .section-title{font-size:34px}
-  .factory-visual{min-height:330px}
-  .team-card{min-height:260px}
-}
-
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 </style>
 </head>
-
 <body>
-<main class="about-page">
+<div class="about-page">
 
-  <section class="about-hero">
-    <div class="container">
-      <div class="about-hero-inner">
-        <div class="eyebrow">ABOUT CHATPHETCH GROUP</div>
-        <h1>เกี่ยวกับ<span>เรา</span></h1>
-        <div class="hero-rule"></div>
-        <p>
-          รู้จักบริษัท ฉัตรเพชร กรุ๊ป จำกัด ตั้งแต่ประวัติความเป็นมา
-          ข้อมูลบริษัท ทีมงาน โรงงาน สต็อกสินค้า ตลอดจนแนวทางการทำงาน
-          ด้านระบบพื้นและงานวัสดุก่อสร้าง
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">WHO WE ARE</div>
-        <h2 class="section-title">สร้างสรรค์ผลงาน <span>และมาตรฐานเข้าถึง</span></h2>
-        <p class="section-description">
-          บริษัท ฉัตรเพชร กรุ๊ป จำกัด ดำเนินธุรกิจด้านวัสดุงานพื้น
-          พร้อมให้คำปรึกษาเกี่ยวกับพื้นทุกระบบ และการเลือกใช้วัสดุให้เหมาะกับลักษณะงาน
-        </p>
-      </div>
-
-      <div class="intro-grid">
-        <article class="intro-card">
-          <div class="card-number">01 / CREATIVE</div>
-          <h2>สร้างสรรค์ผลงาน</h2>
-          <p>มุ่งเน้นการนำเสนอวัสดุและแนวทางสำหรับงานพื้นหลากหลายรูปแบบ เพื่อให้เหมาะกับลักษณะของแต่ละโครงการ</p>
-        </article>
-        <article class="intro-card">
-          <div class="card-number">02 / STANDARD</div>
-          <h2>มาตรฐานเข้าถึง</h2>
-          <p>ให้ความสำคัญกับการให้ข้อมูล การเลือกวัสดุ และการให้คำปรึกษา เพื่อช่วยให้ลูกค้าตัดสินใจได้เหมาะสมกับงาน</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="company-layout">
-        <div>
-          <div class="company-label">COMPANY INFORMATION</div>
-          <div class="company-big">บริษัท <span>ฉัตรเพชร กรุ๊ป จำกัด</span></div>
-          <p class="company-note">
-            CHATPHETCH GROUP CO., LTD.<br>
-            โรงงานผลิตและจำหน่ายวัสดุงานพื้นทุกประเภท
-          </p>
-        </div>
-
-        <div class="company-data">
-          <div class="data-item"><small>COMPANY NAME</small><strong>บริษัท ฉัตรเพชร กรุ๊ป จำกัด</strong></div>
-          <div class="data-item"><small>ENGLISH NAME</small><strong>CHATPHETCH GROUP CO., LTD.</strong></div>
-          <div class="data-item"><small>COMPANY REGISTRATION</small><strong>0905566006436</strong></div>
-          <div class="data-item"><small>ESTABLISHED</small><strong>27 กันยายน 2566</strong></div>
-          <div class="data-item"><small>REGISTERED CAPITAL</small><strong>5,000,000 บาท</strong></div>
-          <div class="data-item"><small>ADDRESS</small><strong>10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310</strong></div>
+  <main>
+    <section class="about-hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <div class="kicker">ABOUT CHATPHETCH GROUP</div>
+          <h1>เกี่ยวกับเรา</h1>
+          <p>รู้จักบริษัท ฉัตรเพชร กรุ๊ป จำกัด ตั้งแต่ประวัติความเป็นมา ข้อมูลบริษัท ทีมงาน โรงงาน สต็อกสินค้า ตลอดจนแนวทางการทำงานด้านระบบพื้น และงานวัสดุก่อสร้าง</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">OUR HISTORY</div>
-        <h2 class="section-title">เส้นทางของ <span>CHATPHETCH GROUP</span></h2>
-      </div>
-
-      <div class="history">
-        <article class="history-item">
-          <div class="history-year">2556</div>
-          <h3>จุดเริ่มต้น</h3>
-          <p>จุดเริ่มต้นของประสบการณ์และการทำงานที่เกี่ยวข้องกับงานพื้นและวัสดุก่อสร้าง</p>
-        </article>
-        <article class="history-item">
-          <div class="history-year">2566</div>
-          <h3>บริษัท ฉัตรเพชร กรุ๊ป จำกัด</h3>
-          <p>จัดตั้งบริษัทและพัฒนาระบบงานด้านวัสดุงานพื้นและการให้คำปรึกษาสำหรับลูกค้าและโครงการ</p>
-        </article>
-        <article class="history-item">
-          <div class="history-year">ปัจจุบัน</div>
-          <h3>พัฒนาอย่างต่อเนื่อง</h3>
-          <p>มุ่งพัฒนาการให้บริการด้านระบบพื้น การเลือกใช้วัสดุ และข้อมูลทางเทคนิค เพื่อรองรับลักษณะงานที่หลากหลาย</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">FACTORY &amp; STOCK</div>
-        <h2 class="section-title">โรงงานและ <span>สต็อกสินค้า</span></h2>
-        <p class="section-description">พื้นที่การทำงาน การผลิตและการจัดเตรียมวัสดุสำหรับรองรับงานพื้นและโครงการ</p>
-      </div>
-
-      <div class="factory-grid">
-        <div class="factory-visual">
-          <div class="factory-caption">
-            <small>CHATPHETCH GROUP / FLOORING &amp; CONSTRUCTION</small>
-            <h3>พร้อมสนับสนุนงานตั้งแต่การเลือกวัสดุ</h3>
-            <p>ให้ข้อมูลและคำปรึกษาเกี่ยวกับพื้นทุกระบบ พร้อมแนวทางเลือกวัสดุให้เหมาะกับลักษณะงานและโครงการ</p>
+    <section class="section dark">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">WHO WE ARE</div>
+          <h2>สร้างสรรค์ผลงาน<br>และมาตรฐานเข้าถึง</h2>
+          <p class="section-lead">บริษัท ฉัตรเพชร กรุ๊ป จำกัด ดำเนินธุรกิจด้านวัสดุงานพื้น พร้อมให้คำปรึกษาเกี่ยวกับพื้นทุกระบบ และการเลือกใช้วัสดุให้เหมาะกับลักษณะงาน</p>
+        </div>
+        <div class="who-grid">
+          <div class="who-main">
+            <div class="mini-label">CHATPHETCH GROUP</div>
+            <p>โรงงานผลิตและจำหน่ายวัสดุงานพื้นทุกประเภท พร้อมบริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร ตั้งแต่การเลือกวัสดุ การวางแนวทางการใช้งาน ไปจนถึงข้อมูลที่เหมาะสมกับแต่ละโครงการ</p>
+            <div class="pill-row">
+              <span class="pill">วัสดุงานพื้น</span><span class="pill">ระบบงานพื้น</span><span class="pill">คำปรึกษา</span><span class="pill">งานโครงการ</span>
+            </div>
+          </div>
+          <div class="who-side">
+            <article class="feature-card"><div class="feature-no">01 / CREATIVE</div><h3>สร้างสรรค์ผลงาน</h3><p>มุ่งเน้นการนำเสนอวัสดุและแนวทาง สำหรับงานพื้นหลากหลายรูปแบบ เพื่อให้เหมาะกับลักษณะของแต่ละโครงการ</p></article>
+            <article class="feature-card"><div class="feature-no">02 / STANDARD</div><h3>มาตรฐานเข้าถึง</h3><p>ให้ความสำคัญกับการให้ข้อมูล การเลือกวัสดุ และการให้คำปรึกษา เพื่อช่วยให้ลูกค้าตัดสินใจได้เหมาะสมกับงาน</p></article>
           </div>
         </div>
-        <div class="factory-points">
-          <article class="factory-point"><span>01 / MATERIAL</span><h3>วัสดุงานพื้น</h3><p>โรงงานผลิตและจำหน่ายวัสดุงานพื้นทุกประเภทตามข้อมูลบริษัท</p></article>
-          <article class="factory-point"><span>02 / STOCK</span><h3>การจัดเตรียมสินค้า</h3><p>สนับสนุนข้อมูลและการเตรียมวัสดุสำหรับลูกค้าและโครงการ</p></article>
-          <article class="factory-point"><span>03 / SUPPORT</span><h3>คำปรึกษาแบบครบวงจร</h3><p>ให้คำปรึกษาเกี่ยวกับพื้นทุกระบบและการเลือกใช้วัสดุให้เหมาะกับงาน</p></article>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">COMPANY INFORMATION</div><h2>ข้อมูลบริษัท</h2><p class="section-lead">บริษัท ฉัตรเพชร กรุ๊ป จำกัด / CHATPHETCH GROUP CO., LTD. โรงงานผลิตและจำหน่ายวัสดุงานพื้นทุกประเภท</p></div>
+        <div class="info-grid">
+          <div class="info-panel"><div class="info-label">COMPANY NAME</div><div class="info-value">บริษัท ฉัตรเพชร กรุ๊ป จำกัด</div></div>
+          <div class="info-panel"><div class="info-label">ENGLISH NAME</div><div class="info-value">CHATPHETCH GROUP CO., LTD.</div></div>
+          <div class="info-panel"><div class="info-label">COMPANY REGISTRATION</div><div class="info-value">0905566006436</div></div>
+          <div class="info-panel"><div class="info-label">ESTABLISHED</div><div class="info-value">27 กันยายน 2566</div></div>
+          <div class="info-panel"><div class="info-label">REGISTERED CAPITAL</div><div class="info-value">5,000,000 บาท</div></div>
+          <div class="info-panel full"><div class="info-label">ADDRESS</div><div class="info-value">10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310</div></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">TECHNICAL TEAM</div>
-        <h2 class="section-title">ทีมงานด้าน <span>เทคนิค</span></h2>
-        <p class="section-description">ทีมงานสำหรับให้คำปรึกษาเกี่ยวกับระบบพื้น และการเลือกใช้วัสดุให้เหมาะกับงาน</p>
-      </div>
-
-      <div class="team-grid">
-        <article class="team-card"><div class="team-top"><div class="team-mark">T</div></div><div class="team-info"><small>TECHNICAL</small><h3>ทีมงานเทคนิค</h3><p>ให้คำปรึกษาเกี่ยวกับระบบงานพื้น และการเลือกวัสดุ</p></div></article>
-        <article class="team-card"><div class="team-top"><div class="team-mark">S</div></div><div class="team-info"><small>SUPPORT</small><h3>ทีมสนับสนุนงาน</h3><p>สนับสนุนข้อมูลและประสานงานสำหรับลูกค้าและโครงการ</p></div></article>
-        <article class="team-card"><div class="team-top"><div class="team-mark">P</div></div><div class="team-info"><small>PROJECT</small><h3>ทีมงานโครงการ</h3><p>ให้ข้อมูลและคำปรึกษาตามลักษณะงานของแต่ละโครงการ</p></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">DOCUMENT CENTER</div>
-        <h2 class="section-title">เอกสารและ <span>ข้อมูลบริษัท</span></h2>
-      </div>
-
-      <div class="documents">
-        <article class="document">
-          <div class="document-icon">📄</div>
-          <h3>Company Profile</h3>
-          <p>ข้อมูลบริษัท ประวัติธุรกิจ กลุ่มบริการ และข้อมูลสำหรับลูกค้าโครงการ</p>
-          <a href="contact.html">ติดต่อขอ Company Profile →</a>
-        </article>
-        <article class="document">
-          <div class="document-icon">📋</div>
-          <h3>เอกสารรับรอง</h3>
-          <p>เอกสารรับรองหรือเอกสารประกอบสำหรับโครงการ</p>
-          <a href="technical-center.html">ดูเอกสาร →</a>
-        </article>
-        <article class="document">
-          <div class="document-icon">🧪</div>
-          <h3>Technical Documents</h3>
-          <p>ข้อมูลทางเทคนิคของระบบและผลิตภัณฑ์ สำหรับผู้ออกแบบและผู้ควบคุมงาน</p>
-          <a href="technical-center.html">เข้าสู่ Technical Center →</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="profile-box">
-        <div class="profile-kicker">COMPANY PROFILE</div>
-        <h2>รู้จัก CHATPHETCH GROUP ให้มากขึ้น</h2>
-        <p>รวมข้อมูลบริษัท ประวัติความเป็นมา กลุ่มงานบริการ ผลิตภัณฑ์ กระบวนการทำงาน และข้อมูลสำหรับโครงการ</p>
-        <div class="cta-row">
-          <a href="technical-center.html" class="btn">เข้าสู่ Technical Center →</a>
-          <a href="contact.html" class="btn secondary">ติดต่อเรา →</a>
+    <section class="section dark">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">OUR HISTORY</div><h2>เส้นทางของ<br>CHATPHETCH GROUP</h2></div>
+        <div class="timeline">
+          <article class="timeline-card"><div class="timeline-year">2556</div><h3>จุดเริ่มต้น</h3><p>จุดเริ่มต้นของประสบการณ์และการทำงาน ที่เกี่ยวข้องกับงานพื้นและวัสดุก่อสร้าง</p></article>
+          <article class="timeline-card"><div class="timeline-year">2566</div><h3>บริษัท ฉัตรเพชร กรุ๊ป จำกัด</h3><p>จัดตั้งบริษัทและพัฒนาระบบงาน ด้านวัสดุงานพื้นและการให้คำปรึกษา สำหรับลูกค้าและโครงการ</p></article>
+          <article class="timeline-card"><div class="timeline-year">ปัจจุบัน</div><h3>พัฒนาอย่างต่อเนื่อง</h3><p>มุ่งพัฒนาการให้บริการด้านระบบพื้น การเลือกใช้วัสดุ และข้อมูลทางเทคนิค เพื่อรองรับลักษณะงานที่หลากหลาย</p></article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-</main>
+    <section class="section soft">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">FACTORY & STOCK</div><h2>โรงงานและ<br>สต็อกสินค้า</h2><p class="section-lead">พื้นที่สำหรับการผลิตและจัดเตรียมวัสดุงานพื้น พร้อมการบริหารสินค้าให้เหมาะกับลักษณะของแต่ละโครงการ</p></div>
+        <div class="factory">
+          <div class="visual-panel"><div class="visual-caption"><span>CHATPHETCH GROUP</span><h3>FACTORY & STOCK</h3></div></div>
+          <div class="stock-list">
+            <article class="stock-card"><strong>FACTORY</strong><p>พื้นที่โรงงานสำหรับการดำเนินงานและการจัดเตรียมวัสดุงานพื้นของบริษัท</p></article>
+            <article class="stock-card"><strong>STOCK</strong><p>สต็อกสินค้าเพื่อรองรับงานวัสดุพื้นและการประสานงานสำหรับลูกค้าและโครงการ</p></article>
+            <article class="stock-card"><strong>PRODUCTS</strong><p>ผลิตภัณฑ์และวัสดุสำหรับงานพื้น งานก่อสร้าง และการใช้งานที่หลากหลาย</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<script src="assets/customer-master-nav.js"></script>
+    <section class="section dark">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">TECHNICAL TEAM</div><h2>ทีมงานด้าน<br>เทคนิค</h2><p class="section-lead">ทีมงานสำหรับให้คำปรึกษาเกี่ยวกับระบบพื้น และการเลือกใช้วัสดุให้เหมาะกับงาน</p></div>
+        <div class="team-grid">
+          <article class="team-card"><div class="team-number">01 / TECHNICAL</div><h3>ทีมงานเทคนิค</h3><p>ให้คำปรึกษาเกี่ยวกับระบบงานพื้น และการเลือกวัสดุ</p></article>
+          <article class="team-card"><div class="team-number">02 / SUPPORT</div><h3>ทีมสนับสนุนงาน</h3><p>สนับสนุนข้อมูลและประสานงาน สำหรับลูกค้าและโครงการ</p></article>
+          <article class="team-card"><div class="team-number">03 / PROJECT</div><h3>ทีมงานโครงการ</h3><p>ให้ข้อมูลและคำปรึกษา ตามลักษณะงานของแต่ละโครงการ</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">DOCUMENT CENTER</div><h2>เอกสารและ<br>ข้อมูลบริษัท</h2></div>
+        <div class="docs">
+          <article class="doc-card"><div class="doc-icon">📄</div><h3>Company Profile</h3><p>ข้อมูลบริษัท ประวัติธุรกิจ กลุ่มบริการ และข้อมูลสำหรับลูกค้าโครงการ</p><a class="doc-link" href="technical-center.html">ดูข้อมูล →</a></article>
+          <article class="doc-card"><div class="doc-icon">📋</div><h3>เอกสารรับรอง</h3><p>เอกสารรับรองหรือเอกสารประกอบ สำหรับโครงการ</p><a class="doc-link" href="technical-center.html">ดูเอกสาร →</a></article>
+          <article class="doc-card"><div class="doc-icon">🧪</div><h3>Technical Documents</h3><p>ข้อมูลทางเทคนิคของระบบและผลิตภัณฑ์ สำหรับผู้ออกแบบและผู้ควบคุมงาน</p><a class="doc-link" href="technical-center.html">เข้าสู่ Technical Center →</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <div class="cta-box">
+          <div class="cta-kicker">START YOUR PROJECT</div>
+          <h2>สร้างพื้นที่ที่ดีกว่า</h2>
+          <p>เริ่มต้นกับเรา ให้เราช่วยเลือกวัสดุและโซลูชัน ที่เหมาะสมกับพื้นที่ของคุณ</p>
+          <a class="cta-btn" href="contact.html">ปรึกษาเราได้วันนี้ <span>→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
 </body>
 </html>
