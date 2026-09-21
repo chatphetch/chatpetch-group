@@ -2,466 +2,1368 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>บริการ | CHATPHETCH GROUP</title>
-<meta name="description" content="บริการหลักของ CHATPHETCH GROUP ทั้ง 6 ระบบ พร้อมตัวอย่างผลงานจริง">
+<meta name="description" content="บริการงานพื้น งานเคลือบผิว งานกันซึม งานคอนกรีต พื้นสนามกีฬา พื้นตกแต่ง และระบบงานสัญลักษณ์และเส้นจราจร CHATPHETCH GROUP">
+
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --black:#030303;
   --gold:#c9a45c;
-  --gold2:#ead18d;
-  --white:#fff;
-  --muted:#999;
-  --line:rgba(255,255,255,.10);
-  --goldline:rgba(201,164,92,.34);
-  --max:1380px;
+  --gold2:#e4c57f;
+  --gold3:#8d6b2f;
+  --white:#f7f0e8;
+  --text:#ded4c8;
+  --muted:#a99e92;
+  --black:#050403;
+  --line:rgba(201,164,92,.22);
+  --max:1240px;
 }
-*{box-sizing:border-box;margin:0;padding:0}
+
+*{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:#030303;
-  color:#fff;
-  font-family:Prompt,Kanit,sans-serif;
+  margin:0;
+  min-height:100vh;
   overflow-x:hidden;
+  background:#050403;
+  color:var(--text);
+  font-family:"Prompt","Kanit",sans-serif;
 }
-a{text-decoration:none;color:inherit}
-body:before{
+a{color:inherit;text-decoration:none}
+
+.cp-page{
+  position:relative;
+  min-height:100vh;
+  overflow:clip;
+  isolation:isolate;
+  background:#050403;
+}
+.cp-page::before{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-10;
+  z-index:-2;
+  pointer-events:none;
+  background:url("assets/index-main-bg.png") center top/cover no-repeat;
+}
+.cp-page::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
   pointer-events:none;
   background:
-    radial-gradient(circle at 82% 5%,rgba(201,164,92,.13),transparent 30%),
-    linear-gradient(180deg,#080605,#020202 72%);
+    linear-gradient(180deg,
+      rgba(0,0,0,.38) 0%,
+      rgba(0,0,0,.18) 20%,
+      rgba(0,0,0,.34) 48%,
+      rgba(0,0,0,.72) 78%,
+      rgba(0,0,0,.94) 100%);
 }
-body:after{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-9;
-  pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-  background-size:70px 70px;
-  mask-image:linear-gradient(to bottom,black,transparent 85%);
+.cp-page>*{position:relative;z-index:2}
+
+/* HERO */
+.hero{
+  min-height:650px;
+  display:flex;
+  align-items:center;
 }
-.container{
+.hero-inner{
   width:min(var(--max),calc(100% - 80px));
   margin:auto;
+  padding-top:100px;
 }
-.page{
-  padding-top:92px;
-}
-.hero{
+.hero-copy{
   position:relative;
-  padding:78px 0 48px;
-  overflow:hidden;
+  width:min(760px,100%);
+  padding:30px 42px 34px 0;
+  transform:translateY(45px);
 }
-.hero:after{
-  content:"SERVICES";
+.hero-copy::before{
+  content:"";
   position:absolute;
-  right:-20px;
-  bottom:-40px;
-  font-family:Kanit,sans-serif;
-  font-size:150px;
-  line-height:1;
-  font-weight:700;
-  color:rgba(255,255,255,.018);
-  pointer-events:none;
+  z-index:-1;
+  left:-180px;
+  top:-90px;
+  width:850px;
+  height:520px;
+  border-radius:50%;
+  background:radial-gradient(ellipse at center,
+    rgba(0,0,0,.78) 0%,
+    rgba(0,0,0,.46) 43%,
+    rgba(0,0,0,0) 77%);
 }
 .kicker{
   display:flex;
   align-items:center;
   gap:12px;
   color:var(--gold2);
-  font-size:12px;
+  font-size:11px;
+  font-weight:500;
   letter-spacing:3px;
-  margin-bottom:15px;
 }
-.kicker:before{
+.kicker::before{
   content:"";
-  width:48px;height:1px;
+  width:40px;
+  height:1px;
   background:var(--gold);
 }
 .hero h1{
-  font-family:Kanit,sans-serif;
-  font-size:clamp(48px,6vw,78px);
-  line-height:1.05;
+  margin:17px 0 0;
+  color:var(--white);
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:clamp(48px,6.4vw,82px);
+  font-weight:400;
+  line-height:1;
+  letter-spacing:-1.8px;
+  text-shadow:0 8px 35px rgba(0,0,0,.72);
+}
+.hero h1 span{
+  display:block;
+  margin-top:10px;
+  color:var(--gold2);
+  font-size:.27em;
   font-weight:500;
-  margin-bottom:16px;
+  letter-spacing:4px;
 }
-.hero h1 span{color:var(--gold2)}
+.hero-line{
+  width:75px;
+  height:1px;
+  margin-top:24px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
 .hero p{
-  max-width:850px;
-  color:#a49d94;
-  font-size:14px;
+  max-width:690px;
+  margin:18px 0 0;
+  color:rgba(247,240,232,.88);
+  font-size:15px;
   line-height:1.9;
+  text-shadow:0 4px 20px rgba(0,0,0,.8);
 }
-.services{
-  padding:12px 0 110px;
+
+/* CONTENT */
+.section{
+  width:min(var(--max),calc(100% - 80px));
+  margin:auto;
+  padding:55px 0 72px;
 }
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:35px;
+  margin-bottom:28px;
+}
+.section-title{
+  margin:8px 0 0;
+  color:var(--white);
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:clamp(34px,4vw,52px);
+  font-weight:400;
+  line-height:1.08;
+  text-shadow:0 5px 24px rgba(0,0,0,.8);
+}
+.section-note{
+  max-width:520px;
+  color:rgba(247,240,232,.72);
+  font-size:13px;
+  line-height:1.85;
+  text-align:right;
+}
+
+/* SERVICE CARDS */
 .service-grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:20px;
+  gap:18px;
 }
 .service-card{
   position:relative;
   min-width:0;
-  height:405px;
   overflow:hidden;
-  border:1px solid var(--goldline);
-  border-radius:15px;
-  background:#090705;
-  isolation:isolate;
-  transition:.3s ease;
+  display:flex;
+  flex-direction:column;
+  border:1px solid rgba(201,164,92,.24);
+  background:linear-gradient(145deg,rgba(17,11,7,.94),rgba(4,3,2,.92));
+  box-shadow:0 24px 65px rgba(0,0,0,.28);
+  transition:.25s ease;
 }
 .service-card:hover{
   transform:translateY(-5px);
-  border-color:rgba(234,209,141,.72);
-  box-shadow:0 28px 70px rgba(0,0,0,.55);
+  border-color:rgba(228,197,127,.52);
+  box-shadow:0 30px 75px rgba(0,0,0,.42);
 }
-.service-card img{
-  position:absolute;
-  inset:0;
+.service-image{
+  position:relative;
+  height:245px;
+  overflow:hidden;
+  background:linear-gradient(145deg,#2b1b0f,#080604);
+}
+.service-image img{
   width:100%;
   height:100%;
+  display:block;
   object-fit:cover;
-  transition:transform .65s ease,filter .65s ease;
+  opacity:0;
+  transition:transform .55s ease,opacity .35s ease,filter .35s ease;
+  filter:saturate(.88) contrast(1.04);
 }
-.service-card:before{
+.service-image.loaded img{opacity:1}
+.service-card:hover .service-image img{
+  transform:scale(1.045);
+  filter:saturate(1) contrast(1.06);
+}
+.service-image::after{
   content:"";
   position:absolute;
   inset:0;
-  z-index:1;
-  background:linear-gradient(180deg,rgba(0,0,0,.03) 18%,rgba(0,0,0,.18) 42%,rgba(0,0,0,.95) 100%);
+  pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(0,0,0,.02) 25%,
+    rgba(0,0,0,.12) 50%,
+    rgba(5,4,3,.86) 100%);
 }
-.service-card:hover img{
-  transform:scale(1.05);
-  filter:brightness(1.06);
-}
-.card-number{
+.service-image-label{
   position:absolute;
+  left:17px;
+  bottom:15px;
   z-index:3;
-  top:17px;
-  right:18px;
+  padding:6px 10px;
+  border:1px solid rgba(228,197,127,.38);
+  background:rgba(7,5,3,.55);
+  backdrop-filter:blur(7px);
+  color:#fff8ef;
+  font-size:9px;
+  letter-spacing:1.4px;
+}
+.service-loading{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  display:grid;
+  place-items:center;
+  color:rgba(228,197,127,.62);
+  font-size:9px;
+  letter-spacing:2px;
+}
+.service-image.loaded .service-loading{display:none}
+.service-body{
+  position:relative;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  padding:22px 22px 22px;
+}
+.service-number{
+  position:absolute;
+  top:13px;
+  right:16px;
+  color:rgba(228,197,127,.16);
+  font-family:"Kanit",sans-serif;
+  font-size:65px;
+  line-height:1;
+  font-weight:500;
+}
+.service-code{
+  position:relative;
+  z-index:2;
   color:var(--gold2);
   font-size:10px;
   letter-spacing:2px;
 }
-.card-content{
-  position:absolute;
-  z-index:3;
-  left:22px;
-  right:22px;
-  bottom:20px;
+.service-card h3{
+  position:relative;
+  z-index:2;
+  margin:14px 55px 0 0;
+  color:#fff;
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:23px;
+  font-weight:400;
+  line-height:1.18;
 }
-.card-label{
+.service-card h3 small{
+  display:block;
+  margin-top:5px;
+  color:rgba(255,248,239,.58);
+  font-size:13px;
+  font-weight:400;
+  line-height:1.4;
+}
+.service-card p{
+  position:relative;
+  z-index:2;
+  margin:12px 0 0;
+  color:rgba(255,250,244,.72);
+  font-size:13px;
+  line-height:1.8;
+}
+.tags{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:auto;
+  padding-top:18px;
+}
+.tag{
+  padding:5px 8px;
+  border:1px solid rgba(201,164,92,.22);
+  color:rgba(255,248,239,.66);
+  background:rgba(255,255,255,.025);
+  font-size:9px;
+  letter-spacing:.7px;
+}
+.card-link{
+  position:relative;
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  width:max-content;
+  margin-top:17px;
+  color:var(--gold2);
+  font-size:11px;
+  font-weight:500;
+}
+.card-link:hover{color:#fff}
+
+/* WORKFLOW */
+.workflow{
+  width:min(var(--max),calc(100% - 80px));
+  margin:auto;
+  padding:5px 0 75px;
+}
+.workflow-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border:1px solid rgba(201,164,92,.22);
+  background:rgba(5,4,3,.72);
+}
+.step{
+  position:relative;
+  min-height:190px;
+  padding:26px 23px;
+  border-right:1px solid rgba(201,164,92,.16);
+}
+.step:last-child{border-right:0}
+.step-no{
+  color:var(--gold2);
+  font-size:10px;
+  letter-spacing:2px;
+}
+.step h3{
+  margin:15px 0 0;
+  color:#fff;
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:20px;
+  font-weight:400;
+}
+.step p{
+  margin:9px 0 0;
+  color:rgba(255,248,239,.66);
+  font-size:12px;
+  line-height:1.8;
+}
+
+/* CTA */
+.cta{
+  width:min(1000px,calc(100% - 80px));
+  margin:0 auto 85px;
+  padding:55px 40px;
+  text-align:center;
+  border:1px solid rgba(201,164,92,.28);
+  background:linear-gradient(135deg,rgba(27,17,10,.82),rgba(5,4,3,.78));
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
+  backdrop-filter:blur(9px);
+}
+.cta-label{
   color:var(--gold2);
   font-size:9px;
-  letter-spacing:2px;
-  margin-bottom:6px;
+  letter-spacing:3px;
 }
-.card-content h2{
-  font-family:Kanit,sans-serif;
-  font-size:27px;
-  line-height:1.18;
-  font-weight:500;
-  margin-bottom:8px;
-}
-.card-content p{
-  color:#c1bbb3;
-  font-size:11px;
-  line-height:1.7;
-  margin-bottom:15px;
-  max-width:94%;
-}
-.card-foot{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.detail-link{
+.cta h2{
+  margin:10px 0 0;
   color:#fff;
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:clamp(34px,4vw,55px);
+  font-weight:400;
+}
+.cta p{
+  max-width:650px;
+  margin:14px auto 22px;
+  color:rgba(255,255,255,.72);
+  font-size:13px;
+  line-height:1.85;
+}
+.cta-actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.btn{
+  min-height:44px;
+  padding:0 20px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   font-size:11px;
-  border-bottom:1px solid var(--gold);
-  padding-bottom:3px;
+  transition:.2s ease;
 }
-.round-arrow{
-  width:42px;height:42px;
-  display:grid;
-  place-items:center;
-  border:1px solid var(--gold);
-  border-radius:50%;
-  color:var(--gold2);
-  font-size:20px;
-  transition:.3s;
+.btn-gold{
+  color:#160e07;
+  background:linear-gradient(135deg,#e4c57f,#b18442);
+  border:1px solid #e4c57f;
 }
-.service-card:hover .round-arrow{
-  background:var(--gold);
-  color:#050403;
-  transform:translateX(3px);
+.btn-outline{
+  color:#fff;
+  border:1px solid rgba(228,197,127,.45);
+  background:rgba(5,4,3,.25);
 }
-.loading,
-.error{
-  grid-column:1/-1;
-  min-height:280px;
-  display:grid;
-  place-items:center;
-  border:1px solid var(--line);
-  color:#888;
-  font-size:12px;
-  text-align:center;
-}
-.error{
-  padding:30px;
-  line-height:1.9;
-}
-@media(max-width:1100px){
-  .container{width:min(var(--max),calc(100% - 40px))}
+.btn:hover{transform:translateY(-2px)}
+
+/* RESPONSIVE */
+@media(max-width:1050px){
+  .hero-inner,
+  .section,
+  .workflow{width:calc(100% - 50px)}
   .service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .workflow-grid{grid-template-columns:repeat(2,1fr)}
+  .step:nth-child(2){border-right:0}
+  .step:nth-child(-n+2){border-bottom:1px solid rgba(201,164,92,.16)}
+  .step:nth-child(3){border-bottom:0}
+  .section-head{display:block}
+  .section-note{
+    margin-top:13px;
+    text-align:left;
+  }
+  .cta{width:calc(100% - 50px)}
 }
 @media(max-width:700px){
-  .container{width:calc(100% - 28px)}
-  .page{padding-top:78px}
-  .hero{padding:58px 0 35px}
-  .hero h1{font-size:43px}
-  .hero p{font-size:12px}
-  .hero:after{font-size:80px;bottom:-15px}
-  .services{padding-top:6px}
-  .service-grid{grid-template-columns:1fr;gap:15px}
-  .service-card{height:315px}
-  .card-content{left:17px;right:17px;bottom:16px}
-  .card-content h2{font-size:23px}
+  .cp-page::before{background-position:center top}
+  .hero{
+    min-height:610px;
+    align-items:flex-start;
+  }
+  .hero-inner{
+    width:calc(100% - 32px);
+    padding-top:90px;
+  }
+  .hero-copy{
+    width:100%;
+    padding:28px 18px 30px 0;
+    transform:translateY(100px);
+  }
+  .hero-copy::before{
+    left:-90px;
+    top:-55px;
+    width:650px;
+    height:440px;
+  }
+  .hero h1{
+    font-size:clamp(43px,13vw,60px);
+    line-height:1.03;
+  }
+  .hero h1 span{
+    font-size:12px;
+    letter-spacing:2.5px;
+  }
+  .hero p{
+    font-size:14px;
+    line-height:1.82;
+  }
+  .section,
+  .workflow{
+    width:calc(100% - 32px);
+  }
+  .section{padding:45px 0 58px}
+  .section-title{font-size:36px}
+  .service-grid{grid-template-columns:1fr;gap:12px}
+  .service-image{height:205px}
+  .service-body{padding:20px}
+  .service-card h3{font-size:22px}
+  .workflow{
+    padding-bottom:60px;
+  }
+  .workflow-grid{grid-template-columns:1fr}
+  .step{
+    min-height:0;
+    border-right:0!important;
+    border-bottom:1px solid rgba(201,164,92,.16);
+  }
+  .step:last-child{border-bottom:0}
+  .cta{
+    width:calc(100% - 32px);
+    margin-bottom:60px;
+    padding:40px 22px;
+  }
+  .cta-actions{flex-direction:column}
+  .cta-actions>*{width:100%}
 }
 </style>
 </head>
 
 <body>
 
-<div class="page">
+<div class="cp-page">
+
+<main>
 
 <section class="hero">
-  <div class="container">
-    <div class="kicker">OUR SERVICES</div>
-    <h1>บริการ<span>ของเรา</span></h1>
-    <p>
-      6 บริการหลักของ CHATPHETCH GROUP โดยใช้ชื่อและลิงก์ชุดเดียวกัน
-      ตั้งแต่เมนูบริการ การ์ดบริการ ไปจนถึงหน้า Service Detail
-    </p>
-  </div>
-</section>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="kicker">OUR SERVICES</div>
 
-<section class="services">
-  <div class="container">
-    <div class="service-grid" id="serviceGrid">
-      <div class="loading">กำลังโหลดภาพผลงานจริง...</div>
+      <h1>
+        ระบบบริการ
+        <span>FOR EVERY SPACE</span>
+      </h1>
+
+      <div class="hero-line"></div>
+
+      <p>
+        ให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
+        ตั้งแต่การพิจารณาปัญหาของพื้นที่ การเลือกวัสดุและระบบ
+        ไปจนถึงแนวทางการดำเนินงานที่เหมาะสมกับการใช้งานจริง
+      </p>
     </div>
   </div>
 </section>
 
+
+<section class="section">
+
+  <div class="section-head">
+    <div>
+      <div class="kicker">SERVICE SYSTEMS</div>
+      <h2 class="section-title">ประเภทงานบริการ</h2>
+    </div>
+
+    <p class="section-note">
+      เลือกระบบที่ใกล้เคียงกับลักษณะพื้นที่
+      เพื่อดูรายละเอียดเพิ่มเติมและแนวทางการเลือกใช้วัสดุ
+      ให้เหมาะกับสภาพหน้างาน
+    </p>
+  </div>
+
+
+  <div class="service-grid">
+
+    <!-- 01 -->
+    <article
+      class="service-card"
+      data-project-folders="Epoxy self|Epoxy anti static|PU Self"
+    >
+      <div class="service-image">
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานพื้นอุตสาหกรรม อีพ็อกซี่ และพียู">
+        <div class="service-image-label">PROJECT REFERENCE</div>
+      </div>
+
+      <div class="service-body">
+        <div class="service-number">01</div>
+        <div class="service-code">SERVICE 01</div>
+
+        <h3>
+          พื้นอุตสาหกรรม
+          <small>/ อีพ็อกซี่ / พียู</small>
+        </h3>
+
+        <p>
+          ตัวอย่างงานพื้นระบบ Epoxy และ PU
+          สำหรับพื้นที่โรงงาน คลังสินค้า
+          และพื้นที่ใช้งานหนัก
+        </p>
+
+        <div class="tags">
+          <span class="tag">EPOXY</span>
+          <span class="tag">PU</span>
+          <span class="tag">INDUSTRIAL</span>
+        </div>
+
+        <a
+          class="card-link"
+          href="service-detail.html?service=industrial"
+        >
+          ดูรายละเอียด <span>→</span>
+        </a>
+      </div>
+    </article>
+
+
+    <!-- 02 -->
+    <article
+      class="service-card"
+      data-project-folders="งานกันซึม Fiberglass"
+    >
+      <div class="service-image">
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานกันรั่วซึม ดาดฟ้า หลังคา และพื้นอาคาร">
+        <div class="service-image-label">PROJECT REFERENCE</div>
+      </div>
+
+      <div class="service-body">
+        <div class="service-number">02</div>
+        <div class="service-code">SERVICE 02</div>
+
+        <h3>
+          งานกันรั่วซึม
+          <small>ดาดฟ้า หลังคา พื้นอาคาร</small>
+        </h3>
+
+        <p>
+          ตัวอย่างงานกันซึมจากโครงการจริง
+          สำหรับดาดฟ้า หลังคา และพื้นที่อาคาร
+          ที่ต้องการป้องกันน้ำรั่วซึม
+        </p>
+
+        <div class="tags">
+          <span class="tag">WATERPROOF</span>
+          <span class="tag">FIBERGLASS</span>
+          <span class="tag">ROOF</span>
+        </div>
+
+        <a
+          class="card-link"
+          href="service-detail.html?service=waterproof"
+        >
+          ดูรายละเอียด <span>→</span>
+        </a>
+      </div>
+    </article>
+
+
+    <!-- 03 -->
+    <article
+      class="service-card"
+      data-project-folders="งาน Polishing|Epoxy self"
+    >
+      <div class="service-image">
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานซ่อมปรับปรุงและงานคอนกรีต">
+        <div class="service-image-label">PROJECT REFERENCE</div>
+      </div>
+
+      <div class="service-body">
+        <div class="service-number">03</div>
+        <div class="service-code">SERVICE 03</div>
+
+        <h3>
+          งานซ่อมปรับปรุง
+          <small>งานคอนกรีต</small>
+        </h3>
+
+        <p>
+          ตัวอย่างงานปรับปรุงผิวพื้นและงานคอนกรีต
+          จากหน้างานจริง เพื่อเตรียมพื้นให้พร้อม
+          สำหรับระบบใช้งาน
+        </p>
+
+        <div class="tags">
+          <span class="tag">CONCRETE</span>
+          <span class="tag">POLISHING</span>
+          <span class="tag">REPAIR</span>
+        </div>
+
+        <a
+          class="card-link"
+          href="service-detail.html?service=concrete"
+        >
+          ดูรายละเอียด <span>→</span>
+        </a>
+      </div>
+    </article>
+
+
+    <!-- 04 -->
+    <article
+      class="service-card"
+      data-project-folders="PU Self|PU Coating"
+    >
+      <div class="service-image">
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานพื้นสนามกีฬาและพื้นที่กิจกรรม">
+        <div class="service-image-label">PROJECT REFERENCE</div>
+      </div>
+
+      <div class="service-body">
+        <div class="service-number">04</div>
+        <div class="service-code">SERVICE 04</div>
+
+        <h3>พื้นสนามกีฬา</h3>
+
+        <p>
+          ตัวอย่างงานระบบพื้น PU จากโครงการจริง
+          ซึ่งสามารถพิจารณาใช้กับพื้นที่กิจกรรม
+          และสนามกีฬาได้ตามเงื่อนไขหน้างาน
+        </p>
+
+        <div class="tags">
+          <span class="tag">SPORT FLOOR</span>
+          <span class="tag">PU</span>
+          <span class="tag">ACTIVITY</span>
+        </div>
+
+        <a
+          class="card-link"
+          href="service-detail.html?service=sports"
+        >
+          ดูรายละเอียด <span>→</span>
+        </a>
+      </div>
+    </article>
+
+
+    <!-- 05 -->
+    <article
+      class="service-card"
+      data-project-folders="งาน Stamped Concrete"
+    >
+      <div class="service-image">
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานพื้นตกแต่งเพื่อความสวยงาม">
+        <div class="service-image-label">PROJECT REFERENCE</div>
+      </div>
+
+      <div class="service-body">
+        <div class="service-number">05</div>
+        <div class="service-code">SERVICE 05</div>
+
+        <h3>
+          พื้นตกแต่ง
+          <small>เพื่อความสวยงาม</small>
+        </h3>
+
+        <p>
+          ตัวอย่างงานพื้นคอนกรีตพิมพ์ลาย
+          จากโครงการจริง สำหรับพื้นที่ที่ต้องการ
+          ความสวยงามและเอกลักษณ์
+        </p>
+
+        <div class="tags">
+          <span class="tag">STAMPED</span>
+          <span class="tag">PSC</span>
+          <span class="tag">DECORATIVE</span>
+        </div>
+
+        <a
+          class="card-link"
+          href="service-detail.html?service=decorative"
+        >
+          ดูรายละเอียด <span>→</span>
+        </a>
+      </div>
+    </article>
+
+
+    <!-- 06 -->
+    <article
+      class="service-card"
+      data-project-folders="PU Coating|Epoxy anti static"
+    >
+      <div class="service-image">
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานระบบงานสัญลักษณ์และเส้นจราจร">
+        <div class="service-image-label">PROJECT REFERENCE</div>
+      </div>
+
+      <div class="service-body">
+        <div class="service-number">06</div>
+        <div class="service-code">SERVICE 06</div>
+
+        <h3>
+          ระบบงานสัญลักษณ์
+          <small>และเส้นจราจร</small>
+        </h3>
+
+        <p>
+          งานเคลือบผิวและงานกำหนดพื้นที่
+          เพื่อจัดระเบียบการใช้งาน เส้นทาง
+          และสัญลักษณ์ภายในพื้นที่
+        </p>
+
+        <div class="tags">
+          <span class="tag">TRAFFIC</span>
+          <span class="tag">LINE MARKING</span>
+          <span class="tag">COATING</span>
+        </div>
+
+        <a
+          class="card-link"
+          href="service-detail.html?service=traffic"
+        >
+          ดูรายละเอียด <span>→</span>
+        </a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+<section class="workflow">
+
+  <div class="section-head">
+    <div>
+      <div class="kicker">OUR PROCESS</div>
+      <h2 class="section-title">ขั้นตอนการให้บริการ</h2>
+    </div>
+
+    <p class="section-note">
+      เราเริ่มจากการเข้าใจพื้นที่และลักษณะการใช้งาน
+      ก่อนเลือกแนวทางและวัสดุที่เหมาะสม
+    </p>
+  </div>
+
+
+  <div class="workflow-grid">
+
+    <div class="step">
+      <div class="step-no">01 / SURVEY</div>
+      <h3>สำรวจหน้างาน</h3>
+      <p>
+        พิจารณาสภาพพื้น ลักษณะพื้นที่
+        ปัญหาเดิม และเงื่อนไขการใช้งานจริง
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="step-no">02 / CONSULT</div>
+      <h3>วิเคราะห์และให้คำปรึกษา</h3>
+      <p>
+        ประเมินแนวทางระบบงานและวัสดุ
+        ให้สอดคล้องกับวัตถุประสงค์ของพื้นที่
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="step-no">03 / SYSTEM</div>
+      <h3>เลือกระบบที่เหมาะสม</h3>
+      <p>
+        กำหนดระบบพื้นหรือแนวทางงาน
+        ตามสภาพหน้างานและการใช้งาน
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="step-no">04 / EXECUTION</div>
+      <h3>ดำเนินงาน</h3>
+      <p>
+        วางแผนและดำเนินงานตามระบบ
+        พร้อมติดตามรายละเอียดของหน้างาน
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="cta">
+
+  <div class="cta-label">CHATPHETCH GROUP</div>
+
+  <h2>ปรึกษาระบบพื้นที่เหมาะกับหน้างานของคุณ</h2>
+
+  <p>
+    หากยังไม่แน่ใจว่าพื้นที่ของคุณเหมาะกับระบบใด
+    สามารถติดต่อทีมงานเพื่อขอคำปรึกษา
+    และพูดคุยรายละเอียดหน้างานได้
+  </p>
+
+  <div class="cta-actions">
+
+    <a
+      class="btn btn-gold"
+      href="contact.html"
+    >
+      ติดต่อเรา
+    </a>
+
+    <a
+      class="btn btn-outline"
+      href="projects.html"
+    >
+      ดูผลงานโครงการ
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
 </div>
 
-<script src="assets/customer-master-nav.js"></script>
 
 <script>
-"use strict";
+/* ============================================================
+   MASTER NAV
+   ============================================================ */
 
-const TREE_API =
-  "https://api.github.com/repos/chatphetch/chatpetch-group/git/trees/main?recursive=1";
+(function(){
 
-const RAW_BASE =
-  "https://raw.githubusercontent.com/chatphetch/chatpetch-group/main/";
+  const script = document.createElement("script");
 
-const CACHE_KEY = "chatpetch_projects_tree_v3";
-const CACHE_TIME_KEY = "chatpetch_projects_tree_v3_time";
-const CACHE_MAX_AGE = 30 * 60 * 1000;
+  script.src = "assets/customer-master-nav.js";
 
-const SERVICES = [
-  {
-    key:"industrial",
-    num:"01",
-    title:"พื้นอุตสาหกรรม / อีพ็อกซี่ / พียู",
-    label:"INDUSTRIAL FLOORING",
-    desc:"ระบบพื้นสำหรับโรงงาน คลังสินค้า และพื้นที่ใช้งานหนัก",
-    folders:["Epoxy anti static","Epoxy self","PU Coating","PU Self"]
-  },
-  {
-    key:"waterproof",
-    num:"02",
-    title:"งานกันรั่วซึม ดาดฟ้า หลังคา พื้นอาคาร",
-    label:"WATERPROOFING",
-    desc:"ระบบกันรั่วซึมสำหรับดาดฟ้า หลังคา และพื้นที่อาคาร",
-    folders:["งานกันซึม Fiberglass"]
-  },
-  {
-    key:"concrete",
-    num:"03",
-    title:"งานซ่อมปรับปรุง งานคอนกรีต",
-    label:"CONCRETE REPAIR",
-    desc:"งานซ่อม ปรับปรุง และฟื้นฟูพื้นคอนกรีต",
-    folders:["งาน Polishing"]
-  },
-  {
-    key:"sports",
-    num:"04",
-    title:"พื้นสนามกีฬา",
-    label:"SPORT FLOORING",
-    desc:"ระบบพื้นสำหรับสนามกีฬาและพื้นที่กิจกรรม",
-    folders:["PU Self"]
-  },
-  {
-    key:"decorative",
-    num:"05",
-    title:"พื้นตกแต่งเพื่อความสวยงาม",
-    label:"DECORATIVE FLOOR",
-    desc:"งานพื้นพิมพ์ลายและงานตกแต่งเพื่อภาพลักษณ์พื้นที่",
-    folders:["งาน Stamped Concrete"]
-  },
-  {
-    key:"traffic",
-    num:"06",
-    title:"ระบบงานสัญลักษณ์และเส้นจราจร",
-    label:"TRAFFIC MARKING",
-    desc:"งานตีเส้นและสัญลักษณ์สำหรับพื้นที่ใช้งาน",
-    folders:["PU Coating"]
-  }
-];
+  script.defer = true;
 
-const grid = document.getElementById("serviceGrid");
+  document.head.appendChild(script);
 
-function imageFile(path){
-  return /\.(jpg|jpeg|png|webp|gif)$/i.test(path || "");
-}
+})();
 
-function escapeHtml(value){
-  return String(value || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
 
-async function getTree(){
+/* ============================================================
+   PROJECT IMAGE LOADER
+   ============================================================ */
 
-  const cached = sessionStorage.getItem(CACHE_KEY);
-  const cachedTime = Number(sessionStorage.getItem(CACHE_TIME_KEY) || 0);
+(function(){
 
-  if(cached && Date.now() - cachedTime < CACHE_MAX_AGE){
-    try{
-      return JSON.parse(cached);
-    }catch(e){}
-  }
+  "use strict";
 
-  const response = await fetch(TREE_API,{
-    headers:{Accept:"application/vnd.github+json"},
-    cache:"no-store"
-  });
+  const OWNER = "chatphetch";
+  const REPO = "chatpetch-group";
+  const BRANCH = "main";
 
-  if(!response.ok){
-    throw new Error("GitHub Tree API " + response.status);
-  }
+  const API =
+    "https://api.github.com/repos/" +
+    OWNER + "/" +
+    REPO +
+    "/git/trees/" +
+    BRANCH +
+    "?recursive=1";
 
-  const data = await response.json();
 
-  if(data.truncated){
-    throw new Error("GitHub repository tree is truncated");
-  }
+  const CACHE_KEY =
+    "chatpetch_projects_tree_v2";
 
-  sessionStorage.setItem(CACHE_KEY,JSON.stringify(data.tree || []));
-  sessionStorage.setItem(CACHE_TIME_KEY,String(Date.now()));
+  const CACHE_TIME =
+    30 * 60 * 1000;
 
-  return data.tree || [];
-}
 
-function folderImages(tree,folder){
+  const imageExtensions =
+    /\.(jpg|jpeg|png|webp|gif)$/i;
 
-  const prefix = "assets/Projects/" + folder + "/";
 
-  return tree
-    .filter(item =>
-      item.type === "blob" &&
-      item.path.startsWith(prefix) &&
-      imageFile(item.path)
-    )
-    .sort((a,b)=>a.path.localeCompare(b.path,undefined,{numeric:true}))
-    .map(item =>
-      RAW_BASE +
-      item.path.split("/").map(encodeURIComponent).join("/")
+  const cards =
+    Array.from(
+      document.querySelectorAll(
+        ".service-card[data-project-folders]"
+      )
     );
-}
 
-function findFirstImage(tree,folders){
 
-  for(const folder of folders){
-    const images = folderImages(tree,folder);
-    if(images.length) return images[0];
+  function normalize(value){
+
+    return String(value || "")
+      .trim()
+      .toLowerCase();
   }
 
-  return "";
-}
 
-function render(tree){
+  function getFolders(card){
 
-  grid.innerHTML = SERVICES.map(service => {
+    return card
+      .dataset
+      .projectFolders
+      .split("|")
+      .map(normalize)
+      .filter(Boolean);
+  }
 
-    const image = findFirstImage(tree,service.folders);
 
-    return `
-      <a
-        class="service-card"
-        href="service-detail.html?service=${service.key}"
-      >
-        ${
-          image
-          ? `<img src="${escapeHtml(image)}"
-                  alt="${escapeHtml(service.title)}"
-                  loading="lazy"
-                  referrerpolicy="no-referrer">`
-          : `<div style="position:absolute;inset:0;background:linear-gradient(145deg,#2a2117,#080706)"></div>`
+  function getCachedTree(){
+
+    try{
+
+      const raw =
+        sessionStorage.getItem(
+          CACHE_KEY
+        );
+
+      if(!raw){
+        return null;
+      }
+
+      const data =
+        JSON.parse(raw);
+
+      if(
+        !data ||
+        !data.time ||
+        !Array.isArray(data.tree)
+      ){
+        return null;
+      }
+
+      if(
+        Date.now() - data.time >
+        CACHE_TIME
+      ){
+        return null;
+      }
+
+      return data.tree;
+
+    }catch(error){
+
+      return null;
+    }
+  }
+
+
+  function saveTree(tree){
+
+    try{
+
+      sessionStorage.setItem(
+        CACHE_KEY,
+        JSON.stringify({
+          time:Date.now(),
+          tree:tree
+        })
+      );
+
+    }catch(error){}
+  }
+
+
+  async function loadTree(){
+
+    const cached =
+      getCachedTree();
+
+    if(cached){
+      return cached;
+    }
+
+
+    const response =
+      await fetch(API, {
+        headers:{
+          "Accept":
+            "application/vnd.github+json"
         }
+      });
 
-        <span class="card-number">${service.num}</span>
 
-        <div class="card-content">
-          <div class="card-label">${service.label}</div>
-          <h2>${escapeHtml(service.title)}</h2>
-          <p>${escapeHtml(service.desc)}</p>
+    if(!response.ok){
+      throw new Error(
+        "GitHub Tree API " +
+        response.status
+      );
+    }
 
-          <div class="card-foot">
-            <span class="detail-link">ดูรายละเอียด</span>
-            <span class="round-arrow">→</span>
-          </div>
-        </div>
-      </a>
-    `;
-  }).join("");
-}
 
-(async function(){
+    const json =
+      await response.json();
 
-  try{
-    const tree = await getTree();
-    render(tree);
-  }catch(error){
 
-    console.error(error);
+    const tree =
+      Array.isArray(json.tree)
+        ? json.tree
+        : [];
 
-    grid.innerHTML = `
-      <div class="error">
-        ไม่สามารถโหลดภาพผลงานจริงได้ในขณะนี้<br>
-        กรุณารีเฟรชหน้าอีกครั้ง
-      </div>
-    `;
+
+    saveTree(tree);
+
+    return tree;
   }
+
+
+  function getImagesForFolder(
+    tree,
+    folder
+  ){
+
+    const prefix =
+      "assets/projects/" +
+      folder + "/";
+
+
+    /*
+     * GitHub paths are case-sensitive.
+     * Match the real folder name from the
+     * tree while keeping support for Thai.
+     */
+
+    const exact =
+      tree.filter(function(item){
+
+        return (
+          item.type === "blob" &&
+          imageExtensions.test(item.path) &&
+          normalize(item.path)
+            .startsWith(
+              normalize(prefix)
+            )
+        );
+
+      });
+
+
+    return exact;
+  }
+
+
+  function chooseImage(
+    tree,
+    folders
+  ){
+
+    for(
+      let i=0;
+      i<folders.length;
+      i++
+    ){
+
+      const images =
+        getImagesForFolder(
+          tree,
+          folders[i]
+        );
+
+
+      if(images.length){
+
+        /*
+         * Deterministic:
+         * sort by path, then use first.
+         * This prevents image changing
+         * on every refresh.
+         */
+
+        images.sort(function(a,b){
+
+          return a.path.localeCompare(
+            b.path
+          );
+        });
+
+
+        return images[0];
+      }
+    }
+
+
+    /*
+     * Fallback:
+     * find any project image whose
+     * folder name approximately matches.
+     */
+
+    for(
+      let i=0;
+      i<folders.length;
+      i++
+    ){
+
+      const target =
+        normalize(folders[i]);
+
+
+      const found =
+        tree.find(function(item){
+
+          if(
+            item.type !== "blob" ||
+            !imageExtensions.test(item.path)
+          ){
+            return false;
+          }
+
+
+          const parts =
+            item.path.split("/");
+
+
+          return parts.some(
+            function(part){
+
+              return normalize(part) === target;
+            }
+          );
+
+        });
+
+
+      if(found){
+        return found;
+      }
+    }
+
+
+    return null;
+  }
+
+
+  function githubRaw(path){
+
+    return (
+      "https://raw.githubusercontent.com/" +
+      OWNER + "/" +
+      REPO + "/" +
+      BRANCH + "/" +
+      path.split("/")
+        .map(encodeURIComponent)
+        .join("/")
+    );
+  }
+
+
+  function setCardImage(
+    card,
+    image
+  ){
+
+    const box =
+      card.querySelector(
+        ".service-image"
+      );
+
+    const img =
+      card.querySelector(
+        ".service-image img"
+      );
+
+
+    if(!box || !img){
+      return;
+    }
+
+
+    if(!image){
+
+      box.classList.add(
+        "loaded"
+      );
+
+      box.classList.add(
+        "no-image"
+      );
+
+      const loading =
+        box.querySelector(
+          ".service-loading"
+        );
+
+      if(loading){
+        loading.textContent =
+          "PROJECT IMAGE";
+      }
+
+      return;
+    }
+
+
+    img.src =
+      githubRaw(image.path);
+
+
+    img.addEventListener(
+      "load",
+      function(){
+
+        box.classList.add(
+          "loaded"
+        );
+
+      },
+      {once:true}
+    );
+
+
+    img.addEventListener(
+      "error",
+      function(){
+
+        box.classList.add(
+          "loaded"
+        );
+
+        box.classList.add(
+          "no-image"
+        );
+
+      },
+      {once:true}
+    );
+
+  }
+
+
+  async function init(){
+
+    if(!cards.length){
+      return;
+    }
+
+
+    try{
+
+      const tree =
+        await loadTree();
+
+
+      cards.forEach(
+        function(card){
+
+          const folders =
+            getFolders(card);
+
+
+          const image =
+            chooseImage(
+              tree,
+              folders
+            );
+
+
+          setCardImage(
+            card,
+            image
+          );
+
+        }
+      );
+
+    }catch(error){
+
+      cards.forEach(
+        function(card){
+
+          const box =
+            card.querySelector(
+              ".service-image"
+            );
+
+          if(box){
+            box.classList.add(
+              "loaded"
+            );
+          }
+
+        }
+      );
+
+      console.warn(
+        "CHATPHETCH project images could not be loaded.",
+        error
+      );
+    }
+  }
+
+
+  init();
 
 })();
 </script>
