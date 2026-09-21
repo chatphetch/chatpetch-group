@@ -4,142 +4,621 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>บริการ | CHATPHETCH GROUP</title>
-<meta name="description" content="บริการงานพื้น งานเคลือบผิว งานกันซึม งานคอนกรีต และงานก่อสร้าง CHATPHETCH GROUP">
+<meta name="description" content="บริการงานพื้น งานเคลือบผิว งานกันซึม งานคอนกรีต และงานก่อสร้างครบวงจร CHATPHETCH GROUP">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap');
-:root{--bg:#050403;--panel:#100d0a;--panel2:#17120e;--gold:#c9a45c;--gold2:#efd58e;--white:#fff;--text:#d8d2c8;--muted:#8f8a83;--line:rgba(255,255,255,.10);--goldline:rgba(201,164,92,.34);--max:1320px}
-*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#030303;
+  --dark:#090806;
+  --gold:#c9a45c;
+  --gold2:#efd58e;
+  --white:#fff;
+  --muted:#9b9892;
+  --line:rgba(255,255,255,.10);
+  --gold-line:rgba(201,164,92,.35);
+  --max:1320px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--white);font-family:Prompt,Kanit,sans-serif;overflow-x:hidden}
+body{
+  background:var(--black);
+  color:#fff;
+  font-family:'Prompt','Kanit',sans-serif;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-10;
+  background:
+    linear-gradient(rgba(0,0,0,.74),rgba(0,0,0,.88)),
+    url("assets/index-main-bg.png") center top/cover no-repeat;
+  filter:saturate(.72);
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-9;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:linear-gradient(to bottom,black,transparent 88%);
+}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit}
-body:before{content:"";position:fixed;inset:0;z-index:-10;background:radial-gradient(circle at 80% 8%,rgba(201,164,92,.10),transparent 28%),linear-gradient(180deg,#090705,#030302 70%);pointer-events:none}
-body:after{content:"";position:fixed;inset:0;z-index:-9;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:70px 70px;mask-image:linear-gradient(to bottom,black,transparent 85%);pointer-events:none}
-.top-line{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;background:linear-gradient(90deg,transparent,var(--gold),var(--gold2),var(--gold),transparent);box-shadow:0 0 18px rgba(201,164,92,.55)}
-.container{width:min(var(--max),calc(100% - 80px));margin:auto}
 
-/* NAV */
-.header{position:fixed;top:3px;left:0;width:100%;z-index:1000;background:rgba(4,4,3,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(201,164,92,.15)}
-.navbar{height:84px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:13px;flex:none}
-.brand img{width:62px;height:62px;object-fit:contain}
-.brand strong{display:block;font-size:17px;letter-spacing:1.8px}
-.brand small{display:block;color:var(--gold);font-size:8px;letter-spacing:2px;margin-top:2px}
-.nav{display:flex;align-items:center;gap:1px}
-.nav>a,.drop-btn{position:relative;display:flex;align-items:center;min-height:44px;padding:10px 9px;border:0;background:transparent;color:#c8c4bd;font-size:11px;cursor:pointer;white-space:nowrap}
-.nav>a:after,.drop-btn:after{content:"";position:absolute;left:9px;right:9px;bottom:3px;height:1px;background:var(--gold);transform:scaleX(0);transition:.25s}
-.nav>a:hover,.drop-btn:hover,.nav>a.active{color:#fff}
-.nav>a:hover:after,.drop-btn:hover:after,.nav>a.active:after{transform:scaleX(1)}
+.top-line{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:3px;
+  z-index:9999;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--gold2),var(--gold),transparent);
+  box-shadow:0 0 15px rgba(201,164,92,.8);
+}
+.container{
+  width:min(var(--max),calc(100% - 80px));
+  margin:auto;
+}
+
+/* ================= HEADER ================= */
+.header{
+  position:fixed;
+  top:3px;
+  left:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(3,3,3,.80);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(201,164,92,.16);
+}
+.navbar{
+  height:86px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex:0 0 auto;
+}
+.brand img{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 12px rgba(201,164,92,.18));
+}
+.brand-text strong{
+  display:block;
+  font-family:'Kanit',sans-serif;
+  font-size:18px;
+  line-height:1.1;
+  letter-spacing:1.8px;
+  font-weight:600;
+  white-space:nowrap;
+}
+.brand-text small{
+  display:block;
+  margin-top:5px;
+  color:var(--gold);
+  font-size:9px;
+  letter-spacing:2px;
+  white-space:nowrap;
+}
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:2px;
+}
+.nav>a,
+.drop-btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:46px;
+  padding:11px 10px;
+  border:0;
+  background:transparent;
+  color:#cfcfcf;
+  font-size:12px;
+  white-space:nowrap;
+  cursor:pointer;
+  transition:.3s;
+}
+.nav>a::after,
+.drop-btn::after{
+  content:"";
+  position:absolute;
+  left:10px;
+  right:10px;
+  bottom:5px;
+  height:1px;
+  background:var(--gold);
+  transform:scaleX(0);
+  transition:.3s;
+}
+.nav>a:hover,
+.nav>a.active,
+.drop-btn:hover{
+  color:#fff;
+  background:rgba(201,164,92,.07);
+}
+.nav>a:hover::after,
+.nav>a.active::after,
+.drop-btn:hover::after{
+  transform:scaleX(1);
+}
 .dropdown{position:relative}
-.arrow{font-size:8px;color:var(--gold2);margin-left:6px}
-.submenu{position:absolute;top:100%;left:0;width:290px;background:rgba(6,5,4,.98);border:1px solid var(--goldline);box-shadow:0 20px 55px #000;opacity:0;visibility:hidden;transform:translateY(7px);transition:.2s}
-.dropdown:hover .submenu,.dropdown.open .submenu{opacity:1;visibility:visible;transform:none}
-.submenu a{display:block;padding:14px 18px;color:#bbb6ae;font-size:12px;border-bottom:1px solid var(--line)}
-.submenu a:hover{color:var(--gold2);background:rgba(201,164,92,.07)}
-.shop{border:1px solid var(--goldline)!important;color:var(--gold2)!important;margin-left:5px}
-.cart-count{display:inline-grid;place-items:center;min-width:18px;height:18px;margin-left:5px;border-radius:50%;background:var(--gold);color:#000;font-size:10px;font-weight:700}
-.menu-toggle{display:none;width:44px;height:44px;background:transparent;border:1px solid var(--goldline);color:#fff;font-size:20px}
+.arrow{margin-left:5px;color:var(--gold2);font-size:9px}
+.submenu{
+  position:absolute;
+  top:calc(100% + 8px);
+  left:50%;
+  width:280px;
+  transform:translateX(-50%) translateY(8px);
+  background:rgba(7,7,7,.98);
+  border:1px solid var(--gold-line);
+  box-shadow:0 25px 60px rgba(0,0,0,.7);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:.25s;
+  z-index:2000;
+}
+.dropdown:hover .submenu,
+.dropdown.open .submenu{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateX(-50%) translateY(0);
+}
+.submenu a{
+  display:block;
+  padding:13px 16px;
+  color:#aaa;
+  font-size:12px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:.25s;
+}
+.submenu a:hover{
+  color:#fff;
+  background:rgba(201,164,92,.08);
+  padding-left:21px;
+}
+.shop{
+  margin-left:4px;
+  border:1px solid rgba(201,164,92,.40)!important;
+  color:var(--gold2)!important;
+}
+.shop::after{display:none!important}
+.cart-count{
+  display:inline-grid;
+  place-items:center;
+  min-width:19px;
+  height:19px;
+  margin-left:6px;
+  padding:0 5px;
+  border-radius:50%;
+  background:var(--gold);
+  color:#000;
+  font-size:10px;
+  font-weight:700;
+}
+.menu-toggle{
+  display:none;
+  width:44px;
+  height:44px;
+  border:1px solid var(--gold-line);
+  background:rgba(255,255,255,.03);
+  color:#fff;
+  cursor:pointer;
+}
 
-/* HERO */
-.hero{padding:155px 0 48px;position:relative}
-.hero:after{content:"SERVICES";position:absolute;right:-20px;bottom:-30px;font-family:Kanit;font-size:145px;font-weight:700;letter-spacing:5px;color:rgba(255,255,255,.018);pointer-events:none}
-.kicker{display:flex;align-items:center;gap:11px;color:var(--gold2);font-size:11px;letter-spacing:3px;margin-bottom:15px}
-.kicker:before{content:"";width:44px;height:1px;background:var(--gold)}
-.hero h1{font-family:Kanit;font-size:clamp(44px,5.5vw,72px);font-weight:500;line-height:1.08;margin-bottom:15px}
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+  padding:130px 0 34px;
+  border-bottom:1px solid rgba(201,164,92,.18);
+  overflow:hidden;
+}
+.hero::before{
+  content:"SERVICES";
+  position:absolute;
+  right:-20px;
+  bottom:-36px;
+  font-family:'Kanit',sans-serif;
+  font-size:150px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:5px;
+  color:rgba(255,255,255,.028);
+  pointer-events:none;
+}
+.hero-content{position:relative;z-index:2}
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  color:var(--gold2);
+  font-size:11px;
+  letter-spacing:3px;
+  margin-bottom:13px;
+}
+.eyebrow::before{
+  content:"";
+  width:44px;
+  height:1px;
+  background:var(--gold);
+}
+.hero h1{
+  font-family:'Kanit',sans-serif;
+  font-size:clamp(48px,6vw,76px);
+  line-height:1.08;
+  font-weight:500;
+  margin-bottom:12px;
+}
 .hero h1 span{color:var(--gold2)}
-.hero p{max-width:760px;color:#999;font-size:14px;line-height:1.9}
-.hero-meta{position:absolute;right:0;bottom:55px;color:#888;font-size:11px;letter-spacing:2px}
+.hero-desc{
+  max-width:800px;
+  color:#a29f99;
+  font-size:14px;
+  line-height:1.8;
+}
+.hero-meta{
+  position:absolute;
+  right:0;
+  bottom:31px;
+  color:#999;
+  font-size:11px;
+  letter-spacing:2px;
+}
 
-/* CARDS */
-.services{padding:20px 0 105px}
-.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.service-card{position:relative;min-width:0;height:390px;overflow:hidden;border:1px solid var(--goldline);background:#0b0907;border-radius:14px;cursor:pointer;isolation:isolate}
-.service-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .65s ease,filter .65s ease}
-.service-card:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.02) 20%,rgba(0,0,0,.16) 43%,rgba(0,0,0,.94) 100%)}
-.service-card:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(201,164,92,.08),transparent 42%);opacity:0;transition:.35s}
-.service-card:hover img{transform:scale(1.055);filter:brightness(1.05)}
-.service-card:hover:after{opacity:1}
-.card-number{position:absolute;z-index:2;top:17px;right:18px;color:var(--gold2);font-size:10px;letter-spacing:2px}
-.card-content{position:absolute;z-index:2;left:22px;right:22px;bottom:20px}
-.card-label{font-size:9px;letter-spacing:2px;color:var(--gold2);margin-bottom:6px}
-.card-content h2{font-family:Kanit;font-size:25px;line-height:1.18;font-weight:500;margin-bottom:7px}
-.card-content p{color:#c0bbb3;font-size:11px;line-height:1.65;max-width:92%;margin-bottom:14px}
-.card-foot{display:flex;align-items:center;justify-content:space-between}
-.detail-link{font-size:11px;color:#fff;border-bottom:1px solid var(--gold);padding-bottom:3px}
-.round-arrow{width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold2);font-size:20px;transition:.3s}
-.service-card:hover .round-arrow{background:var(--gold);color:#050403;transform:translateX(3px)}
-.loading{grid-column:1/-1;min-height:280px;display:grid;place-items:center;border:1px solid var(--line);color:#888;font-size:12px}
-.error{grid-column:1/-1;padding:35px;text-align:center;border:1px solid var(--line);color:#888;font-size:12px;line-height:1.9}
+/* ================= SERVICE CARDS ================= */
+.services{
+  padding:28px 0 100px;
+}
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.service-card{
+  position:relative;
+  height:340px;
+  overflow:hidden;
+  border:1px solid var(--gold-line);
+  border-radius:13px;
+  background:#0a0806;
+  isolation:isolate;
+  transition:transform .35s,border-color .35s,box-shadow .35s;
+}
+.service-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(239,213,142,.55);
+  box-shadow:0 25px 60px rgba(0,0,0,.55);
+}
+.service-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  transition:transform .65s ease,filter .65s ease;
+}
+.service-card:hover .service-image{
+  transform:scale(1.055);
+  filter:brightness(1.08);
+}
+.service-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.03) 0%,
+      rgba(0,0,0,.08) 35%,
+      rgba(0,0,0,.35) 54%,
+      rgba(0,0,0,.94) 100%
+    );
+}
+.service-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:linear-gradient(135deg,rgba(201,164,92,.10),transparent 45%);
+  opacity:0;
+  transition:.3s;
+}
+.service-card:hover::after{opacity:1}
+.service-number{
+  position:absolute;
+  top:15px;
+  right:17px;
+  z-index:2;
+  color:var(--gold2);
+  font-size:10px;
+  letter-spacing:2px;
+}
+.service-content{
+  position:absolute;
+  left:20px;
+  right:20px;
+  bottom:18px;
+  z-index:2;
+}
+.service-label{
+  color:var(--gold2);
+  font-size:9px;
+  letter-spacing:2px;
+  margin-bottom:5px;
+}
+.service-content h2{
+  font-family:'Kanit',sans-serif;
+  font-size:24px;
+  line-height:1.2;
+  font-weight:500;
+  margin-bottom:6px;
+}
+.service-content p{
+  color:#c6c2bc;
+  font-size:11px;
+  line-height:1.6;
+  max-width:92%;
+  margin-bottom:12px;
+}
+.service-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.detail-link{
+  color:#fff;
+  font-size:11px;
+  padding-bottom:3px;
+  border-bottom:1px solid var(--gold);
+}
+.arrow-circle{
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--gold);
+  border-radius:50%;
+  color:var(--gold2);
+  font-size:19px;
+  transition:.3s;
+}
+.service-card:hover .arrow-circle{
+  background:var(--gold);
+  color:#050403;
+  transform:translateX(3px);
+}
+.loading,
+.error{
+  grid-column:1/-1;
+  min-height:220px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--line);
+  color:#888;
+  font-size:12px;
+  text-align:center;
+  padding:30px;
+}
 
-/* FOOTER */
-.footer{border-top:1px solid var(--line);padding:65px 0 24px;background:#030302}
-.footer-main{display:grid;grid-template-columns:1fr 300px;gap:40px}
-.footer-brand img{width:66px;height:66px;object-fit:contain;margin-bottom:12px}
-.footer-brand strong{display:block;font-size:17px;letter-spacing:1.7px}
-.footer-brand small{display:block;color:var(--gold);font-size:8px;letter-spacing:2px}
-.footer-brand p{color:#888;font-size:12px;line-height:1.9;margin-top:13px}
-.footer-menu h3{font-family:Kanit;color:var(--gold2);font-size:12px;letter-spacing:2px;margin-bottom:15px}
-.footer-menu a{display:block;color:#999;font-size:12px;margin-bottom:10px}
+/* ================= FOOTER ================= */
+.footer{
+  border-top:1px solid var(--line);
+  padding:65px 0 24px;
+  background:rgba(3,3,3,.82);
+}
+.footer-main{
+  display:grid;
+  grid-template-columns:1fr 300px;
+  gap:40px;
+}
+.footer-brand img{
+  width:66px;
+  height:66px;
+  object-fit:contain;
+  margin-bottom:12px;
+}
+.footer-brand strong{
+  display:block;
+  font-size:17px;
+  letter-spacing:1.7px;
+}
+.footer-brand small{
+  display:block;
+  color:var(--gold);
+  font-size:8px;
+  letter-spacing:2px;
+}
+.footer-brand p{
+  color:#888;
+  font-size:12px;
+  line-height:1.9;
+  margin-top:13px;
+}
+.footer-menu h3{
+  font-family:'Kanit',sans-serif;
+  color:var(--gold2);
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:15px;
+}
+.footer-menu a{
+  display:block;
+  color:#999;
+  font-size:12px;
+  margin-bottom:10px;
+}
 .footer-menu a:hover{color:var(--gold2)}
-.footer-bottom{border-top:1px solid var(--line);margin-top:40px;padding-top:17px;display:flex;align-items:center;justify-content:space-between;gap:18px;color:#68645e;font-size:10px}
+.footer-bottom{
+  border-top:1px solid var(--line);
+  margin-top:40px;
+  padding-top:17px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  color:#68645e;
+  font-size:10px;
+}
 .social{display:flex;gap:7px}
-.social a{display:grid;place-items:center;width:31px;height:31px;border:1px solid var(--line);color:#aaa;font-size:10px}
+.social a{
+  display:grid;
+  place-items:center;
+  width:31px;
+  height:31px;
+  border:1px solid var(--line);
+  color:#aaa;
+  font-size:10px;
+}
 
-/* MOBILE */
-@media(max-width:1080px){
+/* ================= TABLET ================= */
+@media(max-width:1100px){
   .container{width:min(var(--max),calc(100% - 40px))}
   .menu-toggle{display:block}
-  .nav{position:fixed;top:87px;left:20px;right:20px;display:none;flex-direction:column;align-items:stretch;background:rgba(5,5,4,.98);border:1px solid var(--goldline);padding:10px;max-height:calc(100vh - 105px);overflow:auto}
+  .nav{
+    position:fixed;
+    top:89px;
+    left:20px;
+    right:20px;
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+    background:rgba(5,5,5,.98);
+    border:1px solid var(--gold-line);
+    padding:10px;
+    max-height:calc(100vh - 108px);
+    overflow:auto;
+  }
   .nav.show{display:flex}
-  .nav>a,.drop-btn{width:100%;min-height:47px;padding:12px 14px}
-  .submenu{position:static;width:100%;display:none;opacity:1;visibility:visible;transform:none;box-shadow:none}
+  .nav>a,.drop-btn{
+    width:100%;
+    min-height:47px;
+    padding:12px 14px;
+    justify-content:flex-start;
+  }
+  .submenu{
+    position:static;
+    width:100%;
+    display:none;
+    transform:none!important;
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    box-shadow:none;
+  }
   .dropdown.open .submenu{display:block}
   .dropdown:hover .submenu{opacity:1;visibility:visible}
   .hero-meta{display:none}
+  .service-grid{grid-template-columns:repeat(2,1fr)}
+  .service-card{height:350px}
   .footer-main{grid-template-columns:1fr}
   .footer-menu{display:grid;grid-template-columns:repeat(2,1fr)}
   .footer-menu h3{grid-column:1/-1}
 }
-@media(max-width:760px){
+
+/* ================= MOBILE ================= */
+@media(max-width:700px){
   .container{width:calc(100% - 28px)}
   .brand img{width:50px;height:50px}
-  .brand strong{font-size:13px;letter-spacing:1px}
-  .brand small{font-size:7px;letter-spacing:1.2px}
-  .hero{padding:125px 0 34px}
-  .hero h1{font-size:42px}
-  .hero p{font-size:12px;line-height:1.8}
-  .hero:after{font-size:75px;bottom:-10px}
-  .services{padding-top:8px}
-  .service-grid{grid-template-columns:1fr;gap:14px}
-  .service-card{height:310px;border-radius:12px}
-  .card-content{left:17px;right:17px;bottom:16px}
-  .card-content h2{font-size:22px}
-  .card-content p{font-size:10.5px;margin-bottom:11px}
-  .round-arrow{width:38px;height:38px}
-  .footer-bottom{align-items:flex-start;flex-direction:column}
-}
-@media(min-width:761px) and (max-width:1100px){
-  .service-grid{grid-template-columns:repeat(2,1fr)}
-  .service-card{height:360px}
+  .brand-text strong{font-size:13px;letter-spacing:1px}
+  .brand-text small{font-size:7px;letter-spacing:1.2px}
+  .hero{
+    padding:118px 0 28px;
+  }
+  .hero::before{
+    font-size:75px;
+    bottom:-8px;
+  }
+  .eyebrow{font-size:9px;letter-spacing:2.4px;margin-bottom:10px}
+  .eyebrow::before{width:32px}
+  .hero h1{
+    font-size:42px;
+    margin-bottom:8px;
+  }
+  .hero-desc{
+    font-size:11.5px;
+    line-height:1.75;
+  }
+  .services{
+    padding:18px 0 70px;
+  }
+  .service-grid{
+    grid-template-columns:1fr;
+    gap:13px;
+  }
+  .service-card{
+    height:305px;
+    border-radius:11px;
+  }
+  .service-content{
+    left:16px;
+    right:16px;
+    bottom:15px;
+  }
+  .service-content h2{font-size:22px}
+  .service-content p{
+    font-size:10.5px;
+    line-height:1.55;
+    margin-bottom:10px;
+  }
+  .arrow-circle{
+    width:38px;
+    height:38px;
+  }
+  .footer-bottom{
+    align-items:flex-start;
+    flex-direction:column;
+  }
 }
 </style>
 </head>
+
 <body>
 <div class="top-line"></div>
 
 <header class="header">
   <div class="container">
     <nav class="navbar">
+
       <a class="brand" href="index.html">
         <img src="assets/logo.png" alt="CHATPHETCH GROUP">
-        <div><strong>CHATPHETCH GROUP</strong><small>FLOORING &amp; CONSTRUCTION</small></div>
+        <div class="brand-text">
+          <strong>CHATPHETCH GROUP</strong>
+          <small>FLOORING &amp; CONSTRUCTION</small>
+        </div>
       </a>
+
       <div class="nav" id="nav">
         <a href="index.html">หน้าแรก</a>
         <a href="about.html">เกี่ยวกับเรา</a>
         <a href="products.html">สินค้า</a>
+
         <div class="dropdown">
-          <button class="drop-btn">บริการ <span class="arrow">▼</span></button>
+          <button class="drop-btn">
+            บริการ <span class="arrow">▼</span>
+          </button>
           <div class="submenu">
             <a href="services.html">ดูบริการทั้งหมด</a>
             <a href="service-detail.html?service=industrial">พื้นอุตสาหกรรม / Epoxy / PU</a>
@@ -150,110 +629,364 @@ body:after{content:"";position:fixed;inset:0;z-index:-9;background-image:linear-
             <a href="service-detail.html?service=traffic">เส้นจราจร / สัญลักษณ์</a>
           </div>
         </div>
-        <a class="active" href="projects.html">ผลงาน</a>
+
+        <a href="projects.html">ผลงาน</a>
         <a href="technical-center.html">ศูนย์เทคนิค</a>
         <a href="knowledge.html">คลังความรู้</a>
         <a href="contact.html">ติดต่อเรา</a>
-        <a href="cart.html" class="shop">🛒 ตะกร้า <span class="cart-count" id="cartCount">0</span></a>
+        <a href="cart.html" class="shop">
+          🛒 ตะกร้า <span class="cart-count" id="cartCount">0</span>
+        </a>
       </div>
-      <button class="menu-toggle" id="menuToggle">☰</button>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="เปิดเมนู">☰</button>
     </nav>
   </div>
 </header>
 
 <main>
-<section class="hero">
-  <div class="container">
-    <div class="kicker">OUR SERVICES</div>
-    <h1>บริการ<span>ของเรา</span></h1>
-    <p>บริการงานพื้น งานเคลือบผิว งานกันซึม และงานก่อสร้างครบวงจร โดยใช้ภาพผลงานจริงจากโครงการของ CHATPHETCH GROUP</p>
-    <div class="hero-meta">06 SERVICES</div>
-  </div>
-</section>
 
-<section class="services">
-  <div class="container">
-    <div class="service-grid" id="serviceGrid">
-      <div class="loading">กำลังโหลดภาพผลงานจริง...</div>
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="eyebrow">OUR SERVICES</div>
+
+      <h1>บริการ<span>ของเรา</span></h1>
+
+      <p class="hero-desc">
+        บริการงานพื้น งานเคลือบผิว งานกันซึม และงานก่อสร้างครบวงจร
+        โดยใช้ภาพผลงานจริงจากโครงการของ CHATPHETCH GROUP
+      </p>
+
+      <div class="hero-meta">06 SERVICES</div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="services">
+    <div class="container">
+      <div class="service-grid" id="serviceGrid">
+        <div class="loading">กำลังโหลดภาพผลงานจริง...</div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="footer">
   <div class="container">
+
     <div class="footer-main">
+
       <div class="footer-brand">
         <img src="assets/logo.png" alt="CHATPHETCH GROUP">
-        <strong>CHATPHETCH GROUP</strong><small>FLOORING &amp; CONSTRUCTION</small>
-        <p>🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹<br>♠️ สร้างสรรค์ผลงาน ♠️ มาตรฐานเข้าถึง ♠️ ยืน 1 คุณภาพ</p>
+        <strong>CHATPHETCH GROUP</strong>
+        <small>FLOORING &amp; CONSTRUCTION</small>
+        <p>
+          🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹<br>
+          ♠️ สร้างสรรค์ผลงาน ♠️ มาตรฐานเข้าถึง ♠️ ยืน 1 คุณภาพ
+        </p>
       </div>
+
       <div class="footer-menu">
         <h3>MENU</h3>
-        <a href="index.html">หน้าแรก</a><a href="about.html">เกี่ยวกับเรา</a><a href="products.html">สินค้า</a><a href="services.html">บริการ</a><a href="projects.html">ผลงาน</a><a href="contact.html">ติดต่อเรา</a>
+        <a href="index.html">หน้าแรก</a>
+        <a href="about.html">เกี่ยวกับเรา</a>
+        <a href="products.html">สินค้า</a>
+        <a href="services.html">บริการ</a>
+        <a href="projects.html">ผลงาน</a>
+        <a href="contact.html">ติดต่อเรา</a>
       </div>
+
     </div>
+
     <div class="footer-bottom">
       <div>© 2026 CHATPHETCH GROUP CO., LTD.</div>
-      <div>10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310</div>
+
+      <div>
+        10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310
+      </div>
+
       <div class="social">
         <a href="https://www.facebook.com/ChatphetchGroup" target="_blank" rel="noopener">f</a>
-        <a href="#" aria-label="YouTube">▶</a><a href="#" aria-label="LINE">LINE</a>
+        <a href="#" aria-label="YouTube">▶</a>
+        <a href="#" aria-label="LINE">LINE</a>
       </div>
     </div>
+
   </div>
 </footer>
 
 <script>
-const API="https://api.github.com/repos/chatphetch/chatpetch-group/contents/assets/Projects";
-const services=[
- {key:"industrial",num:"01",title:"พื้นอุตสาหกรรม / อีพ็อกซี่ / พียู",label:"INDUSTRIAL FLOORING",desc:"ระบบพื้นสำหรับโรงงานและพื้นที่ใช้งานเฉพาะ",folders:["Epoxy anti static","Epoxy self","PU Coating","PU Self"]},
- {key:"waterproof",num:"02",title:"งานกันรั่วซึม ดาดฟ้า หลังคา พื้นอาคาร",label:"WATERPROOFING",desc:"ระบบกันรั่วซึมและป้องกันน้ำสำหรับอาคาร",folders:["งานกันซึม Fiberglass"]},
- {key:"concrete",num:"03",title:"งานซ่อมปรับปรุง งานคอนกรีต",label:"CONCRETE REPAIR",desc:"ซ่อม ปรับปรุง และฟื้นฟูพื้นคอนกรีต",folders:["งาน Polishing"]},
- {key:"sports",num:"04",title:"พื้นสนามกีฬา",label:"SPORT FLOORING",desc:"ระบบพื้นสำหรับสนามกีฬาและพื้นที่กิจกรรม",folders:["PU Self"]},
- {key:"decorative",num:"05",title:"พื้นตกแต่งเพื่อความสวยงาม",label:"DECORATIVE FLOOR",desc:"พื้นพิมพ์ลายและงานตกแต่งเพื่อภาพลักษณ์พื้นที่",folders:["งาน Stamped Concrete"]},
- {key:"traffic",num:"06",title:"ระบบงานสัญลักษณ์และเส้นจราจร",label:"TRAFFIC MARKING",desc:"งานตีเส้นและสัญลักษณ์สำหรับพื้นที่ใช้งาน",folders:["PU Coating"]}
+const API_BASE =
+  "https://api.github.com/repos/chatphetch/chatpetch-group/contents/assets/Projects";
+
+const services = [
+  {
+    key:"industrial",
+    number:"01",
+    label:"INDUSTRIAL FLOORING",
+    title:"พื้นอุตสาหกรรม / อีพ็อกซี่ / พียู",
+    desc:"ระบบพื้นสำหรับโรงงานและพื้นที่ใช้งานเฉพาะ",
+    folders:["Epoxy self","Epoxy anti static","PU Coating","PU Self"]
+  },
+  {
+    key:"waterproof",
+    number:"02",
+    label:"WATERPROOFING",
+    title:"งานกันรั่วซึม ดาดฟ้า หลังคา พื้นอาคาร",
+    desc:"ระบบกันรั่วซึมและป้องกันน้ำสำหรับอาคาร",
+    folders:["งานกันซึม Fiberglass"]
+  },
+  {
+    key:"concrete",
+    number:"03",
+    label:"CONCRETE REPAIR",
+    title:"งานซ่อมปรับปรุง งานคอนกรีต",
+    desc:"ซ่อม ปรับปรุง และฟื้นฟูพื้นคอนกรีต",
+    folders:["งาน Polishing"]
+  },
+  {
+    key:"sports",
+    number:"04",
+    label:"SPORT FLOORING",
+    title:"พื้นสนามกีฬา",
+    desc:"ระบบพื้นสำหรับสนามกีฬาและพื้นที่กิจกรรม",
+    folders:["PU Self"]
+  },
+  {
+    key:"decorative",
+    number:"05",
+    label:"DECORATIVE FLOOR",
+    title:"พื้นตกแต่งเพื่อความสวยงาม",
+    desc:"พื้นพิมพ์ลายและงานตกแต่งเพื่อภาพลักษณ์พื้นที่",
+    folders:["งาน Stamped Concrete"]
+  },
+  {
+    key:"traffic",
+    number:"06",
+    label:"TRAFFIC MARKING",
+    title:"ระบบงานสัญลักษณ์และเส้นจราจร",
+    desc:"งานตีเส้นและสัญลักษณ์สำหรับพื้นที่ใช้งาน",
+    folders:["PU Coating"]
+  }
 ];
 
-const grid=document.getElementById("serviceGrid");
-const nav=document.getElementById("nav");
-document.getElementById("menuToggle").onclick=()=>nav.classList.toggle("show");
-document.querySelectorAll(".drop-btn").forEach(b=>b.onclick=e=>{e.stopPropagation();b.parentElement.classList.toggle("open")});
-document.onclick=e=>{if(!e.target.closest(".dropdown"))document.querySelectorAll(".dropdown").forEach(x=>x.classList.remove("open"))};
-try{
- const cart=JSON.parse(localStorage.getItem("chatpetch_cart")||"[]");
- document.getElementById("cartCount").textContent=cart.reduce((n,x)=>n+Number(x.quantity||x.qty||1),0);
-}catch(e){}
+const grid = document.getElementById("serviceGrid");
+const nav = document.getElementById("nav");
+const menuToggle = document.getElementById("menuToggle");
 
-function imgFile(x){return /\.(jpg|jpeg|png|webp|gif)$/i.test(x||"")}
-async function getImages(folder){
- const r=await fetch(API+"/"+encodeURIComponent(folder),{headers:{Accept:"application/vnd.github+json"}});
- if(!r.ok)throw Error(r.status);
- const data=await r.json();
- return data.filter(x=>x.type==="file"&&imgFile(x.name)).map(x=>x.download_url);
+menuToggle.addEventListener("click",()=>{
+  nav.classList.toggle("show");
+});
+
+document.querySelectorAll(".drop-btn").forEach(btn=>{
+  btn.addEventListener("click",event=>{
+    event.stopPropagation();
+
+    const parent = btn.closest(".dropdown");
+
+    document.querySelectorAll(".dropdown").forEach(drop=>{
+      if(drop !== parent){
+        drop.classList.remove("open");
+      }
+    });
+
+    parent.classList.toggle("open");
+  });
+});
+
+document.addEventListener("click",event=>{
+  if(!event.target.closest(".dropdown")){
+    document.querySelectorAll(".dropdown")
+      .forEach(drop=>drop.classList.remove("open"));
+  }
+});
+
+document.querySelectorAll(".nav a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    nav.classList.remove("show");
+  });
+});
+
+/* CART COUNT */
+try{
+  const cart = JSON.parse(
+    localStorage.getItem("chatpetch_cart") || "[]"
+  );
+
+  document.getElementById("cartCount").textContent =
+    cart.reduce(
+      (total,item)=>
+        total + Number(item.quantity || item.qty || 1),
+      0
+    );
+}catch(error){}
+
+/* GITHUB PROJECT IMAGES */
+function isImage(filename){
+  return /\.(jpg|jpeg|png|webp|gif)$/i.test(filename || "");
 }
-async function firstImage(folders){
- for(const f of folders){
-   try{const a=await getImages(f);if(a.length)return a[Math.floor(Math.random()*Math.min(a.length,6))]}catch(e){}
- }
- return "";
+
+function escapeHTML(value){
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
-function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
-async function render(){
- const cards=await Promise.all(services.map(async s=>({s,img:await firstImage(s.folders)})));
- grid.innerHTML=cards.map(({s,img})=>`
-  <a class="service-card" href="service-detail.html?service=${s.key}">
-   ${img?`<img src="${esc(img)}" alt="${esc(s.title)}" loading="lazy">`:`<div style="position:absolute;inset:0;background:linear-gradient(145deg,#2a2117,#080706)"></div>`}
-   <span class="card-number">${s.num}</span>
-   <div class="card-content">
-    <div class="card-label">${s.label}</div>
-    <h2>${s.title}</h2>
-    <p>${s.desc}</p>
-    <div class="card-foot"><span class="detail-link">ดูรายละเอียด</span><span class="round-arrow">→</span></div>
-   </div>
-  </a>`).join("");
+
+async function getFolderImages(folder){
+
+  const response = await fetch(
+    API_BASE + "/" + encodeURIComponent(folder),
+    {
+      headers:{
+        "Accept":"application/vnd.github+json"
+      }
+    }
+  );
+
+  if(!response.ok){
+    throw new Error("GitHub API " + response.status);
+  }
+
+  const items = await response.json();
+
+  return items
+    .filter(item =>
+      item.type === "file" &&
+      isImage(item.name)
+    )
+    .sort((a,b)=>
+      String(a.name).localeCompare(String(b.name))
+    )
+    .map(item=>item.download_url);
 }
-render().catch(()=>grid.innerHTML='<div class="error">ไม่สามารถโหลดภาพผลงานจาก GitHub ได้ในขณะนี้ กรุณารีเฟรชหน้าอีกครั้ง</div>');
+
+async function findServiceImage(folders){
+
+  for(const folder of folders){
+
+    try{
+
+      const images = await getFolderImages(folder);
+
+      if(images.length){
+        return images[0];
+      }
+
+    }catch(error){
+      console.warn(
+        "Cannot load project folder:",
+        folder,
+        error
+      );
+    }
+  }
+
+  return "";
+}
+
+async function renderServices(){
+
+  const results = await Promise.all(
+    services.map(async service=>({
+
+      service,
+
+      image:
+        await findServiceImage(
+          service.folders
+        )
+
+    }))
+  );
+
+  grid.innerHTML = results.map(item=>{
+
+    const s = item.service;
+    const image = item.image;
+
+    return `
+      <a
+        class="service-card"
+        href="service-detail.html?service=${encodeURIComponent(s.key)}"
+      >
+
+        ${
+          image
+          ?
+          `
+          <img
+            class="service-image"
+            src="${escapeHTML(image)}"
+            alt="${escapeHTML(s.title)}"
+            loading="lazy"
+          >
+          `
+          :
+          `
+          <div
+            class="service-image"
+            style="
+              background:
+                linear-gradient(145deg,#302416,#080706);
+            "
+          ></div>
+          `
+        }
+
+        <div class="service-number">
+          ${s.number}
+        </div>
+
+        <div class="service-content">
+
+          <div class="service-label">
+            ${escapeHTML(s.label)}
+          </div>
+
+          <h2>
+            ${escapeHTML(s.title)}
+          </h2>
+
+          <p>
+            ${escapeHTML(s.desc)}
+          </p>
+
+          <div class="service-bottom">
+
+            <span class="detail-link">
+              ดูรายละเอียด
+            </span>
+
+            <span class="arrow-circle">
+              →
+            </span>
+
+          </div>
+
+        </div>
+
+      </a>
+    `;
+
+  }).join("");
+}
+
+renderServices().catch(error=>{
+
+  console.error(error);
+
+  grid.innerHTML = `
+    <div class="error">
+      ไม่สามารถโหลดภาพผลงานจาก GitHub ได้ในขณะนี้<br>
+      กรุณารีเฟรชหน้าอีกครั้ง
+    </div>
+  `;
+
+});
 </script>
+
 </body>
 </html>
