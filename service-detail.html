@@ -58,7 +58,34 @@ installation:{title:"งานติดตั้งระบบพื้นแ�
 function getServiceKey(){const p=new URLSearchParams(location.search);const k=(p.get("service")||"industrial").toLowerCase().trim();return k==="repair"?"concrete":SERVICES[k]?k:"industrial"}
 function renderService(){const s=SERVICES[getServiceKey()];document.title=s.title+" | CHATPHETCH GROUP";document.getElementById("serviceTitle").textContent=s.title;document.getElementById("serviceShort").textContent=s.short;document.getElementById("systemTitle").textContent=s.title;document.getElementById("serviceDescription").textContent=s.description;document.getElementById("serviceTags").innerHTML=s.tags.map(x=>`<span class="tag">${x}</span>`).join("");document.getElementById("problemList").innerHTML=s.problems.map(x=>`<li>${x}</li>`).join("");document.getElementById("applicationList").innerHTML=s.applications.map(x=>`<li>${x}</li>`).join("");document.getElementById("checkList").innerHTML=s.checks.map(x=>`<li>${x}</li>`).join("");document.getElementById("galleryCount").textContent=String(s.images.length).padStart(2,"0")+" IMAGES";document.getElementById("gallery").innerHTML=s.images.map((x,i)=>`<figure class="gallery-item"><img src="${x[0]}" alt="${x[1]}" loading="${i===0?"eager":"lazy"}" referrerpolicy="no-referrer"><figcaption class="gallery-caption">${x[1]}</figcaption></figure>`).join("")}
 renderService();
-const FACEBOOK_URL="https://www.facebook.com/ChatphetchGroup";const socialObserver=new MutationObserver(()=>{document.querySelectorAll(".customer-social").forEach((el,i)=>{if(i===0){el.href=FACEBOOK_URL;el.target="_blank";el.rel="noopener noreferrer";el.setAttribute("aria-label","Facebook");el.textContent="f"}})});socialObserver.observe(document.body,{childList:true,subtree:true});setTimeout(()=>socialObserver.takeRecords(),1500);
+const FACEBOOK_URL="https://www.facebook.com/ChatphetchGroup";
+
+function setFacebookLink(){
+  const fb=document.querySelector(".customer-social");
+  if(!fb) return false;
+
+  fb.href=FACEBOOK_URL;
+  fb.target="_blank";
+  fb.rel="noopener noreferrer";
+  fb.setAttribute("aria-label","Facebook");
+  if(fb.textContent.trim()!=="f") fb.textContent="f";
+  return true;
+}
+
+if(!setFacebookLink()){
+  const socialObserver=new MutationObserver(()=>{
+    if(setFacebookLink()){
+      socialObserver.disconnect();
+    }
+  });
+
+  socialObserver.observe(document.body,{childList:true,subtree:true});
+
+  setTimeout(()=>{
+    socialObserver.disconnect();
+    setFacebookLink();
+  },3000);
+}
 </script>
 </body>
 </html>
