@@ -449,6 +449,279 @@ button,input{font:inherit}
   .product-actions{flex-direction:column}
   .product-actions > *{width:100%}
 }
+
+/* ==========================================================
+   PRODUCT SCALE REFINEMENT
+   ========================================================== */
+
+.product-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
+  align-items:stretch;
+}
+
+.product-card{
+  border-radius:18px;
+}
+
+.product-image-link{
+  aspect-ratio:1 / 1;
+  background:linear-gradient(145deg,#352015,#160c07);
+}
+
+.product-image{
+  aspect-ratio:1 / 1;
+  object-fit:contain;
+  padding:16px;
+  background:radial-gradient(
+    circle at 50% 40%,
+    rgba(201,168,90,.07),
+    transparent 58%
+  );
+}
+
+.product-content{
+  padding:18px 18px 17px;
+}
+
+.product-category{
+  font-size:10px;
+  margin-bottom:7px;
+}
+
+.product-name{
+  font-size:21px;
+  line-height:1.18;
+}
+
+.product-short{
+  margin-top:7px;
+  font-size:12.5px;
+  line-height:1.55;
+}
+
+.product-price{
+  margin-top:13px;
+  font-size:20px;
+}
+
+.shipping-highlight{
+  font-size:11px;
+}
+
+.product-actions{
+  margin-top:15px;
+  gap:8px;
+}
+
+.detail-btn,
+.add-btn{
+  min-height:40px;
+  padding:8px 12px;
+  font-size:12px;
+}
+
+@media (max-width:1250px){
+  .product-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+
+@media (max-width:1050px){
+  .product-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:700px){
+  .product-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+  }
+
+  .product-image{
+    padding:12px;
+  }
+
+  .product-content{
+    padding:16px 14px 14px;
+  }
+
+  .product-name{
+    font-size:18px;
+  }
+
+  .product-short{
+    font-size:11.5px;
+  }
+
+  .product-price{
+    font-size:18px;
+  }
+
+  .shipping-highlight{
+    font-size:10px;
+  }
+
+  .product-actions{
+    flex-direction:column;
+  }
+
+  .detail-btn,
+  .add-btn{
+    width:100%;
+    min-height:39px;
+    font-size:11.5px;
+  }
+}
+
+@media (max-width:480px){
+  .product-grid{
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+
+  .product-image-link{
+    aspect-ratio:1.12 / 1;
+  }
+
+  .product-image{
+    padding:20px;
+  }
+
+  .product-content{
+    padding:18px 17px 16px;
+  }
+
+  .product-name{
+    font-size:21px;
+  }
+
+  .product-short{
+    font-size:12.5px;
+  }
+
+  .product-actions{
+    flex-direction:row;
+  }
+
+  .detail-btn,
+  .add-btn{
+    flex:1;
+  }
+}
+
+
+/* ==========================================================
+   FINAL MOBILE PRODUCT SCALE
+   Keep products compact: 2 columns on all phones.
+   ========================================================== */
+
+@media (max-width:700px){
+  .product-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+
+  .product-card{
+    border-radius:15px;
+  }
+
+  .product-image-link{
+    aspect-ratio:1 / 1;
+  }
+
+  .product-image{
+    padding:10px;
+  }
+
+  .product-content{
+    padding:13px 11px;
+  }
+
+  .product-category{
+    font-size:9px;
+    margin-bottom:5px;
+  }
+
+  .product-name{
+    font-size:16px;
+    line-height:1.18;
+  }
+
+  .product-short{
+    margin-top:6px;
+    font-size:11px;
+    line-height:1.5;
+  }
+
+  .product-price{
+    margin-top:10px;
+    font-size:17px;
+  }
+
+  .shipping-highlight{
+    font-size:9.5px;
+  }
+
+  .product-actions{
+    margin-top:11px;
+    gap:6px;
+    flex-direction:column;
+  }
+
+  .detail-btn,
+  .add-btn{
+    width:100%;
+    min-height:37px;
+    padding:7px 8px;
+    font-size:10.5px;
+  }
+
+  .image-click-label{
+    right:9px;
+    bottom:9px;
+    padding:5px 7px;
+    font-size:9px;
+  }
+}
+
+@media (max-width:380px){
+  .product-grid{
+    gap:10px;
+  }
+
+  .product-image{
+    padding:8px;
+  }
+
+  .product-content{
+    padding:11px 9px;
+  }
+
+  .product-name{
+    font-size:15px;
+  }
+
+  .product-short{
+    font-size:10.5px;
+  }
+
+  .product-price{
+    font-size:16px;
+  }
+
+  .shipping-highlight{
+    font-size:9px;
+  }
+
+  .detail-btn,
+  .add-btn{
+    min-height:35px;
+    font-size:10px;
+  }
+}
+
 </style>
 </head>
 
