@@ -239,11 +239,6 @@ body:before{
   cursor:pointer;
 }
 
-/* SERVICE DETAIL — HIDE PROJECTS MENU ONLY ON THIS PAGE */
-body.service-detail-page .nav-projects-dropdown{
-  display:none !important;
-}
-
 /* HERO */
 main{position:relative}
 
@@ -882,20 +877,8 @@ h1,h2,h3{font-family:'Kanit',sans-serif}
           </div>
         </div>
 
-        <!-- ซ่อนเมนูผลงานเฉพาะหน้า Service Detail -->
-        <div class="nav-dropdown nav-projects-dropdown">
-          <button type="button" class="nav-drop-trigger">
-            ผลงาน <span class="arrow">▼</span>
-          </button>
-
-          <div class="nav-submenu">
-            <a href="projects.html">ดูผลงานทั้งหมด</a>
-            <a href="projects.html?category=flooring">ผลงานระบบพื้น</a>
-            <a href="projects.html?category=stamped">ผลงานพื้นพิมพ์ลาย</a>
-            <a href="projects.html?category=coating">ผลงานสี / น้ำยา</a>
-            <a href="projects.html?category=construction">ผลงานงานก่อสร้าง</a>
-          </div>
-        </div>
+        <!-- ผลงาน: แสดงเป็นเมนูหลักเหมือนหน้าอื่น แต่ไม่มี dropdown -->
+        <a href="projects.html">ผลงาน</a>
 
         <a href="reference.html">โครงการอ้างอิง</a>
         <a href="technical-center.html">ศูนย์เทคนิค</a>
@@ -1357,38 +1340,6 @@ document.querySelectorAll(".customer-nav a").forEach(a => {
   });
 
 });
-
-
-/* ==========================================================
-   SERVICE DETAIL — FORCE HIDE PROJECTS MENU
-   ========================================================== */
-
-(function hideProjectsMenu(){
-
-  function apply(){
-
-    document
-      .querySelectorAll(".nav-projects-dropdown")
-      .forEach(el => {
-        el.style.display = "none";
-      });
-
-  }
-
-  apply();
-
-  const observer = new MutationObserver(apply);
-
-  observer.observe(document.body,{
-    childList:true,
-    subtree:true
-  });
-
-  setTimeout(() => {
-    observer.disconnect();
-  },3000);
-
-})();
 
 
 /* ==========================================================
