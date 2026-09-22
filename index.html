@@ -21,7 +21,7 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 <meta
   name="theme-color"
-  content="#050403"
+  content="#080604"
 >
 
 <link
@@ -60,10 +60,8 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 html{
   margin:0;
   padding:0;
-
+  background:#080604;
   scroll-behavior:smooth;
-
-  background:#050403;
 }
 
 body{
@@ -72,16 +70,28 @@ body{
 
   min-height:100vh;
 
-  background:#050403;
-
-  color:#ded4c8;
+  color:#eee5d9;
 
   font-family:
     "Prompt",
     "Kanit",
     sans-serif;
 
+  background:
+    #080604;
+
   overflow-x:hidden;
+}
+
+body,
+button,
+input,
+textarea,
+select{
+  font-family:
+    "Prompt",
+    "Kanit",
+    sans-serif;
 }
 
 a{
@@ -103,7 +113,9 @@ select{
 
 
 /* =========================================================
-   BACKGROUND
+   MAIN PAGE
+   ไม่มี z-index ติดลบ
+   ไม่มี fixed pseudo background
 ========================================================= */
 
 .index-page{
@@ -112,23 +124,16 @@ select{
 
   min-height:100vh;
 
-  background:#050403;
-
-  isolation:isolate;
-}
-
-
-.index-page::before{
-
-  content:"";
-
-  position:fixed;
-
-  inset:0;
-
-  z-index:-10;
+  background-color:#080604;
 
   background-image:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.22) 0%,
+      rgba(0,0,0,.34) 25%,
+      rgba(0,0,0,.58) 55%,
+      rgba(4,3,2,.90) 100%
+    ),
     url("assets/index-main-bg.png");
 
   background-repeat:no-repeat;
@@ -136,48 +141,27 @@ select{
   background-position:
     center top;
 
-  background-size:cover;
+  background-size:
+    cover;
 
+  background-attachment:
+    fixed;
 }
 
 
-.index-page::after{
-
-  content:"";
-
-  position:fixed;
-
-  inset:0;
-
-  z-index:-9;
-
-  pointer-events:none;
-
-  background:
-
-    linear-gradient(
-      180deg,
-
-      rgba(0,0,0,.30) 0%,
-
-      rgba(0,0,0,.18) 20%,
-
-      rgba(0,0,0,.25) 42%,
-
-      rgba(0,0,0,.62) 72%,
-
-      rgba(0,0,0,.94) 100%
-    );
-
-}
-
+/* =========================================================
+   CONTENT
+========================================================= */
 
 .index-content{
 
   position:relative;
 
-  z-index:5;
+  z-index:1;
 
+  width:100%;
+
+  min-height:100vh;
 }
 
 
@@ -187,23 +171,15 @@ select{
 
 .index-wrap{
 
-  width:min(
-    1240px,
-    calc(100% - 80px)
-  );
+  width:
+    min(
+      1240px,
+      calc(100% - 80px)
+    );
 
   margin-left:auto;
   margin-right:auto;
-
 }
-
-
-.gold{
-
-  color:#e4c57f;
-
-}
-
 
 .kicker{
 
@@ -213,16 +189,16 @@ select{
 
   gap:12px;
 
-  margin-bottom:14px;
+  margin-bottom:16px;
 
   color:#e4c57f;
 
-  font-size:10px;
+  font-size:11px;
 
-  letter-spacing:2.5px;
+  letter-spacing:2px;
 
+  font-weight:400;
 }
-
 
 .kicker::before{
 
@@ -232,30 +208,33 @@ select{
 
   height:1px;
 
-  background:#c9a45c;
+  flex:0 0 auto;
 
+  background:
+    linear-gradient(
+      90deg,
+      #e4c57f,
+      rgba(228,197,127,0)
+    );
 }
-
 
 .section{
 
+  position:relative;
+
   padding:
-    78px 0;
-
+    90px 0;
 }
-
 
 .section-dark{
 
   background:
     linear-gradient(
       180deg,
-      rgba(5,4,3,.18),
-      rgba(5,4,3,.86)
+      rgba(4,3,2,.38),
+      rgba(4,3,2,.82)
     );
-
 }
-
 
 .section-title{
 
@@ -272,37 +251,111 @@ select{
     clamp(
       34px,
       4vw,
-      52px
+      54px
     );
 
   font-weight:400;
 
-  line-height:1.1;
+  line-height:1.12;
 
-  letter-spacing:-.5px;
-
+  letter-spacing:-.6px;
 }
-
 
 .section-description{
 
   max-width:720px;
 
   margin:
-    14px 0 0;
+    16px 0 0;
 
   color:
     rgba(
       255,
       250,
       244,
-      .82
+      .78
     );
 
   font-size:14px;
 
   line-height:1.9;
+}
 
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.button{
+
+  min-height:48px;
+
+  padding:
+    0 24px;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:0;
+
+  font-size:12px;
+
+  font-weight:400;
+
+  transition:
+    transform .22s ease,
+    background .22s ease,
+    border-color .22s ease;
+}
+
+.button:hover{
+
+  transform:
+    translateY(-2px);
+}
+
+.button-main{
+
+  color:#171008;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ead08d,
+      #b18442
+    );
+
+  border:
+    1px solid
+    #e4c57f;
+}
+
+.button-outline{
+
+  color:#fff;
+
+  background:
+    rgba(
+      7,
+      5,
+      3,
+      .62
+    );
+
+  border:
+    1px solid
+    rgba(
+      228,
+      197,
+      127,
+      .48
+    );
+
+  backdrop-filter:
+    blur(8px);
 }
 
 
@@ -314,47 +367,41 @@ select{
 
   position:relative;
 
-  min-height:620px;
+  min-height:720px;
 
   display:flex;
 
   align-items:center;
 
   padding:
-    110px 0 70px;
-
+    150px 0 90px;
 }
-
 
 .hero-inner{
 
-  width:min(
-    1240px,
-    calc(100% - 80px)
-  );
+  width:
+    min(
+      1240px,
+      calc(100% - 80px)
+    );
 
-  margin:auto;
-
+  margin:
+    0 auto;
 }
-
 
 .hero-copy{
 
   position:relative;
 
-  width:min(
-    780px,
-    100%
-  );
+  width:
+    min(
+      780px,
+      100%
+    );
 
   padding:
-    30px
-    45px
-    35px
-    0;
-
+    35px 45px 40px 0;
 }
-
 
 .hero-copy::before{
 
@@ -362,30 +409,26 @@ select{
 
   position:absolute;
 
+  left:-220px;
+
+  top:-100px;
+
+  width:920px;
+
+  height:620px;
+
   z-index:-1;
 
-  left:-180px;
-
-  top:-80px;
-
-  width:900px;
-
-  height:570px;
+  pointer-events:none;
 
   background:
-
     radial-gradient(
       ellipse at center,
-
-      rgba(0,0,0,.80) 0%,
-
-      rgba(0,0,0,.48) 43%,
-
-      rgba(0,0,0,0) 77%
+      rgba(0,0,0,.86) 0%,
+      rgba(0,0,0,.55) 42%,
+      rgba(0,0,0,0) 76%
     );
-
 }
-
 
 .hero-title{
 
@@ -400,76 +443,68 @@ select{
 
   font-size:
     clamp(
-      45px,
+      48px,
       6vw,
-      78px
+      82px
     );
 
   font-weight:400;
 
-  line-height:1.03;
+  line-height:1.02;
 
-  letter-spacing:-1.5px;
+  letter-spacing:-1.7px;
 
   text-shadow:
     0 8px 35px
-    rgba(0,0,0,.92);
-
+    rgba(0,0,0,.95);
 }
-
 
 .hero-title span{
 
   display:block;
 
   color:#e4c57f;
-
 }
-
 
 .hero-line{
 
-  width:70px;
+  width:72px;
 
   height:1px;
 
-  margin-top:22px;
+  margin-top:24px;
 
   background:
     linear-gradient(
       90deg,
-      #c9a45c,
+      #e4c57f,
       transparent
     );
-
 }
-
 
 .hero-text{
 
-  max-width:700px;
+  max-width:690px;
 
   margin:
-    18px 0 0;
+    20px 0 0;
 
   color:
     rgba(
       255,
       250,
       244,
-      .92
+      .91
     );
 
   font-size:15px;
 
-  line-height:1.9;
+  line-height:1.95;
 
   text-shadow:
     0 4px 20px
-    rgba(0,0,0,.90);
-
+    rgba(0,0,0,.95);
 }
-
 
 .hero-buttons{
 
@@ -479,76 +514,7 @@ select{
 
   gap:10px;
 
-  margin-top:26px;
-
-}
-
-
-.button{
-
-  min-height:47px;
-
-  padding:
-    0 22px;
-
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:12px;
-
-  transition:.22s ease;
-
-}
-
-
-.button:hover{
-
-  transform:
-    translateY(-2px);
-
-}
-
-
-.button-main{
-
-  color:#160e07;
-
-  background:
-    linear-gradient(
-      135deg,
-      #e4c57f,
-      #b18442
-    );
-
-  border:
-    1px solid
-    #e4c57f;
-
-}
-
-
-.button-outline{
-
-  color:#fff;
-
-  background:
-    rgba(5,4,3,.42);
-
-  border:
-    1px solid
-    rgba(
-      228,
-      197,
-      127,
-      .48
-    );
-
-  backdrop-filter:
-    blur(8px);
-
+  margin-top:28px;
 }
 
 
@@ -565,7 +531,7 @@ select{
 
   gap:1px;
 
-  margin-top:32px;
+  margin-top:36px;
 
   background:
     rgba(
@@ -583,15 +549,13 @@ select{
       92,
       .22
     );
-
 }
-
 
 .solution-card{
 
-  min-height:260px;
+  min-height:270px;
 
-  padding:26px;
+  padding:28px;
 
   display:flex;
 
@@ -600,32 +564,27 @@ select{
   background:
     linear-gradient(
       145deg,
-      rgba(18,12,8,.92),
-      rgba(4,3,2,.93)
+      rgba(18,12,8,.94),
+      rgba(4,3,2,.96)
     );
 
-  backdrop-filter:
-    blur(8px);
-
-  transition:.25s ease;
-
+  transition:
+    transform .25s ease,
+    background .25s ease;
 }
-
 
 .solution-card:hover{
 
   transform:
-    translateY(-3px);
+    translateY(-4px);
 
   background:
     linear-gradient(
       145deg,
-      rgba(40,26,15,.94),
-      rgba(4,3,2,.95)
+      rgba(45,29,16,.96),
+      rgba(4,3,2,.97)
     );
-
 }
-
 
 .card-number{
 
@@ -640,17 +599,15 @@ select{
   font-size:10px;
 
   letter-spacing:2px;
-
 }
-
 
 .card-icon{
 
-  width:42px;
+  width:44px;
 
-  height:42px;
+  height:44px;
 
-  margin-top:20px;
+  margin-top:22px;
 
   display:grid;
 
@@ -664,18 +621,16 @@ select{
       201,
       164,
       92,
-      .30
+      .35
     );
 
-  font-size:17px;
-
+  font-size:18px;
 }
-
 
 .solution-card h3{
 
   margin:
-    15px 0 7px;
+    16px 0 8px;
 
   color:#fff;
 
@@ -687,9 +642,7 @@ select{
   font-size:20px;
 
   font-weight:400;
-
 }
-
 
 .solution-card p{
 
@@ -699,21 +652,18 @@ select{
 
   font-size:12px;
 
-  line-height:1.8;
-
+  line-height:1.85;
 }
-
 
 .card-link{
 
   margin-top:auto;
 
-  padding-top:18px;
+  padding-top:20px;
 
   color:#e4c57f;
 
   font-size:11px;
-
 }
 
 
@@ -730,16 +680,14 @@ select{
 
   gap:12px;
 
-  margin-top:32px;
-
+  margin-top:36px;
 }
-
 
 .service-card{
 
-  min-height:230px;
+  min-height:235px;
 
-  padding:25px;
+  padding:26px;
 
   display:flex;
 
@@ -751,36 +699,34 @@ select{
       201,
       164,
       92,
-      .22
+      .23
     );
 
   background:
     linear-gradient(
       145deg,
-      rgba(18,12,8,.90),
-      rgba(4,3,2,.92)
+      rgba(18,12,8,.91),
+      rgba(4,3,2,.94)
     );
 
-  transition:.25s ease;
-
+  transition:
+    transform .25s ease,
+    border-color .25s ease;
 }
-
 
 .service-card:hover{
 
   transform:
-    translateY(-3px);
+    translateY(-4px);
 
   border-color:
     rgba(
       228,
       197,
       127,
-      .48
+      .52
     );
-
 }
-
 
 .service-number{
 
@@ -789,14 +735,12 @@ select{
   font-size:10px;
 
   letter-spacing:2px;
-
 }
-
 
 .service-card h3{
 
   margin:
-    13px 0 8px;
+    14px 0 8px;
 
   color:#fff;
 
@@ -808,9 +752,7 @@ select{
   font-size:21px;
 
   font-weight:400;
-
 }
-
 
 .service-card p{
 
@@ -820,10 +762,8 @@ select{
 
   font-size:12.5px;
 
-  line-height:1.8;
-
+  line-height:1.85;
 }
-
 
 .service-card a{
 
@@ -834,7 +774,6 @@ select{
   color:#e4c57f;
 
   font-size:11px;
-
 }
 
 
@@ -851,16 +790,14 @@ select{
 
   gap:12px;
 
-  margin-top:32px;
-
+  margin-top:36px;
 }
-
 
 .work-card{
 
   position:relative;
 
-  min-height:240px;
+  min-height:250px;
 
   overflow:hidden;
 
@@ -870,36 +807,34 @@ select{
       201,
       164,
       92,
-      .20
+      .22
     );
 
   background:
     linear-gradient(
       145deg,
-      rgba(16,11,7,.92),
-      rgba(3,2,1,.96)
+      rgba(16,11,7,.95),
+      rgba(3,2,1,.98)
     );
 
-  transition:.25s ease;
-
+  transition:
+    transform .25s ease,
+    border-color .25s ease;
 }
-
 
 .work-card:hover{
 
   transform:
-    translateY(-3px);
+    translateY(-4px);
 
   border-color:
     rgba(
       228,
       197,
       127,
-      .42
+      .48
     );
-
 }
-
 
 .work-card::before{
 
@@ -912,12 +847,10 @@ select{
   background:
     radial-gradient(
       circle at 50% 20%,
-      rgba(201,164,92,.16),
-      transparent 52%
+      rgba(201,164,92,.18),
+      transparent 55%
     );
-
 }
-
 
 .work-card:nth-child(2)::before{
 
@@ -926,12 +859,10 @@ select{
       90deg,
       transparent 0,
       transparent 34px,
-      rgba(201,164,92,.05) 35px,
+      rgba(201,164,92,.06) 35px,
       transparent 37px
     );
-
 }
-
 
 .work-card:nth-child(3)::before{
 
@@ -939,24 +870,20 @@ select{
     linear-gradient(
       135deg,
       transparent 42%,
-      rgba(201,164,92,.14) 44%,
+      rgba(201,164,92,.15) 44%,
       transparent 47%
     );
-
 }
-
 
 .work-card:nth-child(4)::before{
 
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,.05),
+      rgba(255,255,255,.06),
       transparent 50%
     );
-
 }
-
 
 .work-card::after{
 
@@ -968,17 +895,15 @@ select{
   right:0;
   bottom:0;
 
-  height:65%;
+  height:70%;
 
   background:
     linear-gradient(
       180deg,
       transparent,
-      rgba(0,0,0,.92)
+      rgba(0,0,0,.96)
     );
-
 }
-
 
 .work-info{
 
@@ -988,10 +913,8 @@ select{
   right:20px;
   bottom:20px;
 
-  z-index:3;
-
+  z-index:2;
 }
-
 
 .work-number{
 
@@ -1000,14 +923,12 @@ select{
   font-size:9px;
 
   letter-spacing:2px;
-
 }
-
 
 .work-info h3{
 
   margin:
-    6px 0 4px;
+    7px 0 5px;
 
   color:#fff;
 
@@ -1019,9 +940,7 @@ select{
   font-size:18px;
 
   font-weight:400;
-
 }
-
 
 .work-info span{
 
@@ -1030,11 +949,10 @@ select{
       255,
       255,
       255,
-      .48
+      .52
     );
 
   font-size:9px;
-
 }
 
 
@@ -1049,7 +967,7 @@ select{
   grid-template-columns:
     repeat(3,1fr);
 
-  margin-top:10px;
+  margin-top:20px;
 
   border-top:
     1px solid
@@ -1057,7 +975,7 @@ select{
       201,
       164,
       92,
-      .22
+      .25
     );
 
   border-bottom:
@@ -1066,17 +984,22 @@ select{
       201,
       164,
       92,
-      .22
+      .25
     );
 
+  background:
+    rgba(
+      5,
+      4,
+      3,
+      .34
+    );
 }
-
 
 .stat{
 
   padding:
-    32px
-    20px;
+    38px 20px;
 
   text-align:center;
 
@@ -1086,18 +1009,14 @@ select{
       201,
       164,
       92,
-      .15
+      .16
     );
-
 }
-
 
 .stat:last-child{
 
   border-right:0;
-
 }
-
 
 .stat strong{
 
@@ -1112,34 +1031,31 @@ select{
 
   font-size:
     clamp(
-      42px,
+      44px,
       4.5vw,
-      62px
+      64px
     );
 
   font-weight:300;
 
   line-height:1;
-
 }
-
 
 .stat span{
 
   display:block;
 
-  margin-top:9px;
+  margin-top:10px;
 
   color:
     rgba(
       255,
       255,
       255,
-      .72
+      .74
     );
 
   font-size:11px;
-
 }
 
 
@@ -1149,20 +1065,21 @@ select{
 
 .cta{
 
-  width:min(
-    1240px,
-    calc(100% - 80px)
-  );
+  width:
+    min(
+      1240px,
+      calc(100% - 80px)
+    );
 
   margin:
-    0 auto 80px;
+    0 auto 90px;
 
   padding:
-    58px
+    64px
     clamp(
-      28px,
+      30px,
       6vw,
-      70px
+      75px
     );
 
   border:
@@ -1171,21 +1088,19 @@ select{
       201,
       164,
       92,
-      .30
+      .34
     );
 
   background:
     linear-gradient(
       135deg,
-      rgba(31,20,12,.80),
-      rgba(5,4,3,.88)
+      rgba(31,20,12,.88),
+      rgba(5,4,3,.94)
     );
 
   backdrop-filter:
     blur(9px);
-
 }
-
 
 .cta-label{
 
@@ -1194,9 +1109,7 @@ select{
   font-size:9px;
 
   letter-spacing:3px;
-
 }
-
 
 .cta h2{
 
@@ -1220,16 +1133,14 @@ select{
   font-weight:400;
 
   line-height:1.08;
-
 }
-
 
 .cta p{
 
   max-width:680px;
 
   margin:
-    14px 0 0;
+    15px 0 0;
 
   color:
     rgba(
@@ -1242,9 +1153,7 @@ select{
   font-size:13px;
 
   line-height:1.9;
-
 }
-
 
 .cta-buttons{
 
@@ -1254,8 +1163,17 @@ select{
 
   gap:10px;
 
-  margin-top:24px;
+  margin-top:25px;
+}
 
+
+/* =========================================================
+   FOOTER SPACE
+========================================================= */
+
+.page-bottom-space{
+
+  height:30px;
 }
 
 
@@ -1267,10 +1185,11 @@ select{
 
   .hero{
 
-    min-height:560px;
+    min-height:650px;
 
+    padding:
+      140px 0 80px;
   }
-
 
   .hero-inner,
   .index-wrap{
@@ -1279,33 +1198,25 @@ select{
       calc(
         100% - 50px
       );
-
   }
-
 
   .solution-grid{
 
     grid-template-columns:
       repeat(2,1fr);
-
   }
-
 
   .services-grid{
 
     grid-template-columns:
       repeat(2,1fr);
-
   }
-
 
   .work-grid{
 
     grid-template-columns:
       repeat(2,1fr);
-
   }
-
 
   .cta{
 
@@ -1313,9 +1224,7 @@ select{
       calc(
         100% - 50px
       );
-
   }
-
 }
 
 
@@ -1325,66 +1234,64 @@ select{
 
 @media(max-width:700px){
 
-  .index-page::before{
+  .index-page{
+
+    background-attachment:
+      scroll;
 
     background-position:
       center top;
 
     background-size:
       auto 100%;
-
   }
-
 
   .hero{
 
-    min-height:570px;
+    min-height:620px;
 
     padding:
-      100px
-      0
-      45px;
+      120px 0 55px;
 
     align-items:flex-end;
-
   }
-
 
   .hero-inner,
   .index-wrap{
 
     width:
       calc(
-        100% - 32px
+        100% - 30px
       );
-
   }
-
 
   .hero-copy{
 
     width:100%;
 
     padding:
-      24px
-      16px
+      25px
+      18px
       28px;
 
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,0),
+        rgba(0,0,0,.34)
+      );
   }
-
 
   .hero-copy::before{
 
-    left:-110px;
+    left:-120px;
 
-    top:-60px;
+    top:-80px;
 
-    width:680px;
+    width:700px;
 
-    height:470px;
-
+    height:500px;
   }
-
 
   .hero-title{
 
@@ -1395,27 +1302,34 @@ select{
         58px
       );
 
-    line-height:1.05;
-
+    line-height:1.04;
   }
-
 
   .hero-text{
 
     font-size:13.5px;
 
     line-height:1.85;
-
   }
 
+  .hero-buttons{
+
+    gap:8px;
+  }
+
+  .button{
+
+    min-height:46px;
+
+    padding:
+      0 18px;
+  }
 
   .section{
 
     padding:
-      56px 0;
-
+      60px 0;
   }
-
 
   .section-title{
 
@@ -1425,16 +1339,12 @@ select{
         9vw,
         45px
       );
-
   }
-
 
   .section-description{
 
     font-size:13px;
-
   }
-
 
   .solution-grid{
 
@@ -1445,9 +1355,7 @@ select{
     background:transparent;
 
     border:0;
-
   }
-
 
   .solution-card{
 
@@ -1456,27 +1364,14 @@ select{
     padding:
       23px
       21px;
-
-    border:
-      1px solid
-      rgba(
-        201,
-        164,
-        92,
-        .30
-      );
-
   }
-
 
   .services-grid{
 
     grid-template-columns:1fr;
 
     gap:9px;
-
   }
-
 
   .service-card{
 
@@ -1485,38 +1380,29 @@ select{
     padding:
       23px
       21px;
-
   }
-
 
   .work-grid{
 
     grid-template-columns:1fr;
 
     gap:9px;
-
   }
-
 
   .work-card{
 
-    min-height:210px;
-
+    min-height:215px;
   }
-
 
   .stats{
 
     grid-template-columns:1fr;
-
   }
-
 
   .stat{
 
     padding:
-      27px
-      15px;
+      30px 15px;
 
     border-right:0;
 
@@ -1526,34 +1412,28 @@ select{
         201,
         164,
         92,
-        .15
+        .16
       );
-
   }
-
 
   .stat:last-child{
 
     border-bottom:0;
-
   }
-
 
   .cta{
 
     width:
       calc(
-        100% - 32px
+        100% - 30px
       );
 
     margin:
-      0 auto 40px;
+      0 auto 45px;
 
     padding:
-      40px 24px;
-
+      42px 24px;
   }
-
 
   .cta h2{
 
@@ -1563,9 +1443,67 @@ select{
         10vw,
         48px
       );
-
   }
 
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media(max-width:420px){
+
+  .hero{
+
+    min-height:600px;
+  }
+
+  .hero-title{
+
+    font-size:40px;
+  }
+
+  .hero-buttons{
+
+    flex-direction:column;
+  }
+
+  .hero-buttons .button{
+
+    width:100%;
+  }
+
+  .cta-buttons{
+
+    flex-direction:column;
+  }
+
+  .cta-buttons .button{
+
+    width:100%;
+  }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  html{
+
+    scroll-behavior:auto;
+  }
+
+  *,
+  *::before,
+  *::after{
+
+    transition:none !important;
+  }
 }
 
 </style>
@@ -1575,15 +1513,16 @@ select{
 
 /*
 =========================================================
-บังคับหน้า Index เปิดที่ด้านบน
-ป้องกัน Browser จำตำแหน่ง Scroll เดิม
+เปิดหน้าเว็บที่ด้านบนเสมอ
 =========================================================
 */
 
 if(
   "scrollRestoration" in history
 ){
-  history.scrollRestoration = "manual";
+
+  history.scrollRestoration =
+    "manual";
 }
 
 window.addEventListener(
@@ -1599,7 +1538,7 @@ window.addEventListener(
         );
 
       },
-      50
+      80
     );
 
   }
@@ -1615,7 +1554,6 @@ window.addEventListener(
 
 <div class="index-page">
 
-
 <div class="index-content">
 
 
@@ -1629,11 +1567,9 @@ window.addEventListener(
 
 <div class="hero-copy">
 
-
 <div class="kicker">
 วัสดุงานพื้นและงานก่อสร้าง
 </div>
-
 
 <h1 class="hero-title">
 
@@ -1645,9 +1581,7 @@ window.addEventListener(
 
 </h1>
 
-
 <div class="hero-line"></div>
-
 
 <p class="hero-text">
 
@@ -1659,7 +1593,6 @@ window.addEventListener(
 
 </p>
 
-
 <div class="hero-buttons">
 
 <a
@@ -1669,7 +1602,6 @@ window.addEventListener(
 ดูสินค้า →
 </a>
 
-
 <a
   href="contact.html"
   class="button button-outline"
@@ -1678,7 +1610,6 @@ window.addEventListener(
 </a>
 
 </div>
-
 
 </div>
 
@@ -1696,13 +1627,9 @@ window.addEventListener(
 
 <div class="index-wrap">
 
-
-<div>
-
 <div class="kicker">
 บริการและโซลูชัน
 </div>
-
 
 <h2 class="section-title">
 
@@ -1714,7 +1641,6 @@ window.addEventListener(
 
 </h2>
 
-
 <p class="section-description">
 
 วัสดุ บริการ และโซลูชัน
@@ -1722,9 +1648,6 @@ window.addEventListener(
 ที่เหมาะกับลักษณะของแต่ละโครงการ
 
 </p>
-
-</div>
-
 
 
 <div class="solution-grid">
@@ -1737,7 +1660,7 @@ window.addEventListener(
 </div>
 
 <div class="card-icon">
-▦
+⌂
 </div>
 
 <h3>
@@ -1745,22 +1668,18 @@ window.addEventListener(
 </h3>
 
 <p>
-
-ระบบพื้นสำหรับพื้นที่หลากหลายประเภท
-ทั้งงานอุตสาหกรรม อาคาร
-พื้นที่พาณิชย์ และพื้นที่ใช้งานทั่วไป
-
+โซลูชันพื้นสำหรับบ้าน อาคาร
+โรงงาน และพื้นที่ใช้งานหลากหลายรูปแบบ
 </p>
 
 <a
   href="services.html"
   class="card-link"
 >
-ดูบริการ →
+ดูรายละเอียด →
 </a>
 
 </div>
-
 
 
 <div class="solution-card">
@@ -1770,7 +1689,7 @@ window.addEventListener(
 </div>
 
 <div class="card-icon">
-□
+▣
 </div>
 
 <h3>
@@ -1778,11 +1697,8 @@ window.addEventListener(
 </h3>
 
 <p>
-
-วัสดุและผลิตภัณฑ์สำหรับงานพื้น
-งานก่อสร้าง และงานตกแต่ง
-คัดเลือกให้เหมาะกับแต่ละโครงการ
-
+วัสดุงานพื้นและวัสดุก่อสร้าง
+สำหรับงานติดตั้งและงานปรับปรุงพื้นที่
 </p>
 
 <a
@@ -1795,7 +1711,6 @@ window.addEventListener(
 </div>
 
 
-
 <div class="solution-card">
 
 <div class="card-number">
@@ -1803,7 +1718,7 @@ window.addEventListener(
 </div>
 
 <div class="card-icon">
-✦
+◇
 </div>
 
 <h3>
@@ -1811,11 +1726,9 @@ window.addEventListener(
 </h3>
 
 <p>
-
-ชมตัวอย่างผลงานด้านระบบพื้น
-งานก่อสร้าง และโครงการ
-จากการใช้งานจริง
-
+ตัวอย่างโครงการจริง
+จากงานพื้น งานเคลือบผิว
+และงานก่อสร้างหลากหลายประเภท
 </p>
 
 <a
@@ -1828,7 +1741,6 @@ window.addEventListener(
 </div>
 
 
-
 <div class="solution-card">
 
 <div class="card-number">
@@ -1836,7 +1748,7 @@ window.addEventListener(
 </div>
 
 <div class="card-icon">
-+
+✦
 </div>
 
 <h3>
@@ -1844,11 +1756,9 @@ window.addEventListener(
 </h3>
 
 <p>
-
 บริการด้านพื้น กันรั่วซึม
 งานคอนกรีต สนามกีฬา
 งานตกแต่ง และเส้นจราจร
-
 </p>
 
 <a
@@ -1877,16 +1787,13 @@ window.addEventListener(
 
 <div class="index-wrap">
 
-
 <div class="kicker">
 บริการของเรา
 </div>
 
-
 <h2 class="section-title">
 ระบบงานสำหรับทุกพื้นที่
 </h2>
-
 
 <p class="section-description">
 
@@ -1895,7 +1802,6 @@ window.addEventListener(
 จนถึงการดูแลรายละเอียดของโครงการ
 
 </p>
-
 
 
 <div class="services-grid">
@@ -1912,19 +1818,18 @@ window.addEventListener(
 </h3>
 
 <p>
-
 ระบบพื้น Epoxy และ PU
 สำหรับโรงงาน คลังสินค้า
 อาคาร และพื้นที่ใช้งานหนัก
-
 </p>
 
-<a href="service-detail.html?service=industrial">
+<a
+  href="service-detail.html?service=industrial"
+>
 ดูรายละเอียด →
 </a>
 
 </div>
-
 
 
 <div class="service-card">
@@ -1938,19 +1843,18 @@ window.addEventListener(
 </h3>
 
 <p>
-
 ระบบกันซึมสำหรับดาดฟ้า
 หลังคา พื้นอาคาร
 และพื้นที่ที่มีความเสี่ยงเรื่องน้ำ
-
 </p>
 
-<a href="service-detail.html?service=waterproof">
+<a
+  href="service-detail.html?service=waterproof"
+>
 ดูรายละเอียด →
 </a>
 
 </div>
-
 
 
 <div class="service-card">
@@ -1964,19 +1868,18 @@ window.addEventListener(
 </h3>
 
 <p>
-
 งานซ่อม ปรับระดับ
 และปรับปรุงพื้นคอนกรีต
 ให้พร้อมสำหรับการใช้งาน
-
 </p>
 
-<a href="service-detail.html?service=concrete">
+<a
+  href="service-detail.html?service=concrete"
+>
 ดูรายละเอียด →
 </a>
 
 </div>
-
 
 
 <div class="service-card">
@@ -1990,19 +1893,18 @@ window.addEventListener(
 </h3>
 
 <p>
-
 ระบบพื้นสำหรับสนามกีฬา
 และพื้นที่กิจกรรม
 ที่ต้องการความทนทาน
-
 </p>
 
-<a href="service-detail.html?service=sports">
+<a
+  href="service-detail.html?service=sports"
+>
 ดูรายละเอียด →
 </a>
 
 </div>
-
 
 
 <div class="service-card">
@@ -2016,19 +1918,18 @@ window.addEventListener(
 </h3>
 
 <p>
-
 ระบบพื้นเพื่อความสวยงาม
 และงานออกแบบเฉพาะพื้นที่
 ให้เข้ากับรูปแบบของโครงการ
-
 </p>
 
-<a href="service-detail.html?service=decorative">
+<a
+  href="service-detail.html?service=decorative"
+>
 ดูรายละเอียด →
 </a>
 
 </div>
-
 
 
 <div class="service-card">
@@ -2042,14 +1943,14 @@ window.addEventListener(
 </h3>
 
 <p>
-
 งานตีเส้น สัญลักษณ์
 และการจัดระเบียบพื้นที่
 เพื่อการใช้งานและความปลอดภัย
-
 </p>
 
-<a href="service-detail.html?service=traffic">
+<a
+  href="service-detail.html?service=traffic"
+>
 ดูรายละเอียด →
 </a>
 
@@ -2072,16 +1973,13 @@ window.addEventListener(
 
 <div class="index-wrap">
 
-
 <div class="kicker">
 ผลงานของเรา
 </div>
 
-
 <h2 class="section-title">
 ตัวอย่างผลงาน
 </h2>
-
 
 <p class="section-description">
 
@@ -2090,7 +1988,6 @@ window.addEventListener(
 จากหลากหลายประเภทโครงการ
 
 </p>
-
 
 
 <div class="work-grid">
@@ -2117,7 +2014,6 @@ window.addEventListener(
 </div>
 
 
-
 <div class="work-card">
 
 <div class="work-info">
@@ -2139,7 +2035,6 @@ window.addEventListener(
 </div>
 
 
-
 <div class="work-card">
 
 <div class="work-info">
@@ -2159,7 +2054,6 @@ window.addEventListener(
 </div>
 
 </div>
-
 
 
 <div class="work-card">
@@ -2186,7 +2080,6 @@ window.addEventListener(
 </div>
 
 
-
 <div class="hero-buttons">
 
 <a
@@ -2197,7 +2090,6 @@ window.addEventListener(
 </a>
 
 </div>
-
 
 </div>
 
@@ -2212,7 +2104,6 @@ window.addEventListener(
 <section class="section section-dark">
 
 <div class="index-wrap">
-
 
 <div class="stats">
 
@@ -2230,7 +2121,6 @@ window.addEventListener(
 </div>
 
 
-
 <div class="stat">
 
 <strong>
@@ -2242,7 +2132,6 @@ window.addEventListener(
 </span>
 
 </div>
-
 
 
 <div class="stat">
@@ -2260,7 +2149,6 @@ window.addEventListener(
 
 </div>
 
-
 </div>
 
 </section>
@@ -2271,30 +2159,25 @@ window.addEventListener(
      CTA
 ===================================================== -->
 
-<section class="cta">
+<section>
 
+<div class="cta">
 
 <div class="cta-label">
-เริ่มต้นโครงการของคุณ
+START YOUR PROJECT
 </div>
-
 
 <h2>
 สร้างพื้นที่ที่ดีกว่า
-<br>
-เริ่มต้นกับเรา
 </h2>
-
 
 <p>
 
-ให้เราช่วยเลือกวัสดุและโซลูชัน
-ที่เหมาะสมกับพื้นที่ของคุณ
-พร้อมให้คำปรึกษาเกี่ยวกับระบบพื้น
-งานก่อสร้าง และการใช้งาน
+พูดคุยกับทีมงาน CHATPHETCH GROUP
+เพื่อเลือกวัสดุ ระบบพื้น
+และแนวทางที่เหมาะกับโครงการของคุณ
 
 </p>
-
 
 <div class="cta-buttons">
 
@@ -2302,9 +2185,8 @@ window.addEventListener(
   href="contact.html"
   class="button button-main"
 >
-ปรึกษาเราได้วันนี้ →
+เริ่มต้นกับเรา →
 </a>
-
 
 <a
   href="services.html"
@@ -2315,22 +2197,26 @@ window.addEventListener(
 
 </div>
 
+</div>
 
 </section>
 
 
-</div>
+<div class="page-bottom-space"></div>
 
 
 </div>
+
+</div>
+
 
 
 <!-- =====================================================
-     MASTER NAV
+     MASTER NAVIGATION
 ===================================================== -->
 
 <script
-src="assets/customer-master-nav.js"
+  src="assets/customer-master-nav.js"
 ></script>
 
 
