@@ -21,7 +21,7 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 <meta
   name="theme-color"
-  content="#080604"
+  content="#050403"
 >
 
 <link
@@ -60,38 +60,25 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 html{
   margin:0;
   padding:0;
-  background:#080604;
+  background:#050403;
   scroll-behavior:smooth;
 }
 
 body{
   margin:0;
   padding:0;
-
   min-height:100vh;
 
-  color:#eee5d9;
+  color:#ded4c8;
 
   font-family:
     "Prompt",
     "Kanit",
     sans-serif;
 
-  background:
-    #080604;
+  background:#050403;
 
   overflow-x:hidden;
-}
-
-body,
-button,
-input,
-textarea,
-select{
-  font-family:
-    "Prompt",
-    "Kanit",
-    sans-serif;
 }
 
 a{
@@ -113,9 +100,11 @@ select{
 
 
 /* =========================================================
-   MAIN PAGE
-   ไม่มี z-index ติดลบ
-   ไม่มี fixed pseudo background
+   MAIN PAGE BACKGROUND
+   แก้ใหม่:
+   ไม่ใช้ fixed pseudo-element
+   ไม่ใช้ z-index ติดลบ
+   ไม่ใช้ isolation
 ========================================================= */
 
 .index-page{
@@ -124,15 +113,16 @@ select{
 
   min-height:100vh;
 
-  background-color:#080604;
+  background-color:#050403;
 
   background-image:
     linear-gradient(
       180deg,
-      rgba(0,0,0,.22) 0%,
-      rgba(0,0,0,.34) 25%,
-      rgba(0,0,0,.58) 55%,
-      rgba(4,3,2,.90) 100%
+      rgba(0,0,0,.25) 0%,
+      rgba(0,0,0,.18) 20%,
+      rgba(0,0,0,.28) 43%,
+      rgba(0,0,0,.64) 72%,
+      rgba(0,0,0,.96) 100%
     ),
     url("assets/index-main-bg.png");
 
@@ -181,6 +171,10 @@ select{
   margin-right:auto;
 }
 
+.gold{
+  color:#e4c57f;
+}
+
 .kicker{
 
   display:flex;
@@ -189,15 +183,13 @@ select{
 
   gap:12px;
 
-  margin-bottom:16px;
+  margin-bottom:14px;
 
   color:#e4c57f;
 
-  font-size:11px;
+  font-size:10px;
 
-  letter-spacing:2px;
-
-  font-weight:400;
+  letter-spacing:2.5px;
 }
 
 .kicker::before{
@@ -208,14 +200,7 @@ select{
 
   height:1px;
 
-  flex:0 0 auto;
-
-  background:
-    linear-gradient(
-      90deg,
-      #e4c57f,
-      rgba(228,197,127,0)
-    );
+  background:#c9a45c;
 }
 
 .section{
@@ -223,7 +208,7 @@ select{
   position:relative;
 
   padding:
-    90px 0;
+    78px 0;
 }
 
 .section-dark{
@@ -231,8 +216,8 @@ select{
   background:
     linear-gradient(
       180deg,
-      rgba(4,3,2,.38),
-      rgba(4,3,2,.82)
+      rgba(5,4,3,.18),
+      rgba(5,4,3,.86)
     );
 }
 
@@ -251,14 +236,14 @@ select{
     clamp(
       34px,
       4vw,
-      54px
+      52px
     );
 
   font-weight:400;
 
-  line-height:1.12;
+  line-height:1.1;
 
-  letter-spacing:-.6px;
+  letter-spacing:-.5px;
 }
 
 .section-description{
@@ -266,96 +251,19 @@ select{
   max-width:720px;
 
   margin:
-    16px 0 0;
+    14px 0 0;
 
   color:
     rgba(
       255,
       250,
       244,
-      .78
+      .82
     );
 
   font-size:14px;
 
   line-height:1.9;
-}
-
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
-.button{
-
-  min-height:48px;
-
-  padding:
-    0 24px;
-
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  border-radius:0;
-
-  font-size:12px;
-
-  font-weight:400;
-
-  transition:
-    transform .22s ease,
-    background .22s ease,
-    border-color .22s ease;
-}
-
-.button:hover{
-
-  transform:
-    translateY(-2px);
-}
-
-.button-main{
-
-  color:#171008;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ead08d,
-      #b18442
-    );
-
-  border:
-    1px solid
-    #e4c57f;
-}
-
-.button-outline{
-
-  color:#fff;
-
-  background:
-    rgba(
-      7,
-      5,
-      3,
-      .62
-    );
-
-  border:
-    1px solid
-    rgba(
-      228,
-      197,
-      127,
-      .48
-    );
-
-  backdrop-filter:
-    blur(8px);
 }
 
 
@@ -367,14 +275,14 @@ select{
 
   position:relative;
 
-  min-height:720px;
+  min-height:620px;
 
   display:flex;
 
   align-items:center;
 
   padding:
-    150px 0 90px;
+    110px 0 70px;
 }
 
 .hero-inner{
@@ -400,37 +308,27 @@ select{
     );
 
   padding:
-    35px 45px 40px 0;
-}
+    30px 45px 35px 0;
 
-.hero-copy::before{
-
-  content:"";
-
-  position:absolute;
-
-  left:-220px;
-
-  top:-100px;
-
-  width:920px;
-
-  height:620px;
-
-  z-index:-1;
-
-  pointer-events:none;
+  /*
+    ทำพื้นหลังเฉพาะบริเวณข้อความ
+    เพื่อให้ตัวอักษรอ่านง่าย
+  */
 
   background:
     radial-gradient(
-      ellipse at center,
-      rgba(0,0,0,.86) 0%,
-      rgba(0,0,0,.55) 42%,
-      rgba(0,0,0,0) 76%
+      ellipse at left center,
+      rgba(0,0,0,.70) 0%,
+      rgba(0,0,0,.38) 48%,
+      rgba(0,0,0,0) 78%
     );
 }
 
 .hero-title{
+
+  position:relative;
+
+  z-index:2;
 
   margin:0;
 
@@ -443,20 +341,20 @@ select{
 
   font-size:
     clamp(
-      48px,
+      45px,
       6vw,
-      82px
+      78px
     );
 
   font-weight:400;
 
-  line-height:1.02;
+  line-height:1.03;
 
-  letter-spacing:-1.7px;
+  letter-spacing:-1.5px;
 
   text-shadow:
     0 8px 35px
-    rgba(0,0,0,.95);
+    rgba(0,0,0,.92);
 }
 
 .hero-title span{
@@ -468,45 +366,53 @@ select{
 
 .hero-line{
 
-  width:72px;
+  width:70px;
 
   height:1px;
 
-  margin-top:24px;
+  margin-top:22px;
 
   background:
     linear-gradient(
       90deg,
-      #e4c57f,
+      #c9a45c,
       transparent
     );
 }
 
 .hero-text{
 
-  max-width:690px;
+  position:relative;
+
+  z-index:2;
+
+  max-width:700px;
 
   margin:
-    20px 0 0;
+    18px 0 0;
 
   color:
     rgba(
       255,
       250,
       244,
-      .91
+      .92
     );
 
   font-size:15px;
 
-  line-height:1.95;
+  line-height:1.9;
 
   text-shadow:
     0 4px 20px
-    rgba(0,0,0,.95);
+    rgba(0,0,0,.90);
 }
 
 .hero-buttons{
+
+  position:relative;
+
+  z-index:2;
 
   display:flex;
 
@@ -514,7 +420,78 @@ select{
 
   gap:10px;
 
-  margin-top:28px;
+  margin-top:26px;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.button{
+
+  min-height:47px;
+
+  padding:
+    0 22px;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:12px;
+
+  transition:
+    .22s ease;
+}
+
+.button:hover{
+
+  transform:
+    translateY(-2px);
+}
+
+.button-main{
+
+  color:#160e07;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e4c57f,
+      #b18442
+    );
+
+  border:
+    1px solid
+    #e4c57f;
+}
+
+.button-outline{
+
+  color:#fff;
+
+  background:
+    rgba(
+      5,
+      4,
+      3,
+      .55
+    );
+
+  border:
+    1px solid
+    rgba(
+      228,
+      197,
+      127,
+      .48
+    );
+
+  backdrop-filter:
+    blur(8px);
 }
 
 
@@ -531,7 +508,7 @@ select{
 
   gap:1px;
 
-  margin-top:36px;
+  margin-top:32px;
 
   background:
     rgba(
@@ -553,9 +530,9 @@ select{
 
 .solution-card{
 
-  min-height:270px;
+  min-height:260px;
 
-  padding:28px;
+  padding:26px;
 
   display:flex;
 
@@ -568,20 +545,22 @@ select{
       rgba(4,3,2,.96)
     );
 
+  backdrop-filter:
+    blur(8px);
+
   transition:
-    transform .25s ease,
-    background .25s ease;
+    .25s ease;
 }
 
 .solution-card:hover{
 
   transform:
-    translateY(-4px);
+    translateY(-3px);
 
   background:
     linear-gradient(
       145deg,
-      rgba(45,29,16,.96),
+      rgba(40,26,15,.96),
       rgba(4,3,2,.97)
     );
 }
@@ -603,11 +582,11 @@ select{
 
 .card-icon{
 
-  width:44px;
+  width:42px;
 
-  height:44px;
+  height:42px;
 
-  margin-top:22px;
+  margin-top:20px;
 
   display:grid;
 
@@ -621,16 +600,16 @@ select{
       201,
       164,
       92,
-      .35
+      .30
     );
 
-  font-size:18px;
+  font-size:17px;
 }
 
 .solution-card h3{
 
   margin:
-    16px 0 8px;
+    15px 0 7px;
 
   color:#fff;
 
@@ -652,14 +631,14 @@ select{
 
   font-size:12px;
 
-  line-height:1.85;
+  line-height:1.8;
 }
 
 .card-link{
 
   margin-top:auto;
 
-  padding-top:20px;
+  padding-top:18px;
 
   color:#e4c57f;
 
@@ -680,14 +659,14 @@ select{
 
   gap:12px;
 
-  margin-top:36px;
+  margin-top:32px;
 }
 
 .service-card{
 
-  min-height:235px;
+  min-height:230px;
 
-  padding:26px;
+  padding:25px;
 
   display:flex;
 
@@ -699,32 +678,31 @@ select{
       201,
       164,
       92,
-      .23
+      .22
     );
 
   background:
     linear-gradient(
       145deg,
-      rgba(18,12,8,.91),
-      rgba(4,3,2,.94)
+      rgba(18,12,8,.92),
+      rgba(4,3,2,.95)
     );
 
   transition:
-    transform .25s ease,
-    border-color .25s ease;
+    .25s ease;
 }
 
 .service-card:hover{
 
   transform:
-    translateY(-4px);
+    translateY(-3px);
 
   border-color:
     rgba(
       228,
       197,
       127,
-      .52
+      .48
     );
 }
 
@@ -740,7 +718,7 @@ select{
 .service-card h3{
 
   margin:
-    14px 0 8px;
+    13px 0 8px;
 
   color:#fff;
 
@@ -762,7 +740,7 @@ select{
 
   font-size:12.5px;
 
-  line-height:1.85;
+  line-height:1.8;
 }
 
 .service-card a{
@@ -790,14 +768,14 @@ select{
 
   gap:12px;
 
-  margin-top:36px;
+  margin-top:32px;
 }
 
 .work-card{
 
   position:relative;
 
-  min-height:250px;
+  min-height:240px;
 
   overflow:hidden;
 
@@ -807,32 +785,31 @@ select{
       201,
       164,
       92,
-      .22
+      .20
     );
 
   background:
     linear-gradient(
       145deg,
-      rgba(16,11,7,.95),
+      rgba(16,11,7,.94),
       rgba(3,2,1,.98)
     );
 
   transition:
-    transform .25s ease,
-    border-color .25s ease;
+    .25s ease;
 }
 
 .work-card:hover{
 
   transform:
-    translateY(-4px);
+    translateY(-3px);
 
   border-color:
     rgba(
       228,
       197,
       127,
-      .48
+      .42
     );
 }
 
@@ -847,8 +824,8 @@ select{
   background:
     radial-gradient(
       circle at 50% 20%,
-      rgba(201,164,92,.18),
-      transparent 55%
+      rgba(201,164,92,.16),
+      transparent 52%
     );
 }
 
@@ -859,7 +836,7 @@ select{
       90deg,
       transparent 0,
       transparent 34px,
-      rgba(201,164,92,.06) 35px,
+      rgba(201,164,92,.05) 35px,
       transparent 37px
     );
 }
@@ -870,7 +847,7 @@ select{
     linear-gradient(
       135deg,
       transparent 42%,
-      rgba(201,164,92,.15) 44%,
+      rgba(201,164,92,.14) 44%,
       transparent 47%
     );
 }
@@ -880,7 +857,7 @@ select{
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,.06),
+      rgba(255,255,255,.05),
       transparent 50%
     );
 }
@@ -892,7 +869,9 @@ select{
   position:absolute;
 
   left:0;
+
   right:0;
+
   bottom:0;
 
   height:70%;
@@ -910,7 +889,9 @@ select{
   position:absolute;
 
   left:20px;
+
   right:20px;
+
   bottom:20px;
 
   z-index:2;
@@ -1166,11 +1147,6 @@ select{
   margin-top:25px;
 }
 
-
-/* =========================================================
-   FOOTER SPACE
-========================================================= */
-
 .page-bottom-space{
 
   height:30px;
@@ -1278,19 +1254,8 @@ select{
       linear-gradient(
         180deg,
         rgba(0,0,0,0),
-        rgba(0,0,0,.34)
+        rgba(0,0,0,.42)
       );
-  }
-
-  .hero-copy::before{
-
-    left:-120px;
-
-    top:-80px;
-
-    width:700px;
-
-    height:500px;
   }
 
   .hero-title{
@@ -1362,8 +1327,7 @@ select{
     min-height:0;
 
     padding:
-      23px
-      21px;
+      23px 21px;
   }
 
   .services-grid{
@@ -1378,8 +1342,7 @@ select{
     min-height:0;
 
     padding:
-      23px
-      21px;
+      23px 21px;
   }
 
   .work-grid{
@@ -1444,7 +1407,6 @@ select{
         48px
       );
   }
-
 }
 
 
@@ -1483,7 +1445,6 @@ select{
 
     width:100%;
   }
-
 }
 
 
@@ -1511,16 +1472,11 @@ select{
 
 <script>
 
-/*
-=========================================================
-เปิดหน้าเว็บที่ด้านบนเสมอ
-=========================================================
-*/
+/* เปิดหน้าเว็บด้านบนเสมอ */
 
 if(
   "scrollRestoration" in history
 ){
-
   history.scrollRestoration =
     "manual";
 }
@@ -1616,7 +1572,6 @@ window.addEventListener(
 </div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -1776,7 +1731,6 @@ window.addEventListener(
 </div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -1964,7 +1918,6 @@ window.addEventListener(
 </section>
 
 
-
 <!-- =====================================================
      WORK
 ===================================================== -->
@@ -2096,7 +2049,6 @@ window.addEventListener(
 </section>
 
 
-
 <!-- =====================================================
      STATS
 ===================================================== -->
@@ -2154,7 +2106,6 @@ window.addEventListener(
 </section>
 
 
-
 <!-- =====================================================
      CTA
 ===================================================== -->
@@ -2208,7 +2159,6 @@ START YOUR PROJECT
 </div>
 
 </div>
-
 
 
 <!-- =====================================================
