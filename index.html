@@ -1,137 +1,586 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>CHATPHETCH GROUP | Flooring & Construction</title>
-<meta name="description" content="CHATPHETCH GROUP วัสดุงานพื้น งานก่อสร้าง ระบบพื้น สินค้า ผลงาน และบริการ">
+
+<meta name="description"
+content="CHATPHETCH GROUP วัสดุงานพื้น งานก่อสร้าง ระบบพื้น สินค้า ผลงาน และบริการ">
+
 <link rel="icon" type="image/png" href="assets/logo.png?v=20260922">
-<link rel="apple-touch-icon" href="assets/logo.png?v=20260922">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--gold:#c9a45c;--gold2:#e4c57f;--white:#f7f0e8;--text:#ded4c8;--max:1240px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#050403;color:var(--text);overflow-x:hidden;font-family:Prompt,Kanit,sans-serif}a{color:inherit;text-decoration:none}
-.cp-page{position:relative;min-height:100vh;background:#050403;isolation:isolate}
-.cp-page-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.20) 24%,rgba(0,0,0,.34) 52%,rgba(0,0,0,.66) 78%,rgba(0,0,0,.92)),url("assets/index-main-bg.png?v=20260922") center top/cover no-repeat}
-.cp-page-bg:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 82% 8%,rgba(201,164,92,.10),transparent 30%),linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);background-size:auto,70px 70px,70px 70px}
-.cp-page-content{position:relative;z-index:2}
-.cp-hero{min-height:510px;position:relative}.cp-hero-inner{width:min(var(--max),calc(100% - 80px));min-height:620px;margin:auto;display:flex;align-items:center;padding-top:88px}
-.cp-hero-copy{position:relative;width:min(680px,100%);padding:30px 42px 35px 0;transform:translateY(25px)}
-.cp-hero-copy:before{content:"";position:absolute;z-index:-1;left:-170px;top:-70px;width:780px;height:520px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.72),rgba(0,0,0,.42) 42%,transparent 76%)}
-.cp-kicker{display:flex;align-items:center;gap:12px;margin-bottom:18px;color:var(--gold2);font-size:11px;letter-spacing:3px}.cp-kicker:before{content:"";width:40px;height:1px;background:var(--gold)}
-.cp-title{margin:0;color:var(--white);font-family:Kanit,Prompt,sans-serif;font-size:clamp(48px,5.7vw,80px);font-weight:400;line-height:1.01;letter-spacing:-1.8px;text-shadow:0 8px 35px rgba(0,0,0,.65)}.cp-title span{display:block;color:var(--gold2)}
-.cp-line{width:70px;height:1px;margin-top:23px;background:linear-gradient(90deg,var(--gold),transparent)}
-.cp-description{max-width:570px;margin:17px 0 0;color:rgba(247,240,232,.90);font-size:16px;line-height:1.85;text-shadow:0 4px 20px rgba(0,0,0,.75)}
-.cp-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:24px}.cp-button{min-height:46px;padding:0 22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;transition:.25s}
-.cp-button-main{color:#160e07;background:linear-gradient(135deg,#e4c57f,#b18442);border:1px solid #e4c57f}.cp-button-main:hover{transform:translateY(-2px)}
-.cp-button-sub{color:#fff;background:rgba(5,4,3,.25);border:1px solid rgba(228,197,127,.52);backdrop-filter:blur(7px)}.cp-button-sub:hover{transform:translateY(-2px);background:rgba(5,4,3,.48)}
-.cp-scroll{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;color:rgba(255,255,255,.45);font-size:8px;letter-spacing:3px}.cp-scroll span{width:1px;height:30px;background:linear-gradient(to bottom,var(--gold),transparent)}
-.cp-section{width:min(var(--max),calc(100% - 80px));margin:auto;padding:68px 0}.cp-eyebrow{margin-bottom:10px;color:var(--gold2);font-size:10px;letter-spacing:3px}.cp-heading{margin:0;color:var(--white);font-family:Kanit,Prompt,sans-serif;font-size:clamp(34px,3.8vw,52px);font-weight:400;line-height:1.1;text-shadow:0 5px 24px rgba(0,0,0,.78)}.cp-text{max-width:650px;margin:14px 0 0;color:rgba(255,250,244,.88);font-size:15px;line-height:1.85}
-.cp-solutions{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:32px;border:1px solid rgba(201,164,92,.22);background:rgba(201,164,92,.22)}.cp-card{min-height:245px;padding:26px;display:flex;flex-direction:column;background:linear-gradient(145deg,rgba(18,12,8,.88),rgba(4,3,2,.86));backdrop-filter:blur(8px);transition:.25s}.cp-card:hover{transform:translateY(-3px);background:linear-gradient(145deg,rgba(51,33,18,.84),rgba(6,4,3,.72))}.cp-card-number{color:rgba(228,197,127,.70);font-size:11px;letter-spacing:2px}.cp-card-icon{width:40px;height:40px;margin-top:22px;display:flex;align-items:center;justify-content:center;color:var(--gold2);border:1px solid rgba(201,164,92,.32);font-size:18px}.cp-card h3{margin:15px 0 7px;color:#fff;font-family:Kanit,Prompt,sans-serif;font-size:20px;font-weight:400}.cp-card p{margin:0;color:rgba(255,250,244,.84);font-size:13px;line-height:1.75}.cp-card-link{margin-top:auto;padding-top:17px;color:var(--gold2);font-size:12px}
-.cp-work{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:32px}.cp-work-card{position:relative;min-height:235px;overflow:hidden;border:1px solid rgba(201,164,92,.18);background:linear-gradient(145deg,rgba(14,10,7,.88),rgba(3,2,1,.90));transition:.25s}.cp-work-card:hover{transform:translateY(-4px);border-color:rgba(201,164,92,.42)}.cp-work-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 20%,rgba(201,164,92,.15),transparent 45%)}.cp-work-card:nth-child(2):before{background:repeating-linear-gradient(90deg,transparent 0,transparent 34px,rgba(201,164,92,.05) 35px,transparent 36px)}.cp-work-card:nth-child(3):before{background:linear-gradient(135deg,transparent 43%,rgba(201,164,92,.12) 44%,transparent 46%)}.cp-work-card:nth-child(4):before{background:linear-gradient(145deg,rgba(255,255,255,.04),transparent 46%)}.cp-work-card:after{content:"";position:absolute;left:0;right:0;bottom:0;height:65%;background:linear-gradient(180deg,transparent,rgba(0,0,0,.86))}.cp-work-inner{position:absolute;left:21px;right:21px;bottom:21px;z-index:2}.cp-work-number{color:var(--gold2);font-size:9px;letter-spacing:2px;margin-bottom:6px}.cp-work-title{color:#fff;font-family:Kanit,Prompt,sans-serif;font-size:18px}.cp-work-sub{margin-top:5px;color:rgba(255,255,255,.42);font-size:10px;letter-spacing:2px}
-.cp-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:10px;border-top:1px solid rgba(201,164,92,.22);border-bottom:1px solid rgba(201,164,92,.22);background:rgba(4,3,2,.18);backdrop-filter:blur(7px)}.cp-stat{padding:32px 20px;text-align:center;border-right:1px solid rgba(201,164,92,.15)}.cp-stat:last-child{border-right:0}.cp-stat strong{display:block;color:var(--gold2);font-family:Kanit,Prompt,sans-serif;font-size:clamp(42px,4.5vw,62px);font-weight:300;line-height:1}.cp-stat span{display:block;margin-top:9px;color:rgba(255,255,255,.72);font-size:9px;letter-spacing:2px}
-.cp-cta{width:min(var(--max),calc(100% - 80px));margin:0 auto 80px;padding:clamp(40px,6vw,70px);border:1px solid rgba(201,164,92,.30);background:linear-gradient(135deg,rgba(31,20,12,.72),rgba(5,4,3,.72));backdrop-filter:blur(9px)}.cp-cta-label{color:var(--gold2);font-size:9px;letter-spacing:3px}.cp-cta h2{margin:10px 0 0;color:#fff;font-family:Kanit,Prompt,sans-serif;font-size:clamp(34px,4vw,56px);font-weight:400;line-height:1.08}.cp-cta p{max-width:650px;margin:14px 0 0;color:rgba(255,255,255,.78);font-size:13px;line-height:1.9}.cp-cta-button{margin-top:23px}
-@media(max-width:1050px){.cp-hero{min-height:510px}.cp-hero-inner{min-height:510px;width:calc(100% - 50px)}.cp-solutions,.cp-work{grid-template-columns:repeat(2,1fr)}.cp-section,.cp-cta{width:calc(100% - 50px)}}
-@media(max-width:700px){.cp-page-bg{background:linear-gradient(180deg,rgba(0,0,0,.40),rgba(0,0,0,.24) 24%,rgba(0,0,0,.40) 52%,rgba(0,0,0,.74) 78%,rgba(0,0,0,.94)),url("assets/index-main-bg.png?v=20260922") center top/cover no-repeat}.cp-hero{min-height:520px}.cp-hero-inner{min-height:520px;width:calc(100% - 32px);padding-top:76px;align-items:flex-start}.cp-hero-copy{width:100%;padding:30px 20px 34px;transform:translateY(95px)}.cp-title{font-size:clamp(43px,12vw,58px)}.cp-description{font-size:14.5px}.cp-scroll{display:none}.cp-section{width:calc(100% - 32px);padding:54px 0}.cp-heading{font-size:clamp(34px,9.5vw,46px)}.cp-text{font-size:14.5px}.cp-solutions,.cp-work{grid-template-columns:1fr;gap:10px;margin-top:26px;border:0;background:transparent}.cp-card{min-height:0;padding:24px 22px;border:1px solid rgba(201,164,92,.30)}.cp-work-card{min-height:190px}.cp-stats{grid-template-columns:1fr;margin-top:0}.cp-stat{padding:27px 18px;border-right:0;border-bottom:1px solid rgba(201,164,92,.15)}.cp-stat:last-child{border-bottom:0}.cp-cta{width:calc(100% - 32px);margin-bottom:54px;padding:38px 24px}}
-@media(max-width:480px){.cp-hero{min-height:500px}.cp-hero-inner{min-height:500px;width:calc(100% - 24px);padding-top:70px}.cp-hero-copy{padding:28px 16px 30px;transform:translateY(75px)}.cp-title{font-size:40px}.cp-description{font-size:14px}.cp-section{width:calc(100% - 24px);padding:46px 0}.cp-heading{font-size:32px}.cp-cta{width:calc(100% - 24px);padding:34px 21px}}
-</style>
+
+<link rel="stylesheet" href="assets/site.css">
+
+<script src="assets/customer-master-nav.js" defer></script>
 </head>
+
 <body>
-<main class="cp-page">
-<div class="cp-page-bg" aria-hidden="true"></div>
-<div class="cp-page-content">
 
-<section class="cp-hero">
-<div class="cp-hero-inner">
-<div class="cp-hero-copy">
-<div class="cp-kicker">FLOORING &amp; CONSTRUCTION</div>
-<h1 class="cp-title">วัสดุงานพื้น<span>และงานก่อสร้าง</span></h1>
-<div class="cp-line"></div>
-<p class="cp-description">โซลูชันด้านวัสดุงานพื้นและงานก่อสร้าง สำหรับบ้าน อาคารพาณิชย์ โรงงาน และโครงการขนาดใหญ่ พร้อมทีมงานดูแลตั้งแต่การเลือกวัสดุจนถึงการติดตั้ง</p>
-<div class="cp-actions">
-<a href="products.html" class="cp-button cp-button-main">ดูสินค้า →</a>
-<a href="contact.html" class="cp-button cp-button-sub">ติดต่อเรา</a>
+<div class="site-page">
+
+<main class="site-main">
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+<div class="wrap">
+
+<div class="hero-copy">
+
+<div class="eyebrow">
+FLOORING & CONSTRUCTION
 </div>
+
+<h1>
+CHATPHETCH
+<span>GROUP</span>
+</h1>
+
+<p>
+ผู้ผลิต จำหน่าย และให้บริการด้านวัสดุงานพื้น
+งานก่อสร้าง และระบบเคลือบผิวแบบครบวงจร
+พร้อมให้คำปรึกษาและดูแลงานตั้งแต่ต้นจนจบ
+</p>
+
+<div class="actions">
+
+<a class="btn btn-main"
+href="services.html">
+ดูบริการของเรา
+</a>
+
+<a class="btn btn-sub"
+href="contact.html">
+เริ่มต้นโครงการ
+</a>
+
 </div>
+
 </div>
-<div class="cp-scroll">SCROLL<span></span></div>
+
+</div>
+
 </section>
 
-<div class="cp-content">
 
-<section class="cp-section">
-<div class="cp-eyebrow">OUR SOLUTIONS</div>
-<h2 class="cp-heading">ครบทุกความต้องการ<br>เรื่องพื้น และงานก่อสร้าง</h2>
-<p class="cp-text">วัสดุ บริการ และโซลูชัน สำหรับงานพื้นและงานก่อสร้าง ที่เหมาะกับลักษณะของแต่ละโครงการ</p>
-<div class="cp-solutions">
+<!-- =========================================================
+     FLOORING
+========================================================= -->
 
-<a href="services.html" class="cp-card"><div class="cp-card-number">01 / FLOORING</div><div class="cp-card-icon">◇</div><h3>ระบบงานพื้น</h3><p>ระบบพื้นสำหรับพื้นที่หลากหลายประเภท ทั้งงานอุตสาหกรรม อาคาร พื้นที่พาณิชย์ และพื้นที่ใช้งานทั่วไป</p><div class="cp-card-link">ดูบริการ →</div></a>
+<section class="section">
 
-<a href="products.html" class="cp-card"><div class="cp-card-number">02 / PRODUCTS</div><div class="cp-card-icon">□</div><h3>สินค้า</h3><p>วัสดุและผลิตภัณฑ์สำหรับงานพื้น งานก่อสร้าง และงานตกแต่ง คัดเลือกให้เหมาะกับแต่ละโครงการ</p><div class="cp-card-link">ดูสินค้า →</div></a>
+<div class="wrap">
 
-<a href="projects.html" class="cp-card"><div class="cp-card-number">03 / PROJECTS</div><div class="cp-card-icon">✦</div><h3>ผลงาน</h3><p>ชมตัวอย่างผลงานด้านระบบพื้น งานก่อสร้าง และโครงการจากการใช้งานจริง</p><div class="cp-card-link">ดูผลงาน →</div></a>
+<div class="section-head">
 
-<a href="services.html" class="cp-card"><div class="cp-card-number">04 / SERVICES</div><div class="cp-card-icon">+</div><h3>บริการ</h3><p>บริการด้านพื้น กันรั่วซึม งานคอนกรีต สนามกีฬา งานตกแต่ง และเส้นจราจร</p><div class="cp-card-link">ดูบริการทั้งหมด →</div></a>
+<div class="section-kicker">
+FLOORING & CONSTRUCTION
+</div>
+
+<h2 class="section-title">
+วัสดุงานพื้นและงานก่อสร้าง
+</h2>
+
+<p class="section-text">
+ระบบพื้นและวัสดุสำหรับงานอุตสาหกรรม
+อาคารพาณิชย์ บ้าน สนามกีฬา
+และพื้นที่ใช้งานเฉพาะทาง
+</p>
 
 </div>
+
+
+<div class="grid4">
+
+
+<div class="card">
+
+<div class="card-num">
+01
+</div>
+
+<div class="card-icon">
+▦
+</div>
+
+<h3>
+พื้นอุตสาหกรรม
+</h3>
+
+<p>
+Epoxy, PU และระบบเคลือบผิว
+สำหรับพื้นที่ใช้งานหนัก
+</p>
+
+<a class="card-link"
+href="service-detail.html?service=industrial">
+ดูรายละเอียด →
+</a>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-num">
+02
+</div>
+
+<div class="card-icon">
+◇
+</div>
+
+<h3>
+งานกันซึม
+</h3>
+
+<p>
+ระบบกันรั่วซึม ดาดฟ้า
+หลังคา และพื้นอาคาร
+</p>
+
+<a class="card-link"
+href="service-detail.html?service=waterproof">
+ดูรายละเอียด →
+</a>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-num">
+03
+</div>
+
+<div class="card-icon">
+⌁
+</div>
+
+<h3>
+งานคอนกรีต
+</h3>
+
+<p>
+งานซ่อมปรับปรุงพื้น
+และงานคอนกรีตตามสภาพหน้างาน
+</p>
+
+<a class="card-link"
+href="service-detail.html?service=concrete">
+ดูรายละเอียด →
+</a>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-num">
+04
+</div>
+
+<div class="card-icon">
+✦
+</div>
+
+<h3>
+พื้นตกแต่ง
+</h3>
+
+<p>
+ระบบพื้นเพื่อความสวยงาม
+และงานออกแบบเฉพาะพื้นที่
+</p>
+
+<a class="card-link"
+href="service-detail.html?service=decorative">
+ดูรายละเอียด →
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
 </section>
 
-<section class="cp-section">
-<div class="cp-eyebrow">OUR WORK</div>
-<h2 class="cp-heading">ผลงานของเรา</h2>
-<p class="cp-text">ตัวอย่างงานด้านพื้น งานเคลือบผิว และงานก่อสร้างจากหลากหลายประเภทโครงการ</p>
-<div class="cp-work">
 
-<a href="projects.html" class="cp-work-card"><div class="cp-work-inner"><div class="cp-work-number">01</div><div class="cp-work-title">พื้นโรงงานอุตสาหกรรม</div><div class="cp-work-sub">INDUSTRIAL FLOOR</div></div></a>
-<a href="projects.html" class="cp-work-card"><div class="cp-work-inner"><div class="cp-work-number">02</div><div class="cp-work-title">พื้นพาณิชย์ / อาคาร</div><div class="cp-work-sub">COMMERCIAL FLOOR</div></div></a>
-<a href="projects.html" class="cp-work-card"><div class="cp-work-inner"><div class="cp-work-number">03</div><div class="cp-work-title">งานพื้นและการเคลือบผิว</div><div class="cp-work-sub">SURFACE SYSTEM</div></div></a>
-<a href="projects.html" class="cp-work-card"><div class="cp-work-inner"><div class="cp-work-number">04</div><div class="cp-work-title">งานก่อสร้าง</div><div class="cp-work-sub">CONSTRUCTION</div></div></a>
+
+<!-- =========================================================
+     OUR SOLUTIONS
+========================================================= -->
+
+<section class="section dark">
+
+<div class="wrap">
+
+<div class="section-head">
+
+<div class="section-kicker">
+OUR SOLUTIONS
+</div>
+
+<h2 class="section-title">
+โซลูชันสำหรับทุกพื้นที่
+</h2>
 
 </div>
+
+
+<div class="service-grid">
+
+
+<div class="service-card">
+
+<div class="num">
+01 / INDUSTRIAL
+</div>
+
+<h3>
+Industrial Flooring
+</h3>
+
+<p>
+ระบบพื้น Epoxy / PU
+สำหรับโรงงาน คลังสินค้า
+และพื้นที่อุตสาหกรรม
+</p>
+
+<a href="service-detail.html?service=industrial">
+EXPLORE →
+</a>
+
+</div>
+
+
+
+<div class="service-card">
+
+<div class="num">
+02 / WATERPROOF
+</div>
+
+<h3>
+Waterproofing
+</h3>
+
+<p>
+ระบบกันซึมสำหรับดาดฟ้า
+หลังคา พื้นอาคาร
+และพื้นที่เสี่ยงน้ำรั่ว
+</p>
+
+<a href="service-detail.html?service=waterproof">
+EXPLORE →
+</a>
+
+</div>
+
+
+
+<div class="service-card">
+
+<div class="num">
+03 / SPORTS
+</div>
+
+<h3>
+Sports Flooring
+</h3>
+
+<p>
+พื้นสนามกีฬาและพื้นที่กิจกรรม
+ที่ต้องการความทนทาน
+</p>
+
+<a href="service-detail.html?service=sports">
+EXPLORE →
+</a>
+
+</div>
+
+
+
+<div class="service-card">
+
+<div class="num">
+04 / TRAFFIC
+</div>
+
+<h3>
+Traffic Marking
+</h3>
+
+<p>
+ระบบสัญลักษณ์ เส้นจราจร
+และพื้นที่ใช้งานเฉพาะ
+</p>
+
+<a href="service-detail.html?service=traffic">
+EXPLORE →
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
 </section>
 
-<section class="cp-section">
-<div class="cp-stats">
-<div class="cp-stat"><strong>500+</strong><span>PROJECTS</span></div>
-<div class="cp-stat"><strong>10+</strong><span>YEARS EXPERIENCE</span></div>
-<div class="cp-stat"><strong>100%</strong><span>COMMITMENT</span></div>
+
+
+<!-- =========================================================
+     OUR WORK
+========================================================= -->
+
+<section class="section">
+
+<div class="wrap">
+
+<div class="section-head">
+
+<div class="section-kicker">
+OUR WORK
 </div>
+
+<h2 class="section-title">
+ผลงานของเรา
+</h2>
+
+<p class="section-text">
+ชมภาพผลงานจริงจากโครงการต่าง ๆ
+ของ CHATPHETCH GROUP
+</p>
+
+</div>
+
+
+<div class="work-grid">
+
+
+<div class="work">
+
+<div class="work-info">
+
+<div class="work-no">
+01
+</div>
+
+<h3>
+Epoxy Flooring
+</h3>
+
+<small>
+INDUSTRIAL
+</small>
+
+</div>
+
+</div>
+
+
+
+<div class="work">
+
+<div class="work-info">
+
+<div class="work-no">
+02
+</div>
+
+<h3>
+PU Coating
+</h3>
+
+<small>
+SURFACE
+</small>
+
+</div>
+
+</div>
+
+
+
+<div class="work">
+
+<div class="work-info">
+
+<div class="work-no">
+03
+</div>
+
+<h3>
+Polishing
+</h3>
+
+<small>
+CONCRETE
+</small>
+
+</div>
+
+</div>
+
+
+
+<div class="work">
+
+<div class="work-info">
+
+<div class="work-no">
+04
+</div>
+
+<h3>
+Stamped Concrete
+</h3>
+
+<small>
+DECORATIVE
+</small>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+<a class="btn btn-sub"
+href="projects.html">
+ดูผลงานทั้งหมด →
+</a>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="cp-cta">
-<div class="cp-cta-label">START YOUR PROJECT</div>
-<h2>สร้างพื้นที่ที่ดีกว่า<br>เริ่มต้นกับเรา</h2>
-<p>ให้เราช่วยเลือกวัสดุและโซลูชันที่เหมาะสมกับพื้นที่ของคุณ</p>
-<div class="cp-cta-button"><a href="contact.html" class="cp-button cp-button-main">ปรึกษาเราได้วันนี้ →</a></div>
-</section>
+
+
+<!-- =========================================================
+     STATS
+========================================================= -->
+
+<section class="section dark">
+
+<div class="wrap">
+
+<div class="stats">
+
+
+<div class="stat">
+
+<strong>
+500+
+</strong>
+
+<span>
+PROJECTS
+</span>
 
 </div>
+
+
+
+<div class="stat">
+
+<strong>
+10+
+</strong>
+
+<span>
+YEARS EXPERIENCE
+</span>
+
 </div>
+
+
+
+<div class="stat">
+
+<strong>
+100%
+</strong>
+
+<span>
+COMMITMENT
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="cta">
+
+<div class="section-kicker">
+START YOUR PROJECT
+</div>
+
+<h2>
+เริ่มต้นโครงการของคุณ
+</h2>
+
+<p>
+พูดคุยกับทีมงาน CHATPHETCH GROUP
+เพื่อเลือกวัสดุ ระบบพื้น
+และแนวทางการทำงานที่เหมาะกับพื้นที่ของคุณ
+</p>
+
+<div class="actions">
+
+<a class="btn btn-main"
+href="contact.html">
+ติดต่อเรา
+</a>
+
+<a class="btn btn-sub"
+href="products.html">
+ดูสินค้า
+</a>
+
+</div>
+
+</section>
+
+
 </main>
 
-<script src="assets/customer-master-nav.js?v=20260922"></script>
-<script>
-(function(){
-"use strict";
-const FACEBOOK_URL="https://www.facebook.com/ChatphetchGroup";
-function setup(){
- const social=document.querySelector(".customer-footer-social");
- if(!social)return false;
- const items=social.querySelectorAll(".customer-social");
- if(!items.length)return false;
- if(items[0]){items[0].href=FACEBOOK_URL;items[0].target="_blank";items[0].rel="noopener noreferrer";items[0].style.pointerEvents="auto";items[0].title="Facebook - CHATPHETCH GROUP";}
- if(items[1]){items[1].removeAttribute("href");items[1].style.pointerEvents="none";items[1].title="YouTube — เร็ว ๆ นี้";}
- if(items[2]){items[2].removeAttribute("href");items[2].style.pointerEvents="none";items[2].title="LINE — เร็ว ๆ นี้";}
- return true;
-}
-if(!setup()){
- const observer=new MutationObserver(function(){if(setup())observer.disconnect()});
- observer.observe(document.body,{childList:true,subtree:true});
- setTimeout(function(){observer.disconnect()},5000);
-}
-})();
-</script>
+</div>
+
 </body>
 </html>
