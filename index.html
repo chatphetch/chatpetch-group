@@ -1,70 +1,1273 @@
 <!doctype html>
 <html lang="th">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>CHATPHETCH GROUP | Flooring & Construction</title>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1"
+>
 
-<meta name="description"
-content="CHATPHETCH GROUP วัสดุงานพื้น งานก่อสร้าง ระบบพื้น สินค้า ผลงาน และบริการ">
+<title>
+CHATPHETCH GROUP | วัสดุงานพื้นและงานก่อสร้าง
+</title>
 
-<link rel="icon" type="image/png" href="assets/logo.png?v=20260922">
+<meta
+  name="description"
+  content="CHATPHETCH GROUP ผู้ผลิต จำหน่าย และให้บริการด้านวัสดุงานพื้น งานก่อสร้าง ระบบเคลือบผิว และงานปรับปรุงพื้นที่แบบครบวงจร"
+>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta
+  name="theme-color"
+  content="#050403"
+>
 
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link
+  rel="icon"
+  type="image/png"
+  href="assets/logo.png?v=20260922"
+>
 
-<link rel="stylesheet" href="assets/site.css">
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+>
 
-<script src="assets/customer-master-nav.js" defer></script>
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+>
+
+<link
+  rel="stylesheet"
+  href="assets/site.css"
+>
+
+<script
+  src="assets/customer-master-nav.js"
+  defer
+></script>
+
+<style>
+
+/* =========================================================
+   INDEX PAGE ONLY
+========================================================= */
+
+.index-page{
+  position:relative;
+  z-index:2;
+}
+
+/* ---------------------------------------------------------
+   HERO
+--------------------------------------------------------- */
+
+.index-hero{
+  min-height:540px;
+
+  display:flex;
+  align-items:center;
+
+  padding:
+    120px
+    0
+    60px;
+}
+
+.index-hero-inner{
+  width:min(
+    1240px,
+    calc(100% - 80px)
+  );
+
+  margin:auto;
+}
+
+.index-hero-content{
+  position:relative;
+
+  max-width:790px;
+
+  padding:
+    30px
+    45px
+    35px
+    0;
+}
+
+.index-hero-content::before{
+  content:"";
+
+  position:absolute;
+
+  z-index:-1;
+
+  left:-180px;
+  top:-80px;
+
+  width:900px;
+  height:560px;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,.82),
+      rgba(0,0,0,.48) 44%,
+      transparent 76%
+    );
+}
+
+.index-label{
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  color:#e4c57f;
+
+  font-size:10px;
+
+  letter-spacing:2.5px;
+}
+
+.index-label::before{
+  content:"";
+
+  width:40px;
+  height:1px;
+
+  background:#c9a45c;
+}
+
+.index-title{
+  margin:
+    17px
+    0
+    0;
+
+  color:#fff;
+
+  font-family:
+    "Kanit",
+    "Prompt",
+    sans-serif;
+
+  font-size:
+    clamp(
+      43px,
+      6vw,
+      76px
+    );
+
+  font-weight:400;
+
+  line-height:1.02;
+
+  letter-spacing:-1px;
+
+  text-shadow:
+    0 8px 35px
+    rgba(0,0,0,.9);
+}
+
+.index-title span{
+  display:block;
+
+  color:#e4c57f;
+}
+
+.index-description{
+  max-width:700px;
+
+  margin:
+    20px
+    0
+    0;
+
+  color:#f3ece4;
+
+  font-size:15px;
+
+  line-height:1.9;
+
+  text-shadow:
+    0 4px 18px
+    rgba(0,0,0,.95);
+}
+
+.index-actions{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-top:26px;
+}
+
+.index-btn{
+  min-height:46px;
+
+  padding:
+    0
+    22px;
+
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  border:
+    1px solid
+    rgba(
+      201,
+      164,
+      92,
+      .45
+    );
+
+  font-size:12px;
+
+  transition:.2s ease;
+}
+
+.index-btn:hover{
+  transform:translateY(-2px);
+}
+
+.index-btn-main{
+  color:#160e07;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e4c57f,
+      #b18442
+    );
+
+  border-color:#e4c57f;
+}
+
+.index-btn-sub{
+  color:#fff;
+
+  background:
+    rgba(
+      5,
+      4,
+      3,
+      .45
+    );
+
+  backdrop-filter:blur(8px);
+}
+
+
+/* ---------------------------------------------------------
+   INTRO
+--------------------------------------------------------- */
+
+.index-section{
+  padding:
+    72px
+    0;
+}
+
+.index-section-dark{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5,4,3,.20),
+      rgba(5,4,3,.88)
+    );
+}
+
+.index-wrap{
+  width:min(
+    1240px,
+    calc(100% - 80px)
+  );
+
+  margin:auto;
+}
+
+.index-heading{
+  margin-bottom:30px;
+}
+
+.index-small-title{
+  color:#e4c57f;
+
+  font-size:10px;
+
+  letter-spacing:2.5px;
+
+  margin-bottom:8px;
+}
+
+.index-heading h2{
+  margin:0;
+
+  color:#fff;
+
+  font-family:
+    "Kanit",
+    "Prompt",
+    sans-serif;
+
+  font-size:
+    clamp(
+      32px,
+      4vw,
+      52px
+    );
+
+  font-weight:400;
+
+  line-height:1.1;
+}
+
+.index-heading p{
+  max-width:720px;
+
+  margin:
+    12px
+    0
+    0;
+
+  color:
+    rgba(
+      255,
+      250,
+      244,
+      .80
+    );
+
+  font-size:14px;
+
+  line-height:1.9;
+}
+
+
+/* ---------------------------------------------------------
+   SOLUTION GRID
+--------------------------------------------------------- */
+
+.index-solution-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      1fr
+    );
+
+  gap:1px;
+
+  background:
+    rgba(
+      201,
+      164,
+      92,
+      .22
+    );
+
+  border:
+    1px solid
+    rgba(
+      201,
+      164,
+      92,
+      .22
+    );
+}
+
+.index-solution{
+  min-height:255px;
+
+  padding:25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,12,8,.90),
+      rgba(4,3,2,.92)
+    );
+
+  display:flex;
+
+  flex-direction:column;
+
+  transition:.25s ease;
+}
+
+.index-solution:hover{
+  transform:translateY(-3px);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(34,23,13,.94),
+      rgba(4,3,2,.95)
+    );
+}
+
+.index-solution-number{
+  color:
+    rgba(
+      228,
+      197,
+      127,
+      .75
+    );
+
+  font-size:10px;
+
+  letter-spacing:2px;
+}
+
+.index-solution-icon{
+  width:43px;
+  height:43px;
+
+  margin-top:21px;
+
+  display:grid;
+
+  place-items:center;
+
+  color:#e4c57f;
+
+  border:
+    1px solid
+    rgba(
+      201,
+      164,
+      92,
+      .32
+    );
+
+  font-size:18px;
+}
+
+.index-solution h3{
+  margin:
+    15px
+    0
+    7px;
+
+  color:#fff;
+
+  font-family:
+    "Kanit",
+    "Prompt",
+    sans-serif;
+
+  font-size:21px;
+
+  font-weight:400;
+}
+
+.index-solution p{
+  margin:0;
+
+  color:#c9c0b5;
+
+  font-size:12px;
+
+  line-height:1.8;
+}
+
+.index-solution-link{
+  margin-top:auto;
+
+  padding-top:18px;
+
+  color:#e4c57f;
+
+  font-size:11px;
+}
+
+
+/* ---------------------------------------------------------
+   SERVICE SECTION
+--------------------------------------------------------- */
+
+.index-service-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      1fr
+    );
+
+  gap:12px;
+}
+
+.index-service-card{
+  min-height:235px;
+
+  padding:25px;
+
+  border:
+    1px solid
+    rgba(
+      201,
+      164,
+      92,
+      .22
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,12,8,.90),
+      rgba(4,3,2,.90)
+    );
+
+  display:flex;
+
+  flex-direction:column;
+
+  transition:.25s ease;
+}
+
+.index-service-card:hover{
+  transform:translateY(-3px);
+
+  border-color:
+    rgba(
+      228,
+      197,
+      127,
+      .48
+    );
+}
+
+.index-service-card h3{
+  margin:
+    13px
+    0
+    8px;
+
+  color:#fff;
+
+  font-size:20px;
+
+  font-weight:400;
+}
+
+.index-service-card p{
+  margin:0;
+
+  color:#c7beb4;
+
+  font-size:12px;
+
+  line-height:1.8;
+}
+
+.index-service-card a{
+  margin-top:auto;
+
+  padding-top:17px;
+
+  color:#e4c57f;
+
+  font-size:11px;
+}
+
+
+/* ---------------------------------------------------------
+   WORK
+--------------------------------------------------------- */
+
+.index-work-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      1fr
+    );
+
+  gap:12px;
+}
+
+.index-work-card{
+  position:relative;
+
+  min-height:225px;
+
+  overflow:hidden;
+
+  border:
+    1px solid
+    rgba(
+      201,
+      164,
+      92,
+      .20
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(17,11,7,.92),
+      rgba(3,2,1,.96)
+    );
+
+  transition:.25s ease;
+}
+
+.index-work-card:hover{
+  transform:translateY(-3px);
+
+  border-color:
+    rgba(
+      228,
+      197,
+      127,
+      .45
+    );
+}
+
+.index-work-card::before{
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(201,164,92,.16),
+      transparent 55%
+    );
+}
+
+.index-work-card:nth-child(2)::before{
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 35px,
+      rgba(201,164,92,.05) 36px,
+      transparent 38px
+    );
+}
+
+.index-work-card:nth-child(3)::before{
+  background:
+    linear-gradient(
+      135deg,
+      transparent 42%,
+      rgba(201,164,92,.14) 44%,
+      transparent 47%
+    );
+}
+
+.index-work-card:nth-child(4)::before{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.05),
+      transparent 48%
+    );
+}
+
+.index-work-info{
+  position:absolute;
+
+  left:20px;
+  right:20px;
+  bottom:20px;
+
+  z-index:2;
+}
+
+.index-work-info::before{
+  content:"";
+
+  position:absolute;
+
+  z-index:-1;
+
+  left:-20px;
+  right:-20px;
+  bottom:-20px;
+
+  height:130px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(0,0,0,.92)
+    );
+}
+
+.index-work-number{
+  color:#e4c57f;
+
+  font-size:9px;
+
+  letter-spacing:2px;
+}
+
+.index-work-info h3{
+  margin:
+    6px
+    0
+    3px;
+
+  color:#fff;
+
+  font-size:19px;
+
+  font-weight:400;
+}
+
+.index-work-info span{
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .48
+    );
+
+  font-size:9px;
+
+  letter-spacing:1.5px;
+}
+
+
+/* ---------------------------------------------------------
+   STATS
+--------------------------------------------------------- */
+
+.index-stats{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  border-top:
+    1px solid
+    rgba(
+      201,
+      164,
+      92,
+      .22
+    );
+
+  border-bottom:
+    1px solid
+    rgba(
+      201,
+      164,
+      92,
+      .22
+    );
+}
+
+.index-stat{
+  text-align:center;
+
+  padding:
+    30px
+    15px;
+
+  border-right:
+    1px solid
+    rgba(
+      201,
+      164,
+      92,
+      .15
+    );
+}
+
+.index-stat:last-child{
+  border-right:0;
+}
+
+.index-stat strong{
+  display:block;
+
+  color:#e4c57f;
+
+  font-family:
+    "Kanit",
+    "Prompt",
+    sans-serif;
+
+  font-size:
+    clamp(
+      42px,
+      4.5vw,
+      60px
+    );
+
+  font-weight:300;
+
+  line-height:1;
+}
+
+.index-stat span{
+  display:block;
+
+  margin-top:9px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .72
+    );
+
+  font-size:12px;
+}
+
+
+/* ---------------------------------------------------------
+   CTA
+--------------------------------------------------------- */
+
+.index-cta{
+  width:min(
+    1240px,
+    calc(100% - 80px)
+  );
+
+  margin:
+    10px
+    auto
+    70px;
+
+  padding:
+    58px
+    clamp(
+      28px,
+      6vw,
+      70px
+    );
+
+  border:
+    1px solid
+    rgba(
+      201,
+      164,
+      92,
+      .30
+    );
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(31,20,12,.78),
+      rgba(5,4,3,.84)
+    );
+
+  backdrop-filter:blur(9px);
+}
+
+.index-cta-title{
+  margin:
+    8px
+    0
+    0;
+
+  color:#fff;
+
+  font-family:
+    "Kanit",
+    "Prompt",
+    sans-serif;
+
+  font-size:
+    clamp(
+      35px,
+      4vw,
+      56px
+    );
+
+  font-weight:400;
+
+  line-height:1.1;
+}
+
+.index-cta-text{
+  max-width:680px;
+
+  margin:
+    14px
+    0
+    0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .80
+    );
+
+  font-size:13px;
+
+  line-height:1.9;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:1050px){
+
+  .index-hero{
+    min-height:510px;
+  }
+
+  .index-hero-inner,
+  .index-wrap{
+    width:
+      calc(
+        100% - 50px
+      );
+  }
+
+  .index-solution-grid{
+    grid-template-columns:
+      repeat(
+        2,
+        1fr
+      );
+  }
+
+  .index-service-grid{
+    grid-template-columns:
+      repeat(
+        2,
+        1fr
+      );
+  }
+
+  .index-work-grid{
+    grid-template-columns:
+      repeat(
+        2,
+        1fr
+      );
+  }
+
+  .index-cta{
+    width:
+      calc(
+        100% - 50px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+  .index-hero{
+    min-height:500px;
+
+    padding:
+      105px
+      0
+      45px;
+
+    align-items:flex-end;
+  }
+
+  .index-hero-inner,
+  .index-wrap{
+    width:
+      calc(
+        100% - 32px
+      );
+  }
+
+  .index-hero-content{
+    width:100%;
+
+    padding:
+      24px
+      16px
+      28px;
+  }
+
+  .index-hero-content::before{
+    left:-100px;
+    top:-60px;
+
+    width:650px;
+    height:450px;
+  }
+
+  .index-label{
+    font-size:9px;
+
+    letter-spacing:2px;
+  }
+
+  .index-title{
+    font-size:
+      clamp(
+        42px,
+        12vw,
+        58px
+      );
+  }
+
+  .index-description{
+    font-size:13.5px;
+
+    line-height:1.85;
+  }
+
+  .index-actions{
+    margin-top:20px;
+  }
+
+  .index-btn{
+    min-height:46px;
+
+    padding:
+      0
+      17px;
+  }
+
+
+  .index-section{
+    padding:
+      55px
+      0;
+  }
+
+
+  .index-heading{
+    margin-bottom:22px;
+  }
+
+  .index-heading h2{
+    font-size:
+      clamp(
+        31px,
+        9vw,
+        44px
+      );
+  }
+
+  .index-heading p{
+    font-size:13px;
+  }
+
+
+  .index-solution-grid{
+    grid-template-columns:1fr;
+
+    gap:9px;
+
+    background:transparent;
+
+    border:0;
+  }
+
+  .index-solution{
+    min-height:0;
+
+    padding:
+      23px
+      21px;
+
+    border:
+      1px solid
+      rgba(
+        201,
+        164,
+        92,
+        .30
+      );
+  }
+
+
+  .index-service-grid{
+    grid-template-columns:1fr;
+
+    gap:9px;
+  }
+
+  .index-service-card{
+    min-height:0;
+
+    padding:
+      23px
+      21px;
+  }
+
+
+  .index-work-grid{
+    grid-template-columns:1fr;
+
+    gap:9px;
+  }
+
+  .index-work-card{
+    min-height:210px;
+  }
+
+
+  .index-stats{
+    grid-template-columns:1fr;
+  }
+
+  .index-stat{
+    padding:
+      27px
+      15px;
+
+    border-right:0;
+
+    border-bottom:
+      1px solid
+      rgba(
+        201,
+        164,
+        92,
+        .15
+      );
+  }
+
+  .index-stat:last-child{
+    border-bottom:0;
+  }
+
+
+  .index-cta{
+    width:
+      calc(
+        100% - 32px
+      );
+
+    margin:
+      10px
+      auto
+      40px;
+
+    padding:
+      40px
+      24px;
+  }
+
+  .index-cta-title{
+    font-size:
+      clamp(
+        34px,
+        10vw,
+        48px
+      );
+  }
+
+  .index-cta-text{
+    font-size:13px;
+  }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
+
 <div class="site-page">
 
-<main class="site-main">
+
+<main class="site-main index-page">
+
 
 <!-- =========================================================
      HERO
 ========================================================= -->
 
-<section class="hero">
+<section class="index-hero">
 
-<div class="wrap">
+<div class="index-hero-inner">
 
-<div class="hero-copy">
+<div class="index-hero-content">
 
-<div class="eyebrow">
-FLOORING & CONSTRUCTION
+
+<div class="index-label">
+วัสดุงานพื้นและงานก่อสร้าง
 </div>
 
-<h1>
-CHATPHETCH
-<span>GROUP</span>
+
+<h1 class="index-title">
+
+วัสดุงานพื้น
+<span>และงานก่อสร้าง</span>
+
 </h1>
 
-<p>
-ผู้ผลิต จำหน่าย และให้บริการด้านวัสดุงานพื้น
-งานก่อสร้าง และระบบเคลือบผิวแบบครบวงจร
-พร้อมให้คำปรึกษาและดูแลงานตั้งแต่ต้นจนจบ
+
+<p class="index-description">
+
+โซลูชันด้านวัสดุงานพื้นและงานก่อสร้าง
+สำหรับบ้าน อาคารพาณิชย์ โรงงาน
+และโครงการขนาดใหญ่
+พร้อมทีมงานดูแลตั้งแต่การเลือกวัสดุ
+จนถึงการติดตั้ง
+
 </p>
 
-<div class="actions">
 
-<a class="btn btn-main"
-href="services.html">
-ดูบริการของเรา
+<div class="index-actions">
+
+<a
+  class="index-btn index-btn-main"
+  href="products.html"
+>
+ดูสินค้า →
 </a>
 
-<a class="btn btn-sub"
-href="contact.html">
-เริ่มต้นโครงการ
+
+<a
+  class="index-btn index-btn-sub"
+  href="contact.html"
+>
+ติดต่อเรา
 </a>
 
 </div>
+
 
 </div>
 
@@ -73,44 +1276,216 @@ href="contact.html">
 </section>
 
 
+
 <!-- =========================================================
-     FLOORING
+     SOLUTIONS
 ========================================================= -->
 
-<section class="section">
+<section class="index-section">
 
-<div class="wrap">
+<div class="index-wrap">
 
-<div class="section-head">
 
-<div class="section-kicker">
-FLOORING & CONSTRUCTION
+<div class="index-heading">
+
+<div class="index-small-title">
+บริการและโซลูชัน
 </div>
 
-<h2 class="section-title">
-วัสดุงานพื้นและงานก่อสร้าง
+<h2>
+ครบทุกความต้องการ
+<br>
+เรื่องพื้นและงานก่อสร้าง
 </h2>
 
-<p class="section-text">
-ระบบพื้นและวัสดุสำหรับงานอุตสาหกรรม
-อาคารพาณิชย์ บ้าน สนามกีฬา
-และพื้นที่ใช้งานเฉพาะทาง
+<p>
+วัสดุ บริการ และโซลูชันสำหรับงานพื้น
+และงานก่อสร้าง
+ที่เหมาะกับลักษณะของแต่ละโครงการ
 </p>
 
 </div>
 
 
-<div class="grid4">
+
+<div class="index-solution-grid">
 
 
-<div class="card">
+<!-- 01 -->
 
-<div class="card-num">
+<div class="index-solution">
+
+<div class="index-solution-number">
 01
 </div>
 
-<div class="card-icon">
+<div class="index-solution-icon">
 ▦
+</div>
+
+<h3>
+ระบบงานพื้น
+</h3>
+
+<p>
+ระบบพื้นสำหรับพื้นที่หลากหลายประเภท
+ทั้งงานอุตสาหกรรม อาคาร
+พื้นที่พาณิชย์ และพื้นที่ใช้งานทั่วไป
+</p>
+
+<a
+  class="index-solution-link"
+  href="services.html"
+>
+ดูบริการ →
+</a>
+
+</div>
+
+
+
+<!-- 02 -->
+
+<div class="index-solution">
+
+<div class="index-solution-number">
+02
+</div>
+
+<div class="index-solution-icon">
+□
+</div>
+
+<h3>
+สินค้า
+</h3>
+
+<p>
+วัสดุและผลิตภัณฑ์สำหรับงานพื้น
+งานก่อสร้าง และงานตกแต่ง
+คัดเลือกให้เหมาะกับแต่ละโครงการ
+</p>
+
+<a
+  class="index-solution-link"
+  href="products.html"
+>
+ดูสินค้า →
+</a>
+
+</div>
+
+
+
+<!-- 03 -->
+
+<div class="index-solution">
+
+<div class="index-solution-number">
+03
+</div>
+
+<div class="index-solution-icon">
+✦
+</div>
+
+<h3>
+ผลงาน
+</h3>
+
+<p>
+ชมตัวอย่างผลงานด้านระบบพื้น
+งานก่อสร้าง และโครงการ
+จากการใช้งานจริง
+</p>
+
+<a
+  class="index-solution-link"
+  href="projects.html"
+>
+ดูผลงาน →
+</a>
+
+</div>
+
+
+
+<!-- 04 -->
+
+<div class="index-solution">
+
+<div class="index-solution-number">
+04
+</div>
+
+<div class="index-solution-icon">
++
+</div>
+
+<h3>
+บริการ
+</h3>
+
+<p>
+บริการด้านพื้น กันรั่วซึม
+งานคอนกรีต สนามกีฬา
+งานตกแต่ง และเส้นจราจร
+</p>
+
+<a
+  class="index-solution-link"
+  href="services.html"
+>
+ดูบริการทั้งหมด →
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+
+<section class="index-section index-section-dark">
+
+<div class="index-wrap">
+
+
+<div class="index-heading">
+
+<div class="index-small-title">
+บริการของเรา
+</div>
+
+<h2>
+ระบบงานสำหรับทุกพื้นที่
+</h2>
+
+<p>
+ให้บริการตั้งแต่การเลือกวัสดุ
+การเตรียมพื้น การติดตั้ง
+จนถึงการดูแลรายละเอียดของโครงการ
+</p>
+
+</div>
+
+
+
+<div class="index-service-grid">
+
+
+<div class="index-service-card">
+
+<div class="index-solution-number">
+01
 </div>
 
 <h3>
@@ -118,12 +1493,14 @@ FLOORING & CONSTRUCTION
 </h3>
 
 <p>
-Epoxy, PU และระบบเคลือบผิว
-สำหรับพื้นที่ใช้งานหนัก
+ระบบพื้น Epoxy และ PU
+สำหรับโรงงาน คลังสินค้า
+อาคาร และพื้นที่ใช้งานหนัก
 </p>
 
-<a class="card-link"
-href="service-detail.html?service=industrial">
+<a
+  href="service-detail.html?service=industrial"
+>
 ดูรายละเอียด →
 </a>
 
@@ -131,27 +1508,25 @@ href="service-detail.html?service=industrial">
 
 
 
-<div class="card">
+<div class="index-service-card">
 
-<div class="card-num">
+<div class="index-solution-number">
 02
 </div>
 
-<div class="card-icon">
-◇
-</div>
-
 <h3>
-งานกันซึม
+งานกันรั่วซึม
 </h3>
 
 <p>
-ระบบกันรั่วซึม ดาดฟ้า
-หลังคา และพื้นอาคาร
+ระบบกันซึมสำหรับดาดฟ้า
+หลังคา พื้นอาคาร
+และพื้นที่ที่มีความเสี่ยงเรื่องน้ำ
 </p>
 
-<a class="card-link"
-href="service-detail.html?service=waterproof">
+<a
+  href="service-detail.html?service=waterproof"
+>
 ดูรายละเอียด →
 </a>
 
@@ -159,27 +1534,25 @@ href="service-detail.html?service=waterproof">
 
 
 
-<div class="card">
+<div class="index-service-card">
 
-<div class="card-num">
+<div class="index-solution-number">
 03
 </div>
 
-<div class="card-icon">
-⌁
-</div>
-
 <h3>
-งานคอนกรีต
+งานซ่อมปรับปรุงคอนกรีต
 </h3>
 
 <p>
-งานซ่อมปรับปรุงพื้น
-และงานคอนกรีตตามสภาพหน้างาน
+งานซ่อม ปรับระดับ
+และปรับปรุงพื้นคอนกรีต
+ให้พร้อมสำหรับการใช้งาน
 </p>
 
-<a class="card-link"
-href="service-detail.html?service=concrete">
+<a
+  href="service-detail.html?service=concrete"
+>
 ดูรายละเอียด →
 </a>
 
@@ -187,14 +1560,36 @@ href="service-detail.html?service=concrete">
 
 
 
-<div class="card">
+<div class="index-service-card">
 
-<div class="card-num">
+<div class="index-solution-number">
 04
 </div>
 
-<div class="card-icon">
-✦
+<h3>
+พื้นสนามกีฬา
+</h3>
+
+<p>
+ระบบพื้นสำหรับสนามกีฬา
+และพื้นที่กิจกรรม
+ที่ต้องการความทนทาน
+</p>
+
+<a
+  href="service-detail.html?service=sports"
+>
+ดูรายละเอียด →
+</a>
+
+</div>
+
+
+
+<div class="index-service-card">
+
+<div class="index-solution-number">
+05
 </div>
 
 <h3>
@@ -204,10 +1599,38 @@ href="service-detail.html?service=concrete">
 <p>
 ระบบพื้นเพื่อความสวยงาม
 และงานออกแบบเฉพาะพื้นที่
+ให้เข้ากับรูปแบบของโครงการ
 </p>
 
-<a class="card-link"
-href="service-detail.html?service=decorative">
+<a
+  href="service-detail.html?service=decorative"
+>
+ดูรายละเอียด →
+</a>
+
+</div>
+
+
+
+<div class="index-service-card">
+
+<div class="index-solution-number">
+06
+</div>
+
+<h3>
+งานเส้นจราจรและสัญลักษณ์
+</h3>
+
+<p>
+งานตีเส้น สัญลักษณ์
+และการจัดระเบียบพื้นที่
+เพื่อการใช้งานและความปลอดภัย
+</p>
+
+<a
+  href="service-detail.html?service=traffic"
+>
 ดูรายละเอียด →
 </a>
 
@@ -223,174 +1646,52 @@ href="service-detail.html?service=decorative">
 
 
 <!-- =========================================================
-     OUR SOLUTIONS
+     WORK
 ========================================================= -->
 
-<section class="section dark">
+<section class="index-section">
 
-<div class="wrap">
-
-<div class="section-head">
-
-<div class="section-kicker">
-OUR SOLUTIONS
-</div>
-
-<h2 class="section-title">
-โซลูชันสำหรับทุกพื้นที่
-</h2>
-
-</div>
+<div class="index-wrap">
 
 
-<div class="service-grid">
+<div class="index-heading">
 
-
-<div class="service-card">
-
-<div class="num">
-01 / INDUSTRIAL
-</div>
-
-<h3>
-Industrial Flooring
-</h3>
-
-<p>
-ระบบพื้น Epoxy / PU
-สำหรับโรงงาน คลังสินค้า
-และพื้นที่อุตสาหกรรม
-</p>
-
-<a href="service-detail.html?service=industrial">
-EXPLORE →
-</a>
-
-</div>
-
-
-
-<div class="service-card">
-
-<div class="num">
-02 / WATERPROOF
-</div>
-
-<h3>
-Waterproofing
-</h3>
-
-<p>
-ระบบกันซึมสำหรับดาดฟ้า
-หลังคา พื้นอาคาร
-และพื้นที่เสี่ยงน้ำรั่ว
-</p>
-
-<a href="service-detail.html?service=waterproof">
-EXPLORE →
-</a>
-
-</div>
-
-
-
-<div class="service-card">
-
-<div class="num">
-03 / SPORTS
-</div>
-
-<h3>
-Sports Flooring
-</h3>
-
-<p>
-พื้นสนามกีฬาและพื้นที่กิจกรรม
-ที่ต้องการความทนทาน
-</p>
-
-<a href="service-detail.html?service=sports">
-EXPLORE →
-</a>
-
-</div>
-
-
-
-<div class="service-card">
-
-<div class="num">
-04 / TRAFFIC
-</div>
-
-<h3>
-Traffic Marking
-</h3>
-
-<p>
-ระบบสัญลักษณ์ เส้นจราจร
-และพื้นที่ใช้งานเฉพาะ
-</p>
-
-<a href="service-detail.html?service=traffic">
-EXPLORE →
-</a>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================================================
-     OUR WORK
-========================================================= -->
-
-<section class="section">
-
-<div class="wrap">
-
-<div class="section-head">
-
-<div class="section-kicker">
-OUR WORK
-</div>
-
-<h2 class="section-title">
+<div class="index-small-title">
 ผลงานของเรา
+</div>
+
+<h2>
+ตัวอย่างผลงาน
 </h2>
 
-<p class="section-text">
-ชมภาพผลงานจริงจากโครงการต่าง ๆ
-ของ CHATPHETCH GROUP
+<p>
+ตัวอย่างงานด้านพื้น
+งานเคลือบผิว และงานก่อสร้าง
+จากหลากหลายประเภทโครงการ
 </p>
 
 </div>
 
 
-<div class="work-grid">
+
+<div class="index-work-grid">
 
 
-<div class="work">
+<div class="index-work-card">
 
-<div class="work-info">
+<div class="index-work-info">
 
-<div class="work-no">
+<div class="index-work-number">
 01
 </div>
 
 <h3>
-Epoxy Flooring
+พื้นโรงงานอุตสาหกรรม
 </h3>
 
-<small>
-INDUSTRIAL
-</small>
+<span>
+ระบบพื้นสำหรับงานอุตสาหกรรม
+</span>
 
 </div>
 
@@ -398,21 +1699,21 @@ INDUSTRIAL
 
 
 
-<div class="work">
+<div class="index-work-card">
 
-<div class="work-info">
+<div class="index-work-info">
 
-<div class="work-no">
+<div class="index-work-number">
 02
 </div>
 
 <h3>
-PU Coating
+พื้นพาณิชย์และอาคาร
 </h3>
 
-<small>
-SURFACE
-</small>
+<span>
+งานพื้นสำหรับอาคารและพื้นที่พาณิชย์
+</span>
 
 </div>
 
@@ -420,21 +1721,21 @@ SURFACE
 
 
 
-<div class="work">
+<div class="index-work-card">
 
-<div class="work-info">
+<div class="index-work-info">
 
-<div class="work-no">
+<div class="index-work-number">
 03
 </div>
 
 <h3>
-Polishing
+งานพื้นและการเคลือบผิว
 </h3>
 
-<small>
-CONCRETE
-</small>
+<span>
+ระบบเคลือบผิวและงานปรับปรุงพื้น
+</span>
 
 </div>
 
@@ -442,21 +1743,21 @@ CONCRETE
 
 
 
-<div class="work">
+<div class="index-work-card">
 
-<div class="work-info">
+<div class="index-work-info">
 
-<div class="work-no">
+<div class="index-work-number">
 04
 </div>
 
 <h3>
-Stamped Concrete
+งานก่อสร้าง
 </h3>
 
-<small>
-DECORATIVE
-</small>
+<span>
+งานปรับปรุงและก่อสร้างพื้นที่
+</span>
 
 </div>
 
@@ -466,14 +1767,18 @@ DECORATIVE
 </div>
 
 
-<div class="actions">
 
-<a class="btn btn-sub"
-href="projects.html">
+<div class="index-actions">
+
+<a
+  class="index-btn index-btn-sub"
+  href="projects.html"
+>
 ดูผลงานทั้งหมด →
 </a>
 
 </div>
+
 
 </div>
 
@@ -485,55 +1790,57 @@ href="projects.html">
      STATS
 ========================================================= -->
 
-<section class="section dark">
+<section class="index-section index-section-dark">
 
-<div class="wrap">
-
-<div class="stats">
+<div class="index-wrap">
 
 
-<div class="stat">
+<div class="index-stats">
+
+
+<div class="index-stat">
 
 <strong>
 500+
 </strong>
 
 <span>
-PROJECTS
+โครงการ
 </span>
 
 </div>
 
 
 
-<div class="stat">
+<div class="index-stat">
 
 <strong>
 10+
 </strong>
 
 <span>
-YEARS EXPERIENCE
+ประสบการณ์กว่า 10 ปี
 </span>
 
 </div>
 
 
 
-<div class="stat">
+<div class="index-stat">
 
 <strong>
 100%
 </strong>
 
 <span>
-COMMITMENT
+ใส่ใจทุกโครงการ
 </span>
 
 </div>
 
 
 </div>
+
 
 </div>
 
@@ -545,35 +1852,48 @@ COMMITMENT
      CTA
 ========================================================= -->
 
-<section class="cta">
+<section class="index-cta">
 
-<div class="section-kicker">
-START YOUR PROJECT
+
+<div class="index-small-title">
+เริ่มต้นโครงการของคุณ
 </div>
 
-<h2>
-เริ่มต้นโครงการของคุณ
+
+<h2 class="index-cta-title">
+สร้างพื้นที่ที่ดีกว่า
+<br>
+เริ่มต้นกับเรา
 </h2>
 
-<p>
-พูดคุยกับทีมงาน CHATPHETCH GROUP
-เพื่อเลือกวัสดุ ระบบพื้น
-และแนวทางการทำงานที่เหมาะกับพื้นที่ของคุณ
+
+<p class="index-cta-text">
+ให้เราช่วยเลือกวัสดุและโซลูชัน
+ที่เหมาะสมกับพื้นที่ของคุณ
+พร้อมให้คำปรึกษาเกี่ยวกับระบบพื้น
+งานก่อสร้าง และการใช้งาน
 </p>
 
-<div class="actions">
 
-<a class="btn btn-main"
-href="contact.html">
-ติดต่อเรา
+<div class="index-actions">
+
+<a
+  class="index-btn index-btn-main"
+  href="contact.html"
+>
+ปรึกษาเราได้วันนี้ →
 </a>
 
-<a class="btn btn-sub"
-href="products.html">
-ดูสินค้า
+
+<a
+  class="index-btn index-btn-sub"
+  href="services.html"
+>
+ดูบริการทั้งหมด
 </a>
 
 </div>
+
 
 </section>
 
@@ -582,5 +1902,7 @@ href="products.html">
 
 </div>
 
+
 </body>
+
 </html>
