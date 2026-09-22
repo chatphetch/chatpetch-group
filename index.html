@@ -1,13 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="th">
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="UTF-8">
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1"
+  content="width=device-width, initial-scale=1.0"
 >
 
 <title>
@@ -16,7 +16,7 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 <meta
   name="description"
-  content="CHATPHETCH GROUP ผู้ผลิต จำหน่าย และให้บริการด้านวัสดุงานพื้น งานก่อสร้าง ระบบเคลือบผิว และงานปรับปรุงพื้นที่แบบครบวงจร"
+  content="CHATPHETCH GROUP ผู้ผลิต จำหน่าย และให้บริการด้านวัสดุงานพื้น งานก่อสร้าง ระบบพื้น งานเคลือบผิว และงานปรับปรุงพื้นที่"
 >
 
 <meta
@@ -46,276 +46,219 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
   rel="stylesheet"
 >
 
-<link
-  rel="stylesheet"
-  href="assets/site.css"
->
-
-<script
-  src="assets/customer-master-nav.js"
-  defer
-></script>
 
 <style>
 
 /* =========================================================
-   INDEX PAGE ONLY
+   RESET
+========================================================= */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  margin:0;
+  padding:0;
+
+  scroll-behavior:smooth;
+
+  background:#050403;
+}
+
+body{
+  margin:0;
+  padding:0;
+
+  min-height:100vh;
+
+  background:#050403;
+
+  color:#ded4c8;
+
+  font-family:
+    "Prompt",
+    "Kanit",
+    sans-serif;
+
+  overflow-x:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+
+/* =========================================================
+   BACKGROUND
 ========================================================= */
 
 .index-page{
+
   position:relative;
-  z-index:2;
+
+  min-height:100vh;
+
+  background:#050403;
+
+  isolation:isolate;
 }
 
-/* ---------------------------------------------------------
-   HERO
---------------------------------------------------------- */
 
-.index-hero{
-  min-height:540px;
+.index-page::before{
 
-  display:flex;
-  align-items:center;
+  content:"";
 
-  padding:
-    120px
-    0
-    60px;
+  position:fixed;
+
+  inset:0;
+
+  z-index:-10;
+
+  background-image:
+    url("assets/index-main-bg.png");
+
+  background-repeat:no-repeat;
+
+  background-position:
+    center top;
+
+  background-size:cover;
+
 }
 
-.index-hero-inner{
+
+.index-page::after{
+
+  content:"";
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:-9;
+
+  pointer-events:none;
+
+  background:
+
+    linear-gradient(
+      180deg,
+
+      rgba(0,0,0,.30) 0%,
+
+      rgba(0,0,0,.18) 20%,
+
+      rgba(0,0,0,.25) 42%,
+
+      rgba(0,0,0,.62) 72%,
+
+      rgba(0,0,0,.94) 100%
+    );
+
+}
+
+
+.index-content{
+
+  position:relative;
+
+  z-index:5;
+
+}
+
+
+/* =========================================================
+   COMMON
+========================================================= */
+
+.index-wrap{
+
   width:min(
     1240px,
     calc(100% - 80px)
   );
 
-  margin:auto;
+  margin-left:auto;
+  margin-right:auto;
+
 }
 
-.index-hero-content{
-  position:relative;
 
-  max-width:790px;
+.gold{
 
-  padding:
-    30px
-    45px
-    35px
-    0;
+  color:#e4c57f;
+
 }
 
-.index-hero-content::before{
-  content:"";
 
-  position:absolute;
+.kicker{
 
-  z-index:-1;
-
-  left:-180px;
-  top:-80px;
-
-  width:900px;
-  height:560px;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(0,0,0,.82),
-      rgba(0,0,0,.48) 44%,
-      transparent 76%
-    );
-}
-
-.index-label{
   display:flex;
 
   align-items:center;
 
   gap:12px;
 
+  margin-bottom:14px;
+
   color:#e4c57f;
 
   font-size:10px;
 
   letter-spacing:2.5px;
+
 }
 
-.index-label::before{
+
+.kicker::before{
+
   content:"";
 
-  width:40px;
+  width:42px;
+
   height:1px;
 
   background:#c9a45c;
+
 }
 
-.index-title{
-  margin:
-    17px
-    0
-    0;
 
-  color:#fff;
-
-  font-family:
-    "Kanit",
-    "Prompt",
-    sans-serif;
-
-  font-size:
-    clamp(
-      43px,
-      6vw,
-      76px
-    );
-
-  font-weight:400;
-
-  line-height:1.02;
-
-  letter-spacing:-1px;
-
-  text-shadow:
-    0 8px 35px
-    rgba(0,0,0,.9);
-}
-
-.index-title span{
-  display:block;
-
-  color:#e4c57f;
-}
-
-.index-description{
-  max-width:700px;
-
-  margin:
-    20px
-    0
-    0;
-
-  color:#f3ece4;
-
-  font-size:15px;
-
-  line-height:1.9;
-
-  text-shadow:
-    0 4px 18px
-    rgba(0,0,0,.95);
-}
-
-.index-actions{
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:10px;
-
-  margin-top:26px;
-}
-
-.index-btn{
-  min-height:46px;
+.section{
 
   padding:
-    0
-    22px;
+    78px 0;
 
-  display:inline-flex;
-
-  align-items:center;
-  justify-content:center;
-
-  border:
-    1px solid
-    rgba(
-      201,
-      164,
-      92,
-      .45
-    );
-
-  font-size:12px;
-
-  transition:.2s ease;
-}
-
-.index-btn:hover{
-  transform:translateY(-2px);
-}
-
-.index-btn-main{
-  color:#160e07;
-
-  background:
-    linear-gradient(
-      135deg,
-      #e4c57f,
-      #b18442
-    );
-
-  border-color:#e4c57f;
-}
-
-.index-btn-sub{
-  color:#fff;
-
-  background:
-    rgba(
-      5,
-      4,
-      3,
-      .45
-    );
-
-  backdrop-filter:blur(8px);
 }
 
 
-/* ---------------------------------------------------------
-   INTRO
---------------------------------------------------------- */
+.section-dark{
 
-.index-section{
-  padding:
-    72px
-    0;
-}
-
-.index-section-dark{
   background:
     linear-gradient(
       180deg,
-      rgba(5,4,3,.20),
-      rgba(5,4,3,.88)
+      rgba(5,4,3,.18),
+      rgba(5,4,3,.86)
     );
+
 }
 
-.index-wrap{
-  width:min(
-    1240px,
-    calc(100% - 80px)
-  );
 
-  margin:auto;
-}
+.section-title{
 
-.index-heading{
-  margin-bottom:30px;
-}
-
-.index-small-title{
-  color:#e4c57f;
-
-  font-size:10px;
-
-  letter-spacing:2.5px;
-
-  margin-bottom:8px;
-}
-
-.index-heading h2{
   margin:0;
 
   color:#fff;
@@ -327,7 +270,7 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
   font-size:
     clamp(
-      32px,
+      34px,
       4vw,
       52px
     );
@@ -335,44 +278,294 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
   font-weight:400;
 
   line-height:1.1;
+
+  letter-spacing:-.5px;
+
 }
 
-.index-heading p{
+
+.section-description{
+
   max-width:720px;
 
   margin:
-    12px
-    0
-    0;
+    14px 0 0;
 
   color:
     rgba(
       255,
       250,
       244,
-      .80
+      .82
     );
 
   font-size:14px;
 
   line-height:1.9;
+
 }
 
 
-/* ---------------------------------------------------------
-   SOLUTION GRID
---------------------------------------------------------- */
+/* =========================================================
+   HERO
+========================================================= */
 
-.index-solution-grid{
+.hero{
+
+  position:relative;
+
+  min-height:620px;
+
+  display:flex;
+
+  align-items:center;
+
+  padding:
+    110px 0 70px;
+
+}
+
+
+.hero-inner{
+
+  width:min(
+    1240px,
+    calc(100% - 80px)
+  );
+
+  margin:auto;
+
+}
+
+
+.hero-copy{
+
+  position:relative;
+
+  width:min(
+    780px,
+    100%
+  );
+
+  padding:
+    30px
+    45px
+    35px
+    0;
+
+}
+
+
+.hero-copy::before{
+
+  content:"";
+
+  position:absolute;
+
+  z-index:-1;
+
+  left:-180px;
+
+  top:-80px;
+
+  width:900px;
+
+  height:570px;
+
+  background:
+
+    radial-gradient(
+      ellipse at center,
+
+      rgba(0,0,0,.80) 0%,
+
+      rgba(0,0,0,.48) 43%,
+
+      rgba(0,0,0,0) 77%
+    );
+
+}
+
+
+.hero-title{
+
+  margin:0;
+
+  color:#fff;
+
+  font-family:
+    "Kanit",
+    "Prompt",
+    sans-serif;
+
+  font-size:
+    clamp(
+      45px,
+      6vw,
+      78px
+    );
+
+  font-weight:400;
+
+  line-height:1.03;
+
+  letter-spacing:-1.5px;
+
+  text-shadow:
+    0 8px 35px
+    rgba(0,0,0,.92);
+
+}
+
+
+.hero-title span{
+
+  display:block;
+
+  color:#e4c57f;
+
+}
+
+
+.hero-line{
+
+  width:70px;
+
+  height:1px;
+
+  margin-top:22px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #c9a45c,
+      transparent
+    );
+
+}
+
+
+.hero-text{
+
+  max-width:700px;
+
+  margin:
+    18px 0 0;
+
+  color:
+    rgba(
+      255,
+      250,
+      244,
+      .92
+    );
+
+  font-size:15px;
+
+  line-height:1.9;
+
+  text-shadow:
+    0 4px 20px
+    rgba(0,0,0,.90);
+
+}
+
+
+.hero-buttons{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-top:26px;
+
+}
+
+
+.button{
+
+  min-height:47px;
+
+  padding:
+    0 22px;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:12px;
+
+  transition:.22s ease;
+
+}
+
+
+.button:hover{
+
+  transform:
+    translateY(-2px);
+
+}
+
+
+.button-main{
+
+  color:#160e07;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e4c57f,
+      #b18442
+    );
+
+  border:
+    1px solid
+    #e4c57f;
+
+}
+
+
+.button-outline{
+
+  color:#fff;
+
+  background:
+    rgba(5,4,3,.42);
+
+  border:
+    1px solid
+    rgba(
+      228,
+      197,
+      127,
+      .48
+    );
+
+  backdrop-filter:
+    blur(8px);
+
+}
+
+
+/* =========================================================
+   SOLUTIONS
+========================================================= */
+
+.solution-grid{
+
   display:grid;
 
   grid-template-columns:
-    repeat(
-      4,
-      1fr
-    );
+    repeat(4,1fr);
 
   gap:1px;
+
+  margin-top:32px;
 
   background:
     rgba(
@@ -390,57 +583,74 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
       92,
       .22
     );
+
 }
 
-.index-solution{
-  min-height:255px;
 
-  padding:25px;
+.solution-card{
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(18,12,8,.90),
-      rgba(4,3,2,.92)
-    );
+  min-height:260px;
+
+  padding:26px;
 
   display:flex;
 
   flex-direction:column;
 
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,12,8,.92),
+      rgba(4,3,2,.93)
+    );
+
+  backdrop-filter:
+    blur(8px);
+
   transition:.25s ease;
+
 }
 
-.index-solution:hover{
-  transform:translateY(-3px);
+
+.solution-card:hover{
+
+  transform:
+    translateY(-3px);
 
   background:
     linear-gradient(
       145deg,
-      rgba(34,23,13,.94),
+      rgba(40,26,15,.94),
       rgba(4,3,2,.95)
     );
+
 }
 
-.index-solution-number{
+
+.card-number{
+
   color:
     rgba(
       228,
       197,
       127,
-      .75
+      .72
     );
 
   font-size:10px;
 
   letter-spacing:2px;
+
 }
 
-.index-solution-icon{
-  width:43px;
-  height:43px;
 
-  margin-top:21px;
+.card-icon{
+
+  width:42px;
+
+  height:42px;
+
+  margin-top:20px;
 
   display:grid;
 
@@ -454,17 +664,18 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
       201,
       164,
       92,
-      .32
+      .30
     );
 
-  font-size:18px;
+  font-size:17px;
+
 }
 
-.index-solution h3{
+
+.solution-card h3{
+
   margin:
-    15px
-    0
-    7px;
+    15px 0 7px;
 
   color:#fff;
 
@@ -473,12 +684,15 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
     "Prompt",
     sans-serif;
 
-  font-size:21px;
+  font-size:20px;
 
   font-weight:400;
+
 }
 
-.index-solution p{
+
+.solution-card p{
+
   margin:0;
 
   color:#c9c0b5;
@@ -486,9 +700,12 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
   font-size:12px;
 
   line-height:1.8;
+
 }
 
-.index-solution-link{
+
+.card-link{
+
   margin-top:auto;
 
   padding-top:18px;
@@ -496,29 +713,37 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
   color:#e4c57f;
 
   font-size:11px;
+
 }
 
 
-/* ---------------------------------------------------------
-   SERVICE SECTION
---------------------------------------------------------- */
+/* =========================================================
+   SERVICES
+========================================================= */
 
-.index-service-grid{
+.services-grid{
+
   display:grid;
 
   grid-template-columns:
-    repeat(
-      4,
-      1fr
-    );
+    repeat(3,1fr);
 
   gap:12px;
+
+  margin-top:32px;
+
 }
 
-.index-service-card{
-  min-height:235px;
+
+.service-card{
+
+  min-height:230px;
 
   padding:25px;
+
+  display:flex;
+
+  flex-direction:column;
 
   border:
     1px solid
@@ -533,18 +758,18 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
     linear-gradient(
       145deg,
       rgba(18,12,8,.90),
-      rgba(4,3,2,.90)
+      rgba(4,3,2,.92)
     );
 
-  display:flex;
-
-  flex-direction:column;
-
   transition:.25s ease;
+
 }
 
-.index-service-card:hover{
-  transform:translateY(-3px);
+
+.service-card:hover{
+
+  transform:
+    translateY(-3px);
 
   border-color:
     rgba(
@@ -553,62 +778,89 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
       127,
       .48
     );
+
 }
 
-.index-service-card h3{
+
+.service-number{
+
+  color:#e4c57f;
+
+  font-size:10px;
+
+  letter-spacing:2px;
+
+}
+
+
+.service-card h3{
+
   margin:
-    13px
-    0
-    8px;
+    13px 0 8px;
 
   color:#fff;
 
-  font-size:20px;
+  font-family:
+    "Kanit",
+    "Prompt",
+    sans-serif;
+
+  font-size:21px;
 
   font-weight:400;
+
 }
 
-.index-service-card p{
+
+.service-card p{
+
   margin:0;
 
   color:#c7beb4;
 
-  font-size:12px;
+  font-size:12.5px;
 
   line-height:1.8;
+
 }
 
-.index-service-card a{
+
+.service-card a{
+
   margin-top:auto;
 
-  padding-top:17px;
+  padding-top:18px;
 
   color:#e4c57f;
 
   font-size:11px;
+
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    WORK
---------------------------------------------------------- */
+========================================================= */
 
-.index-work-grid{
+.work-grid{
+
   display:grid;
 
   grid-template-columns:
-    repeat(
-      4,
-      1fr
-    );
+    repeat(4,1fr);
 
   gap:12px;
+
+  margin-top:32px;
+
 }
 
-.index-work-card{
+
+.work-card{
+
   position:relative;
 
-  min-height:225px;
+  min-height:240px;
 
   overflow:hidden;
 
@@ -624,26 +876,33 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
   background:
     linear-gradient(
       145deg,
-      rgba(17,11,7,.92),
+      rgba(16,11,7,.92),
       rgba(3,2,1,.96)
     );
 
   transition:.25s ease;
+
 }
 
-.index-work-card:hover{
-  transform:translateY(-3px);
+
+.work-card:hover{
+
+  transform:
+    translateY(-3px);
 
   border-color:
     rgba(
       228,
       197,
       127,
-      .45
+      .42
     );
+
 }
 
-.index-work-card::before{
+
+.work-card::before{
+
   content:"";
 
   position:absolute;
@@ -654,22 +913,28 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
     radial-gradient(
       circle at 50% 20%,
       rgba(201,164,92,.16),
-      transparent 55%
+      transparent 52%
     );
+
 }
 
-.index-work-card:nth-child(2)::before{
+
+.work-card:nth-child(2)::before{
+
   background:
     repeating-linear-gradient(
       90deg,
       transparent 0,
-      transparent 35px,
-      rgba(201,164,92,.05) 36px,
-      transparent 38px
+      transparent 34px,
+      rgba(201,164,92,.05) 35px,
+      transparent 37px
     );
+
 }
 
-.index-work-card:nth-child(3)::before{
+
+.work-card:nth-child(3)::before{
+
   background:
     linear-gradient(
       135deg,
@@ -677,39 +942,33 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
       rgba(201,164,92,.14) 44%,
       transparent 47%
     );
+
 }
 
-.index-work-card:nth-child(4)::before{
+
+.work-card:nth-child(4)::before{
+
   background:
     linear-gradient(
       145deg,
       rgba(255,255,255,.05),
-      transparent 48%
+      transparent 50%
     );
+
 }
 
-.index-work-info{
-  position:absolute;
 
-  left:20px;
-  right:20px;
-  bottom:20px;
+.work-card::after{
 
-  z-index:2;
-}
-
-.index-work-info::before{
   content:"";
 
   position:absolute;
 
-  z-index:-1;
+  left:0;
+  right:0;
+  bottom:0;
 
-  left:-20px;
-  right:-20px;
-  bottom:-20px;
-
-  height:130px;
+  height:65%;
 
   background:
     linear-gradient(
@@ -717,30 +976,55 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
       transparent,
       rgba(0,0,0,.92)
     );
+
 }
 
-.index-work-number{
+
+.work-info{
+
+  position:absolute;
+
+  left:20px;
+  right:20px;
+  bottom:20px;
+
+  z-index:3;
+
+}
+
+
+.work-number{
+
   color:#e4c57f;
 
   font-size:9px;
 
   letter-spacing:2px;
+
 }
 
-.index-work-info h3{
+
+.work-info h3{
+
   margin:
-    6px
-    0
-    3px;
+    6px 0 4px;
 
   color:#fff;
 
-  font-size:19px;
+  font-family:
+    "Kanit",
+    "Prompt",
+    sans-serif;
+
+  font-size:18px;
 
   font-weight:400;
+
 }
 
-.index-work-info span{
+
+.work-info span{
+
   color:
     rgba(
       255,
@@ -751,22 +1035,21 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
   font-size:9px;
 
-  letter-spacing:1.5px;
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    STATS
---------------------------------------------------------- */
+========================================================= */
 
-.index-stats{
+.stats{
+
   display:grid;
 
   grid-template-columns:
-    repeat(
-      3,
-      1fr
-    );
+    repeat(3,1fr);
+
+  margin-top:10px;
 
   border-top:
     1px solid
@@ -785,14 +1068,17 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
       92,
       .22
     );
+
 }
 
-.index-stat{
-  text-align:center;
+
+.stat{
 
   padding:
-    30px
-    15px;
+    32px
+    20px;
+
+  text-align:center;
 
   border-right:
     1px solid
@@ -802,13 +1088,19 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
       92,
       .15
     );
+
 }
 
-.index-stat:last-child{
+
+.stat:last-child{
+
   border-right:0;
+
 }
 
-.index-stat strong{
+
+.stat strong{
+
   display:block;
 
   color:#e4c57f;
@@ -822,15 +1114,18 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
     clamp(
       42px,
       4.5vw,
-      60px
+      62px
     );
 
   font-weight:300;
 
   line-height:1;
+
 }
 
-.index-stat span{
+
+.stat span{
+
   display:block;
 
   margin-top:9px;
@@ -843,24 +1138,24 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
       .72
     );
 
-  font-size:12px;
+  font-size:11px;
+
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    CTA
---------------------------------------------------------- */
+========================================================= */
 
-.index-cta{
+.cta{
+
   width:min(
     1240px,
     calc(100% - 80px)
   );
 
   margin:
-    10px
-    auto
-    70px;
+    0 auto 80px;
 
   padding:
     58px
@@ -882,18 +1177,31 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
   background:
     linear-gradient(
       135deg,
-      rgba(31,20,12,.78),
-      rgba(5,4,3,.84)
+      rgba(31,20,12,.80),
+      rgba(5,4,3,.88)
     );
 
-  backdrop-filter:blur(9px);
+  backdrop-filter:
+    blur(9px);
+
 }
 
-.index-cta-title{
+
+.cta-label{
+
+  color:#e4c57f;
+
+  font-size:9px;
+
+  letter-spacing:3px;
+
+}
+
+
+.cta h2{
+
   margin:
-    8px
-    0
-    0;
+    10px 0 0;
 
   color:#fff;
 
@@ -911,16 +1219,17 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
   font-weight:400;
 
-  line-height:1.1;
+  line-height:1.08;
+
 }
 
-.index-cta-text{
+
+.cta p{
+
   max-width:680px;
 
   margin:
-    14px
-    0
-    0;
+    14px 0 0;
 
   color:
     rgba(
@@ -933,6 +1242,20 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
   font-size:13px;
 
   line-height:1.9;
+
+}
+
+
+.cta-buttons{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-top:24px;
+
 }
 
 
@@ -942,47 +1265,55 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 @media(max-width:1050px){
 
-  .index-hero{
-    min-height:510px;
+  .hero{
+
+    min-height:560px;
+
   }
 
-  .index-hero-inner,
+
+  .hero-inner,
   .index-wrap{
+
     width:
       calc(
         100% - 50px
       );
+
   }
 
-  .index-solution-grid{
+
+  .solution-grid{
+
     grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
+      repeat(2,1fr);
+
   }
 
-  .index-service-grid{
+
+  .services-grid{
+
     grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
+      repeat(2,1fr);
+
   }
 
-  .index-work-grid{
+
+  .work-grid{
+
     grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
+      repeat(2,1fr);
+
   }
 
-  .index-cta{
+
+  .cta{
+
     width:
       calc(
         100% - 50px
       );
+
   }
 
 }
@@ -994,102 +1325,119 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 @media(max-width:700px){
 
-  .index-hero{
-    min-height:500px;
+  .index-page::before{
+
+    background-position:
+      center top;
+
+    background-size:
+      auto 100%;
+
+  }
+
+
+  .hero{
+
+    min-height:570px;
 
     padding:
-      105px
+      100px
       0
       45px;
 
     align-items:flex-end;
+
   }
 
-  .index-hero-inner,
+
+  .hero-inner,
   .index-wrap{
+
     width:
       calc(
         100% - 32px
       );
+
   }
 
-  .index-hero-content{
+
+  .hero-copy{
+
     width:100%;
 
     padding:
       24px
       16px
       28px;
+
   }
 
-  .index-hero-content::before{
-    left:-100px;
+
+  .hero-copy::before{
+
+    left:-110px;
+
     top:-60px;
 
-    width:650px;
-    height:450px;
+    width:680px;
+
+    height:470px;
+
   }
 
-  .index-label{
-    font-size:9px;
 
-    letter-spacing:2px;
-  }
+  .hero-title{
 
-  .index-title{
     font-size:
       clamp(
         42px,
         12vw,
         58px
       );
+
+    line-height:1.05;
+
   }
 
-  .index-description{
+
+  .hero-text{
+
     font-size:13.5px;
 
     line-height:1.85;
+
   }
 
-  .index-actions{
-    margin-top:20px;
-  }
 
-  .index-btn{
-    min-height:46px;
+  .section{
 
     padding:
-      0
-      17px;
+      56px 0;
+
   }
 
 
-  .index-section{
-    padding:
-      55px
-      0;
-  }
+  .section-title{
 
-
-  .index-heading{
-    margin-bottom:22px;
-  }
-
-  .index-heading h2{
     font-size:
       clamp(
-        31px,
+        32px,
         9vw,
-        44px
+        45px
       );
+
   }
 
-  .index-heading p{
+
+  .section-description{
+
     font-size:13px;
+
   }
 
 
-  .index-solution-grid{
+  .solution-grid{
+
     grid-template-columns:1fr;
 
     gap:9px;
@@ -1097,9 +1445,12 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
     background:transparent;
 
     border:0;
+
   }
 
-  .index-solution{
+
+  .solution-card{
+
     min-height:0;
 
     padding:
@@ -1114,40 +1465,55 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
         92,
         .30
       );
+
   }
 
 
-  .index-service-grid{
+  .services-grid{
+
     grid-template-columns:1fr;
 
     gap:9px;
+
   }
 
-  .index-service-card{
+
+  .service-card{
+
     min-height:0;
 
     padding:
       23px
       21px;
+
   }
 
 
-  .index-work-grid{
+  .work-grid{
+
     grid-template-columns:1fr;
 
     gap:9px;
+
   }
 
-  .index-work-card{
+
+  .work-card{
+
     min-height:210px;
+
   }
 
 
-  .index-stats{
+  .stats{
+
     grid-template-columns:1fr;
+
   }
 
-  .index-stat{
+
+  .stat{
+
     padding:
       27px
       15px;
@@ -1162,45 +1528,84 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
         92,
         .15
       );
+
   }
 
-  .index-stat:last-child{
+
+  .stat:last-child{
+
     border-bottom:0;
+
   }
 
 
-  .index-cta{
+  .cta{
+
     width:
       calc(
         100% - 32px
       );
 
     margin:
-      10px
-      auto
-      40px;
+      0 auto 40px;
 
     padding:
-      40px
-      24px;
+      40px 24px;
+
   }
 
-  .index-cta-title{
+
+  .cta h2{
+
     font-size:
       clamp(
         34px,
         10vw,
         48px
       );
-  }
 
-  .index-cta-text{
-    font-size:13px;
   }
 
 }
 
 </style>
+
+
+<script>
+
+/*
+=========================================================
+บังคับหน้า Index เปิดที่ด้านบน
+ป้องกัน Browser จำตำแหน่ง Scroll เดิม
+=========================================================
+*/
+
+if(
+  "scrollRestoration" in history
+){
+  history.scrollRestoration = "manual";
+}
+
+window.addEventListener(
+  "load",
+  function(){
+
+    setTimeout(
+      function(){
+
+        window.scrollTo(
+          0,
+          0
+        );
+
+      },
+      50
+    );
+
+  }
+);
+
+</script>
 
 </head>
 
@@ -1208,37 +1613,43 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 <body>
 
 
-<div class="site-page">
+<div class="index-page">
 
 
-<main class="site-main index-page">
+<div class="index-content">
 
 
-<!-- =========================================================
+<!-- =====================================================
      HERO
-========================================================= -->
+===================================================== -->
 
-<section class="index-hero">
+<section class="hero">
 
-<div class="index-hero-inner">
+<div class="hero-inner">
 
-<div class="index-hero-content">
+<div class="hero-copy">
 
 
-<div class="index-label">
+<div class="kicker">
 วัสดุงานพื้นและงานก่อสร้าง
 </div>
 
 
-<h1 class="index-title">
+<h1 class="hero-title">
 
 วัสดุงานพื้น
-<span>และงานก่อสร้าง</span>
+
+<span>
+และงานก่อสร้าง
+</span>
 
 </h1>
 
 
-<p class="index-description">
+<div class="hero-line"></div>
+
+
+<p class="hero-text">
 
 โซลูชันด้านวัสดุงานพื้นและงานก่อสร้าง
 สำหรับบ้าน อาคารพาณิชย์ โรงงาน
@@ -1249,19 +1660,19 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 </p>
 
 
-<div class="index-actions">
+<div class="hero-buttons">
 
 <a
-  class="index-btn index-btn-main"
   href="products.html"
+  class="button button-main"
 >
 ดูสินค้า →
 </a>
 
 
 <a
-  class="index-btn index-btn-sub"
   href="contact.html"
+  class="button button-outline"
 >
 ติดต่อเรา
 </a>
@@ -1277,49 +1688,55 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      SOLUTIONS
-========================================================= -->
+===================================================== -->
 
-<section class="index-section">
+<section class="section">
 
 <div class="index-wrap">
 
 
-<div class="index-heading">
+<div>
 
-<div class="index-small-title">
+<div class="kicker">
 บริการและโซลูชัน
 </div>
 
-<h2>
+
+<h2 class="section-title">
+
 ครบทุกความต้องการ
+
 <br>
+
 เรื่องพื้นและงานก่อสร้าง
+
 </h2>
 
-<p>
-วัสดุ บริการ และโซลูชันสำหรับงานพื้น
-และงานก่อสร้าง
+
+<p class="section-description">
+
+วัสดุ บริการ และโซลูชัน
+สำหรับงานพื้นและงานก่อสร้าง
 ที่เหมาะกับลักษณะของแต่ละโครงการ
+
 </p>
 
 </div>
 
 
 
-<div class="index-solution-grid">
+<div class="solution-grid">
 
 
-<!-- 01 -->
+<div class="solution-card">
 
-<div class="index-solution">
-
-<div class="index-solution-number">
+<div class="card-number">
 01
 </div>
 
-<div class="index-solution-icon">
+<div class="card-icon">
 ▦
 </div>
 
@@ -1328,14 +1745,16 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 </h3>
 
 <p>
+
 ระบบพื้นสำหรับพื้นที่หลากหลายประเภท
 ทั้งงานอุตสาหกรรม อาคาร
 พื้นที่พาณิชย์ และพื้นที่ใช้งานทั่วไป
+
 </p>
 
 <a
-  class="index-solution-link"
   href="services.html"
+  class="card-link"
 >
 ดูบริการ →
 </a>
@@ -1344,15 +1763,13 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<!-- 02 -->
+<div class="solution-card">
 
-<div class="index-solution">
-
-<div class="index-solution-number">
+<div class="card-number">
 02
 </div>
 
-<div class="index-solution-icon">
+<div class="card-icon">
 □
 </div>
 
@@ -1361,14 +1778,16 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 </h3>
 
 <p>
+
 วัสดุและผลิตภัณฑ์สำหรับงานพื้น
 งานก่อสร้าง และงานตกแต่ง
 คัดเลือกให้เหมาะกับแต่ละโครงการ
+
 </p>
 
 <a
-  class="index-solution-link"
   href="products.html"
+  class="card-link"
 >
 ดูสินค้า →
 </a>
@@ -1377,15 +1796,13 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<!-- 03 -->
+<div class="solution-card">
 
-<div class="index-solution">
-
-<div class="index-solution-number">
+<div class="card-number">
 03
 </div>
 
-<div class="index-solution-icon">
+<div class="card-icon">
 ✦
 </div>
 
@@ -1394,14 +1811,16 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 </h3>
 
 <p>
+
 ชมตัวอย่างผลงานด้านระบบพื้น
 งานก่อสร้าง และโครงการ
 จากการใช้งานจริง
+
 </p>
 
 <a
-  class="index-solution-link"
   href="projects.html"
+  class="card-link"
 >
 ดูผลงาน →
 </a>
@@ -1410,15 +1829,13 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<!-- 04 -->
+<div class="solution-card">
 
-<div class="index-solution">
-
-<div class="index-solution-number">
+<div class="card-number">
 04
 </div>
 
-<div class="index-solution-icon">
+<div class="card-icon">
 +
 </div>
 
@@ -1427,14 +1844,16 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 </h3>
 
 <p>
+
 บริการด้านพื้น กันรั่วซึม
 งานคอนกรีต สนามกีฬา
 งานตกแต่ง และเส้นจราจร
+
 </p>
 
 <a
-  class="index-solution-link"
   href="services.html"
+  class="card-link"
 >
 ดูบริการทั้งหมด →
 </a>
@@ -1450,41 +1869,41 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      SERVICES
-========================================================= -->
+===================================================== -->
 
-<section class="index-section index-section-dark">
+<section class="section section-dark">
 
 <div class="index-wrap">
 
 
-<div class="index-heading">
-
-<div class="index-small-title">
+<div class="kicker">
 บริการของเรา
 </div>
 
-<h2>
+
+<h2 class="section-title">
 ระบบงานสำหรับทุกพื้นที่
 </h2>
 
-<p>
+
+<p class="section-description">
+
 ให้บริการตั้งแต่การเลือกวัสดุ
 การเตรียมพื้น การติดตั้ง
 จนถึงการดูแลรายละเอียดของโครงการ
+
 </p>
 
-</div>
 
 
+<div class="services-grid">
 
-<div class="index-service-grid">
 
+<div class="service-card">
 
-<div class="index-service-card">
-
-<div class="index-solution-number">
+<div class="service-number">
 01
 </div>
 
@@ -1493,14 +1912,14 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 </h3>
 
 <p>
+
 ระบบพื้น Epoxy และ PU
 สำหรับโรงงาน คลังสินค้า
 อาคาร และพื้นที่ใช้งานหนัก
+
 </p>
 
-<a
-  href="service-detail.html?service=industrial"
->
+<a href="service-detail.html?service=industrial">
 ดูรายละเอียด →
 </a>
 
@@ -1508,9 +1927,9 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<div class="index-service-card">
+<div class="service-card">
 
-<div class="index-solution-number">
+<div class="service-number">
 02
 </div>
 
@@ -1519,14 +1938,14 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 </h3>
 
 <p>
+
 ระบบกันซึมสำหรับดาดฟ้า
 หลังคา พื้นอาคาร
 และพื้นที่ที่มีความเสี่ยงเรื่องน้ำ
+
 </p>
 
-<a
-  href="service-detail.html?service=waterproof"
->
+<a href="service-detail.html?service=waterproof">
 ดูรายละเอียด →
 </a>
 
@@ -1534,9 +1953,9 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<div class="index-service-card">
+<div class="service-card">
 
-<div class="index-solution-number">
+<div class="service-number">
 03
 </div>
 
@@ -1545,14 +1964,14 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 </h3>
 
 <p>
+
 งานซ่อม ปรับระดับ
 และปรับปรุงพื้นคอนกรีต
 ให้พร้อมสำหรับการใช้งาน
+
 </p>
 
-<a
-  href="service-detail.html?service=concrete"
->
+<a href="service-detail.html?service=concrete">
 ดูรายละเอียด →
 </a>
 
@@ -1560,9 +1979,9 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<div class="index-service-card">
+<div class="service-card">
 
-<div class="index-solution-number">
+<div class="service-number">
 04
 </div>
 
@@ -1571,14 +1990,14 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 </h3>
 
 <p>
+
 ระบบพื้นสำหรับสนามกีฬา
 และพื้นที่กิจกรรม
 ที่ต้องการความทนทาน
+
 </p>
 
-<a
-  href="service-detail.html?service=sports"
->
+<a href="service-detail.html?service=sports">
 ดูรายละเอียด →
 </a>
 
@@ -1586,9 +2005,9 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<div class="index-service-card">
+<div class="service-card">
 
-<div class="index-solution-number">
+<div class="service-number">
 05
 </div>
 
@@ -1597,14 +2016,14 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 </h3>
 
 <p>
+
 ระบบพื้นเพื่อความสวยงาม
 และงานออกแบบเฉพาะพื้นที่
 ให้เข้ากับรูปแบบของโครงการ
+
 </p>
 
-<a
-  href="service-detail.html?service=decorative"
->
+<a href="service-detail.html?service=decorative">
 ดูรายละเอียด →
 </a>
 
@@ -1612,9 +2031,9 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<div class="index-service-card">
+<div class="service-card">
 
-<div class="index-solution-number">
+<div class="service-number">
 06
 </div>
 
@@ -1623,14 +2042,14 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 </h3>
 
 <p>
+
 งานตีเส้น สัญลักษณ์
 และการจัดระเบียบพื้นที่
 เพื่อการใช้งานและความปลอดภัย
+
 </p>
 
-<a
-  href="service-detail.html?service=traffic"
->
+<a href="service-detail.html?service=traffic">
 ดูรายละเอียด →
 </a>
 
@@ -1645,43 +2064,43 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      WORK
-========================================================= -->
+===================================================== -->
 
-<section class="index-section">
+<section class="section">
 
 <div class="index-wrap">
 
 
-<div class="index-heading">
-
-<div class="index-small-title">
+<div class="kicker">
 ผลงานของเรา
 </div>
 
-<h2>
+
+<h2 class="section-title">
 ตัวอย่างผลงาน
 </h2>
 
-<p>
+
+<p class="section-description">
+
 ตัวอย่างงานด้านพื้น
 งานเคลือบผิว และงานก่อสร้าง
 จากหลากหลายประเภทโครงการ
+
 </p>
 
-</div>
 
 
+<div class="work-grid">
 
-<div class="index-work-grid">
 
+<div class="work-card">
 
-<div class="index-work-card">
+<div class="work-info">
 
-<div class="index-work-info">
-
-<div class="index-work-number">
+<div class="work-number">
 01
 </div>
 
@@ -1699,11 +2118,11 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<div class="index-work-card">
+<div class="work-card">
 
-<div class="index-work-info">
+<div class="work-info">
 
-<div class="index-work-number">
+<div class="work-number">
 02
 </div>
 
@@ -1721,11 +2140,11 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<div class="index-work-card">
+<div class="work-card">
 
-<div class="index-work-info">
+<div class="work-info">
 
-<div class="index-work-number">
+<div class="work-number">
 03
 </div>
 
@@ -1743,11 +2162,11 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<div class="index-work-card">
+<div class="work-card">
 
-<div class="index-work-info">
+<div class="work-info">
 
-<div class="index-work-number">
+<div class="work-number">
 04
 </div>
 
@@ -1768,11 +2187,11 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<div class="index-actions">
+<div class="hero-buttons">
 
 <a
-  class="index-btn index-btn-sub"
   href="projects.html"
+  class="button button-outline"
 >
 ดูผลงานทั้งหมด →
 </a>
@@ -1786,19 +2205,19 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      STATS
-========================================================= -->
+===================================================== -->
 
-<section class="index-section index-section-dark">
+<section class="section section-dark">
 
 <div class="index-wrap">
 
 
-<div class="index-stats">
+<div class="stats">
 
 
-<div class="index-stat">
+<div class="stat">
 
 <strong>
 500+
@@ -1812,7 +2231,7 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<div class="index-stat">
+<div class="stat">
 
 <strong>
 10+
@@ -1826,7 +2245,7 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<div class="index-stat">
+<div class="stat">
 
 <strong>
 100%
@@ -1848,46 +2267,48 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      CTA
-========================================================= -->
+===================================================== -->
 
-<section class="index-cta">
+<section class="cta">
 
 
-<div class="index-small-title">
+<div class="cta-label">
 เริ่มต้นโครงการของคุณ
 </div>
 
 
-<h2 class="index-cta-title">
+<h2>
 สร้างพื้นที่ที่ดีกว่า
 <br>
 เริ่มต้นกับเรา
 </h2>
 
 
-<p class="index-cta-text">
+<p>
+
 ให้เราช่วยเลือกวัสดุและโซลูชัน
 ที่เหมาะสมกับพื้นที่ของคุณ
 พร้อมให้คำปรึกษาเกี่ยวกับระบบพื้น
 งานก่อสร้าง และการใช้งาน
+
 </p>
 
 
-<div class="index-actions">
+<div class="cta-buttons">
 
 <a
-  class="index-btn index-btn-main"
   href="contact.html"
+  class="button button-main"
 >
 ปรึกษาเราได้วันนี้ →
 </a>
 
 
 <a
-  class="index-btn index-btn-sub"
   href="services.html"
+  class="button button-outline"
 >
 ดูบริการทั้งหมด
 </a>
@@ -1898,9 +2319,19 @@ CHATPHETCH GROUP | วัสดุงานพื้นและงานก่�
 </section>
 
 
-</main>
+</div>
+
 
 </div>
+
+
+<!-- =====================================================
+     MASTER NAV
+===================================================== -->
+
+<script
+src="assets/customer-master-nav.js"
+></script>
 
 
 </body>
