@@ -7,12 +7,14 @@
 <title>ผลงาน | CHATPHETCH GROUP</title>
 <meta name="description" content="รวมผลงานจริงของ CHATPHETCH GROUP">
 
-<link rel="icon" type="image/png" href="assets/logo.png">\n<link rel="apple-touch-icon" href="assets/logo.png">\n\n<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
   --gold:#c9a45c;
   --gold2:#e4c57f;
@@ -23,7 +25,6 @@
   --line:rgba(201,164,92,.22);
   --max:1240px;
 }
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -66,7 +67,7 @@ body::after{
   margin:auto;
 }
 
-/* HERO — same visual language as Index / Services */
+/* HERO */
 .projects-hero{
   position:relative;
   min-height:650px;
@@ -104,7 +105,6 @@ body::after{
   color:rgba(255,255,255,.025);
   pointer-events:none;
 }
-
 .hero-content{
   position:relative;
   z-index:2;
@@ -152,7 +152,7 @@ body::after{
   background:linear-gradient(90deg,var(--gold),transparent);
 }
 .hero-copy{
-  max-width:700px;
+  max-width:650px;
   margin:18px 0 0;
   color:rgba(247,240,232,.86);
   font-size:15px;
@@ -161,10 +161,7 @@ body::after{
 }
 
 /* MAIN */
-.projects-main{
-  padding:55px 0 85px;
-}
-
+.projects-main{padding:55px 0 85px}
 .section-head{
   display:flex;
   justify-content:space-between;
@@ -202,11 +199,7 @@ body::after{
   gap:22px;
   margin-bottom:22px;
 }
-.filters{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
 .filter-btn{
   border:1px solid rgba(201,164,92,.28);
   border-radius:0;
@@ -235,7 +228,7 @@ body::after{
   font-size:10px;
 }
 
-/* PROJECT CARDS */
+/* CARDS */
 .project-grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -248,7 +241,6 @@ body::after{
   border-radius:0;
   background:linear-gradient(145deg,rgba(22,14,9,.94),rgba(5,4,3,.96));
   box-shadow:0 24px 65px rgba(0,0,0,.30);
-  cursor:pointer;
   transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
 }
 .project-card:hover{
@@ -261,6 +253,7 @@ body::after{
   aspect-ratio:16/10;
   overflow:hidden;
   background:#100b07;
+  cursor:pointer;
 }
 .project-image img{
   width:100%;
@@ -275,9 +268,7 @@ body::after{
 .image-overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg,
-    rgba(0,0,0,.02) 35%,
-    rgba(0,0,0,.70) 100%);
+  background:linear-gradient(180deg,rgba(0,0,0,.02) 35%,rgba(0,0,0,.70) 100%);
   pointer-events:none;
 }
 .image-count{
@@ -287,16 +278,12 @@ body::after{
   z-index:2;
   padding:6px 9px;
   border:1px solid rgba(228,197,127,.32);
-  border-radius:0;
   background:rgba(5,4,3,.68);
   color:#fff;
   font-size:9px;
   letter-spacing:.5px;
 }
-.project-info{
-  position:relative;
-  padding:20px 20px 21px;
-}
+.project-info{padding:20px 20px 21px}
 .project-number{
   margin-bottom:7px;
   color:var(--gold2);
@@ -318,38 +305,45 @@ body::after{
   font-size:9px;
   letter-spacing:1.5px;
 }
+.project-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:16px;
+}
 .project-link{
   display:inline-flex;
   align-items:center;
-  gap:7px;
-  margin-top:15px;
+  justify-content:center;
+  min-height:34px;
+  padding:0 12px;
+  border:1px solid rgba(201,164,92,.28);
   color:var(--gold2);
+  background:rgba(201,164,92,.04);
   font-size:10px;
+  transition:.2s ease;
 }
-.project-link::after{
-  content:"→";
-  transition:.2s;
+.project-link:hover{
+  color:#160e05;
+  border-color:var(--gold2);
+  background:linear-gradient(135deg,#e4c57f,#b18442);
 }
-.project-card:hover .project-link::after{
-  transform:translateX(5px);
+.project-link.primary{
+  background:linear-gradient(135deg,rgba(201,164,92,.18),rgba(201,164,92,.05));
 }
 
-/* LOADING / ERROR */
-.loading-box,
-.empty-box{
+/* STATES */
+.loading-box,.empty-box{
   grid-column:1/-1;
   padding:65px 25px;
   border:1px solid var(--line);
-  border-radius:0;
   background:rgba(10,7,5,.72);
   text-align:center;
   color:#9e9487;
   font-size:11px;
 }
 .spinner{
-  width:30px;
-  height:30px;
-  margin:0 auto 15px;
+  width:30px;height:30px;margin:0 auto 15px;
   border:2px solid rgba(201,164,92,.15);
   border-top-color:var(--gold);
   border-radius:50%;
@@ -360,7 +354,6 @@ body::after{
   grid-column:1/-1;
   padding:28px;
   border:1px solid rgba(201,164,92,.28);
-  border-radius:0;
   background:rgba(35,23,13,.62);
   color:#c7bba9;
   line-height:1.9;
@@ -379,16 +372,11 @@ body::after{
   margin-top:60px;
   padding:42px 35px;
   border:1px solid rgba(201,164,92,.27);
-  border-radius:0;
   background:
     linear-gradient(135deg,rgba(38,24,13,.72),rgba(6,4,3,.90)),
     radial-gradient(circle at 90% 10%,rgba(201,164,92,.12),transparent 35%);
 }
-.cta-kicker{
-  color:var(--gold2);
-  font-size:9px;
-  letter-spacing:2.5px;
-}
+.cta-kicker{color:var(--gold2);font-size:9px;letter-spacing:2.5px}
 .cta h2{
   margin:8px 0 7px;
   color:#fff;
@@ -396,11 +384,7 @@ body::after{
   font-size:32px;
   font-weight:400;
 }
-.cta p{
-  margin:0 0 20px;
-  color:#a69b8e;
-  font-size:12px;
-}
+.cta p{margin:0 0 20px;color:#a69b8e;font-size:12px}
 .cta-btn{
   display:inline-flex;
   align-items:center;
@@ -432,7 +416,6 @@ body::after{
   max-height:94vh;
   overflow:hidden;
   border:1px solid rgba(201,164,92,.30);
-  border-radius:0;
   background:#090604;
   box-shadow:0 35px 110px rgba(0,0,0,.8);
 }
@@ -451,16 +434,10 @@ body::after{
   font-size:23px;
   font-weight:400;
 }
-.modal-counter{
-  margin-top:2px;
-  color:#918678;
-  font-size:9px;
-}
+.modal-counter{margin-top:2px;color:#918678;font-size:9px}
 .modal-close{
-  width:40px;
-  height:40px;
+  width:40px;height:40px;
   border:1px solid rgba(201,164,92,.30);
-  border-radius:0;
   background:rgba(201,164,92,.05);
   color:#fff;
   cursor:pointer;
@@ -478,8 +455,7 @@ body::after{
 .modal-stage img{
   max-width:100%;
   max-height:calc(94vh - 180px);
-  width:auto;
-  height:auto;
+  width:auto;height:auto;
   object-fit:contain;
 }
 .gallery-nav{
@@ -487,8 +463,7 @@ body::after{
   top:50%;
   transform:translateY(-50%);
   z-index:2;
-  width:48px;
-  height:48px;
+  width:48px;height:48px;
   border:1px solid rgba(255,255,255,.22);
   border-radius:50%;
   background:rgba(0,0,0,.55);
@@ -508,34 +483,21 @@ body::after{
 }
 .thumb{
   flex:0 0 auto;
-  width:76px;
-  height:54px;
+  width:76px;height:54px;
   overflow:hidden;
   border:1px solid rgba(201,164,92,.16);
-  border-radius:0;
   opacity:.55;
   background:#120d09;
   cursor:pointer;
 }
-.thumb.active{
-  opacity:1;
-  border-color:var(--gold);
-}
-.thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+.thumb.active{opacity:1;border-color:var(--gold)}
+.thumb img{width:100%;height:100%;object-fit:cover}
 
-/* RESPONSIVE */
 @media(max-width:1100px){
   .container{width:min(var(--max),calc(100% - 50px))}
   .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .section-head{display:block}
-  .section-note{
-    margin-top:12px;
-    text-align:left;
-  }
+  .section-note{margin-top:12px;text-align:left}
 }
 @media(max-width:700px){
   .container{width:calc(100% - 32px)}
@@ -544,89 +506,49 @@ body::after{
     padding:90px 0 35px;
     align-items:flex-start;
   }
-  .hero-content{
-    padding-top:120px;
-  }
+  .hero-content{padding-top:120px}
   .projects-hero::before{
-    left:-100px;
-    top:30px;
-    width:650px;
-    height:470px;
+    left:-100px;top:30px;width:650px;height:470px;
   }
-  .projects-hero::after{
-    font-size:85px;
-    bottom:-10px;
-  }
-  .hero-title{
-    font-size:clamp(43px,13vw,60px);
-  }
-  .hero-title span{
-    font-size:12px;
-    letter-spacing:2.5px;
-  }
-  .hero-copy{
-    font-size:14px;
-    line-height:1.82;
-  }
+  .projects-hero::after{font-size:85px;bottom:-10px}
+  .hero-title{font-size:clamp(43px,13vw,60px)}
+  .hero-title span{font-size:12px;letter-spacing:2.5px}
+  .hero-copy{font-size:14px;line-height:1.82}
   .projects-main{padding-top:43px}
-  .toolbar{
-    display:block;
-    margin-bottom:18px;
-  }
-  .project-count{
-    margin-top:12px;
-  }
-  .project-grid{
-    grid-template-columns:1fr;
-    gap:13px;
-  }
+  .toolbar{display:block;margin-bottom:18px}
+  .project-count{margin-top:12px}
+  .project-grid{grid-template-columns:1fr;gap:13px}
   .project-info{padding:18px 18px 19px}
   .project-title{font-size:22px}
-  .cta{
-    margin-top:45px;
-    padding:30px 22px;
-  }
+  .cta{margin-top:45px;padding:30px 22px}
   .cta h2{font-size:28px}
   .cta-btn{width:100%}
   .modal{padding:7px}
   .modal-box{max-height:96vh}
   .modal-stage{min-height:55vh}
-  .gallery-nav{
-    width:40px;
-    height:40px;
-    font-size:22px;
-  }
+  .gallery-nav{width:40px;height:40px;font-size:22px}
   .gallery-prev{left:7px}
   .gallery-next{right:7px}
 }
 @media(max-width:450px){
-  .filter-btn{
-    padding:8px 11px;
-    font-size:10px;
-  }
+  .filter-btn{padding:8px 11px;font-size:10px}
 }
-
 </style>
 </head>
 
 <body>
-
 <div id="customer-master-nav"></div>
 
 <main>
-
 <section class="projects-hero">
   <div class="container">
     <div class="hero-content">
       <div class="eyebrow">OUR PROJECTS</div>
-
       <h1 class="hero-title">
         ผลงานของเรา
         <span>PROJECTS</span>
       </h1>
-
       <div class="hero-line"></div>
-
       <p class="hero-copy">
         รวมตัวอย่างผลงานจริงของ CHATPHETCH GROUP
         เพื่อให้เห็นแนวทางการทำงาน ระบบพื้นผิว
@@ -637,14 +559,21 @@ body::after{
 </section>
 
 <section class="projects-main">
-
   <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">PROJECT PORTFOLIO</div>
+        <h2 class="section-title">ผลงานระบบพื้นและงานก่อสร้าง</h2>
+      </div>
+      <p class="section-note">
+        เลือกหมวดผลงานเพื่อดูภาพตัวอย่าง หรือเปิดหน้า
+        Project Detail เพื่อดูภาพทั้งหมดของหมวดนั้น
+      </p>
+    </div>
 
     <div class="toolbar">
       <div class="filters" id="filters"></div>
-      <div class="project-count" id="projectCount">
-        กำลังโหลด...
-      </div>
+      <div class="project-count" id="projectCount">กำลังโหลด...</div>
     </div>
 
     <div class="status" id="status"></div>
@@ -659,65 +588,32 @@ body::after{
     <section class="cta">
       <div class="cta-kicker">CHATPHETCH GROUP</div>
       <h2>ต้องการสอบถามงานของคุณ?</h2>
-      <p>
-        ส่งรายละเอียดพื้นที่ให้ทีมงานช่วยประเมินแนวทางเบื้องต้นได้
-      </p>
+      <p>ส่งรายละเอียดพื้นที่ให้ทีมงานช่วยประเมินแนวทางเบื้องต้นได้</p>
       <a class="cta-btn" href="contact.html">ติดต่อเรา</a>
     </section>
-
   </div>
-
 </section>
-
 </main>
 
 <div id="customer-master-footer"></div>
 
 <!-- GALLERY MODAL -->
 <div class="modal" id="galleryModal" aria-hidden="true">
-
   <div class="modal-box">
-
     <div class="modal-top">
-
       <div>
         <h2 class="modal-title" id="modalTitle">PROJECT</h2>
         <div class="modal-counter" id="modalCounter">1 / 1</div>
       </div>
-
-      <button
-        class="modal-close"
-        id="modalClose"
-        type="button"
-        aria-label="ปิด"
-      >×</button>
-
+      <button class="modal-close" id="modalClose" type="button" aria-label="ปิด">×</button>
     </div>
-
     <div class="modal-stage">
-
-      <button
-        class="gallery-nav gallery-prev"
-        id="galleryPrev"
-        type="button"
-        aria-label="ภาพก่อนหน้า"
-      >‹</button>
-
+      <button class="gallery-nav gallery-prev" id="galleryPrev" type="button" aria-label="ภาพก่อนหน้า">‹</button>
       <img id="modalImage" src="" alt="">
-
-      <button
-        class="gallery-nav gallery-next"
-        id="galleryNext"
-        type="button"
-        aria-label="ภาพถัดไป"
-      >›</button>
-
+      <button class="gallery-nav gallery-next" id="galleryNext" type="button" aria-label="ภาพถัดไป">›</button>
     </div>
-
     <div class="thumb-strip" id="thumbStrip"></div>
-
   </div>
-
 </div>
 
 <script src="assets/customer-master-nav.js"></script>
@@ -726,18 +622,11 @@ body::after{
 "use strict";
 
 /*
-  ============================================================
   CHATPHETCH GROUP — PROJECTS
-  ============================================================
-
-  จุดสำคัญของเวอร์ชันนี้:
-  1. ใช้ Git Trees API เพียง "1 ครั้ง"
-     แทนการยิง API แยกทีละโฟลเดอร์
-  2. เก็บข้อมูลไว้ใน sessionStorage ชั่วคราว
-  3. อ่านเฉพาะ 7 โฟลเดอร์ Projects จริง
-  4. ไม่สุ่มรูป
-  5. รูปแรกของแต่ละหมวดคงที่
-  6. กดการ์ดเพื่อเปิด Gallery รูปทั้งหมดของหมวดนั้น
+  - อ่านรูปจาก assets/Projects
+  - ใช้ GitHub Tree API เพียงครั้งเดียวและ cache 30 นาที
+  - filter ได้จากปุ่มและจาก URL ?category=
+  - การ์ดมีทั้ง Gallery และ Project Detail
 */
 
 const TREE_API =
@@ -746,15 +635,9 @@ const TREE_API =
 const RAW_BASE =
   "https://raw.githubusercontent.com/chatphetch/chatpetch-group/main/";
 
-const CACHE_KEY =
-  "chatpetch_projects_tree_v2";
-
-const CACHE_TIME_KEY =
-  "chatpetch_projects_tree_v2_time";
-
-const CACHE_MAX_AGE =
-  30 * 60 * 1000; // 30 นาที
-
+const CACHE_KEY = "chatpetch_projects_tree_v3";
+const CACHE_TIME_KEY = "chatpetch_projects_tree_v3_time";
+const CACHE_MAX_AGE = 30 * 60 * 1000;
 
 const CATEGORY_ORDER = [
   "Epoxy anti static",
@@ -766,795 +649,466 @@ const CATEGORY_ORDER = [
   "งานกันซึม Fiberglass"
 ];
 
-
 const CATEGORY_META = {
-
   "Epoxy anti static":{
     title:"Epoxy Anti Static",
     subtitle:"ANTI-STATIC FLOORING"
   },
-
   "Epoxy self":{
     title:"Epoxy Self",
     subtitle:"SELF-LEVELLING / EPOXY FLOOR"
   },
-
   "PU Coating":{
     title:"PU Coating",
     subtitle:"POLYURETHANE COATING"
   },
-
   "PU Self":{
     title:"PU Self",
     subtitle:"POLYURETHANE SELF-LEVELLING"
   },
-
   "งาน Polishing":{
     title:"งาน Polishing",
     subtitle:"POLISHED CONCRETE"
   },
-
   "งาน Stamped Concrete":{
     title:"งาน Stamped Concrete",
     subtitle:"DECORATIVE CONCRETE"
   },
-
   "งานกันซึม Fiberglass":{
     title:"งานกันซึม Fiberglass",
     subtitle:"FIBERGLASS WATERPROOFING"
   }
-
 };
 
+/* URL aliases เดิมของเว็บ */
+const CATEGORY_ALIASES = {
+  flooring:"Epoxy anti static",
+  stamped:"งาน Stamped Concrete",
+  coating:"PU Coating",
+  construction:"งาน Polishing"
+};
 
 let allProjects = [];
 let currentFilter = "ALL";
 let currentGallery = [];
 let currentGalleryIndex = 0;
 
-
-const $ = selector =>
-  document.querySelector(selector);
-
+const $ = selector => document.querySelector(selector);
 
 function escapeHtml(value){
-
   return String(value || "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
-
 }
-
 
 function isImage(path){
-
   return /\.(jpe?g|png|webp|gif)$/i.test(path || "");
-
 }
 
+function encodeCategory(category){
+  return encodeURIComponent(category);
+}
 
 function setStatus(text){
-
-  $("#status").textContent =
-    text || "";
-
+  $("#status").textContent = text || "";
 }
 
+function getInitialFilter(){
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+  if(!category) return "ALL";
 
-/* =========================================================
-   LOAD TREE
-========================================================= */
+  const decoded = decodeURIComponent(category);
+  return CATEGORY_ALIASES[decoded] || decoded;
+}
+
+function updateUrlFilter(filter){
+  const url = new URL(window.location.href);
+
+  if(filter === "ALL"){
+    url.searchParams.delete("category");
+  }else{
+    url.searchParams.set("category", filter);
+  }
+
+  window.history.replaceState({}, "", url.toString());
+}
 
 async function fetchTree(){
-
-  const cached =
-    sessionStorage.getItem(CACHE_KEY);
-
-  const cachedTime =
-    Number(
-      sessionStorage.getItem(CACHE_TIME_KEY) || 0
-    );
+  const cached = sessionStorage.getItem(CACHE_KEY);
+  const cachedTime = Number(
+    sessionStorage.getItem(CACHE_TIME_KEY) || 0
+  );
 
   if(
     cached &&
     Date.now() - cachedTime < CACHE_MAX_AGE
   ){
-
     try{
       return JSON.parse(cached);
-    }catch(e){}
+    }catch(error){}
   }
 
-
-  const response =
-    await fetch(
-      TREE_API,
-      {
-        headers:{
-          "Accept":"application/vnd.github+json"
-        },
-        cache:"no-store"
-      }
-    );
-
+  const response = await fetch(TREE_API,{
+    headers:{
+      "Accept":"application/vnd.github+json"
+    },
+    cache:"no-store"
+  });
 
   if(!response.ok){
-
-    throw new Error(
-      "GitHub Tree API " +
-      response.status
-    );
-
+    throw new Error("GitHub Tree API " + response.status);
   }
 
+  const data = await response.json();
 
-  const data =
-    await response.json();
-
-
-  if(
-    data.truncated === true
-  ){
-
-    throw new Error(
-      "GitHub repository tree is truncated"
-    );
-
+  if(data.truncated === true){
+    throw new Error("GitHub repository tree is truncated");
   }
 
+  const tree = data.tree || [];
 
-  sessionStorage.setItem(
-    CACHE_KEY,
-    JSON.stringify(data.tree || [])
-  );
+  sessionStorage.setItem(CACHE_KEY,JSON.stringify(tree));
+  sessionStorage.setItem(CACHE_TIME_KEY,String(Date.now()));
 
-  sessionStorage.setItem(
-    CACHE_TIME_KEY,
-    String(Date.now())
-  );
-
-
-  return data.tree || [];
-
+  return tree;
 }
-
-
-/* =========================================================
-   BUILD PROJECT DATA
-========================================================= */
 
 function buildProjects(tree){
-
   const result = [];
 
-
   for(const category of CATEGORY_ORDER){
+    const prefix = "assets/Projects/" + category + "/";
 
-    const prefix =
-      "assets/Projects/" +
-      category +
-      "/";
-
-
-    const images =
-      tree
-        .filter(item =>
-          item.type === "blob" &&
-          item.path.startsWith(prefix) &&
-          isImage(item.path)
+    const images = tree
+      .filter(item =>
+        item.type === "blob" &&
+        item.path.startsWith(prefix) &&
+        isImage(item.path)
+      )
+      .sort((a,b) =>
+        a.path.localeCompare(
+          b.path,
+          undefined,
+          {numeric:true,sensitivity:"base"}
         )
-        .sort((a,b) =>
-          a.path.localeCompare(
-            b.path,
-            undefined,
-            {
-              numeric:true,
-              sensitivity:"base"
-            }
-          )
-        )
-        .map(item => ({
-
-          path:item.path,
-
-          url:
-            RAW_BASE +
-            item.path
-              .split("/")
-              .map(encodeURIComponent)
-              .join("/")
-
-        }));
-
+      )
+      .map(item => ({
+        path:item.path,
+        url:RAW_BASE +
+          item.path
+            .split("/")
+            .map(encodeURIComponent)
+            .join("/")
+      }));
 
     if(images.length){
-
       result.push({
-
         key:category,
-
-        title:
-          CATEGORY_META[category]?.title ||
-          category,
-
-        subtitle:
-          CATEGORY_META[category]?.subtitle ||
-          "PROJECT",
-
+        title:CATEGORY_META[category]?.title || category,
+        subtitle:CATEGORY_META[category]?.subtitle || "PROJECT",
         images
-
       });
-
     }
-
   }
-
 
   return result;
-
 }
 
-
-/* =========================================================
-   FILTERS
-========================================================= */
+function findProject(key){
+  return allProjects.find(project => project.key === key);
+}
 
 function renderFilters(){
-
   const buttons = [
-
-    {
-      key:"ALL",
-      label:"ทั้งหมด"
-    },
-
+    {key:"ALL",label:"ทั้งหมด"},
     ...allProjects.map(project => ({
-
       key:project.key,
-
       label:project.title
-
     }))
-
   ];
 
+  $("#filters").innerHTML = buttons.map(button => `
+    <button
+      type="button"
+      class="filter-btn ${button.key === currentFilter ? "active" : ""}"
+      data-filter="${escapeHtml(button.key)}"
+    >${escapeHtml(button.label)}</button>
+  `).join("");
 
-  $("#filters").innerHTML =
-    buttons.map(button => `
+  document.querySelectorAll(".filter-btn").forEach(button => {
+    button.addEventListener("click",() => {
+      currentFilter = button.dataset.filter;
+      updateUrlFilter(currentFilter);
+      renderFilters();
+      renderProjects();
 
-      <button
-        type="button"
-        class="filter-btn ${
-          button.key === currentFilter
-            ? "active"
-            : ""
-        }"
-        data-filter="${escapeHtml(button.key)}"
-      >
-        ${escapeHtml(button.label)}
-      </button>
-
-    `).join("");
-
-
-  document
-    .querySelectorAll(".filter-btn")
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          currentFilter =
-            button.dataset.filter;
-
-          renderFilters();
-          renderProjects();
-
-          window.scrollTo({
-            top:
-              document
-                .querySelector(".projects-main")
-                .offsetTop - 20,
-            behavior:"smooth"
-          });
-
-        }
-      );
-
+      document.querySelector(".projects-main").scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
     });
-
+  });
 }
-
-
-/* =========================================================
-   RENDER PROJECT CARDS
-========================================================= */
 
 function getVisibleProjects(){
-
-  if(currentFilter === "ALL"){
-    return allProjects;
-  }
-
-  return allProjects.filter(
-    project =>
-      project.key === currentFilter
-  );
-
+  if(currentFilter === "ALL") return allProjects;
+  return allProjects.filter(project => project.key === currentFilter);
 }
 
-
 function renderProjects(){
+  const visible = getVisibleProjects();
 
-  const visible =
-    getVisibleProjects();
-
-
-  const totalImages =
-    visible.reduce(
-      (sum,project) =>
-        sum + project.images.length,
-      0
-    );
-
+  const totalImages = visible.reduce(
+    (sum,project) => sum + project.images.length,
+    0
+  );
 
   $("#projectCount").textContent =
     `${visible.length} หมวด • ${totalImages} รูป`;
 
-
   if(!visible.length){
-
     $("#projectGrid").innerHTML = `
-
       <div class="empty-box">
-        ยังไม่มีผลงานในหมวดนี้
+        ยังไม่พบผลงานในหมวดนี้
       </div>
-
     `;
-
     return;
-
   }
 
+  $("#projectGrid").innerHTML = visible.map((project,index) => {
+    const globalIndex = allProjects.indexOf(project);
 
-  $("#projectGrid").innerHTML =
-    visible.map(
-      (project,index) => {
-
-        const globalIndex =
-          allProjects.indexOf(project);
-
-
-        return `
-
-          <article
-            class="project-card"
-            data-project="${globalIndex}"
-            tabindex="0"
-            role="button"
-            aria-label="ดูผลงาน ${escapeHtml(project.title)}"
+    return `
+      <article class="project-card">
+        <div
+          class="project-image"
+          data-gallery="${globalIndex}"
+          tabindex="0"
+          role="button"
+          aria-label="เปิดรูปผลงาน ${escapeHtml(project.title)}"
+        >
+          <img
+            src="${escapeHtml(project.images[0].url)}"
+            alt="${escapeHtml(project.title)}"
+            loading="${index < 3 ? "eager" : "lazy"}"
+            referrerpolicy="no-referrer"
+            onerror="this.style.opacity='0.25'"
           >
+          <div class="image-overlay"></div>
+          <span class="image-count">${project.images.length} รูป</span>
+        </div>
 
-            <div class="project-image">
+        <div class="project-info">
+          <div class="project-number">
+            PROJECT ${String(globalIndex + 1).padStart(2,"0")}
+          </div>
 
-              <img
-                src="${escapeHtml(project.images[0].url)}"
-                alt="${escapeHtml(project.title)}"
-                loading="${index < 3 ? "eager" : "lazy"}"
-                referrerpolicy="no-referrer"
-              >
+          <h2 class="project-title">${escapeHtml(project.title)}</h2>
 
-              <div class="image-overlay"></div>
+          <div class="project-subtitle">
+            ${escapeHtml(project.subtitle)}
+          </div>
 
-              <span class="image-count">
-                ${project.images.length} รูป
-              </span>
+          <div class="project-actions">
+            <button
+              type="button"
+              class="project-link primary gallery-open"
+              data-project="${globalIndex}"
+            >
+              ดูรูปผลงาน
+            </button>
 
-            </div>
+            <a
+              class="project-link"
+              href="project-detail.html?category=${encodeCategory(project.key)}"
+            >
+              รายละเอียดโครงการ →
+            </a>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
 
-
-            <div class="project-info">
-
-              <div class="project-number">
-                PROJECT ${String(globalIndex + 1).padStart(2,"0")}
-              </div>
-
-              <h2 class="project-title">
-                ${escapeHtml(project.title)}
-              </h2>
-
-              <div class="project-subtitle">
-                ${escapeHtml(project.subtitle)}
-              </div>
-
-              <div class="project-link">
-                ดูรูปผลงาน
-              </div>
-
-            </div>
-
-          </article>
-
-        `;
-
-      }
-    ).join("");
-
-
-  document
-    .querySelectorAll(".project-card")
-    .forEach(card => {
-
-      const open = () => {
-
-        openGallery(
-          Number(card.dataset.project)
-        );
-
-      };
-
-
-      card.addEventListener(
-        "click",
-        open
-      );
-
-
-      card.addEventListener(
-        "keydown",
-        event => {
-
-          if(
-            event.key === "Enter" ||
-            event.key === " "
-          ){
-
-            event.preventDefault();
-            open();
-
-          }
-
-        }
-      );
-
+  document.querySelectorAll(".gallery-open").forEach(button => {
+    button.addEventListener("click",event => {
+      event.stopPropagation();
+      openGallery(Number(button.dataset.project));
     });
+  });
 
+  document.querySelectorAll(".project-image").forEach(image => {
+    const open = () => openGallery(Number(image.dataset.gallery));
+
+    image.addEventListener("click",open);
+
+    image.addEventListener("keydown",event => {
+      if(event.key === "Enter" || event.key === " "){
+        event.preventDefault();
+        open();
+      }
+    });
+  });
 }
 
-
-/* =========================================================
-   GALLERY
-========================================================= */
-
-const modal =
-  $("#galleryModal");
-
-const modalImage =
-  $("#modalImage");
-
-const modalTitle =
-  $("#modalTitle");
-
-const modalCounter =
-  $("#modalCounter");
-
-const thumbStrip =
-  $("#thumbStrip");
-
+/* GALLERY */
+const modal = $("#galleryModal");
+const modalImage = $("#modalImage");
+const modalTitle = $("#modalTitle");
+const modalCounter = $("#modalCounter");
+const thumbStrip = $("#thumbStrip");
 
 function openGallery(projectIndex){
-
-  const project =
-    allProjects[projectIndex];
-
-
+  const project = allProjects[projectIndex];
   if(!project) return;
 
-
-  currentGallery =
-    project.images;
-
+  currentGallery = project.images;
   currentGalleryIndex = 0;
-
-
-  modalTitle.textContent =
-    project.title;
-
+  modalTitle.textContent = project.title;
 
   renderThumbs();
-
   showGalleryImage();
 
   modal.classList.add("open");
-
-  modal.setAttribute(
-    "aria-hidden",
-    "false"
-  );
-
-  document.body.style.overflow =
-    "hidden";
-
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
 }
-
 
 function closeGallery(){
-
   modal.classList.remove("open");
-
-  modal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
-  document.body.style.overflow =
-    "";
-
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
 }
 
-
 function showGalleryImage(){
-
   if(!currentGallery.length) return;
 
+  const image = currentGallery[currentGalleryIndex];
 
-  const image =
-    currentGallery[
-      currentGalleryIndex
-    ];
-
-
-  modalImage.src =
-    image.url;
-
-  modalImage.alt =
-    image.path.split("/").pop();
-
+  modalImage.src = image.url;
+  modalImage.alt = image.path.split("/").pop();
 
   modalCounter.textContent =
     `${currentGalleryIndex + 1} / ${currentGallery.length}`;
 
-
-  document
-    .querySelectorAll(".thumb")
-    .forEach((thumb,index) => {
-
-      thumb.classList.toggle(
-        "active",
-        index === currentGalleryIndex
-      );
-
-    });
-
+  document.querySelectorAll(".thumb").forEach((thumb,index) => {
+    thumb.classList.toggle(
+      "active",
+      index === currentGalleryIndex
+    );
+  });
 }
-
 
 function renderThumbs(){
+  thumbStrip.innerHTML = currentGallery.map((image,index) => `
+    <button
+      type="button"
+      class="thumb ${index === currentGalleryIndex ? "active" : ""}"
+      data-index="${index}"
+      aria-label="ดูภาพ ${index + 1}"
+    >
+      <img
+        src="${escapeHtml(image.url)}"
+        alt=""
+        loading="lazy"
+        referrerpolicy="no-referrer"
+      >
+    </button>
+  `).join("");
 
-  thumbStrip.innerHTML =
-    currentGallery.map(
-      (image,index) => `
-
-        <button
-          type="button"
-          class="thumb ${
-            index === currentGalleryIndex
-              ? "active"
-              : ""
-          }"
-          data-index="${index}"
-          aria-label="ดูภาพ ${index + 1}"
-        >
-
-          <img
-            src="${escapeHtml(image.url)}"
-            alt=""
-            loading="lazy"
-            referrerpolicy="no-referrer"
-          >
-
-        </button>
-
-      `
-    ).join("");
-
-
-  thumbStrip
-    .querySelectorAll(".thumb")
-    .forEach(thumb => {
-
-      thumb.addEventListener(
-        "click",
-        () => {
-
-          currentGalleryIndex =
-            Number(thumb.dataset.index);
-
-          showGalleryImage();
-
-        }
-      );
-
+  thumbStrip.querySelectorAll(".thumb").forEach(thumb => {
+    thumb.addEventListener("click",() => {
+      currentGalleryIndex = Number(thumb.dataset.index);
+      showGalleryImage();
     });
-
+  });
 }
-
 
 function nextImage(){
-
   if(!currentGallery.length) return;
-
   currentGalleryIndex =
-    (
-      currentGalleryIndex + 1
-    ) % currentGallery.length;
-
+    (currentGalleryIndex + 1) % currentGallery.length;
   showGalleryImage();
-
 }
-
 
 function prevImage(){
-
   if(!currentGallery.length) return;
-
   currentGalleryIndex =
-    (
-      currentGalleryIndex -
-      1 +
-      currentGallery.length
-    ) % currentGallery.length;
-
+    (currentGalleryIndex - 1 + currentGallery.length) %
+    currentGallery.length;
   showGalleryImage();
-
 }
 
+$("#modalClose").addEventListener("click",closeGallery);
+$("#galleryNext").addEventListener("click",nextImage);
+$("#galleryPrev").addEventListener("click",prevImage);
 
-$("#modalClose")
-  .addEventListener(
-    "click",
-    closeGallery
-  );
+modal.addEventListener("click",event => {
+  if(event.target === modal) closeGallery();
+});
 
+document.addEventListener("keydown",event => {
+  if(!modal.classList.contains("open")) return;
 
-$("#galleryNext")
-  .addEventListener(
-    "click",
-    nextImage
-  );
-
-
-$("#galleryPrev")
-  .addEventListener(
-    "click",
-    prevImage
-  );
-
-
-modal.addEventListener(
-  "click",
-  event => {
-
-    if(event.target === modal){
-      closeGallery();
-    }
-
-  }
-);
-
-
-document.addEventListener(
-  "keydown",
-  event => {
-
-    if(!modal.classList.contains("open")){
-      return;
-    }
-
-
-    if(event.key === "Escape"){
-      closeGallery();
-    }
-
-
-    if(event.key === "ArrowRight"){
-      nextImage();
-    }
-
-
-    if(event.key === "ArrowLeft"){
-      prevImage();
-    }
-
-  }
-);
-
-
-/* =========================================================
-   START
-========================================================= */
+  if(event.key === "Escape") closeGallery();
+  if(event.key === "ArrowRight") nextImage();
+  if(event.key === "ArrowLeft") prevImage();
+});
 
 async function initProjects(){
-
   try{
+    setStatus("กำลังอ่านข้อมูลผลงาน...");
 
-    setStatus(
-      "กำลังอ่านข้อมูลผลงาน..."
-    );
-
-
-    const tree =
-      await fetchTree();
-
-
-    allProjects =
-      buildProjects(tree);
-
+    const tree = await fetchTree();
+    allProjects = buildProjects(tree);
 
     if(!allProjects.length){
-
-      throw new Error(
-        "ไม่พบภาพใน assets/Projects"
-      );
-
+      throw new Error("ไม่พบภาพใน assets/Projects");
     }
 
+    const requestedFilter = getInitialFilter();
+
+    if(
+      requestedFilter !== "ALL" &&
+      !findProject(requestedFilter)
+    ){
+      currentFilter = "ALL";
+      updateUrlFilter("ALL");
+    }else{
+      currentFilter = requestedFilter;
+    }
 
     renderFilters();
     renderProjects();
-
     setStatus("");
-
   }catch(error){
+    console.error("CHATPHETCH PROJECTS:",error);
 
-    console.error(
-      "CHATPHETCH PROJECTS:",
-      error
-    );
-
-
-    $("#projectCount").textContent =
-      "ไม่สามารถโหลดข้อมูล";
-
+    $("#projectCount").textContent = "ไม่สามารถโหลดข้อมูล";
 
     $("#projectGrid").innerHTML = `
-
       <div class="error-box">
-
-        <strong>
-          ยังไม่สามารถแสดงรูปผลงานได้
-        </strong>
-
+        <strong>ยังไม่สามารถแสดงรูปผลงานได้</strong>
         หน้าเว็บเชื่อมต่อกับข้อมูลใน
         <b>assets/Projects</b>
         ไม่สำเร็จในขณะนี้
-
         <br><br>
-
         กรุณารีเฟรชหน้าอีกครั้ง
         หากยังไม่ขึ้น ให้ตรวจสอบว่าไฟล์รูปถูก
         <b>Commit</b>
         อยู่ใน Repository แล้ว
-
       </div>
-
     `;
 
-
     setStatus("");
-
   }
-
 }
 
-
 initProjects();
-
 </script>
-
 </body>
 </html>
