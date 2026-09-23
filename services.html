@@ -27,14 +27,8 @@
   --max:1240px;
 }
 
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0;
   min-height:100vh;
@@ -43,24 +37,7 @@ body{
   color:var(--text);
   font-family:"Prompt","Kanit",sans-serif;
 }
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-button{
-  font:inherit;
-}
-
-img{
-  display:block;
-  max-width:100%;
-}
-
-/* ============================================================
-   PAGE BACKGROUND
-   ============================================================ */
+a{color:inherit;text-decoration:none}
 
 .cp-page{
   position:relative;
@@ -69,7 +46,6 @@ img{
   isolation:isolate;
   background:#050403;
 }
-
 .cp-page::before{
   content:"";
   position:fixed;
@@ -78,7 +54,6 @@ img{
   pointer-events:none;
   background:url("assets/index-main-bg.png") center top/cover no-repeat;
 }
-
 .cp-page::after{
   content:"";
   position:fixed;
@@ -86,44 +61,32 @@ img{
   z-index:-1;
   pointer-events:none;
   background:
-    linear-gradient(
-      180deg,
+    linear-gradient(180deg,
       rgba(0,0,0,.38) 0%,
       rgba(0,0,0,.18) 20%,
       rgba(0,0,0,.34) 48%,
       rgba(0,0,0,.72) 78%,
-      rgba(0,0,0,.94) 100%
-    );
+      rgba(0,0,0,.94) 100%);
 }
+.cp-page>*{position:relative;z-index:2}
 
-.cp-page > *{
-  position:relative;
-  z-index:2;
-}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-
+/* HERO */
 .hero{
   min-height:650px;
   display:flex;
   align-items:center;
 }
-
 .hero-inner{
   width:min(var(--max),calc(100% - 80px));
   margin:auto;
   padding-top:100px;
 }
-
 .hero-copy{
   position:relative;
   width:min(760px,100%);
   padding:30px 42px 34px 0;
   transform:translateY(45px);
 }
-
 .hero-copy::before{
   content:"";
   position:absolute;
@@ -133,15 +96,11 @@ img{
   width:850px;
   height:520px;
   border-radius:50%;
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(0,0,0,.78) 0%,
-      rgba(0,0,0,.46) 43%,
-      rgba(0,0,0,0) 77%
-    );
+  background:radial-gradient(ellipse at center,
+    rgba(0,0,0,.78) 0%,
+    rgba(0,0,0,.46) 43%,
+    rgba(0,0,0,0) 77%);
 }
-
 .kicker{
   display:flex;
   align-items:center;
@@ -151,14 +110,12 @@ img{
   font-weight:500;
   letter-spacing:3px;
 }
-
 .kicker::before{
   content:"";
   width:40px;
   height:1px;
   background:var(--gold);
 }
-
 .hero h1{
   margin:17px 0 0;
   color:var(--white);
@@ -169,7 +126,6 @@ img{
   letter-spacing:-1.8px;
   text-shadow:0 8px 35px rgba(0,0,0,.72);
 }
-
 .hero h1 span{
   display:block;
   margin-top:10px;
@@ -178,17 +134,14 @@ img{
   font-weight:500;
   letter-spacing:4px;
 }
-
 .hero-line{
   width:75px;
   height:1px;
   margin-top:24px;
   background:linear-gradient(90deg,var(--gold),transparent);
 }
-
 .hero p{
-  width:540px;
-  max-width:540px;
+  max-width:690px;
   margin:18px 0 0;
   color:rgba(247,240,232,.88);
   font-size:15px;
@@ -196,16 +149,12 @@ img{
   text-shadow:0 4px 20px rgba(0,0,0,.8);
 }
 
-/* ============================================================
-   CONTENT
-   ============================================================ */
-
+/* CONTENT */
 .section{
   width:min(var(--max),calc(100% - 80px));
   margin:auto;
   padding:55px 0 72px;
 }
-
 .section-head{
   display:flex;
   justify-content:space-between;
@@ -213,7 +162,6 @@ img{
   gap:35px;
   margin-bottom:28px;
 }
-
 .section-title{
   margin:8px 0 0;
   color:var(--white);
@@ -223,7 +171,6 @@ img{
   line-height:1.08;
   text-shadow:0 5px 24px rgba(0,0,0,.8);
 }
-
 .section-note{
   max-width:520px;
   color:rgba(247,240,232,.72);
@@ -232,16 +179,12 @@ img{
   text-align:right;
 }
 
-/* ============================================================
-   SERVICE CARDS
-   ============================================================ */
-
+/* SERVICE CARDS */
 .service-grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:18px;
 }
-
 .service-card{
   position:relative;
   min-width:0;
@@ -249,70 +192,45 @@ img{
   display:flex;
   flex-direction:column;
   border:1px solid rgba(201,164,92,.24);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(17,11,7,.94),
-      rgba(4,3,2,.92)
-    );
+  background:linear-gradient(145deg,rgba(17,11,7,.94),rgba(4,3,2,.92));
   box-shadow:0 24px 65px rgba(0,0,0,.28);
   transition:.25s ease;
 }
-
 .service-card:hover{
   transform:translateY(-5px);
   border-color:rgba(228,197,127,.52);
   box-shadow:0 30px 75px rgba(0,0,0,.42);
 }
-
 .service-image{
   position:relative;
   height:245px;
   overflow:hidden;
-  background:
-    linear-gradient(
-      145deg,
-      #2b1b0f,
-      #080604
-    );
+  background:linear-gradient(145deg,#2b1b0f,#080604);
 }
-
 .service-image img{
   width:100%;
   height:100%;
   display:block;
   object-fit:cover;
   opacity:0;
-  transition:
-    transform .55s ease,
-    opacity .35s ease,
-    filter .35s ease;
+  transition:transform .55s ease,opacity .35s ease,filter .35s ease;
   filter:saturate(.88) contrast(1.04);
 }
-
-.service-image.loaded img{
-  opacity:1;
-}
-
+.service-image.loaded img{opacity:1}
 .service-card:hover .service-image img{
   transform:scale(1.045);
   filter:saturate(1) contrast(1.06);
 }
-
 .service-image::after{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.02) 25%,
-      rgba(0,0,0,.12) 50%,
-      rgba(5,4,3,.86) 100%
-    );
+  background:linear-gradient(180deg,
+    rgba(0,0,0,.02) 25%,
+    rgba(0,0,0,.12) 50%,
+    rgba(5,4,3,.86) 100%);
 }
-
 .service-image-label{
   position:absolute;
   left:17px;
@@ -326,7 +244,6 @@ img{
   font-size:9px;
   letter-spacing:1.4px;
 }
-
 .service-loading{
   position:absolute;
   inset:0;
@@ -337,23 +254,14 @@ img{
   font-size:9px;
   letter-spacing:2px;
 }
-
-.service-image.loaded .service-loading{
-  display:none;
-}
-
-.service-image.no-image .service-loading{
-  display:grid;
-}
-
+.service-image.loaded .service-loading{display:none}
 .service-body{
   position:relative;
   flex:1;
   display:flex;
   flex-direction:column;
-  padding:22px;
+  padding:22px 22px 22px;
 }
-
 .service-number{
   position:absolute;
   top:13px;
@@ -364,7 +272,6 @@ img{
   line-height:1;
   font-weight:500;
 }
-
 .service-code{
   position:relative;
   z-index:2;
@@ -372,7 +279,6 @@ img{
   font-size:10px;
   letter-spacing:2px;
 }
-
 .service-card h3{
   position:relative;
   z-index:2;
@@ -383,7 +289,6 @@ img{
   font-weight:400;
   line-height:1.18;
 }
-
 .service-card h3 small{
   display:block;
   margin-top:5px;
@@ -392,7 +297,6 @@ img{
   font-weight:400;
   line-height:1.4;
 }
-
 .service-card p{
   position:relative;
   z-index:2;
@@ -401,7 +305,6 @@ img{
   font-size:13px;
   line-height:1.8;
 }
-
 .tags{
   position:relative;
   z-index:2;
@@ -411,7 +314,6 @@ img{
   margin-top:auto;
   padding-top:18px;
 }
-
 .tag{
   padding:5px 8px;
   border:1px solid rgba(201,164,92,.22);
@@ -420,7 +322,6 @@ img{
   font-size:9px;
   letter-spacing:.7px;
 }
-
 .card-link{
   position:relative;
   z-index:2;
@@ -433,45 +334,32 @@ img{
   font-size:11px;
   font-weight:500;
 }
+.card-link:hover{color:#fff}
 
-.card-link:hover{
-  color:#fff;
-}
-
-/* ============================================================
-   WORKFLOW
-   ============================================================ */
-
+/* WORKFLOW */
 .workflow{
   width:min(var(--max),calc(100% - 80px));
   margin:auto;
   padding:5px 0 75px;
 }
-
 .workflow-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   border:1px solid rgba(201,164,92,.22);
   background:rgba(5,4,3,.72);
 }
-
 .step{
   position:relative;
   min-height:190px;
   padding:26px 23px;
   border-right:1px solid rgba(201,164,92,.16);
 }
-
-.step:last-child{
-  border-right:0;
-}
-
+.step:last-child{border-right:0}
 .step-no{
   color:var(--gold2);
   font-size:10px;
   letter-spacing:2px;
 }
-
 .step h3{
   margin:15px 0 0;
   color:#fff;
@@ -479,7 +367,6 @@ img{
   font-size:20px;
   font-weight:400;
 }
-
 .step p{
   margin:9px 0 0;
   color:rgba(255,248,239,.66);
@@ -487,32 +374,22 @@ img{
   line-height:1.8;
 }
 
-/* ============================================================
-   CTA
-   ============================================================ */
-
+/* CTA */
 .cta{
   width:min(1000px,calc(100% - 80px));
   margin:0 auto 85px;
   padding:55px 40px;
   text-align:center;
   border:1px solid rgba(201,164,92,.28);
-  background:
-    linear-gradient(
-      135deg,
-      rgba(27,17,10,.82),
-      rgba(5,4,3,.78)
-    );
+  background:linear-gradient(135deg,rgba(27,17,10,.82),rgba(5,4,3,.78));
   box-shadow:0 30px 80px rgba(0,0,0,.35);
   backdrop-filter:blur(9px);
 }
-
 .cta-label{
   color:var(--gold2);
   font-size:9px;
   letter-spacing:3px;
 }
-
 .cta h2{
   margin:10px 0 0;
   color:#fff;
@@ -520,7 +397,6 @@ img{
   font-size:clamp(34px,4vw,55px);
   font-weight:400;
 }
-
 .cta p{
   max-width:650px;
   margin:14px auto 22px;
@@ -528,14 +404,12 @@ img{
   font-size:13px;
   line-height:1.85;
 }
-
 .cta-actions{
   display:flex;
   justify-content:center;
   flex-wrap:wrap;
   gap:10px;
 }
-
 .btn{
   min-height:44px;
   padding:0 20px;
@@ -545,201 +419,109 @@ img{
   font-size:11px;
   transition:.2s ease;
 }
-
 .btn-gold{
   color:#160e07;
   background:linear-gradient(135deg,#e4c57f,#b18442);
   border:1px solid #e4c57f;
 }
-
 .btn-outline{
   color:#fff;
   border:1px solid rgba(228,197,127,.45);
   background:rgba(5,4,3,.25);
 }
+.btn:hover{transform:translateY(-2px)}
 
-.btn:hover{
-  transform:translateY(-2px);
-}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
+/* RESPONSIVE */
 @media(max-width:1050px){
-
   .hero-inner,
   .section,
-  .workflow{
-    width:calc(100% - 50px);
-  }
-
-  .service-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-
-  .workflow-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .step:nth-child(2){
-    border-right:0;
-  }
-
-  .step:nth-child(-n+2){
-    border-bottom:1px solid rgba(201,164,92,.16);
-  }
-
-  .step:nth-child(3){
-    border-bottom:0;
-  }
-
-  .section-head{
-    display:block;
-  }
-
+  .workflow{width:calc(100% - 50px)}
+  .service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .workflow-grid{grid-template-columns:repeat(2,1fr)}
+  .step:nth-child(2){border-right:0}
+  .step:nth-child(-n+2){border-bottom:1px solid rgba(201,164,92,.16)}
+  .step:nth-child(3){border-bottom:0}
+  .section-head{display:block}
   .section-note{
     margin-top:13px;
     text-align:left;
   }
-
-  .cta{
-    width:calc(100% - 50px);
-  }
+  .cta{width:calc(100% - 50px)}
 }
-
 @media(max-width:700px){
-
-  .cp-page::before{
-    background-position:center top;
-  }
-
+  .cp-page::before{background-position:center top}
   .hero{
     min-height:610px;
     align-items:flex-start;
   }
-
   .hero-inner{
     width:calc(100% - 32px);
     padding-top:90px;
   }
-
   .hero-copy{
     width:100%;
     padding:28px 18px 30px 0;
     transform:translateY(100px);
   }
-
   .hero-copy::before{
     left:-90px;
     top:-55px;
     width:650px;
     height:440px;
   }
-
   .hero h1{
     font-size:clamp(43px,13vw,60px);
     line-height:1.03;
   }
-
   .hero h1 span{
     font-size:12px;
     letter-spacing:2.5px;
   }
-
   .hero p{
-    width:100%;
-    max-width:100%;
     font-size:14px;
     line-height:1.82;
   }
-
   .section,
   .workflow{
     width:calc(100% - 32px);
   }
-
-  .section{
-    padding:45px 0 58px;
-  }
-
-  .section-title{
-    font-size:36px;
-  }
-
-  .service-grid{
-    grid-template-columns:1fr;
-    gap:12px;
-  }
-
-  .service-image{
-    height:205px;
-  }
-
-  .service-body{
-    padding:20px;
-  }
-
-  .service-card h3{
-    font-size:22px;
-  }
-
+  .section{padding:45px 0 58px}
+  .section-title{font-size:36px}
+  .service-grid{grid-template-columns:1fr;gap:12px}
+  .service-image{height:205px}
+  .service-body{padding:20px}
+  .service-card h3{font-size:22px}
   .workflow{
     padding-bottom:60px;
   }
-
-  .workflow-grid{
-    grid-template-columns:1fr;
-  }
-
+  .workflow-grid{grid-template-columns:1fr}
   .step{
     min-height:0;
     border-right:0!important;
     border-bottom:1px solid rgba(201,164,92,.16);
   }
-
-  .step:last-child{
-    border-bottom:0;
-  }
-
+  .step:last-child{border-bottom:0}
   .cta{
     width:calc(100% - 32px);
     margin-bottom:60px;
     padding:40px 22px;
   }
-
-  .cta-actions{
-    flex-direction:column;
-  }
-
-  .cta-actions > *{
-    width:100%;
-  }
+  .cta-actions{flex-direction:column}
+  .cta-actions>*{width:100%}
 }
 </style>
 </head>
 
 <body>
 
-<div id="customer-master-nav"></div>
-
 <div class="cp-page">
 
 <main>
 
-<!-- ==========================================================
-     HERO
-     ========================================================== -->
-
 <section class="hero">
-
   <div class="hero-inner">
-
     <div class="hero-copy">
-
-      <div class="kicker">
-        OUR SERVICES
-      </div>
+      <div class="kicker">OUR SERVICES</div>
 
       <h1>
         ระบบบริการ
@@ -753,32 +535,17 @@ img{
         ตั้งแต่การพิจารณาปัญหาของพื้นที่ การเลือกวัสดุและระบบ
         ไปจนถึงแนวทางการดำเนินงานที่เหมาะสมกับการใช้งานจริง
       </p>
-
     </div>
-
   </div>
-
 </section>
 
-
-<!-- ==========================================================
-     SERVICE SYSTEMS
-     ========================================================== -->
 
 <section class="section">
 
   <div class="section-head">
-
     <div>
-
-      <div class="kicker">
-        SERVICE SYSTEMS
-      </div>
-
-      <h2 class="section-title">
-        ประเภทงานบริการ
-      </h2>
-
+      <div class="kicker">SERVICE SYSTEMS</div>
+      <h2 class="section-title">ประเภทงานบริการ</h2>
     </div>
 
     <p class="section-note">
@@ -786,53 +553,29 @@ img{
       เพื่อดูรายละเอียดเพิ่มเติมและแนวทางการเลือกใช้วัสดุ
       ให้เหมาะกับสภาพหน้างาน
     </p>
-
   </div>
 
 
   <div class="service-grid">
 
-
-    <!-- ======================================================
-         01 INDUSTRIAL
-         ====================================================== -->
-
+    <!-- 01 -->
     <article
       class="service-card"
       data-project-folders="Epoxy self|Epoxy anti static|PU Self"
     >
-
       <div class="service-image">
-
-        <div class="service-loading">
-          LOADING PROJECT IMAGE
-        </div>
-
-        <img
-          alt="ตัวอย่างงานพื้นอุตสาหกรรม อีพ็อกซี่ และพียู"
-        >
-
-        <div class="service-image-label">
-          PROJECT REFERENCE
-        </div>
-
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานพื้นอุตสาหกรรม อีพ็อกซี่ และพียู">
+        <div class="service-image-label">PROJECT REFERENCE</div>
       </div>
 
       <div class="service-body">
-
-        <div class="service-number">
-          01
-        </div>
-
-        <div class="service-code">
-          SERVICE 01
-        </div>
+        <div class="service-number">01</div>
+        <div class="service-code">SERVICE 01</div>
 
         <h3>
           พื้นอุตสาหกรรม
-          <small>
-            / อีพ็อกซี่ / พียู
-          </small>
+          <small>/ อีพ็อกซี่ / พียู</small>
         </h3>
 
         <p>
@@ -853,52 +596,28 @@ img{
         >
           ดูรายละเอียด <span>→</span>
         </a>
-
       </div>
-
     </article>
 
 
-    <!-- ======================================================
-         02 WATERPROOF
-         ====================================================== -->
-
+    <!-- 02 -->
     <article
       class="service-card"
       data-project-folders="งานกันซึม Fiberglass"
     >
-
       <div class="service-image">
-
-        <div class="service-loading">
-          LOADING PROJECT IMAGE
-        </div>
-
-        <img
-          alt="ตัวอย่างงานกันรั่วซึม ดาดฟ้า หลังคา และพื้นอาคาร"
-        >
-
-        <div class="service-image-label">
-          PROJECT REFERENCE
-        </div>
-
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานกันรั่วซึม ดาดฟ้า หลังคา และพื้นอาคาร">
+        <div class="service-image-label">PROJECT REFERENCE</div>
       </div>
 
       <div class="service-body">
-
-        <div class="service-number">
-          02
-        </div>
-
-        <div class="service-code">
-          SERVICE 02
-        </div>
+        <div class="service-number">02</div>
+        <div class="service-code">SERVICE 02</div>
 
         <h3>
           งานกันรั่วซึม
-          <small>
-            ดาดฟ้า หลังคา พื้นอาคาร
-          </small>
+          <small>ดาดฟ้า หลังคา พื้นอาคาร</small>
         </h3>
 
         <p>
@@ -919,52 +638,28 @@ img{
         >
           ดูรายละเอียด <span>→</span>
         </a>
-
       </div>
-
     </article>
 
 
-    <!-- ======================================================
-         03 CONCRETE
-         ====================================================== -->
-
+    <!-- 03 -->
     <article
       class="service-card"
       data-project-folders="งาน Polishing|Epoxy self"
     >
-
       <div class="service-image">
-
-        <div class="service-loading">
-          LOADING PROJECT IMAGE
-        </div>
-
-        <img
-          alt="ตัวอย่างงานซ่อมปรับปรุงและงานคอนกรีต"
-        >
-
-        <div class="service-image-label">
-          PROJECT REFERENCE
-        </div>
-
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานซ่อมปรับปรุงและงานคอนกรีต">
+        <div class="service-image-label">PROJECT REFERENCE</div>
       </div>
 
       <div class="service-body">
-
-        <div class="service-number">
-          03
-        </div>
-
-        <div class="service-code">
-          SERVICE 03
-        </div>
+        <div class="service-number">03</div>
+        <div class="service-code">SERVICE 03</div>
 
         <h3>
           งานซ่อมปรับปรุง
-          <small>
-            งานคอนกรีต
-          </small>
+          <small>งานคอนกรีต</small>
         </h3>
 
         <p>
@@ -985,50 +680,26 @@ img{
         >
           ดูรายละเอียด <span>→</span>
         </a>
-
       </div>
-
     </article>
 
 
-    <!-- ======================================================
-         04 SPORTS
-         ====================================================== -->
-
+    <!-- 04 -->
     <article
       class="service-card"
       data-project-folders="PU Self|PU Coating"
     >
-
       <div class="service-image">
-
-        <div class="service-loading">
-          LOADING PROJECT IMAGE
-        </div>
-
-        <img
-          alt="ตัวอย่างงานพื้นสนามกีฬาและพื้นที่กิจกรรม"
-        >
-
-        <div class="service-image-label">
-          PROJECT REFERENCE
-        </div>
-
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานพื้นสนามกีฬาและพื้นที่กิจกรรม">
+        <div class="service-image-label">PROJECT REFERENCE</div>
       </div>
 
       <div class="service-body">
+        <div class="service-number">04</div>
+        <div class="service-code">SERVICE 04</div>
 
-        <div class="service-number">
-          04
-        </div>
-
-        <div class="service-code">
-          SERVICE 04
-        </div>
-
-        <h3>
-          พื้นสนามกีฬา
-        </h3>
+        <h3>พื้นสนามกีฬา</h3>
 
         <p>
           ตัวอย่างงานระบบพื้น PU จากโครงการจริง
@@ -1048,52 +719,28 @@ img{
         >
           ดูรายละเอียด <span>→</span>
         </a>
-
       </div>
-
     </article>
 
 
-    <!-- ======================================================
-         05 DECORATIVE
-         ====================================================== -->
-
+    <!-- 05 -->
     <article
       class="service-card"
       data-project-folders="งาน Stamped Concrete"
     >
-
       <div class="service-image">
-
-        <div class="service-loading">
-          LOADING PROJECT IMAGE
-        </div>
-
-        <img
-          alt="ตัวอย่างงานพื้นตกแต่งเพื่อความสวยงาม"
-        >
-
-        <div class="service-image-label">
-          PROJECT REFERENCE
-        </div>
-
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานพื้นตกแต่งเพื่อความสวยงาม">
+        <div class="service-image-label">PROJECT REFERENCE</div>
       </div>
 
       <div class="service-body">
-
-        <div class="service-number">
-          05
-        </div>
-
-        <div class="service-code">
-          SERVICE 05
-        </div>
+        <div class="service-number">05</div>
+        <div class="service-code">SERVICE 05</div>
 
         <h3>
           พื้นตกแต่ง
-          <small>
-            เพื่อความสวยงาม
-          </small>
+          <small>เพื่อความสวยงาม</small>
         </h3>
 
         <p>
@@ -1114,52 +761,28 @@ img{
         >
           ดูรายละเอียด <span>→</span>
         </a>
-
       </div>
-
     </article>
 
 
-    <!-- ======================================================
-         06 TRAFFIC
-         ====================================================== -->
-
+    <!-- 06 -->
     <article
       class="service-card"
       data-project-folders="PU Coating|Epoxy anti static"
     >
-
       <div class="service-image">
-
-        <div class="service-loading">
-          LOADING PROJECT IMAGE
-        </div>
-
-        <img
-          alt="ตัวอย่างงานระบบงานสัญลักษณ์และเส้นจราจร"
-        >
-
-        <div class="service-image-label">
-          PROJECT REFERENCE
-        </div>
-
+        <div class="service-loading">LOADING PROJECT IMAGE</div>
+        <img alt="ตัวอย่างงานระบบงานสัญลักษณ์และเส้นจราจร">
+        <div class="service-image-label">PROJECT REFERENCE</div>
       </div>
 
       <div class="service-body">
-
-        <div class="service-number">
-          06
-        </div>
-
-        <div class="service-code">
-          SERVICE 06
-        </div>
+        <div class="service-number">06</div>
+        <div class="service-code">SERVICE 06</div>
 
         <h3>
           ระบบงานสัญลักษณ์
-          <small>
-            และเส้นจราจร
-          </small>
+          <small>และเส้นจราจร</small>
         </h3>
 
         <p>
@@ -1180,135 +803,75 @@ img{
         >
           ดูรายละเอียด <span>→</span>
         </a>
-
       </div>
-
     </article>
 
   </div>
-
 </section>
 
-
-<!-- ==========================================================
-     WORKFLOW
-     ========================================================== -->
 
 <section class="workflow">
 
   <div class="section-head">
-
     <div>
-
-      <div class="kicker">
-        OUR PROCESS
-      </div>
-
-      <h2 class="section-title">
-        ขั้นตอนการให้บริการ
-      </h2>
-
+      <div class="kicker">OUR PROCESS</div>
+      <h2 class="section-title">ขั้นตอนการให้บริการ</h2>
     </div>
 
     <p class="section-note">
       เราเริ่มจากการเข้าใจพื้นที่และลักษณะการใช้งาน
       ก่อนเลือกแนวทางและวัสดุที่เหมาะสม
     </p>
-
   </div>
 
 
   <div class="workflow-grid">
 
     <div class="step">
-
-      <div class="step-no">
-        01 / SURVEY
-      </div>
-
-      <h3>
-        สำรวจหน้างาน
-      </h3>
-
+      <div class="step-no">01 / SURVEY</div>
+      <h3>สำรวจหน้างาน</h3>
       <p>
         พิจารณาสภาพพื้น ลักษณะพื้นที่
         ปัญหาเดิม และเงื่อนไขการใช้งานจริง
       </p>
-
     </div>
 
-
     <div class="step">
-
-      <div class="step-no">
-        02 / CONSULT
-      </div>
-
-      <h3>
-        วิเคราะห์และให้คำปรึกษา
-      </h3>
-
+      <div class="step-no">02 / CONSULT</div>
+      <h3>วิเคราะห์และให้คำปรึกษา</h3>
       <p>
         ประเมินแนวทางระบบงานและวัสดุ
         ให้สอดคล้องกับวัตถุประสงค์ของพื้นที่
       </p>
-
     </div>
 
-
     <div class="step">
-
-      <div class="step-no">
-        03 / SYSTEM
-      </div>
-
-      <h3>
-        เลือกระบบที่เหมาะสม
-      </h3>
-
+      <div class="step-no">03 / SYSTEM</div>
+      <h3>เลือกระบบที่เหมาะสม</h3>
       <p>
         กำหนดระบบพื้นหรือแนวทางงาน
         ตามสภาพหน้างานและการใช้งาน
       </p>
-
     </div>
 
-
     <div class="step">
-
-      <div class="step-no">
-        04 / EXECUTION
-      </div>
-
-      <h3>
-        ดำเนินงาน
-      </h3>
-
+      <div class="step-no">04 / EXECUTION</div>
+      <h3>ดำเนินงาน</h3>
       <p>
         วางแผนและดำเนินงานตามระบบ
         พร้อมติดตามรายละเอียดของหน้างาน
       </p>
-
     </div>
 
   </div>
-
 </section>
 
 
-<!-- ==========================================================
-     CTA
-     ========================================================== -->
-
 <section class="cta">
 
-  <div class="cta-label">
-    CHATPHETCH GROUP
-  </div>
+  <div class="cta-label">CHATPHETCH GROUP</div>
 
-  <h2>
-    ปรึกษาระบบพื้นที่เหมาะกับหน้างานของคุณ
-  </h2>
+  <h2>ปรึกษาระบบพื้นที่เหมาะกับหน้างานของคุณ</h2>
 
   <p>
     หากยังไม่แน่ใจว่าพื้นที่ของคุณเหมาะกับระบบใด
@@ -1342,15 +905,32 @@ img{
 
 
 <script src="assets/customer-master-nav.js"></script>
-
 <script>
-"use strict";
+/* ============================================================
+   MASTER NAV SAFETY CHECK
+   โหลด Master Nav โดยตรง และตรวจซ้ำเพื่อให้ Header / Footer
+   แสดงแน่นอนแม้ browser cache หรือการโหลดไฟล์ภายนอกช้า
+   ============================================================ */
+(function(){
+  function ensureMasterNav(){
+    if(document.querySelector(".customer-header") && document.querySelector(".customer-footer")) return;
+    if(document.querySelector('script[data-master-nav-retry="1"]')) return;
+    const s=document.createElement("script");
+    s.src="assets/customer-master-nav.js";
+    s.setAttribute("data-master-nav-retry","1");
+    document.body.appendChild(s);
+  }
+  setTimeout(ensureMasterNav,900);
+})();
+
 
 /* ============================================================
    PROJECT IMAGE LOADER
    ============================================================ */
 
 (function(){
+
+  "use strict";
 
   const OWNER = "chatphetch";
   const REPO = "chatpetch-group";
@@ -1364,23 +944,17 @@ img{
     BRANCH +
     "?recursive=1";
 
-  const RAW_BASE =
-    "https://raw.githubusercontent.com/" +
-    OWNER + "/" +
-    REPO + "/" +
-    BRANCH + "/";
 
   const CACHE_KEY =
-    "chatpetch_projects_tree_services_v5";
-
-  const CACHE_TIME_KEY =
-    "chatpetch_projects_tree_services_v5_time";
+    "chatpetch_projects_tree_v2";
 
   const CACHE_TIME =
     30 * 60 * 1000;
 
+
   const imageExtensions =
     /\.(jpg|jpeg|png|webp|gif)$/i;
+
 
   const cards =
     Array.from(
@@ -1395,17 +969,17 @@ img{
     return String(value || "")
       .trim()
       .toLowerCase();
-
   }
 
 
   function getFolders(card){
 
-    return card.dataset.projectFolders
+    return card
+      .dataset
+      .projectFolders
       .split("|")
       .map(normalize)
       .filter(Boolean);
-
   }
 
 
@@ -1445,9 +1019,7 @@ img{
     }catch(error){
 
       return null;
-
     }
-
   }
 
 
@@ -1463,13 +1035,7 @@ img{
         })
       );
 
-      sessionStorage.setItem(
-        CACHE_TIME_KEY,
-        String(Date.now())
-      );
-
     }catch(error){}
-
   }
 
 
@@ -1482,14 +1048,15 @@ img{
       return cached;
     }
 
+
     const response =
-      await fetch(API,{
+      await fetch(API, {
         headers:{
           "Accept":
             "application/vnd.github+json"
-        },
-        cache:"no-store"
+        }
       });
+
 
     if(!response.ok){
       throw new Error(
@@ -1498,24 +1065,20 @@ img{
       );
     }
 
+
     const json =
       await response.json();
 
-    if(json.truncated){
-      throw new Error(
-        "GitHub repository tree is truncated"
-      );
-    }
 
     const tree =
       Array.isArray(json.tree)
         ? json.tree
         : [];
 
+
     saveTree(tree);
 
     return tree;
-
   }
 
 
@@ -1524,51 +1087,33 @@ img{
     folder
   ){
 
-    const target =
-      normalize(folder);
+    const prefix =
+      "assets/projects/" +
+      folder + "/";
 
-    return tree
-      .filter(function(item){
 
-        if(
-          item.type !== "blob" ||
-          !imageExtensions.test(item.path)
-        ){
-          return false;
-        }
+    /*
+     * GitHub paths are case-sensitive.
+     * Match the real folder name from the
+     * tree while keeping support for Thai.
+     */
 
-        const parts =
-          item.path.split("/");
+    const exact =
+      tree.filter(function(item){
 
-        if(parts.length < 3){
-          return false;
-        }
-
-        /*
-          ใช้ชื่อโฟลเดอร์จริงจาก Repository
-          โดยไม่บังคับตัวพิมพ์เล็ก/ใหญ่
-        */
-
-        return parts.some(
-          function(part){
-            return normalize(part) === target;
-          }
-        );
-
-      })
-      .sort(function(a,b){
-
-        return a.path.localeCompare(
-          b.path,
-          undefined,
-          {
-            numeric:true,
-            sensitivity:"base"
-          }
+        return (
+          item.type === "blob" &&
+          imageExtensions.test(item.path) &&
+          normalize(item.path)
+            .startsWith(
+              normalize(prefix)
+            )
         );
 
       });
 
+
+    return exact;
   }
 
 
@@ -1589,29 +1134,91 @@ img{
           folders[i]
         );
 
+
       if(images.length){
+
+        /*
+         * Deterministic:
+         * sort by path, then use first.
+         * This prevents image changing
+         * on every refresh.
+         */
+
+        images.sort(function(a,b){
+
+          return a.path.localeCompare(
+            b.path
+          );
+        });
+
+
         return images[0];
       }
-
     }
 
-    return null;
 
+    /*
+     * Fallback:
+     * find any project image whose
+     * folder name approximately matches.
+     */
+
+    for(
+      let i=0;
+      i<folders.length;
+      i++
+    ){
+
+      const target =
+        normalize(folders[i]);
+
+
+      const found =
+        tree.find(function(item){
+
+          if(
+            item.type !== "blob" ||
+            !imageExtensions.test(item.path)
+          ){
+            return false;
+          }
+
+
+          const parts =
+            item.path.split("/");
+
+
+          return parts.some(
+            function(part){
+
+              return normalize(part) === target;
+            }
+          );
+
+        });
+
+
+      if(found){
+        return found;
+      }
+    }
+
+
+    return null;
   }
 
 
   function githubRaw(path){
 
     return (
-      RAW_BASE +
-      path
-        .split("/")
-        .map(
-          encodeURIComponent
-        )
+      "https://raw.githubusercontent.com/" +
+      OWNER + "/" +
+      REPO + "/" +
+      BRANCH + "/" +
+      path.split("/")
+        .map(encodeURIComponent)
         .join("/")
     );
-
   }
 
 
@@ -1630,6 +1237,7 @@ img{
         ".service-image img"
       );
 
+
     if(!box || !img){
       return;
     }
@@ -1638,7 +1246,10 @@ img{
     if(!image){
 
       box.classList.add(
-        "loaded",
+        "loaded"
+      );
+
+      box.classList.add(
         "no-image"
       );
 
@@ -1653,12 +1264,12 @@ img{
       }
 
       return;
-
     }
 
 
     img.src =
       githubRaw(image.path);
+
 
     img.addEventListener(
       "load",
@@ -1678,19 +1289,12 @@ img{
       function(){
 
         box.classList.add(
-          "loaded",
-          "no-image"
+          "loaded"
         );
 
-        const loading =
-          box.querySelector(
-            ".service-loading"
-          );
-
-        if(loading){
-          loading.textContent =
-            "PROJECT IMAGE";
-        }
+        box.classList.add(
+          "no-image"
+        );
 
       },
       {once:true}
@@ -1705,10 +1309,12 @@ img{
       return;
     }
 
+
     try{
 
       const tree =
         await loadTree();
+
 
       cards.forEach(
         function(card){
@@ -1716,11 +1322,13 @@ img{
           const folders =
             getFolders(card);
 
+
           const image =
             chooseImage(
               tree,
               folders
             );
+
 
           setCardImage(
             card,
@@ -1741,22 +1349,9 @@ img{
             );
 
           if(box){
-
             box.classList.add(
-              "loaded",
-              "no-image"
+              "loaded"
             );
-
-            const loading =
-              box.querySelector(
-                ".service-loading"
-              );
-
-            if(loading){
-              loading.textContent =
-                "PROJECT IMAGE";
-            }
-
           }
 
         }
@@ -1766,9 +1361,7 @@ img{
         "CHATPHETCH project images could not be loaded.",
         error
       );
-
     }
-
   }
 
 
