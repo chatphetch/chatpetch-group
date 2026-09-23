@@ -157,23 +157,62 @@
     .products-page {
 
       min-height: 100vh;
+      position: relative;
+      isolation: isolate;
+      overflow: clip;
+      background: #100b07;
+
+    }
+
+
+    /* =====================================================
+       FIXED BACKGROUND
+       ใช้ layer แยกเพื่อให้มือถือพื้นหลังอยู่กับที่จริง
+    ===================================================== */
+
+    .products-page::before {
+
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
 
       background:
+        url("assets/index-main-bg.png")
+        center top /
+        cover
+        no-repeat;
 
+      transform: translateZ(0);
+      will-change: transform;
+
+    }
+
+
+    .products-page::after {
+
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+
+      background:
         linear-gradient(
           180deg,
           rgba(0,0,0,.52) 0%,
           rgba(0,0,0,.35) 24%,
           rgba(0,0,0,.54) 55%,
-          rgba(0,0,0,.96) 100%
-        ),
+          rgba(16,11,7,.98) 100%
+        );
 
-        url("assets/index-main-bg.png")
-        center top /
-        cover
-        no-repeat
-        fixed;
+    }
 
+
+    .products-page > main {
+      position: relative;
+      z-index: 1;
     }
 
 
@@ -1255,10 +1294,26 @@
 
       }
 
-      .products-page {
+      .products-page::before {
 
-        background-attachment:
-          scroll;
+        background:
+          url("assets/index-main-bg.png")
+          center top /
+          cover
+          no-repeat;
+
+      }
+
+      .products-page::after {
+
+        background:
+          linear-gradient(
+            180deg,
+            rgba(0,0,0,.40) 0%,
+            rgba(0,0,0,.52) 28%,
+            rgba(0,0,0,.76) 58%,
+            #100b07 88%
+          );
 
       }
 
@@ -1336,7 +1391,29 @@
           100% !important;
 
         font-size:
-          13px;
+          16px;
+
+        line-height:
+          1.85;
+
+      }
+
+
+      .section-title {
+
+        font-size:
+          30px;
+
+      }
+
+
+      .section-note {
+
+        font-size:
+          14px;
+
+        line-height:
+          1.8;
 
       }
 
