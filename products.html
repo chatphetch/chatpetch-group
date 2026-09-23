@@ -1647,25 +1647,25 @@
    PRODUCTS — RESTORED LOWER FOOTER
 ========================================================= */
 
-.products-page .products-footer{
+.products-footer{
   border-top:1px solid rgba(201,168,90,.22);
   padding:65px 0 28px;
   background:#0e0906;
 }
 
-.products-page .products-footer-grid{
+.products-footer-grid{
   display:grid;
   grid-template-columns:minmax(0,1fr) 430px;
   gap:45px;
 }
 
-.products-page .products-footer-brand img{
+.products-footer-brand img{
   width:70px;
   height:70px;
   object-fit:contain;
 }
 
-.products-page .products-footer-brand h3{
+.products-footer-brand h3{
   margin:16px 0 0;
   color:#f2eadf;
   font-family:"Kanit","Prompt",sans-serif;
@@ -1673,22 +1673,22 @@
   font-weight:500;
 }
 
-.products-page .products-footer-brand p{
+.products-footer-brand p{
   margin:8px 0 0;
   color:#b8aa9b;
   font-size:13px;
   line-height:1.9;
 }
 
-.products-page .products-footer-brand .footer-tagline{
+.products-footer-brand .footer-tagline{
   color:#dccb9f;
 }
 
-.products-page .products-footer-menu{
+.products-footer-menu{
   justify-self:start;
 }
 
-.products-page .products-footer-menu h4{
+.products-footer-menu h4{
   margin:0 0 13px;
   color:#e4c979;
   font-family:"Kanit","Prompt",sans-serif;
@@ -1696,7 +1696,7 @@
   font-weight:500;
 }
 
-.products-page .products-footer-menu a{
+.products-footer-menu a{
   display:block;
   padding:4px 0;
   color:#b4a79a;
@@ -1704,11 +1704,11 @@
   transition:color .2s ease;
 }
 
-.products-page .products-footer-menu a:hover{
+.products-footer-menu a:hover{
   color:#e4c979;
 }
 
-.products-page .products-footer-bottom{
+.products-footer-bottom{
   margin-top:45px;
   padding-top:22px;
   border-top:1px solid rgba(201,168,90,.18);
@@ -1718,20 +1718,20 @@
   gap:25px;
 }
 
-.products-page .products-footer-address{
+.products-footer-address{
   color:#9b8f83;
   font-size:12px;
   line-height:1.8;
 }
 
-.products-page .products-footer-actions{
+.products-footer-actions{
   display:flex;
   align-items:center;
   flex-wrap:wrap;
   gap:9px;
 }
 
-.products-page .products-footer-btn{
+.products-footer-btn{
   min-height:42px;
   display:inline-flex;
   align-items:center;
@@ -1744,18 +1744,18 @@
   transition:.2s ease;
 }
 
-.products-page .products-footer-btn:hover{
+.products-footer-btn:hover{
   color:#e4c979;
   border-color:#c9a85a;
   background:rgba(201,168,90,.06);
 }
 
-.products-page .products-footer-socials{
+.products-footer-socials{
   display:flex;
   gap:8px;
 }
 
-.products-page .products-footer-social{
+.products-footer-social{
   width:40px;
   height:40px;
   display:grid;
@@ -1766,41 +1766,80 @@
   font-size:12px;
 }
 
-.products-page .products-footer-social:hover{
+.products-footer-social:hover{
   color:#e4c979;
   border-color:#c9a85a;
 }
 
 /* Keep only this restored Products footer visually; the master
    navigation still supplies the header/cart/menu. */
-body > .customer-footer{
-  display:none !important;
-}
 
 @media (max-width:850px){
-  .products-page .products-footer-grid{
+  .products-footer-grid{
     grid-template-columns:1fr;
     gap:38px;
   }
 
-  .products-page .products-footer-bottom{
+  .products-footer-bottom{
     align-items:flex-start;
     flex-direction:column;
   }
 }
 
 @media (max-width:480px){
-  .products-page .products-footer{
+  .products-footer{
     padding:48px 0 24px;
   }
 
-  .products-page .products-footer-grid{
+  .products-footer-grid{
     gap:32px;
   }
 
-  .products-page .products-footer-actions{
+  .products-footer-actions{
     align-items:flex-start;
     flex-direction:column;
+  }
+}
+</style>
+
+
+<style id="products-footer-visibility-final">
+.products-footer{
+  position:relative !important;
+  z-index:2 !important;
+  display:block !important;
+  width:100% !important;
+  min-height:280px !important;
+  margin:0 !important;
+  clear:both !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  color:#f4ecdf !important;
+  background:#0e0906 !important;
+  border-top:1px solid rgba(201,168,90,.35) !important;
+}
+
+.products-footer .products-footer-grid{
+  display:grid !important;
+}
+
+.products-footer .products-footer-brand h3,
+.products-footer .products-footer-menu h4{
+  display:block !important;
+  visibility:visible !important;
+}
+
+.products-footer .products-footer-brand p,
+.products-footer .products-footer-menu a,
+.products-footer .products-footer-address,
+.products-footer .products-footer-btn,
+.products-footer .products-footer-social{
+  visibility:visible !important;
+}
+
+@media(max-width:850px){
+  .products-footer .products-footer-grid{
+    grid-template-columns:1fr !important;
   }
 }
 </style>
