@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="th">
 <head>
-<link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png?v=20260923">
-<link rel="shortcut icon" href="assets/logo.png?v=20260923">
+<link rel="icon" type="image/png" sizes="32x32" href="chatpetch-group-main/assets/logo.png?v=20260923">
+<link rel="shortcut icon" type="image/png" href="chatpetch-group-main/assets/logo.png?v=20260923">
 <meta name="theme-color" content="#0b0b0b">
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CHATPHETCH GROUP — Admin</title>
+<title>CHATPHETCH GROUP — Admin Dashboard</title>
 <style>
 
 
@@ -68,8 +68,9 @@ html{
 body{
   margin:0;
   min-height:100vh;
-  color:white;
+  color:#fff;
   font-family:"Prompt","Kanit",sans-serif;
+
   background:
     linear-gradient(
       180deg,
@@ -78,11 +79,12 @@ body{
       rgba(0,0,0,.72) 58%,
       #080604 88%
     ),
-    url("assets/index-main-bg.png") center top/cover no-repeat fixed;
+    url("chatpetch-group-main/assets/index-main-bg.png") center top / cover no-repeat fixed;
+
   overflow-x:hidden;
 }
 
-body::before{content:none;}
+body::before{content:none !important;}
 
 @media(max-width:700px){
   body{
@@ -94,7 +96,7 @@ body::before{content:none;}
         rgba(0,0,0,.83) 56%,
         #080604 82%
       ),
-      url("assets/index-main-bg.png") center top/100% auto no-repeat;
+      url("chatpetch-group-main/assets/index-main-bg.png") center top / 100% auto no-repeat;
     background-attachment:scroll;
   }
 }
@@ -920,10 +922,6 @@ function getAuthRateLimitSeconds(error){
 ========================================================= */
 
 #app{
-  display:none;
-}
-
-#app.show{
   display:block;
 }
 
@@ -2947,225 +2945,4962 @@ tbody tr:hover{
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<section class="login-screen" id="loginScreen">
-<div class="login-card">
-<img alt="CHATPHETCH GROUP" class="login-logo" src="assets/logo.png"/>
-<h1 class="login-title">
-      CHATPHETCH <span>GROUP</span>
-</h1>
-<div class="login-subtitle">
-      ระบบจัดการหลังบ้าน<br/>
-      Admin / Back Office
-    </div>
-<form autocomplete="on" id="loginForm">
-<div class="login-field">
-<label for="loginEmail">อีเมล</label>
-<input autocomplete="username" id="loginEmail" inputmode="email" name="email" placeholder="admin@example.com" required="" type="email"/>
+<div id="app">
+<header class="admin-header">
+<div class="header-inner">
+<!-- BRAND -->
+<a class="brand" href="admin-dashboard.html">
+<img alt="CHATPHETCH GROUP" class="brand-logo" src="assets/logo.png"/>
+<div>
+<div class="brand-name">
+          CHATPHETCH GROUP
+          <span class="owner-badge">
+            BACK OFFICE
+          </span>
 </div>
-<div class="login-field">
-<label for="loginPassword">รหัสผ่าน</label>
-<div class="password-wrap">
-<input autocomplete="current-password" id="loginPassword" minlength="6" name="password" placeholder="••••••••" required="" type="password"/>
-<button aria-label="แสดงรหัสผ่าน" aria-pressed="false" class="password-toggle" id="passwordToggle" type="button">
-            แสดง
+<div class="brand-sub">
+          ADMIN MANAGEMENT SYSTEM
+        </div>
+</div>
+</a>
+<!-- NAV -->
+<nav class="admin-nav">
+<button class="nav-button active" data-view="dashboard">
+        หน้าแรก
+      </button>
+<button class="nav-button" data-view="orders">
+        คำสั่งซื้อ
+      </button>
+<button class="nav-button" data-view="products">
+        สินค้า
+      </button>
+<button class="nav-button" data-view="users">
+        ผู้ใช้งาน
+      </button>
+</nav>
+<!-- RIGHT -->
+<div class="header-right">
+<span class="role-badge" id="headerRole">
+        OWNER
+      </span>
+<span class="user-email" id="headerEmail">
+        -
+      </span>
+<button class="logout" id="logoutButton">
+        ออกจากระบบ
+      </button>
+</div>
+</div>
+</header>
+<main class="main">
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+<section class="view active" id="view-dashboard">
+<div class="page-header">
+<div>
+<div class="eyebrow">
+        ADMIN DASHBOARD
+      </div>
+<h1 class="page-title">
+        หน้าแรก
+      </h1>
+<div class="page-description">
+        ศูนย์กลางจัดการคำสั่งซื้อ สินค้า และผู้ใช้งานของ CHATPHETCH GROUP
+      </div>
+</div>
+<div class="page-actions">
+<button class="btn" id="refreshDashboard">
+        ↻ รีเฟรชข้อมูล
+      </button>
+</div>
+</div>
+<div class="stats">
+<div class="stat gold">
+<div class="stat-label">
+        คำสั่งซื้อทั้งหมด
+      </div>
+<div class="stat-number" id="statOrders">
+        0
+      </div>
+<div class="stat-sub">
+        Orders
+      </div>
+</div>
+<div class="stat">
+<div class="stat-label">
+        รอตรวจสอบ
+      </div>
+<div class="stat-number" id="statPending">
+        0
+      </div>
+<div class="stat-sub">
+        Pending
+      </div>
+</div>
+<div class="stat">
+<div class="stat-label">
+        กำลังจัดส่ง
+      </div>
+<div class="stat-number" id="statShipping">
+        0
+      </div>
+<div class="stat-sub">
+        Shipping
+      </div>
+</div>
+<div class="stat">
+<div class="stat-label">
+        จัดส่งสำเร็จ
+      </div>
+<div class="stat-number" id="statCompleted">
+        0
+      </div>
+<div class="stat-sub">
+        Completed
+      </div>
+</div>
+</div>
+<div class="quick-grid">
+<div class="quick-card" data-go="orders">
+<div class="quick-icon">
+        🛒
+      </div>
+<div class="quick-title">
+        จัดการคำสั่งซื้อ
+      </div>
+<div class="quick-text">
+        ตรวจสอบออเดอร์ ดูข้อมูลลูกค้า ตรวจสลิป เปลี่ยนสถานะ และลบออเดอร์ที่ผิดพลาด
+      </div>
+</div>
+<div class="quick-card" data-go="products">
+<div class="quick-icon">
+        📦
+      </div>
+<div class="quick-title">
+        จัดการสินค้า
+      </div>
+<div class="quick-text">
+        เพิ่ม แก้ไข ซ่อน แสดง และลบสินค้าจากระบบ Admin ได้โดยตรง
+      </div>
+</div>
+<div class="quick-card" data-go="users">
+<div class="quick-icon">
+        👤
+      </div>
+<div class="quick-title">
+        จัดการผู้ใช้งาน
+      </div>
+<div class="quick-text">
+        จัดการ Owner, Manager, Staff และ Viewer
+      </div>
+</div>
+</div>
+<div class="panel">
+<div class="panel-head">
+<div>
+<div class="panel-title">
+          คำสั่งซื้อล่าสุด
+        </div>
+<div class="panel-sub">
+          รายการล่าสุดจากระบบ
+        </div>
+</div>
+<button class="btn" data-go="orders">
+        ดูทั้งหมด
+      </button>
+</div>
+<div class="table-wrap" id="dashboardRecent"></div>
+</div>
+</section>
+<!-- =====================================================
+     ORDERS
+===================================================== -->
+<section class="view" id="view-orders">
+<div class="page-header">
+<div>
+<div class="eyebrow">
+        ORDER MANAGEMENT
+      </div>
+<h1 class="page-title">
+        คำสั่งซื้อ
+      </h1>
+<div class="page-description">
+        ตรวจสอบคำสั่งซื้อ การชำระเงิน และสถานะการจัดส่ง
+      </div>
+</div>
+<div class="page-actions">
+<button class="btn" id="refreshOrders">
+        ↻ รีเฟรช
+      </button>
+</div>
+</div>
+<div class="filter">
+<div class="search">
+<input class="input" id="orderSearch" placeholder="ค้นหาเลขคำสั่งซื้อ / ชื่อลูกค้า / เบอร์โทร"/>
+</div>
+<select class="select" id="orderStatusFilter" style="max-width:210px">
+<option value="">
+        ทุกสถานะ
+      </option>
+<option value="pending">
+        รอตรวจสอบ
+      </option>
+<option value="confirmed">
+        ยืนยันแล้ว
+      </option>
+<option value="preparing">
+        กำลังเตรียมสินค้า
+      </option>
+<option value="shipping">
+        กำลังจัดส่ง
+      </option>
+<option value="completed">
+        จัดส่งสำเร็จ
+      </option>
+<option value="cancelled">
+        ยกเลิก
+      </option>
+</select>
+</div>
+<div class="panel">
+<div class="panel-head">
+<div>
+<div class="panel-title">
+          รายการคำสั่งซื้อ
+        </div>
+<div class="panel-sub" id="orderCount">
+          0 รายการ
+        </div>
+</div>
+</div>
+<div class="table-wrap" id="ordersTable"></div>
+</div>
+</section>
+<!-- =====================================================
+     PRODUCTS
+===================================================== -->
+<section class="view" id="view-products">
+<div class="page-header">
+<div>
+<div class="eyebrow">
+        PRODUCT MANAGEMENT
+      </div>
+<h1 class="page-title">
+        สินค้า
+      </h1>
+<div class="page-description">
+        จัดการรายละเอียดสินค้า ราคา ตัวเลือก รูปภาพ และสถานะการแสดงผล
+      </div>
+</div>
+<div class="page-actions">
+<button class="btn" id="refreshProducts">
+        ↻ รีเฟรช
+      </button>
+<button class="btn gold" id="addProductButton">
+        ＋ เพิ่มสินค้า
+      </button>
+</div>
+</div>
+<div class="stats">
+<div class="stat gold">
+<div class="stat-label">
+        สินค้าทั้งหมด
+      </div>
+<div class="stat-number" id="productTotal">
+        0
+      </div>
+</div>
+<div class="stat">
+<div class="stat-label">
+        แสดงอยู่
+      </div>
+<div class="stat-number" id="productVisible">
+        0
+      </div>
+</div>
+<div class="stat">
+<div class="stat-label">
+        ซ่อนอยู่
+      </div>
+<div class="stat-number" id="productHidden">
+        0
+      </div>
+</div>
+<div class="stat">
+<div class="stat-label">
+        หมวดหมู่
+      </div>
+<div class="stat-number" id="productCategories">
+        0
+      </div>
+</div>
+</div>
+<div class="filter">
+<div class="search">
+<input class="input" id="productSearch" placeholder="ค้นหาชื่อสินค้า / รหัสสินค้า"/>
+</div>
+<select class="select" id="productCategoryFilter" style="max-width:210px">
+<option value="">
+        ทุกหมวดหมู่
+      </option>
+<option value="floor">
+        พื้น
+      </option>
+<option value="coating">
+        น้ำยาเคลือบ
+      </option>
+<option value="waterproof">
+        กันรั่วซึม
+      </option>
+<option value="repair">
+        ซ่อมคอนกรีต
+      </option>
+<option value="sport">
+        พื้นสนามกีฬา
+      </option>
+<option value="traffic">
+        เส้นจราจร
+      </option>
+<option value="other">
+        อื่น ๆ
+      </option>
+</select>
+</div>
+<div class="product-grid" id="productGrid"></div>
+</section>
+<!-- =====================================================
+     USERS
+===================================================== -->
+<section class="view" id="view-users">
+<div class="page-header">
+<div>
+<div class="eyebrow">
+        USER MANAGEMENT
+      </div>
+<h1 class="page-title">
+        ผู้ใช้งาน
+      </h1>
+<div class="page-description">
+        จัดการสิทธิ์ผู้ดูแลระบบของ CHATPHETCH GROUP
+      </div>
+</div>
+<div class="page-actions">
+<button class="btn" id="refreshUsers">
+        ↻ รีเฟรช
+      </button>
+</div>
+</div>
+<div class="panel">
+<div class="panel-head">
+<div>
+<div class="panel-title">
+          รายชื่อผู้ใช้งาน
+        </div>
+<div class="panel-sub">
+          OWNER / MANAGER / STAFF / VIEWER
+        </div>
+</div>
+</div>
+<div class="table-wrap" id="usersTable"></div>
+</div>
+</section>
+</main>
+</div>
+<div class="modal" id="orderModal">
+<div class="modal-box">
+<div class="modal-head">
+<div class="modal-title">
+        รายละเอียดคำสั่งซื้อ
+      </div>
+<button class="modal-close" data-close="orderModal">
+        ×
+      </button>
+</div>
+<div class="modal-body" id="orderModalBody"></div>
+</div>
+</div>
+<div class="modal" id="productModal">
+<div class="modal-box">
+<div class="modal-head">
+<div class="modal-title" id="productModalTitle">
+        เพิ่มสินค้า
+      </div>
+<button class="modal-close" data-close="productModal">
+        ×
+      </button>
+</div>
+<div class="modal-body">
+<form id="productForm">
+<input id="productId" type="hidden"/>
+<div class="form-grid">
+<div class="form-group">
+<label class="form-label">
+              รหัสสินค้า
+            </label>
+<input class="input" id="productCode" placeholder="เช่น 91428" required=""/>
+</div>
+<div class="form-group">
+<label class="form-label">
+              ชื่อสินค้า
+            </label>
+<input class="input" id="productName" placeholder="ชื่อสินค้า" required=""/>
+</div>
+<div class="form-group">
+<label class="form-label">
+              หมวดหมู่
+            </label>
+<select class="select" id="productCategory">
+<option value="floor">
+                พื้น
+              </option>
+<option value="coating">
+                น้ำยาเคลือบ
+              </option>
+<option value="waterproof">
+                กันรั่วซึม
+              </option>
+<option value="repair">
+                ซ่อมคอนกรีต
+              </option>
+<option value="sport">
+                พื้นสนามกีฬา
+              </option>
+<option value="traffic">
+                เส้นจราจร
+              </option>
+<option value="other">
+                อื่น ๆ
+              </option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">
+              ชื่อหมวดหมู่
+            </label>
+<input class="input" id="productCategoryLabel" placeholder="เช่น พื้นตกแต่ง"/>
+</div>
+<div class="form-group">
+<label class="form-label">
+              ราคาเริ่มต้น
+            </label>
+<input class="input" id="productPrice" min="0" placeholder="0" step="0.01" type="number"/>
+</div>
+<div class="form-group">
+<label class="form-label">
+              ลำดับการแสดง
+            </label>
+<input class="input" id="productSort" type="number" value="0"/>
+</div>
+<div class="form-group full">
+<label class="form-label">
+              รูปสินค้า
+            </label>
+<input class="input" id="productImage" placeholder="assets/products/ชื่อไฟล์.jpg"/>
+</div>
+<div class="form-group full">
+<label class="form-label">
+              คำอธิบายสั้น
+            </label>
+<input class="input" id="productShort" placeholder="คำอธิบายสั้นของสินค้า"/>
+</div>
+<div class="form-group full">
+<label class="form-label">
+              รายละเอียดสินค้า
+            </label>
+<textarea class="textarea" id="productDescription" placeholder="รายละเอียดสินค้า"></textarea>
+</div>
+<div class="form-group full">
+<label class="form-label">
+              การใช้งาน
+            </label>
+<textarea class="textarea" id="productUsage" placeholder="ใช้สำหรับ..."></textarea>
+</div>
+<div class="form-group">
+<label class="form-label">
+              พื้นที่การใช้งาน / Coverage
+            </label>
+<input class="input" id="productCoverage" placeholder="เช่น 8-10 ตร.ม./กระสอบ"/>
+</div>
+<div class="form-group">
+<label class="form-label">
+              ขนาดบรรจุ
+            </label>
+<input class="input" id="productPackage" placeholder="เช่น 25 กก."/>
+</div>
+<div class="form-group full">
+<label class="form-label">
+              คุณสมบัติเด่น
+            </label>
+<div id="featuresContainer"></div>
+<button class="btn" id="addFeature" type="button">
+              ＋ เพิ่มคุณสมบัติ
+            </button>
+</div>
+<div class="form-group full">
+<label class="form-label">
+              ตัวเลือกสินค้า / ขนาด / ราคา
+            </label>
+<div id="optionsContainer"></div>
+<button class="btn" id="addOption" type="button">
+              ＋ เพิ่มตัวเลือก
+            </button>
+</div>
+<div class="form-group">
+<label class="form-label">
+              สถานะ
+            </label>
+<select class="select" id="productVisible">
+<option value="true">
+                แสดงสินค้า
+              </option>
+<option value="false">
+                ซ่อนสินค้า
+              </option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">
+              Technical Data
+            </label>
+<textarea class="textarea" id="productTechnical" placeholder="Compressive strength / Bond strength / Setting time / Opening time"></textarea>
+</div>
+</div>
+<div class="form-footer">
+<button class="btn" data-close="productModal" type="button">
+            ยกเลิก
+          </button>
+<button class="btn gold" id="saveProductButton" type="submit">
+            บันทึกสินค้า
           </button>
 </div>
-</div>
-<button class="login-button" id="loginButton" type="submit">
-        เข้าสู่ระบบ
-      </button>
 </form>
-<button class="forgot-password" id="forgotPasswordButton" type="button">
-      ลืมรหัสผ่าน?
-    </button>
-<div aria-live="polite" class="login-error" id="loginError" role="alert"></div>
 </div>
-</section>
-
-<section class="recovery-screen" id="recoveryScreen">
-  <div class="recovery-card">
-    <img src="assets/logo.png" class="recovery-logo" alt="CHATPHETCH GROUP">
-    <h1 class="recovery-title">ตั้งรหัสผ่านใหม่</h1>
-    <div class="recovery-subtitle">กรุณากำหนดรหัสผ่านใหม่สำหรับบัญชี Admin</div>
-    <form id="recoveryForm" autocomplete="off">
-      <div class="recovery-field">
-        <label for="newPassword">รหัสผ่านใหม่</label>
-        <div class="recovery-password-wrap">
-          <input type="password" id="newPassword" autocomplete="new-password" minlength="6" required>
-          <button type="button" class="recovery-toggle" id="newPasswordToggle">แสดง</button>
-        </div>
+</div>
+</div>
+<div class="modal" id="confirmModal">
+<div class="modal-box small">
+<div class="modal-head">
+<div class="modal-title" id="confirmTitle">
+        ยืนยัน
       </div>
-      <div class="recovery-field">
-        <label for="confirmNewPassword">ยืนยันรหัสผ่านใหม่</label>
-        <div class="recovery-password-wrap">
-          <input type="password" id="confirmNewPassword" autocomplete="new-password" minlength="6" required>
-          <button type="button" class="recovery-toggle" id="confirmPasswordToggle">แสดง</button>
-        </div>
-      </div>
-      <button type="submit" class="recovery-button" id="recoveryButton">บันทึกรหัสผ่านใหม่</button>
-    </form>
-    <div class="recovery-message" id="recoveryMessage" role="alert" aria-live="polite"></div>
-  </div>
-</section>
-
+<button class="modal-close" data-close="confirmModal">
+        ×
+      </button>
+</div>
+<div class="modal-body">
+<div id="confirmText" style="
+          color:#aaa;
+          font-size:12px;
+          line-height:1.8;
+        "></div>
+<div class="form-footer" style="margin-top:20px">
+<button class="btn" data-close="confirmModal">
+          ยกเลิก
+        </button>
+<button class="btn gold" id="confirmButton">
+          ยืนยัน
+        </button>
+</div>
+</div>
+</div>
+</div>
+<div class="toast" id="toast"></div>
 <script>
+/* =========================================================
+   SUPABASE
+========================================================= */
 
-const SUPABASE_URL = "https://mfhllgklcfnnbyyzzljz.supabase.co";
-const SUPABASE_KEY = "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-  auth:{ persistSession:true, autoRefreshToken:true, detectSessionInUrl:true }
-});
+const SUPABASE_URL =
+  "https://mfhllgklcfnnbyyzzljz.supabase.co";
 
-const $ = id => document.getElementById(id);
+const SUPABASE_KEY =
+  "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
 
-function loginErrorMessage(error){
-  const m = String(error?.message || "").toLowerCase();
-  if(m.includes("invalid login credentials") || m.includes("invalid credentials")) return "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
-  if(m.includes("email not confirmed")) return "อีเมลนี้ยังไม่ได้ยืนยัน กรุณาตรวจสอบอีเมลก่อนเข้าสู่ระบบ";
-  if(Number(error?.status) === 429 || m.includes("too many requests") || m.includes("rate limit") || m.includes("over_request_rate_limit")) return "ระบบจำกัดการเข้าสู่ระบบชั่วคราว กรุณารอสักครู่แล้วลองใหม่";
-  if(m.includes("network") || m.includes("fetch")) return "ไม่สามารถเชื่อมต่อระบบได้ กรุณาตรวจสอบอินเทอร์เน็ต";
-  return error?.message || "ไม่สามารถเข้าสู่ระบบได้";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY,
+    {
+      auth:{
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true
+      }
+    }
+  );
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentUser = null;
+
+let currentRole = null;
+
+let orders = [];
+
+let orderItems = [];
+
+let products = [];
+
+let adminUsers = [];
+
+let confirmAction = null;
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $ = id =>
+  document.getElementById(id);
+
+
+function escapeHtml(value){
+
+  return String(
+    value ??
+    ""
+  )
+
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
+
 }
 
-function isRecovery(){
-  const text = window.location.hash + "&" + window.location.search;
-  return /(^|[&#?])type=recovery(&|$)/i.test(text);
+
+function formatMoney(value){
+
+  const n =
+    Number(value || 0);
+
+  return n.toLocaleString(
+    "th-TH",
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  );
+
 }
+
+
+function formatDate(value){
+
+  if(!value){
+    return "-";
+  }
+
+  try{
+
+    return new Date(value)
+      .toLocaleString(
+        "th-TH",
+        {
+          dateStyle:"medium",
+          timeStyle:"short"
+        }
+      );
+
+  }catch{
+
+    return value;
+
+  }
+
+}
+
+
+function toast(
+  message,
+  type="success"
+){
+
+  const el =
+    $("toast");
+
+  el.textContent =
+    message;
+
+  el.className =
+    "toast show " +
+    type;
+
+  clearTimeout(
+    toast.timer
+  );
+
+  toast.timer =
+    setTimeout(
+      ()=>{
+        el.className =
+          "toast";
+      },
+      3200
+    );
+
+}
+
+
+function showLoading(show=true){
+
+  const loading =
+    $("loading");
+
+  if(!loading){
+
+    return;
+
+  }
+
+  loading.classList.toggle(
+    "hidden",
+    !show
+  );
+
+  loading.classList.toggle(
+    "show",
+    !!show
+  );
+
+}
+
 
 function showLogin(){
-  $("recoveryScreen")?.classList.remove("show");
-  $("loginScreen")?.classList.add("show");
+
+  showLoading(false);
+
+  $("loginScreen")
+    .classList
+    .add("show");
+
+  $("app")
+    .classList
+    .remove("show");
+
 }
 
-function showRecovery(){
-  $("loginScreen")?.classList.remove("show");
-  $("recoveryScreen")?.classList.add("show");
+
+function showApp(){
+
+  showLoading(false);
+
+  $("loginScreen")
+    .classList
+    .remove("show");
+
+  $("app")
+    .classList
+    .add("show");
+
 }
 
-async function doLogin(event){
-  event.preventDefault();
 
-  const emailInput = $("loginEmail");
-  const passwordInput = $("loginPassword");
-  const button = $("loginButton");
-  const errorBox = $("loginError");
+/* =========================================================
+   LOAD ROLE
+========================================================= */
 
-  const email = emailInput.value.trim().toLowerCase();
-  const password = passwordInput.value;
+async function loadRole(){
 
-  errorBox.textContent = "";
-  errorBox.classList.remove("show");
+  if(!currentUser){
+    throw new Error(
+      "ไม่พบผู้ใช้งาน"
+    );
+  }
 
-  if(!email || !emailInput.checkValidity()){
-    errorBox.textContent = "กรุณากรอกอีเมลให้ถูกต้อง";
-    errorBox.classList.add("show");
-    emailInput.focus();
+
+  const roleQuery =
+    supabaseClient
+      .from("admin_users")
+      .select(
+        "user_id,email,name,role,active"
+      )
+      .eq(
+        "user_id",
+        currentUser.id
+      )
+      .maybeSingle();
+
+
+  const timeout =
+    new Promise(
+      resolve =>
+        setTimeout(
+          ()=>resolve({
+            data:null,
+            error:new Error(
+              "หมดเวลาตรวจสอบสิทธิ์ กรุณาตรวจสอบ RLS ของตาราง admin_users และการเชื่อมต่อ Supabase"
+            )
+          }),
+          10000
+        )
+    );
+
+
+  const {
+    data,
+    error
+  } =
+    await Promise.race([
+      roleQuery,
+      timeout
+    ]);
+
+
+  if(error){
+    throw error;
+  }
+
+
+  if(!data){
+
+    throw new Error(
+      "บัญชีนี้ยังไม่ได้ถูกเพิ่มใน admin_users"
+    );
+
+  }
+
+
+  if(data.active !== true){
+
+    throw new Error(
+      "บัญชีนี้ถูกปิดการใช้งาน"
+    );
+
+  }
+
+
+  currentRole =
+    String(
+      data.role ||
+      ""
+    )
+      .trim()
+      .toLowerCase();
+
+
+  const allowedRoles = [
+    "owner",
+    "manager",
+    "staff",
+    "viewer"
+  ];
+
+
+  if(
+    !allowedRoles.includes(
+      currentRole
+    )
+  ){
+
+    throw new Error(
+      "บัญชีนี้มี Role ไม่ถูกต้อง"
+    );
+
+  }
+
+
+  $("headerRole")
+    .textContent =
+      currentRole.toUpperCase();
+
+  $("headerEmail")
+    .textContent =
+      data.email ||
+      currentUser.email ||
+      "";
+
+}
+
+
+/* =========================================================
+   PERMISSION
+========================================================= */
+
+function isOwner(){
+
+  return currentRole === "owner";
+
+}
+
+
+function canManageProducts(){
+
+  return (
+    currentRole === "owner" ||
+    currentRole === "manager"
+  );
+
+}
+
+
+function canManageOrders(){
+
+  return (
+    currentRole === "owner" ||
+    currentRole === "manager" ||
+    currentRole === "staff"
+  );
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function openView(view){
+
+  document
+    .querySelectorAll(".view")
+    .forEach(
+      el =>
+        el.classList.remove(
+          "active"
+        )
+    );
+
+
+  const target =
+    $("view-" + view);
+
+  if(!target){
     return;
   }
 
-  if(!password){
-    errorBox.textContent = "กรุณากรอกรหัสผ่าน";
-    errorBox.classList.add("show");
-    passwordInput.focus();
+
+  target.classList.add(
+    "active"
+  );
+
+
+  document
+    .querySelectorAll(".nav-button")
+    .forEach(
+      btn => {
+
+        btn.classList.toggle(
+          "active",
+          btn.dataset.view === view
+        );
+
+      }
+    );
+
+
+  if(view === "dashboard"){
+    loadDashboard();
+  }
+
+  if(view === "orders"){
+    loadOrders();
+  }
+
+  if(view === "products"){
+    loadProducts();
+  }
+
+  if(view === "users"){
+    loadUsers();
+  }
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================================
+   NAV EVENTS
+========================================================= */
+
+document
+  .querySelectorAll(".nav-button")
+  .forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        ()=>{
+
+          openView(
+            button.dataset.view
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+document
+  .querySelectorAll("[data-go]")
+  .forEach(
+    element => {
+
+      element.addEventListener(
+        "click",
+        ()=>{
+
+          openView(
+            element.dataset.go
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   LOAD ORDERS
+========================================================= */
+
+async function loadOrders(){
+
+  const container =
+    $("ordersTable");
+
+  container.innerHTML =
+    `<div class="empty">
+      กำลังโหลดคำสั่งซื้อ...
+    </div>`;
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("orders")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(error){
+
+    console.error(error);
+
+    container.innerHTML =
+      `<div class="empty">
+        ไม่สามารถโหลดคำสั่งซื้อได้<br>
+        ${escapeHtml(error.message)}
+      </div>`;
+
+    return;
+
+  }
+
+
+  orders =
+    data || [];
+
+
+  renderOrders();
+
+  updateStats();
+
+}
+
+
+/* =========================================================
+   FILTER ORDERS
+========================================================= */
+
+function getFilteredOrders(){
+
+  const search =
+    $("orderSearch")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const status =
+    $("orderStatusFilter")
+      .value;
+
+
+  return orders.filter(
+    order => {
+
+      const text =
+        [
+          order.order_number,
+          order.customer_name,
+          order.customer_phone,
+          order.customer_email
+        ]
+        .join(" ")
+        .toLowerCase();
+
+
+      const searchMatch =
+        !search ||
+        text.includes(search);
+
+
+      const statusMatch =
+        !status ||
+        order.status === status;
+
+
+      return (
+        searchMatch &&
+        statusMatch
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   STATUS LABEL
+========================================================= */
+
+const STATUS_LABELS = {
+
+  pending:
+    "รอตรวจสอบ",
+
+  confirmed:
+    "ยืนยันแล้ว",
+
+  preparing:
+    "กำลังเตรียมสินค้า",
+
+  shipping:
+    "กำลังจัดส่ง",
+
+  completed:
+    "จัดส่งสำเร็จ",
+
+  cancelled:
+    "ยกเลิก"
+
+};
+
+
+function statusLabel(status){
+
+  return (
+    STATUS_LABELS[status] ||
+    status ||
+    "-"
+  );
+
+}
+
+
+/* =========================================================
+   RENDER ORDERS
+========================================================= */
+
+function renderOrders(){
+
+  const list =
+    getFilteredOrders();
+
+  $("orderCount")
+    .textContent =
+      list.length +
+      " รายการ";
+
+
+  if(!list.length){
+
+    $("ordersTable").innerHTML =
+      `<div class="empty">
+        ไม่พบคำสั่งซื้อ
+      </div>`;
+
+    return;
+
+  }
+
+
+  let html = `
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>
+          คำสั่งซื้อ
+        </th>
+
+        <th>
+          ลูกค้า
+        </th>
+
+        <th>
+          จังหวัด
+        </th>
+
+        <th>
+          ยอดรวม
+        </th>
+
+        <th>
+          การชำระเงิน
+        </th>
+
+        <th>
+          สถานะ
+        </th>
+
+        <th>
+          วันที่
+        </th>
+
+        <th>
+          จัดการ
+        </th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+  `;
+
+
+  list.forEach(
+    order => {
+
+      html += `
+
+      <tr>
+
+        <td>
+
+          <div class="order-number">
+            #${escapeHtml(
+              order.order_number ||
+              order.id
+            )}
+          </div>
+
+        </td>
+
+
+        <td>
+
+          <div class="customer-name">
+            ${escapeHtml(
+              order.customer_name ||
+              "-"
+            )}
+          </div>
+
+          <div class="customer-phone">
+            ${escapeHtml(
+              order.customer_phone ||
+              "-"
+            )}
+          </div>
+
+        </td>
+
+
+        <td>
+          ${escapeHtml(
+            order.customer_province ||
+            "-"
+          )}
+        </td>
+
+
+        <td>
+
+          <div class="total">
+            ${formatMoney(
+              order.total
+            )} ฿
+          </div>
+
+        </td>
+
+
+        <td>
+
+          ${escapeHtml(
+            paymentLabel(
+              order.payment_method
+            )
+          )}
+
+          ${
+            order.payment_verified
+              ? `<div
+                  style="
+                    color:var(--green);
+                    font-size:9px;
+                    margin-top:4px;
+                  "
+                >
+                  ✓ ตรวจสอบแล้ว
+                </div>`
+              : ""
+          }
+
+        </td>
+
+
+        <td>
+
+          <span
+            class="status ${escapeHtml(
+              order.status ||
+              "pending"
+            )}"
+          >
+            ${escapeHtml(
+              statusLabel(
+                order.status
+              )
+            )}
+          </span>
+
+        </td>
+
+
+        <td>
+
+          <div class="date">
+            ${escapeHtml(
+              formatDate(
+                order.created_at
+              )
+            )}
+          </div>
+
+        </td>
+
+
+        <td>
+
+          <div class="actions">
+
+            <button
+              class="action-btn"
+              data-order-detail="${escapeHtml(
+                order.id
+              )}"
+            >
+              ดูรายละเอียด
+            </button>
+
+            ${
+              canManageOrders()
+              ?
+              `
+              <button
+                class="action-btn"
+                data-order-status="${escapeHtml(
+                  order.id
+                )}"
+              >
+                เปลี่ยนสถานะ
+              </button>
+              `
+              :
+              ""
+            }
+
+            ${
+              isOwner()
+              ?
+              `
+              <button
+                class="action-btn delete"
+                data-order-delete="${escapeHtml(
+                  order.id
+                )}"
+              >
+                ลบ
+              </button>
+              `
+              :
+              ""
+            }
+
+          </div>
+
+        </td>
+
+      </tr>
+
+      `;
+
+    }
+  );
+
+
+  html += `
+    </tbody>
+  </table>
+  `;
+
+
+  $("ordersTable")
+    .innerHTML =
+      html;
+
+
+  bindOrderButtons();
+
+}
+
+
+/* =========================================================
+   PAYMENT LABEL
+========================================================= */
+
+function paymentLabel(value){
+
+  const map = {
+
+    bank_transfer:
+      "โอนเงินผ่านธนาคาร",
+
+    promptpay:
+      "PromptPay",
+
+    cod:
+      "เก็บเงินปลายทาง"
+
+  };
+
+
+  return (
+    map[value] ||
+    value ||
+    "-"
+  );
+
+}
+
+
+/* =========================================================
+   ORDER BUTTONS
+========================================================= */
+
+function bindOrderButtons(){
+
+  document
+    .querySelectorAll(
+      "[data-order-detail]"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          ()=>{
+
+            openOrderDetail(
+              button.dataset.orderDetail
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      "[data-order-status]"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          ()=>{
+
+            changeOrderStatus(
+              button.dataset.orderStatus
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      "[data-order-delete]"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          ()=>{
+
+            deleteOrderConfirm(
+              button.dataset.orderDelete
+            );
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   OPEN ORDER DETAIL
+========================================================= */
+
+async function openOrderDetail(
+  orderId
+){
+
+  const order =
+    orders.find(
+      item =>
+        item.id === orderId
+    );
+
+
+  if(!order){
     return;
   }
 
-  button.disabled = true;
-  button.textContent = "กำลังเข้าสู่ระบบ...";
 
-  try{
-    // Login ด้วย Email + Password เท่านั้น
-    const { data, error } = await supabaseClient.auth.signInWithPassword({
-      email,
-      password
-    });
+  $("orderModalBody")
+    .innerHTML =
+      `<div class="empty">
+        กำลังโหลดรายละเอียด...
+      </div>`;
 
-    if(error) throw error;
-    if(!data?.session?.user){
-      throw new Error("เข้าสู่ระบบสำเร็จแต่ไม่พบ Session");
+
+  openModal(
+    "orderModal"
+  );
+
+
+  const {
+    data:items,
+    error
+  } =
+    await supabaseClient
+      .from("order_items")
+      .select(`
+        id,
+        order_id,
+        product_id,
+        product_name,
+        product_image,
+        category,
+        quantity,
+        selected_option,
+        price_label,
+        unit_price,
+        line_total
+      `)
+      .eq(
+        "order_id",
+        orderId
+      )
+      .order(
+        "created_at",
+        {
+          ascending:true
+        }
+      );
+
+
+  if(error){
+
+    console.error(error);
+
+    $("orderModalBody").innerHTML =
+      `<div class="empty">
+        ไม่สามารถโหลดรายการสินค้าได้<br>
+        ${escapeHtml(error.message)}
+      </div>`;
+
+    return;
+
+  }
+
+
+  renderOrderDetail(
+    order,
+    items || []
+  );
+
+}
+
+
+/* =========================================================
+   RENDER ORDER DETAIL
+========================================================= */
+
+function renderOrderDetail(
+  order,
+  items
+){
+
+  const itemsHtml =
+    items.length
+    ?
+
+    items
+      .map(
+        item => {
+
+          const option =
+            item.selected_option;
+
+          let optionText = "";
+
+          if(
+            option &&
+            typeof option === "object"
+          ){
+
+            optionText =
+              option.label ||
+              option.name ||
+              JSON.stringify(
+                option
+              );
+
+          }else{
+
+            optionText =
+              option ||
+              item.price_label ||
+              "";
+
+          }
+
+
+          return `
+
+          <div class="detail-item">
+
+            <img
+              src="${escapeHtml(
+                item.product_image ||
+                "assets/logo.png"
+              )}"
+              alt=""
+              onerror="
+                this.src='assets/logo.png'
+              "
+            >
+
+            <div class="detail-item-info">
+
+              <div class="detail-item-name">
+                ${escapeHtml(
+                  item.product_name ||
+                  "สินค้า"
+                )}
+              </div>
+
+              <div class="detail-item-meta">
+
+                จำนวน:
+                ${escapeHtml(
+                  item.quantity
+                )}
+
+                ${
+                  optionText
+                    ?
+                    " · " +
+                    escapeHtml(
+                      optionText
+                    )
+                    :
+                    ""
+                }
+
+              </div>
+
+              <div
+                style="
+                  margin-top:5px;
+                  color:var(--gold-light);
+                  font-size:11px;
+                "
+              >
+                ${formatMoney(
+                  item.line_total ||
+                  (
+                    Number(
+                      item.unit_price || 0
+                    ) *
+                    Number(
+                      item.quantity || 0
+                    )
+                  )
+                )}
+                ฿
+              </div>
+
+            </div>
+
+          </div>
+
+          `;
+
+        }
+      )
+      .join("")
+
+    :
+
+    `<div class="empty">
+      ไม่พบรายการสินค้า
+    </div>`;
+
+
+  const address = [
+
+    order.customer_address,
+
+    order.customer_province
+
+  ]
+
+  .filter(Boolean)
+
+  .join(" ");
+
+
+  $("orderModalBody")
+    .innerHTML = `
+
+    <div class="detail-grid">
+
+
+      <div class="detail-card">
+
+        <div class="detail-label">
+          เลขคำสั่งซื้อ
+        </div>
+
+        <div class="detail-value">
+          #${escapeHtml(
+            order.order_number ||
+            order.id
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="detail-card">
+
+        <div class="detail-label">
+          วันที่สั่งซื้อ
+        </div>
+
+        <div class="detail-value">
+          ${escapeHtml(
+            formatDate(
+              order.created_at
+            )
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="detail-card">
+
+        <div class="detail-label">
+          ชื่อลูกค้า
+        </div>
+
+        <div class="detail-value">
+          ${escapeHtml(
+            order.customer_name ||
+            "-"
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="detail-card">
+
+        <div class="detail-label">
+          เบอร์โทร
+        </div>
+
+        <div class="detail-value">
+          ${escapeHtml(
+            order.customer_phone ||
+            "-"
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="detail-card">
+
+        <div class="detail-label">
+          Email
+        </div>
+
+        <div class="detail-value">
+          ${escapeHtml(
+            order.customer_email ||
+            "-"
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="detail-card">
+
+        <div class="detail-label">
+          จังหวัด
+        </div>
+
+        <div class="detail-value">
+          ${escapeHtml(
+            order.customer_province ||
+            "-"
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="detail-card full">
+
+        <div class="detail-label">
+          ที่อยู่
+        </div>
+
+        <div class="detail-value">
+          ${escapeHtml(
+            address ||
+            "-"
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="detail-card">
+
+        <div class="detail-label">
+          การชำระเงิน
+        </div>
+
+        <div class="detail-value">
+
+          ${escapeHtml(
+            paymentLabel(
+              order.payment_method
+            )
+          )}
+
+          ${
+            order.payment_verified
+            ?
+            `
+            <div
+              style="
+                color:var(--green);
+                margin-top:5px;
+                font-size:10px;
+              "
+            >
+              ✓ ตรวจสอบการชำระเงินแล้ว
+            </div>
+            `
+            :
+            ""
+          }
+
+        </div>
+
+      </div>
+
+
+      <div class="detail-card">
+
+        <div class="detail-label">
+          สถานะ
+        </div>
+
+        <div class="detail-value">
+
+          <span
+            class="status ${escapeHtml(
+              order.status ||
+              "pending"
+            )}"
+          >
+            ${escapeHtml(
+              statusLabel(
+                order.status
+              )
+            )}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="detail-card">
+
+        <div class="detail-label">
+          ยอดสินค้า
+        </div>
+
+        <div class="detail-value">
+          ${formatMoney(
+            order.subtotal
+          )} ฿
+        </div>
+
+      </div>
+
+
+      <div class="detail-card">
+
+        <div class="detail-label">
+          ค่าส่ง
+        </div>
+
+        <div class="detail-value">
+          ${formatMoney(
+            order.shipping_fee
+          )} ฿
+        </div>
+
+      </div>
+
+
+      <div class="detail-card full">
+
+        <div class="detail-label">
+          ยอดรวม
+        </div>
+
+        <div
+          class="detail-value"
+          style="
+            color:var(--gold-light);
+            font-family:Kanit;
+            font-size:22px;
+          "
+        >
+          ${formatMoney(
+            order.total
+          )} ฿
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="detail-title">
+      รายการสินค้า
+    </div>
+
+    <div class="detail-card">
+      ${itemsHtml}
+    </div>
+
+
+    ${
+      order.customer_note
+      ?
+      `
+      <div class="detail-title">
+        หมายเหตุจากลูกค้า
+      </div>
+
+      <div class="detail-card">
+
+        <div class="detail-value">
+          ${escapeHtml(
+            order.customer_note
+          )}
+        </div>
+
+      </div>
+      `
+      :
+      ""
     }
 
-    // เปลี่ยนหน้าไป Dashboard ทันที
-    // การตรวจสิทธิ์ admin_users จะทำต่อใน admin-dashboard.html
-    const dashboardUrl = new URL("admin-dashboard.html", window.location.href).href;
-    window.location.assign(dashboardUrl);
 
-  }catch(error){
-    console.error("LOGIN ERROR:", error);
-    errorBox.textContent = loginErrorMessage(error);
-    errorBox.classList.add("show");
-    button.disabled = false;
-    button.textContent = "เข้าสู่ระบบ";
+    ${
+      order.slip_path
+      ?
+      `
+      <div class="detail-title">
+        หลักฐานการชำระเงิน
+      </div>
+
+      <div
+        class="slip-box"
+        id="slipBox"
+      >
+        กำลังสร้างลิงก์ดูสลิป...
+      </div>
+      `
+      :
+      `
+      <div class="detail-title">
+        หลักฐานการชำระเงิน
+      </div>
+
+      <div class="detail-card">
+
+        <div
+          style="
+            color:#777;
+            font-size:11px;
+          "
+        >
+          ยังไม่มีสลิป
+        </div>
+
+      </div>
+      `
+    }
+
+
+    <div
+      style="
+        display:flex;
+        gap:8px;
+        flex-wrap:wrap;
+        margin-top:20px;
+      "
+    >
+
+      ${
+        canManageOrders()
+        ?
+        `
+        <button
+          class="btn gold"
+          onclick="
+            changeOrderStatus('${escapeHtml(
+              order.id
+            )}')
+          "
+        >
+          เปลี่ยนสถานะ
+        </button>
+        `
+        :
+        ""
+      }
+
+
+      ${
+        order.slip_path &&
+        canManageOrders()
+        ?
+        `
+        <button
+          class="btn"
+          onclick="
+            verifyPayment('${escapeHtml(
+              order.id
+            )}', ${!order.payment_verified})
+          "
+        >
+          ${
+            order.payment_verified
+              ?
+              "ยกเลิกการยืนยันสลิป"
+              :
+              "✓ ยืนยันการชำระเงิน"
+          }
+        </button>
+        `
+        :
+        ""
+      }
+
+
+      ${
+        isOwner()
+        ?
+        `
+        <button
+          class="btn red"
+          onclick="
+            deleteOrderConfirm('${escapeHtml(
+              order.id
+            )}')
+          "
+        >
+          ลบออเดอร์นี้
+        </button>
+        `
+        :
+        ""
+      }
+
+    </div>
+
+  `;
+
+
+  if(order.slip_path){
+
+    loadSlip(
+      order.slip_path
+    );
+
   }
+
 }
-async function forgotPassword(){
-  const email = $("loginEmail").value.trim().toLowerCase();
-  const errorBox = $("loginError");
-  errorBox.classList.remove("show");
-  if(!email || !$("loginEmail").checkValidity()){
-    errorBox.textContent = "กรุณากรอกอีเมลก่อนกดลืมรหัสผ่าน";
-    errorBox.classList.add("show");
-    $("loginEmail").focus();
+
+
+/* =========================================================
+   LOAD SLIP
+========================================================= */
+
+async function loadSlip(path){
+
+  const box =
+    $("slipBox");
+
+  if(!box){
     return;
   }
-  try{
-    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-      redirectTo: "https://chatphetch.github.io/chatpetch-group/admin.html"
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .storage
+      .from("payment-slips")
+      .createSignedUrl(
+        path,
+        600
+      );
+
+
+  if(error){
+
+    box.innerHTML =
+      `<div
+        style="
+          color:#ff9999;
+          font-size:10px;
+        "
+      >
+        ไม่สามารถเปิดสลิปได้:
+        ${escapeHtml(
+          error.message
+        )}
+      </div>`;
+
+    return;
+
+  }
+
+
+  box.innerHTML = `
+
+    <img
+      src="${escapeHtml(
+        data.signedUrl
+      )}"
+      class="slip-image"
+      alt="Payment Slip"
+    >
+
+    <div
+      style="
+        margin-top:10px;
+        color:#666;
+        font-size:9px;
+      "
+    >
+      ลิงก์ดูสลิปมีอายุ 10 นาที
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   CHANGE ORDER STATUS
+========================================================= */
+
+async function changeOrderStatus(
+  orderId
+){
+
+  if(!orderId){
+    return;
+  }
+
+  if(!canManageOrders()){
+    toast(
+      "บัญชีนี้ไม่มีสิทธิ์เปลี่ยนสถานะออเดอร์",
+      "error"
+    );
+    return;
+  }
+
+  const order =
+    orders.find(
+      item =>
+        item.id === orderId
+    );
+
+  if(!order){
+    toast(
+      "ไม่พบคำสั่งซื้อ",
+      "error"
+    );
+    return;
+  }
+
+  await openOrderDetail(
+    orderId
+  );
+
+  const body =
+    $("orderModalBody");
+
+  if(!body){
+    return;
+  }
+
+  const statusOptions = [
+    ["pending","รอตรวจสอบ"],
+    ["confirmed","ยืนยันแล้ว"],
+    ["preparing","กำลังเตรียมสินค้า"],
+    ["shipping","กำลังจัดส่ง"],
+    ["completed","จัดส่งสำเร็จ"],
+    ["cancelled","ยกเลิก"]
+  ];
+
+  const currentStatus =
+    order.status ||
+    "pending";
+
+  const optionsHtml =
+    statusOptions
+      .map(
+        ([value,label]) => `
+          <option
+            value="${value}"
+            ${
+              currentStatus === value
+                ? "selected"
+                : ""
+            }
+          >
+            ${label}
+          </option>
+        `
+      )
+      .join("");
+
+  const currentLabel =
+    (
+      statusOptions.find(
+        item =>
+          item[0] === currentStatus
+      ) ||
+      [currentStatus,currentStatus]
+    )[1];
+
+  const editor =
+    document.createElement("div");
+
+  editor.id =
+    "orderStatusEditor";
+
+  editor.innerHTML = `
+
+    <div
+      class="detail-card"
+      style="
+        margin-top:20px;
+        border-color:var(--gold-line);
+      "
+    >
+
+      <div
+        class="detail-label"
+        style="
+          font-size:10px;
+          color:var(--gold);
+          letter-spacing:1px;
+        "
+      >
+        เปลี่ยนสถานะคำสั่งซื้อ
+      </div>
+
+      <div
+        style="
+          margin:4px 0 12px;
+          color:#777;
+          font-size:10px;
+        "
+      >
+        สถานะปัจจุบัน: ${escapeHtml(currentLabel)}
+      </div>
+
+      <div
+        style="
+          display:flex;
+          gap:8px;
+          align-items:center;
+          flex-wrap:wrap;
+        "
+      >
+
+        <select
+          class="select"
+          id="modalStatusSelect"
+          style="
+            flex:1;
+            min-width:220px;
+            height:43px;
+            font-size:12px;
+          "
+        >
+          ${optionsHtml}
+        </select>
+
+        <button
+          class="btn gold"
+          type="button"
+          id="saveStatusBtn"
+        >
+          บันทึกสถานะ
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+  body.appendChild(editor);
+
+  const select =
+    $("modalStatusSelect");
+
+  const saveButton =
+    $("saveStatusBtn");
+
+  if(!select || !saveButton){
+    return;
+  }
+
+  select.focus();
+
+  saveButton.addEventListener(
+    "click",
+    async ()=>{
+
+      const next =
+        select.value;
+
+      const allowed =
+        statusOptions.map(
+          item => item[0]
+        );
+
+      if(!allowed.includes(next)){
+        toast(
+          "สถานะไม่ถูกต้อง",
+          "error"
+        );
+        return;
+      }
+
+      if(next === currentStatus){
+        toast(
+          "สถานะนี้เป็นสถานะปัจจุบันอยู่แล้ว"
+        );
+        return;
+      }
+
+      saveButton.disabled = true;
+      saveButton.textContent = "กำลังบันทึก...";
+
+      const { error } =
+        await supabaseClient
+          .from("orders")
+          .update({
+            status:next
+          })
+          .eq(
+            "id",
+            orderId
+          );
+
+      if(error){
+
+        console.error(error);
+
+        saveButton.disabled = false;
+        saveButton.textContent = "บันทึกสถานะ";
+
+        toast(
+          "เปลี่ยนสถานะไม่สำเร็จ: " +
+          error.message,
+          "error"
+        );
+
+        return;
+      }
+
+      const index =
+        orders.findIndex(
+          item =>
+            item.id === orderId
+        );
+
+      if(index !== -1){
+        orders[index].status = next;
+      }
+
+      toast(
+        "เปลี่ยนสถานะเรียบร้อย"
+      );
+
+      await loadOrders();
+
+      closeModal(
+        "orderModal"
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   VERIFY PAYMENT
+========================================================= */
+
+async function verifyPayment(
+  orderId,
+  verify
+){
+
+  if(!canManageOrders()){
+    return;
+  }
+
+
+  const update = {
+
+    payment_verified:
+      verify,
+
+    payment_verified_at:
+      verify
+      ? new Date().toISOString()
+      : null,
+
+    payment_verified_by:
+      verify
+      ? currentUser.id
+      : null
+
+  };
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("orders")
+      .update(update)
+      .eq(
+        "id",
+        orderId
+      );
+
+
+  if(error){
+
+    toast(
+      "ไม่สามารถอัปเดตการชำระเงิน: " +
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  toast(
+    verify
+      ? "ยืนยันการชำระเงินแล้ว"
+      : "ยกเลิกการยืนยันแล้ว"
+  );
+
+
+  closeModal(
+    "orderModal"
+  );
+
+
+  await loadOrders();
+
+}
+
+
+/* =========================================================
+   DELETE ORDER
+========================================================= */
+
+async function deleteOrder(
+  orderId
+){
+
+  if(!isOwner()){
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("orders")
+      .delete()
+      .eq(
+        "id",
+        orderId
+      );
+
+
+  if(error){
+
+    console.error(error);
+
+    toast(
+      "ลบออเดอร์ไม่สำเร็จ: " +
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  toast(
+    "ลบออเดอร์เรียบร้อย"
+  );
+
+
+  closeModal(
+    "confirmModal"
+  );
+
+  closeModal(
+    "orderModal"
+  );
+
+
+  await loadOrders();
+
+}
+
+
+/* =========================================================
+   UPDATE STATS
+========================================================= */
+
+function updateStats(){
+
+  const total =
+    orders.length;
+
+
+  const pending =
+    orders.filter(
+      o =>
+        o.status ===
+        "pending"
+    ).length;
+
+
+  const shipping =
+    orders.filter(
+      o =>
+        o.status ===
+        "shipping"
+    ).length;
+
+
+  const completed =
+    orders.filter(
+      o =>
+        o.status ===
+        "completed"
+    ).length;
+
+
+  $("statOrders")
+    .textContent =
+      total;
+
+
+  $("statPending")
+    .textContent =
+      pending;
+
+
+  $("statShipping")
+    .textContent =
+      shipping;
+
+
+  $("statCompleted")
+    .textContent =
+      completed;
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+async function loadDashboard(){
+
+  await loadOrders();
+
+  renderDashboardRecent();
+
+}
+
+
+function renderDashboardRecent(){
+
+  const list =
+    orders.slice(
+      0,
+      5
+    );
+
+
+  if(!list.length){
+
+    $("dashboardRecent")
+      .innerHTML =
+      `<div class="empty">
+        ยังไม่มีคำสั่งซื้อ
+      </div>`;
+
+    return;
+
+  }
+
+
+  let html = `
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>
+          คำสั่งซื้อ
+        </th>
+
+        <th>
+          ลูกค้า
+        </th>
+
+        <th>
+          ยอดรวม
+        </th>
+
+        <th>
+          สถานะ
+        </th>
+
+        <th>
+          วันที่
+        </th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+  `;
+
+
+  list.forEach(
+    order => {
+
+      html += `
+
+      <tr>
+
+        <td>
+
+          <div class="order-number">
+            #${escapeHtml(
+              order.order_number ||
+              order.id
+            )}
+          </div>
+
+        </td>
+
+        <td>
+
+          <div class="customer-name">
+            ${escapeHtml(
+              order.customer_name ||
+              "-"
+            )}
+          </div>
+
+        </td>
+
+        <td>
+
+          <div class="total">
+            ${formatMoney(
+              order.total
+            )} ฿
+          </div>
+
+        </td>
+
+        <td>
+
+          <span
+            class="status ${escapeHtml(
+              order.status ||
+              "pending"
+            )}"
+          >
+            ${escapeHtml(
+              statusLabel(
+                order.status
+              )
+            )}
+          </span>
+
+        </td>
+
+        <td>
+
+          <div class="date">
+            ${escapeHtml(
+              formatDate(
+                order.created_at
+              )
+            )}
+          </div>
+
+        </td>
+
+      </tr>
+
+      `;
+
+    }
+  );
+
+
+  html += `
+    </tbody>
+  </table>
+  `;
+
+
+  $("dashboardRecent")
+    .innerHTML =
+      html;
+
+}
+
+
+/* =========================================================
+   LOAD PRODUCTS
+========================================================= */
+
+async function loadProducts(){
+
+  $("productGrid")
+    .innerHTML =
+      `<div
+        class="empty"
+        style="grid-column:1/-1"
+      >
+        กำลังโหลดสินค้า...
+      </div>`;
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("products")
+      .select("*")
+      .order(
+        "sort_order",
+        {
+          ascending:true
+        }
+      )
+      .order(
+        "created_at",
+        {
+          ascending:true
+        }
+      );
+
+
+  if(error){
+
+    console.error(error);
+
+    $("productGrid")
+      .innerHTML =
+      `<div
+        class="empty"
+        style="grid-column:1/-1"
+      >
+        ไม่สามารถโหลดสินค้าได้<br>
+        ${escapeHtml(
+          error.message
+        )}
+      </div>`;
+
+    return;
+
+  }
+
+
+  products =
+    data || [];
+
+
+  renderProducts();
+
+  updateProductStats();
+
+}
+
+
+/* =========================================================
+   PRODUCT FILTER
+========================================================= */
+
+function getFilteredProducts(){
+
+  const search =
+    $("productSearch")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const category =
+    $("productCategoryFilter")
+      .value;
+
+
+  return products.filter(
+    product => {
+
+      const text =
+        [
+          product.id,
+          product.code,
+          product.name,
+          product.short_description
+        ]
+        .join(" ")
+        .toLowerCase();
+
+
+      return (
+
+        (!search ||
+          text.includes(search))
+
+        &&
+
+        (!category ||
+          product.category === category)
+
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   RENDER PRODUCTS
+========================================================= */
+
+function renderProducts(){
+
+  const list =
+    getFilteredProducts();
+
+
+  if(!list.length){
+
+    $("productGrid")
+      .innerHTML =
+      `<div
+        class="empty"
+        style="grid-column:1/-1"
+      >
+        ไม่พบสินค้า
+      </div>`;
+
+    return;
+
+  }
+
+
+  $("productGrid")
+    .innerHTML =
+
+    list
+      .map(
+        product => {
+
+          const price =
+            product.price || 0;
+
+
+          return `
+
+          <div class="product-card">
+
+            <div class="product-status ${
+              product.visible
+                ? "on"
+                : "off"
+            }">
+
+              ${
+                product.visible
+                  ? "แสดงอยู่"
+                  : "ซ่อนอยู่"
+              }
+
+            </div>
+
+
+            <div class="product-image">
+
+              <img
+                src="${escapeHtml(
+                  product.image ||
+                  "assets/logo.png"
+                )}"
+                alt="${escapeHtml(
+                  product.name
+                )}"
+                onerror="
+                  this.src='assets/logo.png'
+                "
+              >
+
+            </div>
+
+
+            <div class="product-info">
+
+              <div class="product-code">
+                CODE:
+                ${escapeHtml(
+                  product.code ||
+                  product.id
+                )}
+              </div>
+
+
+              <div class="product-name">
+                ${escapeHtml(
+                  product.name
+                )}
+              </div>
+
+
+              <div class="product-category">
+                ${escapeHtml(
+                  product.category_label ||
+                  product.category ||
+                  "-"
+                )}
+              </div>
+
+
+              <div class="product-price">
+
+                เริ่มต้น
+                ${formatMoney(
+                  price
+                )}
+                ฿
+
+              </div>
+
+
+              <div class="product-actions">
+
+                ${
+                  canManageProducts()
+                  ?
+                  `
+                  <button
+                    class="action-btn"
+                    data-product-edit="${escapeHtml(
+                      product.id
+                    )}"
+                  >
+                    แก้ไข
+                  </button>
+
+                  <button
+                    class="action-btn"
+                    data-product-toggle="${escapeHtml(
+                      product.id
+                    )}"
+                  >
+                    ${
+                      product.visible
+                        ? "ซ่อน"
+                        : "แสดง"
+                    }
+                  </button>
+                  `
+                  :
+                  ""
+                }
+
+
+                ${
+                  isOwner()
+                  ?
+                  `
+                  <button
+                    class="action-btn delete"
+                    data-product-delete="${escapeHtml(
+                      product.id
+                    )}"
+                  >
+                    ลบ
+                  </button>
+                  `
+                  :
+                  ""
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+  bindProductButtons();
+
+}
+
+
+/* =========================================================
+   PRODUCT STATS
+========================================================= */
+
+function updateProductStats(){
+
+  const total =
+    products.length;
+
+
+  const visible =
+    products.filter(
+      p =>
+        p.visible
+    ).length;
+
+
+  const hidden =
+    total -
+    visible;
+
+
+  const categories =
+    new Set(
+      products.map(
+        p =>
+          p.category
+      )
+    ).size;
+
+
+  $("productTotal")
+    .textContent =
+      total;
+
+
+  $("productVisible")
+    .textContent =
+      visible;
+
+
+  $("productHidden")
+    .textContent =
+      hidden;
+
+
+  $("productCategories")
+    .textContent =
+      categories;
+
+}
+
+
+/* =========================================================
+   PRODUCT BUTTONS
+========================================================= */
+
+function bindProductButtons(){
+
+  document
+    .querySelectorAll(
+      "[data-product-edit]"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          ()=>{
+
+            openProductEditor(
+              button.dataset.productEdit
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      "[data-product-toggle]"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          ()=>{
+
+            toggleProduct(
+              button.dataset.productToggle
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      "[data-product-delete]"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          ()=>{
+
+            deleteProductConfirm(
+              button.dataset.productDelete
+            );
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   PRODUCT EDITOR
+========================================================= */
+
+function openProductEditor(
+  productId=null
+){
+
+  if(
+    productId &&
+    !canManageProducts()
+  ){
+
+    toast(
+      "ไม่มีสิทธิ์แก้ไขสินค้า",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  $("productForm")
+    .reset();
+
+
+  $("productId")
+    .value =
+      "";
+
+
+  $("featuresContainer")
+    .innerHTML =
+      "";
+
+
+  $("optionsContainer")
+    .innerHTML =
+      "";
+
+
+  $("productModalTitle")
+    .textContent =
+      productId
+        ? "แก้ไขสินค้า"
+        : "เพิ่มสินค้า";
+
+
+  if(productId){
+
+    const product =
+      products.find(
+        p =>
+          p.id === productId
+      );
+
+
+    if(!product){
+      return;
+    }
+
+
+    $("productId")
+      .value =
+        product.id;
+
+
+    $("productCode")
+      .value =
+        product.code ||
+        product.id ||
+        "";
+
+
+    $("productName")
+      .value =
+        product.name ||
+        "";
+
+
+    $("productCategory")
+      .value =
+        product.category ||
+        "other";
+
+
+    $("productCategoryLabel")
+      .value =
+        product.category_label ||
+        "";
+
+
+    $("productPrice")
+      .value =
+        product.price ||
+        0;
+
+
+    $("productSort")
+      .value =
+        product.sort_order ||
+        0;
+
+
+    $("productImage")
+      .value =
+        product.image ||
+        "";
+
+
+    $("productShort")
+      .value =
+        product.short_description ||
+        "";
+
+
+    $("productDescription")
+      .value =
+        product.description ||
+        "";
+
+
+    $("productUsage")
+      .value =
+        product.usage ||
+        "";
+
+
+    $("productCoverage")
+      .value =
+        product.coverage ||
+        "";
+
+
+    $("productPackage")
+      .value =
+        product.package_size ||
+        "";
+
+
+    $("productVisible")
+      .value =
+        String(
+          product.visible !== false
+        );
+
+
+    $("productTechnical")
+      .value =
+        technicalToText(
+          product.technical_data
+        );
+
+
+    const features =
+      Array.isArray(
+        product.features
+      )
+      ?
+      product.features
+      :
+      [];
+
+
+    features.forEach(
+      feature =>
+        addFeatureRow(
+          feature
+        )
+    );
+
+
+    const options =
+      Array.isArray(
+        product.options
+      )
+      ?
+      product.options
+      :
+      [];
+
+
+    options.forEach(
+      option =>
+        addOptionRow(
+          option
+        )
+    );
+
+  }
+
+
+  if(
+    !$("featuresContainer")
+      .children
+      .length
+  ){
+
+    addFeatureRow("");
+
+  }
+
+
+  if(
+    !$("optionsContainer")
+      .children
+      .length
+  ){
+
+    addOptionRow({
+      label:"",
+      price:"",
+      unit:""
     });
-    if(error) throw error;
-    errorBox.textContent = "ส่งลิงก์ตั้งรหัสผ่านใหม่ไปยังอีเมลแล้ว กรุณาตรวจสอบกล่องจดหมาย";
-    errorBox.classList.add("show");
-  }catch(error){
-    errorBox.textContent = loginErrorMessage(error);
-    errorBox.classList.add("show");
+
   }
+
+
+  openModal(
+    "productModal"
+  );
+
 }
 
-async function saveRecoveryPassword(event){
-  event.preventDefault();
-  const p = $("newPassword").value;
-  const c = $("confirmNewPassword").value;
-  const btn = $("recoveryButton");
-  const msg = $("recoveryMessage");
-  msg.textContent = "";
-  if(p.length < 6){ msg.textContent = "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"; return; }
-  if(p !== c){ msg.textContent = "รหัสผ่านทั้งสองช่องไม่ตรงกัน"; return; }
-  btn.disabled = true;
-  btn.textContent = "กำลังบันทึก...";
+
+/* =========================================================
+   TECHNICAL
+========================================================= */
+
+function technicalToText(
+  value
+){
+
+  if(!value){
+    return "";
+  }
+
+
+  if(
+    typeof value === "string"
+  ){
+
+    return value;
+
+  }
+
+
   try{
-    const { error } = await supabaseClient.auth.updateUser({ password:p });
-    if(error) throw error;
-    msg.textContent = "ตั้งรหัสผ่านสำเร็จแล้ว กำลังกลับไปหน้าเข้าสู่ระบบ...";
-    setTimeout(async ()=>{
-      await supabaseClient.auth.signOut();
-      window.location.replace("admin.html");
-    }, 1200);
+
+    return Object.entries(
+      value
+    )
+    .map(
+      ([key,val]) =>
+        `${key}: ${val}`
+    )
+    .join("\n");
+
+  }catch{
+
+    return "";
+
+  }
+
+}
+
+
+function textToTechnical(
+  text
+){
+
+  const result = {};
+
+  String(
+    text || ""
+  )
+  .split("\n")
+  .forEach(
+    line => {
+
+      const index =
+        line.indexOf(":");
+
+
+      if(index === -1){
+        return;
+      }
+
+
+      const key =
+        line
+          .slice(
+            0,
+            index
+          )
+          .trim();
+
+
+      const value =
+        line
+          .slice(
+            index + 1
+          )
+          .trim();
+
+
+      if(key){
+        result[key] =
+          value;
+      }
+
+    }
+  );
+
+
+  return result;
+
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+function addFeatureRow(
+  value=""
+){
+
+  const row =
+    document.createElement(
+      "div"
+    );
+
+
+  row.className =
+    "feature-row";
+
+
+  row.innerHTML = `
+
+    <input
+      class="input feature-input"
+      value="${escapeHtml(
+        value
+      )}"
+      placeholder="เช่น ทนรังสี UV"
+    >
+
+    <button
+      type="button"
+      class="remove-small"
+    >
+      ×
+    </button>
+
+  `;
+
+
+  row
+    .querySelector(
+      ".remove-small"
+    )
+    .addEventListener(
+      "click",
+      ()=>{
+        row.remove();
+      }
+    );
+
+
+  $("featuresContainer")
+    .appendChild(
+      row
+    );
+
+}
+
+
+/* =========================================================
+   OPTIONS
+========================================================= */
+
+function addOptionRow(
+  option={}
+){
+
+  const row =
+    document.createElement(
+      "div"
+    );
+
+
+  row.className =
+    "option-row";
+
+
+  row.innerHTML = `
+
+    <input
+      class="input option-label"
+      value="${escapeHtml(
+        option.label ||
+        option.name ||
+        ""
+      )}"
+      placeholder="เช่น 18 KG"
+    >
+
+    <input
+      class="input option-price"
+      type="number"
+      min="0"
+      step="0.01"
+      value="${escapeHtml(
+        option.price ??
+        ""
+      )}"
+      placeholder="ราคา"
+    >
+
+    <button
+      type="button"
+      class="remove-small"
+    >
+      ×
+    </button>
+
+  `;
+
+
+  row
+    .querySelector(
+      ".remove-small"
+    )
+    .addEventListener(
+      "click",
+      ()=>{
+        row.remove();
+      }
+    );
+
+
+  $("optionsContainer")
+    .appendChild(
+      row
+    );
+
+}
+
+
+/* =========================================================
+   SAVE PRODUCT
+========================================================= */
+
+async function saveProduct(
+event
+){
+
+  event.preventDefault();
+
+
+  if(!canManageProducts()){
+
+    toast(
+      "ไม่มีสิทธิ์จัดการสินค้า",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const id =
+    $("productId")
+      .value
+      .trim();
+
+
+  const code =
+    $("productCode")
+      .value
+      .trim();
+
+
+  const name =
+    $("productName")
+      .value
+      .trim();
+
+
+  if(!code || !name){
+
+    toast(
+      "กรุณากรอกรหัสและชื่อสินค้า",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const features =
+    [
+      ...document
+        .querySelectorAll(
+          ".feature-input"
+        )
+    ]
+    .map(
+      input =>
+        input.value.trim()
+    )
+    .filter(Boolean);
+
+
+  const options =
+    [
+      ...document
+        .querySelectorAll(
+          ".option-row"
+        )
+    ]
+    .map(
+      row => {
+
+        const label =
+          row
+            .querySelector(
+              ".option-label"
+            )
+            .value
+            .trim();
+
+
+        const price =
+          Number(
+            row
+              .querySelector(
+                ".option-price"
+              )
+              .value ||
+              0
+          );
+
+
+        return {
+          label,
+          price,
+          unit:""
+        };
+
+      }
+    )
+    .filter(
+      option =>
+        option.label
+    );
+
+
+  const data = {
+
+    id:
+      id ||
+      code,
+
+    code,
+
+    name,
+
+    category:
+      $("productCategory")
+        .value,
+
+    category_label:
+      $("productCategoryLabel")
+        .value
+        .trim(),
+
+    short_description:
+      $("productShort")
+        .value
+        .trim(),
+
+    description:
+      $("productDescription")
+        .value
+        .trim(),
+
+    image:
+      $("productImage")
+        .value
+        .trim(),
+
+    price:
+      Number(
+        $("productPrice")
+          .value ||
+        0
+      ),
+
+    options,
+
+    features,
+
+    technical_data:
+      textToTechnical(
+        $("productTechnical")
+          .value
+      ),
+
+    usage:
+      $("productUsage")
+        .value
+        .trim(),
+
+    coverage:
+      $("productCoverage")
+        .value
+        .trim(),
+
+    package_size:
+      $("productPackage")
+        .value
+        .trim(),
+
+    visible:
+      $("productVisible")
+        .value === "true",
+
+    sort_order:
+      Number(
+        $("productSort")
+          .value ||
+        0
+      )
+
+  };
+
+
+  const button =
+    $("saveProductButton");
+
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "กำลังบันทึก...";
+
+
+  try{
+
+    let error;
+
+
+    if(id){
+
+      const result =
+        await supabaseClient
+          .from("products")
+          .update(data)
+          .eq(
+            "id",
+            id
+          );
+
+      error =
+        result.error;
+
+    }else{
+
+      const result =
+        await supabaseClient
+          .from("products")
+          .insert(data);
+
+      error =
+        result.error;
+
+    }
+
+
+    if(error){
+      throw error;
+    }
+
+
+    toast(
+      id
+        ? "แก้ไขสินค้าเรียบร้อย"
+        : "เพิ่มสินค้าเรียบร้อย"
+    );
+
+
+    closeModal(
+      "productModal"
+    );
+
+
+    await loadProducts();
+
+
   }catch(error){
-    msg.textContent = error?.message || "ไม่สามารถตั้งรหัสผ่านได้";
-    btn.disabled = false;
-    btn.textContent = "บันทึกรหัสผ่านใหม่";
+
+    console.error(error);
+
+    toast(
+      "บันทึกสินค้าไม่สำเร็จ: " +
+      error.message,
+      "error"
+    );
+
+  }
+
+
+  button.disabled =
+    false;
+
+  button.textContent =
+    "บันทึกสินค้า";
+
+}
+
+
+/* =========================================================
+   TOGGLE PRODUCT
+========================================================= */
+
+async function toggleProduct(
+productId
+){
+
+  if(!canManageProducts()){
+    return;
+  }
+
+
+  const product =
+    products.find(
+      p =>
+        p.id === productId
+    );
+
+
+  if(!product){
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("products")
+      .update({
+        visible:
+          !product.visible
+      })
+      .eq(
+        "id",
+        productId
+      );
+
+
+  if(error){
+
+    toast(
+      "เปลี่ยนสถานะสินค้าไม่สำเร็จ: " +
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  toast(
+    product.visible
+      ? "ซ่อนสินค้าแล้ว"
+      : "แสดงสินค้าแล้ว"
+  );
+
+
+  await loadProducts();
+
+}
+
+
+/* =========================================================
+   DELETE PRODUCT CONFIRM
+========================================================= */
+
+function deleteProductConfirm(
+productId
+){
+
+  if(!isOwner()){
+
+    toast(
+      "เฉพาะ OWNER เท่านั้นที่สามารถลบสินค้าได้",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const product =
+    products.find(
+      p =>
+        p.id === productId
+    );
+
+
+  if(!product){
+    return;
+  }
+
+
+  $("confirmTitle")
+    .textContent =
+      "ลบสินค้า";
+
+
+  $("confirmText")
+    .innerHTML = `
+
+      ต้องการลบสินค้า
+
+      <strong
+        style="
+          color:var(--gold-light)
+        "
+      >
+        ${escapeHtml(
+          product.name
+        )}
+      </strong>
+
+      หรือไม่?
+
+      <br><br>
+
+      การลบจะนำสินค้าออกจากฐานข้อมูล
+
+    `;
+
+
+  confirmAction =
+    async ()=>{
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("products")
+          .delete()
+          .eq(
+            "id",
+            productId
+          );
+
+
+      if(error){
+
+        toast(
+          "ลบสินค้าไม่สำเร็จ: " +
+          error.message,
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      toast(
+        "ลบสินค้าเรียบร้อย"
+      );
+
+
+      closeModal(
+        "confirmModal"
+      );
+
+
+      await loadProducts();
+
+    };
+
+
+  openModal(
+    "confirmModal"
+  );
+
+}
+
+
+/* =========================================================
+   USERS
+========================================================= */
+
+async function loadUsers(){
+
+  $("usersTable")
+    .innerHTML =
+      `<div class="empty">
+        กำลังโหลดผู้ใช้งาน...
+      </div>`;
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("admin_users")
+      .select(
+        "id,user_id,email,name,role,active,created_at,updated_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending:true
+        }
+      );
+
+
+  if(error){
+
+    $("usersTable")
+      .innerHTML =
+      `<div class="empty">
+        ไม่สามารถโหลดผู้ใช้งานได้<br>
+        ${escapeHtml(
+          error.message
+        )}
+      </div>`;
+
+    return;
+
+  }
+
+
+  adminUsers =
+    data || [];
+
+
+  renderUsers();
+
+}
+
+
+/* =========================================================
+   RENDER USERS
+========================================================= */
+
+function renderUsers(){
+
+  if(!adminUsers.length){
+
+    $("usersTable")
+      .innerHTML =
+      `<div class="empty">
+        ยังไม่มีผู้ใช้งาน
+      </div>`;
+
+    return;
+
+  }
+
+
+  let html = `
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>
+          ผู้ใช้งาน
+        </th>
+
+        <th>
+          Email
+        </th>
+
+        <th>
+          Role
+        </th>
+
+        <th>
+          สถานะ
+        </th>
+
+        <th>
+          วันที่เพิ่ม
+        </th>
+
+        <th>
+          จัดการ
+        </th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+  `;
+
+
+  adminUsers.forEach(
+    user => {
+
+      const self =
+        user.user_id ===
+        currentUser.id;
+
+
+      html += `
+
+      <tr>
+
+        <td>
+
+          <div class="customer-name">
+            ${escapeHtml(
+              user.name ||
+              "-"
+            )}
+          </div>
+
+          ${
+            self
+              ?
+              `
+              <div
+                style="
+                  color:var(--gold);
+                  font-size:8px;
+                  margin-top:4px;
+                "
+              >
+                บัญชีของคุณ
+              </div>
+              `
+              :
+              ""
+          }
+
+        </td>
+
+
+        <td>
+          ${escapeHtml(
+            user.email ||
+            "-"
+          )}
+        </td>
+
+
+        <td>
+
+          <span class="user-role">
+
+            ${escapeHtml(
+              String(
+                user.role ||
+                "viewer"
+              ).toUpperCase()
+            )}
+
+          </span>
+
+        </td>
+
+
+        <td>
+
+          ${
+            user.active
+
+            ?
+
+            `
+            <span class="active-dot">
+              เปิดใช้งาน
+            </span>
+            `
+
+            :
+
+            `
+            <span
+              style="
+                color:var(--red);
+                font-size:9px;
+              "
+            >
+              ● ปิดใช้งาน
+            </span>
+            `
+          }
+
+        </td>
+
+
+        <td>
+
+          <div class="date">
+            ${escapeHtml(
+              formatDate(
+                user.created_at
+              )
+            )}
+          </div>
+
+        </td>
+
+
+        <td>
+
+          ${
+            isOwner()
+
+            ?
+
+            `
+            <div class="actions">
+
+              <button
+                class="action-btn"
+                data-user-role="${escapeHtml(
+                  user.id
+                )}"
+              >
+                เปลี่ยน Role
+              </button>
+
+
+              ${
+                !self
+                ?
+                `
+                <button
+                  class="action-btn"
+                  data-user-active="${escapeHtml(
+                    user.id
+                  )}"
+                >
+                  ${
+                    user.active
+                      ? "ปิดใช้งาน"
+                      : "เปิดใช้งาน"
+                  }
+                </button>
+                `
+                :
+                ""
+              }
+
+            </div>
+            `
+
+            :
+
+            `<span
+              style="
+                color:#555;
+                font-size:9px;
+              "
+            >
+              ดูอย่างเดียว
+            </span>`
+
+          }
+
+        </td>
+
+      </tr>
+
+      `;
+
+    }
+  );
+
+
+  html += `
+    </tbody>
+  </table>
+  `;
+
+
+  $("usersTable")
+    .innerHTML =
+      html;
+
+
+  bindUserButtons();
+
+}
+
+
+/* =========================================================
+   USER BUTTONS
+========================================================= */
+
+function bindUserButtons(){
+
+  document
+    .querySelectorAll(
+      "[data-user-role]"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          ()=>{
+
+            changeUserRole(
+              button.dataset.userRole
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      "[data-user-active]"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          ()=>{
+
+            toggleUserActive(
+              button.dataset.userActive
+            );
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   CHANGE USER ROLE
+========================================================= */
+
+async function changeUserRole(
+adminId
+){
+
+  if(!isOwner()){
+    return;
+  }
+
+
+  const user =
+    adminUsers.find(
+      item =>
+        item.id === adminId
+    );
+
+
+  if(!user){
+    return;
+  }
+
+
+  const role =
+    prompt(
+      `เปลี่ยน Role ของ ${user.email}
+
+เลือก:
+owner
+manager
+staff
+viewer`,
+      user.role
+    );
+
+
+  if(role === null){
+    return;
+  }
+
+
+  const allowed = [
+    "owner",
+    "manager",
+    "staff",
+    "viewer"
+  ];
+
+
+  if(!allowed.includes(role)){
+
+    toast(
+      "Role ไม่ถูกต้อง",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("admin_users")
+      .update({
+        role,
+        updated_at:
+          new Date().toISOString()
+      })
+      .eq(
+        "id",
+        adminId
+      );
+
+
+  if(error){
+
+    toast(
+      "เปลี่ยน Role ไม่สำเร็จ: " +
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  toast(
+    "เปลี่ยน Role เรียบร้อย"
+  );
+
+
+  await loadUsers();
+
+}
+
+
+/* =========================================================
+   TOGGLE USER
+========================================================= */
+
+async function toggleUserActive(
+adminId
+){
+
+  if(!isOwner()){
+    return;
+  }
+
+
+  const user =
+    adminUsers.find(
+      item =>
+        item.id === adminId
+    );
+
+
+  if(!user){
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("admin_users")
+      .update({
+        active:
+          !user.active,
+
+        updated_at:
+          new Date().toISOString()
+      })
+      .eq(
+        "id",
+        adminId
+      );
+
+
+  if(error){
+
+    toast(
+      "เปลี่ยนสถานะผู้ใช้งานไม่สำเร็จ: " +
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  toast(
+    user.active
+      ? "ปิดใช้งานผู้ใช้แล้ว"
+      : "เปิดใช้งานผู้ใช้แล้ว"
+  );
+
+
+  await loadUsers();
+
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function openModal(id){
+
+  $(id)
+    .classList
+    .add("show");
+
+}
+
+
+function closeModal(id){
+
+  $(id)
+    .classList
+    .remove("show");
+
+}
+
+
+document
+  .querySelectorAll(
+    "[data-close]"
+  )
+  .forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        ()=>{
+
+          closeModal(
+            button.dataset.close
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+document
+  .querySelectorAll(".modal")
+  .forEach(
+    modal => {
+
+      modal.addEventListener(
+        "click",
+        event => {
+
+          if(
+            event.target ===
+            modal
+          ){
+
+            closeModal(
+              modal.id
+            );
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   CONFIRM
+========================================================= */
+
+$("confirmButton")
+  .addEventListener(
+    "click",
+    async ()=>{
+
+      if(
+        typeof confirmAction !==
+        "function"
+      ){
+        return;
+      }
+
+
+      const action =
+        confirmAction;
+
+
+      confirmAction =
+        null;
+
+
+      await action();
+
+    }
+  );
+
+
+/* =========================================================
+   PRODUCT FORM EVENTS
+========================================================= */
+
+$("productForm")
+  .addEventListener(
+    "submit",
+    saveProduct
+  );
+
+
+$("addProductButton")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      openProductEditor();
+
+    }
+  );
+
+
+$("addFeature")
+  .addEventListener(
+    "click",
+    ()=>{
+      addFeatureRow("");
+    }
+  );
+
+
+$("addOption")
+  .addEventListener(
+    "click",
+    ()=>{
+      addOptionRow({
+        label:"",
+        price:"",
+        unit:""
+      });
+    }
+  );
+
+
+/* =========================================================
+   SEARCH EVENTS
+========================================================= */
+
+$("orderSearch")
+  .addEventListener(
+    "input",
+    renderOrders
+  );
+
+
+$("orderStatusFilter")
+  .addEventListener(
+    "change",
+    renderOrders
+  );
+
+
+$("productSearch")
+  .addEventListener(
+    "input",
+    renderProducts
+  );
+
+
+$("productCategoryFilter")
+  .addEventListener(
+    "change",
+    renderProducts
+  );
+
+
+/* =========================================================
+   REFRESH
+========================================================= */
+
+$("refreshOrders")
+  .addEventListener(
+    "click",
+    loadOrders
+  );
+
+
+$("refreshDashboard")
+  .addEventListener(
+    "click",
+    loadDashboard
+  );
+
+
+$("refreshProducts")
+  .addEventListener(
+    "click",
+    loadProducts
+  );
+
+
+$("refreshUsers")
+  .addEventListener(
+    "click",
+    loadUsers
+  );
+
+
+
+
+/* =========================================================
+   DASHBOARD LOGOUT
+========================================================= */
+
+const logoutButton = $("logoutButton");
+if(logoutButton){
+  logoutButton.addEventListener("click", async ()=>{
+    logoutButton.disabled = true;
+    try{
+      await supabaseClient.auth.signOut();
+    }finally{
+      window.location.replace("admin.html");
+    }
+  });
+}
+
+/* =========================================================
+   AUTHENTICATED DASHBOARD START
+========================================================= */
+
+async function startDashboard(){
+  try{
+    const { data, error } = await supabaseClient.auth.getSession();
+    if(error) throw error;
+
+    if(!data?.session?.user){
+      window.location.replace("admin.html");
+      return;
+    }
+
+    currentUser = data.session.user;
+    await loadRole();
+
+    const app = $("app");
+    if(app) app.classList.add("show");
+
+    await loadDashboard();
+  }catch(error){
+    console.error("DASHBOARD AUTH ERROR:", error);
+    try{ await supabaseClient.auth.signOut(); }catch{}
+    window.location.replace("admin.html");
   }
 }
 
-$("loginForm").addEventListener("submit", doLogin);
-$("forgotPasswordButton").addEventListener("click", forgotPassword);
-$("passwordToggle").addEventListener("click", ()=>{
-  const input=$("loginPassword");
-  const showing=input.type === "text";
-  input.type=showing ? "password" : "text";
-  $("passwordToggle").textContent=showing ? "แสดง" : "ซ่อน";
-});
-$("recoveryForm").addEventListener("submit", saveRecoveryPassword);
-$("newPasswordToggle").addEventListener("click", ()=>{
-  const input=$("newPassword"); const showing=input.type === "text";
-  input.type=showing ? "password" : "text"; $("newPasswordToggle").textContent=showing ? "แสดง" : "ซ่อน";
-});
-$("confirmPasswordToggle").addEventListener("click", ()=>{
-  const input=$("confirmNewPassword"); const showing=input.type === "text";
-  input.type=showing ? "password" : "text"; $("confirmPasswordToggle").textContent=showing ? "แสดง" : "ซ่อน";
+supabaseClient.auth.onAuthStateChange((event, session)=>{
+  if(event === "SIGNED_OUT"){
+    window.location.replace("admin.html");
+    return;
+  }
+
+  if(event === "TOKEN_REFRESHED" && !session){
+    window.location.replace("admin.html");
+  }
 });
 
-if(isRecovery()) showRecovery(); else showLogin();
+startDashboard();
 
 </script>
 </body>
