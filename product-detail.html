@@ -1342,6 +1342,27 @@ textarea{
 
 
 /* =========================================================
+   LOWER PRODUCT INFORMATION
+========================================================= */
+.product-lower-info{margin-top:34px;}
+.product-lower-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;}
+.product-lower-card{padding:28px;background:linear-gradient(145deg,rgba(52,31,19,.72),rgba(23,13,8,.92));border:1px solid rgba(199,166,106,.17);}
+.product-lower-wide{grid-column:1/-1;}
+.product-lower-kicker{color:#c9a45c;font-size:11px;letter-spacing:2px;margin-bottom:8px;}
+.product-lower-card h3{margin:0 0 13px;color:#eadfce;font-family:"Kanit",sans-serif;font-size:24px;font-weight:500;}
+.product-lower-card p{margin:0;color:#aa9c8c;font-size:14px;line-height:1.9;}
+.lower-feature-list{margin:0;padding:0;list-style:none;display:grid;gap:10px;}
+.lower-feature-list li{position:relative;padding-left:18px;color:#b9aa98;font-size:14px;line-height:1.75;}
+.lower-feature-list li::before{content:"";position:absolute;left:1px;top:.72em;width:6px;height:6px;border:1px solid #c7a66a;transform:rotate(45deg);}
+.lower-empty{color:#76695d!important;}
+.lower-meta-row{display:grid;grid-template-columns:180px minmax(0,1fr);gap:16px;padding:13px 0;border-bottom:1px solid rgba(199,166,106,.11);}
+.lower-meta-row:last-child{border-bottom:0;}
+.lower-meta-row span{color:#796d61;font-size:12px;}
+.lower-meta-row strong{color:#c5b5a2;font-size:13px;font-weight:400;line-height:1.7;}
+@media(max-width:900px){.product-lower-grid{grid-template-columns:1fr;}.product-lower-wide{grid-column:auto;}}
+@media(max-width:600px){.product-lower-info{margin-top:22px;}.product-lower-card{padding:21px 18px;}.product-lower-card h3{font-size:21px;}.lower-meta-row{grid-template-columns:1fr;gap:5px;}}
+
+/* =========================================================
    CTA
 ========================================================= */
 
@@ -2250,6 +2271,274 @@ body::before{
 }
 </style>
 
+
+<style id="chatpetch-product-detail-contrast-fix">
+/* =========================================================
+   PRODUCT DETAIL — CONTRAST / READABILITY FIX
+   แก้ปุ่มกลับสินค้า + ตัวอักษรรายละเอียดให้ชัดขึ้น
+========================================================= */
+
+/* ปุ่มกลับไปดูสินค้าทั้งหมด */
+.back-row{
+  margin:0 0 28px !important;
+}
+
+.back-link{
+  position:relative !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:10px !important;
+
+  min-height:54px !important;
+  padding:13px 22px !important;
+
+  border:1px solid rgba(226,204,152,.72) !important;
+  background:rgba(10,7,5,.82) !important;
+  color:#f4d98f !important;
+
+  font-size:15px !important;
+  font-weight:500 !important;
+  letter-spacing:.15px !important;
+
+  text-shadow:0 2px 10px rgba(0,0,0,.85) !important;
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.38),
+    inset 0 0 0 1px rgba(255,255,255,.035) !important;
+
+  backdrop-filter:blur(8px) !important;
+  -webkit-backdrop-filter:blur(8px) !important;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    color .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease !important;
+}
+
+.back-link:hover{
+  border-color:#f0d38a !important;
+  background:rgba(25,15,8,.94) !important;
+  color:#fff1c8 !important;
+  transform:translateX(-4px) !important;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.46),
+    0 0 0 1px rgba(226,204,152,.10) !important;
+}
+
+/* หัวข้อ/คำอธิบายบน Hero */
+.page-description{
+  color:#f5eee5 !important;
+  text-shadow:0 3px 14px rgba(0,0,0,.95) !important;
+}
+
+/* ข้อมูลสินค้าด้านขวา */
+.product-code{
+  color:#d7c5ad !important;
+  font-weight:500 !important;
+}
+
+.product-subtitle{
+  color:#eee5d8 !important;
+  font-size:15px !important;
+  line-height:1.8 !important;
+  text-shadow:0 2px 10px rgba(0,0,0,.55) !important;
+}
+
+.category-badge{
+  color:#f0d694 !important;
+  border-color:rgba(226,204,152,.55) !important;
+  background:rgba(199,166,106,.10) !important;
+}
+
+/* ป้ายราคา / ข้อความกำกับ */
+.price-label{
+  color:#cdbda9 !important;
+}
+
+.price-note{
+  color:#c9b9a5 !important;
+}
+
+.shipping-note{
+  color:#eee2d0 !important;
+}
+
+.option-title{
+  color:#f0e5d7 !important;
+  font-weight:500 !important;
+}
+
+.option-required{
+  color:#d7b96f !important;
+}
+
+.option-btn{
+  color:#e5d9c9 !important;
+  border-color:rgba(199,166,106,.34) !important;
+  background:rgba(12,8,5,.42) !important;
+}
+
+.option-btn:hover{
+  color:#fff1d2 !important;
+  border-color:rgba(226,204,152,.68) !important;
+  background:rgba(199,166,106,.10) !important;
+}
+
+.option-btn.selected{
+  color:#fff0c5 !important;
+  border-color:#d9ba70 !important;
+  background:rgba(199,166,106,.14) !important;
+}
+
+.option-price{
+  color:#c9b99f !important;
+}
+
+.option-btn.selected .option-price{
+  color:#e3ca8b !important;
+}
+
+/* กลุ่มรายละเอียดสินค้า */
+.info-section{
+  border-top-color:rgba(226,204,152,.24) !important;
+}
+
+.info-heading{
+  color:#f4e7d5 !important;
+  font-size:24px !important;
+  font-weight:500 !important;
+  text-shadow:0 2px 10px rgba(0,0,0,.55) !important;
+}
+
+.info-text{
+  color:#e2d7c8 !important;
+  font-size:14px !important;
+  line-height:1.95 !important;
+}
+
+.info-list li{
+  color:#ddd1c1 !important;
+  font-size:14px !important;
+  line-height:1.85 !important;
+}
+
+.info-list li::before{
+  border-color:#d7b96f !important;
+}
+
+/* Technical Data */
+.tech-grid{
+  border-top-color:rgba(226,204,152,.22) !important;
+  border-left-color:rgba(226,204,152,.22) !important;
+}
+
+.tech-item{
+  border-right-color:rgba(226,204,152,.22) !important;
+  border-bottom-color:rgba(226,204,152,.22) !important;
+}
+
+.tech-label{
+  color:#bfae99 !important;
+  font-size:12px !important;
+}
+
+.tech-value{
+  color:#eee3d3 !important;
+  font-size:14px !important;
+  line-height:1.7 !important;
+}
+
+/* กล่องรายละเอียดเพิ่มเติมด้านล่าง */
+.product-info .detail-mini-card{
+  background:rgba(12,8,5,.40) !important;
+  border-color:rgba(226,204,152,.22) !important;
+}
+
+.product-info .detail-mini-card h3{
+  color:#f0e3d1 !important;
+}
+
+.product-info .detail-mini-card .info-text{
+  color:#ddd1c1 !important;
+}
+
+/* Lower sections */
+.product-lower-kicker{
+  color:#e0c276 !important;
+}
+
+.product-lower-card h3{
+  color:#f2e6d6 !important;
+}
+
+.product-lower-card p{
+  color:#ddd1c1 !important;
+  font-size:14px !important;
+  line-height:1.95 !important;
+}
+
+.lower-feature-list li{
+  color:#ddd1c1 !important;
+  font-size:14px !important;
+  line-height:1.85 !important;
+}
+
+.lower-empty{
+  color:#aaa092 !important;
+}
+
+.lower-meta-row span{
+  color:#bcae9c !important;
+}
+
+.lower-meta-row strong{
+  color:#e2d6c5 !important;
+}
+
+/* ข้อความในส่วน CTA / ปุ่ม ให้ตัดกับพื้นหลัง */
+.product-section a:not(.back-link){
+  text-shadow:0 2px 8px rgba(0,0,0,.65);
+}
+
+/* มือถือ */
+@media (max-width:700px){
+  .back-link{
+    min-height:52px !important;
+    padding:12px 18px !important;
+    font-size:14px !important;
+  }
+
+  .page-description{
+    color:#fff7ed !important;
+    font-size:15px !important;
+  }
+
+  .product-subtitle{
+    color:#eee4d7 !important;
+    font-size:14px !important;
+  }
+
+  .info-heading{
+    font-size:22px !important;
+  }
+
+  .info-text,
+  .info-list li,
+  .tech-value,
+  .product-lower-card p,
+  .lower-feature-list li{
+    color:#e1d6c8 !important;
+    font-size:14px !important;
+  }
+
+  .tech-label,
+  .lower-meta-row span{
+    color:#c2b29f !important;
+  }
+}
+</style>
+
 </head>
 
 
@@ -2657,6 +2946,28 @@ body::before{
     </div>
 
   </div>
+
+  <section class="product-lower-info" aria-label="ข้อมูลเพิ่มเติมของสินค้า">
+    <div class="product-lower-grid">
+      <div class="product-lower-card product-lower-wide">
+        <div class="product-lower-kicker">PRODUCT INFORMATION</div>
+        <h3>ข้อมูลเพิ่มเติมของสินค้า</h3>
+        <p id="lowerDescription">-</p>
+      </div>
+      <div class="product-lower-card">
+        <div class="product-lower-kicker">FEATURES</div>
+        <h3>จุดเด่นผลิตภัณฑ์</h3>
+        <ul id="lowerFeaturesList" class="lower-feature-list"></ul>
+        <p id="lowerFeaturesEmpty" class="lower-empty">ยังไม่มีข้อมูลเพิ่มเติม</p>
+      </div>
+      <div class="product-lower-card">
+        <div class="product-lower-kicker">USAGE & COVERAGE</div>
+        <h3>การใช้งานและขนาดบรรจุ</h3>
+        <div class="lower-meta-row"><span>การใช้งาน</span><strong id="lowerUsage">-</strong></div>
+        <div class="lower-meta-row"><span>ขนาดบรรจุ / พื้นที่ใช้งาน</span><strong id="lowerCoverage">-</strong></div>
+      </div>
+    </div>
+  </section>
 
 </section>
 
@@ -3068,6 +3379,12 @@ const usageText =
 const coverageText =
   document.getElementById("coverageText");
 
+const lowerDescription = document.getElementById("lowerDescription");
+const lowerFeaturesList = document.getElementById("lowerFeaturesList");
+const lowerFeaturesEmpty = document.getElementById("lowerFeaturesEmpty");
+const lowerUsage = document.getElementById("lowerUsage");
+const lowerCoverage = document.getElementById("lowerCoverage");
+
 
 let currentProduct = null;
 
@@ -3472,6 +3789,33 @@ function renderProduct(product){
 
   coverageText.textContent =
     coverage;
+
+  lowerDescription.textContent =
+    product.description ||
+    product.short_description ||
+    "ยังไม่มีข้อมูล";
+
+  lowerFeaturesList.innerHTML = "";
+  const lowerFeatures = Array.isArray(product.features)
+    ? product.features.filter(Boolean)
+    : [];
+
+  if(lowerFeatures.length){
+    lowerFeaturesEmpty.style.display = "none";
+    lowerFeatures.forEach(function(feature){
+      const li = document.createElement("li");
+      li.textContent = feature;
+      lowerFeaturesList.appendChild(li);
+    });
+  }else{
+    lowerFeaturesEmpty.style.display = "block";
+  }
+
+  lowerUsage.textContent =
+    product.usage ||
+    "ยังไม่มีข้อมูล / รอเอกสารจากบริษัท";
+
+  lowerCoverage.textContent = coverage;
 
 }
 
