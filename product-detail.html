@@ -574,10 +574,10 @@ textarea{
   display:grid;
 
   grid-template-columns:
-    minmax(0,1.02fr)
-    minmax(0,.98fr);
+    minmax(0,.82fr)
+    minmax(0,1.18fr);
 
-  gap:34px;
+  gap:28px;
 
   align-items:start;
 }
@@ -592,7 +592,7 @@ textarea{
 
   min-width:0;
 
-  padding:25px;
+  padding:18px;
 
   background:
     linear-gradient(
@@ -645,7 +645,7 @@ textarea{
 .product-image-wrap{
   position:relative;
 
-  min-height:560px;
+  min-height:420px;
 
   display:flex;
   align-items:center;
@@ -664,7 +664,7 @@ textarea{
 
 .product-image-wrap img{
   width:100%;
-  height:560px;
+  height:420px;
 
   object-fit:contain;
 
@@ -685,7 +685,7 @@ textarea{
 .image-placeholder{
   display:none;
 
-  min-height:560px;
+  min-height:420px;
 
   align-items:center;
   justify-content:center;
@@ -705,7 +705,7 @@ textarea{
 .product-info{
   min-width:0;
 
-  padding:32px 34px 34px;
+  padding:28px 30px 32px;
 
   background:
     linear-gradient(
@@ -758,7 +758,7 @@ textarea{
 
   font-family:"Kanit",sans-serif;
 
-  font-size:clamp(34px,4vw,52px);
+  font-size:clamp(30px,3.2vw,46px);
 
   line-height:1.18;
 
@@ -1192,6 +1192,113 @@ textarea{
   line-height:1.6;
 }
 
+
+
+/* =========================================================
+   PRODUCT DETAIL — TWO COLUMN SYSTEM
+   รูปสินค้าอยู่ซ้าย / รายละเอียดทั้งหมดอยู่ขวา
+========================================================= */
+
+.product-detail .product-visual,
+.product-detail .product-info{
+  align-self:start;
+}
+
+.product-info .detail-block-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  margin-top:24px;
+}
+
+.product-info .detail-mini-card{
+  padding:18px;
+  background:rgba(255,255,255,.018);
+  border:1px solid rgba(199,166,106,.12);
+}
+
+.product-info .detail-mini-card h3{
+  margin:0 0 9px;
+  color:#e4d6c1;
+  font-family:"Kanit",sans-serif;
+  font-size:18px;
+  font-weight:500;
+  line-height:1.35;
+}
+
+.product-info .detail-mini-card .info-text{
+  margin:0;
+  color:#b5a696;
+  font-size:13px;
+  line-height:1.85;
+}
+
+@media (max-width:900px){
+  .product-detail{
+    grid-template-columns:1fr;
+  }
+
+  .product-visual{
+    max-width:720px;
+    width:100%;
+    margin:auto;
+  }
+
+  .product-image-wrap{
+    min-height:390px;
+  }
+
+  .product-image-wrap img{
+    height:390px;
+  }
+
+  .product-info{
+    width:100%;
+  }
+}
+
+@media (max-width:600px){
+  .product-section{
+    padding:34px 0 70px;
+  }
+
+  .product-detail{
+    gap:18px;
+  }
+
+  .product-visual{
+    padding:10px;
+  }
+
+  .product-image-wrap{
+    min-height:280px;
+  }
+
+  .product-image-wrap img{
+    height:280px;
+  }
+
+  .product-info{
+    padding:22px 18px 24px;
+  }
+
+  .product-name{
+    font-size:32px;
+  }
+
+  .product-subtitle{
+    font-size:14px;
+  }
+
+  .price{
+    font-size:34px;
+  }
+
+  .product-info .detail-block-grid{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+}
 
 /* =========================================================
    LOWER PRODUCT AREA
@@ -2143,272 +2250,6 @@ body::before{
 }
 </style>
 
-
-<style id="related-services-sync">
-/* =========================================================
-   RELATED SERVICES — KEEP SERVICE + SERVICE-DETAIL CONTENT
-   แทรกด้านล่าง Product Detail โดยใช้ visual system เดียวกัน
-========================================================= */
-.related-services{
-  width:min(1280px,calc(100% - 70px));
-  margin:0 auto 80px;
-  padding-top:18px;
-}
-.related-head{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:25px;
-  margin-bottom:24px;
-}
-.related-kicker{
-  color:#e4c979;
-  font-size:10px;
-  letter-spacing:2.8px;
-}
-.related-title{
-  margin:7px 0 0;
-  color:#fff;
-  font-family:"Kanit","Prompt",sans-serif;
-  font-size:clamp(32px,4vw,48px);
-  font-weight:400;
-  line-height:1.08;
-}
-.related-note{
-  max-width:520px;
-  margin:0;
-  color:#a99b8b;
-  font-size:12px;
-  line-height:1.85;
-  text-align:right;
-}
-.related-line{
-  width:70px;
-  height:1px;
-  margin:18px 0 25px;
-  background:linear-gradient(90deg,#c9a45c,transparent);
-}
-.service-related-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:14px;
-}
-.service-related-card{
-  min-width:0;
-  overflow:hidden;
-  border:1px solid rgba(201,164,92,.20);
-  background:linear-gradient(145deg,rgba(45,27,17,.80),rgba(10,6,4,.94));
-  box-shadow:0 24px 60px rgba(0,0,0,.24);
-  transition:.25s ease;
-}
-.service-related-card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(228,197,127,.46);
-}
-.service-related-image{
-  position:relative;
-  height:190px;
-  overflow:hidden;
-  background:#120b07;
-}
-.service-related-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  opacity:0;
-  transition:.35s ease;
-}
-.service-related-image.loaded img{opacity:1}
-.service-related-image::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.72));
-  pointer-events:none;
-}
-.service-related-loading{
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  color:#776b60;
-  font-size:9px;
-  letter-spacing:1.8px;
-}
-.service-related-image.loaded .service-related-loading{display:none}
-.service-related-label{
-  position:absolute;
-  z-index:2;
-  left:12px;
-  bottom:11px;
-  color:#ead18d;
-  font-size:9px;
-  letter-spacing:1.7px;
-}
-.service-related-body{padding:20px}
-.service-related-number{
-  color:#c9a45c;
-  font-size:9px;
-  letter-spacing:2px;
-}
-.service-related-body h3{
-  margin:7px 0 9px;
-  color:#fff;
-  font-family:"Kanit",sans-serif;
-  font-size:22px;
-  line-height:1.2;
-  font-weight:400;
-}
-.service-related-body h3 small{
-  display:block;
-  margin-top:4px;
-  color:#8e8174;
-  font-family:"Prompt",sans-serif;
-  font-size:10px;
-  font-weight:400;
-  letter-spacing:.8px;
-}
-.service-related-body p{
-  min-height:68px;
-  margin:0;
-  color:#a99c8e;
-  font-size:11px;
-  line-height:1.8;
-}
-.related-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin:15px 0;
-}
-.related-tag{
-  padding:5px 8px;
-  border:1px solid rgba(201,164,92,.25);
-  color:#cdb77f;
-  font-size:8px;
-  letter-spacing:1px;
-}
-.related-actions{display:flex;gap:8px;flex-wrap:wrap}
-.related-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:36px;
-  padding:0 12px;
-  border:1px solid rgba(201,164,92,.30);
-  color:#d9c28d;
-  background:rgba(201,164,92,.035);
-  font-size:10px;
-  transition:.2s ease;
-}
-.related-btn:hover{
-  color:#160e05;
-  border-color:#e4c57f;
-  background:linear-gradient(135deg,#e4c57f,#b18442);
-}
-.related-btn.primary{
-  color:#170e05;
-  border-color:#dcb96e;
-  background:linear-gradient(135deg,#ead18d,#b88837);
-}
-.service-detail-band{
-  margin-top:55px;
-  padding-top:35px;
-  border-top:1px solid rgba(201,164,92,.16);
-}
-.service-detail-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-.service-detail-card{
-  padding:22px;
-  border:1px solid rgba(201,164,92,.18);
-  background:linear-gradient(145deg,rgba(30,18,11,.78),rgba(7,5,3,.90));
-}
-.service-detail-card h4{
-  margin:0 0 8px;
-  color:#fff;
-  font-family:"Kanit",sans-serif;
-  font-size:21px;
-  font-weight:400;
-}
-.service-detail-card p{
-  margin:0 0 14px;
-  color:#9e9284;
-  font-size:11px;
-  line-height:1.8;
-}
-.service-detail-meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-bottom:15px;
-}
-.service-detail-meta span{
-  padding:5px 8px;
-  border:1px solid rgba(201,164,92,.22);
-  color:#cdb77f;
-  font-size:8px;
-  letter-spacing:1px;
-}
-.workflow-related{
-  margin-top:55px;
-  padding:35px 0 0;
-  border-top:1px solid rgba(201,164,92,.16);
-}
-.workflow-grid-related{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  border:1px solid rgba(201,164,92,.17);
-  background:rgba(8,5,3,.55);
-}
-.workflow-step-related{
-  min-height:170px;
-  padding:24px 21px;
-  border-right:1px solid rgba(201,164,92,.15);
-}
-.workflow-step-related:last-child{border-right:0}
-.workflow-step-related .step-no{
-  color:#c9a45c;
-  font-size:9px;
-  letter-spacing:2px;
-}
-.workflow-step-related h4{
-  margin:11px 0 8px;
-  color:#eee2d2;
-  font-family:"Kanit",sans-serif;
-  font-size:20px;
-  font-weight:400;
-}
-.workflow-step-related p{
-  margin:0;
-  color:#95897b;
-  font-size:10px;
-  line-height:1.8;
-}
-@media(max-width:1050px){
-  .service-related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .workflow-grid-related{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .workflow-step-related:nth-child(2){border-right:0}
-  .workflow-step-related:nth-child(-n+2){border-bottom:1px solid rgba(201,164,92,.15)}
-}
-@media(max-width:700px){
-  .related-services{width:calc(100% - 32px);margin-bottom:55px}
-  .related-head{display:block}
-  .related-note{text-align:left;margin-top:11px}
-  .service-related-grid{grid-template-columns:1fr}
-  .service-related-image{height:205px}
-  .service-related-body p{min-height:0}
-  .service-detail-grid{grid-template-columns:1fr}
-  .workflow-grid-related{grid-template-columns:1fr}
-  .workflow-step-related{min-height:0;border-right:0!important;border-bottom:1px solid rgba(201,164,92,.15)}
-  .workflow-step-related:last-child{border-bottom:0}
-  .related-actions>*{width:100%}
-}
-</style>
-
 </head>
 
 
@@ -2759,58 +2600,57 @@ body::before{
         </div>
 
 
+        <!-- USAGE + COVERAGE -->
 
-      </div>
+        <div class="detail-block-grid">
 
-    </div>
+          <div
+            class="detail-mini-card"
+            id="usageCard"
+          >
 
+            <h3>
+              การใช้งาน
+            </h3>
 
+            <p
+              class="info-text"
+              id="usageText"
+            >
+              ยังไม่มีข้อมูล
+            </p>
 
-    <!-- ===================================================
-         LOWER INFORMATION
-    ==================================================== -->
-
-    <div
-      class="lower-section"
-      id="lowerSection"
-      style="display:none;"
-    >
-
-
-      <div
-        class="lower-card"
-        id="usageCard"
-      >
-
-        <h3>
-          การใช้งาน
-        </h3>
-
-        <p
-          class="info-text"
-          id="usageText"
-        >
-          ยังไม่มีข้อมูล
-        </p>
-
-      </div>
+          </div>
 
 
-      <div
-        class="lower-card"
-        id="coverageCard"
-      >
+          <div
+            class="detail-mini-card"
+            id="coverageCard"
+          >
 
-        <h3>
-          ขนาดบรรจุ / พื้นที่ใช้งาน
-        </h3>
+            <h3>
+              ขนาดบรรจุ / พื้นที่ใช้งาน
+            </h3>
 
-        <p
-          class="info-text"
-          id="coverageText"
-        >
-          ยังไม่มีข้อมูล
-        </p>
+            <p
+              class="info-text"
+              id="coverageText"
+            >
+              ยังไม่มีข้อมูล
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Hidden compatibility container -->
+        <div
+          id="lowerSection"
+          style="display:none;"
+          aria-hidden="true"
+        ></div>
+
 
       </div>
 
@@ -2820,83 +2660,6 @@ body::before{
 
 </section>
 
-
-
-
-
-<!-- =========================================================
-     RELATED SERVICES
-     SERVICE + SERVICE DETAIL
-========================================================= -->
-<section class="related-services" id="relatedServices">
-  <div class="related-head">
-    <div>
-      <div class="related-kicker">OUR SERVICES</div>
-      <h2 class="related-title">บริการที่เกี่ยวข้อง</h2>
-      <div class="related-line"></div>
-    </div>
-    <p class="related-note">
-      เลือกระบบบริการที่ใกล้เคียงกับลักษณะพื้นที่ของคุณ
-      เพื่อดูรายละเอียดบริการ แนวทางการพิจารณา และภาพตัวอย่างงานจริง
-    </p>
-  </div>
-
-  <div class="service-related-grid" id="relatedServiceGrid">
-    <div class="loading-box">กำลังโหลดบริการ...</div>
-  </div>
-
-  <div class="service-detail-band">
-    <div class="related-head">
-      <div>
-        <div class="related-kicker">SERVICE DETAIL</div>
-        <h2 class="related-title">รายละเอียดบริการ</h2>
-        <div class="related-line"></div>
-      </div>
-      <p class="related-note">
-        หน้ารายละเอียดจะแสดงลักษณะงาน ปัญหาที่พิจารณา
-        ความเหมาะสมของพื้นที่ และภาพอ้างอิงจากผลงานใน Repository
-      </p>
-    </div>
-
-    <div class="service-detail-grid" id="relatedServiceDetailGrid"></div>
-  </div>
-
-  <div class="workflow-related">
-    <div class="related-head">
-      <div>
-        <div class="related-kicker">OUR PROCESS</div>
-        <h2 class="related-title">ขั้นตอนการให้บริการ</h2>
-        <div class="related-line"></div>
-      </div>
-      <p class="related-note">
-        เริ่มจากการเข้าใจพื้นที่และลักษณะการใช้งาน ก่อนเลือกแนวทางและวัสดุที่เหมาะสม
-      </p>
-    </div>
-
-    <div class="workflow-grid-related">
-      <div class="workflow-step-related">
-        <div class="step-no">01 / SURVEY</div>
-        <h4>สำรวจหน้างาน</h4>
-        <p>พิจารณาสภาพพื้น ลักษณะพื้นที่ ปัญหาเดิม และเงื่อนไขการใช้งานจริง</p>
-      </div>
-      <div class="workflow-step-related">
-        <div class="step-no">02 / CONSULT</div>
-        <h4>วิเคราะห์และให้คำปรึกษา</h4>
-        <p>ประเมินแนวทางระบบงานและวัสดุให้สอดคล้องกับวัตถุประสงค์ของพื้นที่</p>
-      </div>
-      <div class="workflow-step-related">
-        <div class="step-no">03 / SYSTEM</div>
-        <h4>เลือกระบบที่เหมาะสม</h4>
-        <p>กำหนดระบบพื้นหรือแนวทางงานตามสภาพหน้างานและการใช้งาน</p>
-      </div>
-      <div class="workflow-step-related">
-        <div class="step-no">04 / EXECUTION</div>
-        <h4>ดำเนินงาน</h4>
-        <p>วางแผนและดำเนินงานตามระบบ พร้อมติดตามรายละเอียดของหน้างาน</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <!-- =========================================================
@@ -3510,7 +3273,7 @@ function renderProduct(product){
     "grid";
 
   lowerSection.style.display =
-    "grid";
+    "none";
 
 
   /* --------------------------------
@@ -4587,126 +4350,6 @@ document
 
 loadProduct();
 
-</script>
-
-
-<script id="related-services-script">
-/* =========================================================
-   RELATED SERVICES LOADER
-   ใช้ข้อมูลจาก services.html + service-detail.html
-   และโหลดภาพจาก assets/Projects จริง
-========================================================= */
-(function(){
-  "use strict";
-
-  const TREE_API="https://api.github.com/repos/chatphetch/chatpetch-group/git/trees/main?recursive=1";
-  const RAW_BASE="https://raw.githubusercontent.com/chatphetch/chatpetch-group/main/";
-  const CACHE_KEY="chatpetch_related_services_tree_v4";
-  const CACHE_TIME_KEY="chatpetch_related_services_tree_v4_time";
-  const CACHE_MAX_AGE=30*60*1000;
-
-  const SERVICES=[
-    {key:"industrial",number:"01",title:"พื้นอุตสาหกรรม / อีพ็อกซี่ / พียู",small:"โรงงาน / คลังสินค้า / พื้นที่ใช้งานหนัก",description:"ตัวอย่างงานพื้นระบบ Epoxy และ PU สำหรับพื้นที่โรงงาน คลังสินค้า และพื้นที่ใช้งานหนัก",tags:["EPOXY","PU","INDUSTRIAL"],folders:["Epoxy self","Epoxy anti static","PU Self"],detail:"ระบบพื้นสำหรับโรงงาน คลังสินค้า และพื้นที่ใช้งานหนัก โดยเลือกชนิดระบบให้เหมาะกับสภาพพื้นและลักษณะการใช้งาน"},
-    {key:"waterproof",number:"02",title:"งานกันรั่วซึม",small:"ดาดฟ้า / หลังคา / พื้นอาคาร",description:"ตัวอย่างงานกันซึมจากโครงการจริง สำหรับดาดฟ้า หลังคา และพื้นที่อาคารที่ต้องการป้องกันน้ำรั่วซึม",tags:["WATERPROOF","FIBERGLASS","ROOF"],folders:["งานกันซึม Fiberglass"],detail:"ระบบกันรั่วซึมสำหรับดาดฟ้า หลังคา และพื้นอาคาร โดยต้องตรวจสอบจุดรั่ว รอยต่อ และสภาพพื้นเดิมก่อนเลือกวิธีแก้ไข"},
-    {key:"concrete",number:"03",title:"งานซ่อมปรับปรุง",small:"งานคอนกรีต / Polishing / Repair",description:"ตัวอย่างงานปรับปรุงผิวพื้นและงานคอนกรีตจากหน้างานจริง เพื่อเตรียมพื้นให้พร้อมสำหรับระบบใช้งาน",tags:["CONCRETE","POLISHING","REPAIR"],folders:["งาน Polishing","Epoxy self"],detail:"งานซ่อม ปรับปรุง และฟื้นฟูพื้นคอนกรีต โดยพิจารณาลักษณะปัญหาและสภาพพื้นเดิมก่อนกำหนดวิธีทำงาน"},
-    {key:"sports",number:"04",title:"พื้นสนามกีฬา",small:"Sport Floor / PU / Activity",description:"ตัวอย่างงานระบบพื้น PU จากโครงการจริง ซึ่งสามารถพิจารณาใช้กับพื้นที่กิจกรรมและสนามกีฬาได้ตามเงื่อนไขหน้างาน",tags:["SPORT FLOOR","PU","ACTIVITY"],folders:["PU Self","PU Coating"],detail:"ระบบพื้นสำหรับสนามกีฬาและพื้นที่กิจกรรม โดยพิจารณาประเภทกีฬา ลักษณะการใช้งาน และสภาพพื้นเดิม"},
-    {key:"decorative",number:"05",title:"พื้นตกแต่ง",small:"เพื่อความสวยงาม / Stamped Concrete",description:"ตัวอย่างงานพื้นคอนกรีตพิมพ์ลายจากโครงการจริง สำหรับพื้นที่ที่ต้องการความสวยงามและเอกลักษณ์",tags:["STAMPED","PSC","DECORATIVE"],folders:["งาน Stamped Concrete"],detail:"งานพื้นพิมพ์ลายและงานตกแต่งสำหรับพื้นที่ที่ต้องการความสวยงาม โดยเลือกสี รูปแบบ และระบบให้เหมาะกับพื้นที่"},
-    {key:"traffic",number:"06",title:"ระบบงานสัญลักษณ์และเส้นจราจร",small:"Traffic / Line Marking / Coating",description:"งานเคลือบผิวและงานกำหนดพื้นที่เพื่อจัดระเบียบการใช้งาน เส้นทาง และสัญลักษณ์ภายในพื้นที่",tags:["TRAFFIC","LINE MARKING","COATING"],folders:["PU Coating","Epoxy anti static"],detail:"งานตีเส้นและสัญลักษณ์สำหรับพื้นที่ใช้งาน โดยพิจารณาผังพื้นที่ ลักษณะการจราจร และสภาพพื้นเดิม"}
-  ];
-
-  const imageExt=/\.(jpg|jpeg|png|webp|gif)$/i;
-
-  function raw(path){
-    return RAW_BASE+path.split("/").map(encodeURIComponent).join("/");
-  }
-
-  async function getTree(){
-    try{
-      const cached=sessionStorage.getItem(CACHE_KEY);
-      const time=Number(sessionStorage.getItem(CACHE_TIME_KEY)||0);
-      if(cached && Date.now()-time<CACHE_MAX_AGE){
-        const parsed=JSON.parse(cached);
-        if(Array.isArray(parsed)) return parsed;
-      }
-    }catch(e){}
-
-    const response=await fetch(TREE_API,{headers:{Accept:"application/vnd.github+json"},cache:"no-store"});
-    if(!response.ok) throw new Error("GitHub Tree API "+response.status);
-    const data=await response.json();
-    const tree=Array.isArray(data.tree)?data.tree:[];
-    try{
-      sessionStorage.setItem(CACHE_KEY,JSON.stringify(tree));
-      sessionStorage.setItem(CACHE_TIME_KEY,String(Date.now()));
-    }catch(e){}
-    return tree;
-  }
-
-  function findImage(tree,folders){
-    for(const folder of folders){
-      const prefix="assets/Projects/"+folder+"/";
-      const found=tree
-        .filter(item=>item.type==="blob" && imageExt.test(item.path) && item.path.startsWith(prefix))
-        .sort((a,b)=>a.path.localeCompare(b.path,undefined,{numeric:true,sensitivity:"base"}));
-      if(found.length) return found[0];
-    }
-    return null;
-  }
-
-  function render(tree){
-    const grid=document.getElementById("relatedServiceGrid");
-    const detailGrid=document.getElementById("relatedServiceDetailGrid");
-    if(!grid || !detailGrid) return;
-
-    grid.innerHTML=SERVICES.map(service=>{
-      const image=findImage(tree,service.folders);
-      return `
-        <article class="service-related-card">
-          <div class="service-related-image ${image?"":"loaded"}">
-            <div class="service-related-loading">${image?"LOADING PROJECT IMAGE":"PROJECT REFERENCE"}</div>
-            ${image?`<img src="${raw(image.path)}" alt="${service.title}" loading="lazy" referrerpolicy="no-referrer">`:""}
-            <div class="service-related-label">PROJECT REFERENCE</div>
-          </div>
-          <div class="service-related-body">
-            <div class="service-related-number">SERVICE ${service.number}</div>
-            <h3>${service.title}<small>${service.small}</small></h3>
-            <p>${service.description}</p>
-            <div class="related-tags">${service.tags.map(tag=>`<span class="related-tag">${tag}</span>`).join("")}</div>
-            <div class="related-actions">
-              <a class="related-btn primary" href="service-detail.html?service=${encodeURIComponent(service.key)}">ดูรายละเอียดบริการ →</a>
-              <a class="related-btn" href="services.html">บริการทั้งหมด</a>
-            </div>
-          </div>
-        </article>`;
-    }).join("");
-
-    detailGrid.innerHTML=SERVICES.map(service=>`
-      <article class="service-detail-card">
-        <h4>${service.title}</h4>
-        <p>${service.detail}</p>
-        <div class="service-detail-meta">${service.tags.map(tag=>`<span>${tag}</span>`).join("")}</div>
-        <a class="related-btn" href="service-detail.html?service=${encodeURIComponent(service.key)}">เปิด Service Detail →</a>
-      </article>
-    `).join("");
-
-    grid.querySelectorAll(".service-related-image img").forEach(img=>{
-      img.addEventListener("load",()=>img.parentElement.classList.add("loaded"),{once:true});
-      img.addEventListener("error",()=>img.parentElement.classList.add("loaded"),{once:true});
-    });
-  }
-
-  async function init(){
-    const grid=document.getElementById("relatedServiceGrid");
-    try{
-      const tree=await getTree();
-      render(tree);
-    }catch(error){
-      console.warn("CHATPHETCH related services images could not be loaded.",error);
-      render([]);
-    }
-  }
-
-  init();
-})();
 </script>
 
 <script src="assets/customer-master-nav.js"></script>
