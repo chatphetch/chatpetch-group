@@ -146,7 +146,155 @@ h2{margin:0;color:#fff;font:400 clamp(34px,4vw,52px)/1.1 Kanit,Prompt,sans-serif
   position:relative;
   z-index:5;
 }
+
 </style>
+
+<style id="index-mobile-match-services">
+/* =========================================================
+   INDEX MOBILE — MATCH SERVICES PAGE
+   ใช้มาตรฐานเดียวกับ services.html เฉพาะ Mobile
+========================================================= */
+.page{
+  position:relative;
+  min-height:100vh;
+  overflow:clip;
+  isolation:isolate;
+  background:#050403;
+}
+.page::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:url("assets/index-main-bg.png?v=20260922") center top/cover no-repeat;
+}
+.page::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(0,0,0,.38) 0%,
+    rgba(0,0,0,.18) 20%,
+    rgba(0,0,0,.34) 48%,
+    rgba(0,0,0,.72) 78%,
+    rgba(0,0,0,.94) 100%);
+}
+.page>*{position:relative;z-index:2}
+
+@media(max-width:700px){
+  .wrap{width:calc(100% - 32px)}
+
+  .page::before{background-position:center top}
+
+  .hero{
+    min-height:610px;
+    align-items:flex-start;
+    padding:0;
+  }
+
+  .hero-copy{
+    width:100%;
+    padding:28px 18px 30px 0;
+    transform:translateY(100px);
+    background:radial-gradient(ellipse at left center,
+      rgba(0,0,0,.74),
+      rgba(0,0,0,.34) 58%,
+      transparent 86%);
+  }
+
+  .hero-title{
+    max-width:100%;
+    font-size:clamp(43px,13vw,60px);
+    line-height:1.03;
+  }
+
+  .hero p{
+    max-width:100%;
+    font-size:14px;
+    line-height:1.82;
+  }
+
+  .section{padding:45px 0 58px}
+  .grid4,.grid3{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .stat{border-right:0;border-bottom:1px solid rgba(201,164,92,.16)}
+  .stat:last-child{border:0}
+  .cta{width:calc(100% - 32px);margin-bottom:60px;padding:40px 22px}
+  .buttons .btn{width:100%}
+}
+
+@media(max-width:420px){
+  .hero{min-height:590px}
+  .hero-copy{transform:translateY(92px);padding-top:26px}
+  .hero-title{font-size:46px}
+  .hero p{font-size:13px}
+}
+
+/* ป้องกัน CSS ของการ์ดหน้า Index ชน Footer */
+.customer-footer .icon{
+  width:auto !important;
+  height:auto !important;
+  margin:0 !important;
+  display:inline !important;
+  border:0 !important;
+  place-items:initial !important;
+  color:inherit !important;
+}
+
+.customer-footer{
+  position:relative;
+  z-index:20;
+  border-top:1px solid rgba(255,255,255,.08);
+  background:#030302;
+  color:#999;
+  font-family:Prompt,Kanit,sans-serif;
+}
+.customer-footer-inner{
+  width:min(1440px,calc(100% - 42px));
+  margin:auto;
+  padding:62px 0 22px;
+}
+.customer-footer-upper{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 280px;
+  gap:50px;
+}
+.customer-footer-brand{display:flex;align-items:center;gap:14px}
+.customer-footer-logo{width:64px;height:64px;object-fit:contain}
+.customer-footer-brand-name{color:#fff;font-family:Kanit,Prompt,sans-serif;font-size:18px;letter-spacing:1.6px}
+.customer-footer-brand-sub{margin-top:2px;color:#c9a45c;font-size:8px;letter-spacing:2px}
+.customer-footer-info{margin-top:17px}
+.customer-footer-company-line{color:#aaa39a;font-size:12px;line-height:1.8}
+.customer-footer-company-line.strong{margin-top:8px;color:#c7bfb4}
+.customer-footer-service-line{display:flex;flex-wrap:wrap;gap:12px;margin-top:5px}
+.customer-footer-service-item{font-size:11px;color:#8f887f}
+.customer-footer-service-item .icon{color:#c9a45c;margin-right:4px}
+.customer-footer-menu-title{margin-bottom:14px;color:#ead18d;font-family:Kanit,Prompt,sans-serif;font-size:12px;letter-spacing:2px}
+.customer-footer-menu-list{margin:0;padding:0;list-style:none}
+.customer-footer-menu-list li{margin-bottom:10px}
+.customer-footer-menu-list a{color:#999;font-size:12px;text-decoration:none}
+.customer-footer-menu-list a:hover{color:#ead18d}
+.customer-footer-divider{height:1px;margin:38px 0 16px;background:rgba(255,255,255,.08)}
+.customer-footer-bottom{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:18px;font-size:10px}
+.customer-footer-copyright{color:#68645e}
+.customer-footer-copyright strong{color:#9b948d}
+.customer-footer-address{display:flex;align-items:center;gap:6px;color:#77716b}
+.customer-footer-actions{display:flex;gap:7px}
+.customer-footer-action{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid rgba(201,164,92,.24);color:#c9a45c;text-decoration:none}
+.customer-footer-social{display:flex;gap:6px}
+.customer-social{width:31px;height:31px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.10);color:#aaa;text-decoration:none;font-size:10px}
+
+@media(max-width:800px){
+  .customer-footer-inner{width:calc(100% - 32px);padding:45px 0 20px}
+  .customer-footer-upper{grid-template-columns:1fr;gap:35px}
+  .customer-footer-bottom{grid-template-columns:1fr;gap:12px}
+  .customer-footer-actions{flex-wrap:wrap}
+}
+</style>
+
 </head>
 <body>
 <div class="page">
@@ -238,6 +386,16 @@ h2{margin:0;color:#fff;font:400 clamp(34px,4vw,52px)/1.1 Kanit,Prompt,sans-serif
 </section>
 
 </div>
+
+<style id="index-footer-exact-services">
+.customer-footer{border-top:1px solid rgba(255,255,255,.08);background:#030302;color:#999;position:relative;z-index:20;font-family:Prompt,Kanit,sans-serif}
+.customer-footer-inner{width:min(1440px,calc(100% - 42px));margin:auto;padding:62px 0 22px}.customer-footer-upper{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:50px}.customer-footer-brand{display:flex;align-items:center;gap:14px}.customer-footer-logo{width:64px;height:64px;object-fit:contain}.customer-footer-brand-name{color:#fff;font-family:Kanit,Prompt,sans-serif;font-size:18px;letter-spacing:1.6px}.customer-footer-brand-sub{margin-top:2px;color:#c9a45c;font-size:8px;letter-spacing:2px}.customer-footer-info{margin-top:17px}.customer-footer-company-line{color:#aaa39a;font-size:12px;line-height:1.8}.customer-footer-company-line.strong{margin-top:8px;color:#c7bfb4}.customer-footer-service-line{display:flex;flex-wrap:wrap;gap:12px;margin-top:5px}.customer-footer-service-item{font-size:11px;color:#8f887f}.customer-footer-service-item .icon{color:#c9a45c;margin-right:4px}.customer-footer-menu-title{margin-bottom:14px;color:#ead18d;font-family:Kanit,Prompt,sans-serif;font-size:12px;letter-spacing:2px}.customer-footer-menu-list{margin:0;padding:0;list-style:none}.customer-footer-menu-list li{margin-bottom:10px}.customer-footer-menu-list a{color:#999;font-size:12px;text-decoration:none}.customer-footer-menu-list a:hover{color:#ead18d}.customer-footer-divider{height:1px;margin:38px 0 16px;background:rgba(255,255,255,.08)}.customer-footer-bottom{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:18px;font-size:10px}.customer-footer-copyright{color:#68645e}.customer-footer-copyright strong{color:#9b948d}.customer-footer-address{display:flex;align-items:center;gap:6px;color:#77716b}.customer-footer-actions{display:flex;gap:7px}.customer-footer-action{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid rgba(201,164,92,.24);color:#c9a45c;text-decoration:none}.customer-footer-social{display:flex;gap:6px}.customer-social{width:31px;height:31px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.10);color:#aaa;text-decoration:none;font-size:10px}
+@media(max-width:800px){.customer-footer-inner{width:calc(100% - 32px);padding:45px 0 20px}.customer-footer-upper{grid-template-columns:1fr;gap:35px}.customer-footer-bottom{grid-template-columns:1fr;gap:12px}.customer-footer-actions{flex-wrap:wrap}}
+</style>
+<footer class="customer-footer">
+<div class="customer-footer-inner"><div class="customer-footer-upper"><div><div class="customer-footer-brand"><img class="customer-footer-logo" src="assets/logo.png" alt="CHATPHETCH GROUP"><div><div class="customer-footer-brand-name">CHATPHETCH GROUP</div><div class="customer-footer-brand-sub">FLOORING &amp; CONSTRUCTION</div></div></div><div class="customer-footer-info"><div class="customer-footer-company-line">🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹</div><div class="customer-footer-service-line"><span class="customer-footer-service-item"><span class="icon">♠</span>สร้างสรรค์ผลงาน</span><span class="customer-footer-service-item"><span class="icon">♠</span>มาตรฐานเข้าถึง</span><span class="customer-footer-service-item"><span class="icon">♠</span>ยืน 1 คุณภาพ</span></div><div class="customer-footer-company-line strong">บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร</div></div></div><div class="customer-footer-menu"><div class="customer-footer-menu-title">MENU</div><ul class="customer-footer-menu-list"><li><a href="index.html">หน้าแรก</a></li><li><a href="about.html">เกี่ยวกับเรา</a></li><li><a href="products.html">สินค้า</a></li><li><a href="services.html">บริการ</a></li><li><a href="projects.html">ผลงาน</a></li><li><a href="contact.html">ติดต่อเรา</a></li></ul></div></div><div class="customer-footer-divider"></div><div class="customer-footer-bottom"><div class="customer-footer-copyright">© <strong>CHATPHETCH GROUP CO., LTD.</strong> All Rights Reserved.</div><div class="customer-footer-address">📍 <span>10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310</span></div><div class="customer-footer-actions"><a class="customer-footer-action" href="contact.html">☎ ติดต่อเรา</a><a class="customer-footer-action" href="order-status.html">🔎 ติดตามคำสั่งซื้อ</a></div><div class="customer-footer-social"><a class="customer-social" href="https://www.facebook.com/ChatphetchGroup" target="_blank" rel="noopener noreferrer">f</a><a class="customer-social" href="#">▶</a><a class="customer-social" href="#">LINE</a></div></div></div>
+</footer>
+
 <script src="assets/customer-master-nav.js"></script>
 </body>
 </html>
