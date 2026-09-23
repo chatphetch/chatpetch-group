@@ -157,6 +157,7 @@ a{color:inherit;text-decoration:none}
   box-shadow:0 30px 90px rgba(0,0,0,.35);
 }
 .detail-top{
+  position:relative;
   display:grid;
   grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);
 }
@@ -186,6 +187,30 @@ a{color:inherit;text-decoration:none}
   font-size:11px;
   letter-spacing:2px;
   background:radial-gradient(circle at center,rgba(201,164,92,.10),rgba(0,0,0,.35));
+}
+.image-back-btn{
+  position:absolute;
+  left:22px;
+  top:-58px;
+  z-index:20;
+  min-height:42px;
+  padding:0 18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:11px;
+  letter-spacing:.2px;
+  border:1px solid rgba(228,197,127,.58);
+  background:rgba(5,4,3,.94);
+  box-shadow:0 8px 24px rgba(0,0,0,.45);
+  backdrop-filter:blur(8px);
+  transition:.2s ease;
+}
+.image-back-btn:hover{
+  color:#160e07;
+  background:linear-gradient(135deg,#e4c57f,#b18442);
+  transform:translateY(-2px);
 }
 .visual-label{
   position:absolute;
@@ -435,6 +460,7 @@ a{color:inherit;text-decoration:none}
   position:absolute;
   top:18px;
   right:22px;
+  z-index:5;
   width:42px;
   height:42px;
   display:grid;
@@ -444,6 +470,55 @@ a{color:inherit;text-decoration:none}
   border:1px solid rgba(228,197,127,.45);
   background:rgba(0,0,0,.45);
   cursor:pointer;
+}
+.lightbox-stage{
+  position:relative;
+  max-width:min(1200px,82vw);
+  max-height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.lightbox-stage img{
+  max-width:100%;
+  max-height:90vh;
+  object-fit:contain;
+  box-shadow:0 30px 100px rgba(0,0,0,.7);
+}
+.lightbox-prev,
+.lightbox-next{
+  position:absolute;
+  top:50%;
+  z-index:5;
+  transform:translateY(-50%);
+  width:54px;
+  height:76px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:48px;
+  line-height:1;
+  border:1px solid rgba(228,197,127,.48);
+  background:rgba(5,4,3,.68);
+  cursor:pointer;
+  user-select:none;
+}
+.lightbox-prev{left:20px}
+.lightbox-next{right:20px}
+.lightbox-prev:hover,
+.lightbox-next:hover,
+.lightbox-close:hover{
+  background:rgba(201,164,92,.30);
+}
+.lightbox-counter{
+  position:absolute;
+  left:50%;
+  bottom:-30px;
+  transform:translateX(-50%);
+  color:#e4c57f;
+  font-size:11px;
+  letter-spacing:2px;
+  white-space:nowrap;
 }
 .lightbox-stage{
   position:relative;
@@ -535,6 +610,13 @@ a{color:inherit;text-decoration:none}
   .hero p{font-size:14px;line-height:1.82}
   .detail{padding-top:5px}
   .detail-visual,.detail-visual img{min-height:290px}
+  .image-back-btn{
+    left:12px;
+    top:-48px;
+    min-height:40px;
+    padding:0 14px;
+    font-size:10px;
+  }
   .detail-copy{padding:28px 20px 30px}
   .detail-copy h2{font-size:37px}
   .detail-copy h2 small{font-size:16px}
@@ -549,6 +631,16 @@ a{color:inherit;text-decoration:none}
   }
   .cta-actions{flex-direction:column}
   .cta-actions>*{width:100%}
+  .lightbox{padding:10px}
+  .lightbox-stage{max-width:86vw}
+  .lightbox-prev,
+  .lightbox-next{
+    width:42px;
+    height:58px;
+    font-size:38px;
+  }
+  .lightbox-prev{left:7px}
+  .lightbox-next{right:7px}
 }
 </style>
 </head>
@@ -573,6 +665,7 @@ a{color:inherit;text-decoration:none}
   <div class="detail-shell">
 
     <div class="detail-top">
+      <a class="image-back-btn" href="services.html">← กลับสู่หน้าหลัก</a>
       <div class="detail-visual" id="detailVisual">
         <div class="visual-empty" id="visualEmpty">LOADING PROJECT IMAGE</div>
         <img id="mainImage" alt="" style="display:none">
@@ -588,7 +681,7 @@ a{color:inherit;text-decoration:none}
 
         <div class="detail-actions">
           <a class="btn btn-gold" href="contact.html">ติดต่อเรา</a>
-          <a class="btn btn-outline" href="services.html">← กลับสู่หน้าหลัก</a>
+
         </div>
       </div>
     </div>
@@ -835,6 +928,13 @@ a{color:inherit;text-decoration:none}
       };
     });
 
+    setGallery(images.slice(0,12).map(function(item,index){
+      return {
+        src: rawUrl(item.path),
+        alt: data.title + " project reference " + (index + 1)
+      };
+    }));
+
     images.slice(0,12).forEach(function(item,index){
       const card = document.createElement("div");
       card.className = "project-card";
@@ -896,7 +996,11 @@ a{color:inherit;text-decoration:none}
   let touchStartX = 0;
   let touchStartY = 0;
 
-  function updateLightbox(){
+  function setGallery(items){
+    galleryImages = items || [];
+  }
+
+  function renderLightbox(){
     if(!galleryImages.length) return;
     const item = galleryImages[galleryIndex];
     lightboxImage.src = item.src;
@@ -910,13 +1014,14 @@ a{color:inherit;text-decoration:none}
       galleryImages = [{src:src,alt:alt || ""}];
     }
     if(typeof index === "number"){
-      galleryIndex = Math.max(0,Math.min(index,galleryImages.length - 1));
+      galleryIndex = index;
     }else{
-      const found = galleryImages.findIndex(function(item){ return item.src === src; });
+      const found = galleryImages.findIndex(function(item){
+        return item.src === src;
+      });
       galleryIndex = found >= 0 ? found : 0;
     }
-
-    updateLightbox();
+    renderLightbox();
     lightbox.classList.add("open");
     lightbox.setAttribute("aria-hidden","false");
     document.body.style.overflow = "hidden";
@@ -931,27 +1036,35 @@ a{color:inherit;text-decoration:none}
 
   function showPrevious(){
     if(galleryImages.length < 2) return;
-    galleryIndex = (galleryIndex - 1 + galleryImages.length) % galleryImages.length;
-    updateLightbox();
+    galleryIndex =
+      (galleryIndex - 1 + galleryImages.length) % galleryImages.length;
+    renderLightbox();
   }
 
   function showNext(){
     if(galleryImages.length < 2) return;
-    galleryIndex = (galleryIndex + 1) % galleryImages.length;
-    updateLightbox();
+    galleryIndex =
+      (galleryIndex + 1) % galleryImages.length;
+    renderLightbox();
   }
 
   lightboxPrev.addEventListener("click",function(e){
+    e.preventDefault();
     e.stopPropagation();
     showPrevious();
   });
 
   lightboxNext.addEventListener("click",function(e){
+    e.preventDefault();
     e.stopPropagation();
     showNext();
   });
 
-  document.getElementById("lightboxClose").addEventListener("click",closeLightbox);
+  document.getElementById("lightboxClose").addEventListener("click",function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    closeLightbox();
+  });
 
   lightbox.addEventListener("click",function(e){
     if(e.target === lightbox) closeLightbox();
@@ -967,8 +1080,7 @@ a{color:inherit;text-decoration:none}
     if(!e.changedTouches || !e.changedTouches.length) return;
     const dx = e.changedTouches[0].clientX - touchStartX;
     const dy = e.changedTouches[0].clientY - touchStartY;
-
-    if(Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)){
+    if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)){
       if(dx < 0) showNext();
       else showPrevious();
     }
