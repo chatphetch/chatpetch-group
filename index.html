@@ -46,7 +46,7 @@ h2{margin:0;color:#fff;font:400 clamp(34px,4vw,52px)/1.1 Kanit,Prompt,sans-serif
 .card{min-height:260px;padding:26px;display:flex;flex-direction:column;border:1px solid rgba(201,164,92,.22);background:linear-gradient(145deg,rgba(18,12,8,.94),rgba(4,3,2,.96));transition:.2s}
 .card:hover{transform:translateY(-3px)}
 .num{color:#e4c57f;font-size:10px;letter-spacing:2px}
-.card .icon{width:42px;height:42px;margin-top:20px;display:grid;place-items:center;color:#e4c57f;border:1px solid rgba(201,164,92,.30)}
+.index-card-icon{width:42px;height:42px;margin-top:20px;display:grid;place-items:center;color:#e4c57f;border:1px solid rgba(201,164,92,.30)}
 .card h3{margin:15px 0 7px;color:#fff;font:400 20px Kanit,Prompt,sans-serif}
 .card p{margin:0;color:#c9c0b5;font-size:12px;line-height:1.8}
 .link{margin-top:auto;padding-top:18px;color:#e4c57f;font-size:11px}
@@ -92,6 +92,19 @@ h2{margin:0;color:#fff;font:400 clamp(34px,4vw,52px)/1.1 Kanit,Prompt,sans-serif
       url("assets/index-main-bg.png?v=20260922") center top / 100% auto no-repeat;
     background-attachment:scroll;
     background-color:#050403;
+    min-height:100vh;
+  }
+
+  /* Footer เป็นของ master navigation โดยตรง
+     ไม่ให้ CSS ของหน้า Index ไปชนกับ icon ของ Footer */
+  .customer-footer .icon{
+    width:auto !important;
+    height:auto !important;
+    margin:0 !important;
+    display:inline !important;
+    border:0 !important;
+    place-items:initial !important;
+    color:inherit !important;
   }
 
   .hero{min-height:570px;padding:105px 0 45px;align-items:flex-start}
@@ -113,6 +126,25 @@ h2{margin:0;color:#fff;font:400 clamp(34px,4vw,52px)/1.1 Kanit,Prompt,sans-serif
   .hero-title{font-size:46px}
   .hero p{font-size:12.5px}
   .hero-copy{padding-top:28px}
+}
+
+/* =========================================================
+   INDEX PAGE ISOLATION
+   ป้องกัน CSS ของหน้าแรกชนกับ Master Footer / Header
+========================================================= */
+.index-card-icon{
+  width:42px;
+  height:42px;
+  margin-top:20px;
+  display:grid;
+  place-items:center;
+  color:#e4c57f;
+  border:1px solid rgba(201,164,92,.30);
+}
+
+.customer-footer{
+  position:relative;
+  z-index:5;
 }
 </style>
 </head>
@@ -144,10 +176,10 @@ h2{margin:0;color:#fff;font:400 clamp(34px,4vw,52px)/1.1 Kanit,Prompt,sans-serif
     <h2>ครบทุกความต้องการ<br>เรื่องพื้นและงานก่อสร้าง</h2>
     <p class="desc">วัสดุ บริการ และโซลูชัน สำหรับงานพื้นและงานก่อสร้าง ที่เหมาะกับลักษณะของแต่ละโครงการ</p>
     <div class="grid4">
-      <div class="card"><div class="num">01</div><div class="icon">⌂</div><h3>ระบบงานพื้น</h3><p>โซลูชันพื้นสำหรับบ้าน อาคาร โรงงาน และพื้นที่ใช้งานหลากหลายรูปแบบ</p><a class="link" href="services.html">ดูรายละเอียด →</a></div>
-      <div class="card"><div class="num">02</div><div class="icon">▣</div><h3>สินค้า</h3><p>วัสดุงานพื้นและวัสดุก่อสร้าง สำหรับงานติดตั้งและงานปรับปรุงพื้นที่</p><a class="link" href="products.html">ดูสินค้า →</a></div>
-      <div class="card"><div class="num">03</div><div class="icon">◇</div><h3>ผลงาน</h3><p>ตัวอย่างโครงการจริง จากงานพื้น งานเคลือบผิว และงานก่อสร้างหลากหลายประเภท</p><a class="link" href="projects.html">ดูผลงาน →</a></div>
-      <div class="card"><div class="num">04</div><div class="icon">✦</div><h3>บริการ</h3><p>บริการด้านพื้น กันรั่วซึม งานคอนกรีต สนามกีฬา งานตกแต่ง และเส้นจราจร</p><a class="link" href="services.html">ดูบริการทั้งหมด →</a></div>
+      <div class="card"><div class="num">01</div><div class="index-card-icon">⌂</div><h3>ระบบงานพื้น</h3><p>โซลูชันพื้นสำหรับบ้าน อาคาร โรงงาน และพื้นที่ใช้งานหลากหลายรูปแบบ</p><a class="link" href="services.html">ดูรายละเอียด →</a></div>
+      <div class="card"><div class="num">02</div><div class="index-card-icon">▣</div><h3>สินค้า</h3><p>วัสดุงานพื้นและวัสดุก่อสร้าง สำหรับงานติดตั้งและงานปรับปรุงพื้นที่</p><a class="link" href="products.html">ดูสินค้า →</a></div>
+      <div class="card"><div class="num">03</div><div class="index-card-icon">◇</div><h3>ผลงาน</h3><p>ตัวอย่างโครงการจริง จากงานพื้น งานเคลือบผิว และงานก่อสร้างหลากหลายประเภท</p><a class="link" href="projects.html">ดูผลงาน →</a></div>
+      <div class="card"><div class="num">04</div><div class="index-card-icon">✦</div><h3>บริการ</h3><p>บริการด้านพื้น กันรั่วซึม งานคอนกรีต สนามกีฬา งานตกแต่ง และเส้นจราจร</p><a class="link" href="services.html">ดูบริการทั้งหมด →</a></div>
     </div>
   </div>
 </section>
