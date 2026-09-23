@@ -2026,6 +2026,123 @@ textarea{
 }
 
 </style>
+
+
+<style id="products-theme-sync">
+/* =========================================================
+   PRODUCT DETAIL — SAME VISUAL SYSTEM AS PRODUCTS PAGE
+   ใช้พื้นหลัง / ระยะ / typography ชุดเดียวกับ products.html
+========================================================= */
+html{background:#100b07}
+body{
+  background:#100b07 !important;
+}
+body::before{
+  display:none !important;
+}
+.product-detail-page{
+  min-height:100vh;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.52) 0%,
+      rgba(0,0,0,.35) 24%,
+      rgba(0,0,0,.54) 55%,
+      rgba(0,0,0,.96) 100%
+    ),
+    url("assets/index-main-bg.png")
+    center top / cover no-repeat fixed;
+}
+.page-hero{
+  min-height:600px !important;
+  padding:145px 0 75px !important;
+  display:flex !important;
+  align-items:center !important;
+  background:transparent !important;
+}
+.page-hero::before{
+  width:720px !important;
+  height:720px !important;
+  right:-270px !important;
+  top:-270px !important;
+  background:radial-gradient(circle,rgba(0,0,0,.10),transparent 67%) !important;
+}
+.page-hero::after{
+  background:linear-gradient(90deg,transparent,rgba(201,164,92,.24),transparent) !important;
+}
+.hero-inner{
+  width:min(1280px,calc(100% - 70px)) !important;
+  margin:0 auto !important;
+  padding:0 !important;
+}
+.eyebrow{
+  color:#e4c979 !important;
+  font-size:11px !important;
+  letter-spacing:2.5px !important;
+  font-weight:500 !important;
+  margin-bottom:12px !important;
+}
+.eyebrow::before{
+  width:40px !important;
+  background:#c9a85a !important;
+}
+.page-title{
+  margin:12px 0 18px !important;
+  color:#fff !important;
+  font-family:"Kanit","Prompt",sans-serif !important;
+  font-size:clamp(54px,7vw,88px) !important;
+  font-weight:400 !important;
+  line-height:1.02 !important;
+  letter-spacing:-1.5px !important;
+  text-shadow:0 8px 30px rgba(0,0,0,.95) !important;
+}
+.page-title-en{
+  margin-top:8px !important;
+  color:#e4c979 !important;
+  font-family:"Kanit","Prompt",sans-serif !important;
+  font-size:.42em !important;
+  font-weight:500 !important;
+  line-height:1.2 !important;
+  letter-spacing:3px !important;
+}
+.page-description{
+  display:block !important;
+  width:540px !important;
+  max-width:540px !important;
+  margin:0 !important;
+  padding:0 !important;
+  color:#fff8ef !important;
+  font-size:14px !important;
+  line-height:1.9 !important;
+  text-shadow:0 4px 18px rgba(0,0,0,.92) !important;
+}
+.product-section{
+  padding:20px 0 80px !important;
+  background:transparent !important;
+}
+.product-section > .container{
+  width:min(1280px,calc(100% - 70px)) !important;
+}
+@media(max-width:700px){
+  .page-hero{
+    min-height:560px !important;
+    padding:125px 0 55px !important;
+  }
+  .hero-inner,
+  .product-section > .container{
+    width:calc(100% - 32px) !important;
+  }
+  .page-title{
+    font-size:clamp(45px,13vw,70px) !important;
+  }
+  .page-description{
+    width:100% !important;
+    max-width:100% !important;
+    font-size:13px !important;
+  }
+}
+</style>
+
 </head>
 
 
@@ -2036,165 +2153,15 @@ textarea{
      HEADER
 ========================================================= -->
 
-<header class="header">
-
-  <div class="container">
-
-    <nav class="navbar">
-
-      <a
-        href="index.html"
-        class="customer-brand"
-        aria-label="CHATPHETCH GROUP"
-      >
-
-        <img
-          src="assets/logo.png"
-          alt="CHATPHETCH GROUP"
-          width="72"
-          height="72"
-        >
-
-        <div class="customer-brand-text">
-
-          <strong>
-            CHATPHETCH GROUP
-          </strong>
-
-          <small>
-            FLOORING &amp; CONSTRUCTION
-          </small>
-
-        </div>
-
-      </a>
-
-
-      <div
-        class="customer-nav"
-        id="navMenu"
-      >
-
-        <a href="index.html">
-          หน้าแรก
-        </a>
-
-        <a href="about.html">
-          เกี่ยวกับเรา
-        </a>
-
-        <a
-          href="products.html"
-          class="active"
-        >
-          สินค้า
-        </a>
-
-
-        <div
-          class="nav-dropdown"
-          id="serviceDropdown"
-        >
-
-          <button
-            type="button"
-            class="nav-drop-trigger"
-            id="serviceTrigger"
-          >
-            บริการ
-            <span class="arrow">▼</span>
-          </button>
-
-
-          <div class="nav-submenu">
-
-            <a href="services.html">
-              ดูบริการทั้งหมด
-            </a>
-
-            <a href="service-detail.html?service=industrial">
-              บริการระบบงานพื้น
-            </a>
-
-            <a href="service-detail.html?service=coating">
-              บริการเคลือบผิว / สี
-            </a>
-
-            <a href="service-detail.html?service=consulting">
-              ปรึกษาและเลือกวัสดุ
-            </a>
-
-            <a href="service-detail.html?service=installation">
-              คำปรึกษางานติดตั้ง
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <a href="projects.html">
-          ผลงาน
-        </a>
-
-        <a href="reference.html">
-          โครงการอ้างอิง
-        </a>
-
-        <a href="technical-center.html">
-          ศูนย์เทคนิค
-        </a>
-
-        <a href="knowledge.html">
-          คลังความรู้
-        </a>
-
-        <a href="contact.html">
-          ติดต่อเรา
-        </a>
-
-        <a href="order-status.html">
-          🔎 ติดตามคำสั่งซื้อ
-        </a>
-
-        <a
-          href="cart.html"
-          class="nav-shop"
-        >
-          🛒 ตะกร้า
-
-          <span
-            class="cart-count"
-            id="cartCount"
-          >
-            0
-          </span>
-
-        </a>
-
-      </div>
-
-
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="เปิดเมนู"
-        aria-expanded="false"
-      >
-        ☰
-      </button>
-
-    </nav>
-
-  </div>
-
-</header>
+<div id="customer-master-nav"></div>
 
 
 
 <!-- =========================================================
      PAGE HERO
 ========================================================= -->
+
+<div class="product-detail-page">
 
 <section class="page-hero">
 
@@ -2641,160 +2608,9 @@ textarea{
      FOOTER
 ========================================================= -->
 
-<footer class="footer">
+</div>
 
-  <div class="container">
-
-    <div class="footer-grid">
-
-
-      <div class="footer-brand">
-
-        <img
-          src="assets/logo.png"
-          alt="CHATPHETCH GROUP"
-        >
-
-        <div class="footer-brand-content">
-
-          <strong>
-            CHATPHETCH GROUP
-          </strong>
-
-          <p>
-            🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹
-          </p>
-
-          <p class="footer-tagline">
-            ♠️ สร้างสรรค์ผลงาน
-            &nbsp;&nbsp;
-            ♠️ มาตรฐานเข้าถึง
-            &nbsp;&nbsp;
-            ♠️ ยืน 1 คุณภาพ
-          </p>
-
-          <p>
-            บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
-          </p>
-
-        </div>
-
-      </div>
-
-
-
-      <div class="footer-menu">
-
-        <h3>
-          MENU
-        </h3>
-
-        <a href="index.html">
-          หน้าแรก
-        </a>
-
-        <a href="about.html">
-          เกี่ยวกับเรา
-        </a>
-
-        <a href="products.html">
-          สินค้า
-        </a>
-
-        <a href="services.html">
-          บริการ
-        </a>
-
-        <a href="projects.html">
-          ผลงาน
-        </a>
-
-        <a href="reference.html">
-          โครงการอ้างอิง
-        </a>
-
-        <a href="technical-center.html">
-          ศูนย์เทคนิค
-        </a>
-
-        <a href="knowledge.html">
-          คลังความรู้
-        </a>
-
-        <a href="contact.html">
-          ติดต่อเรา
-        </a>
-
-      </div>
-
-    </div>
-
-
-
-    <div class="footer-bottom">
-
-      <div class="footer-copy">
-        © 2026 CHATPHETCH GROUP. All Rights Reserved.
-      </div>
-
-
-      <div class="footer-info">
-
-        <span class="footer-address">
-          10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310
-        </span>
-
-
-        <a
-          href="contact.html"
-          class="footer-btn"
-        >
-          ☎ ติดต่อเรา
-        </a>
-
-
-        <a
-          href="order-status.html"
-          class="footer-btn"
-        >
-          🔎 ติดตามคำสั่งซื้อ
-        </a>
-
-
-        <div class="social">
-
-          <a
-            href="https://www.facebook.com/ChatphetchGroup"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
-            f
-          </a>
-
-          <a
-            href="#"
-            aria-label="YouTube"
-          >
-            ▶
-          </a>
-
-          <a
-            href="#"
-            aria-label="LINE"
-          >
-            LINE
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</footer>
+<div id="customer-master-footer"></div>
 
 
 
@@ -4429,6 +4245,8 @@ document
 loadProduct();
 
 </script>
+
+<script src="assets/customer-master-nav.js"></script>
 
 </body>
 </html>
