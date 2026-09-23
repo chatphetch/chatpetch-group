@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>บริการ | CHATPHETCH GROUP</title>
-<meta name="description" content="บริการงานพื้น งานเคลือบผิว งานกันซึม งานคอนกรีต พื้นสนามกีฬา พื้นตกแต่ง และระบบงานสัญลักษณ์และเส้นจราจร CHATPHETCH GROUP">
+<title>รายละเอียดบริการ | CHATPHETCH GROUP</title>
+<meta name="description" content="รายละเอียดระบบบริการงานพื้น งานเคลือบผิว งานกันซึม งานคอนกรีต พื้นสนามกีฬา พื้นตกแต่ง และระบบงานสัญลักษณ์ CHATPHETCH GROUP">
 
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="apple-touch-icon" href="assets/logo.png">
@@ -26,7 +26,6 @@
   --line:rgba(201,164,92,.22);
   --max:1240px;
 }
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -38,7 +37,6 @@ body{
   font-family:"Prompt","Kanit",sans-serif;
 }
 a{color:inherit;text-decoration:none}
-
 .cp-page{
   position:relative;
   min-height:100vh;
@@ -60,32 +58,31 @@ a{color:inherit;text-decoration:none}
   inset:0;
   z-index:-1;
   pointer-events:none;
-  background:
-    linear-gradient(180deg,
-      rgba(0,0,0,.38) 0%,
-      rgba(0,0,0,.18) 20%,
-      rgba(0,0,0,.34) 48%,
-      rgba(0,0,0,.72) 78%,
-      rgba(0,0,0,.94) 100%);
+  background:linear-gradient(180deg,
+    rgba(0,0,0,.38) 0%,
+    rgba(0,0,0,.18) 20%,
+    rgba(0,0,0,.34) 48%,
+    rgba(0,0,0,.72) 78%,
+    rgba(0,0,0,.94) 100%);
 }
 .cp-page>*{position:relative;z-index:2}
 
 /* HERO */
 .hero{
-  min-height:650px;
+  min-height:610px;
   display:flex;
   align-items:center;
 }
 .hero-inner{
   width:min(var(--max),calc(100% - 80px));
   margin:auto;
-  padding-top:100px;
+  padding-top:105px;
 }
 .hero-copy{
   position:relative;
-  width:min(760px,100%);
-  padding:30px 42px 34px 0;
-  transform:translateY(45px);
+  width:min(820px,100%);
+  padding:30px 42px 38px 0;
+  transform:translateY(38px);
 }
 .hero-copy::before{
   content:"";
@@ -93,12 +90,12 @@ a{color:inherit;text-decoration:none}
   z-index:-1;
   left:-180px;
   top:-90px;
-  width:850px;
-  height:520px;
+  width:900px;
+  height:560px;
   border-radius:50%;
   background:radial-gradient(ellipse at center,
-    rgba(0,0,0,.78) 0%,
-    rgba(0,0,0,.46) 43%,
+    rgba(0,0,0,.80) 0%,
+    rgba(0,0,0,.48) 43%,
     rgba(0,0,0,0) 77%);
 }
 .kicker{
@@ -120,17 +117,17 @@ a{color:inherit;text-decoration:none}
   margin:17px 0 0;
   color:var(--white);
   font-family:"Kanit","Prompt",sans-serif;
-  font-size:clamp(48px,6.4vw,82px);
+  font-size:clamp(46px,6vw,78px);
   font-weight:400;
-  line-height:1;
-  letter-spacing:-1.8px;
+  line-height:1.02;
+  letter-spacing:-1.6px;
   text-shadow:0 8px 35px rgba(0,0,0,.72);
 }
 .hero h1 span{
   display:block;
-  margin-top:10px;
+  margin-top:12px;
   color:var(--gold2);
-  font-size:.27em;
+  font-size:.24em;
   font-weight:500;
   letter-spacing:4px;
 }
@@ -141,274 +138,117 @@ a{color:inherit;text-decoration:none}
   background:linear-gradient(90deg,var(--gold),transparent);
 }
 .hero p{
-  max-width:690px;
+  max-width:760px;
   margin:18px 0 0;
-  color:rgba(247,240,232,.88);
+  color:rgba(247,240,232,.86);
   font-size:15px;
   line-height:1.9;
-  text-shadow:0 4px 20px rgba(0,0,0,.8);
 }
 
-/* CONTENT */
-.section{
+/* DETAIL */
+.detail{
   width:min(var(--max),calc(100% - 80px));
   margin:auto;
-  padding:55px 0 72px;
+  padding:20px 0 80px;
 }
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:35px;
-  margin-bottom:28px;
-}
-.section-title{
-  margin:8px 0 0;
-  color:var(--white);
-  font-family:"Kanit","Prompt",sans-serif;
-  font-size:clamp(34px,4vw,52px);
-  font-weight:400;
-  line-height:1.08;
-  text-shadow:0 5px 24px rgba(0,0,0,.8);
-}
-.section-note{
-  max-width:520px;
-  color:rgba(247,240,232,.72);
-  font-size:13px;
-  line-height:1.85;
-  text-align:right;
-}
-
-/* SERVICE CARDS */
-.service-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:18px;
-}
-.service-card{
-  position:relative;
-  min-width:0;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
+.detail-shell{
   border:1px solid rgba(201,164,92,.24);
-  background:linear-gradient(145deg,rgba(17,11,7,.94),rgba(4,3,2,.92));
-  box-shadow:0 24px 65px rgba(0,0,0,.28);
-  transition:.25s ease;
+  background:linear-gradient(145deg,rgba(17,11,7,.92),rgba(4,3,2,.90));
+  box-shadow:0 30px 90px rgba(0,0,0,.35);
 }
-.service-card:hover{
-  transform:translateY(-5px);
-  border-color:rgba(228,197,127,.52);
-  box-shadow:0 30px 75px rgba(0,0,0,.42);
+.detail-top{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);
 }
-.service-image{
+.detail-visual{
+  min-height:520px;
   position:relative;
-  height:245px;
   overflow:hidden;
-  background:linear-gradient(145deg,#2b1b0f,#080604);
+  background:#090806;
+  border-right:1px solid rgba(201,164,92,.18);
 }
-.service-image img{
+.detail-visual img{
   width:100%;
   height:100%;
+  min-height:520px;
   display:block;
   object-fit:cover;
-  opacity:0;
-  transition:transform .55s ease,opacity .35s ease,filter .35s ease;
-  filter:saturate(.88) contrast(1.04);
+  cursor:zoom-in;
+  transition:transform .35s ease;
 }
-.service-image.loaded img{opacity:1}
-.service-card:hover .service-image img{
-  transform:scale(1.045);
-  filter:saturate(1) contrast(1.06);
-}
-.service-image::after{
-  content:"";
+.detail-visual:hover img{transform:scale(1.015)}
+.visual-empty{
   position:absolute;
   inset:0;
-  pointer-events:none;
-  background:linear-gradient(180deg,
-    rgba(0,0,0,.02) 25%,
-    rgba(0,0,0,.12) 50%,
-    rgba(5,4,3,.86) 100%);
-}
-.service-image-label{
-  position:absolute;
-  left:17px;
-  bottom:15px;
-  z-index:3;
-  padding:6px 10px;
-  border:1px solid rgba(228,197,127,.38);
-  background:rgba(7,5,3,.55);
-  backdrop-filter:blur(7px);
-  color:#fff8ef;
-  font-size:9px;
-  letter-spacing:1.4px;
-}
-.service-loading{
-  position:absolute;
-  inset:0;
-  z-index:2;
   display:grid;
   place-items:center;
-  color:rgba(228,197,127,.62);
-  font-size:9px;
-  letter-spacing:2px;
-}
-.service-image.loaded .service-loading{display:none}
-.service-body{
-  position:relative;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  padding:22px 22px 22px;
-}
-.service-number{
-  position:absolute;
-  top:13px;
-  right:16px;
-  color:rgba(228,197,127,.16);
-  font-family:"Kanit",sans-serif;
-  font-size:65px;
-  line-height:1;
-  font-weight:500;
-}
-.service-code{
-  position:relative;
-  z-index:2;
-  color:var(--gold2);
-  font-size:10px;
-  letter-spacing:2px;
-}
-.service-card h3{
-  position:relative;
-  z-index:2;
-  margin:14px 55px 0 0;
-  color:#fff;
-  font-family:"Kanit","Prompt",sans-serif;
-  font-size:23px;
-  font-weight:400;
-  line-height:1.18;
-}
-.service-card h3 small{
-  display:block;
-  margin-top:5px;
-  color:rgba(255,248,239,.58);
-  font-size:13px;
-  font-weight:400;
-  line-height:1.4;
-}
-.service-card p{
-  position:relative;
-  z-index:2;
-  margin:12px 0 0;
-  color:rgba(255,250,244,.72);
-  font-size:13px;
-  line-height:1.8;
-}
-.tags{
-  position:relative;
-  z-index:2;
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-top:auto;
-  padding-top:18px;
-}
-.tag{
-  padding:5px 8px;
-  border:1px solid rgba(201,164,92,.22);
-  color:rgba(255,248,239,.66);
-  background:rgba(255,255,255,.025);
-  font-size:9px;
-  letter-spacing:.7px;
-}
-.card-link{
-  position:relative;
-  z-index:2;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  width:max-content;
-  margin-top:17px;
-  color:var(--gold2);
+  color:#7f776d;
   font-size:11px;
-  font-weight:500;
+  letter-spacing:2px;
+  background:radial-gradient(circle at center,rgba(201,164,92,.10),rgba(0,0,0,.35));
 }
-.card-link:hover{color:#fff}
-
-/* WORKFLOW */
-.workflow{
-  width:min(var(--max),calc(100% - 80px));
-  margin:auto;
-  padding:5px 0 75px;
-}
-.workflow-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  border:1px solid rgba(201,164,92,.22);
+.visual-label{
+  position:absolute;
+  left:22px;
+  bottom:20px;
+  padding:9px 13px;
+  color:#fff;
+  font-size:10px;
+  letter-spacing:1.4px;
+  border:1px solid rgba(228,197,127,.48);
   background:rgba(5,4,3,.72);
+  backdrop-filter:blur(7px);
 }
-.step{
-  position:relative;
-  min-height:190px;
-  padding:26px 23px;
-  border-right:1px solid rgba(201,164,92,.16);
+.detail-copy{
+  padding:42px 38px 40px;
 }
-.step:last-child{border-right:0}
-.step-no{
+.detail-code{
   color:var(--gold2);
   font-size:10px;
-  letter-spacing:2px;
-}
-.step h3{
-  margin:15px 0 0;
-  color:#fff;
-  font-family:"Kanit","Prompt",sans-serif;
-  font-size:20px;
-  font-weight:400;
-}
-.step p{
-  margin:9px 0 0;
-  color:rgba(255,248,239,.66);
-  font-size:12px;
-  line-height:1.8;
-}
-
-/* CTA */
-.cta{
-  width:min(1000px,calc(100% - 80px));
-  margin:0 auto 85px;
-  padding:55px 40px;
-  text-align:center;
-  border:1px solid rgba(201,164,92,.28);
-  background:linear-gradient(135deg,rgba(27,17,10,.82),rgba(5,4,3,.78));
-  box-shadow:0 30px 80px rgba(0,0,0,.35);
-  backdrop-filter:blur(9px);
-}
-.cta-label{
-  color:var(--gold2);
-  font-size:9px;
   letter-spacing:3px;
 }
-.cta h2{
-  margin:10px 0 0;
+.detail-copy h2{
+  margin:13px 0 0;
   color:#fff;
   font-family:"Kanit","Prompt",sans-serif;
-  font-size:clamp(34px,4vw,55px);
+  font-size:clamp(34px,4vw,56px);
+  font-weight:400;
+  line-height:1.05;
+}
+.detail-copy h2 small{
+  display:block;
+  margin-top:9px;
+  color:var(--gold2);
+  font-family:"Prompt","Kanit",sans-serif;
+  font-size:18px;
+  line-height:1.5;
   font-weight:400;
 }
-.cta p{
-  max-width:650px;
-  margin:14px auto 22px;
-  color:rgba(255,255,255,.72);
-  font-size:13px;
-  line-height:1.85;
+.detail-copy p{
+  margin:22px 0 0;
+  color:rgba(255,248,239,.73);
+  font-size:14px;
+  line-height:1.95;
 }
-.cta-actions{
+.tags{
   display:flex;
-  justify-content:center;
   flex-wrap:wrap;
-  gap:10px;
+  gap:7px;
+  margin-top:23px;
+}
+.tag{
+  padding:8px 10px;
+  color:#cfc5b8;
+  font-size:9px;
+  letter-spacing:1px;
+  border:1px solid rgba(201,164,92,.24);
+  background:rgba(201,164,92,.05);
+}
+.detail-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:28px;
 }
 .btn{
   min-height:44px;
@@ -431,76 +271,218 @@ a{color:inherit;text-decoration:none}
 }
 .btn:hover{transform:translateY(-2px)}
 
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(201,164,92,.16);
+}
+.info-box{
+  min-height:150px;
+  padding:26px 27px;
+  border-right:1px solid rgba(201,164,92,.16);
+}
+.info-box:last-child{border-right:0}
+.info-label{
+  color:var(--gold2);
+  font-size:9px;
+  letter-spacing:2px;
+}
+.info-box h3{
+  margin:12px 0 0;
+  color:#fff;
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:21px;
+  font-weight:400;
+}
+.info-box p{
+  margin:7px 0 0;
+  color:rgba(255,248,239,.63);
+  font-size:12px;
+  line-height:1.8;
+}
+
+/* PROJECTS */
+.projects{
+  width:min(var(--max),calc(100% - 80px));
+  margin:auto;
+  padding:10px 0 85px;
+}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:35px;
+  margin-bottom:25px;
+}
+.section-title{
+  margin:8px 0 0;
+  color:#fff;
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:clamp(34px,4vw,52px);
+  font-weight:400;
+  line-height:1.08;
+}
+.section-note{
+  max-width:520px;
+  color:rgba(247,240,232,.68);
+  font-size:13px;
+  line-height:1.85;
+  text-align:right;
+}
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.project-card{
+  position:relative;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  border:1px solid rgba(201,164,92,.20);
+  background:#080706;
+  cursor:zoom-in;
+}
+.project-card img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  transition:transform .35s ease,opacity .35s ease;
+}
+.project-card:hover img{transform:scale(1.035)}
+.project-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.62));
+}
+.project-card span{
+  position:absolute;
+  left:13px;
+  bottom:12px;
+  z-index:2;
+  color:#fff;
+  font-size:9px;
+  letter-spacing:1.4px;
+}
+.project-loading{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:#746c62;
+  font-size:9px;
+  letter-spacing:1.5px;
+}
+
+/* CTA */
+.cta{
+  width:min(1000px,calc(100% - 80px));
+  margin:0 auto 85px;
+  padding:55px 40px;
+  text-align:center;
+  border:1px solid rgba(201,164,92,.28);
+  background:linear-gradient(135deg,rgba(27,17,10,.82),rgba(5,4,3,.78));
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
+  backdrop-filter:blur(9px);
+}
+.cta-label{
+  color:var(--gold2);
+  font-size:9px;
+  letter-spacing:3px;
+}
+.cta h2{
+  margin:10px 0 0;
+  color:#fff;
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:clamp(32px,4vw,50px);
+  font-weight:400;
+}
+.cta p{
+  max-width:650px;
+  margin:14px auto 22px;
+  color:rgba(255,255,255,.72);
+  font-size:13px;
+  line-height:1.85;
+}
+.cta-actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  background:rgba(0,0,0,.90);
+}
+.lightbox.open{display:flex}
+.lightbox img{
+  max-width:min(1200px,94vw);
+  max-height:90vh;
+  object-fit:contain;
+  box-shadow:0 30px 100px rgba(0,0,0,.7);
+}
+.lightbox-close{
+  position:absolute;
+  top:18px;
+  right:22px;
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:25px;
+  border:1px solid rgba(228,197,127,.45);
+  background:rgba(0,0,0,.45);
+  cursor:pointer;
+}
+
 /* RESPONSIVE */
-@media(max-width:1050px){
-  .hero-inner,
-  .section,
-  .workflow{width:calc(100% - 50px)}
-  .service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .workflow-grid{grid-template-columns:repeat(2,1fr)}
-  .step:nth-child(2){border-right:0}
-  .step:nth-child(-n+2){border-bottom:1px solid rgba(201,164,92,.16)}
-  .step:nth-child(3){border-bottom:0}
-  .section-head{display:block}
-  .section-note{
-    margin-top:13px;
-    text-align:left;
+@media(max-width:1000px){
+  .detail-top{grid-template-columns:1fr}
+  .detail-visual{
+    min-height:420px;
+    border-right:0;
+    border-bottom:1px solid rgba(201,164,92,.18);
   }
-  .cta{width:calc(100% - 50px)}
+  .detail-visual img{min-height:420px}
+  .project-grid{grid-template-columns:repeat(2,1fr)}
+  .info-grid{grid-template-columns:1fr}
+  .info-box{border-right:0;border-bottom:1px solid rgba(201,164,92,.16)}
+  .info-box:last-child{border-bottom:0}
+  .section-head{display:block}
+  .section-note{margin-top:13px;text-align:left}
 }
 @media(max-width:700px){
-  .cp-page::before{background-position:center top}
-  .hero{
-    min-height:610px;
-    align-items:flex-start;
-  }
-  .hero-inner{
-    width:calc(100% - 32px);
-    padding-top:90px;
-  }
+  .hero{min-height:560px;align-items:flex-start}
+  .hero-inner,.detail,.projects{width:calc(100% - 32px)}
+  .hero-inner{padding-top:85px}
   .hero-copy{
     width:100%;
-    padding:28px 18px 30px 0;
-    transform:translateY(100px);
+    padding:28px 12px 30px 0;
+    transform:translateY(65px);
   }
-  .hero-copy::before{
-    left:-90px;
-    top:-55px;
-    width:650px;
-    height:440px;
-  }
-  .hero h1{
-    font-size:clamp(43px,13vw,60px);
-    line-height:1.03;
-  }
-  .hero h1 span{
-    font-size:12px;
-    letter-spacing:2.5px;
-  }
-  .hero p{
-    font-size:14px;
-    line-height:1.82;
-  }
-  .section,
-  .workflow{
-    width:calc(100% - 32px);
-  }
-  .section{padding:45px 0 58px}
-  .section-title{font-size:36px}
-  .service-grid{grid-template-columns:1fr;gap:12px}
-  .service-image{height:205px}
-  .service-body{padding:20px}
-  .service-card h3{font-size:22px}
-  .workflow{
-    padding-bottom:60px;
-  }
-  .workflow-grid{grid-template-columns:1fr}
-  .step{
-    min-height:0;
-    border-right:0!important;
-    border-bottom:1px solid rgba(201,164,92,.16);
-  }
-  .step:last-child{border-bottom:0}
+  .hero h1{font-size:clamp(43px,13vw,60px)}
+  .hero h1 span{font-size:12px;letter-spacing:2.5px}
+  .hero p{font-size:14px;line-height:1.82}
+  .detail{padding-top:5px}
+  .detail-visual,.detail-visual img{min-height:290px}
+  .detail-copy{padding:28px 20px 30px}
+  .detail-copy h2{font-size:37px}
+  .detail-copy h2 small{font-size:16px}
+  .detail-actions{flex-direction:column}
+  .detail-actions>*{width:100%}
+  .project-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .projects{padding-bottom:60px}
   .cta{
     width:calc(100% - 32px);
     margin-bottom:60px;
@@ -510,17 +492,9 @@ a{color:inherit;text-decoration:none}
   .cta-actions>*{width:100%}
 }
 </style>
-
-<style id="service-click-fix">
-.service-card{position:relative!important}
-.service-hit{position:absolute;inset:0;z-index:4;display:block!important;cursor:pointer;background:transparent!important;text-decoration:none!important}
-.service-card .card-link{position:relative;z-index:5;pointer-events:auto!important;cursor:pointer!important}
-.service-image,.service-image img,.service-image-label{cursor:pointer}
-</style>
 </head>
 
 <body>
-
 <div class="cp-page">
 
 <main>
@@ -528,869 +502,345 @@ a{color:inherit;text-decoration:none}
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-copy">
-      <div class="kicker">OUR SERVICES</div>
-
-      <h1>
-        ระบบบริการ
-        <span>FOR EVERY SPACE</span>
-      </h1>
-
+      <div class="kicker">SERVICE DETAIL</div>
+      <h1 id="heroTitle">รายละเอียดบริการ<span id="heroEn">FOR EVERY SPACE</span></h1>
       <div class="hero-line"></div>
-
-      <p>
-        ให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
-        ตั้งแต่การพิจารณาปัญหาของพื้นที่ การเลือกวัสดุและระบบ
-        ไปจนถึงแนวทางการดำเนินงานที่เหมาะสมกับการใช้งานจริง
-      </p>
+      <p id="heroDescription">กำลังโหลดรายละเอียดระบบบริการ...</p>
     </div>
   </div>
 </section>
 
+<section class="detail">
+  <div class="detail-shell">
 
-<section class="section">
+    <div class="detail-top">
+      <div class="detail-visual" id="detailVisual">
+        <div class="visual-empty" id="visualEmpty">LOADING PROJECT IMAGE</div>
+        <img id="mainImage" alt="" style="display:none">
+        <div class="visual-label">PROJECT REFERENCE</div>
+      </div>
 
-  <div class="section-head">
-    <div>
-      <div class="kicker">SERVICE SYSTEMS</div>
-      <h2 class="section-title">ประเภทงานบริการ</h2>
+      <div class="detail-copy">
+        <div class="detail-code" id="detailCode">SERVICE 01</div>
+        <h2 id="detailTitle">พื้นอุตสาหกรรม<small>/ อีพ็อกซี่ / พียู</small></h2>
+        <p id="detailText"></p>
+
+        <div class="tags" id="detailTags"></div>
+
+        <div class="detail-actions">
+          <a class="btn btn-gold" href="contact.html">ติดต่อเรา</a>
+          <a class="btn btn-outline" href="services.html">← กลับหน้าบริการ</a>
+        </div>
+      </div>
     </div>
 
-    <p class="section-note">
-      เลือกระบบที่ใกล้เคียงกับลักษณะพื้นที่
-      เพื่อดูรายละเอียดเพิ่มเติมและแนวทางการเลือกใช้วัสดุ
-      ให้เหมาะกับสภาพหน้างาน
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="info-label">SUITABLE FOR</div>
+        <h3 id="suitableTitle">พื้นที่ใช้งานหนัก</h3>
+        <p id="suitableText"></p>
+      </div>
+      <div class="info-box">
+        <div class="info-label">SYSTEM</div>
+        <h3 id="systemTitle">EPOXY / PU</h3>
+        <p id="systemText"></p>
+      </div>
+      <div class="info-box">
+        <div class="info-label">REFERENCE</div>
+        <h3 id="referenceTitle">PROJECT</h3>
+        <p id="referenceText"></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="projects">
+  <div class="section-head">
+    <div>
+      <div class="kicker">PROJECT REFERENCE</div>
+      <h2 class="section-title">ตัวอย่างผลงานที่เกี่ยวข้อง</h2>
+    </div>
+    <p class="section-note" id="galleryNote">
+      รูปภาพตัวอย่างจากโครงการในระบบ Projects ของ CHATPHETCH GROUP
     </p>
   </div>
 
-
-  <div class="service-grid">
-
-    <!-- 01 -->
-    <article
-      class="service-card"
-      data-project-folders="Epoxy self|Epoxy anti static|PU Self"
-    >
-      <a class="service-hit" href="service-detail.html?service=industrial" aria-label="ดูรายละเอียดบริการ industrial"></a>
-      <div class="service-image">
-        <div class="service-loading">LOADING PROJECT IMAGE</div>
-        <img alt="ตัวอย่างงานพื้นอุตสาหกรรม อีพ็อกซี่ และพียู">
-        <div class="service-image-label">PROJECT REFERENCE</div>
-      </div>
-
-      <div class="service-body">
-        <div class="service-number">01</div>
-        <div class="service-code">SERVICE 01</div>
-
-        <h3>
-          พื้นอุตสาหกรรม
-          <small>/ อีพ็อกซี่ / พียู</small>
-        </h3>
-
-        <p>
-          ตัวอย่างงานพื้นระบบ Epoxy และ PU
-          สำหรับพื้นที่โรงงาน คลังสินค้า
-          และพื้นที่ใช้งานหนัก
-        </p>
-
-        <div class="tags">
-          <span class="tag">EPOXY</span>
-          <span class="tag">PU</span>
-          <span class="tag">INDUSTRIAL</span>
-        </div>
-
-        <a
-          class="card-link"
-          href="service-detail.html?service=industrial"
-        >
-          ดูรายละเอียด <span>→</span>
-        </a>
-      </div>
-    </article>
-
-
-    <!-- 02 -->
-    <article
-      class="service-card"
-      data-project-folders="งานกันซึม Fiberglass"
-    >
-      <a class="service-hit" href="service-detail.html?service=waterproof" aria-label="ดูรายละเอียดบริการ waterproof"></a>
-      <div class="service-image">
-        <div class="service-loading">LOADING PROJECT IMAGE</div>
-        <img alt="ตัวอย่างงานกันรั่วซึม ดาดฟ้า หลังคา และพื้นอาคาร">
-        <div class="service-image-label">PROJECT REFERENCE</div>
-      </div>
-
-      <div class="service-body">
-        <div class="service-number">02</div>
-        <div class="service-code">SERVICE 02</div>
-
-        <h3>
-          งานกันรั่วซึม
-          <small>ดาดฟ้า หลังคา พื้นอาคาร</small>
-        </h3>
-
-        <p>
-          ตัวอย่างงานกันซึมจากโครงการจริง
-          สำหรับดาดฟ้า หลังคา และพื้นที่อาคาร
-          ที่ต้องการป้องกันน้ำรั่วซึม
-        </p>
-
-        <div class="tags">
-          <span class="tag">WATERPROOF</span>
-          <span class="tag">FIBERGLASS</span>
-          <span class="tag">ROOF</span>
-        </div>
-
-        <a
-          class="card-link"
-          href="service-detail.html?service=waterproof"
-        >
-          ดูรายละเอียด <span>→</span>
-        </a>
-      </div>
-    </article>
-
-
-    <!-- 03 -->
-    <article
-      class="service-card"
-      data-project-folders="งาน Polishing|Epoxy self"
-    >
-      <a class="service-hit" href="service-detail.html?service=concrete" aria-label="ดูรายละเอียดบริการ concrete"></a>
-      <div class="service-image">
-        <div class="service-loading">LOADING PROJECT IMAGE</div>
-        <img alt="ตัวอย่างงานซ่อมปรับปรุงและงานคอนกรีต">
-        <div class="service-image-label">PROJECT REFERENCE</div>
-      </div>
-
-      <div class="service-body">
-        <div class="service-number">03</div>
-        <div class="service-code">SERVICE 03</div>
-
-        <h3>
-          งานซ่อมปรับปรุง
-          <small>งานคอนกรีต</small>
-        </h3>
-
-        <p>
-          ตัวอย่างงานปรับปรุงผิวพื้นและงานคอนกรีต
-          จากหน้างานจริง เพื่อเตรียมพื้นให้พร้อม
-          สำหรับระบบใช้งาน
-        </p>
-
-        <div class="tags">
-          <span class="tag">CONCRETE</span>
-          <span class="tag">POLISHING</span>
-          <span class="tag">REPAIR</span>
-        </div>
-
-        <a
-          class="card-link"
-          href="service-detail.html?service=concrete"
-        >
-          ดูรายละเอียด <span>→</span>
-        </a>
-      </div>
-    </article>
-
-
-    <!-- 04 -->
-    <article
-      class="service-card"
-      data-project-folders="PU Self|PU Coating"
-    >
-      <a class="service-hit" href="service-detail.html?service=sports" aria-label="ดูรายละเอียดบริการ sports"></a>
-      <div class="service-image">
-        <div class="service-loading">LOADING PROJECT IMAGE</div>
-        <img alt="ตัวอย่างงานพื้นสนามกีฬาและพื้นที่กิจกรรม">
-        <div class="service-image-label">PROJECT REFERENCE</div>
-      </div>
-
-      <div class="service-body">
-        <div class="service-number">04</div>
-        <div class="service-code">SERVICE 04</div>
-
-        <h3>พื้นสนามกีฬา</h3>
-
-        <p>
-          ตัวอย่างงานระบบพื้น PU จากโครงการจริง
-          ซึ่งสามารถพิจารณาใช้กับพื้นที่กิจกรรม
-          และสนามกีฬาได้ตามเงื่อนไขหน้างาน
-        </p>
-
-        <div class="tags">
-          <span class="tag">SPORT FLOOR</span>
-          <span class="tag">PU</span>
-          <span class="tag">ACTIVITY</span>
-        </div>
-
-        <a
-          class="card-link"
-          href="service-detail.html?service=sports"
-        >
-          ดูรายละเอียด <span>→</span>
-        </a>
-      </div>
-    </article>
-
-
-    <!-- 05 -->
-    <article
-      class="service-card"
-      data-project-folders="งาน Stamped Concrete"
-    >
-      <a class="service-hit" href="service-detail.html?service=decorative" aria-label="ดูรายละเอียดบริการ decorative"></a>
-      <div class="service-image">
-        <div class="service-loading">LOADING PROJECT IMAGE</div>
-        <img alt="ตัวอย่างงานพื้นตกแต่งเพื่อความสวยงาม">
-        <div class="service-image-label">PROJECT REFERENCE</div>
-      </div>
-
-      <div class="service-body">
-        <div class="service-number">05</div>
-        <div class="service-code">SERVICE 05</div>
-
-        <h3>
-          พื้นตกแต่ง
-          <small>เพื่อความสวยงาม</small>
-        </h3>
-
-        <p>
-          ตัวอย่างงานพื้นคอนกรีตพิมพ์ลาย
-          จากโครงการจริง สำหรับพื้นที่ที่ต้องการ
-          ความสวยงามและเอกลักษณ์
-        </p>
-
-        <div class="tags">
-          <span class="tag">STAMPED</span>
-          <span class="tag">PSC</span>
-          <span class="tag">DECORATIVE</span>
-        </div>
-
-        <a
-          class="card-link"
-          href="service-detail.html?service=decorative"
-        >
-          ดูรายละเอียด <span>→</span>
-        </a>
-      </div>
-    </article>
-
-
-    <!-- 06 -->
-    <article
-      class="service-card"
-      data-project-folders="PU Coating|Epoxy anti static"
-    >
-      <a class="service-hit" href="service-detail.html?service=traffic" aria-label="ดูรายละเอียดบริการ traffic"></a>
-      <div class="service-image">
-        <div class="service-loading">LOADING PROJECT IMAGE</div>
-        <img alt="ตัวอย่างงานระบบงานสัญลักษณ์และเส้นจราจร">
-        <div class="service-image-label">PROJECT REFERENCE</div>
-      </div>
-
-      <div class="service-body">
-        <div class="service-number">06</div>
-        <div class="service-code">SERVICE 06</div>
-
-        <h3>
-          ระบบงานสัญลักษณ์
-          <small>และเส้นจราจร</small>
-        </h3>
-
-        <p>
-          งานเคลือบผิวและงานกำหนดพื้นที่
-          เพื่อจัดระเบียบการใช้งาน เส้นทาง
-          และสัญลักษณ์ภายในพื้นที่
-        </p>
-
-        <div class="tags">
-          <span class="tag">TRAFFIC</span>
-          <span class="tag">LINE MARKING</span>
-          <span class="tag">COATING</span>
-        </div>
-
-        <a
-          class="card-link"
-          href="service-detail.html?service=traffic"
-        >
-          ดูรายละเอียด <span>→</span>
-        </a>
-      </div>
-    </article>
-
+  <div class="project-grid" id="projectGrid">
+    <div class="project-card"><div class="project-loading">LOADING</div></div>
   </div>
 </section>
-
-
-<section class="workflow">
-
-  <div class="section-head">
-    <div>
-      <div class="kicker">OUR PROCESS</div>
-      <h2 class="section-title">ขั้นตอนการให้บริการ</h2>
-    </div>
-
-    <p class="section-note">
-      เราเริ่มจากการเข้าใจพื้นที่และลักษณะการใช้งาน
-      ก่อนเลือกแนวทางและวัสดุที่เหมาะสม
-    </p>
-  </div>
-
-
-  <div class="workflow-grid">
-
-    <div class="step">
-      <div class="step-no">01 / SURVEY</div>
-      <h3>สำรวจหน้างาน</h3>
-      <p>
-        พิจารณาสภาพพื้น ลักษณะพื้นที่
-        ปัญหาเดิม และเงื่อนไขการใช้งานจริง
-      </p>
-    </div>
-
-    <div class="step">
-      <div class="step-no">02 / CONSULT</div>
-      <h3>วิเคราะห์และให้คำปรึกษา</h3>
-      <p>
-        ประเมินแนวทางระบบงานและวัสดุ
-        ให้สอดคล้องกับวัตถุประสงค์ของพื้นที่
-      </p>
-    </div>
-
-    <div class="step">
-      <div class="step-no">03 / SYSTEM</div>
-      <h3>เลือกระบบที่เหมาะสม</h3>
-      <p>
-        กำหนดระบบพื้นหรือแนวทางงาน
-        ตามสภาพหน้างานและการใช้งาน
-      </p>
-    </div>
-
-    <div class="step">
-      <div class="step-no">04 / EXECUTION</div>
-      <h3>ดำเนินงาน</h3>
-      <p>
-        วางแผนและดำเนินงานตามระบบ
-        พร้อมติดตามรายละเอียดของหน้างาน
-      </p>
-    </div>
-
-  </div>
-</section>
-
 
 <section class="cta">
-
   <div class="cta-label">CHATPHETCH GROUP</div>
-
-  <h2>ปรึกษาระบบพื้นที่เหมาะกับหน้างานของคุณ</h2>
-
+  <h2>ต้องการคำปรึกษาสำหรับพื้นที่ของคุณ?</h2>
   <p>
-    หากยังไม่แน่ใจว่าพื้นที่ของคุณเหมาะกับระบบใด
-    สามารถติดต่อทีมงานเพื่อขอคำปรึกษา
-    และพูดคุยรายละเอียดหน้างานได้
+    หากต้องการตรวจสอบระบบที่เหมาะกับสภาพพื้น การใช้งาน และเงื่อนไขของโครงการ
+    สามารถติดต่อทีมงานเพื่อพูดคุยรายละเอียดหน้างานได้
   </p>
-
   <div class="cta-actions">
-
-    <a
-      class="btn btn-gold"
-      href="contact.html"
-    >
-      ติดต่อเรา
-    </a>
-
-    <a
-      class="btn btn-outline"
-      href="projects.html"
-    >
-      ดูผลงานโครงการ
-    </a>
-
+    <a class="btn btn-gold" href="contact.html">ติดต่อเรา</a>
+    <a class="btn btn-outline" href="projects.html">ดูผลงานทั้งหมด</a>
+    <a class="btn btn-outline" href="services.html">กลับหน้าบริการ</a>
   </div>
-
 </section>
 
 </main>
-
 </div>
 
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" type="button">×</button>
+  <img id="lightboxImage" alt="">
+</div>
 
 <script src="assets/customer-master-nav.js"></script>
+
 <script>
-/* ============================================================
-   MASTER NAV SAFETY CHECK
-   โหลด Master Nav โดยตรง และตรวจซ้ำเพื่อให้ Header / Footer
-   แสดงแน่นอนแม้ browser cache หรือการโหลดไฟล์ภายนอกช้า
-   ============================================================ */
 (function(){
-  function ensureMasterNav(){
-    if(document.querySelector(".customer-header") && document.querySelector(".customer-footer")) return;
-    if(document.querySelector('script[data-master-nav-retry="1"]')) return;
-    const s=document.createElement("script");
-    s.src="assets/customer-master-nav.js";
-    s.setAttribute("data-master-nav-retry","1");
-    document.body.appendChild(s);
-  }
-  setTimeout(ensureMasterNav,900);
-})();
-
-
-/* ============================================================
-   PROJECT IMAGE LOADER
-   ============================================================ */
-
-(function(){
-
   "use strict";
+
+  const SERVICES = {
+    industrial:{
+      code:"SERVICE 01",
+      title:"พื้นอุตสาหกรรม",
+      sub:"/ อีพ็อกซี่ / พียู",
+      en:"INDUSTRIAL FLOORING",
+      description:"งานพื้นระบบ Epoxy และ PU สำหรับพื้นที่โรงงาน คลังสินค้า และพื้นที่ใช้งานหนัก โดยพิจารณาระบบให้เหมาะกับสภาพพื้นและลักษณะการใช้งาน",
+      suitableTitle:"โรงงาน / คลังสินค้า",
+      suitableText:"พื้นที่ที่มีการใช้งานต่อเนื่อง ต้องการพื้นผิวที่เหมาะกับงานอุตสาหกรรม และเงื่อนไขการใช้งานจริง",
+      systemTitle:"EPOXY / PU",
+      systemText:"เลือกระบบตามลักษณะพื้นที่ การใช้งาน และสภาพหน้างาน",
+      referenceTitle:"PROJECT",
+      referenceText:"ตัวอย่างงานจากหมวด Epoxy self, Epoxy anti static และ PU Self",
+      tags:["EPOXY","PU","INDUSTRIAL"],
+      folders:["Epoxy self","Epoxy anti static","PU Self"]
+    },
+    waterproof:{
+      code:"SERVICE 02",
+      title:"งานกันรั่วซึม",
+      sub:"ดาดฟ้า หลังคา พื้นอาคาร",
+      en:"WATERPROOFING",
+      description:"งานกันซึมสำหรับดาดฟ้า หลังคา และพื้นที่อาคารที่ต้องการป้องกันน้ำรั่วซึม โดยเลือกแนวทางให้เหมาะกับสภาพพื้นที่",
+      suitableTitle:"ดาดฟ้า / หลังคา",
+      suitableText:"พื้นที่ที่มีความเสี่ยงจากน้ำฝน ความชื้น หรือปัญหาน้ำรั่วซึม",
+      systemTitle:"WATERPROOF",
+      systemText:"พิจารณาระบบกันซึมตามชนิดพื้นผิวและสภาพหน้างาน",
+      referenceTitle:"PROJECT",
+      referenceText:"ตัวอย่างงานจากหมวด งานกันซึม Fiberglass",
+      tags:["WATERPROOF","FIBERGLASS","ROOF"],
+      folders:["งานกันซึม Fiberglass"]
+    },
+    concrete:{
+      code:"SERVICE 03",
+      title:"งานซ่อมปรับปรุง",
+      sub:"งานคอนกรีต",
+      en:"CONCRETE & REPAIR",
+      description:"งานปรับปรุงผิวพื้นและงานคอนกรีตจากหน้างานจริง เพื่อเตรียมพื้นให้พร้อมสำหรับระบบใช้งาน",
+      suitableTitle:"พื้นเดิม / งานปรับปรุง",
+      suitableText:"พื้นที่ที่ต้องเตรียมผิว ซ่อมปรับปรุง หรือแก้ไขสภาพพื้นก่อนเข้าสู่ระบบงาน",
+      systemTitle:"REPAIR / POLISHING",
+      systemText:"พิจารณาวิธีเตรียมพื้นและแนวทางปรับปรุงตามสภาพจริง",
+      referenceTitle:"PROJECT",
+      referenceText:"ตัวอย่างงานจากหมวด งาน Polishing และ Epoxy self",
+      tags:["CONCRETE","POLISHING","REPAIR"],
+      folders:["งาน Polishing","Epoxy self"]
+    },
+    sports:{
+      code:"SERVICE 04",
+      title:"พื้นสนามกีฬา",
+      sub:"PU / ACTIVITY",
+      en:"SPORT FLOORING",
+      description:"งานระบบพื้น PU สำหรับพื้นที่กิจกรรมและสนามกีฬา โดยพิจารณาตามประเภทพื้นที่และเงื่อนไขการใช้งาน",
+      suitableTitle:"สนามกีฬา / กิจกรรม",
+      suitableText:"พื้นที่กิจกรรมที่ต้องการระบบพื้นตามลักษณะการใช้งานและสภาพพื้นที่",
+      systemTitle:"PU FLOOR",
+      systemText:"เลือกแนวทางระบบตามประเภทกิจกรรมและข้อกำหนดของพื้นที่",
+      referenceTitle:"PROJECT",
+      referenceText:"ตัวอย่างงานจากหมวด PU Self และ PU Coating",
+      tags:["SPORT FLOOR","PU","ACTIVITY"],
+      folders:["PU Self","PU Coating"]
+    },
+    decorative:{
+      code:"SERVICE 05",
+      title:"พื้นตกแต่ง",
+      sub:"เพื่อความสวยงาม",
+      en:"DECORATIVE FLOORING",
+      description:"งานพื้นคอนกรีตพิมพ์ลายจากโครงการจริง สำหรับพื้นที่ที่ต้องการความสวยงามและเอกลักษณ์",
+      suitableTitle:"พื้นที่ตกแต่ง",
+      suitableText:"พื้นที่ที่ต้องการรูปแบบพื้นและลวดลายเพื่อเพิ่มความโดดเด่นให้กับพื้นที่",
+      systemTitle:"STAMPED CONCRETE",
+      systemText:"พิจารณารูปแบบและลักษณะผิวตามแนวทางของโครงการ",
+      referenceTitle:"PROJECT",
+      referenceText:"ตัวอย่างงานจากหมวด งาน Stamped Concrete",
+      tags:["STAMPED","PSC","DECORATIVE"],
+      folders:["งาน Stamped Concrete"]
+    },
+    traffic:{
+      code:"SERVICE 06",
+      title:"ระบบงานสัญลักษณ์",
+      sub:"และเส้นจราจร",
+      en:"TRAFFIC & LINE MARKING",
+      description:"งานเคลือบผิวและงานกำหนดพื้นที่เพื่อจัดระเบียบการใช้งาน เส้นทาง และสัญลักษณ์ภายในพื้นที่",
+      suitableTitle:"พื้นที่จราจร / โรงงาน",
+      suitableText:"พื้นที่ที่ต้องการกำหนดเส้นทาง ช่องจราจร จุดใช้งาน และสัญลักษณ์ให้ชัดเจน",
+      systemTitle:"COATING / MARKING",
+      systemText:"เลือกแนวทางเคลือบและตีเส้นตามลักษณะพื้นที่และการใช้งาน",
+      referenceTitle:"PROJECT",
+      referenceText:"ตัวอย่างงานจากหมวด PU Coating และ Epoxy anti static",
+      tags:["TRAFFIC","LINE MARKING","COATING"],
+      folders:["PU Coating","Epoxy anti static"]
+    }
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const key = (params.get("service") || "industrial").toLowerCase();
+  const data = SERVICES[key] || SERVICES.industrial;
+
+  document.title = data.title + " | CHATPHETCH GROUP";
+
+  document.getElementById("heroTitle").firstChild.textContent = data.title;
+  document.getElementById("heroEn").textContent = data.en;
+  document.getElementById("heroDescription").textContent = data.description;
+
+  document.getElementById("detailCode").textContent = data.code;
+  document.getElementById("detailTitle").innerHTML =
+    data.title + "<small>" + data.sub + "</small>";
+  document.getElementById("detailText").textContent = data.description;
+
+  document.getElementById("suitableTitle").textContent = data.suitableTitle;
+  document.getElementById("suitableText").textContent = data.suitableText;
+  document.getElementById("systemTitle").textContent = data.systemTitle;
+  document.getElementById("systemText").textContent = data.systemText;
+  document.getElementById("referenceTitle").textContent = data.referenceTitle;
+  document.getElementById("referenceText").textContent = data.referenceText;
+
+  document.getElementById("detailTags").innerHTML = data.tags
+    .map(function(tag){ return '<span class="tag">'+tag+'</span>'; })
+    .join("");
 
   const OWNER = "chatphetch";
   const REPO = "chatpetch-group";
   const BRANCH = "main";
+  const API = "https://api.github.com/repos/"+OWNER+"/"+REPO+"/git/trees/"+BRANCH+"?recursive=1";
+  const imageExt = /\.(jpg|jpeg|png|webp|gif)$/i;
 
-  const API =
-    "https://api.github.com/repos/" +
-    OWNER + "/" +
-    REPO +
-    "/git/trees/" +
-    BRANCH +
-    "?recursive=1";
-
-
-  const CACHE_KEY =
-    "chatpetch_projects_tree_v2";
-
-  const CACHE_TIME =
-    30 * 60 * 1000;
-
-
-  const imageExtensions =
-    /\.(jpg|jpeg|png|webp|gif)$/i;
-
-
-  const cards =
-    Array.from(
-      document.querySelectorAll(
-        ".service-card[data-project-folders]"
-      )
-    );
-
-
-  function normalize(value){
-
-    return String(value || "")
-      .trim()
-      .toLowerCase();
+  function normalize(v){
+    return String(v || "").trim().toLowerCase();
   }
 
-
-  function getFolders(card){
-
-    return card
-      .dataset
-      .projectFolders
-      .split("|")
-      .map(normalize)
-      .filter(Boolean);
+  function rawUrl(path){
+    return "https://raw.githubusercontent.com/"+OWNER+"/"+REPO+"/"+BRANCH+"/"+
+      path.split("/").map(encodeURIComponent).join("/");
   }
 
-
-  function getCachedTree(){
-
-    try{
-
-      const raw =
-        sessionStorage.getItem(
-          CACHE_KEY
-        );
-
-      if(!raw){
-        return null;
-      }
-
-      const data =
-        JSON.parse(raw);
-
-      if(
-        !data ||
-        !data.time ||
-        !Array.isArray(data.tree)
-      ){
-        return null;
-      }
-
-      if(
-        Date.now() - data.time >
-        CACHE_TIME
-      ){
-        return null;
-      }
-
-      return data.tree;
-
-    }catch(error){
-
-      return null;
-    }
+  function findImages(tree, folder){
+    const target = normalize(folder);
+    return tree.filter(function(item){
+      if(item.type !== "blob" || !imageExt.test(item.path)) return false;
+      const parts = item.path.split("/");
+      return parts.some(function(part){ return normalize(part) === target; });
+    });
   }
 
+  function renderGallery(tree){
+    const grid = document.getElementById("projectGrid");
+    grid.innerHTML = "";
 
-  function saveTree(tree){
-
-    try{
-
-      sessionStorage.setItem(
-        CACHE_KEY,
-        JSON.stringify({
-          time:Date.now(),
-          tree:tree
-        })
-      );
-
-    }catch(error){}
-  }
-
-
-  async function loadTree(){
-
-    const cached =
-      getCachedTree();
-
-    if(cached){
-      return cached;
-    }
-
-
-    const response =
-      await fetch(API, {
-        headers:{
-          "Accept":
-            "application/vnd.github+json"
+    let images = [];
+    data.folders.forEach(function(folder){
+      findImages(tree, folder).forEach(function(item){
+        if(!images.some(function(x){return x.path === item.path;})){
+          images.push(item);
         }
       });
+    });
 
+    images.sort(function(a,b){return a.path.localeCompare(b.path);});
 
-    if(!response.ok){
-      throw new Error(
-        "GitHub Tree API " +
-        response.status
-      );
+    if(!images.length){
+      grid.innerHTML =
+        '<div class="project-card" style="grid-column:1/-1;aspect-ratio:auto;min-height:150px;display:grid;place-items:center;">'+
+        '<div class="project-loading">NO PROJECT IMAGE FOUND</div></div>';
+      return;
     }
 
+    images.slice(0,12).forEach(function(item,index){
+      const card = document.createElement("div");
+      card.className = "project-card";
 
-    const json =
-      await response.json();
+      const img = document.createElement("img");
+      img.src = rawUrl(item.path);
+      img.alt = data.title + " project reference " + (index+1);
+      img.loading = "lazy";
 
+      const label = document.createElement("span");
+      label.textContent = "PROJECT " + String(index+1).padStart(2,"0");
 
-    const tree =
-      Array.isArray(json.tree)
-        ? json.tree
-        : [];
-
-
-    saveTree(tree);
-
-    return tree;
-  }
-
-
-  function getImagesForFolder(
-    tree,
-    folder
-  ){
-
-    const prefix =
-      "assets/projects/" +
-      folder + "/";
-
-
-    /*
-     * GitHub paths are case-sensitive.
-     * Match the real folder name from the
-     * tree while keeping support for Thai.
-     */
-
-    const exact =
-      tree.filter(function(item){
-
-        return (
-          item.type === "blob" &&
-          imageExtensions.test(item.path) &&
-          normalize(item.path)
-            .startsWith(
-              normalize(prefix)
-            )
-        );
-
+      card.appendChild(img);
+      card.appendChild(label);
+      card.addEventListener("click",function(){
+        openLightbox(img.src,img.alt);
       });
+      grid.appendChild(card);
+    });
 
+    const main = images[0];
+    const mainImg = document.getElementById("mainImage");
+    const empty = document.getElementById("visualEmpty");
 
-    return exact;
+    mainImg.src = rawUrl(main.path);
+    mainImg.alt = data.title + " project reference";
+    mainImg.style.display = "block";
+    empty.style.display = "none";
+
+    mainImg.addEventListener("click",function(){
+      openLightbox(mainImg.src,mainImg.alt);
+    });
   }
 
-
-  function chooseImage(
-    tree,
-    folders
-  ){
-
-    for(
-      let i=0;
-      i<folders.length;
-      i++
-    ){
-
-      const images =
-        getImagesForFolder(
-          tree,
-          folders[i]
-        );
-
-
-      if(images.length){
-
-        /*
-         * Deterministic:
-         * sort by path, then use first.
-         * This prevents image changing
-         * on every refresh.
-         */
-
-        images.sort(function(a,b){
-
-          return a.path.localeCompare(
-            b.path
-          );
-        });
-
-
-        return images[0];
-      }
-    }
-
-
-    /*
-     * Fallback:
-     * find any project image whose
-     * folder name approximately matches.
-     */
-
-    for(
-      let i=0;
-      i<folders.length;
-      i++
-    ){
-
-      const target =
-        normalize(folders[i]);
-
-
-      const found =
-        tree.find(function(item){
-
-          if(
-            item.type !== "blob" ||
-            !imageExtensions.test(item.path)
-          ){
-            return false;
-          }
-
-
-          const parts =
-            item.path.split("/");
-
-
-          return parts.some(
-            function(part){
-
-              return normalize(part) === target;
-            }
-          );
-
-        });
-
-
-      if(found){
-        return found;
-      }
-    }
-
-
-    return null;
-  }
-
-
-  function githubRaw(path){
-
-    return (
-      "https://raw.githubusercontent.com/" +
-      OWNER + "/" +
-      REPO + "/" +
-      BRANCH + "/" +
-      path.split("/")
-        .map(encodeURIComponent)
-        .join("/")
-    );
-  }
-
-
-  function setCardImage(
-    card,
-    image
-  ){
-
-    const box =
-      card.querySelector(
-        ".service-image"
-      );
-
-    const img =
-      card.querySelector(
-        ".service-image img"
-      );
-
-
-    if(!box || !img){
-      return;
-    }
-
-
-    if(!image){
-
-      box.classList.add(
-        "loaded"
-      );
-
-      box.classList.add(
-        "no-image"
-      );
-
-      const loading =
-        box.querySelector(
-          ".service-loading"
-        );
-
-      if(loading){
-        loading.textContent =
-          "PROJECT IMAGE";
-      }
-
-      return;
-    }
-
-
-    img.src =
-      githubRaw(image.path);
-
-
-    img.addEventListener(
-      "load",
-      function(){
-
-        box.classList.add(
-          "loaded"
-        );
-
-      },
-      {once:true}
-    );
-
-
-    img.addEventListener(
-      "error",
-      function(){
-
-        box.classList.add(
-          "loaded"
-        );
-
-        box.classList.add(
-          "no-image"
-        );
-
-      },
-      {once:true}
-    );
-
-  }
-
-
-  async function init(){
-
-    if(!cards.length){
-      return;
-    }
-
-
+  async function loadProjects(){
     try{
-
-      const tree =
-        await loadTree();
-
-
-      cards.forEach(
-        function(card){
-
-          const folders =
-            getFolders(card);
-
-
-          const image =
-            chooseImage(
-              tree,
-              folders
-            );
-
-
-          setCardImage(
-            card,
-            image
-          );
-
-        }
-      );
-
+      const response = await fetch(API,{
+        headers:{"Accept":"application/vnd.github+json"}
+      });
+      if(!response.ok) throw new Error("GitHub API "+response.status);
+      const json = await response.json();
+      renderGallery(Array.isArray(json.tree) ? json.tree : []);
     }catch(error){
-
-      cards.forEach(
-        function(card){
-
-          const box =
-            card.querySelector(
-              ".service-image"
-            );
-
-          if(box){
-            box.classList.add(
-              "loaded"
-            );
-          }
-
-        }
-      );
-
-      console.warn(
-        "CHATPHETCH project images could not be loaded.",
-        error
-      );
+      console.warn("Project images could not be loaded.",error);
+      document.getElementById("projectGrid").innerHTML =
+        '<div class="project-card" style="grid-column:1/-1;aspect-ratio:auto;min-height:150px;display:grid;place-items:center;">'+
+        '<div class="project-loading">PROJECT IMAGE UNAVAILABLE</div></div>';
     }
   }
 
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
 
-  init();
+  function openLightbox(src,alt){
+    lightboxImage.src = src;
+    lightboxImage.alt = alt || "";
+    lightbox.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
 
+  function closeLightbox(){
+    lightbox.classList.remove("open");
+    lightboxImage.src = "";
+    document.body.style.overflow = "";
+  }
+
+  document.getElementById("lightboxClose").addEventListener("click",closeLightbox);
+  lightbox.addEventListener("click",function(e){
+    if(e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown",function(e){
+    if(e.key === "Escape") closeLightbox();
+  });
+
+  loadProjects();
 })();
 </script>
-
-<style>
-.customer-footer{border-top:1px solid rgba(255,255,255,.08);background:#030302;color:#999;position:relative;z-index:20;font-family:Prompt,Kanit,sans-serif}
-.customer-footer-inner{width:min(1440px,calc(100% - 42px));margin:auto;padding:62px 0 22px}.customer-footer-upper{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:50px}.customer-footer-brand{display:flex;align-items:center;gap:14px}.customer-footer-logo{width:64px;height:64px;object-fit:contain}.customer-footer-brand-name{color:#fff;font-family:Kanit,Prompt,sans-serif;font-size:18px;letter-spacing:1.6px}.customer-footer-brand-sub{margin-top:2px;color:#c9a45c;font-size:8px;letter-spacing:2px}.customer-footer-info{margin-top:17px}.customer-footer-company-line{color:#aaa39a;font-size:12px;line-height:1.8}.customer-footer-company-line.strong{margin-top:8px;color:#c7bfb4}.customer-footer-service-line{display:flex;flex-wrap:wrap;gap:12px;margin-top:5px}.customer-footer-service-item{font-size:11px;color:#8f887f}.customer-footer-service-item .icon{color:#c9a45c;margin-right:4px}.customer-footer-menu-title{margin-bottom:14px;color:#ead18d;font-family:Kanit,Prompt,sans-serif;font-size:12px;letter-spacing:2px}.customer-footer-menu-list{margin:0;padding:0;list-style:none}.customer-footer-menu-list li{margin-bottom:10px}.customer-footer-menu-list a{color:#999;font-size:12px;text-decoration:none}.customer-footer-menu-list a:hover{color:#ead18d}.customer-footer-divider{height:1px;margin:38px 0 16px;background:rgba(255,255,255,.08)}.customer-footer-bottom{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:18px;font-size:10px}.customer-footer-copyright{color:#68645e}.customer-footer-copyright strong{color:#9b948d}.customer-footer-address{display:flex;align-items:center;gap:6px;color:#77716b}.customer-footer-actions{display:flex;gap:7px}.customer-footer-action{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid rgba(201,164,92,.24);color:#c9a45c;text-decoration:none}.customer-footer-social{display:flex;gap:6px}.customer-social{width:31px;height:31px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.10);color:#aaa;text-decoration:none;font-size:10px}
-@media(max-width:800px){.customer-footer-inner{width:calc(100% - 32px);padding:45px 0 20px}.customer-footer-upper{grid-template-columns:1fr;gap:35px}.customer-footer-bottom{grid-template-columns:1fr;gap:12px}.customer-footer-actions{flex-wrap:wrap}}
-</style>
-<footer class="customer-footer">
-<div class="customer-footer-inner"><div class="customer-footer-upper"><div><div class="customer-footer-brand"><img class="customer-footer-logo" src="assets/logo.png" alt="CHATPHETCH GROUP"><div><div class="customer-footer-brand-name">CHATPHETCH GROUP</div><div class="customer-footer-brand-sub">FLOORING &amp; CONSTRUCTION</div></div></div><div class="customer-footer-info"><div class="customer-footer-company-line">🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹</div><div class="customer-footer-service-line"><span class="customer-footer-service-item"><span class="icon">♠</span>สร้างสรรค์ผลงาน</span><span class="customer-footer-service-item"><span class="icon">♠</span>มาตรฐานเข้าถึง</span><span class="customer-footer-service-item"><span class="icon">♠</span>ยืน 1 คุณภาพ</span></div><div class="customer-footer-company-line strong">บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร</div></div></div><div class="customer-footer-menu"><div class="customer-footer-menu-title">MENU</div><ul class="customer-footer-menu-list"><li><a href="index.html">หน้าแรก</a></li><li><a href="about.html">เกี่ยวกับเรา</a></li><li><a href="products.html">สินค้า</a></li><li><a href="services.html">บริการ</a></li><li><a href="projects.html">ผลงาน</a></li><li><a href="contact.html">ติดต่อเรา</a></li></ul></div></div><div class="customer-footer-divider"></div><div class="customer-footer-bottom"><div class="customer-footer-copyright">© <strong>CHATPHETCH GROUP CO., LTD.</strong> All Rights Reserved.</div><div class="customer-footer-address">📍 <span>10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310</span></div><div class="customer-footer-actions"><a class="customer-footer-action" href="contact.html">☎ ติดต่อเรา</a><a class="customer-footer-action" href="order-status.html">🔎 ติดตามคำสั่งซื้อ</a></div><div class="customer-footer-social"><a class="customer-social" href="https://www.facebook.com/ChatphetchGroup" target="_blank" rel="noopener noreferrer">f</a><a class="customer-social" href="#">▶</a><a class="customer-social" href="#">LINE</a></div></div></div>
-</footer>
 
 </body>
 </html>
