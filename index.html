@@ -31,15 +31,31 @@ body{
   color:var(--text);
   font-family:"Prompt","Kanit",sans-serif;
   background:#080604;
+  position:relative;
+  isolation:isolate;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:url("assets/index-main-bg.png") center top/cover no-repeat;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.34) 24%,rgba(0,0,0,.72) 58%,#080604 88%);
 }
 a{text-decoration:none;color:inherit}
 img{max-width:100%}
 
 .home{
   min-height:100vh;
-  background:
-    linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.34) 24%,rgba(0,0,0,.72) 58%,#080604 88%),
-    url("assets/index-main-bg.png") center top/cover no-repeat fixed;
+  background:transparent;
 }
 .container{
   width:min(var(--max),calc(100% - 70px));
@@ -363,12 +379,13 @@ img{max-width:100%}
   .product-grid{grid-template-columns:1fr}
 }
 @media(max-width:700px){
-  .home{
-    background:
-      linear-gradient(180deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.48) 24%,rgba(0,0,0,.83) 56%,#080604 82%),
-      url("assets/index-main-bg.png") center top/100% auto no-repeat;
-    background-attachment:scroll;
+  body::before{
+    background:url("assets/index-main-bg.png") center top/cover no-repeat;
   }
+  body::after{
+    background:linear-gradient(180deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.48) 24%,rgba(0,0,0,.83) 56%,#080604 82%);
+  }
+  .home{background:transparent;}
   .container{width:calc(100% - 32px)}
   .hero{
     min-height:590px;
