@@ -2,4714 +2,1127 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#070504">
+<title>รายละเอียดผลงาน | CHATPHETCH GROUP</title>
+<meta name="description" content="รายละเอียดผลงานและภาพผลงานของ CHATPHETCH GROUP">
 
-<title>รายละเอียดสินค้า | CHATPHETCH GROUP</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
-  rel="stylesheet"
->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================================================
-   ROOT
-========================================================= */
-
 :root{
-  --bg:#160d08;
-  --bg-deep:#100805;
-  --bg2:#21130c;
-  --brown:#2a180e;
-  --brown2:#382115;
-
-  --gold:#c7a66a;
-  --gold-light:#e2cc98;
-  --gold-dark:#9c7d45;
-
-  --cream:#f2e8d8;
-  --text:#e9dece;
-  --muted:#a99a89;
-  --muted2:#827466;
-
-  --line:rgba(199,166,106,.20);
-  --line-strong:rgba(199,166,106,.38);
-
-  --white-line:rgba(255,255,255,.07);
-
-  --shadow:0 30px 80px rgba(0,0,0,.42);
-
-  --max:1320px;
+  --gold:#c9a45c;
+  --gold2:#e4c57f;
+  --white:#f7f0e8;
+  --text:#ded4c8;
+  --muted:#a99e92;
+  --black:#050403;
+  --line:rgba(201,164,92,.22);
+  --max:1240px;
 }
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0;
   min-height:100vh;
-
-  color:var(--text);
-
-  font-family:"Prompt",sans-serif;
-
-  background:
-    radial-gradient(
-      circle at 15% 5%,
-      rgba(125,82,42,.18),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 90% 30%,
-      rgba(111,73,38,.14),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #120a06 0%,
-      #1a0f09 45%,
-      #25150c 100%
-    );
-
   overflow-x:hidden;
+  background:#050403;
+  color:var(--text);
+  font-family:"Prompt","Kanit",sans-serif;
 }
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+img{display:block;max-width:100%}
 
 body::before{
   content:"";
-
   position:fixed;
   inset:0;
-
+  z-index:-2;
   pointer-events:none;
-
-  opacity:.13;
-
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.025) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.025) 1px,
-      transparent 1px
-    );
-
-  background-size:42px 42px;
-
+  background:url("assets/index-main-bg.png") center top/cover no-repeat;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
   z-index:-1;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      rgba(0,0,0,.42) 0%,
+      rgba(0,0,0,.28) 24%,
+      rgba(0,0,0,.52) 60%,
+      rgba(0,0,0,.92) 100%);
 }
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-button,
-input,
-select,
-textarea{
-  font-family:inherit;
-}
-
-
-/* =========================================================
-   CONTAINER
-========================================================= */
 
 .container{
-  width:min(var(--max),calc(100% - 56px));
-  margin:0 auto;
+  width:min(var(--max),calc(100% - 80px));
+  margin:auto;
 }
 
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.header{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-
-  z-index:1000;
-
-  background:rgba(17,9,5,.93);
-
-  border-bottom:1px solid rgba(199,166,106,.18);
-
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-}
-
-.header > .container{
-  width:min(1480px,calc(100% - 34px));
-}
-
-.navbar{
-  min-height:86px;
-
-  display:flex;
-  align-items:center;
-
-  gap:22px;
-}
-
-.customer-brand{
-  display:flex;
-  align-items:center;
-
-  gap:13px;
-
-  min-width:315px;
-
-  flex:0 0 auto;
-}
-
-.customer-brand img{
-  width:72px;
-  height:72px;
-
-  max-width:72px;
-  max-height:72px;
-
-  object-fit:contain;
-
-  display:block;
-
-  flex:0 0 72px;
-}
-
-.customer-brand-text{
-  display:flex;
-  flex-direction:column;
-
-  line-height:1.1;
-}
-
-.customer-brand-text strong{
-  color:#f2e6d2;
-
-  font-family:"Kanit",sans-serif;
-
-  font-size:18px;
-  font-weight:600;
-
-  letter-spacing:.8px;
-
-  white-space:nowrap;
-}
-
-.customer-brand-text small{
-  margin-top:5px;
-
-  color:#a9967d;
-
-  font-size:10px;
-
-  letter-spacing:1.8px;
-
-  white-space:nowrap;
-}
-
-.customer-nav{
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-
-  gap:4px;
-
-  flex:1;
-}
-
-.customer-nav > a,
-.nav-drop-trigger{
-  border:0;
-  background:transparent;
-
-  color:#d8cbbb;
-
-  font-size:13px;
-  font-weight:400;
-
-  white-space:nowrap;
-
-  padding:10px 8px;
-
-  cursor:pointer;
-
-  transition:.25s ease;
-}
-
-.customer-nav > a:hover,
-.customer-nav > a.active,
-.nav-drop-trigger:hover{
-  color:var(--gold-light);
-}
-
-.nav-dropdown{
+/* HERO */
+.detail-hero{
   position:relative;
-}
-
-.nav-drop-trigger{
+  min-height:560px;
   display:flex;
-  align-items:center;
-
-  gap:5px;
-}
-
-.nav-drop-trigger .arrow{
-  font-size:8px;
-
-  opacity:.7;
-
-  transition:.2s;
-}
-
-.nav-dropdown:hover .arrow{
-  transform:rotate(180deg);
-}
-
-.nav-submenu{
-  position:absolute;
-
-  top:calc(100% + 9px);
-  right:0;
-
-  min-width:235px;
-
-  padding:8px;
-
-  background:rgba(30,17,10,.98);
-
-  border:1px solid var(--line);
-
-  border-radius:10px;
-
-  box-shadow:var(--shadow);
-
-  opacity:0;
-  visibility:hidden;
-
-  transform:translateY(7px);
-
-  transition:.22s ease;
-}
-
-.nav-dropdown:hover .nav-submenu{
-  opacity:1;
-  visibility:visible;
-
-  transform:translateY(0);
-}
-
-.nav-submenu a{
-  display:block;
-
-  padding:11px 13px;
-
-  border-radius:7px;
-
-  color:#cbbda9;
-
-  font-size:13px;
-}
-
-.nav-submenu a:hover{
-  background:rgba(199,166,106,.1);
-
-  color:var(--gold-light);
-}
-
-.nav-shop{
-  border:1px solid rgba(199,166,106,.28)!important;
-
-  border-radius:8px;
-
-  margin-left:3px;
-}
-
-.cart-count{
-  display:inline-flex;
-
-  min-width:19px;
-  height:19px;
-
-  align-items:center;
-  justify-content:center;
-
-  margin-left:3px;
-
-  padding:0 5px;
-
-  border-radius:50px;
-
-  background:var(--gold);
-
-  color:#211208;
-
-  font-size:10px;
-  font-weight:700;
-}
-
-.menu-toggle{
-  display:none;
-
-  width:42px;
-  height:42px;
-
-  border:1px solid rgba(199,166,106,.28);
-
-  background:rgba(255,255,255,.04);
-
-  color:#eadfcf;
-
-  border-radius:8px;
-
-  font-size:21px;
-
-  cursor:pointer;
-}
-
-
-/* =========================================================
-   PAGE HERO
-========================================================= */
-
-.page-hero{
-  position:relative;
-
-  min-height:450px;
-
-  padding:155px 0 75px;
-
-  display:flex;
-  align-items:center;
-
+  align-items:flex-end;
+  padding:145px 0 70px;
   overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.07);
 }
-
-.page-hero::before{
+.detail-hero::before{
   content:"";
-
   position:absolute;
-
-  width:720px;
-  height:720px;
-
-  right:-270px;
-  top:-270px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(141,94,49,.22),
-      transparent 67%
-    );
-
+  left:-120px;
+  top:80px;
+  width:900px;
+  height:500px;
+  background:radial-gradient(ellipse at center,
+    rgba(0,0,0,.76) 0%,
+    rgba(0,0,0,.42) 45%,
+    transparent 78%);
   pointer-events:none;
 }
-
-.page-hero::after{
-  content:"";
-
+.detail-hero::after{
+  content:"PROJECT";
   position:absolute;
-
-  left:0;
-  right:0;
-  bottom:0;
-
-  height:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(199,166,106,.28),
-      transparent
-    );
+  right:-25px;
+  bottom:-20px;
+  color:rgba(255,255,255,.025);
+  font-family:"Kanit",sans-serif;
+  font-size:145px;
+  line-height:1;
+  letter-spacing:4px;
+  pointer-events:none;
 }
-
-.hero-inner{
+.hero-content{
   position:relative;
   z-index:2;
-
-  width:min(var(--max),calc(100% - 56px));
-
-  margin:0 auto;
+  width:min(900px,100%);
 }
-
 .eyebrow{
   display:flex;
   align-items:center;
-
-  gap:13px;
-
-  margin-bottom:18px;
-
-  color:var(--gold-light);
-
-  font-size:13px;
-  font-weight:500;
-
-  letter-spacing:2.5px;
+  gap:12px;
+  color:var(--gold2);
+  font-size:11px;
+  letter-spacing:3px;
 }
-
 .eyebrow::before{
   content:"";
-
-  width:48px;
+  width:40px;
   height:1px;
-
   background:var(--gold);
 }
-
-.page-title{
-  margin:0;
-
-  color:var(--cream);
-
+.detail-title{
+  margin:17px 0 0;
+  color:#fff;
   font-family:"Kanit",sans-serif;
-
-  font-size:clamp(45px,6vw,78px);
-
-  font-weight:600;
-
-  line-height:1.15;
-
-  letter-spacing:-1px;
-}
-
-.page-title-en{
-  margin-top:8px;
-
-  color:rgba(199,166,106,.65);
-
-  font-family:"Kanit",sans-serif;
-
-  font-size:clamp(22px,2.4vw,34px);
-
+  font-size:clamp(42px,6vw,76px);
+  line-height:1.05;
   font-weight:400;
-
+  text-shadow:0 8px 35px rgba(0,0,0,.75);
+}
+.detail-title span{
+  display:block;
+  margin-top:12px;
+  color:var(--gold2);
+  font-size:14px;
   letter-spacing:4px;
+  font-family:"Prompt",sans-serif;
+}
+.hero-line{
+  width:75px;
+  height:1px;
+  margin-top:24px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
+.detail-summary{
+  max-width:760px;
+  margin:18px 0 0;
+  color:rgba(247,240,232,.78);
+  font-size:14px;
+  line-height:1.95;
 }
 
-.page-description{
-  max-width:700px;
-
-  margin:20px 0 0;
-
-  color:#aa9b8a;
-
-  font-size:15px;
-
-  line-height:1.85;
+/* MAIN */
+.detail-main{padding:55px 0 95px}
+.top-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:28px;
 }
-
-
-/* =========================================================
-   MAIN PRODUCT
-========================================================= */
-
-.product-section{
-  padding:65px 0 105px;
-}
-
-.back-row{
-  margin-bottom:25px;
-}
-
-.back-link{
+.action-btn{
   display:inline-flex;
   align-items:center;
-
-  gap:9px;
-
-  padding:11px 17px;
-
-  border:1px solid rgba(199,166,106,.25);
-
-  background:rgba(255,255,255,.025);
-
-  color:#d5bd88;
-
-  font-size:13px;
-
-  transition:.25s ease;
+  justify-content:center;
+  min-height:42px;
+  padding:0 17px;
+  border:1px solid rgba(201,164,92,.30);
+  background:rgba(10,7,5,.72);
+  color:#d8c6a8;
+  font-size:11px;
+  transition:.2s ease;
+}
+.action-btn:hover{
+  border-color:var(--gold2);
+  color:#160e05;
+  background:linear-gradient(135deg,#e4c57f,#b18442);
+}
+.action-btn.primary{
+  border-color:var(--gold2);
+  color:#160e05;
+  background:linear-gradient(135deg,#ead18d,#b88837);
 }
 
-.back-link:hover{
-  border-color:rgba(199,166,106,.5);
-
-  background:rgba(199,166,106,.07);
-
-  transform:translateX(-3px);
-}
-
-
-/* =========================================================
-   PRODUCT DETAIL GRID
-========================================================= */
-
-.product-detail{
+.detail-layout{
   display:grid;
-
-  grid-template-columns:
-    minmax(0,1.02fr)
-    minmax(0,.98fr);
-
-  gap:34px;
-
+  grid-template-columns:360px minmax(0,1fr);
+  gap:22px;
   align-items:start;
 }
-
-
-/* =========================================================
-   PRODUCT IMAGE
-========================================================= */
-
-.product-visual{
-  position:relative;
-
-  min-width:0;
-
-  padding:25px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(55,34,21,.78),
-      rgba(25,14,8,.92)
-    );
-
-  border:1px solid rgba(199,166,106,.22);
-
-  box-shadow:var(--shadow);
-
-  overflow:hidden;
+.info-panel{
+  position:sticky;
+  top:105px;
+  padding:28px;
+  border:1px solid rgba(201,164,92,.22);
+  background:linear-gradient(145deg,rgba(22,14,9,.94),rgba(5,4,3,.96));
 }
-
-.product-visual::before{
-  content:"";
-
-  position:absolute;
-
-  top:14px;
-  left:14px;
-
-  width:52px;
-  height:52px;
-
-  border-top:1px solid var(--gold);
-  border-left:1px solid var(--gold);
-
-  opacity:.65;
+.info-kicker{
+  color:var(--gold2);
+  font-size:9px;
+  letter-spacing:2.5px;
 }
-
-.product-visual::after{
-  content:"";
-
-  position:absolute;
-
-  right:14px;
-  bottom:14px;
-
-  width:52px;
-  height:52px;
-
-  border-right:1px solid var(--gold);
-  border-bottom:1px solid var(--gold);
-
-  opacity:.65;
-}
-
-.product-image-wrap{
-  position:relative;
-
-  min-height:560px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  overflow:hidden;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(105,72,43,.18),
-      transparent 63%
-    ),
-    #25150c;
-}
-
-.product-image-wrap img{
-  width:100%;
-  height:560px;
-
-  object-fit:contain;
-
-  display:block;
-
-  filter:
-    drop-shadow(
-      0 30px 30px rgba(0,0,0,.42)
-    );
-
-  transition:transform .45s ease;
-}
-
-.product-visual:hover .product-image-wrap img{
-  transform:scale(1.018);
-}
-
-.image-placeholder{
-  display:none;
-
-  min-height:560px;
-
-  align-items:center;
-  justify-content:center;
-
-  color:#77695c;
-
-  font-size:14px;
-
-  text-align:center;
-}
-
-
-/* =========================================================
-   PRODUCT INFO
-========================================================= */
-
-.product-info{
-  min-width:0;
-
-  padding:32px 34px 34px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(54,33,20,.62),
-      rgba(27,15,9,.94)
-    );
-
-  border:1px solid rgba(199,166,106,.20);
-
-  box-shadow:
-    0 25px 70px rgba(0,0,0,.25);
-}
-
-.category-badge{
-  display:inline-flex;
-  align-items:center;
-
-  min-height:34px;
-
-  padding:7px 13px;
-
-  border:1px solid rgba(199,166,106,.35);
-
-  background:rgba(199,166,106,.055);
-
-  color:#d9c28d;
-
-  font-size:12px;
-
-  letter-spacing:1.2px;
-}
-
-.product-code{
-  margin-top:25px;
-
-  color:#847568;
-
-  font-size:12px;
-
-  letter-spacing:2px;
-
-  text-transform:uppercase;
-}
-
-.product-name{
-  margin:8px 0 0;
-
-  color:#f1e7d7;
-
+.info-title{
+  margin:8px 0 8px;
+  color:#fff;
   font-family:"Kanit",sans-serif;
-
-  font-size:clamp(34px,4vw,52px);
-
-  line-height:1.18;
-
-  font-weight:600;
+  font-size:30px;
+  line-height:1.15;
+  font-weight:400;
 }
-
-.product-subtitle{
-  margin:8px 0 0;
-
-  color:#ad9e8d;
-
-  font-size:15px;
-
+.info-subtitle{
+  color:#8f8477;
+  font-size:10px;
+  letter-spacing:1.3px;
   line-height:1.7;
 }
-
-
-/* =========================================================
-   PRICE
-========================================================= */
-
-.price-box{
-  margin-top:28px;
-
-  padding:22px 0;
-
-  border-top:1px solid rgba(199,166,106,.15);
-
-  border-bottom:1px solid rgba(199,166,106,.15);
+.info-line{
+  width:60px;
+  height:1px;
+  margin:22px 0;
+  background:linear-gradient(90deg,var(--gold),transparent);
 }
-
-.price-label{
-  color:#887a6c;
-
-  font-size:12px;
-
-  letter-spacing:1.4px;
-}
-
-.price{
-  margin-top:5px;
-
-  color:#e1c27c;
-
-  font-family:"Kanit",sans-serif;
-
-  font-size:42px;
-
-  font-weight:600;
-
-  line-height:1.15;
-}
-
-.price-note{
-  margin-top:4px;
-
-  color:#9f9182;
-
-  font-size:12px;
-}
-
-.shipping-note{
-  display:flex;
-  align-items:center;
-
-  gap:8px;
-
-  margin-top:13px;
-
-  color:#d6c5a7;
-
-  font-size:13px;
-}
-
-.shipping-note::before{
-  content:"";
-
-  width:7px;
-  height:7px;
-
-  border-radius:50%;
-
-  background:#c7a66a;
-
-  box-shadow:
-    0 0 0 4px rgba(199,166,106,.08);
-}
-
-
-/* =========================================================
-   OPTIONS
-========================================================= */
-
-.option-section{
-  margin-top:27px;
-}
-
-.option-title{
-  margin:0 0 12px;
-
-  color:#ded1bf;
-
-  font-size:14px;
-
-  font-weight:500;
-}
-
-.option-required{
-  color:#a98b55;
-
-  font-size:11px;
-
-  margin-left:5px;
-}
-
-.option-list{
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
-
-  gap:9px;
-}
-
-.option-btn{
-  min-height:52px;
-
-  padding:10px 13px;
-
-  border:1px solid rgba(199,166,106,.20);
-
-  background:rgba(255,255,255,.025);
-
-  color:#cbbdac;
-
-  cursor:pointer;
-
-  text-align:left;
-
-  transition:.22s ease;
-}
-
-.option-btn:hover{
-  border-color:rgba(199,166,106,.48);
-
-  background:rgba(199,166,106,.06);
-
-  color:#e4d4b7;
-}
-
-.option-btn.selected{
-  border-color:var(--gold);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(199,166,106,.15),
-      rgba(199,166,106,.05)
-    );
-
-  color:#f0d89e;
-
-  box-shadow:
-    inset 0 0 0 1px rgba(199,166,106,.08);
-}
-
-.option-name{
-  display:block;
-
-  font-size:13px;
-
-  font-weight:500;
-}
-
-.option-price{
-  display:block;
-
-  margin-top:3px;
-
-  color:#9f8d76;
-
-  font-size:11px;
-}
-
-.option-btn.selected .option-price{
-  color:#cdb986;
-}
-
-
-/* =========================================================
-   QUANTITY
-========================================================= */
-
-.buy-row{
-  margin-top:27px;
-
-  display:grid;
-
-  grid-template-columns:145px minmax(0,1fr);
-
-  gap:12px;
-}
-
-.quantity{
-  display:flex;
-
-  align-items:center;
-
-  height:52px;
-
-  border:1px solid rgba(199,166,106,.20);
-
-  background:rgba(0,0,0,.13);
-}
-
-.quantity button{
-  width:42px;
-  height:100%;
-
-  border:0;
-
-  background:transparent;
-
-  color:#d4c09a;
-
-  font-size:19px;
-
-  cursor:pointer;
-}
-
-.quantity button:hover{
-  background:rgba(199,166,106,.07);
-}
-
-.quantity input{
-  width:100%;
-
-  min-width:0;
-
-  height:100%;
-
-  border:0;
-
-  outline:0;
-
-  background:transparent;
-
-  color:#eee1cd;
-
-  text-align:center;
-
-  font-size:14px;
-}
-
-.add-cart{
-  height:52px;
-
-  border:0;
-
-  border-radius:4px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #b9944f,
-      #e0c783
-    );
-
-  color:#211208;
-
-  font-size:15px;
-
-  font-weight:600;
-
-  cursor:pointer;
-
-  transition:.25s ease;
-}
-
-.add-cart:hover{
-  transform:translateY(-2px);
-
-  box-shadow:
-    0 12px 30px rgba(199,166,106,.20);
-}
-
-.add-cart:active{
-  transform:translateY(0);
-}
-
-.add-cart:disabled{
-  opacity:.45;
-
-  cursor:not-allowed;
-
-  transform:none;
-
-  box-shadow:none;
-}
-
-.cart-message{
-  min-height:22px;
-
-  margin-top:10px;
-
-  color:#bda97e;
-
-  font-size:12px;
-
-  text-align:right;
-}
-
-
-/* =========================================================
-   INFORMATION BLOCKS
-========================================================= */
-
-.info-section{
-  margin-top:34px;
-
-  padding-top:28px;
-
-  border-top:1px solid rgba(199,166,106,.15);
-}
-
-.info-heading{
-  margin:0 0 16px;
-
-  color:#e7d8c2;
-
-  font-family:"Kanit",sans-serif;
-
-  font-size:23px;
-
-  font-weight:500;
-}
-
 .info-text{
-  margin:0;
-
-  color:#a89a89;
-
-  font-size:14px;
-
+  color:#a69b8e;
+  font-size:12px;
   line-height:1.9;
 }
-
 .info-list{
-  margin:0;
-
-  padding:0;
-
-  list-style:none;
-
   display:grid;
-
-  gap:10px;
-}
-
-.info-list li{
-  position:relative;
-
-  padding-left:19px;
-
-  color:#aa9b89;
-
-  font-size:13px;
-
-  line-height:1.75;
-}
-
-.info-list li::before{
-  content:"";
-
-  position:absolute;
-
-  left:0;
-  top:.72em;
-
-  width:6px;
-  height:6px;
-
-  border:1px solid var(--gold);
-
-  transform:rotate(45deg);
-}
-
-
-/* =========================================================
-   TECHNICAL DATA
-========================================================= */
-
-.tech-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
-
-  border-top:1px solid rgba(199,166,106,.13);
-
-  border-left:1px solid rgba(199,166,106,.13);
-}
-
-.tech-item{
-  min-width:0;
-
-  padding:14px 15px;
-
-  border-right:1px solid rgba(199,166,106,.13);
-
-  border-bottom:1px solid rgba(199,166,106,.13);
-}
-
-.tech-label{
-  display:block;
-
-  color:#7e7062;
-
-  font-size:11px;
-
-  margin-bottom:5px;
-}
-
-.tech-value{
-  display:block;
-
-  color:#c7b9a7;
-
-  font-size:13px;
-
-  line-height:1.6;
-}
-
-
-/* =========================================================
-   LOWER PRODUCT AREA
-========================================================= */
-
-.lower-section{
-  margin-top:34px;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
-
-  gap:24px;
-}
-
-.lower-card{
-  padding:28px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(50,30,18,.62),
-      rgba(26,14,8,.85)
-    );
-
-  border:1px solid rgba(199,166,106,.16);
-}
-
-.lower-card h3{
-  margin:0 0 13px;
-
-  color:#e4d6c1;
-
-  font-family:"Kanit",sans-serif;
-
-  font-size:23px;
-
-  font-weight:500;
-}
-
-
-/* =========================================================
-   CTA
-========================================================= */
-
-.cta{
-  position:relative;
-
-  padding:80px 0;
-
-  overflow:hidden;
-
-  background:
-    linear-gradient(
-      110deg,
-      rgba(64,39,23,.95),
-      rgba(29,16,9,.95)
-    );
-
-  border-top:1px solid rgba(199,166,106,.16);
-
-  border-bottom:1px solid rgba(199,166,106,.16);
-}
-
-.cta::before{
-  content:"";
-
-  position:absolute;
-
-  width:500px;
-  height:500px;
-
-  left:-250px;
-  top:-200px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(199,166,106,.13),
-      transparent 70%
-    );
-}
-
-.cta-inner{
-  position:relative;
-
-  z-index:2;
-
-  width:min(1000px,calc(100% - 56px));
-
-  margin:auto;
-
-  text-align:center;
-}
-
-.cta-kicker{
-  color:var(--gold);
-
-  font-size:13px;
-
-  letter-spacing:2px;
-
-  margin-bottom:13px;
-}
-
-.cta h2{
-  margin:0;
-
-  color:#f1e5d3;
-
-  font-family:"Kanit",sans-serif;
-
-  font-size:clamp(30px,4vw,48px);
-
-  font-weight:500;
-}
-
-.cta p{
-  max-width:680px;
-
-  margin:15px auto 28px;
-
-  color:#a99b8a;
-
-  font-size:15px;
-
-  line-height:1.8;
-}
-
-.cta-actions{
-  display:flex;
-
-  justify-content:center;
-
-  gap:12px;
-
-  flex-wrap:wrap;
-}
-
-.btn{
-  min-height:46px;
-
-  padding:12px 22px;
-
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  border-radius:7px;
-
-  font-size:14px;
-
-  transition:.25s ease;
-}
-
-.btn-gold{
-  background:
-    linear-gradient(
-      135deg,
-      #c6a25d,
-      #e0c989
-    );
-
-  color:#211208;
-
-  font-weight:600;
-}
-
-.btn-gold:hover{
-  transform:translateY(-2px);
-
-  box-shadow:
-    0 10px 30px rgba(199,166,106,.2);
-}
-
-.btn-outline{
-  border:1px solid rgba(199,166,106,.35);
-
-  color:#d9c39a;
-
-  background:rgba(255,255,255,.025);
-}
-
-.btn-outline:hover{
-  border-color:rgba(199,166,106,.65);
-
-  background:rgba(199,166,106,.08);
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer{
-  padding:65px 0 25px;
-
-  background:#110905;
-
-  border-top:1px solid rgba(199,166,106,.12);
-}
-
-.footer-grid{
-  display:grid;
-
-  grid-template-columns:minmax(0,1fr) 430px;
-
-  gap:8px;
-}
-
-.footer-brand{
-  display:flex;
-
-  align-items:flex-start;
-
-  gap:18px;
-}
-
-.footer-brand img{
-  width:74px;
-  height:74px;
-
-  object-fit:contain;
-
-  flex:0 0 74px;
-}
-
-.footer-brand-content strong{
-  display:block;
-
-  color:#eee1cd;
-
-  font-family:"Kanit",sans-serif;
-
-  font-size:19px;
-
-  font-weight:500;
-}
-
-.footer-brand-content p{
-  margin:10px 0 0;
-
-  color:#9f9181;
-
-  font-size:13px;
-
-  line-height:1.8;
-}
-
-.footer-tagline{
-  color:#bda77d!important;
-}
-
-.footer-menu{
-  justify-self:start;
-
-  margin-left:0;
-}
-
-.footer-menu h3{
-  margin:0 0 16px;
-
-  color:#d9c08d;
-
-  font-family:"Kanit",sans-serif;
-
-  font-size:16px;
-
-  font-weight:500;
-}
-
-.footer-menu a{
-  display:block;
-
-  margin-bottom:8px;
-
-  color:#968879;
-
-  font-size:13px;
-
-  transition:.2s;
-}
-
-.footer-menu a:hover{
-  color:#dfc78f;
-}
-
-.footer-bottom{
-  margin-top:50px;
-
-  padding-top:22px;
-
-  border-top:1px solid rgba(255,255,255,.07);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:20px;
-
-  flex-wrap:wrap;
-}
-
-.footer-copy{
-  color:#75695d;
-
-  font-size:12px;
-}
-
-.footer-info{
-  display:flex;
-
-  align-items:center;
-
-  justify-content:flex-end;
-
   gap:9px;
-
-  flex-wrap:wrap;
+  margin-top:22px;
 }
-
-.footer-address{
-  color:#827568;
-
+.info-item{
+  padding:13px 14px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.015);
+}
+.info-item small{
+  display:block;
+  margin-bottom:4px;
+  color:var(--gold);
+  font-size:9px;
+  letter-spacing:1.2px;
+}
+.info-item strong{
+  display:block;
+  color:#ddd2c6;
   font-size:12px;
-
-  margin-right:8px;
+  font-weight:400;
+  line-height:1.55;
 }
 
-.footer-btn{
-  border:1px solid rgba(199,166,106,.25);
-
-  color:#cdb681;
-
-  padding:8px 13px;
-
-  border-radius:6px;
-
-  font-size:12px;
-
-  transition:.2s;
+/* GALLERY */
+.gallery-panel{
+  min-width:0;
 }
-
-.footer-btn:hover{
-  background:rgba(199,166,106,.08);
-
-  border-color:rgba(199,166,106,.5);
-}
-
-.social{
-  display:flex;
-
-  gap:7px;
-
-  margin-left:4px;
-}
-
-.social a{
-  width:31px;
-  height:31px;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  border:1px solid rgba(199,166,106,.2);
-
-  border-radius:50%;
-
-  color:#bca47a;
-
-  font-size:11px;
-}
-
-
-/* =========================================================
-   LOADING
-========================================================= */
-
-.loading{
-  min-height:400px;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  color:#8d7e6d;
-
-  font-size:14px;
-}
-
-.spinner{
-  width:28px;
-  height:28px;
-
-  margin-right:12px;
-
-  border:2px solid rgba(199,166,106,.15);
-
-  border-top-color:var(--gold);
-
-  border-radius:50%;
-
-  animation:spin .8s linear infinite;
-}
-
-@keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-
-/* =========================================================
-   ERROR
-========================================================= */
-
-.error-box{
-  display:none;
-
-  padding:60px 25px;
-
-  text-align:center;
-
-  border:1px solid rgba(199,166,106,.18);
-
-  background:rgba(255,255,255,.02);
-}
-
-.error-box h2{
-  margin:0;
-
-  color:#e5d8c5;
-
-  font-family:"Kanit",sans-serif;
-
-  font-size:30px;
-}
-
-.error-box p{
-  margin:12px auto 22px;
-
-  color:#958778;
-
-  font-size:14px;
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:1180px){
-
-  .customer-brand{
-    min-width:250px;
-  }
-
-  .customer-brand-text strong{
-    font-size:16px;
-  }
-
-  .customer-nav > a,
-  .nav-drop-trigger{
-    font-size:12px;
-
-    padding-left:6px;
-    padding-right:6px;
-  }
-
-  .product-detail{
-    gap:24px;
-  }
-
-  .product-info{
-    padding:28px;
-  }
-
-}
-
-
-@media(max-width:980px){
-
-  .navbar{
-    min-height:78px;
-  }
-
-  .customer-brand{
-    min-width:0;
-
-    flex:1;
-  }
-
-  .customer-brand img{
-    width:60px;
-    height:60px;
-
-    flex-basis:60px;
-  }
-
-  .customer-brand-text strong{
-    font-size:16px;
-  }
-
-  .customer-brand-text small{
-    font-size:8px;
-  }
-
-  .customer-nav{
-    position:absolute;
-
-    left:17px;
-    right:17px;
-
-    top:calc(100% + 8px);
-
-    padding:10px;
-
-    display:none;
-
-    flex-direction:column;
-
-    align-items:stretch;
-
-    justify-content:flex-start;
-
-    background:rgba(24,13,8,.98);
-
-    border:1px solid rgba(199,166,106,.2);
-
-    border-radius:12px;
-
-    box-shadow:0 25px 60px rgba(0,0,0,.5);
-  }
-
-  .customer-nav.open{
-    display:flex;
-  }
-
-  .customer-nav > a,
-  .nav-drop-trigger{
-    width:100%;
-
-    padding:12px 13px;
-
-    text-align:left;
-
-    font-size:14px;
-  }
-
-  .nav-shop{
-    margin:4px 0 0;
-  }
-
-  .nav-dropdown{
-    width:100%;
-  }
-
-  .nav-drop-trigger{
-    justify-content:space-between;
-  }
-
-  .nav-submenu{
-    position:static;
-
-    min-width:0;
-
-    margin:0 7px 7px;
-
-    padding:4px;
-
-    display:none;
-
-    opacity:1;
-    visibility:visible;
-
-    transform:none;
-
-    box-shadow:none;
-
-    background:rgba(255,255,255,.025);
-  }
-
-  .nav-dropdown.open .nav-submenu{
-    display:block;
-  }
-
-  .nav-submenu a{
-    font-size:13px;
-  }
-
-  .menu-toggle{
-    display:block;
-  }
-
-  .page-hero{
-    padding-top:130px;
-
-    min-height:410px;
-  }
-
-  .product-detail{
-    grid-template-columns:1fr;
-  }
-
-  .product-image-wrap{
-    min-height:500px;
-  }
-
-  .product-image-wrap img{
-    height:500px;
-  }
-
-  .image-placeholder{
-    min-height:500px;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr;
-
-    gap:40px;
-  }
-
-}
-
-
-@media(max-width:700px){
-
-  .container,
-  .hero-inner{
-    width:calc(100% - 32px);
-  }
-
-  .page-hero{
-    padding:120px 0 55px;
-
-    min-height:auto;
-  }
-
-  .page-title{
-    font-size:43px;
-  }
-
-  .page-title-en{
-    font-size:21px;
-
-    letter-spacing:3px;
-  }
-
-  .page-description{
-    font-size:14px;
-
-    line-height:1.8;
-  }
-
-  .product-section{
-    padding:45px 0 75px;
-  }
-
-  .product-visual{
-    padding:15px;
-  }
-
-  .product-image-wrap{
-    min-height:390px;
-  }
-
-  .product-image-wrap img{
-    height:390px;
-  }
-
-  .image-placeholder{
-    min-height:390px;
-  }
-
-  .product-info{
-    padding:24px 21px 25px;
-  }
-
-  .product-name{
-    font-size:36px;
-  }
-
-  .price{
-    font-size:36px;
-  }
-
-  .option-list{
-    grid-template-columns:1fr;
-  }
-
-  .buy-row{
-    grid-template-columns:110px minmax(0,1fr);
-  }
-
-  .lower-section{
-    grid-template-columns:1fr;
-  }
-
-  .tech-grid{
-    grid-template-columns:1fr;
-  }
-
-  .footer-bottom{
-    align-items:flex-start;
-
-    flex-direction:column;
-  }
-
-  .footer-info{
-    justify-content:flex-start;
-  }
-
-  .footer-address{
-    width:100%;
-
-    margin-bottom:4px;
-  }
-
-}
-
-
-@media(max-width:450px){
-
-  .customer-brand img{
-    width:54px;
-    height:54px;
-
-    flex-basis:54px;
-  }
-
-  .customer-brand-text strong{
-    font-size:14px;
-  }
-
-  .customer-brand-text small{
-    font-size:7px;
-
-    letter-spacing:1.2px;
-  }
-
-  .menu-toggle{
-    width:40px;
-    height:40px;
-  }
-
-  .page-title{
-    font-size:36px;
-  }
-
-  .page-title-en{
-    font-size:18px;
-  }
-
-  .eyebrow{
-    font-size:10px;
-
-    letter-spacing:2px;
-  }
-
-  .product-image-wrap{
-    min-height:320px;
-  }
-
-  .product-image-wrap img{
-    height:320px;
-  }
-
-  .image-placeholder{
-    min-height:320px;
-  }
-
-  .product-name{
-    font-size:31px;
-  }
-
-  .product-subtitle{
-    font-size:13px;
-  }
-
-  .price{
-    font-size:33px;
-  }
-
-  .buy-row{
-    grid-template-columns:1fr;
-
-    gap:9px;
-  }
-
-  .quantity{
-    width:100%;
-  }
-
-  .add-cart{
-    width:100%;
-  }
-
-  .cart-message{
-    text-align:left;
-  }
-
-  .cta{
-    padding:65px 0;
-  }
-
-  .cta-inner{
-    width:calc(100% - 32px);
-  }
-
-  .btn{
-    width:100%;
-  }
-
-  .footer{
-    padding-top:48px;
-  }
-
-  .footer-brand{
-    gap:13px;
-  }
-
-}
-
-</style>
-
-
-<style id="products-theme-sync">
-/* =========================================================
-   PRODUCT DETAIL — SAME VISUAL SYSTEM AS PRODUCTS PAGE
-   ใช้พื้นหลัง / ระยะ / typography ชุดเดียวกับ products.html
-========================================================= */
-html{background:#100b07}
-body{
-  background:#100b07 !important;
-}
-body::before{
-  display:none !important;
-}
-.product-detail-page{
-  min-height:100vh;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.52) 0%,
-      rgba(0,0,0,.35) 24%,
-      rgba(0,0,0,.54) 55%,
-      rgba(0,0,0,.96) 100%
-    ),
-    url("assets/index-main-bg.png")
-    center top / cover no-repeat fixed;
-}
-.page-hero{
-  min-height:600px !important;
-  padding:145px 0 75px !important;
-  display:flex !important;
-  align-items:center !important;
-  background:transparent !important;
-}
-.page-hero::before{
-  width:720px !important;
-  height:720px !important;
-  right:-270px !important;
-  top:-270px !important;
-  background:radial-gradient(circle,rgba(0,0,0,.10),transparent 67%) !important;
-}
-.page-hero::after{
-  background:linear-gradient(90deg,transparent,rgba(201,164,92,.24),transparent) !important;
-}
-.hero-inner{
-  width:min(1280px,calc(100% - 70px)) !important;
-  margin:0 auto !important;
-  padding:0 !important;
-}
-.eyebrow{
-  color:#e4c979 !important;
-  font-size:11px !important;
-  letter-spacing:2.5px !important;
-  font-weight:500 !important;
-  margin-bottom:12px !important;
-}
-.eyebrow::before{
-  width:40px !important;
-  background:#c9a85a !important;
-}
-.page-title{
-  margin:12px 0 18px !important;
-  color:#fff !important;
-  font-family:"Kanit","Prompt",sans-serif !important;
-  font-size:clamp(54px,7vw,88px) !important;
-  font-weight:400 !important;
-  line-height:1.02 !important;
-  letter-spacing:-1.5px !important;
-  text-shadow:0 8px 30px rgba(0,0,0,.95) !important;
-}
-.page-title-en{
-  margin-top:8px !important;
-  color:#e4c979 !important;
-  font-family:"Kanit","Prompt",sans-serif !important;
-  font-size:.42em !important;
-  font-weight:500 !important;
-  line-height:1.2 !important;
-  letter-spacing:3px !important;
-}
-.page-description{
-  display:block !important;
-  width:540px !important;
-  max-width:540px !important;
-  margin:0 !important;
-  padding:0 !important;
-  color:#fff8ef !important;
-  font-size:14px !important;
-  line-height:1.9 !important;
-  text-shadow:0 4px 18px rgba(0,0,0,.92) !important;
-}
-.product-section{
-  padding:20px 0 80px !important;
-  background:transparent !important;
-}
-.product-section > .container{
-  width:min(1280px,calc(100% - 70px)) !important;
-}
-@media(max-width:700px){
-  .page-hero{
-    min-height:560px !important;
-    padding:125px 0 55px !important;
-  }
-  .hero-inner,
-  .product-section > .container{
-    width:calc(100% - 32px) !important;
-  }
-  .page-title{
-    font-size:clamp(45px,13vw,70px) !important;
-  }
-  .page-description{
-    width:100% !important;
-    max-width:100% !important;
-    font-size:13px !important;
-  }
-}
-</style>
-
-
-<style id="related-services-sync">
-/* =========================================================
-   RELATED SERVICES — KEEP SERVICE + SERVICE-DETAIL CONTENT
-   แทรกด้านล่าง Product Detail โดยใช้ visual system เดียวกัน
-========================================================= */
-.related-services{
-  width:min(1280px,calc(100% - 70px));
-  margin:0 auto 80px;
-  padding-top:18px;
-}
-.related-head{
+.gallery-heading{
   display:flex;
   align-items:flex-end;
   justify-content:space-between;
-  gap:25px;
-  margin-bottom:24px;
+  gap:20px;
+  margin-bottom:16px;
 }
-.related-kicker{
-  color:#e4c979;
-  font-size:10px;
-  letter-spacing:2.8px;
-}
-.related-title{
-  margin:7px 0 0;
-  color:#fff;
-  font-family:"Kanit","Prompt",sans-serif;
-  font-size:clamp(32px,4vw,48px);
-  font-weight:400;
-  line-height:1.08;
-}
-.related-note{
-  max-width:520px;
-  margin:0;
-  color:#a99b8b;
-  font-size:12px;
-  line-height:1.85;
-  text-align:right;
-}
-.related-line{
-  width:70px;
-  height:1px;
-  margin:18px 0 25px;
-  background:linear-gradient(90deg,#c9a45c,transparent);
-}
-.service-related-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:14px;
-}
-.service-related-card{
-  min-width:0;
-  overflow:hidden;
-  border:1px solid rgba(201,164,92,.20);
-  background:linear-gradient(145deg,rgba(45,27,17,.80),rgba(10,6,4,.94));
-  box-shadow:0 24px 60px rgba(0,0,0,.24);
-  transition:.25s ease;
-}
-.service-related-card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(228,197,127,.46);
-}
-.service-related-image{
-  position:relative;
-  height:190px;
-  overflow:hidden;
-  background:#120b07;
-}
-.service-related-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  opacity:0;
-  transition:.35s ease;
-}
-.service-related-image.loaded img{opacity:1}
-.service-related-image::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.72));
-  pointer-events:none;
-}
-.service-related-loading{
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  color:#776b60;
+.gallery-kicker{
+  color:var(--gold2);
   font-size:9px;
-  letter-spacing:1.8px;
+  letter-spacing:2.5px;
 }
-.service-related-image.loaded .service-related-loading{display:none}
-.service-related-label{
-  position:absolute;
-  z-index:2;
-  left:12px;
-  bottom:11px;
-  color:#ead18d;
-  font-size:9px;
-  letter-spacing:1.7px;
-}
-.service-related-body{padding:20px}
-.service-related-number{
-  color:#c9a45c;
-  font-size:9px;
-  letter-spacing:2px;
-}
-.service-related-body h3{
-  margin:7px 0 9px;
+.gallery-title{
+  margin:6px 0 0;
   color:#fff;
   font-family:"Kanit",sans-serif;
-  font-size:22px;
-  line-height:1.2;
+  font-size:32px;
   font-weight:400;
 }
-.service-related-body h3 small{
-  display:block;
-  margin-top:4px;
-  color:#8e8174;
-  font-family:"Prompt",sans-serif;
+.gallery-count{
+  color:#8f8477;
   font-size:10px;
-  font-weight:400;
-  letter-spacing:.8px;
+  white-space:nowrap;
 }
-.service-related-body p{
-  min-height:68px;
-  margin:0;
-  color:#a99c8e;
-  font-size:11px;
-  line-height:1.8;
-}
-.related-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin:15px 0;
-}
-.related-tag{
-  padding:5px 8px;
-  border:1px solid rgba(201,164,92,.25);
-  color:#cdb77f;
-  font-size:8px;
-  letter-spacing:1px;
-}
-.related-actions{display:flex;gap:8px;flex-wrap:wrap}
-.related-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:36px;
-  padding:0 12px;
-  border:1px solid rgba(201,164,92,.30);
-  color:#d9c28d;
-  background:rgba(201,164,92,.035);
-  font-size:10px;
-  transition:.2s ease;
-}
-.related-btn:hover{
-  color:#160e05;
-  border-color:#e4c57f;
-  background:linear-gradient(135deg,#e4c57f,#b18442);
-}
-.related-btn.primary{
-  color:#170e05;
-  border-color:#dcb96e;
-  background:linear-gradient(135deg,#ead18d,#b88837);
-}
-.service-detail-band{
-  margin-top:55px;
-  padding-top:35px;
-  border-top:1px solid rgba(201,164,92,.16);
-}
-.service-detail-grid{
+.gallery-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:12px;
 }
-.service-detail-card{
-  padding:22px;
-  border:1px solid rgba(201,164,92,.18);
-  background:linear-gradient(145deg,rgba(30,18,11,.78),rgba(7,5,3,.90));
+.gallery-card{
+  position:relative;
+  aspect-ratio:16/10;
+  overflow:hidden;
+  border:1px solid rgba(201,164,92,.20);
+  background:#0d0906;
+  cursor:pointer;
 }
-.service-detail-card h4{
-  margin:0 0 8px;
-  color:#fff;
-  font-family:"Kanit",sans-serif;
-  font-size:21px;
-  font-weight:400;
+.gallery-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .45s ease,filter .35s ease;
 }
-.service-detail-card p{
-  margin:0 0 14px;
-  color:#9e9284;
-  font-size:11px;
-  line-height:1.8;
+.gallery-card:hover img{
+  transform:scale(1.045);
+  filter:brightness(1.07);
 }
-.service-detail-meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-bottom:15px;
-}
-.service-detail-meta span{
+.gallery-card::after{
+  content:"เปิดภาพ";
+  position:absolute;
+  right:10px;
+  bottom:10px;
   padding:5px 8px;
-  border:1px solid rgba(201,164,92,.22);
-  color:#cdb77f;
-  font-size:8px;
-  letter-spacing:1px;
-}
-.workflow-related{
-  margin-top:55px;
-  padding:35px 0 0;
-  border-top:1px solid rgba(201,164,92,.16);
-}
-.workflow-grid-related{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  border:1px solid rgba(201,164,92,.17);
-  background:rgba(8,5,3,.55);
-}
-.workflow-step-related{
-  min-height:170px;
-  padding:24px 21px;
-  border-right:1px solid rgba(201,164,92,.15);
-}
-.workflow-step-related:last-child{border-right:0}
-.workflow-step-related .step-no{
-  color:#c9a45c;
+  border:1px solid rgba(228,197,127,.35);
+  background:rgba(0,0,0,.62);
+  color:#fff;
   font-size:9px;
-  letter-spacing:2px;
+  opacity:0;
+  transition:.2s;
 }
-.workflow-step-related h4{
-  margin:11px 0 8px;
-  color:#eee2d2;
+.gallery-card:hover::after{opacity:1}
+.gallery-number{
+  position:absolute;
+  left:10px;
+  top:10px;
+  z-index:2;
+  padding:5px 8px;
+  border:1px solid rgba(228,197,127,.28);
+  background:rgba(0,0,0,.58);
+  color:var(--gold2);
+  font-size:9px;
+}
+
+/* EMPTY / LOADING */
+.loading-box,.empty-box{
+  padding:65px 25px;
+  border:1px solid var(--line);
+  background:rgba(10,7,5,.72);
+  text-align:center;
+  color:#9e9487;
+  font-size:11px;
+}
+.loading-box{grid-column:1/-1}
+.spinner{
+  width:30px;height:30px;margin:0 auto 15px;
+  border:2px solid rgba(201,164,92,.15);
+  border-top-color:var(--gold);
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.error-box{
+  padding:28px;
+  border:1px solid rgba(201,164,92,.28);
+  background:rgba(35,23,13,.62);
+  color:#c7bba9;
+  line-height:1.9;
+}
+.error-box strong{
+  display:block;
+  margin-bottom:7px;
+  color:var(--gold2);
   font-family:"Kanit",sans-serif;
   font-size:20px;
   font-weight:400;
 }
-.workflow-step-related p{
-  margin:0;
-  color:#95897b;
-  font-size:10px;
-  line-height:1.8;
+
+/* BOTTOM CTA */
+.bottom-cta{
+  margin-top:50px;
+  padding:38px 34px;
+  border:1px solid rgba(201,164,92,.27);
+  background:
+    linear-gradient(135deg,rgba(38,24,13,.72),rgba(6,4,3,.90)),
+    radial-gradient(circle at 90% 10%,rgba(201,164,92,.12),transparent 35%);
 }
+.bottom-cta h2{
+  margin:0 0 7px;
+  color:#fff;
+  font-family:"Kanit",sans-serif;
+  font-size:31px;
+  font-weight:400;
+}
+.bottom-cta p{
+  margin:0 0 20px;
+  color:#a69b8e;
+  font-size:12px;
+  line-height:1.85;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(0,0,0,.94);
+  backdrop-filter:blur(12px);
+}
+.modal.open{display:flex}
+.modal-box{
+  width:min(1180px,100%);
+  max-height:94vh;
+  overflow:hidden;
+  border:1px solid rgba(201,164,92,.30);
+  background:#090604;
+  box-shadow:0 35px 110px rgba(0,0,0,.8);
+}
+.modal-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:15px 18px;
+  border-bottom:1px solid rgba(201,164,92,.14);
+}
+.modal-title{
+  margin:0;
+  color:#fff;
+  font-family:"Kanit",sans-serif;
+  font-size:23px;
+  font-weight:400;
+}
+.modal-counter{margin-top:2px;color:#918678;font-size:9px}
+.modal-close{
+  width:40px;height:40px;
+  border:1px solid rgba(201,164,92,.30);
+  background:rgba(201,164,92,.05);
+  color:#fff;
+  cursor:pointer;
+  font-size:22px;
+}
+.modal-stage{
+  position:relative;
+  min-height:480px;
+  max-height:calc(94vh - 140px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#030303;
+}
+.modal-stage img{
+  max-width:100%;
+  max-height:calc(94vh - 180px);
+  width:auto;height:auto;
+  object-fit:contain;
+}
+.gallery-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:2;
+  width:48px;height:48px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:50%;
+  background:rgba(0,0,0,.55);
+  color:#fff;
+  cursor:pointer;
+  font-size:27px;
+}
+.gallery-prev{left:15px}
+.gallery-next{right:15px}
+.thumb-strip{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:10px 12px 13px;
+  background:#0b0806;
+  border-top:1px solid rgba(201,164,92,.12);
+}
+.thumb{
+  flex:0 0 auto;
+  width:76px;height:54px;
+  overflow:hidden;
+  border:1px solid rgba(201,164,92,.16);
+  opacity:.55;
+  background:#120d09;
+  cursor:pointer;
+}
+.thumb.active{opacity:1;border-color:var(--gold)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+
 @media(max-width:1050px){
-  .service-related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .workflow-grid-related{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .workflow-step-related:nth-child(2){border-right:0}
-  .workflow-step-related:nth-child(-n+2){border-bottom:1px solid rgba(201,164,92,.15)}
+  .container{width:min(var(--max),calc(100% - 50px))}
+  .detail-layout{grid-template-columns:1fr}
+  .info-panel{position:relative;top:auto}
 }
 @media(max-width:700px){
-  .related-services{width:calc(100% - 32px);margin-bottom:55px}
-  .related-head{display:block}
-  .related-note{text-align:left;margin-top:11px}
-  .service-related-grid{grid-template-columns:1fr}
-  .service-related-image{height:205px}
-  .service-related-body p{min-height:0}
-  .service-detail-grid{grid-template-columns:1fr}
-  .workflow-grid-related{grid-template-columns:1fr}
-  .workflow-step-related{min-height:0;border-right:0!important;border-bottom:1px solid rgba(201,164,92,.15)}
-  .workflow-step-related:last-child{border-bottom:0}
-  .related-actions>*{width:100%}
+  .container{width:calc(100% - 32px)}
+  .detail-hero{
+    min-height:560px;
+    padding:125px 0 55px;
+    align-items:flex-end;
+  }
+  .detail-hero::before{
+    left:-120px;
+    width:680px;
+  }
+  .detail-hero::after{font-size:80px}
+  .detail-title{font-size:clamp(40px,12vw,58px)}
+  .detail-title span{font-size:11px;letter-spacing:2.5px}
+  .detail-summary{font-size:13px}
+  .detail-main{padding-top:40px}
+  .info-panel{padding:23px}
+  .gallery-heading{display:block}
+  .gallery-count{display:block;margin-top:7px}
+  .gallery-grid{grid-template-columns:1fr;gap:10px}
+  .bottom-cta{padding:30px 22px}
+  .bottom-cta h2{font-size:27px}
+  .action-btn{width:100%}
+  .modal{padding:7px}
+  .modal-box{max-height:96vh}
+  .modal-stage{min-height:55vh}
+  .gallery-nav{width:40px;height:40px;font-size:22px}
+  .gallery-prev{left:7px}
+  .gallery-next{right:7px}
 }
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
-
 <div id="customer-master-nav"></div>
-
-
-
-<!-- =========================================================
-     PAGE HERO
-========================================================= -->
-
-<div class="product-detail-page">
-
-<section class="page-hero">
-
-  <div class="hero-inner">
-
-    <div class="eyebrow">
-      CHATPHETCH GROUP
-    </div>
-
-    <h1 class="page-title">
-      รายละเอียดสินค้า
-    </h1>
-
-    <div class="page-title-en">
-      PRODUCT DETAIL
-    </div>
-
-    <p class="page-description">
-      รายละเอียดผลิตภัณฑ์ ข้อมูลการใช้งาน
-      ตัวเลือกสินค้า และข้อมูลที่เกี่ยวข้อง
-      สำหรับประกอบการเลือกวัสดุสำหรับงานของคุณ
-    </p>
-
-  </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     PRODUCT SECTION
-========================================================= -->
 
 <main>
 
-<section class="product-section">
+<section class="detail-hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="eyebrow">PROJECT DETAIL</div>
 
+      <h1 class="detail-title" id="detailTitle">
+        รายละเอียดผลงาน
+        <span>PROJECT</span>
+      </h1>
+
+      <div class="hero-line"></div>
+
+      <p class="detail-summary" id="detailSummary">
+        กำลังโหลดข้อมูลผลงาน...
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="detail-main">
   <div class="container">
 
-
-    <!-- BACK -->
-
-    <div class="back-row">
-
-      <a
-        href="products.html"
-        class="back-link"
-      >
-        ← กลับไปดูสินค้าทั้งหมด
+    <div class="top-actions">
+      <a class="action-btn" id="backCategory" href="projects.html">
+        ← กลับหมวดผลงาน
       </a>
-
-    </div>
-
-
-    <!-- LOADING -->
-
-    <div
-      class="loading"
-      id="loadingState"
-    >
-
-      <div class="spinner"></div>
-
-      กำลังโหลดข้อมูลสินค้า...
-
-    </div>
-
-
-    <!-- ERROR -->
-
-    <div
-      class="error-box"
-      id="errorState"
-    >
-
-      <h2>
-        ไม่พบข้อมูลสินค้า
-      </h2>
-
-      <p>
-        ไม่พบสินค้าที่ต้องการ หรือข้อมูลสินค้าไม่พร้อมใช้งาน
-      </p>
-
-      <a
-        href="products.html"
-        class="btn btn-gold"
-      >
-        กลับไปดูสินค้าทั้งหมด
+      <a class="action-btn" href="projects.html">
+        ดูผลงานทั้งหมด
       </a>
-
-    </div>
-
-
-    <!-- PRODUCT -->
-
-    <div
-      class="product-detail"
-      id="productDetail"
-      style="display:none;"
-    >
-
-
-      <!-- ===================================================
-           IMAGE
-      ==================================================== -->
-
-      <div class="product-visual">
-
-        <div class="product-image-wrap">
-
-          <img
-            id="productImage"
-            src=""
-            alt=""
-          >
-
-          <div
-            class="image-placeholder"
-            id="imagePlaceholder"
-          >
-            ไม่มีรูปภาพสินค้า
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- ===================================================
-           INFO
-      ==================================================== -->
-
-      <div class="product-info">
-
-
-        <div
-          class="category-badge"
-          id="productCategory"
-        >
-          สินค้า
-        </div>
-
-
-        <div
-          class="product-code"
-          id="productCode"
-        >
-          PRODUCT CODE : -
-        </div>
-
-
-        <h2
-          class="product-name"
-          id="productName"
-        >
-          -
-        </h2>
-
-
-        <p
-          class="product-subtitle"
-          id="productSubtitle"
-        >
-          -
-        </p>
-
-
-
-        <!-- PRICE -->
-
-        <div class="price-box">
-
-          <div class="price-label">
-            ราคาเริ่มต้น
-          </div>
-
-          <div
-            class="price"
-            id="productPrice"
-          >
-            -
-          </div>
-
-          <div class="price-note">
-            ราคาตามตัวเลือกสินค้า
-          </div>
-
-          <div class="shipping-note">
-            ส่งแล้ววันนี้ทั่วไทย
-          </div>
-
-        </div>
-
-
-
-        <!-- OPTIONS -->
-
-        <div
-          class="option-section"
-          id="optionSection"
-          style="display:none;"
-        >
-
-          <h3 class="option-title">
-
-            เลือกขนาด / ตัวเลือก
-
-            <span class="option-required">
-              * กรุณาเลือก
-            </span>
-
-          </h3>
-
-          <div
-            class="option-list"
-            id="optionList"
-          ></div>
-
-        </div>
-
-
-
-        <!-- BUY -->
-
-        <div class="buy-row">
-
-          <div class="quantity">
-
-            <button
-              type="button"
-              id="minusBtn"
-              aria-label="ลดจำนวน"
-            >
-              −
-            </button>
-
-            <input
-              type="number"
-              id="quantity"
-              value="1"
-              min="1"
-              max="999"
-              inputmode="numeric"
-            >
-
-            <button
-              type="button"
-              id="plusBtn"
-              aria-label="เพิ่มจำนวน"
-            >
-              +
-            </button>
-
-          </div>
-
-
-          <button
-            type="button"
-            class="add-cart"
-            id="addCartBtn"
-          >
-            🛒 เพิ่มลงตะกร้า
-          </button>
-
-        </div>
-
-
-        <div
-          class="cart-message"
-          id="cartMessage"
-        ></div>
-
-
-
-        <!-- DESCRIPTION -->
-
-        <div class="info-section">
-
-          <h3 class="info-heading">
-            รายละเอียดสินค้า
-          </h3>
-
-          <p
-            class="info-text"
-            id="productDescription"
-          >
-            -
-          </p>
-
-        </div>
-
-
-
-        <!-- FEATURES -->
-
-        <div
-          class="info-section"
-          id="featuresSection"
-          style="display:none;"
-        >
-
-          <h3 class="info-heading">
-            จุดเด่นผลิตภัณฑ์
-          </h3>
-
-          <ul
-            class="info-list"
-            id="featuresList"
-          ></ul>
-
-        </div>
-
-
-
-        <!-- TECHNICAL -->
-
-        <div class="info-section">
-
-          <h3 class="info-heading">
-            ข้อมูลทางเทคนิค
-          </h3>
-
-          <div
-            class="tech-grid"
-            id="technicalGrid"
-          ></div>
-
-        </div>
-
-
-
-      </div>
-
-    </div>
-
-
-
-    <!-- ===================================================
-         LOWER INFORMATION
-    ==================================================== -->
-
-    <div
-      class="lower-section"
-      id="lowerSection"
-      style="display:none;"
-    >
-
-
-      <div
-        class="lower-card"
-        id="usageCard"
-      >
-
-        <h3>
-          การใช้งาน
-        </h3>
-
-        <p
-          class="info-text"
-          id="usageText"
-        >
-          ยังไม่มีข้อมูล
-        </p>
-
-      </div>
-
-
-      <div
-        class="lower-card"
-        id="coverageCard"
-      >
-
-        <h3>
-          ขนาดบรรจุ / พื้นที่ใช้งาน
-        </h3>
-
-        <p
-          class="info-text"
-          id="coverageText"
-        >
-          ยังไม่มีข้อมูล
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-
-
-<!-- =========================================================
-     RELATED SERVICES
-     SERVICE + SERVICE DETAIL
-========================================================= -->
-<section class="related-services" id="relatedServices">
-  <div class="related-head">
-    <div>
-      <div class="related-kicker">OUR SERVICES</div>
-      <h2 class="related-title">บริการที่เกี่ยวข้อง</h2>
-      <div class="related-line"></div>
-    </div>
-    <p class="related-note">
-      เลือกระบบบริการที่ใกล้เคียงกับลักษณะพื้นที่ของคุณ
-      เพื่อดูรายละเอียดบริการ แนวทางการพิจารณา และภาพตัวอย่างงานจริง
-    </p>
-  </div>
-
-  <div class="service-related-grid" id="relatedServiceGrid">
-    <div class="loading-box">กำลังโหลดบริการ...</div>
-  </div>
-
-  <div class="service-detail-band">
-    <div class="related-head">
-      <div>
-        <div class="related-kicker">SERVICE DETAIL</div>
-        <h2 class="related-title">รายละเอียดบริการ</h2>
-        <div class="related-line"></div>
-      </div>
-      <p class="related-note">
-        หน้ารายละเอียดจะแสดงลักษณะงาน ปัญหาที่พิจารณา
-        ความเหมาะสมของพื้นที่ และภาพอ้างอิงจากผลงานใน Repository
-      </p>
-    </div>
-
-    <div class="service-detail-grid" id="relatedServiceDetailGrid"></div>
-  </div>
-
-  <div class="workflow-related">
-    <div class="related-head">
-      <div>
-        <div class="related-kicker">OUR PROCESS</div>
-        <h2 class="related-title">ขั้นตอนการให้บริการ</h2>
-        <div class="related-line"></div>
-      </div>
-      <p class="related-note">
-        เริ่มจากการเข้าใจพื้นที่และลักษณะการใช้งาน ก่อนเลือกแนวทางและวัสดุที่เหมาะสม
-      </p>
-    </div>
-
-    <div class="workflow-grid-related">
-      <div class="workflow-step-related">
-        <div class="step-no">01 / SURVEY</div>
-        <h4>สำรวจหน้างาน</h4>
-        <p>พิจารณาสภาพพื้น ลักษณะพื้นที่ ปัญหาเดิม และเงื่อนไขการใช้งานจริง</p>
-      </div>
-      <div class="workflow-step-related">
-        <div class="step-no">02 / CONSULT</div>
-        <h4>วิเคราะห์และให้คำปรึกษา</h4>
-        <p>ประเมินแนวทางระบบงานและวัสดุให้สอดคล้องกับวัตถุประสงค์ของพื้นที่</p>
-      </div>
-      <div class="workflow-step-related">
-        <div class="step-no">03 / SYSTEM</div>
-        <h4>เลือกระบบที่เหมาะสม</h4>
-        <p>กำหนดระบบพื้นหรือแนวทางงานตามสภาพหน้างานและการใช้งาน</p>
-      </div>
-      <div class="workflow-step-related">
-        <div class="step-no">04 / EXECUTION</div>
-        <h4>ดำเนินงาน</h4>
-        <p>วางแผนและดำเนินงานตามระบบ พร้อมติดตามรายละเอียดของหน้างาน</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- =========================================================
-     CTA
-========================================================= -->
-
-<section class="cta">
-
-  <div class="cta-inner">
-
-    <div class="cta-kicker">
-      CHATPHETCH GROUP
-    </div>
-
-    <h2>
-      ต้องการคำแนะนำในการเลือกวัสดุ?
-    </h2>
-
-    <p>
-      หากไม่แน่ใจว่าผลิตภัณฑ์หรือระบบพื้นแบบใด
-      เหมาะกับลักษณะงานของคุณ
-      สามารถติดต่อทีมงานเพื่อสอบถามข้อมูลเพิ่มเติมได้
-    </p>
-
-    <div class="cta-actions">
-
-      <a
-        href="contact.html"
-        class="btn btn-gold"
-      >
-        ☎ ติดต่อเรา
+      <a class="action-btn primary" href="contact.html">
+        ติดต่อเรา
       </a>
+    </div>
 
-      <a
-        href="service-detail.html?service=consulting"
-        class="btn btn-outline"
-      >
-        ปรึกษาและเลือกวัสดุ
-      </a>
-
+    <div id="detailContent">
+      <div class="loading-box">
+        <div class="spinner"></div>
+        กำลังเตรียมข้อมูลผลงาน...
+      </div>
     </div>
 
   </div>
-
 </section>
 
 </main>
 
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-</div>
-
 <div id="customer-master-footer"></div>
 
-
-
-<script>
-
-/* =========================================================
-   SUPABASE
-========================================================= */
-
-const SUPABASE_URL =
-  "https://mfhllgklcfnnbyyzzljz.supabase.co";
-
-const SUPABASE_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1maGxsZ2tsY2Zubn5eXp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkwMjY2NzEsImV4cCI6MjEwNDYwMjY3MX0.bjpjXkB0tpgrJu8BwmpSO3_MSQSLMWC1xI0v-9hNlIc";
-
-
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
-
-
-/* =========================================================
-   DEFAULT PRODUCTS
-========================================================= */
-
-const DEFAULT_PRODUCTS = {
-
-  "91428": {
-
-    id:"91428",
-
-    code:"91428",
-
-    name:"PREMIUM STAMPED CONCRETE (PSC)",
-
-    category:"floor",
-
-    category_label:"วัสดุงานพื้น",
-
-    short_description:
-      "สีเคลือบแกร่งสำหรับงานพิมพ์ลาย",
-
-    description:
-      "สีเคลือบแกร่งสำหรับงานพิมพ์ลาย",
-
-    image:
-      "assets/products/91428.jpg",
-
-    price:799,
-
-    options:[],
-
-    features:[
-      "สีคงทน ไม่ซีดจาง",
-      "มีหลากหลายสีสัน",
-      "ทนต่อทุกสภาพอากาศ"
-    ],
-
-    technical_data:{
-      "เฉดสี":"M 1 - 26",
-      "ปริมาณ":"1 กระสอบ = 25 กก.",
-      "พื้นที่ใช้งาน":"8-10 ตร.ม./กระสอบ"
-    },
-
-    usage:
-      "สำหรับงานพิมพ์ลายคอนกรีต",
-
-    coverage:
-      "8-10 ตร.ม./กระสอบ",
-
-    package_size:
-      "25 กก."
-
-  },
-
-
-  "91427": {
-
-    id:"91427",
-
-    code:"91427",
-
-    name:"RELEASER POWER",
-
-    category:"floor",
-
-    category_label:"วัสดุงานพื้น",
-
-    short_description:
-      "ผงฝุ่นลอกแบบ",
-
-    description:
-      "ผงฝุ่นลอกแบบสำหรับงานพิมพ์ลาย",
-
-    image:
-      "assets/products/releaser-power.jpg",
-
-    price:1050,
-
-    options:[
-
-      {
-        label:"10 KG",
-        price:1909
-      },
-
-      {
-        label:"5 KG",
-        price:1050
-      }
-
-    ],
-
-    features:[],
-
-    technical_data:{
-      "ขนาดบรรจุ":"5 กก. / 10 กก.",
-      "ประเภท":"ผงฝุ่นลอกแบบ"
-    },
-
-    usage:
-      "สำหรับงานพิมพ์ลายคอนกรีต",
-
-    coverage:
-      "ยังไม่มีข้อมูล / รอเอกสารจากบริษัท",
-
-    package_size:
-      "5 กก. / 10 กก."
-
-  },
-
-
-  "91430": {
-
-    id:"91430",
-
-    code:"91430",
-
-    name:"READY COAT (RCT)",
-
-    category:"coating",
-
-    category_label:"งานเคลือบผิว",
-
-    short_description:
-      "น้ำยาเคลือบเงาคอนกรีต (ชนิดใส)",
-
-    description:
-      "น้ำยาเคลือบเงาคอนกรีต (ชนิดใส)",
-
-    image:
-      "assets/products/91430.jpg",
-
-    price:388,
-
-    options:[
-
-      {
-        label:"18 KG",
-        price:2850
-      },
-
-      {
-        label:"9 KG",
-        price:1803
-      },
-
-      {
-        label:"4 KG",
-        price:905
-      },
-
-      {
-        label:"1 KG",
-        price:388
-      }
-
-    ],
-
-    features:[],
-
-    technical_data:{
-      "ประเภท":"น้ำยาเคลือบเงาคอนกรีต (ชนิดใส)",
-      "ขนาดบรรจุ":"1 / 4 / 9 / 18 กก.",
-      "ข้อมูลทางเทคนิค":"ยังไม่มีข้อมูล / รอเอกสารจากบริษัท"
-    },
-
-    usage:
-      "สำหรับงานเคลือบผิวคอนกรีต",
-
-    coverage:
-      "ยังไม่มีข้อมูล / รอเอกสารจากบริษัท",
-
-    package_size:
-      "1 / 4 / 9 / 18 กก."
-
-  },
-
-
-  "91429": {
-
-    id:"91429",
-
-    code:"91429",
-
-    name:"READY COAT COLOR (RCR)",
-
-    category:"coating",
-
-    category_label:"งานเคลือบผิว",
-
-    short_description:
-      "น้ำยาเคลือบเงาคอนกรีต (ชนิดสี)",
-
-    description:
-      "น้ำยาเคลือบเงาคอนกรีต (ชนิดสี)",
-
-    image:
-      "assets/products/91429.jpg",
-
-    price:369,
-
-    options:[
-
-      {
-        label:"18 KG",
-        price:3850
-      },
-
-      {
-        label:"9 KG",
-        price:2175
-      },
-
-      {
-        label:"4 KG",
-        price:1059
-      },
-
-      {
-        label:"1 KG",
-        price:369
-      }
-
-    ],
-
-    features:[],
-
-    technical_data:{
-      "ประเภท":"น้ำยาเคลือบเงาคอนกรีต (ชนิดสี)",
-      "ขนาดบรรจุ":"1 / 4 / 9 / 18 กก.",
-      "ข้อมูลทางเทคนิค":"ยังไม่มีข้อมูล / รอเอกสารจากบริษัท"
-    },
-
-    usage:
-      "สำหรับงานเคลือบผิวคอนกรีตชนิดสี",
-
-    coverage:
-      "ยังไม่มีข้อมูล / รอเอกสารจากบริษัท",
-
-    package_size:
-      "1 / 4 / 9 / 18 กก."
-
-  }
-
-};
-
-
-/* =========================================================
-   URL PRODUCT ID
-========================================================= */
-
-const params =
-  new URLSearchParams(window.location.search);
-
-const productId =
-  params.get("id");
-
-
-/* =========================================================
-   DOM
-========================================================= */
-
-const loadingState =
-  document.getElementById("loadingState");
-
-const errorState =
-  document.getElementById("errorState");
-
-const productDetail =
-  document.getElementById("productDetail");
-
-const lowerSection =
-  document.getElementById("lowerSection");
-
-const productImage =
-  document.getElementById("productImage");
-
-const imagePlaceholder =
-  document.getElementById("imagePlaceholder");
-
-const productCategory =
-  document.getElementById("productCategory");
-
-const productCode =
-  document.getElementById("productCode");
-
-const productName =
-  document.getElementById("productName");
-
-const productSubtitle =
-  document.getElementById("productSubtitle");
-
-const productPrice =
-  document.getElementById("productPrice");
-
-const productDescription =
-  document.getElementById("productDescription");
-
-const optionSection =
-  document.getElementById("optionSection");
-
-const optionList =
-  document.getElementById("optionList");
-
-const addCartBtn =
-  document.getElementById("addCartBtn");
-
-const quantityInput =
-  document.getElementById("quantity");
-
-const cartMessage =
-  document.getElementById("cartMessage");
-
-const featuresSection =
-  document.getElementById("featuresSection");
-
-const featuresList =
-  document.getElementById("featuresList");
-
-const technicalGrid =
-  document.getElementById("technicalGrid");
-
-const usageText =
-  document.getElementById("usageText");
-
-const coverageText =
-  document.getElementById("coverageText");
-
-
-let currentProduct = null;
-
-let selectedOption = null;
-
-
-/* =========================================================
-   FORMAT PRICE
-========================================================= */
-
-function formatPrice(value){
-
-  const number =
-    Number(value || 0);
-
-  return number.toLocaleString(
-    "th-TH",
-    {
-      minimumFractionDigits:0,
-      maximumFractionDigits:0
-    }
-  ) + ".-";
-
-}
-
-
-/* =========================================================
-   NORMALIZE PRODUCT
-========================================================= */
-
-function normalizeProduct(product){
-
-  if(!product){
-    return null;
-  }
-
-  let options =
-    product.options || [];
-
-  if(
-    typeof options === "string"
-  ){
-
-    try{
-      options = JSON.parse(options);
-    }catch(error){
-      options = [];
-    }
-
-  }
-
-  let features =
-    product.features || [];
-
-  if(
-    typeof features === "string"
-  ){
-
-    try{
-      features = JSON.parse(features);
-    }catch(error){
-      features = [];
-    }
-
-  }
-
-  let technical =
-    product.technical_data || {};
-
-  if(
-    typeof technical === "string"
-  ){
-
-    try{
-      technical = JSON.parse(technical);
-    }catch(error){
-      technical = {};
-    }
-
-  }
-
-  return {
-
-    ...product,
-
-    options:
-      Array.isArray(options)
-        ? options
-        : [],
-
-    features:
-      Array.isArray(features)
-        ? features
-        : [],
-
-    technical_data:
-      technical &&
-      typeof technical === "object"
-        ? technical
-        : {}
-
-  };
-
-}
-
-
-/* =========================================================
-   LOAD PRODUCT
-========================================================= */
-
-async function loadProduct(){
-
-  if(!productId){
-
-    showError();
-
-    return;
-  }
-
-
-  try{
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .from("products")
-        .select("*")
-        .eq("id",productId)
-        .maybeSingle();
-
-
-    if(
-      !error &&
-      data
-    ){
-
-      currentProduct =
-        normalizeProduct(data);
-
-    }else{
-
-      currentProduct =
-        normalizeProduct(
-          DEFAULT_PRODUCTS[String(productId)]
-        );
-
-    }
-
-
-    if(!currentProduct){
-
-      showError();
-
-      return;
-    }
-
-
-    renderProduct(
-      currentProduct
-    );
-
-
-  }catch(error){
-
-    currentProduct =
-      normalizeProduct(
-        DEFAULT_PRODUCTS[String(productId)]
-      );
-
-
-    if(!currentProduct){
-
-      showError();
-
-      return;
-    }
-
-
-    renderProduct(
-      currentProduct
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   RENDER PRODUCT
-========================================================= */
-
-function renderProduct(product){
-
-  loadingState.style.display =
-    "none";
-
-  errorState.style.display =
-    "none";
-
-  productDetail.style.display =
-    "grid";
-
-  lowerSection.style.display =
-    "grid";
-
-
-  /* --------------------------------
-     PAGE TITLE
-  -------------------------------- */
-
-  document.title =
-    `${product.name || "รายละเอียดสินค้า"} | CHATPHETCH GROUP`;
-
-
-  /* --------------------------------
-     CATEGORY
-  -------------------------------- */
-
-  productCategory.textContent =
-    product.category_label ||
-    getCategoryLabel(product.category);
-
-
-  /* --------------------------------
-     CODE
-  -------------------------------- */
-
-  productCode.textContent =
-    `PRODUCT CODE : ${product.code || product.id || "-"}`;
-
-
-  /* --------------------------------
-     NAME
-  -------------------------------- */
-
-  productName.textContent =
-    product.name ||
-    "สินค้า";
-
-
-  /* --------------------------------
-     SUBTITLE
-  -------------------------------- */
-
-  productSubtitle.textContent =
-    product.short_description ||
-    product.description ||
-    "";
-
-
-  /* --------------------------------
-     IMAGE
-  -------------------------------- */
-
-  if(product.image){
-
-    productImage.src =
-      product.image;
-
-    productImage.alt =
-      product.name || "สินค้า";
-
-    productImage.style.display =
-      "block";
-
-    imagePlaceholder.style.display =
-      "none";
-
-    productImage.onerror =
-      function(){
-
-        productImage.style.display =
-          "none";
-
-        imagePlaceholder.style.display =
-          "flex";
-
-      };
-
-  }else{
-
-    productImage.style.display =
-      "none";
-
-    imagePlaceholder.style.display =
-      "flex";
-
-  }
-
-
-  /* --------------------------------
-     OPTIONS
-  -------------------------------- */
-
-  renderOptions(
-    product.options
-  );
-
-
-  /* --------------------------------
-     PRICE
-  -------------------------------- */
-
-  if(
-    product.options &&
-    product.options.length
-  ){
-
-    const prices =
-      product.options
-        .map(option =>
-          Number(
-            option.price || 0
-          )
-        )
-        .filter(price => price > 0);
-
-
-    if(prices.length){
-
-      const minPrice =
-        Math.min(...prices);
-
-      productPrice.textContent =
-        formatPrice(minPrice);
-
-    }else{
-
-      productPrice.textContent =
-        product.price
-          ? formatPrice(product.price)
-          : "-";
-
-    }
-
-  }else{
-
-    productPrice.textContent =
-      product.price
-        ? formatPrice(product.price)
-        : "-";
-
-  }
-
-
-  /* --------------------------------
-     DESCRIPTION
-  -------------------------------- */
-
-  productDescription.textContent =
-    product.description ||
-    product.short_description ||
-    "ยังไม่มีข้อมูล";
-
-
-  /* --------------------------------
-     FEATURES
-  -------------------------------- */
-
-  renderFeatures(
-    product.features
-  );
-
-
-  /* --------------------------------
-     TECHNICAL
-  -------------------------------- */
-
-  renderTechnical(
-    product.technical_data,
-    product
-  );
-
-
-  /* --------------------------------
-     USAGE
-  -------------------------------- */
-
-  usageText.textContent =
-    product.usage ||
-    "ยังไม่มีข้อมูล / รอเอกสารจากบริษัท";
-
-
-  /* --------------------------------
-     COVERAGE
-  -------------------------------- */
-
-  let coverage =
-    product.coverage ||
-    "ยังไม่มีข้อมูล / รอเอกสารจากบริษัท";
-
-
-  if(product.package_size){
-
-    coverage +=
-      ` | ขนาดบรรจุ ${product.package_size}`;
-
-  }
-
-
-  coverageText.textContent =
-    coverage;
-
-}
-
-
-/* =========================================================
-   CATEGORY LABEL
-========================================================= */
-
-function getCategoryLabel(category){
-
-  const labels = {
-
-    floor:"วัสดุงานพื้น",
-
-    stamped:"งานพิมพ์ลาย",
-
-    coating:"งานเคลือบผิว",
-
-    consulting:"ปรึกษาและเลือกวัสดุ"
-
-  };
-
-  return labels[category] || "สินค้า";
-
-}
-
-
-/* =========================================================
-   OPTIONS
-========================================================= */
-
-function renderOptions(options){
-
-  optionList.innerHTML =
-    "";
-
-  selectedOption =
-    null;
-
-
-  if(
-    !Array.isArray(options) ||
-    !options.length
-  ){
-
-    optionSection.style.display =
-      "none";
-
-    updatePrice();
-
-    return;
-  }
-
-
-  optionSection.style.display =
-    "block";
-
-
-  options.forEach(
-    function(option,index){
-
-      const button =
-        document.createElement("button");
-
-      button.type =
-        "button";
-
-      button.className =
-        "option-btn";
-
-
-      const label =
-        option.label ||
-        option.name ||
-        option.size ||
-        `ตัวเลือก ${index + 1}`;
-
-
-      const price =
-        Number(
-          option.price || 0
-        );
-
-
-      button.innerHTML = `
-
-        <span class="option-name">
-          ${escapeHtml(label)}
-        </span>
-
-        ${
-          price
-            ? `
-              <span class="option-price">
-                ${formatPrice(price)}
-              </span>
-            `
-            : ""
-        }
-
-      `;
-
-
-      button.addEventListener(
-        "click",
-        function(){
-
-          document
-            .querySelectorAll(".option-btn")
-            .forEach(
-              btn =>
-                btn.classList.remove(
-                  "selected"
-                )
-            );
-
-
-          button.classList.add(
-            "selected"
-          );
-
-
-          selectedOption =
-            option;
-
-
-          updatePrice();
-
-        }
-      );
-
-
-      optionList.appendChild(
-        button
-      );
-
-    }
-  );
-
-
-  updatePrice();
-
-}
-
-
-/* =========================================================
-   UPDATE PRICE
-========================================================= */
-
-function updatePrice(){
-
-  let price =
-    Number(
-      currentProduct?.price || 0
-    );
-
-
-  if(selectedOption){
-
-    price =
-      Number(
-        selectedOption.price || price
-      );
-
-  }
-
-
-  if(price){
-
-    productPrice.textContent =
-      formatPrice(price);
-
-  }else{
-
-    productPrice.textContent =
-      "-";
-
-  }
-
-}
-
-
-/* =========================================================
-   FEATURES
-========================================================= */
-
-function renderFeatures(features){
-
-  featuresList.innerHTML =
-    "";
-
-  if(
-    !Array.isArray(features) ||
-    !features.length
-  ){
-
-    featuresSection.style.display =
-      "none";
-
-    return;
-  }
-
-
-  featuresSection.style.display =
-    "block";
-
-
-  features.forEach(
-    function(feature){
-
-      const li =
-        document.createElement("li");
-
-      li.textContent =
-        feature;
-
-      featuresList.appendChild(
-        li
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   TECHNICAL
-========================================================= */
-
-function renderTechnical(
-  technical,
-  product
-){
-
-  technicalGrid.innerHTML =
-    "";
-
-
-  const data = {
-    ...(technical || {})
-  };
-
-
-  if(
-    product.package_size &&
-    !data["ขนาดบรรจุ"]
-  ){
-
-    data["ขนาดบรรจุ"] =
-      product.package_size;
-
-  }
-
-
-  if(
-    !Object.keys(data).length
-  ){
-
-    data["ข้อมูลทางเทคนิค"] =
-      "ยังไม่มีข้อมูล / รอเอกสารจากบริษัท";
-
-  }
-
-
-  Object.entries(data).forEach(
-    function([label,value]){
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "tech-item";
-
-
-      const labelEl =
-        document.createElement("span");
-
-      labelEl.className =
-        "tech-label";
-
-      labelEl.textContent =
-        label;
-
-
-      const valueEl =
-        document.createElement("span");
-
-      valueEl.className =
-        "tech-value";
-
-      valueEl.textContent =
-        value ||
-        "ยังไม่มีข้อมูล";
-
-
-      item.appendChild(
-        labelEl
-      );
-
-      item.appendChild(
-        valueEl
-      );
-
-
-      technicalGrid.appendChild(
-        item
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(value){
-
-  return String(value ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-/* =========================================================
-   ERROR
-========================================================= */
-
-function showError(){
-
-  loadingState.style.display =
-    "none";
-
-  productDetail.style.display =
-    "none";
-
-  lowerSection.style.display =
-    "none";
-
-  errorState.style.display =
-    "block";
-
-}
-
-
-/* =========================================================
-   QUANTITY
-========================================================= */
-
-document
-  .getElementById("minusBtn")
-  .addEventListener(
-    "click",
-    function(){
-
-      let qty =
-        Number(
-          quantityInput.value || 1
-        );
-
-      qty =
-        Math.max(
-          1,
-          qty - 1
-        );
-
-      quantityInput.value =
-        qty;
-
-    }
-  );
-
-
-document
-  .getElementById("plusBtn")
-  .addEventListener(
-    "click",
-    function(){
-
-      let qty =
-        Number(
-          quantityInput.value || 1
-        );
-
-      qty =
-        Math.min(
-          999,
-          qty + 1
-        );
-
-      quantityInput.value =
-        qty;
-
-    }
-  );
-
-
-quantityInput.addEventListener(
-  "change",
-  function(){
-
-    let qty =
-      Number(
-        quantityInput.value || 1
-      );
-
-
-    if(!Number.isFinite(qty)){
-      qty = 1;
-    }
-
-
-    qty =
-      Math.max(
-        1,
-        Math.min(
-          999,
-          Math.floor(qty)
-        )
-      );
-
-
-    quantityInput.value =
-      qty;
-
-  }
-);
-
-
-/* =========================================================
-   ADD TO CART
-========================================================= */
-
-addCartBtn.addEventListener(
-  "click",
-  function(){
-
-    if(!currentProduct){
-
-      return;
-    }
-
-
-    if(
-      currentProduct.options &&
-      currentProduct.options.length &&
-      !selectedOption
-    ){
-
-      cartMessage.textContent =
-        "กรุณาเลือกตัวเลือกสินค้าก่อนเพิ่มลงตะกร้า";
-
-      cartMessage.style.color =
-        "#c6a66b";
-
-      return;
-
-    }
-
-
-    let quantity =
-      Number(
-        quantityInput.value || 1
-      );
-
-
-    quantity =
-      Math.max(
-        1,
-        Math.min(
-          999,
-          Math.floor(quantity)
-        )
-      );
-
-
-    let cart = [];
-
-
-    try{
-
-      cart =
-        JSON.parse(
-          localStorage.getItem(
-            "chatpetch_cart"
-          ) || "[]"
-        );
-
-      if(!Array.isArray(cart)){
-        cart = [];
-      }
-
-    }catch(error){
-
-      cart = [];
-
-    }
-
-
-    const unitPrice =
-      selectedOption
-        ? Number(
-            selectedOption.price || 0
-          )
-        : Number(
-            currentProduct.price || 0
-          );
-
-
-    const optionLabel =
-      selectedOption
-        ? (
-            selectedOption.label ||
-            selectedOption.name ||
-            selectedOption.size ||
-            ""
-          )
-        : "";
-
-
-    const productKey =
-      `${currentProduct.id || currentProduct.code || productId}__${optionLabel}`;
-
-
-    const existingIndex =
-      cart.findIndex(
-        item =>
-          String(
-            item.cartKey ||
-            `${item.id || item.product_id || ""}__${item.selectedOption?.label || ""}`
-          ) === productKey
-      );
-
-
-    const itemData = {
-
-      cartKey:
-        productKey,
-
-      id:
-        currentProduct.id ||
-        currentProduct.code,
-
-      product_id:
-        currentProduct.id ||
-        currentProduct.code,
-
-      code:
-        currentProduct.code ||
-        currentProduct.id,
-
-      name:
-        currentProduct.name,
-
-      product_name:
-        currentProduct.name,
-
-      image:
-        currentProduct.image ||
-        "",
-
-      product_image:
-        currentProduct.image ||
-        "",
-
-      category:
-        currentProduct.category ||
-        "",
-
-      category_label:
-        currentProduct.category_label ||
-        "",
-
-      quantity:
-        quantity,
-
-      selectedOption:
-        selectedOption
-          ? {
-              ...selectedOption
-            }
-          : null,
-
-      selected_option:
-        selectedOption
-          ? {
-              ...selectedOption
-            }
-          : null,
-
-      price:
-        unitPrice,
-
-      unit_price:
-        unitPrice,
-
-      priceLabel:
-        optionLabel ||
-        formatPrice(unitPrice),
-
-      price_label:
-        optionLabel ||
-        formatPrice(unitPrice),
-
-      lineTotal:
-        unitPrice * quantity,
-
-      line_total:
-        unitPrice * quantity
-
-    };
-
-
-    if(existingIndex >= 0){
-
-      const oldQty =
-        Number(
-          cart[existingIndex].quantity || 0
-        );
-
-
-      cart[existingIndex] = {
-
-        ...cart[existingIndex],
-
-        ...itemData,
-
-        quantity:
-          oldQty + quantity,
-
-        lineTotal:
-          unitPrice *
-          (oldQty + quantity),
-
-        line_total:
-          unitPrice *
-          (oldQty + quantity)
-
-      };
-
-    }else{
-
-      cart.push(
-        itemData
-      );
-
-    }
-
-
-    localStorage.setItem(
-      "chatpetch_cart",
-      JSON.stringify(cart)
-    );
-
-
-    updateCartCount();
-
-
-    cartMessage.textContent =
-      "เพิ่มสินค้าลงตะกร้าแล้ว ✓";
-
-    cartMessage.style.color =
-      "#d6c08b";
-
-
-    addCartBtn.textContent =
-      "✓ เพิ่มลงตะกร้าแล้ว";
-
-
-    setTimeout(
-      function(){
-
-        addCartBtn.textContent =
-          "🛒 เพิ่มลงตะกร้า";
-
-      },
-      1600
-    );
-
-  }
-);
-
-
-/* =========================================================
-   CART COUNT
-========================================================= */
-
-function updateCartCount(){
-
-  const cartCount =
-    document.getElementById(
-      "cartCount"
-    );
-
-
-  if(!cartCount){
-
-    return;
-  }
-
-
-  try{
-
-    const cart =
-      JSON.parse(
-        localStorage.getItem(
-          "chatpetch_cart"
-        ) || "[]"
-      );
-
-
-    let count = 0;
-
-
-    if(Array.isArray(cart)){
-
-      cart.forEach(
-        function(item){
-
-          count +=
-            Number(
-              item.quantity ||
-              item.qty ||
-              1
-            );
-
-        }
-      );
-
-    }
-
-
-    cartCount.textContent =
-      count;
-
-  }catch(error){
-
-    cartCount.textContent =
-      "0";
-
-  }
-
-}
-
-
-updateCartCount();
-
-
-window.addEventListener(
-  "storage",
-  updateCartCount
-);
-
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-const menuToggle =
-  document.getElementById(
-    "menuToggle"
-  );
-
-const navMenu =
-  document.getElementById(
-    "navMenu"
-  );
-
-const serviceDropdown =
-  document.getElementById(
-    "serviceDropdown"
-  );
-
-const serviceTrigger =
-  document.getElementById(
-    "serviceTrigger"
-  );
-
-
-if(menuToggle){
-
-  menuToggle.addEventListener(
-    "click",
-    function(){
-
-      const isOpen =
-        navMenu.classList.toggle(
-          "open"
-        );
-
-
-      menuToggle.setAttribute(
-        "aria-expanded",
-        isOpen
-          ? "true"
-          : "false"
-      );
-
-    }
-  );
-
-}
-
-
-if(serviceTrigger){
-
-  serviceTrigger.addEventListener(
-    "click",
-    function(event){
-
-      if(
-        window.innerWidth <= 980
-      ){
-
-        event.preventDefault();
-
-        serviceDropdown.classList.toggle(
-          "open"
-        );
-
-      }
-
-    }
-  );
-
-}
-
-
-document
-  .querySelectorAll(
-    ".customer-nav a"
-  )
-  .forEach(
-    function(link){
-
-      link.addEventListener(
-        "click",
-        function(){
-
-          if(
-            window.innerWidth <= 980
-          ){
-
-            navMenu.classList.remove(
-              "open"
-            );
-
-            serviceDropdown.classList.remove(
-              "open"
-            );
-
-            menuToggle.setAttribute(
-              "aria-expanded",
-              "false"
-            );
-
-          }
-
-        }
-      );
-
-    }
-  );
-
-
-/* =========================================================
-   START
-========================================================= */
-
-loadProduct();
-
-</script>
-
-
-<script id="related-services-script">
-/* =========================================================
-   RELATED SERVICES LOADER
-   ใช้ข้อมูลจาก services.html + service-detail.html
-   และโหลดภาพจาก assets/Projects จริง
-========================================================= */
-(function(){
-  "use strict";
-
-  const TREE_API="https://api.github.com/repos/chatphetch/chatpetch-group/git/trees/main?recursive=1";
-  const RAW_BASE="https://raw.githubusercontent.com/chatphetch/chatpetch-group/main/";
-  const CACHE_KEY="chatpetch_related_services_tree_v4";
-  const CACHE_TIME_KEY="chatpetch_related_services_tree_v4_time";
-  const CACHE_MAX_AGE=30*60*1000;
-
-  const SERVICES=[
-    {key:"industrial",number:"01",title:"พื้นอุตสาหกรรม / อีพ็อกซี่ / พียู",small:"โรงงาน / คลังสินค้า / พื้นที่ใช้งานหนัก",description:"ตัวอย่างงานพื้นระบบ Epoxy และ PU สำหรับพื้นที่โรงงาน คลังสินค้า และพื้นที่ใช้งานหนัก",tags:["EPOXY","PU","INDUSTRIAL"],folders:["Epoxy self","Epoxy anti static","PU Self"],detail:"ระบบพื้นสำหรับโรงงาน คลังสินค้า และพื้นที่ใช้งานหนัก โดยเลือกชนิดระบบให้เหมาะกับสภาพพื้นและลักษณะการใช้งาน"},
-    {key:"waterproof",number:"02",title:"งานกันรั่วซึม",small:"ดาดฟ้า / หลังคา / พื้นอาคาร",description:"ตัวอย่างงานกันซึมจากโครงการจริง สำหรับดาดฟ้า หลังคา และพื้นที่อาคารที่ต้องการป้องกันน้ำรั่วซึม",tags:["WATERPROOF","FIBERGLASS","ROOF"],folders:["งานกันซึม Fiberglass"],detail:"ระบบกันรั่วซึมสำหรับดาดฟ้า หลังคา และพื้นอาคาร โดยต้องตรวจสอบจุดรั่ว รอยต่อ และสภาพพื้นเดิมก่อนเลือกวิธีแก้ไข"},
-    {key:"concrete",number:"03",title:"งานซ่อมปรับปรุง",small:"งานคอนกรีต / Polishing / Repair",description:"ตัวอย่างงานปรับปรุงผิวพื้นและงานคอนกรีตจากหน้างานจริง เพื่อเตรียมพื้นให้พร้อมสำหรับระบบใช้งาน",tags:["CONCRETE","POLISHING","REPAIR"],folders:["งาน Polishing","Epoxy self"],detail:"งานซ่อม ปรับปรุง และฟื้นฟูพื้นคอนกรีต โดยพิจารณาลักษณะปัญหาและสภาพพื้นเดิมก่อนกำหนดวิธีทำงาน"},
-    {key:"sports",number:"04",title:"พื้นสนามกีฬา",small:"Sport Floor / PU / Activity",description:"ตัวอย่างงานระบบพื้น PU จากโครงการจริง ซึ่งสามารถพิจารณาใช้กับพื้นที่กิจกรรมและสนามกีฬาได้ตามเงื่อนไขหน้างาน",tags:["SPORT FLOOR","PU","ACTIVITY"],folders:["PU Self","PU Coating"],detail:"ระบบพื้นสำหรับสนามกีฬาและพื้นที่กิจกรรม โดยพิจารณาประเภทกีฬา ลักษณะการใช้งาน และสภาพพื้นเดิม"},
-    {key:"decorative",number:"05",title:"พื้นตกแต่ง",small:"เพื่อความสวยงาม / Stamped Concrete",description:"ตัวอย่างงานพื้นคอนกรีตพิมพ์ลายจากโครงการจริง สำหรับพื้นที่ที่ต้องการความสวยงามและเอกลักษณ์",tags:["STAMPED","PSC","DECORATIVE"],folders:["งาน Stamped Concrete"],detail:"งานพื้นพิมพ์ลายและงานตกแต่งสำหรับพื้นที่ที่ต้องการความสวยงาม โดยเลือกสี รูปแบบ และระบบให้เหมาะกับพื้นที่"},
-    {key:"traffic",number:"06",title:"ระบบงานสัญลักษณ์และเส้นจราจร",small:"Traffic / Line Marking / Coating",description:"งานเคลือบผิวและงานกำหนดพื้นที่เพื่อจัดระเบียบการใช้งาน เส้นทาง และสัญลักษณ์ภายในพื้นที่",tags:["TRAFFIC","LINE MARKING","COATING"],folders:["PU Coating","Epoxy anti static"],detail:"งานตีเส้นและสัญลักษณ์สำหรับพื้นที่ใช้งาน โดยพิจารณาผังพื้นที่ ลักษณะการจราจร และสภาพพื้นเดิม"}
-  ];
-
-  const imageExt=/\.(jpg|jpeg|png|webp|gif)$/i;
-
-  function raw(path){
-    return RAW_BASE+path.split("/").map(encodeURIComponent).join("/");
-  }
-
-  async function getTree(){
-    try{
-      const cached=sessionStorage.getItem(CACHE_KEY);
-      const time=Number(sessionStorage.getItem(CACHE_TIME_KEY)||0);
-      if(cached && Date.now()-time<CACHE_MAX_AGE){
-        const parsed=JSON.parse(cached);
-        if(Array.isArray(parsed)) return parsed;
-      }
-    }catch(e){}
-
-    const response=await fetch(TREE_API,{headers:{Accept:"application/vnd.github+json"},cache:"no-store"});
-    if(!response.ok) throw new Error("GitHub Tree API "+response.status);
-    const data=await response.json();
-    const tree=Array.isArray(data.tree)?data.tree:[];
-    try{
-      sessionStorage.setItem(CACHE_KEY,JSON.stringify(tree));
-      sessionStorage.setItem(CACHE_TIME_KEY,String(Date.now()));
-    }catch(e){}
-    return tree;
-  }
-
-  function findImage(tree,folders){
-    for(const folder of folders){
-      const prefix="assets/Projects/"+folder+"/";
-      const found=tree
-        .filter(item=>item.type==="blob" && imageExt.test(item.path) && item.path.startsWith(prefix))
-        .sort((a,b)=>a.path.localeCompare(b.path,undefined,{numeric:true,sensitivity:"base"}));
-      if(found.length) return found[0];
-    }
-    return null;
-  }
-
-  function render(tree){
-    const grid=document.getElementById("relatedServiceGrid");
-    const detailGrid=document.getElementById("relatedServiceDetailGrid");
-    if(!grid || !detailGrid) return;
-
-    grid.innerHTML=SERVICES.map(service=>{
-      const image=findImage(tree,service.folders);
-      return `
-        <article class="service-related-card">
-          <div class="service-related-image ${image?"":"loaded"}">
-            <div class="service-related-loading">${image?"LOADING PROJECT IMAGE":"PROJECT REFERENCE"}</div>
-            ${image?`<img src="${raw(image.path)}" alt="${service.title}" loading="lazy" referrerpolicy="no-referrer">`:""}
-            <div class="service-related-label">PROJECT REFERENCE</div>
-          </div>
-          <div class="service-related-body">
-            <div class="service-related-number">SERVICE ${service.number}</div>
-            <h3>${service.title}<small>${service.small}</small></h3>
-            <p>${service.description}</p>
-            <div class="related-tags">${service.tags.map(tag=>`<span class="related-tag">${tag}</span>`).join("")}</div>
-            <div class="related-actions">
-              <a class="related-btn primary" href="service-detail.html?service=${encodeURIComponent(service.key)}">ดูรายละเอียดบริการ →</a>
-              <a class="related-btn" href="services.html">บริการทั้งหมด</a>
-            </div>
-          </div>
-        </article>`;
-    }).join("");
-
-    detailGrid.innerHTML=SERVICES.map(service=>`
-      <article class="service-detail-card">
-        <h4>${service.title}</h4>
-        <p>${service.detail}</p>
-        <div class="service-detail-meta">${service.tags.map(tag=>`<span>${tag}</span>`).join("")}</div>
-        <a class="related-btn" href="service-detail.html?service=${encodeURIComponent(service.key)}">เปิด Service Detail →</a>
-      </article>
-    `).join("");
-
-    grid.querySelectorAll(".service-related-image img").forEach(img=>{
-      img.addEventListener("load",()=>img.parentElement.classList.add("loaded"),{once:true});
-      img.addEventListener("error",()=>img.parentElement.classList.add("loaded"),{once:true});
-    });
-  }
-
-  async function init(){
-    const grid=document.getElementById("relatedServiceGrid");
-    try{
-      const tree=await getTree();
-      render(tree);
-    }catch(error){
-      console.warn("CHATPHETCH related services images could not be loaded.",error);
-      render([]);
-    }
-  }
-
-  init();
-})();
-</script>
+<!-- IMAGE MODAL -->
+<div class="modal" id="galleryModal" aria-hidden="true">
+  <div class="modal-box">
+
+    <div class="modal-top">
+      <div>
+        <h2 class="modal-title" id="modalTitle">PROJECT</h2>
+        <div class="modal-counter" id="modalCounter">1 / 1</div>
+      </div>
+
+      <button
+        class="modal-close"
+        id="modalClose"
+        type="button"
+        aria-label="ปิด"
+      >×</button>
+    </div>
+
+    <div class="modal-stage">
+      <button
+        class="gallery-nav gallery-prev"
+        id="galleryPrev"
+        type="button"
+        aria-label="ภาพก่อนหน้า"
+      >‹</button>
+
+      <img id="modalImage" src="" alt="">
+
+      <button
+        class="gallery-nav gallery-next"
+        id="galleryNext"
+        type="button"
+        aria-label="ภาพถัดไป"
+      >›</button>
+    </div>
+
+    <div class="thumb-strip" id="thumbStrip"></div>
+
+  </div>
+</div>
 
 <script src="assets/customer-master-nav.js"></script>
+
+<script>
+"use strict";
+
+/*
+  CHATPHETCH GROUP — PROJECT DETAIL
+
+  หน้า Detail นี้ไม่สร้างข้อมูล Case Study ปลอม
+  แต่ใช้ข้อมูลที่มีอยู่จริงใน assets/Projects:
+  - ชื่อหมวด
+  - จำนวนรูป
+  - รูปภาพทั้งหมดของหมวด
+  - เส้นทางไฟล์รูป
+
+  เรียกด้วย:
+    project-detail.html?category=Epoxy%20self
+
+  รองรับ alias เดิม:
+    flooring
+    stamped
+    coating
+    construction
+*/
+
+const TREE_API =
+  "https://api.github.com/repos/chatphetch/chatpetch-group/git/trees/main?recursive=1";
+
+const RAW_BASE =
+  "https://raw.githubusercontent.com/chatphetch/chatpetch-group/main/";
+
+const CACHE_KEY = "chatpetch_projects_tree_v3";
+const CACHE_TIME_KEY = "chatpetch_projects_tree_v3_time";
+const CACHE_MAX_AGE = 30 * 60 * 1000;
+
+const CATEGORY_ORDER = [
+  "Epoxy anti static",
+  "Epoxy self",
+  "PU Coating",
+  "PU Self",
+  "งาน Polishing",
+  "งาน Stamped Concrete",
+  "งานกันซึม Fiberglass"
+];
+
+const CATEGORY_META = {
+  "Epoxy anti static":{
+    title:"Epoxy Anti Static",
+    subtitle:"ANTI-STATIC FLOORING",
+    description:
+      "ผลงานระบบพื้น Epoxy Anti Static จากโฟลเดอร์ผลงานของ CHATPHETCH GROUP"
+  },
+  "Epoxy self":{
+    title:"Epoxy Self",
+    subtitle:"SELF-LEVELLING / EPOXY FLOOR",
+    description:
+      "ผลงานระบบพื้น Epoxy Self จากโฟลเดอร์ผลงานของ CHATPHETCH GROUP"
+  },
+  "PU Coating":{
+    title:"PU Coating",
+    subtitle:"POLYURETHANE COATING",
+    description:
+      "ผลงานระบบ PU Coating จากโฟลเดอร์ผลงานของ CHATPHETCH GROUP"
+  },
+  "PU Self":{
+    title:"PU Self",
+    subtitle:"POLYURETHANE SELF-LEVELLING",
+    description:
+      "ผลงานระบบ PU Self จากโฟลเดอร์ผลงานของ CHATPHETCH GROUP"
+  },
+  "งาน Polishing":{
+    title:"งาน Polishing",
+    subtitle:"POLISHED CONCRETE",
+    description:
+      "ผลงานงาน Polishing จากโฟลเดอร์ผลงานของ CHATPHETCH GROUP"
+  },
+  "งาน Stamped Concrete":{
+    title:"งาน Stamped Concrete",
+    subtitle:"DECORATIVE CONCRETE",
+    description:
+      "ผลงานงาน Stamped Concrete จากโฟลเดอร์ผลงานของ CHATPHETCH GROUP"
+  },
+  "งานกันซึม Fiberglass":{
+    title:"งานกันซึม Fiberglass",
+    subtitle:"FIBERGLASS WATERPROOFING",
+    description:
+      "ผลงานงานกันซึม Fiberglass จากโฟลเดอร์ผลงานของ CHATPHETCH GROUP"
+  }
+};
+
+const CATEGORY_ALIASES = {
+  flooring:"Epoxy anti static",
+  stamped:"งาน Stamped Concrete",
+  coating:"PU Coating",
+  construction:"งาน Polishing"
+};
+
+let currentProject = null;
+let currentGallery = [];
+let currentGalleryIndex = 0;
+
+const $ = selector => document.querySelector(selector);
+
+function escapeHtml(value){
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function isImage(path){
+  return /\.(jpe?g|png|webp|gif)$/i.test(path || "");
+}
+
+function encodeCategory(category){
+  return encodeURIComponent(category);
+}
+
+function decodeCategoryParam(){
+  const params = new URLSearchParams(window.location.search);
+  const raw = params.get("category");
+
+  if(!raw) return "";
+
+  const decoded = decodeURIComponent(raw);
+  return CATEGORY_ALIASES[decoded] || decoded;
+}
+
+function getProjectFromTree(tree,category){
+  if(!category) return null;
+
+  const prefix = "assets/Projects/" + category + "/";
+
+  const images = tree
+    .filter(item =>
+      item.type === "blob" &&
+      item.path.startsWith(prefix) &&
+      isImage(item.path)
+    )
+    .sort((a,b) =>
+      a.path.localeCompare(
+        b.path,
+        undefined,
+        {numeric:true,sensitivity:"base"}
+      )
+    )
+    .map(item => ({
+      path:item.path,
+      url:RAW_BASE +
+        item.path
+          .split("/")
+          .map(encodeURIComponent)
+          .join("/")
+    }));
+
+  if(!images.length) return null;
+
+  const meta = CATEGORY_META[category] || {
+    title:category,
+    subtitle:"PROJECT",
+    description:"ผลงานจากโฟลเดอร์ Projects"
+  };
+
+  return {
+    key:category,
+    title:meta.title,
+    subtitle:meta.subtitle,
+    description:meta.description,
+    images
+  };
+}
+
+async function fetchTree(){
+  const cached = sessionStorage.getItem(CACHE_KEY);
+  const cachedTime = Number(
+    sessionStorage.getItem(CACHE_TIME_KEY) || 0
+  );
+
+  if(
+    cached &&
+    Date.now() - cachedTime < CACHE_MAX_AGE
+  ){
+    try{
+      return JSON.parse(cached);
+    }catch(error){}
+  }
+
+  const response = await fetch(TREE_API,{
+    headers:{
+      "Accept":"application/vnd.github+json"
+    },
+    cache:"no-store"
+  });
+
+  if(!response.ok){
+    throw new Error("GitHub Tree API " + response.status);
+  }
+
+  const data = await response.json();
+
+  if(data.truncated === true){
+    throw new Error("GitHub repository tree is truncated");
+  }
+
+  const tree = data.tree || [];
+
+  sessionStorage.setItem(CACHE_KEY,JSON.stringify(tree));
+  sessionStorage.setItem(CACHE_TIME_KEY,String(Date.now()));
+
+  return tree;
+}
+
+function renderProject(project){
+  currentProject = project;
+  currentGallery = project.images;
+  currentGalleryIndex = 0;
+
+  document.title =
+    project.title + " | CHATPHETCH GROUP";
+
+  $("#detailTitle").innerHTML = `
+    ${escapeHtml(project.title)}
+    <span>${escapeHtml(project.subtitle)}</span>
+  `;
+
+  $("#detailSummary").textContent =
+    project.description;
+
+  $("#backCategory").href =
+    "projects.html?category=" +
+    encodeCategory(project.key);
+
+  $("#detailContent").innerHTML = `
+    <div class="detail-layout">
+
+      <aside class="info-panel">
+
+        <div class="info-kicker">PROJECT CATEGORY</div>
+
+        <h2 class="info-title">
+          ${escapeHtml(project.title)}
+        </h2>
+
+        <div class="info-subtitle">
+          ${escapeHtml(project.subtitle)}
+        </div>
+
+        <div class="info-line"></div>
+
+        <p class="info-text">
+          หน้านี้แสดงข้อมูลจากหมวดผลงานที่มีอยู่จริงใน
+          <b>assets/Projects</b>
+          ของ Repository โดยไม่สมมติข้อมูลโครงการที่ยังไม่มีการบันทึกไว้
+        </p>
+
+        <div class="info-list">
+
+          <div class="info-item">
+            <small>ประเภทผลงาน</small>
+            <strong>${escapeHtml(project.title)}</strong>
+          </div>
+
+          <div class="info-item">
+            <small>ระบบงาน</small>
+            <strong>${escapeHtml(project.subtitle)}</strong>
+          </div>
+
+          <div class="info-item">
+            <small>จำนวนภาพ</small>
+            <strong>${project.images.length} รูป</strong>
+          </div>
+
+          <div class="info-item">
+            <small>แหล่งข้อมูล</small>
+            <strong>assets/Projects/${escapeHtml(project.key)}/</strong>
+          </div>
+
+        </div>
+
+      </aside>
+
+      <section class="gallery-panel">
+
+        <div class="gallery-heading">
+          <div>
+            <div class="gallery-kicker">PROJECT GALLERY</div>
+            <h2 class="gallery-title">
+              ภาพผลงาน
+            </h2>
+          </div>
+
+          <div class="gallery-count">
+            ${project.images.length} รูป
+          </div>
+        </div>
+
+        <div class="gallery-grid">
+          ${project.images.map((image,index) => `
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="${index}"
+              aria-label="เปิดภาพ ${index + 1}"
+            >
+              <span class="gallery-number">
+                ${String(index + 1).padStart(2,"0")}
+              </span>
+
+              <img
+                src="${escapeHtml(image.url)}"
+                alt="${escapeHtml(project.title)} ภาพที่ ${index + 1}"
+                loading="${index < 4 ? "eager" : "lazy"}"
+                referrerpolicy="no-referrer"
+              >
+            </button>
+          `).join("")}
+        </div>
+
+      </section>
+
+    </div>
+
+    <section class="bottom-cta">
+      <h2>ต้องการสอบถามงานประเภทนี้?</h2>
+      <p>
+        หากต้องการข้อมูลเพิ่มเติมเกี่ยวกับระบบงาน วัสดุ
+        หรือแนวทางการทำงาน สามารถติดต่อทีม CHATPHETCH GROUP ได้
+      </p>
+
+      <a class="action-btn primary" href="contact.html">
+        ติดต่อเรา
+      </a>
+
+      <a
+        class="action-btn"
+        href="projects.html"
+      >
+        ← กลับผลงานทั้งหมด
+      </a>
+    </section>
+  `;
+
+  document.querySelectorAll(".gallery-card").forEach(card => {
+    card.addEventListener("click",() => {
+      openGallery(Number(card.dataset.index));
+    });
+  });
+}
+
+function renderError(message){
+  $("#detailContent").innerHTML = `
+    <div class="error-box">
+      <strong>ไม่สามารถโหลดรายละเอียดผลงานได้</strong>
+      ${escapeHtml(message)}
+      <br><br>
+      กรุณากลับไปหน้า Projects แล้วเลือกหมวดผลงานอีกครั้ง
+    </div>
+  `;
+}
+
+function openGallery(index){
+  if(!currentGallery.length) return;
+
+  currentGalleryIndex = index;
+  $("#modalTitle").textContent = currentProject?.title || "PROJECT";
+
+  renderThumbs();
+  showGalleryImage();
+
+  $("#galleryModal").classList.add("open");
+  $("#galleryModal").setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeGallery(){
+  $("#galleryModal").classList.remove("open");
+  $("#galleryModal").setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+
+function showGalleryImage(){
+  if(!currentGallery.length) return;
+
+  const image = currentGallery[currentGalleryIndex];
+
+  $("#modalImage").src = image.url;
+  $("#modalImage").alt =
+    image.path.split("/").pop();
+
+  $("#modalCounter").textContent =
+    `${currentGalleryIndex + 1} / ${currentGallery.length}`;
+
+  document.querySelectorAll(".thumb").forEach((thumb,index) => {
+    thumb.classList.toggle(
+      "active",
+      index === currentGalleryIndex
+    );
+  });
+}
+
+function renderThumbs(){
+  $("#thumbStrip").innerHTML =
+    currentGallery.map((image,index) => `
+      <button
+        type="button"
+        class="thumb ${index === currentGalleryIndex ? "active" : ""}"
+        data-index="${index}"
+        aria-label="ดูภาพ ${index + 1}"
+      >
+        <img
+          src="${escapeHtml(image.url)}"
+          alt=""
+          loading="lazy"
+          referrerpolicy="no-referrer"
+        >
+      </button>
+    `).join("");
+
+  $("#thumbStrip")
+    .querySelectorAll(".thumb")
+    .forEach(thumb => {
+      thumb.addEventListener("click",() => {
+        currentGalleryIndex =
+          Number(thumb.dataset.index);
+
+        showGalleryImage();
+      });
+    });
+}
+
+function nextImage(){
+  if(!currentGallery.length) return;
+
+  currentGalleryIndex =
+    (currentGalleryIndex + 1) %
+    currentGallery.length;
+
+  showGalleryImage();
+}
+
+function prevImage(){
+  if(!currentGallery.length) return;
+
+  currentGalleryIndex =
+    (currentGalleryIndex - 1 + currentGallery.length) %
+    currentGallery.length;
+
+  showGalleryImage();
+}
+
+$("#modalClose").addEventListener("click",closeGallery);
+$("#galleryNext").addEventListener("click",nextImage);
+$("#galleryPrev").addEventListener("click",prevImage);
+
+$("#galleryModal").addEventListener("click",event => {
+  if(event.target === $("#galleryModal")){
+    closeGallery();
+  }
+});
+
+document.addEventListener("keydown",event => {
+  if(!$("#galleryModal").classList.contains("open")){
+    return;
+  }
+
+  if(event.key === "Escape") closeGallery();
+  if(event.key === "ArrowRight") nextImage();
+  if(event.key === "ArrowLeft") prevImage();
+});
+
+async function initDetail(){
+  const category = decodeCategoryParam();
+
+  if(!category){
+    renderError(
+      "ไม่พบหมวดผลงานใน URL"
+    );
+    return;
+  }
+
+  try{
+    const tree = await fetchTree();
+
+    const project =
+      getProjectFromTree(tree,category);
+
+    if(!project){
+      renderError(
+        "ไม่พบรูปผลงานของหมวด " + category
+      );
+      return;
+    }
+
+    renderProject(project);
+
+  }catch(error){
+    console.error(
+      "CHATPHETCH PROJECT DETAIL:",
+      error
+    );
+
+    renderError(
+      "การเชื่อมต่อข้อมูลจาก Repository ไม่สำเร็จในขณะนี้"
+    );
+  }
+}
+
+initDetail();
+</script>
 
 </body>
 </html>
