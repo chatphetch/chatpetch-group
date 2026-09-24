@@ -1,891 +1,1686 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>CHATPHETCH GROUP — Admin</title>
 
-<link rel="icon" type="image/png" href="./assets/logo.png">
+
+<!-- =====================================================
+     FAVICON
+     แก้ปัญหาไอคอนโลกบนแท็บ Browser
+===================================================== -->
+
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="./assets/logo.png?v=20260924"
+>
+
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="./assets/logo.png?v=20260924"
+>
+
+<link
+  rel="shortcut icon"
+  type="image/png"
+  href="./assets/logo.png?v=20260924"
+>
+
+<link
+  rel="apple-touch-icon"
+  href="./assets/logo.png?v=20260924"
+>
+
 
 <style>
+
+/* =====================================================
+   ROOT
+===================================================== */
+
 :root{
-  --gold:#d5ad5c;
-  --gold2:#f1d681;
-  --bg:#080808;
-  --panel:rgba(15,15,15,.82);
-  --panel2:rgba(20,20,20,.94);
+
+  --gold:#d8b45f;
+  --gold-light:#f2d77e;
+
+  --black:#070707;
+  --black2:#101010;
+  --black3:#161616;
+
+  --white:#ffffff;
+
+  --muted:#777;
+  --muted2:#999;
+
   --line:rgba(255,255,255,.10);
-  --text:#fff;
-  --muted:#858585;
-  --green:#57d99a;
-  --red:#ff7373;
+
+  --green:#5be29b;
+  --red:#ff7777;
   --blue:#79aaff;
+
 }
+
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
   box-sizing:border-box;
 }
 
+
 html,
 body{
+
   margin:0;
+  padding:0;
+
   min-height:100%;
+
+}
+
+
+body{
+
   font-family:
     Arial,
     "Noto Sans Thai",
     sans-serif;
-  color:var(--text);
-  background:#050505;
-}
 
-body{
+  color:#fff;
+
   background:
     linear-gradient(
-      rgba(0,0,0,.55),
-      rgba(0,0,0,.72)
+      rgba(0,0,0,.72),
+      rgba(0,0,0,.84)
     ),
     url("./assets/index-main-bg.png")
-    center center/
-    cover
+    center/cover
     fixed
     no-repeat;
+
 }
+
+
+/* =====================================================
+   COMMON
+===================================================== */
 
 button,
 input,
 select,
 textarea{
+
   font:inherit;
+
 }
+
 
 button{
+
   cursor:pointer;
+
 }
 
-/* =========================================================
+
+.hidden{
+
+  display:none !important;
+
+}
+
+
+/* =====================================================
    LOGIN
-========================================================= */
+===================================================== */
 
 #loginScreen{
+
   min-height:100vh;
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   padding:25px;
+
 }
+
 
 .login-box{
+
   width:min(500px,100%);
+
   padding:40px;
+
   border:1px solid var(--line);
+
   border-radius:20px;
-  background:rgba(5,5,5,.88);
+
+  background:
+    rgba(5,5,5,.90);
+
   box-shadow:
-    0 30px 100px rgba(0,0,0,.55);
-  backdrop-filter:blur(20px);
+    0 30px 100px rgba(0,0,0,.65);
+
+  backdrop-filter:
+    blur(20px);
+
 }
+
 
 .login-logo{
+
   width:110px;
+
   height:110px;
+
   display:block;
+
   object-fit:contain;
-  margin:0 auto 18px;
+
+  margin:
+    0 auto 18px;
+
 }
+
 
 .login-title{
+
   margin:0;
+
   text-align:center;
+
   font-size:34px;
+
   font-weight:800;
+
 }
+
 
 .login-title span{
-  color:var(--gold2);
+
+  color:var(--gold-light);
+
 }
+
 
 .login-sub{
+
+  margin:
+    10px 0 30px;
+
   text-align:center;
+
   color:#777;
+
   line-height:1.8;
-  margin:10px 0 30px;
+
   font-size:13px;
+
 }
+
 
 .field{
+
   margin-bottom:17px;
+
 }
 
+
 .field label{
+
   display:block;
+
   margin-bottom:7px;
+
   color:#ccc;
+
   font-size:12px;
+
 }
+
 
 .field input,
 .field select,
 .field textarea{
+
   width:100%;
-  border:1px solid rgba(255,255,255,.12);
-  background:#080808;
-  color:#fff;
-  border-radius:10px;
+
   padding:13px;
+
+  color:#fff;
+
+  background:#080808;
+
+  border:1px solid
+    rgba(255,255,255,.13);
+
+  border-radius:10px;
+
   outline:none;
+
 }
+
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus{
-  border-color:var(--gold);
+
+  border-color:
+    var(--gold);
+
 }
+
 
 .password-box{
+
   position:relative;
+
 }
+
 
 .password-box input{
-  padding-right:75px;
+
+  padding-right:80px;
+
 }
+
 
 .password-toggle{
+
   position:absolute;
+
   top:7px;
+
   right:7px;
+
   bottom:7px;
-  width:60px;
+
+  width:62px;
+
   border:0;
+
   border-radius:8px;
-  background:#171717;
-  color:#ccc;
+
+  background:#181818;
+
+  color:#ddd;
+
 }
 
+
 .login-btn{
+
   width:100%;
+
   height:56px;
+
   border:0;
+
   border-radius:11px;
+
+  color:#111;
+
+  font-weight:800;
+
   background:
     linear-gradient(
       135deg,
-      var(--gold2),
+      var(--gold-light),
       var(--gold)
     );
-  color:#111;
-  font-weight:800;
+
 }
+
 
 .login-btn:disabled{
-  opacity:.5;
+
+  opacity:.55;
+
+  cursor:not-allowed;
+
 }
+
 
 .forgot{
+
   display:block;
-  margin:18px auto 0;
+
+  margin:
+    18px auto 0;
+
   border:0;
+
   background:none;
+
   color:#888;
+
   text-decoration:underline;
+
 }
+
 
 .login-error{
+
   display:none;
+
   margin-top:17px;
+
   padding:13px;
-  border:1px solid rgba(255,80,80,.3);
-  background:rgba(80,10,10,.3);
+
+  border:1px solid
+    rgba(255,80,80,.3);
+
   border-radius:10px;
+
+  background:
+    rgba(80,10,10,.30);
+
   color:#ff9999;
+
   font-size:12px;
+
   line-height:1.7;
+
 }
+
 
 .login-error.show{
+
   display:block;
+
 }
 
-/* =========================================================
+
+/* =====================================================
    APP
-========================================================= */
+===================================================== */
 
 #app{
+
   display:none;
+
   min-height:100vh;
+
 }
+
 
 #app.show{
+
   display:block;
+
 }
+
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header{
+
   position:sticky;
+
   top:0;
+
   z-index:100;
+
   min-height:82px;
-  background:rgba(5,5,5,.93);
-  border-bottom:1px solid var(--line);
-  backdrop-filter:blur(18px);
+
+  background:
+    rgba(5,5,5,.94);
+
+  border-bottom:
+    1px solid var(--line);
+
+  backdrop-filter:
+    blur(18px);
+
 }
+
 
 .header-inner{
-  width:min(1450px,calc(100% - 40px));
+
+  width:
+    min(1450px,calc(100% - 40px));
+
   min-height:82px;
+
   margin:auto;
+
   display:flex;
+
   align-items:center;
-  gap:25px;
+
+  gap:20px;
+
 }
+
 
 .brand{
+
   display:flex;
+
   align-items:center;
+
   gap:13px;
+
   margin-right:auto;
+
 }
+
 
 .brand img{
+
   width:58px;
+
   height:58px;
+
   object-fit:contain;
+
 }
+
 
 .brand-title{
+
   font-size:18px;
+
   font-weight:800;
+
 }
+
 
 .brand-sub{
+
   margin-top:3px;
+
   color:#777;
+
   font-size:9px;
+
   letter-spacing:.2em;
+
 }
+
 
 .nav{
+
   display:flex;
-  gap:3px;
+
+  gap:2px;
+
 }
 
+
 .nav button{
+
+  padding:
+    29px 17px 25px;
+
   border:0;
-  border-bottom:2px solid transparent;
+
+  border-bottom:
+    2px solid transparent;
+
   background:none;
+
   color:#777;
-  padding:29px 17px 25px;
+
 }
+
 
 .nav button:hover,
 .nav button.active{
+
   color:#fff;
-  border-bottom-color:var(--gold);
+
+  border-bottom-color:
+    var(--gold);
+
 }
+
 
 .header-right{
+
   display:flex;
+
   align-items:center;
+
   gap:10px;
+
 }
 
-.role{
-  border:1px solid rgba(213,173,92,.35);
-  border-radius:30px;
-  color:var(--gold2);
+
+.role-badge{
+
   padding:8px 14px;
+
+  border:
+    1px solid
+    rgba(213,173,92,.35);
+
+  border-radius:30px;
+
+  color:var(--gold-light);
+
   font-size:10px;
+
 }
+
 
 .logout{
-  border:1px solid var(--line);
-  background:#111;
-  color:#bbb;
+
   padding:11px 15px;
+
+  border:
+    1px solid var(--line);
+
   border-radius:9px;
+
+  background:#111;
+
+  color:#bbb;
+
 }
+
 
 .logout:hover{
+
   color:#fff;
+
 }
 
-.mobile{
+
+.mobile-menu{
+
   display:none;
-  border:1px solid var(--line);
-  background:#111;
-  color:#fff;
-  border-radius:8px;
+
   padding:8px 11px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:8px;
+
+  background:#111;
+
+  color:#fff;
+
 }
 
-/* =========================================================
+
+/* =====================================================
    MAIN
-========================================================= */
+===================================================== */
 
 .main{
-  width:min(1450px,calc(100% - 40px));
+
+  width:
+    min(1450px,calc(100% - 40px));
+
   margin:auto;
-  padding:55px 0 90px;
+
+  padding:
+    55px 0 90px;
+
 }
+
 
 .view{
+
   display:none;
+
 }
+
 
 .view.active{
+
   display:block;
+
 }
+
 
 .page-head{
+
   display:flex;
+
   align-items:flex-end;
+
   justify-content:space-between;
+
   gap:20px;
+
   margin-bottom:30px;
+
 }
+
 
 .kicker{
-  color:var(--gold);
-  letter-spacing:.22em;
-  font-size:10px;
+
   margin-bottom:8px;
+
+  color:var(--gold);
+
+  letter-spacing:.22em;
+
+  font-size:10px;
+
 }
+
 
 .page-title{
+
   margin:0;
+
   font-size:52px;
+
   line-height:1;
+
 }
+
 
 .page-desc{
-  color:#777;
-  font-size:12px;
+
   margin-top:12px;
+
+  color:#777;
+
+  font-size:12px;
+
 }
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .btn{
-  border:1px solid var(--line);
-  border-radius:9px;
-  background:#111;
-  color:#ddd;
+
   padding:10px 15px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  background:#111;
+
+  color:#ddd;
+
 }
+
 
 .btn:hover{
-  border-color:rgba(213,173,92,.4);
+
+  border-color:
+    rgba(213,173,92,.4);
+
 }
 
+
 .btn.gold{
+
   border:0;
+
   background:
     linear-gradient(
       135deg,
-      var(--gold2),
+      var(--gold-light),
       var(--gold)
     );
+
   color:#111;
+
   font-weight:700;
+
 }
+
 
 .btn.red{
-  color:#ff9b9b;
-  border-color:rgba(255,80,80,.3);
+
+  color:#ff9999;
+
+  border-color:
+    rgba(255,80,80,.3);
+
 }
 
-.btn.green{
-  color:#83e9b2;
-  border-color:rgba(80,220,140,.25);
-}
 
-/* =========================================================
+/* =====================================================
    STATS
-========================================================= */
+===================================================== */
 
 .stats{
+
   display:grid;
+
   grid-template-columns:
     repeat(4,1fr);
+
   gap:16px;
+
 }
+
 
 .stat{
+
   min-height:145px;
+
   padding:25px;
-  border:1px solid var(--line);
+
+  border:
+    1px solid var(--line);
+
   border-radius:18px;
+
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.04),
-      rgba(0,0,0,.22)
-    );
+    rgba(15,15,15,.72);
+
 }
+
 
 .stat-label{
+
   color:#777;
+
   font-size:11px;
+
 }
+
 
 .stat-number{
-  color:var(--gold2);
-  font-size:42px;
-  font-weight:800;
+
   margin-top:15px;
+
+  color:var(--gold-light);
+
+  font-size:42px;
+
+  font-weight:800;
+
 }
 
-/* =========================================================
-   CARDS
-========================================================= */
 
-.card{
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:rgba(10,10,10,.55);
-  padding:22px;
-}
+/* =====================================================
+   QUICK
+===================================================== */
 
 .quick{
+
   display:grid;
+
   grid-template-columns:
     repeat(3,1fr);
+
   gap:16px;
+
   margin-top:16px;
+
 }
+
 
 .quick-card{
+
   min-height:150px;
+
   padding:24px;
-  border:1px solid var(--line);
+
+  border:
+    1px solid var(--line);
+
   border-radius:18px;
-  background:rgba(10,10,10,.58);
+
+  background:
+    rgba(10,10,10,.70);
+
 }
+
 
 .quick-card h3{
-  margin:10px 0 7px;
+
+  margin:
+    10px 0 7px;
+
   font-size:17px;
+
 }
+
 
 .quick-card p{
+
   margin:0;
+
   color:#777;
+
   line-height:1.7;
+
   font-size:11px;
+
 }
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+
+  padding:22px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:18px;
+
+  background:
+    rgba(10,10,10,.65);
+
+}
+
 
 .card-head{
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   gap:15px;
+
   margin-bottom:18px;
+
 }
+
 
 .card-head h3{
+
   margin:0;
+
   font-size:15px;
+
 }
+
 
 .card-head span{
+
   color:#777;
+
   font-size:11px;
+
 }
 
-/* =========================================================
+
+/* =====================================================
    TABLE
-========================================================= */
+===================================================== */
 
 .table-wrap{
+
   width:100%;
+
   overflow:auto;
-  border:1px solid rgba(255,255,255,.06);
+
+  border:
+    1px solid
+    rgba(255,255,255,.06);
+
   border-radius:13px;
+
 }
 
+
 table{
+
   width:100%;
-  min-width:900px;
+
+  min-width:950px;
+
   border-collapse:collapse;
+
 }
+
 
 th,
 td{
+
   padding:15px;
-  border-bottom:1px solid rgba(255,255,255,.06);
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.06);
+
   text-align:left;
+
   font-size:12px;
+
 }
+
 
 th{
+
   color:#777;
+
   font-weight:500;
-  background:rgba(255,255,255,.025);
+
+  background:
+    rgba(255,255,255,.025);
+
 }
+
 
 td{
+
   color:#ddd;
+
 }
+
 
 tr:last-child td{
+
   border-bottom:0;
+
 }
+
 
 .empty{
+
   padding:35px;
+
   text-align:center;
+
   color:#666;
+
   font-size:12px;
+
 }
 
-/* =========================================================
-   USER
-========================================================= */
+
+/* =====================================================
+   USERS
+===================================================== */
 
 .user-name{
+
   color:#fff;
+
   font-weight:600;
+
 }
+
 
 .user-me{
-  color:var(--gold);
-  font-size:9px;
+
   margin-top:4px;
+
+  color:var(--gold);
+
+  font-size:9px;
+
 }
+
 
 .user-role{
+
   display:inline-block;
-  color:var(--gold2);
-  border:1px solid rgba(213,173,92,.25);
-  background:rgba(213,173,92,.06);
-  border-radius:30px;
+
   padding:6px 10px;
+
+  border:
+    1px solid
+    rgba(213,173,92,.25);
+
+  border-radius:30px;
+
+  background:
+    rgba(213,173,92,.06);
+
+  color:var(--gold-light);
+
   font-size:9px;
+
 }
 
-.active{
+
+.status-active{
+
   color:var(--green);
+
   font-size:10px;
+
 }
 
-.inactive{
+
+.status-inactive{
+
   color:var(--red);
+
   font-size:10px;
+
 }
+
 
 .action-group{
+
   display:flex;
+
   align-items:center;
+
   flex-wrap:wrap;
+
   gap:7px;
+
 }
+
 
 .action{
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:7px;
-  background:#101010;
-  color:#ccc;
+
   padding:8px 10px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  border-radius:7px;
+
+  background:#101010;
+
+  color:#ccc;
+
   font-size:10px;
+
 }
+
 
 .action:hover{
-  border-color:rgba(213,173,92,.4);
+
   color:#fff;
+
+  border-color:
+    rgba(213,173,92,.4);
+
 }
+
 
 .action.status-on{
+
   color:#80e7ad;
-  border-color:rgba(80,220,140,.25);
+
+  border-color:
+    rgba(80,220,140,.25);
+
 }
+
 
 .action.status-off{
+
   color:#ff9696;
-  border-color:rgba(255,80,80,.25);
+
+  border-color:
+    rgba(255,80,80,.25);
+
 }
 
-/* =========================================================
+
+/* =====================================================
    FILTER
-========================================================= */
+===================================================== */
 
 .filters{
+
   display:flex;
+
   gap:10px;
+
   margin-bottom:16px;
+
 }
+
 
 .filters input,
 .filters select{
+
   min-height:42px;
-  border:1px solid var(--line);
+
+  padding:
+    0 12px;
+
+  border:
+    1px solid var(--line);
+
   border-radius:9px;
-  background:#090909;
-  color:#fff;
-  padding:0 12px;
+
   outline:none;
+
+  background:#090909;
+
+  color:#fff;
+
 }
+
 
 .filters input{
+
   flex:1;
+
 }
 
-/* =========================================================
+
+/* =====================================================
    PRODUCTS
-========================================================= */
+===================================================== */
 
 .products{
+
   display:grid;
+
   grid-template-columns:
     repeat(4,1fr);
+
   gap:15px;
+
 }
+
 
 .product{
+
   overflow:hidden;
-  border:1px solid var(--line);
+
+  border:
+    1px solid var(--line);
+
   border-radius:14px;
+
   background:#0b0b0b;
+
 }
+
 
 .product img{
+
   width:100%;
+
   height:170px;
+
   object-fit:cover;
+
   background:#111;
+
 }
+
 
 .product-body{
+
   padding:15px;
+
 }
+
 
 .product-name{
-  font-weight:700;
+
   font-size:14px;
+
+  font-weight:700;
+
 }
 
-.product-cat{
+
+.product-category{
+
   margin-top:4px;
+
   color:var(--gold);
+
   font-size:10px;
+
 }
+
 
 .product-price{
+
   margin-top:10px;
-  color:var(--gold2);
+
+  color:var(--gold-light);
+
   font-weight:700;
+
 }
+
 
 .product-actions{
+
   display:flex;
+
   gap:6px;
+
   margin-top:14px;
+
 }
 
-/* =========================================================
+
+/* =====================================================
    MODAL
-========================================================= */
+===================================================== */
 
 .modal{
+
   position:fixed;
+
   inset:0;
+
   z-index:500;
+
   display:none;
+
   align-items:center;
+
   justify-content:center;
+
   padding:20px;
-  background:rgba(0,0,0,.78);
-  backdrop-filter:blur(7px);
+
+  background:
+    rgba(0,0,0,.80);
+
+  backdrop-filter:
+    blur(8px);
+
 }
+
 
 .modal.show{
+
   display:flex;
+
 }
+
 
 .modal-box{
-  width:min(700px,100%);
+
+  width:
+    min(500px,100%);
+
   max-height:90vh;
+
   overflow:auto;
-  padding:22px;
-  border:1px solid var(--line);
+
+  padding:25px;
+
+  border:
+    1px solid var(--line);
+
   border-radius:18px;
+
   background:#111;
+
+  box-shadow:
+    0 30px 100px
+    rgba(0,0,0,.65);
+
 }
+
 
 .modal-head{
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   margin-bottom:20px;
+
 }
+
 
 .modal-head h3{
+
   margin:0;
+
+  font-size:18px;
+
 }
+
 
 .modal-close{
+
   border:0;
+
   background:none;
+
   color:#aaa;
-  font-size:25px;
+
+  font-size:27px;
+
 }
 
-.form-grid{
-  display:grid;
-  grid-template-columns:
-    repeat(2,1fr);
-  gap:14px;
+
+.modal-user{
+
+  margin-bottom:20px;
+
+  padding:13px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.07);
+
+  border-radius:10px;
+
+  background:#0b0b0b;
+
 }
 
-.full{
-  grid-column:1/-1;
+
+.modal-user-label{
+
+  color:#666;
+
+  font-size:9px;
+
+  margin-bottom:5px;
+
 }
+
+
+.modal-user-name{
+
+  color:#fff;
+
+  font-size:13px;
+
+}
+
+
+.role-select{
+
+  width:100%;
+
+  height:50px;
+
+  padding:0 14px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.15);
+
+  border-radius:10px;
+
+  outline:none;
+
+  background:#080808;
+
+  color:#fff;
+
+  cursor:pointer;
+
+}
+
+
+.role-select:focus{
+
+  border-color:
+    var(--gold);
+
+}
+
 
 .modal-actions{
+
   display:flex;
+
   justify-content:flex-end;
+
   gap:8px;
-  margin-top:20px;
+
+  margin-top:22px;
+
 }
 
-/* =========================================================
+
+/* =====================================================
    TOAST
-========================================================= */
+===================================================== */
 
 #toast{
+
   position:fixed;
+
   right:20px;
+
   bottom:20px;
+
   z-index:9999;
+
   display:none;
-  max-width:430px;
+
+  max-width:450px;
+
   padding:14px 17px;
+
+  border:
+    1px solid var(--line);
+
   border-radius:10px;
-  border:1px solid var(--line);
+
   background:#111;
-  box-shadow:0 20px 60px rgba(0,0,0,.5);
+
+  box-shadow:
+    0 20px 60px
+    rgba(0,0,0,.5);
+
   color:#ddd;
+
   font-size:12px;
+
 }
+
 
 #toast.show{
+
   display:block;
+
 }
+
 
 #toast.error{
+
   color:#ff9999;
-  border-color:rgba(255,80,80,.3);
+
+  border-color:
+    rgba(255,80,80,.3);
+
 }
 
-/* =========================================================
+
+/* =====================================================
    MOBILE
-========================================================= */
+===================================================== */
 
 @media(max-width:1000px){
 
   .stats{
+
     grid-template-columns:
       repeat(2,1fr);
+
   }
 
+
   .products{
+
     grid-template-columns:
       repeat(2,1fr);
+
   }
 
 }
+
 
 @media(max-width:760px){
 
   .header-inner{
-    width:calc(100% - 24px);
+
+    width:
+      calc(100% - 24px);
+
   }
 
-  .mobile{
+
+  .mobile-menu{
+
     display:block;
+
   }
+
 
   .nav{
+
     display:none;
+
     position:absolute;
+
+    top:82px;
+
     left:12px;
+
     right:12px;
-    top:80px;
+
     flex-direction:column;
+
     padding:8px;
-    border:1px solid var(--line);
+
+    border:
+      1px solid var(--line);
+
     border-radius:12px;
+
     background:#111;
+
   }
+
 
   .nav.open{
+
     display:flex;
+
   }
+
 
   .nav button{
-    text-align:left;
+
     padding:12px;
+
+    text-align:left;
+
     border:0;
+
   }
+
 
   .main{
-    width:calc(100% - 24px);
+
+    width:
+      calc(100% - 24px);
+
     padding-top:35px;
+
   }
+
 
   .page-title{
+
     font-size:40px;
+
   }
+
 
   .quick{
+
     grid-template-columns:1fr;
+
   }
 
-  .header-right .role{
+
+  .header-right .role-badge{
+
     display:none;
+
   }
 
 }
+
 
 @media(max-width:560px){
 
   .login-box{
+
     padding:28px 20px;
+
   }
+
 
   .login-title{
+
     font-size:28px;
+
   }
+
 
   .stats{
+
     gap:9px;
+
   }
+
 
   .stat{
+
     padding:16px;
+
   }
+
 
   .stat-number{
+
     font-size:30px;
+
   }
+
 
   .products{
-    grid-template-columns:1fr;
-  }
 
-  .form-grid{
     grid-template-columns:1fr;
-  }
 
-  .full{
-    grid-column:auto;
   }
 
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- =======================================================
+
+<!-- =====================================================
      LOGIN
-======================================================= -->
+===================================================== -->
 
 <section id="loginScreen">
 
@@ -893,18 +1688,27 @@ tr:last-child td{
 
     <img
       class="login-logo"
-      src="./assets/logo.png"
+      src="./assets/logo.png?v=20260924"
       alt="CHATPHETCH"
     >
 
+
     <h1 class="login-title">
-      CHATPHETCH <span>GROUP</span>
+
+      CHATPHETCH
+      <span>GROUP</span>
+
     </h1>
 
+
     <div class="login-sub">
+
       ระบบจัดการหลังบ้าน<br>
+
       Admin / Back Office
+
     </div>
+
 
     <form id="loginForm">
 
@@ -922,6 +1726,7 @@ tr:last-child td{
         >
 
       </div>
+
 
       <div class="field">
 
@@ -950,23 +1755,26 @@ tr:last-child td{
 
       </div>
 
+
       <button
+        type="submit"
         class="login-btn"
         id="loginBtn"
-        type="submit"
       >
         เข้าสู่ระบบ
       </button>
 
     </form>
 
+
     <button
+      type="button"
       class="forgot"
       id="forgotBtn"
-      type="button"
     >
       ลืมรหัสผ่าน?
     </button>
+
 
     <div
       class="login-error"
@@ -978,28 +1786,31 @@ tr:last-child td{
 </section>
 
 
-<!-- =======================================================
-     APP
-======================================================= -->
+<!-- =====================================================
+     ADMIN APP
+===================================================== -->
 
 <div id="app">
+
 
 <header class="header">
 
   <div class="header-inner">
 
+
     <button
-      class="mobile"
-      id="mobileBtn"
+      class="mobile-menu"
+      id="mobileMenu"
     >
       ☰
     </button>
 
+
     <div class="brand">
 
       <img
-        src="./assets/logo.png"
-        alt=""
+        src="./assets/logo.png?v=20260924"
+        alt="CHATPHETCH"
       >
 
       <div>
@@ -1053,11 +1864,12 @@ tr:last-child td{
     <div class="header-right">
 
       <span
-        class="role"
-        id="roleText"
+        class="role-badge"
+        id="roleBadge"
       >
         OWNER
       </span>
+
 
       <button
         class="logout"
@@ -1074,6 +1886,7 @@ tr:last-child td{
 
 
 <main class="main">
+
 
 <!-- =====================================================
      HOME
@@ -1103,6 +1916,7 @@ tr:last-child td{
 
     </div>
 
+
     <button
       class="btn"
       id="refreshBtn"
@@ -1116,51 +1930,66 @@ tr:last-child td{
   <div class="stats">
 
     <div class="stat">
+
       <div class="stat-label">
         Orders
       </div>
+
       <div
         class="stat-number"
         id="statTotal"
       >
         0
       </div>
+
     </div>
 
+
     <div class="stat">
+
       <div class="stat-label">
         Pending
       </div>
+
       <div
         class="stat-number"
         id="statPending"
       >
         0
       </div>
+
     </div>
 
+
     <div class="stat">
+
       <div class="stat-label">
         Shipping
       </div>
+
       <div
         class="stat-number"
         id="statShipping"
       >
         0
       </div>
+
     </div>
 
+
     <div class="stat">
+
       <div class="stat-label">
         Completed
       </div>
+
       <div
         class="stat-number"
         id="statCompleted"
       >
         0
       </div>
+
     </div>
 
   </div>
@@ -1179,8 +2008,7 @@ tr:last-child td{
       </h3>
 
       <p>
-        ตรวจสอบออเดอร์
-        และสถานะคำสั่งซื้อ
+        ตรวจสอบออเดอร์และสถานะคำสั่งซื้อ
       </p>
 
     </div>
@@ -1214,8 +2042,7 @@ tr:last-child td{
       </h3>
 
       <p>
-        จัดการ Role และสถานะ
-        ผู้ใช้งาน
+        จัดการ Role และสถานะผู้ใช้งาน
       </p>
 
     </div>
@@ -1234,11 +2061,12 @@ tr:last-child td{
         คำสั่งซื้อล่าสุด
       </h3>
 
-      <span id="recentText">
+      <span id="recentCount">
         0 รายการ
       </span>
 
     </div>
+
 
     <div class="table-wrap">
 
@@ -1247,23 +2075,44 @@ tr:last-child td{
         <thead>
 
           <tr>
-            <th>เลขที่</th>
-            <th>ลูกค้า</th>
-            <th>สถานะ</th>
-            <th>ยอดรวม</th>
-            <th>วันที่</th>
+
+            <th>
+              เลขที่
+            </th>
+
+            <th>
+              ลูกค้า
+            </th>
+
+            <th>
+              สถานะ
+            </th>
+
+            <th>
+              ยอดรวม
+            </th>
+
+            <th>
+              วันที่
+            </th>
+
           </tr>
 
         </thead>
 
+
         <tbody id="recentOrders">
 
           <tr>
+
             <td colspan="5">
+
               <div class="empty">
                 กำลังโหลด...
               </div>
+
             </td>
+
           </tr>
 
         </tbody>
@@ -1315,6 +2164,7 @@ tr:last-child td{
         id="orderSearch"
         placeholder="ค้นหาออเดอร์ / ลูกค้า / เบอร์โทร"
       >
+
 
       <select id="orderFilter">
 
@@ -1383,14 +2233,19 @@ tr:last-child td{
 
         </thead>
 
+
         <tbody id="ordersTable">
 
           <tr>
+
             <td colspan="6">
+
               <div class="empty">
                 กำลังโหลด...
               </div>
+
             </td>
+
           </tr>
 
         </tbody>
@@ -1430,13 +2285,6 @@ tr:last-child td{
       </div>
 
     </div>
-
-    <button
-      class="btn gold"
-      id="addProductBtn"
-    >
-      + เพิ่มสินค้า
-    </button>
 
   </div>
 
@@ -1540,14 +2388,19 @@ tr:last-child td{
 
         </thead>
 
+
         <tbody id="usersTable">
 
           <tr>
+
             <td colspan="6">
+
               <div class="empty">
                 กำลังโหลด...
               </div>
+
             </td>
+
           </tr>
 
         </tbody>
@@ -1560,31 +2413,36 @@ tr:last-child td{
 
 </section>
 
+
 </main>
 
 </div>
 
 
-<!-- =======================================================
-     PRODUCT MODAL
-======================================================= -->
+<!-- =====================================================
+     ROLE MODAL
+     ★ ไม่ใช้ prompt แล้ว
+===================================================== -->
 
 <div
   class="modal"
-  id="productModal"
+  id="roleModal"
 >
 
   <div class="modal-box">
 
+
     <div class="modal-head">
 
-      <h3 id="modalTitle">
-        เพิ่มสินค้า
+      <h3>
+        เปลี่ยน Role
       </h3>
 
+
       <button
+        type="button"
         class="modal-close"
-        id="closeModal"
+        id="roleModalClose"
       >
         ×
       </button>
@@ -1592,132 +2450,94 @@ tr:last-child td{
     </div>
 
 
-    <form id="productForm">
+    <div class="modal-user">
 
-      <input
-        type="hidden"
-        id="productId"
+      <div class="modal-user-label">
+        ผู้ใช้งาน
+      </div>
+
+      <div
+        class="modal-user-name"
+        id="roleUserName"
+      >
+        -
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        เลือก Role ใหม่
+      </label>
+
+
+      <select
+        class="role-select"
+        id="roleSelect"
       >
 
-      <div class="form-grid">
+        <option value="owner">
+          OWNER
+        </option>
 
-        <div class="field">
+        <option value="manager">
+          MANAGER
+        </option>
 
-          <label>
-            รหัสสินค้า
-          </label>
+        <option value="staff">
+          STAFF
+        </option>
 
-          <input
-            id="productCode"
-          >
+        <option value="viewer">
+          VIEWER
+        </option>
 
-        </div>
+      </select>
 
-
-        <div class="field">
-
-          <label>
-            ชื่อสินค้า
-          </label>
-
-          <input
-            id="productName"
-            required
-          >
-
-        </div>
+    </div>
 
 
-        <div class="field">
+    <div class="modal-actions">
 
-          <label>
-            หมวดหมู่
-          </label>
-
-          <input
-            id="productCategory"
-          >
-
-        </div>
+      <button
+        type="button"
+        class="btn"
+        id="roleCancel"
+      >
+        ยกเลิก
+      </button>
 
 
-        <div class="field">
+      <button
+        type="button"
+        class="btn gold"
+        id="roleSave"
+      >
+        บันทึก
+      </button>
 
-          <label>
-            ราคา
-          </label>
-
-          <input
-            id="productPrice"
-            type="number"
-            step="0.01"
-          >
-
-        </div>
-
-
-        <div class="field full">
-
-          <label>
-            URL รูปสินค้า
-          </label>
-
-          <input
-            id="productImage"
-          >
-
-        </div>
-
-
-        <div class="field full">
-
-          <label>
-            รายละเอียด
-          </label>
-
-          <textarea
-            id="productDescription"
-            rows="4"
-          ></textarea>
-
-        </div>
-
-      </div>
-
-
-      <div class="modal-actions">
-
-        <button
-          type="button"
-          class="btn"
-          id="cancelProduct"
-        >
-          ยกเลิก
-        </button>
-
-        <button
-          type="submit"
-          class="btn gold"
-        >
-          บันทึก
-        </button>
-
-      </div>
-
-    </form>
+    </div>
 
   </div>
 
 </div>
 
 
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
 <div id="toast"></div>
 
 
 <script>
-/* =========================================================
-   SUPABASE CONFIG
-========================================================= */
+
+/* =====================================================
+   SUPABASE
+   ใช้ค่าเดิมของโปรเจกต์คุณ
+===================================================== */
 
 const SUPABASE_URL =
   "https://mfhllgklcfnnbyyzzljz.supabase.co";
@@ -1725,39 +2545,53 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
   "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
 
+
 const SESSION_KEY =
   "chatpetch_admin_session";
 
 
-/* =========================================================
+/* =====================================================
    STATE
-========================================================= */
+===================================================== */
 
 let session = null;
+
 let currentUser = null;
+
 let currentRole = "viewer";
 
 let adminUsers = [];
+
 let orders = [];
+
 let products = [];
 
+let editingRoleUserId = null;
 
-/* =========================================================
-   HELPERS
-========================================================= */
+
+/* =====================================================
+   HELPER
+===================================================== */
 
 function $(id){
+
   return document.getElementById(id);
+
 }
 
 
 function escapeHtml(value){
 
   return String(value ?? "")
+
     .replaceAll("&","&amp;")
+
     .replaceAll("<","&lt;")
+
     .replaceAll(">","&gt;")
+
     .replaceAll('"',"&quot;")
+
     .replaceAll("'","&#039;");
 
 }
@@ -1802,29 +2636,41 @@ function formatDate(value){
 }
 
 
+function isOwner(){
+
+  return (
+    String(currentRole)
+      .toLowerCase()
+      ===
+    "owner"
+  );
+
+}
+
+
 function toast(
   message,
   type=""
 ){
 
-  const el =
+  const box =
     $("toast");
 
-  el.textContent =
+  box.textContent =
     message;
 
-  el.className =
+  box.className =
     "show " +
     type;
 
   clearTimeout(
-    window.toastTimeout
+    window.__toastTimer
   );
 
-  window.toastTimeout =
+  window.__toastTimer =
     setTimeout(
       ()=>{
-        el.className = "";
+        box.className = "";
       },
       3500
     );
@@ -1832,22 +2678,9 @@ function toast(
 }
 
 
-function isOwner(){
-
-  return (
-    String(
-      currentRole
-    ).toLowerCase()
-    ===
-    "owner"
-  );
-
-}
-
-
-/* =========================================================
-   REST API
-========================================================= */
+/* =====================================================
+   SUPABASE API
+===================================================== */
 
 async function api(
   path,
@@ -1857,12 +2690,12 @@ async function api(
   const controller =
     new AbortController();
 
-  const timer =
+  const timeout =
     setTimeout(
       ()=>{
         controller.abort();
       },
-      10000
+      12000
     );
 
 
@@ -1876,9 +2709,7 @@ async function api(
   };
 
 
-  if(
-    session?.access_token
-  ){
+  if(session?.access_token){
 
     headers.Authorization =
       "Bearer " +
@@ -1930,20 +2761,14 @@ async function api(
 
     if(!response.ok){
 
-      const error =
-        new Error(
-          data?.message ||
-          data?.msg ||
-          data?.error_description ||
-          data?.error ||
-          text ||
-          "Request failed"
-        );
-
-      error.status =
-        response.status;
-
-      throw error;
+      throw new Error(
+        data?.message ||
+        data?.msg ||
+        data?.error_description ||
+        data?.error ||
+        text ||
+        "Request failed"
+      );
 
     }
 
@@ -1952,16 +2777,16 @@ async function api(
 
   }finally{
 
-    clearTimeout(timer);
+    clearTimeout(timeout);
 
   }
 
 }
 
 
-/* =========================================================
-   AUTH
-========================================================= */
+/* =====================================================
+   LOGIN
+===================================================== */
 
 function restoreSession(){
 
@@ -1975,15 +2800,7 @@ function restoreSession(){
     if(!raw)
       return null;
 
-    const value =
-      JSON.parse(raw);
-
-    if(
-      !value?.access_token
-    )
-      return null;
-
-    return value;
+    return JSON.parse(raw);
 
   }catch{
 
@@ -2003,6 +2820,7 @@ async function signIn(
     await api(
       "/auth/v1/token?grant_type=password",
       {
+
         method:"POST",
 
         headers:{
@@ -2015,13 +2833,12 @@ async function signIn(
             email,
             password
           })
+
       }
     );
 
 
-  if(
-    !data?.access_token
-  ){
+  if(!data?.access_token){
 
     throw new Error(
       "เข้าสู่ระบบไม่สำเร็จ"
@@ -2036,9 +2853,7 @@ async function signIn(
 
   localStorage.setItem(
     SESSION_KEY,
-    JSON.stringify(
-      data
-    )
+    JSON.stringify(data)
   );
 
 
@@ -2049,10 +2864,6 @@ async function signIn(
 
 function signOut(){
 
-  session = null;
-
-  currentUser = null;
-
   localStorage.removeItem(
     SESSION_KEY
   );
@@ -2062,15 +2873,17 @@ function signOut(){
 }
 
 
-/* =========================================================
-   ADMIN ROLE
-========================================================= */
+/* =====================================================
+   LOAD ADMIN USER
+===================================================== */
 
 async function loadAdmin(){
 
-  if(
-    !session?.user?.id
-  ){
+  const id =
+    session?.user?.id;
+
+
+  if(!id){
 
     throw new Error(
       "ไม่พบ User ID"
@@ -2089,8 +2902,7 @@ async function loadAdmin(){
 
   params.set(
     "user_id",
-    "eq." +
-    session.user.id
+    "eq." + id
   );
 
   params.set(
@@ -2106,342 +2918,319 @@ async function loadAdmin(){
     );
 
 
-  const user =
-    Array.isArray(data)
-      ? data[0]
-      : null;
-
-
-  if(!user){
-
-    throw new Error(
-      "ไม่พบบัญชีนี้ใน admin_users"
-    );
-
-  }
-
-
   if(
-    user.active === false
+    !Array.isArray(data) ||
+    !data.length
   ){
 
     throw new Error(
-      "บัญชี Admin นี้ถูกปิดใช้งาน"
+      "ไม่พบบัญชี Admin ใน admin_users"
     );
 
   }
 
 
   currentUser =
-    user;
+    data[0];
+
+
+  if(
+    currentUser.active === false
+  ){
+
+    throw new Error(
+      "บัญชีนี้ถูกปิดใช้งาน"
+    );
+
+  }
+
 
   currentRole =
     String(
-      user.role ||
+      currentUser.role ||
       "viewer"
     ).toLowerCase();
 
 
-  $("roleText").textContent =
+  $("roleBadge").textContent =
     currentRole.toUpperCase();
 
 }
 
 
-/* =========================================================
-   LOGIN
-========================================================= */
+/* =====================================================
+   LOGIN EVENTS
+===================================================== */
 
 $("loginForm")
-  .addEventListener(
-    "submit",
-    async event => {
+.addEventListener(
+  "submit",
+  async event => {
 
-      event.preventDefault();
-
-
-      const email =
-        $("email")
-          .value
-          .trim()
-          .toLowerCase();
+    event.preventDefault();
 
 
-      const password =
-        $("password")
-          .value;
+    const email =
+      $("email")
+        .value
+        .trim();
 
 
-      const errorBox =
-        $("loginError");
+    const password =
+      $("password")
+        .value;
+
+
+    const errorBox =
+      $("loginError");
+
+
+    errorBox
+      .classList
+      .remove("show");
+
+
+    $("loginBtn").disabled =
+      true;
+
+
+    $("loginBtn").textContent =
+      "กำลังเข้าสู่ระบบ...";
+
+
+    try{
+
+      await signIn(
+        email,
+        password
+      );
+
+
+      await startApp();
+
+
+    }catch(error){
+
+      console.error(error);
+
+
+      errorBox.textContent =
+        error.message ||
+        "เข้าสู่ระบบไม่สำเร็จ";
 
 
       errorBox
         .classList
-        .remove("show");
+        .add("show");
 
 
-      $("loginBtn")
-        .disabled =
-        true;
-
-      $("loginBtn")
-        .textContent =
-        "กำลังเข้าสู่ระบบ...";
+      $("loginBtn").disabled =
+        false;
 
 
-      try{
-
-        await signIn(
-          email,
-          password
-        );
-
-
-        await startApp();
-
-      }catch(error){
-
-        console.error(
-          error
-        );
-
-
-        let message =
-          error.message ||
-          "เข้าสู่ระบบไม่สำเร็จ";
-
-
-        if(
-          message
-            .toLowerCase()
-            .includes(
-              "invalid login credentials"
-            )
-        ){
-
-          message =
-            "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
-
-        }
-
-
-        errorBox.textContent =
-          message;
-
-        errorBox
-          .classList
-          .add("show");
-
-
-        $("loginBtn")
-          .disabled =
-          false;
-
-        $("loginBtn")
-          .textContent =
-          "เข้าสู่ระบบ";
-
-      }
+      $("loginBtn").textContent =
+        "เข้าสู่ระบบ";
 
     }
-  );
+
+  }
+);
 
 
 $("togglePassword")
-  .addEventListener(
-    "click",
-    ()=>{
+.addEventListener(
+  "click",
+  ()=>{
 
-      const input =
-        $("password");
+    const input =
+      $("password");
 
 
-      if(
-        input.type ===
-        "password"
-      ){
+    if(
+      input.type ===
+      "password"
+    ){
 
-        input.type =
-          "text";
+      input.type =
+        "text";
 
-        $("togglePassword")
-          .textContent =
-          "ซ่อน";
+      $("togglePassword")
+        .textContent =
+        "ซ่อน";
 
-      }else{
+    }else{
 
-        input.type =
-          "password";
+      input.type =
+        "password";
 
-        $("togglePassword")
-          .textContent =
-          "แสดง";
-
-      }
+      $("togglePassword")
+        .textContent =
+        "แสดง";
 
     }
-  );
+
+  }
+);
 
 
 $("forgotBtn")
-  .addEventListener(
-    "click",
-    async ()=>{
+.addEventListener(
+  "click",
+  async ()=>{
 
-      const email =
-        $("email")
-          .value
-          .trim();
-
-
-      if(!email){
-
-        $("loginError")
-          .textContent =
-          "กรุณากรอกอีเมลก่อน";
-
-        $("loginError")
-          .classList
-          .add("show");
-
-        return;
-
-      }
+    const email =
+      $("email")
+        .value
+        .trim();
 
 
-      try{
+    if(!email){
 
-        await api(
-          "/auth/v1/recover",
-          {
-            method:"POST",
+      $("loginError").textContent =
+        "กรุณากรอกอีเมลก่อน";
 
-            headers:{
-              "Content-Type":
-                "application/json"
-            },
+      $("loginError")
+        .classList
+        .add("show");
 
-            body:
-              JSON.stringify({
-                email,
-                redirect_to:
-                  location.href
-              })
-          }
-        );
-
-
-        $("loginError")
-          .textContent =
-          "ส่งลิงก์รีเซ็ตรหัสผ่านแล้ว";
-
-        $("loginError")
-          .classList
-          .add("show");
-
-      }catch(error){
-
-        $("loginError")
-          .textContent =
-          error.message;
-
-        $("loginError")
-          .classList
-          .add("show");
-
-      }
+      return;
 
     }
-  );
 
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+    try{
 
-document
-  .querySelectorAll(
-    ".nav button"
-  )
-  .forEach(
-    button => {
+      await api(
+        "/auth/v1/recover",
+        {
 
-      button.addEventListener(
-        "click",
-        ()=>{
+          method:"POST",
 
-          document
-            .querySelectorAll(
-              ".nav button"
-            )
-            .forEach(
-              item =>
-                item.classList
-                  .remove("active")
-            );
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
 
-
-          button.classList
-            .add("active");
-
-
-          document
-            .querySelectorAll(
-              ".view"
-            )
-            .forEach(
-              view =>
-                view.classList
-                  .remove("active")
-            );
-
-
-          const target =
-            $("view-" +
-              button.dataset.view);
-
-
-          if(target){
-
-            target.classList
-              .add("active");
-
-          }
-
-
-          $("nav")
-            .classList
-            .remove("open");
+          body:
+            JSON.stringify({
+              email,
+              redirect_to:
+                location.href
+            })
 
         }
       );
 
-    }
-  );
 
+      $("loginError").textContent =
+        "ส่งลิงก์รีเซ็ตรหัสผ่านแล้ว";
 
-$("mobileBtn")
-  .addEventListener(
-    "click",
-    ()=>{
-      $("nav")
+      $("loginError")
         .classList
-        .toggle("open");
+        .add("show");
+
+
+    }catch(error){
+
+      $("loginError").textContent =
+        error.message;
+
+      $("loginError")
+        .classList
+        .add("show");
+
     }
-  );
+
+  }
+);
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+document
+.querySelectorAll(
+  ".nav button"
+)
+.forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
+      ()=>{
+
+        document
+        .querySelectorAll(
+          ".nav button"
+        )
+        .forEach(
+          item =>
+            item.classList
+              .remove("active")
+        );
+
+
+        button.classList
+          .add("active");
+
+
+        document
+        .querySelectorAll(
+          ".view"
+        )
+        .forEach(
+          view =>
+            view.classList
+              .remove("active")
+        );
+
+
+        const view =
+          $("view-" +
+            button.dataset.view);
+
+
+        if(view){
+
+          view.classList
+            .add("active");
+
+        }
+
+
+        $("nav")
+          .classList
+          .remove("open");
+
+      }
+    );
+
+  }
+);
+
+
+$("mobileMenu")
+.addEventListener(
+  "click",
+  ()=>{
+    $("nav")
+      .classList
+      .toggle("open");
+  }
+);
 
 
 $("logoutBtn")
-  .addEventListener(
-    "click",
-    signOut
-  );
+.addEventListener(
+  "click",
+  signOut
+);
 
 
-/* =========================================================
+/* =====================================================
    ORDERS
-========================================================= */
+===================================================== */
 
 async function loadOrders(){
 
@@ -2480,11 +3269,14 @@ async function loadOrders(){
 
     updateStats();
 
+
   }catch(error){
 
     console.error(
+      "ORDERS:",
       error
     );
+
 
     $("ordersTable")
       .innerHTML =
@@ -2494,14 +3286,9 @@ async function loadOrders(){
           <div class="empty">
             โหลดคำสั่งซื้อไม่สำเร็จ
             <br>
-            ${escapeHtml(error.message)}
-            <br><br>
-            <button
-              class="btn"
-              onclick="loadOrders()"
-            >
-              ↻ ลองใหม่
-            </button>
+            ${escapeHtml(
+              error.message
+            )}
           </div>
         </td>
       </tr>
@@ -2512,58 +3299,31 @@ async function loadOrders(){
 }
 
 
-function statusBadge(
-  status
-){
+function statusText(status){
 
   const map = {
 
-    pending:[
+    pending:
       "รอดำเนินการ",
-      "var(--gold2)"
-    ],
 
-    processing:[
+    processing:
       "กำลังดำเนินการ",
-      "var(--blue)"
-    ],
 
-    shipping:[
+    shipping:
       "กำลังจัดส่ง",
-      "var(--blue)"
-    ],
 
-    completed:[
+    completed:
       "เสร็จสิ้น",
-      "var(--green)"
-    ],
 
-    cancelled:[
-      "ยกเลิก",
-      "var(--red)"
-    ]
+    cancelled:
+      "ยกเลิก"
 
   };
 
 
-  const item =
-    map[status] ||
-    [
-      status || "-",
-      "#aaa"
-    ];
-
-
-  return `
-    <span
-      style="
-        color:${item[1]};
-        font-size:10px;
-      "
-    >
-      ${escapeHtml(item[0])}
-    </span>
-  `;
+  return map[status] ||
+    status ||
+    "-";
 
 }
 
@@ -2577,7 +3337,7 @@ function renderOrders(){
       .toLowerCase();
 
 
-  const status =
+  const filter =
     $("orderFilter")
       .value;
 
@@ -2590,8 +3350,8 @@ function renderOrders(){
           [
             item.order_number,
             item.customer_name,
-            item.customer_phone,
-            item.customer_email
+            item.customer_email,
+            item.customer_phone
           ]
           .join(" ")
           .toLowerCase();
@@ -2599,17 +3359,13 @@ function renderOrders(){
 
         return (
 
-          (
-            !search ||
-            text.includes(search)
-          )
+          (!search ||
+            text.includes(search))
 
           &&
 
-          (
-            !status ||
-            item.status === status
-          )
+          (!filter ||
+            item.status === filter)
 
         );
 
@@ -2641,6 +3397,7 @@ function renderOrders(){
     list.map(
       item =>
       `
+
       <tr>
 
         <td>
@@ -2672,8 +3429,10 @@ function renderOrders(){
         </td>
 
         <td>
-          ${statusBadge(
-            item.status
+          ${escapeHtml(
+            statusText(
+              item.status
+            )
           )}
         </td>
 
@@ -2684,8 +3443,10 @@ function renderOrders(){
         </td>
 
       </tr>
+
       `
-    ).join("");
+    )
+    .join("");
 
 }
 
@@ -2693,13 +3454,10 @@ function renderOrders(){
 function renderRecent(){
 
   const list =
-    orders.slice(
-      0,
-      8
-    );
+    orders.slice(0,8);
 
 
-  $("recentText")
+  $("recentCount")
     .textContent =
     list.length +
     " รายการ";
@@ -2729,6 +3487,7 @@ function renderRecent(){
     list.map(
       item =>
       `
+
       <tr>
 
         <td>
@@ -2746,8 +3505,10 @@ function renderRecent(){
         </td>
 
         <td>
-          ${statusBadge(
-            item.status
+          ${escapeHtml(
+            statusText(
+              item.status
+            )
           )}
         </td>
 
@@ -2765,8 +3526,10 @@ function renderRecent(){
         </td>
 
       </tr>
+
       `
-    ).join("");
+    )
+    .join("");
 
 }
 
@@ -2808,22 +3571,22 @@ function updateStats(){
 
 
 $("orderSearch")
-  .addEventListener(
-    "input",
-    renderOrders
-  );
+.addEventListener(
+  "input",
+  renderOrders
+);
 
 
 $("orderFilter")
-  .addEventListener(
-    "change",
-    renderOrders
-  );
+.addEventListener(
+  "change",
+  renderOrders
+);
 
 
-/* =========================================================
+/* =====================================================
    PRODUCTS
-========================================================= */
+===================================================== */
 
 async function loadProducts(){
 
@@ -2839,7 +3602,7 @@ async function loadProducts(){
 
     params.set(
       "order",
-      "created_at.asc"
+      "created_at.desc"
     );
 
 
@@ -2857,6 +3620,7 @@ async function loadProducts(){
 
 
     renderProducts();
+
 
   }catch(error){
 
@@ -2894,8 +3658,8 @@ function renderProducts(){
       item =>
         !search ||
         [
-          item.code,
           item.name,
+          item.code,
           item.category
         ]
         .join(" ")
@@ -2927,17 +3691,23 @@ function renderProducts(){
     list.map(
       item =>
       `
+
       <article class="product">
 
         <img
-          src="${escapeHtml(
-            item.image ||
-            item.image_url ||
-            "./assets/logo.png"
-          )}"
-          onerror="this.src='./assets/logo.png'"
+          src="${
+            escapeHtml(
+              item.image ||
+              item.image_url ||
+              "./assets/logo.png"
+            )
+          }"
+          onerror="
+            this.src='./assets/logo.png'
+          "
           alt=""
         >
+
 
         <div class="product-body">
 
@@ -2948,12 +3718,14 @@ function renderProducts(){
             )}
           </div>
 
-          <div class="product-cat">
+
+          <div class="product-category">
             ${escapeHtml(
               item.category ||
               ""
             )}
           </div>
+
 
           <div class="product-price">
             ฿${money(
@@ -2961,375 +3733,27 @@ function renderProducts(){
             )}
           </div>
 
-          <div class="product-actions">
-
-            <button
-              class="btn"
-              onclick="editProduct('${escapeHtml(item.id)}')"
-            >
-              แก้ไข
-            </button>
-
-            ${
-              isOwner()
-              ?
-              `
-              <button
-                class="btn red"
-                onclick="deleteProduct('${escapeHtml(item.id)}')"
-              >
-                ลบ
-              </button>
-              `
-              :
-              ""
-            }
-
-          </div>
-
         </div>
 
       </article>
+
       `
-    ).join("");
+    )
+    .join("");
 
 }
 
 
 $("productSearch")
-  .addEventListener(
-    "input",
-    renderProducts
-  );
+.addEventListener(
+  "input",
+  renderProducts
+);
 
 
-/* =========================================================
-   ADD / EDIT PRODUCT
-========================================================= */
-
-$("addProductBtn")
-  .addEventListener(
-    "click",
-    ()=>{
-
-      $("modalTitle")
-        .textContent =
-        "เพิ่มสินค้า";
-
-      $("productForm")
-        .reset();
-
-      $("productId")
-        .value = "";
-
-      $("productModal")
-        .classList
-        .add("show");
-
-    }
-  );
-
-
-$("closeModal")
-  .addEventListener(
-    "click",
-    closeProductModal
-  );
-
-
-$("cancelProduct")
-  .addEventListener(
-    "click",
-    closeProductModal
-  );
-
-
-function closeProductModal(){
-
-  $("productModal")
-    .classList
-    .remove("show");
-
-}
-
-
-function editProduct(id){
-
-  const item =
-    products.find(
-      x =>
-        String(x.id) ===
-        String(id)
-    );
-
-
-  if(!item)
-    return;
-
-
-  $("modalTitle")
-    .textContent =
-    "แก้ไขสินค้า";
-
-
-  $("productId")
-    .value =
-    item.id || "";
-
-
-  $("productCode")
-    .value =
-    item.code || "";
-
-
-  $("productName")
-    .value =
-    item.name || "";
-
-
-  $("productCategory")
-    .value =
-    item.category || "";
-
-
-  $("productPrice")
-    .value =
-    item.price ?? "";
-
-
-  $("productImage")
-    .value =
-    item.image ||
-    item.image_url ||
-    "";
-
-
-  $("productDescription")
-    .value =
-    item.short_description ||
-    "";
-
-
-  $("productModal")
-    .classList
-    .add("show");
-
-}
-
-
-$("productForm")
-  .addEventListener(
-    "submit",
-    async event => {
-
-      event.preventDefault();
-
-
-      if(
-        ![
-          "owner",
-          "manager",
-          "staff"
-        ].includes(
-          currentRole
-        )
-      ){
-
-        toast(
-          "คุณไม่มีสิทธิ์จัดการสินค้า",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      const id =
-        $("productId")
-          .value;
-
-
-      const payload = {
-
-        code:
-          $("productCode")
-            .value
-            .trim() ||
-          null,
-
-        name:
-          $("productName")
-            .value
-            .trim(),
-
-        category:
-          $("productCategory")
-            .value
-            .trim() ||
-          null,
-
-        price:
-          $("productPrice")
-            .value === ""
-          ?
-          null
-          :
-          Number(
-            $("productPrice")
-              .value
-          ),
-
-        image:
-          $("productImage")
-            .value
-            .trim() ||
-          null,
-
-        short_description:
-          $("productDescription")
-            .value
-            .trim() ||
-          null
-
-      };
-
-
-      try{
-
-        if(id){
-
-          await api(
-            "/rest/v1/products?id=eq." +
-            encodeURIComponent(id),
-            {
-              method:"PATCH",
-
-              headers:{
-                "Content-Type":
-                  "application/json",
-
-                Prefer:
-                  "return=representation"
-              },
-
-              body:
-                JSON.stringify(
-                  payload
-                )
-            }
-          );
-
-
-          toast(
-            "แก้ไขสินค้าแล้ว"
-          );
-
-        }else{
-
-          await api(
-            "/rest/v1/products",
-            {
-              method:"POST",
-
-              headers:{
-                "Content-Type":
-                  "application/json",
-
-                Prefer:
-                  "return=representation"
-              },
-
-              body:
-                JSON.stringify(
-                  payload
-                )
-            }
-          );
-
-
-          toast(
-            "เพิ่มสินค้าแล้ว"
-          );
-
-        }
-
-
-        closeProductModal();
-
-        await loadProducts();
-
-      }catch(error){
-
-        toast(
-          error.message,
-          "error"
-        );
-
-      }
-
-    }
-  );
-
-
-async function deleteProduct(
-  id
-){
-
-  if(!isOwner()){
-
-    toast(
-      "เฉพาะ OWNER เท่านั้น",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  if(
-    !confirm(
-      "ต้องการลบสินค้านี้หรือไม่?"
-    )
-  )
-    return;
-
-
-  try{
-
-    await api(
-      "/rest/v1/products?id=eq." +
-      encodeURIComponent(id),
-      {
-        method:"DELETE"
-      }
-    );
-
-
-    toast(
-      "ลบสินค้าแล้ว"
-    );
-
-
-    await loadProducts();
-
-  }catch(error){
-
-    toast(
-      error.message,
-      "error"
-    );
-
-  }
-
-}
-
-
-/* =========================================================
+/* =====================================================
    USERS
-   ★ ส่วนที่แก้หลักสำหรับปัญหาของคุณ
-========================================================= */
+===================================================== */
 
 async function loadUsers(){
 
@@ -3364,10 +3788,11 @@ async function loadUsers(){
 
     renderUsers();
 
+
   }catch(error){
 
     console.error(
-      "USERS ERROR:",
+      "USERS:",
       error
     );
 
@@ -3389,15 +3814,6 @@ async function loadUsers(){
               error.message
             )}
 
-            <br><br>
-
-            <button
-              class="btn"
-              onclick="loadUsers()"
-            >
-              ↻ ลองใหม่
-            </button>
-
           </div>
 
         </td>
@@ -3410,26 +3826,19 @@ async function loadUsers(){
 }
 
 
-/*
- * แสดงผู้ใช้งาน
- *
- * เพิ่มคอลัมน์ "จัดการ"
- * และปุ่ม:
- *
- * - ปิดใช้งาน
- * - เปิดใช้งาน
- * - เปลี่ยน Role
- */
+/* =====================================================
+   RENDER USERS
+===================================================== */
 
 function renderUsers(){
 
-  const container =
+  const table =
     $("usersTable");
 
 
   if(!adminUsers.length){
 
-    container.innerHTML =
+    table.innerHTML =
       `
       <tr>
 
@@ -3449,12 +3858,16 @@ function renderUsers(){
   }
 
 
-  container.innerHTML =
+  table.innerHTML =
     adminUsers
       .map(
         user => {
 
-          const isSelf =
+          const active =
+            user.active === true;
+
+
+          const self =
             currentUser &&
             String(
               user.user_id
@@ -3465,189 +3878,187 @@ function renderUsers(){
             );
 
 
-          const active =
-            user.active === true;
-
-
           return `
 
-            <tr>
-
-              <td>
-
-                <div class="user-name">
-
-                  ${escapeHtml(
-                    user.name ||
-                    "-"
-                  )}
-
-                </div>
+          <tr>
 
 
-                ${
-                  isSelf
+            <td>
 
-                    ?
-
-                    `
-                    <div class="user-me">
-                      บัญชีของคุณ
-                    </div>
-                    `
-
-                    :
-
-                    ""
-                }
-
-              </td>
-
-
-              <td>
+              <div class="user-name">
 
                 ${escapeHtml(
-                  user.email ||
+                  user.name ||
                   "-"
                 )}
 
-              </td>
+              </div>
 
 
-              <td>
+              ${
+                self
+                ?
+                `
+                <div class="user-me">
+                  บัญชีของคุณ
+                </div>
+                `
+                :
+                ""
+              }
 
-                <span class="user-role">
-
-                  ${escapeHtml(
-                    String(
-                      user.role ||
-                      "viewer"
-                    )
-                    .toUpperCase()
-                  )}
-
-                </span>
-
-              </td>
+            </td>
 
 
-              <td>
+            <td>
 
-                ${
-                  active
+              ${escapeHtml(
+                user.email ||
+                "-"
+              )}
 
-                    ?
-
-                    `
-                    <span class="active">
-                      ● เปิดใช้งาน
-                    </span>
-                    `
-
-                    :
-
-                    `
-                    <span class="inactive">
-                      ● ปิดใช้งาน
-                    </span>
-                    `
-                }
-
-              </td>
+            </td>
 
 
-              <td>
+            <td>
 
-                ${formatDate(
-                  user.created_at
+              <span class="user-role">
+
+                ${escapeHtml(
+                  String(
+                    user.role ||
+                    "viewer"
+                  )
+                  .toUpperCase()
                 )}
 
-              </td>
+              </span>
+
+            </td>
 
 
-              <td>
+            <td>
 
-                ${
-                  isOwner()
+              ${
+                active
+                ?
+                `
+                <span class="status-active">
+                  ● เปิดใช้งาน
+                </span>
+                `
+                :
+                `
+                <span class="status-inactive">
+                  ● ปิดใช้งาน
+                </span>
+                `
+              }
+
+            </td>
+
+
+            <td>
+
+              ${formatDate(
+                user.created_at
+              )}
+
+            </td>
+
+
+            <td>
+
+
+              ${
+                isOwner()
+                ?
+
+                `
+                <div class="action-group">
+
+
+                  <!-- ปุ่มเปลี่ยน Role -->
+
+                  <button
+                    type="button"
+                    class="action"
+                    data-role-id="${escapeHtml(
+                      user.id
+                    )}"
+                  >
+                    เปลี่ยน Role
+                  </button>
+
+
+                  ${
+                    self
 
                     ?
-
-                    `
-                    <div class="action-group">
-
-                      <button
-                        type="button"
-                        class="action"
-                        data-role-id="${escapeHtml(
-                          user.id
-                        )}"
-                      >
-                        เปลี่ยน Role
-                      </button>
-
-
-                      ${
-                        isSelf
-
-                          ?
-
-                          `
-                          <span
-                            style="
-                              color:#555;
-                              font-size:9px;
-                              padding:8px 0;
-                            "
-                          >
-                            บัญชีปัจจุบัน
-                          </span>
-                          `
-
-                          :
-
-                          `
-                          <button
-                            type="button"
-                            class="action ${
-                              active
-                                ? "status-off"
-                                : "status-on"
-                            }"
-                            data-active-id="${escapeHtml(
-                              user.id
-                            )}"
-                          >
-
-                            ${
-                              active
-                                ? "ปิดใช้งาน"
-                                : "เปิดใช้งาน"
-                            }
-
-                          </button>
-                          `
-                      }
-
-                    </div>
-                    `
-
-                    :
 
                     `
                     <span
                       style="
                         color:#555;
                         font-size:9px;
+                        padding:8px 0;
                       "
                     >
-                      ดูอย่างเดียว
+                      บัญชีปัจจุบัน
                     </span>
                     `
-                }
 
-              </td>
+                    :
 
-            </tr>
+                    `
+                    <button
+                      type="button"
+                      class="
+                        action
+                        ${
+                          active
+                          ? "status-off"
+                          : "status-on"
+                        }
+                      "
+                      data-active-id="${escapeHtml(
+                        user.id
+                      )}"
+                    >
+
+                      ${
+                        active
+                        ? "ปิดใช้งาน"
+                        : "เปิดใช้งาน"
+                      }
+
+                    </button>
+                    `
+                  }
+
+
+                </div>
+                `
+
+                :
+
+                `
+                <span
+                  style="
+                    color:#555;
+                    font-size:9px;
+                  "
+                >
+                  ดูอย่างเดียว
+                </span>
+                `
+              }
+
+
+            </td>
+
+
+          </tr>
 
           `;
 
@@ -3661,11 +4072,12 @@ function renderUsers(){
 }
 
 
-/*
- * ผูกปุ่มของผู้ใช้งาน
- */
+/* =====================================================
+   BIND USER BUTTONS
+===================================================== */
 
 function bindUserButtons(){
+
 
   document
     .querySelectorAll(
@@ -3676,9 +4088,11 @@ function bindUserButtons(){
 
         button.onclick =
           ()=>{
+
             changeUserRole(
               button.dataset.roleId
             );
+
           };
 
       }
@@ -3694,9 +4108,11 @@ function bindUserButtons(){
 
         button.onclick =
           ()=>{
+
             toggleUserActive(
               button.dataset.activeId
             );
+
           };
 
       }
@@ -3705,20 +4121,19 @@ function bindUserButtons(){
 }
 
 
-/*
- * เปลี่ยนสถานะ active
- *
- * OWNER เท่านั้น
- */
+/* =====================================================
+   ★ CHANGE ROLE
+   ใช้ Dropdown แทน prompt()
+===================================================== */
 
-async function toggleUserActive(
+function changeUserRole(
   adminId
 ){
 
   if(!isOwner()){
 
     toast(
-      "เฉพาะ OWNER เท่านั้นที่สามารถเปลี่ยนสถานะได้",
+      "เฉพาะ OWNER เท่านั้น",
       "error"
     );
 
@@ -3747,156 +4162,236 @@ async function toggleUserActive(
   }
 
 
-  /*
-   * ป้องกัน Owner ปิดบัญชีตัวเอง
-   */
-
-  const currentId =
-    currentUser?.user_id ||
-    currentUser?.id;
+  editingRoleUserId =
+    adminId;
 
 
-  if(
+  $("roleUserName")
+    .textContent =
+    (
+      user.name ||
+      user.email ||
+      "-"
+    );
+
+
+  $("roleSelect")
+    .value =
     String(
-      user.user_id
-    ) ===
-    String(
-      currentId
-    )
-  ){
-
-    toast(
-      "ไม่สามารถปิดใช้งานบัญชีของตัวเองได้",
-      "error"
-    );
-
-    return;
-
-  }
+      user.role ||
+      "viewer"
+    ).toLowerCase();
 
 
-  const next =
-    user.active !== true;
-
-
-  const actionText =
-    next
-      ? "เปิดใช้งาน"
-      : "ปิดใช้งาน";
-
-
-  if(
-    !confirm(
-      `${actionText} ${user.email || user.name || ""} หรือไม่?`
-    )
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    /*
-     * UPDATE admin_users.active
-     */
-
-    await api(
-      "/rest/v1/admin_users?id=eq." +
-      encodeURIComponent(
-        adminId
-      ),
-      {
-
-        method:"PATCH",
-
-        headers:{
-          "Content-Type":
-            "application/json",
-
-          Prefer:
-            "return=representation"
-        },
-
-        body:
-          JSON.stringify({
-
-            active:
-              next,
-
-            updated_at:
-              new Date()
-                .toISOString()
-
-          })
-
-      }
-    );
-
-
-    /*
-     * อัปเดตข้อมูลบนหน้าเว็บทันที
-     */
-
-    const index =
-      adminUsers.findIndex(
-        item =>
-          String(
-            item.id
-          ) ===
-          String(
-            adminId
-          )
-      );
-
-
-    if(index >= 0){
-
-      adminUsers[index].active =
-        next;
-
-      adminUsers[index].updated_at =
-        new Date()
-          .toISOString();
-
-    }
-
-
-    renderUsers();
-
-
-    toast(
-      next
-        ? "เปิดใช้งานผู้ใช้แล้ว"
-        : "ปิดใช้งานผู้ใช้แล้ว"
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "UPDATE ACTIVE ERROR:",
-      error
-    );
-
-
-    toast(
-      "เปลี่ยนสถานะไม่สำเร็จ: " +
-      error.message,
-      "error"
-    );
-
-  }
+  $("roleModal")
+    .classList
+    .add("show");
 
 }
 
 
-/*
- * เปลี่ยน Role
- */
+/* =====================================================
+   CLOSE ROLE MODAL
+===================================================== */
 
-async function changeUserRole(
+function closeRoleModal(){
+
+  editingRoleUserId =
+    null;
+
+  $("roleModal")
+    .classList
+    .remove("show");
+
+}
+
+
+$("roleModalClose")
+.addEventListener(
+  "click",
+  closeRoleModal
+);
+
+
+$("roleCancel")
+.addEventListener(
+  "click",
+  closeRoleModal
+);
+
+
+/* =====================================================
+   ★ SAVE ROLE
+===================================================== */
+
+$("roleSave")
+.addEventListener(
+  "click",
+  async ()=>{
+
+    if(!editingRoleUserId){
+
+      closeRoleModal();
+
+      return;
+
+    }
+
+
+    const user =
+      adminUsers.find(
+        item =>
+          String(item.id) ===
+          String(
+            editingRoleUserId
+          )
+      );
+
+
+    if(!user){
+
+      toast(
+        "ไม่พบผู้ใช้งาน",
+        "error"
+      );
+
+      closeRoleModal();
+
+      return;
+
+    }
+
+
+    const newRole =
+      $("roleSelect")
+        .value;
+
+
+    const oldRole =
+      String(
+        user.role ||
+        "viewer"
+      ).toLowerCase();
+
+
+    if(
+      newRole === oldRole
+    ){
+
+      closeRoleModal();
+
+      return;
+
+    }
+
+
+    const button =
+      $("roleSave");
+
+
+    button.disabled =
+      true;
+
+
+    button.textContent =
+      "กำลังบันทึก...";
+
+
+    try{
+
+
+      await api(
+
+        "/rest/v1/admin_users?id=eq." +
+        encodeURIComponent(
+          editingRoleUserId
+        ),
+
+        {
+
+          method:"PATCH",
+
+          headers:{
+
+            "Content-Type":
+              "application/json",
+
+            Prefer:
+              "return=representation"
+
+          },
+
+          body:
+            JSON.stringify({
+
+              role:
+                newRole,
+
+              updated_at:
+                new Date()
+                  .toISOString()
+
+            })
+
+        }
+
+      );
+
+
+      /*
+       * เปลี่ยนข้อมูลในหน้าจอทันที
+       */
+
+      user.role =
+        newRole;
+
+
+      renderUsers();
+
+
+      closeRoleModal();
+
+
+      toast(
+        "เปลี่ยน Role เป็น " +
+        newRole.toUpperCase() +
+        " แล้ว"
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "ROLE UPDATE:",
+        error
+      );
+
+
+      toast(
+        "เปลี่ยน Role ไม่สำเร็จ: " +
+        error.message,
+        "error"
+      );
+
+    }finally{
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "บันทึก";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   ★ TOGGLE ACTIVE
+===================================================== */
+
+async function toggleUserActive(
   adminId
 ){
 
@@ -3920,48 +4415,10 @@ async function changeUserRole(
     );
 
 
-  if(!user)
-    return;
-
-
-  const current =
-    String(
-      user.role ||
-      "viewer"
-    ).toLowerCase();
-
-
-  const role =
-    prompt(
-      "กรอก Role ใหม่\n\nowner / manager / staff / viewer",
-      current
-    );
-
-
-  if(role === null)
-    return;
-
-
-  const next =
-    role
-      .trim()
-      .toLowerCase();
-
-
-  const allowed = [
-    "owner",
-    "manager",
-    "staff",
-    "viewer"
-  ];
-
-
-  if(
-    !allowed.includes(next)
-  ){
+  if(!user){
 
     toast(
-      "Role ไม่ถูกต้อง",
+      "ไม่พบผู้ใช้งาน",
       "error"
     );
 
@@ -3970,53 +4427,120 @@ async function changeUserRole(
   }
 
 
+  const currentId =
+    currentUser?.user_id ||
+    currentUser?.id;
+
+
+  /*
+   * ป้องกันปิดบัญชีตัวเอง
+   */
+
+  if(
+    String(user.user_id) ===
+    String(currentId)
+  ){
+
+    toast(
+      "ไม่สามารถปิดใช้งานบัญชีของตัวเองได้",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const nextStatus =
+    user.active !== true;
+
+
+  const action =
+    nextStatus
+    ? "เปิดใช้งาน"
+    : "ปิดใช้งาน";
+
+
+  if(
+    !confirm(
+      `${action} ${user.email || user.name || ""} หรือไม่?`
+    )
+  ){
+
+    return;
+
+  }
+
+
   try{
 
+
     await api(
+
       "/rest/v1/admin_users?id=eq." +
       encodeURIComponent(
         adminId
       ),
+
       {
 
         method:"PATCH",
 
         headers:{
+
           "Content-Type":
             "application/json",
 
           Prefer:
             "return=representation"
+
         },
 
         body:
           JSON.stringify({
-            role:next,
+
+            active:
+              nextStatus,
+
             updated_at:
               new Date()
                 .toISOString()
+
           })
 
       }
+
     );
 
 
-    user.role =
-      next;
+    /*
+     * เปลี่ยนข้อมูลบนหน้าเว็บทันที
+     */
+
+    user.active =
+      nextStatus;
 
 
     renderUsers();
 
 
     toast(
-      "เปลี่ยน Role แล้ว"
+      nextStatus
+      ? "เปิดใช้งานผู้ใช้แล้ว"
+      : "ปิดใช้งานผู้ใช้แล้ว"
     );
 
 
   }catch(error){
 
+    console.error(
+      "ACTIVE UPDATE:",
+      error
+    );
+
+
     toast(
-      "เปลี่ยน Role ไม่สำเร็จ: " +
+      "เปลี่ยนสถานะไม่สำเร็จ: " +
       error.message,
       "error"
     );
@@ -4026,37 +4550,37 @@ async function changeUserRole(
 }
 
 
-/* =========================================================
+/* =====================================================
    REFRESH
-========================================================= */
+===================================================== */
 
 $("refreshBtn")
-  .addEventListener(
-    "click",
-    async ()=>{
+.addEventListener(
+  "click",
+  async ()=>{
 
-      await Promise.allSettled([
+    await Promise.allSettled([
 
-        loadOrders(),
+      loadOrders(),
 
-        loadProducts(),
+      loadProducts(),
 
-        loadUsers()
+      loadUsers()
 
-      ]);
-
-
-      toast(
-        "รีเฟรชข้อมูลแล้ว"
-      );
-
-    }
-  );
+    ]);
 
 
-/* =========================================================
+    toast(
+      "รีเฟรชข้อมูลแล้ว"
+    );
+
+  }
+);
+
+
+/* =====================================================
    START APP
-========================================================= */
+===================================================== */
 
 async function startApp(){
 
@@ -4078,15 +4602,10 @@ async function startApp(){
   }catch(error){
 
     console.error(
-      "ADMIN CHECK:",
+      "ADMIN:",
       error
     );
 
-
-    /*
-     * ถ้าไม่พบ admin_users
-     * ไม่ให้หน้าเว็บหมุนค้าง
-     */
 
     toast(
       error.message,
@@ -4097,8 +4616,9 @@ async function startApp(){
 
 
   /*
-   * โหลดข้อมูลแบบ Background
-   * หน้า Admin จะไม่ถูกล็อกเพราะ Query ใด Query หนึ่งช้า
+   * โหลดแต่ละส่วนแยกกัน
+   * ถ้าตารางหนึ่งมีปัญหา
+   * หน้า Admin ส่วนอื่นยังทำงานได้
    */
 
   Promise.allSettled([
@@ -4114,6 +4634,10 @@ async function startApp(){
 }
 
 
+/* =====================================================
+   BOOT
+===================================================== */
+
 async function boot(){
 
   session =
@@ -4126,20 +4650,19 @@ async function boot(){
 
     await startApp();
 
-    return;
+  }else{
+
+    $("loginScreen")
+      .style
+      .display =
+      "flex";
+
+
+    $("app")
+      .classList
+      .remove("show");
 
   }
-
-
-  $("loginScreen")
-    .style
-    .display =
-    "flex";
-
-
-  $("app")
-    .classList
-    .remove("show");
 
 }
 
@@ -4149,4 +4672,5 @@ boot();
 </script>
 
 </body>
+
 </html>
