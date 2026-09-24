@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="th">
 <head>
-<link rel="icon" type="image/png" sizes="32x32" href="chatpetch-group-main/assets/logo.png?v=20260923">
-<link rel="shortcut icon" type="image/png" href="chatpetch-group-main/assets/logo.png?v=20260923">
-<meta name="theme-color" content="#0b0b0b">
+<link rel="icon" type="image/png" href="./assets/logo.png?v=admin-final-20260924">
+<link rel="shortcut icon" type="image/png" href="./assets/logo.png?v=admin-final-20260924">
+<meta name="theme-color" content="#050505">
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,39 +66,62 @@ html{
 }
 
 body{
+
   margin:0;
+
   min-height:100vh;
-  color:#fff;
-  font-family:"Prompt","Kanit",sans-serif;
+
+  color:white;
+
+  font-family:
+    "Prompt",
+    "Kanit",
+    sans-serif;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.42) 0%,
-      rgba(0,0,0,.34) 24%,
-      rgba(0,0,0,.72) 58%,
-      #080604 88%
+    radial-gradient(
+      circle at 80% 5%,
+      rgba(200,164,91,.11),
+      transparent 30%
     ),
-    url("chatpetch-group-main/assets/index-main-bg.png") center top / cover no-repeat fixed;
+    radial-gradient(
+      circle at 15% 35%,
+      rgba(200,164,91,.045),
+      transparent 28%
+    ),
+    #050505;
 
   overflow-x:hidden;
+
 }
 
-body::before{content:none !important;}
+body::before{
 
-@media(max-width:700px){
-  body{
-    background:
-      linear-gradient(
-        180deg,
-        rgba(0,0,0,.34) 0%,
-        rgba(0,0,0,.48) 24%,
-        rgba(0,0,0,.83) 56%,
-        #080604 82%
-      ),
-      url("chatpetch-group-main/assets/index-main-bg.png") center top / 100% auto no-repeat;
-    background-attachment:scroll;
-  }
+  content:"";
+
+  position:fixed;
+
+  inset:0;
+
+  pointer-events:none;
+
+  z-index:-2;
+
+  opacity:.45;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.025) 1px,
+      transparent 1px
+    );
+
+  background-size:55px 55px;
+
 }
 
 a{
@@ -2941,6 +2964,36 @@ tbody tr:hover{
 }
 
 
+
+/* =========================================================
+   ADMIN FINAL VISUAL FIX
+========================================================= */
+body{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.35) 0%,
+      rgba(0,0,0,.48) 35%,
+      rgba(0,0,0,.82) 70%,
+      #050505 100%
+    ),
+    url("./assets/index-main-bg.png") center top / cover no-repeat fixed;
+}
+#app{min-height:100vh;}
+@media(max-width:700px){
+  body{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,.35) 0%,
+        rgba(0,0,0,.55) 40%,
+        #050505 85%
+      ),
+      url("./assets/index-main-bg.png") center top / cover no-repeat;
+    background-attachment:scroll;
+  }
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -3707,115 +3760,24 @@ function showApp(){
 ========================================================= */
 
 async function loadRole(){
-
-  if(!currentUser){
-    throw new Error(
-      "ไม่พบผู้ใช้งาน"
-    );
+  if(!currentUser) throw new Error("ไม่พบผู้ใช้งาน");
+  const result=await withTimeout(
+    supabaseClient.from("admin_users")
+      .select("user_id,email,name,role,active")
+      .eq("user_id",currentUser.id)
+      .maybeSingle(),
+    8000
+  );
+  const {data,error}=result;
+  if(error) throw error;
+  if(!data) throw new Error("บัญชีนี้ยังไม่ได้ถูกเพิ่มใน admin_users");
+  if(data.active!==true) throw new Error("บัญชีนี้ถูกปิดการใช้งาน");
+  currentRole=String(data.role||"").trim().toLowerCase();
+  if(!["owner","manager","staff","viewer"].includes(currentRole)){
+    throw new Error("บัญชีนี้มี Role ไม่ถูกต้อง");
   }
-
-
-  const roleQuery =
-    supabaseClient
-      .from("admin_users")
-      .select(
-        "user_id,email,name,role,active"
-      )
-      .eq(
-        "user_id",
-        currentUser.id
-      )
-      .maybeSingle();
-
-
-  const timeout =
-    new Promise(
-      resolve =>
-        setTimeout(
-          ()=>resolve({
-            data:null,
-            error:new Error(
-              "หมดเวลาตรวจสอบสิทธิ์ กรุณาตรวจสอบ RLS ของตาราง admin_users และการเชื่อมต่อ Supabase"
-            )
-          }),
-          10000
-        )
-    );
-
-
-  const {
-    data,
-    error
-  } =
-    await Promise.race([
-      roleQuery,
-      timeout
-    ]);
-
-
-  if(error){
-    throw error;
-  }
-
-
-  if(!data){
-
-    throw new Error(
-      "บัญชีนี้ยังไม่ได้ถูกเพิ่มใน admin_users"
-    );
-
-  }
-
-
-  if(data.active !== true){
-
-    throw new Error(
-      "บัญชีนี้ถูกปิดการใช้งาน"
-    );
-
-  }
-
-
-  currentRole =
-    String(
-      data.role ||
-      ""
-    )
-      .trim()
-      .toLowerCase();
-
-
-  const allowedRoles = [
-    "owner",
-    "manager",
-    "staff",
-    "viewer"
-  ];
-
-
-  if(
-    !allowedRoles.includes(
-      currentRole
-    )
-  ){
-
-    throw new Error(
-      "บัญชีนี้มี Role ไม่ถูกต้อง"
-    );
-
-  }
-
-
-  $("headerRole")
-    .textContent =
-      currentRole.toUpperCase();
-
-  $("headerEmail")
-    .textContent =
-      data.email ||
-      currentUser.email ||
-      "";
-
+  $("headerRole").textContent=currentRole.toUpperCase();
+  $("headerEmail").textContent=data.email||currentUser.email||"";
 }
 
 
@@ -3968,54 +3930,29 @@ document
 ========================================================= */
 
 async function loadOrders(){
-
-  const container =
-    $("ordersTable");
-
-  container.innerHTML =
-    `<div class="empty">
-      กำลังโหลดคำสั่งซื้อ...
+  const container = $("ordersTable");
+  container.innerHTML = `<div class="empty">กำลังโหลดคำสั่งซื้อ...</div>`;
+  try{
+    const result = await withTimeout(
+      supabaseClient.from("orders").select("*").order("created_at",{ascending:false}),
+      8000
+    );
+    const {data,error}=result;
+    if(error) throw error;
+    orders=data||[];
+    renderOrders();
+    updateStats();
+  }catch(error){
+    console.error("LOAD ORDERS:",error);
+    orders=[];
+    updateStats();
+    container.innerHTML=`<div class="empty">
+      ไม่สามารถโหลดคำสั่งซื้อได้<br>
+      ${escapeHtml(friendlyError(error))}
+      <br><br>
+      <button class="btn" type="button" onclick="loadOrders()">↻ ลองใหม่</button>
     </div>`;
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("orders")
-      .select("*")
-      .order(
-        "created_at",
-        {
-          ascending:false
-        }
-      );
-
-
-  if(error){
-
-    console.error(error);
-
-    container.innerHTML =
-      `<div class="empty">
-        ไม่สามารถโหลดคำสั่งซื้อได้<br>
-        ${escapeHtml(error.message)}
-      </div>`;
-
-    return;
-
   }
-
-
-  orders =
-    data || [];
-
-
-  renderOrders();
-
-  updateStats();
-
 }
 
 
@@ -5618,6 +5555,30 @@ function updateStats(){
    DASHBOARD
 ========================================================= */
 
+
+/* =========================================================
+   ADMIN FINAL FIX — NETWORK TIMEOUT
+========================================================= */
+function withTimeout(promise, ms = 8000){
+  return Promise.race([
+    promise,
+    new Promise((_, reject)=>{
+      setTimeout(()=>{
+        const e = new Error("การเชื่อมต่อฐานข้อมูลใช้เวลานานเกินไป");
+        e.name = "TimeoutError";
+        reject(e);
+      }, ms);
+    })
+  ]);
+}
+
+function friendlyError(error){
+  if(error?.name === "TimeoutError"){
+    return "Supabase ไม่ตอบกลับภายใน 8 วินาที";
+  }
+  return error?.message || "ไม่สามารถโหลดข้อมูลได้";
+}
+
 async function loadDashboard(){
 
   await loadOrders();
@@ -5780,67 +5741,27 @@ function renderDashboardRecent(){
 ========================================================= */
 
 async function loadProducts(){
-
-  $("productGrid")
-    .innerHTML =
-      `<div
-        class="empty"
-        style="grid-column:1/-1"
-      >
-        กำลังโหลดสินค้า...
-      </div>`;
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("products")
-      .select("*")
-      .order(
-        "sort_order",
-        {
-          ascending:true
-        }
-      )
-      .order(
-        "created_at",
-        {
-          ascending:true
-        }
-      );
-
-
-  if(error){
-
-    console.error(error);
-
-    $("productGrid")
-      .innerHTML =
-      `<div
-        class="empty"
-        style="grid-column:1/-1"
-      >
-        ไม่สามารถโหลดสินค้าได้<br>
-        ${escapeHtml(
-          error.message
-        )}
-      </div>`;
-
-    return;
-
+  const grid=$("productGrid");
+  grid.innerHTML=`<div class="empty" style="grid-column:1/-1">กำลังโหลดสินค้า...</div>`;
+  try{
+    const result=await withTimeout(
+      supabaseClient.from("products").select("*").order("sort_order",{ascending:true}).order("created_at",{ascending:true}),
+      8000
+    );
+    const {data,error}=result;
+    if(error) throw error;
+    products=data||[];
+    renderProducts();
+    updateProductStats();
+  }catch(error){
+    console.error("LOAD PRODUCTS:",error);
+    grid.innerHTML=`<div class="empty" style="grid-column:1/-1">
+      ไม่สามารถโหลดสินค้าได้<br>
+      ${escapeHtml(friendlyError(error))}
+      <br><br>
+      <button class="btn" type="button" onclick="loadProducts()">↻ ลองใหม่</button>
+    </div>`;
   }
-
-
-  products =
-    data || [];
-
-
-  renderProducts();
-
-  updateProductStats();
-
 }
 
 
@@ -7109,53 +7030,26 @@ productId
 ========================================================= */
 
 async function loadUsers(){
-
-  $("usersTable")
-    .innerHTML =
-      `<div class="empty">
-        กำลังโหลดผู้ใช้งาน...
-      </div>`;
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("admin_users")
-      .select(
-        "id,user_id,email,name,role,active,created_at,updated_at"
-      )
-      .order(
-        "created_at",
-        {
-          ascending:true
-        }
-      );
-
-
-  if(error){
-
-    $("usersTable")
-      .innerHTML =
-      `<div class="empty">
-        ไม่สามารถโหลดผู้ใช้งานได้<br>
-        ${escapeHtml(
-          error.message
-        )}
-      </div>`;
-
-    return;
-
+  const box=$("usersTable");
+  box.innerHTML=`<div class="empty">กำลังโหลดผู้ใช้งาน...</div>`;
+  try{
+    const result=await withTimeout(
+      supabaseClient.from("admin_users").select("id,user_id,email,name,role,active,created_at,updated_at").order("created_at",{ascending:true}),
+      8000
+    );
+    const {data,error}=result;
+    if(error) throw error;
+    adminUsers=data||[];
+    renderUsers();
+  }catch(error){
+    console.error("LOAD USERS:",error);
+    box.innerHTML=`<div class="empty">
+      ไม่สามารถโหลดผู้ใช้งานได้<br>
+      ${escapeHtml(friendlyError(error))}
+      <br><br>
+      <button class="btn" type="button" onclick="loadUsers()">↻ ลองใหม่</button>
+    </div>`;
   }
-
-
-  adminUsers =
-    data || [];
-
-
-  renderUsers();
-
 }
 
 
@@ -7867,24 +7761,31 @@ if(logoutButton){
 
 async function startDashboard(){
   try{
-    const { data, error } = await supabaseClient.auth.getSession();
+    const sessionResult=await withTimeout(
+      supabaseClient.auth.getSession(),
+      8000
+    );
+    const {data,error}=sessionResult;
     if(error) throw error;
-
     if(!data?.session?.user){
       window.location.replace("admin.html");
       return;
     }
-
-    currentUser = data.session.user;
+    currentUser=data.session.user;
     await loadRole();
 
-    const app = $("app");
+    const app=$("app");
     if(app) app.classList.add("show");
 
-    await loadDashboard();
+    // ไม่รอ query ข้อมูลเพื่อให้หน้า Admin ไม่ค้าง
+    Promise.allSettled([
+      loadOrders(),
+      loadProducts(),
+      loadUsers()
+    ]).catch(()=>{});
   }catch(error){
-    console.error("DASHBOARD AUTH ERROR:", error);
-    try{ await supabaseClient.auth.signOut(); }catch{}
+    console.error("ADMIN START:",error);
+    try{await supabaseClient.auth.signOut();}catch(_){}
     window.location.replace("admin.html");
   }
 }
