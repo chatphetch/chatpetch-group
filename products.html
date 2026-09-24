@@ -1844,10 +1844,161 @@
 }
 </style>
 
+
+<style id="products-global-fixed-background-final">
+/* GLOBAL FIXED BACKGROUND — covers PRODUCTS + CTA + FOOTER */
+html, body {
+  min-height:100%;
+  background:#100b07 !important;
+}
+body {
+  position:relative !important;
+  isolation:isolate !important;
+}
+body::before {
+  content:"" !important;
+  position:fixed !important;
+  inset:0 !important;
+  z-index:-2 !important;
+  pointer-events:none !important;
+  background:url("assets/index-main-bg.png") center top / cover no-repeat !important;
+  transform:translateZ(0) !important;
+  -webkit-transform:translateZ(0) !important;
+}
+body::after {
+  content:"" !important;
+  position:fixed !important;
+  inset:0 !important;
+  z-index:-1 !important;
+  pointer-events:none !important;
+  background:linear-gradient(180deg,rgba(0,0,0,.50) 0%,rgba(0,0,0,.38) 24%,rgba(0,0,0,.62) 58%,rgba(16,11,7,.92) 100%) !important;
+}
+.products-page {
+  background:transparent !important;
+}
+.products-page::before,
+.products-page::after {
+  display:none !important;
+}
+.products-footer {
+  background:rgba(14,9,6,.72) !important;
+}
+
+@media (max-width:850px) {
+  body::before {
+    background:url("assets/index-main-bg.png") center top / cover no-repeat !important;
+    background-attachment:fixed !important;
+  }
+  body::after {
+    background:linear-gradient(180deg,rgba(0,0,0,.38) 0%,rgba(0,0,0,.52) 30%,rgba(0,0,0,.78) 62%,rgba(16,11,7,.94) 100%) !important;
+  }
+}
+</style>
+
+
+<style id="chatpetch-global-fixed-background">
+/* =========================================================
+   CHATPHETCH PRODUCTS — TRUE FIXED BACKGROUND
+   พื้นหลังล็อกทั้งหน้า รวมมือถือ และไม่ขึ้นกับ .products-page
+========================================================= */
+
+html,
+body{
+  min-height:100%;
+  background:#100b07 !important;
+}
+
+body{
+  position:relative !important;
+  isolation:isolate !important;
+}
+
+/* one background layer for the ENTIRE document */
+.chatpetch-fixed-background{
+  position:fixed !important;
+  inset:0 !important;
+  width:100vw !important;
+  height:100vh !important;
+  z-index:-10 !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.42) 0%,
+      rgba(0,0,0,.34) 24%,
+      rgba(0,0,0,.58) 58%,
+      rgba(16,11,7,.88) 100%
+    ),
+    url("assets/index-main-bg.png")
+    center center /
+    cover
+    no-repeat !important;
+  transform:translate3d(0,0,0) !important;
+  -webkit-transform:translate3d(0,0,0) !important;
+  will-change:transform !important;
+}
+
+/* Disable the old page-only fixed background so there is only
+   one background layer. */
+.products-page::before,
+.products-page::after{
+  content:none !important;
+  display:none !important;
+}
+
+/* The page itself must remain transparent so the fixed image can
+   be seen continuously behind Hero → Products → CTA → Footer. */
+.products-page{
+  position:relative !important;
+  z-index:1 !important;
+  background:transparent !important;
+}
+
+/* Keep the footer as part of the same visual page. */
+.products-footer{
+  position:relative !important;
+  z-index:2 !important;
+  background:rgba(10,7,5,.78) !important;
+  backdrop-filter:blur(3px) !important;
+  -webkit-backdrop-filter:blur(3px) !important;
+}
+
+/* Mobile: fixed layer remains fixed. Do NOT use
+   background-attachment:scroll. */
+@media (max-width:700px){
+  .chatpetch-fixed-background{
+    position:fixed !important;
+    inset:0 !important;
+    width:100vw !important;
+    height:100dvh !important;
+    min-height:100vh !important;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,.36) 0%,
+        rgba(0,0,0,.46) 28%,
+        rgba(0,0,0,.70) 62%,
+        rgba(16,11,7,.94) 100%
+      ),
+      url("assets/index-main-bg.png")
+      center center /
+      cover
+      no-repeat !important;
+  }
+
+  .products-footer{
+    background:rgba(10,7,5,.80) !important;
+  }
+}
+</style>
+
 </head>
 
 
 <body>
+
+<div class="chatpetch-fixed-background" aria-hidden="true"></div>
+
 
 
   <div class="products-page">
