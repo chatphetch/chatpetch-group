@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CHATPHETCH GROUP — Admin</title>
-
 <link rel="icon" href="./assets/logo.png">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -14,7 +13,7 @@
   --gold:#d8b65b;
   --gold-light:#f1d77d;
   --bg:#080808;
-  --card:rgba(12,12,12,.82);
+  --card:rgba(12,12,12,.90);
   --line:rgba(255,255,255,.12);
   --text:#fff;
   --muted:#888;
@@ -34,22 +33,12 @@ html,body{
 body{
   color:var(--text);
   background:
-    linear-gradient(
-      rgba(0,0,0,.65),
-      rgba(0,0,0,.88)
-    ),
-    url("./assets/index-main-bg.png")
-    center/cover fixed no-repeat;
-  font-family:
-    Arial,
-    "Noto Sans Thai",
-    sans-serif;
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.88)),
+    url("./assets/index-main-bg.png") center/cover fixed no-repeat;
+  font-family:Arial,"Noto Sans Thai",sans-serif;
 }
 
-button,
-input,
-select,
-textarea{
+button,input,select,textarea{
   font:inherit;
 }
 
@@ -61,41 +50,40 @@ button{
   display:none!important;
 }
 
-/* =========================
-   LOGIN
-========================= */
+/* ================= LOGIN ================= */
 
 #loginScreen{
   min-height:100vh;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   padding:20px;
 }
 
 .login-box{
   width:100%;
-  max-width:600px;
-  padding:40px;
-  background:rgba(5,5,5,.95);
+  max-width:750px;
+  padding:48px;
+  background:rgba(4,4,4,.95);
   border:1px solid rgba(255,255,255,.12);
-  border-radius:24px;
-  box-shadow:0 30px 100px rgba(0,0,0,.8);
+  border-radius:28px;
+  box-shadow:0 30px 100px rgba(0,0,0,.85);
 }
 
 .login-logo{
   display:block;
-  width:125px;
-  height:125px;
+  width:145px;
+  height:145px;
   object-fit:contain;
-  margin:0 auto 15px;
+  margin:0 auto 18px;
 }
 
 .login-title{
   margin:0;
   text-align:center;
-  font-size:40px;
+  font-size:48px;
   font-weight:900;
+  letter-spacing:.02em;
 }
 
 .login-title span{
@@ -106,7 +94,8 @@ button{
   text-align:center;
   color:#888;
   line-height:1.8;
-  margin:12px 0 35px;
+  margin:16px 0 38px;
+  font-size:16px;
 }
 
 .field{
@@ -117,7 +106,7 @@ button{
   display:block;
   margin-bottom:8px;
   color:#ddd;
-  font-size:13px;
+  font-size:14px;
 }
 
 .field input,
@@ -126,7 +115,7 @@ button{
   width:100%;
   padding:14px;
   border:1px solid rgba(255,255,255,.12);
-  border-radius:10px;
+  border-radius:11px;
   outline:none;
   background:#090909;
   color:#fff;
@@ -143,37 +132,40 @@ button{
 }
 
 .password-wrap input{
-  padding-right:90px;
+  padding-right:95px;
 }
 
 .show-password{
   position:absolute;
-  top:7px;
   right:7px;
+  top:7px;
   bottom:7px;
-  width:70px;
+  width:78px;
   border:0;
   border-radius:8px;
-  background:#171717;
+  background:#191919;
   color:#ddd;
+}
+
+.show-password:hover{
+  background:#292929;
+  color:#fff;
 }
 
 .login-btn{
   width:100%;
-  height:56px;
+  height:58px;
   border:0;
-  border-radius:10px;
-  background:linear-gradient(
-    135deg,
-    var(--gold-light),
-    var(--gold)
-  );
+  border-radius:11px;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
   color:#111;
   font-weight:900;
+  font-size:17px;
 }
 
 .login-btn:disabled{
   opacity:.6;
+  cursor:wait;
 }
 
 .login-error{
@@ -186,15 +178,14 @@ button{
   color:#ff9999;
   font-size:13px;
   line-height:1.6;
+  white-space:pre-wrap;
 }
 
 .login-error.show{
   display:block;
 }
 
-/* =========================
-   APP
-========================= */
+/* ================= APP ================= */
 
 #app{
   display:none;
@@ -204,9 +195,7 @@ button{
   display:block;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* ================= HEADER ================= */
 
 .header{
   position:sticky;
@@ -301,9 +290,7 @@ button{
   color:#fff;
 }
 
-/* =========================
-   MAIN
-========================= */
+/* ================= MAIN ================= */
 
 .main{
   width:min(1550px,calc(100% - 40px));
@@ -346,9 +333,7 @@ button{
   font-size:13px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* ================= BUTTON ================= */
 
 .btn{
   padding:11px 16px;
@@ -364,22 +349,12 @@ button{
 
 .btn.gold{
   border:0;
-  background:linear-gradient(
-    135deg,
-    var(--gold-light),
-    var(--gold)
-  );
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
   color:#111;
   font-weight:900;
 }
 
-.btn.red{
-  color:#ff9999;
-}
-
-/* =========================
-   CARD
-========================= */
+/* ================= CARD ================= */
 
 .card{
   margin-bottom:16px;
@@ -400,9 +375,7 @@ button{
   margin:0;
 }
 
-/* =========================
-   STATS
-========================= */
+/* ================= STATS ================= */
 
 .stats{
   display:grid;
@@ -431,9 +404,7 @@ button{
   font-weight:900;
 }
 
-/* =========================
-   TABLE
-========================= */
+/* ================= TABLE ================= */
 
 .table-wrap{
   overflow:auto;
@@ -447,8 +418,7 @@ table{
   border-collapse:collapse;
 }
 
-th,
-td{
+th,td{
   padding:14px;
   border-bottom:1px solid rgba(255,255,255,.06);
   text-align:left;
@@ -463,9 +433,7 @@ td{
   color:#ddd;
 }
 
-/* =========================
-   FILTER
-========================= */
+/* ================= FILTER ================= */
 
 .filters{
   display:flex;
@@ -488,9 +456,7 @@ td{
   flex:1;
 }
 
-/* =========================
-   BADGE
-========================= */
+/* ================= BADGE ================= */
 
 .badge{
   display:inline-block;
@@ -514,11 +480,10 @@ td{
   border:1px solid rgba(255,114,114,.3);
 }
 
-/* =========================
-   ACTION
-========================= */
+/* ================= ACTION ================= */
 
-.actions{
+.actions,
+.item-actions{
   display:flex;
   flex-wrap:wrap;
   gap:6px;
@@ -537,9 +502,7 @@ td{
   border-color:var(--gold);
 }
 
-/* =========================
-   EMPTY
-========================= */
+/* ================= EMPTY ================= */
 
 .empty{
   padding:40px 20px;
@@ -548,9 +511,7 @@ td{
   line-height:1.8;
 }
 
-/* =========================
-   PRODUCT / PORTFOLIO
-========================= */
+/* ================= GRID ================= */
 
 .grid{
   display:grid;
@@ -594,14 +555,10 @@ td{
 }
 
 .item-actions{
-  display:flex;
-  gap:7px;
   margin-top:14px;
 }
 
-/* =========================
-   MODAL
-========================= */
+/* ================= MODAL ================= */
 
 .modal{
   position:fixed;
@@ -654,9 +611,7 @@ td{
   margin-top:20px;
 }
 
-/* =========================
-   TOAST
-========================= */
+/* ================= TOAST ================= */
 
 #toast{
   position:fixed;
@@ -682,12 +637,9 @@ td{
   border-color:rgba(255,80,80,.35);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* ================= RESPONSIVE ================= */
 
 @media(max-width:1150px){
-
   .stats{
     grid-template-columns:repeat(3,1fr);
   }
@@ -695,7 +647,6 @@ td{
   .grid{
     grid-template-columns:repeat(2,1fr);
   }
-
 }
 
 @media(max-width:850px){
@@ -717,9 +668,9 @@ td{
     flex-direction:column;
     align-items:stretch;
     padding:8px;
+    background:#090909;
     border:1px solid var(--line);
-    border-radius:10px;
-    background:#111;
+    border-radius:12px;
   }
 
   .nav.open{
@@ -727,9 +678,22 @@ td{
   }
 
   .nav button{
-    padding:13px;
+    padding:14px;
     text-align:left;
-    border:0;
+    border-bottom:0;
+    border-left:2px solid transparent;
+  }
+
+  .nav button.active{
+    border-left-color:var(--gold);
+  }
+
+  .brand-title{
+    font-size:15px;
+  }
+
+  .brand-sub{
+    display:none;
   }
 
   .role-badge{
@@ -738,36 +702,58 @@ td{
 
   .main{
     width:calc(100% - 20px);
+    padding-top:30px;
   }
 
+  .page-title{
+    font-size:38px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
 @media(max-width:600px){
 
   .login-box{
-    padding:30px 20px;
+    padding:28px 20px;
   }
 
   .login-title{
-    font-size:29px;
+    font-size:31px;
   }
 
-  .page-head{
-    display:block;
+  .login-logo{
+    width:110px;
+    height:110px;
   }
 
-  .page-title{
-    font-size:39px;
+  .header-right{
+    margin-left:auto;
+  }
+
+  .logout-btn{
+    padding:9px 10px;
+    font-size:11px;
   }
 
   .stats{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr;
   }
 
   .grid{
     grid-template-columns:1fr;
   }
 
+  .page-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .filters{
+    flex-direction:column;
+  }
 }
 </style>
 </head>
@@ -783,9 +769,10 @@ td{
   <div class="login-box">
 
     <img
-      src="./assets/logo.png"
       class="login-logo"
-      alt="CHATPHETCH GROUP"
+      src="./assets/logo.png"
+      alt="CHATPHETCH"
+      onerror="this.style.display='none'"
     >
 
     <h1 class="login-title">
@@ -801,12 +788,15 @@ td{
 
       <div class="field">
 
-        <label>อีเมล</label>
+        <label>
+          อีเมล
+        </label>
 
         <input
           id="email"
           type="email"
           autocomplete="username"
+          placeholder="admin@example.com"
           required
         >
 
@@ -814,7 +804,9 @@ td{
 
       <div class="field">
 
-        <label>รหัสผ่าน</label>
+        <label>
+          รหัสผ่าน
+        </label>
 
         <div class="password-wrap">
 
@@ -822,13 +814,14 @@ td{
             id="password"
             type="password"
             autocomplete="current-password"
+            placeholder="รหัสผ่าน"
             required
           >
 
           <button
             type="button"
-            class="show-password"
             id="showPassword"
+            class="show-password"
           >
             แสดง
           </button>
@@ -838,19 +831,19 @@ td{
       </div>
 
       <button
-        type="submit"
-        class="login-btn"
         id="loginButton"
+        class="login-btn"
+        type="submit"
       >
         เข้าสู่ระบบ
       </button>
 
-    </form>
+      <div
+        id="loginError"
+        class="login-error"
+      ></div>
 
-    <div
-      id="loginError"
-      class="login-error"
-    ></div>
+    </form>
 
   </div>
 
@@ -870,6 +863,7 @@ td{
     <button
       id="menuButton"
       class="menu-btn"
+      type="button"
     >
       ☰
     </button>
@@ -902,33 +896,52 @@ td{
     >
 
       <button
+        type="button"
         class="active"
         data-page="dashboard"
       >
         หน้าแรก
       </button>
 
-      <button data-page="orders">
+      <button
+        type="button"
+        data-page="orders"
+      >
         คำสั่งซื้อ
       </button>
 
-      <button data-page="products">
+      <button
+        type="button"
+        data-page="products"
+      >
         สินค้า
       </button>
 
-      <button data-page="portfolio">
+      <button
+        type="button"
+        data-page="portfolio"
+      >
         ผลงาน
       </button>
 
-      <button data-page="inquiries">
+      <button
+        type="button"
+        data-page="inquiries"
+      >
         ข้อความ
       </button>
 
-      <button data-page="users">
+      <button
+        type="button"
+        data-page="users"
+      >
         ผู้ใช้งาน
       </button>
 
-      <button data-page="settings">
+      <button
+        type="button"
+        data-page="settings"
+      >
         ตั้งค่า
       </button>
 
@@ -947,6 +960,7 @@ td{
       <button
         id="logoutButton"
         class="logout-btn"
+        type="button"
       >
         ออกจากระบบ
       </button>
@@ -960,7 +974,9 @@ td{
 
 <main class="main">
 
-<!-- ================= DASHBOARD ================= -->
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
 
 <section
   id="page-dashboard"
@@ -988,6 +1004,7 @@ td{
     <button
       class="btn"
       id="refreshButton"
+      type="button"
     >
       ↻ รีเฟรชข้อมูล
     </button>
@@ -1004,9 +1021,7 @@ td{
       <div
         id="statOrders"
         class="stat-number"
-      >
-        0
-      </div>
+      >0</div>
     </div>
 
     <div class="stat">
@@ -1016,9 +1031,7 @@ td{
       <div
         id="statProducts"
         class="stat-number"
-      >
-        0
-      </div>
+      >0</div>
     </div>
 
     <div class="stat">
@@ -1028,9 +1041,7 @@ td{
       <div
         id="statPortfolio"
         class="stat-number"
-      >
-        0
-      </div>
+      >0</div>
     </div>
 
     <div class="stat">
@@ -1040,9 +1051,7 @@ td{
       <div
         id="statInquiries"
         class="stat-number"
-      >
-        0
-      </div>
+      >0</div>
     </div>
 
     <div class="stat">
@@ -1052,9 +1061,7 @@ td{
       <div
         id="statUsers"
         class="stat-number"
-      >
-        0
-      </div>
+      >0</div>
     </div>
 
   </div>
@@ -1073,6 +1080,7 @@ td{
       <table>
 
         <thead>
+
           <tr>
             <th>เลขที่</th>
             <th>ลูกค้า</th>
@@ -1080,6 +1088,7 @@ td{
             <th>สถานะ</th>
             <th>วันที่</th>
           </tr>
+
         </thead>
 
         <tbody id="recentOrders"></tbody>
@@ -1093,7 +1102,9 @@ td{
 </section>
 
 
-<!-- ================= ORDERS ================= -->
+<!-- =====================================================
+     ORDERS
+===================================================== -->
 
 <section
   id="page-orders"
@@ -1162,6 +1173,7 @@ td{
       <table>
 
         <thead>
+
           <tr>
             <th>เลขที่</th>
             <th>ลูกค้า</th>
@@ -1171,6 +1183,7 @@ td{
             <th>วันที่</th>
             <th>จัดการ</th>
           </tr>
+
         </thead>
 
         <tbody id="ordersTable"></tbody>
@@ -1184,7 +1197,9 @@ td{
 </section>
 
 
-<!-- ================= PRODUCTS ================= -->
+<!-- =====================================================
+     PRODUCTS
+===================================================== -->
 
 <section
   id="page-products"
@@ -1208,6 +1223,7 @@ td{
     <button
       id="addProductButton"
       class="btn gold owner-only"
+      type="button"
     >
       + เพิ่มสินค้า
     </button>
@@ -1236,7 +1252,9 @@ td{
 </section>
 
 
-<!-- ================= PORTFOLIO ================= -->
+<!-- =====================================================
+     PORTFOLIO
+===================================================== -->
 
 <section
   id="page-portfolio"
@@ -1260,6 +1278,7 @@ td{
     <button
       id="addPortfolioButton"
       class="btn gold owner-only"
+      type="button"
     >
       + เพิ่มผลงาน
     </button>
@@ -1279,7 +1298,9 @@ td{
 </section>
 
 
-<!-- ================= INQUIRIES ================= -->
+<!-- =====================================================
+     INQUIRIES
+===================================================== -->
 
 <section
   id="page-inquiries"
@@ -1363,7 +1384,9 @@ td{
 </section>
 
 
-<!-- ================= USERS ================= -->
+<!-- =====================================================
+     USERS
+===================================================== -->
 
 <section
   id="page-users"
@@ -1421,7 +1444,9 @@ td{
 </section>
 
 
-<!-- ================= SETTINGS ================= -->
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
 
 <section
   id="page-settings"
@@ -1500,7 +1525,9 @@ td{
 </div>
 
 
-<!-- ================= MODAL ================= -->
+<!-- =====================================================
+     MODAL
+===================================================== -->
 
 <div
   id="modal"
@@ -1518,6 +1545,7 @@ td{
       <button
         id="modalClose"
         class="modal-close"
+        type="button"
       >
         ×
       </button>
@@ -1531,6 +1559,7 @@ td{
       <button
         id="modalCancel"
         class="btn"
+        type="button"
       >
         ยกเลิก
       </button>
@@ -1538,6 +1567,7 @@ td{
       <button
         id="modalSave"
         class="btn gold"
+        type="button"
       >
         บันทึก
       </button>
@@ -1582,21 +1612,41 @@ const SUPABASE_KEY =
 
 
 /* =====================================================
-   2. CREATE CLIENT
+   2. SUPABASE CLIENT
 ===================================================== */
 
-const supabase =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY,
-    {
-      auth:{
-        persistSession:true,
-        autoRefreshToken:true,
-        detectSessionInUrl:true
+let supabase = null;
+
+function initSupabase(){
+
+  checkConfig();
+
+  if(
+    !window.supabase ||
+    typeof window.supabase.createClient !== "function"
+  ){
+
+    throw new Error(
+      "โหลด Supabase JavaScript ไม่สำเร็จ"
+    );
+
+  }
+
+  supabase =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY,
+      {
+        auth:{
+          persistSession:true,
+          autoRefreshToken:true,
+          detectSessionInUrl:true
+        }
       }
-    }
-  );
+    );
+
+  return supabase;
+}
 
 
 /* =====================================================
@@ -1656,8 +1706,13 @@ function formatDate(value){
   if(!value)
     return "-";
 
-  return new Date(value)
-    .toLocaleString("th-TH");
+  const date =
+    new Date(value);
+
+  if(Number.isNaN(date.getTime()))
+    return "-";
+
+  return date.toLocaleString("th-TH");
 
 }
 
@@ -1742,7 +1797,7 @@ function checkConfig(){
 
 
   /*
-    ป้องกัน error เดิม:
+    ป้องกัน:
 
     String contains non ISO-8859-1 code point
   */
@@ -1763,145 +1818,33 @@ function checkConfig(){
 
 
 /* =====================================================
-   6. PASSWORD
+   6. PASSWORD SHOW / HIDE
 ===================================================== */
 
-$("showPassword").onclick =
-function(){
+$("showPassword").addEventListener(
+  "click",
+  function(){
 
-  const input =
-    $("password");
-
-  if(
-    input.type === "password"
-  ){
-
-    input.type="text";
-
-    this.textContent="ซ่อน";
-
-  }else{
-
-    input.type="password";
-
-    this.textContent="แสดง";
-
-  }
-
-};
-
-
-/* =====================================================
-   7. LOGIN
-===================================================== */
-
-$("loginForm").onsubmit =
-async function(event){
-
-  event.preventDefault();
-
-
-  const email =
-    $("email").value.trim();
-
-  const password =
-    $("password").value;
-
-
-  const button =
-    $("loginButton");
-
-  const errorBox =
-    $("loginError");
-
-
-  errorBox.className =
-    "login-error";
-
-
-  button.disabled =
-    true;
-
-  button.textContent =
-    "กำลังเข้าสู่ระบบ...";
-
-
-  try{
-
-    checkConfig();
-
-
-    const {
-      data,
-      error
-    } =
-    await supabase.auth
-      .signInWithPassword({
-        email,
-        password
-      });
-
-
-    if(error)
-      throw error;
-
-
-    if(!data.session)
-      throw new Error(
-        "ไม่พบ Session"
-      );
-
-
-    currentSession =
-      data.session;
-
-
-    await startApp();
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    errorBox.textContent =
-      error.message ||
-      "เข้าสู่ระบบไม่สำเร็จ";
-
-
-    errorBox.className =
-      "login-error show";
-
-
-    button.disabled =
-      false;
-
-    button.textContent =
-      "เข้าสู่ระบบ";
-
-  }
-
-};
-
-
-/* =====================================================
-   8. AUTH STATE
-===================================================== */
-
-supabase.auth.onAuthStateChange(
-  function(event,session){
-
-    currentSession =
-      session;
+    const input =
+      $("password");
 
     if(
-      event ===
-      "TOKEN_REFRESHED"
+      input.type === "password"
     ){
 
-      console.log(
-        "Session refreshed"
-      );
+      input.type =
+        "text";
+
+      this.textContent =
+        "ซ่อน";
+
+    }else{
+
+      input.type =
+        "password";
+
+      this.textContent =
+        "แสดง";
 
     }
 
@@ -1910,18 +1853,166 @@ supabase.auth.onAuthStateChange(
 
 
 /* =====================================================
+   7. LOGIN
+===================================================== */
+
+$("loginForm").addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+    const email =
+      $("email")
+        .value
+        .trim();
+
+    const password =
+      $("password")
+        .value;
+
+    const button =
+      $("loginButton");
+
+    const errorBox =
+      $("loginError");
+
+    errorBox.className =
+      "login-error";
+
+    button.disabled =
+      true;
+
+    button.textContent =
+      "กำลังเข้าสู่ระบบ...";
+
+    try{
+
+      initSupabase();
+
+      setupAuthListener();
+
+      const {
+        data,
+        error
+      } =
+      await supabase.auth
+        .signInWithPassword({
+          email,
+          password
+        });
+
+      if(error)
+        throw error;
+
+      if(!data.session)
+        throw new Error(
+          "ไม่พบ Session"
+        );
+
+      currentSession =
+        data.session;
+
+      await startApp();
+
+    }catch(error){
+
+      console.error(
+        "LOGIN ERROR:",
+        error
+      );
+
+      errorBox.textContent =
+        error.message ||
+        "เข้าสู่ระบบไม่สำเร็จ";
+
+      errorBox.className =
+        "login-error show";
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "เข้าสู่ระบบ";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   8. AUTH STATE
+===================================================== */
+
+let authListenerReady = false;
+
+function setupAuthListener(){
+
+  if(
+    !supabase ||
+    authListenerReady
+  )
+    return;
+
+  authListenerReady =
+    true;
+
+  supabase.auth.onAuthStateChange(
+    function(event,session){
+
+      currentSession =
+        session;
+
+      if(
+        event ===
+        "TOKEN_REFRESHED"
+      ){
+
+        console.log(
+          "Session refreshed"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =====================================================
    9. LOGOUT
 ===================================================== */
 
-$("logoutButton").onclick =
-async function(){
+$("logoutButton").addEventListener(
+  "click",
+  async function(){
 
-  await supabase.auth
-    .signOut();
+    try{
 
-  location.reload();
+      if(!supabase)
+        initSupabase();
 
-};
+      await supabase.auth
+        .signOut();
+
+      location.reload();
+
+    }catch(error){
+
+      console.error(error);
+
+      showToast(
+        error.message ||
+        "ออกจากระบบไม่สำเร็จ",
+        true
+      );
+
+    }
+
+  }
+);
 
 
 /* =====================================================
@@ -1935,10 +2026,8 @@ async function loadCurrentUser(){
       "ไม่พบ Session"
     );
 
-
   const user =
     currentSession.user;
-
 
   const {
     data,
@@ -1955,12 +2044,13 @@ async function loadCurrentUser(){
     )
     .limit(1);
 
-
   if(error)
     throw error;
 
-
-  if(!data || !data.length){
+  if(
+    !data ||
+    !data.length
+  ){
 
     throw new Error(
       "ไม่พบบัญชี Admin ในตาราง admin_users"
@@ -1968,16 +2058,15 @@ async function loadCurrentUser(){
 
   }
 
-
   currentUser =
     data[0];
-
 
   if(
     currentUser.active === false
   ){
 
-    await supabase.auth.signOut();
+    await supabase.auth
+      .signOut();
 
     throw new Error(
       "บัญชีนี้ถูกปิดใช้งาน"
@@ -1985,18 +2074,15 @@ async function loadCurrentUser(){
 
   }
 
-
   currentRole =
     String(
       currentUser.role ||
       "viewer"
     ).toLowerCase();
 
-
   $("roleBadge")
     .textContent =
     currentRole.toUpperCase();
-
 
   applyPermissions();
 
@@ -2010,9 +2096,7 @@ async function loadCurrentUser(){
 function applyPermissions(){
 
   document
-    .querySelectorAll(
-      ".owner-only"
-    )
+    .querySelectorAll(".owner-only")
     .forEach(
       element=>{
 
@@ -2032,73 +2116,61 @@ function applyPermissions(){
 ===================================================== */
 
 document
-  .querySelectorAll(
-    ".nav button"
-  )
+  .querySelectorAll(".nav button")
   .forEach(
     button=>{
 
-      button.onclick =
-      function(){
+      button.addEventListener(
+        "click",
+        function(){
 
-        document
-          .querySelectorAll(
-            ".nav button"
-          )
-          .forEach(
-            item=>
-              item.classList
-                .remove(
-                  "active"
-                )
-          );
+          document
+            .querySelectorAll(".nav button")
+            .forEach(
+              item =>
+                item.classList
+                  .remove("active")
+            );
 
-
-        this.classList
-          .add("active");
-
-
-        document
-          .querySelectorAll(
-            ".page"
-          )
-          .forEach(
-            page=>
-              page.classList
-                .remove(
-                  "active"
-                )
-          );
-
-
-        const page =
-          $("page-" +
-            this.dataset.page);
-
-
-        if(page)
-          page.classList
+          this.classList
             .add("active");
 
+          document
+            .querySelectorAll(".page")
+            .forEach(
+              page =>
+                page.classList
+                  .remove("active")
+            );
 
-        $("nav")
-          .classList
-          .remove("open");
+          const page =
+            $("page-" + this.dataset.page);
 
-      };
+          if(page)
+            page.classList
+              .add("active");
+
+          $("nav")
+            .classList
+            .remove("open");
+
+        }
+      );
 
     }
   );
 
 
-$("menuButton").onclick =
-function(){
+$("menuButton").addEventListener(
+  "click",
+  function(){
 
-  $("nav")
-    .classList
-    .toggle("open");
+    $("nav")
+      .classList
+      .toggle("open");
 
-};
+  }
+);
 
 
 /* =====================================================
@@ -2121,13 +2193,11 @@ async function loadOrders(){
       }
     );
 
-
   if(error){
 
     console.error(error);
 
-    $("ordersTable")
-      .innerHTML =
+    $("ordersTable").innerHTML =
       `
       <tr>
         <td colspan="7">
@@ -2143,15 +2213,12 @@ async function loadOrders(){
 
   }
 
-
   orders =
     data || [];
-
 
   $("statOrders")
     .textContent =
     orders.length;
-
 
   renderOrders();
 
@@ -2160,7 +2227,7 @@ async function loadOrders(){
 
 function getOrderStatus(status){
 
-  const map={
+  const map = {
     pending:"รอดำเนินการ",
     processing:"กำลังดำเนินการ",
     shipping:"กำลังจัดส่ง",
@@ -2187,7 +2254,6 @@ function renderOrders(){
     $("orderFilter")
       .value;
 
-
   const list =
     orders.filter(
       order=>{
@@ -2201,7 +2267,6 @@ function renderOrders(){
           ]
           .join(" ")
           .toLowerCase();
-
 
         return (
           (
@@ -2218,11 +2283,9 @@ function renderOrders(){
       }
     );
 
-
   if(!list.length){
 
-    $("ordersTable")
-      .innerHTML =
+    $("ordersTable").innerHTML =
       `
       <tr>
         <td colspan="7">
@@ -2235,8 +2298,7 @@ function renderOrders(){
 
   }else{
 
-    $("ordersTable")
-      .innerHTML =
+    $("ordersTable").innerHTML =
       list.map(
         order=>
         `
@@ -2287,12 +2349,12 @@ function renderOrders(){
           </td>
 
           <td>
-
             ${
               isManager()
                 ?
                 `
                 <button
+                  type="button"
                   class="action"
                   onclick="changeOrderStatus('${escapeHTML(order.id)}')"
                 >
@@ -2302,7 +2364,6 @@ function renderOrders(){
                 :
                 "-"
             }
-
           </td>
 
         </tr>
@@ -2312,8 +2373,7 @@ function renderOrders(){
   }
 
 
-  $("recentOrders")
-    .innerHTML =
+  $("recentOrders").innerHTML =
     orders
       .slice(0,8)
       .map(
@@ -2364,11 +2424,15 @@ function renderOrders(){
 }
 
 
-$("orderSearch").oninput =
-renderOrders;
+$("orderSearch").addEventListener(
+  "input",
+  renderOrders
+);
 
-$("orderFilter").onchange =
-renderOrders;
+$("orderFilter").addEventListener(
+  "change",
+  renderOrders
+);
 
 
 /* =====================================================
@@ -2389,7 +2453,6 @@ function(id){
 
   }
 
-
   const order =
     orders.find(
       item =>
@@ -2397,10 +2460,8 @@ function(id){
         String(id)
     );
 
-
   if(!order)
     return;
-
 
   openModal(
     "เปลี่ยนสถานะคำสั่งซื้อ",
@@ -2439,11 +2500,9 @@ function(id){
     `
   );
 
-
   $("orderStatusEdit").value =
     order.status ||
     "pending";
-
 
   modalMode =
     "order-status";
@@ -2474,17 +2533,13 @@ async function loadProducts(){
       }
     );
 
-
   if(error){
 
-    $("productsGrid")
-      .innerHTML =
+    $("productsGrid").innerHTML =
       `
       <div class="empty">
         โหลดสินค้าไม่สำเร็จ<br>
-        ${escapeHTML(
-          error.message
-        )}
+        ${escapeHTML(error.message)}
       </div>
       `;
 
@@ -2492,15 +2547,12 @@ async function loadProducts(){
 
   }
 
-
   products =
     data || [];
-
 
   $("statProducts")
     .textContent =
     products.length;
-
 
   renderProducts();
 
@@ -2514,7 +2566,6 @@ function renderProducts(){
       .value
       .trim()
       .toLowerCase();
-
 
   const list =
     products.filter(
@@ -2530,11 +2581,9 @@ function renderProducts(){
         .includes(search)
     );
 
-
   if(!list.length){
 
-    $("productsGrid")
-      .innerHTML =
+    $("productsGrid").innerHTML =
       `
       <div class="empty">
         ไม่พบสินค้า
@@ -2545,9 +2594,7 @@ function renderProducts(){
 
   }
 
-
-  $("productsGrid")
-    .innerHTML =
+  $("productsGrid").innerHTML =
     list.map(
       product=>
       `
@@ -2560,9 +2607,8 @@ function renderProducts(){
             product.image ||
             "./assets/logo.png"
           )}"
-          onerror="
-            this.src='./assets/logo.png'
-          "
+          onerror="this.src='./assets/logo.png'"
+          alt=""
         >
 
         <div class="item-body">
@@ -2594,6 +2640,7 @@ function renderProducts(){
               <div class="item-actions">
 
                 <button
+                  type="button"
                   class="action"
                   onclick="editProduct('${escapeHTML(product.id)}')"
                 >
@@ -2601,6 +2648,7 @@ function renderProducts(){
                 </button>
 
                 <button
+                  type="button"
                   class="action"
                   onclick="deleteProduct('${escapeHTML(product.id)}')"
                 >
@@ -2623,19 +2671,23 @@ function renderProducts(){
 }
 
 
-$("productSearch").oninput =
-renderProducts;
+$("productSearch").addEventListener(
+  "input",
+  renderProducts
+);
 
 
-$("addProductButton").onclick =
-function(){
+$("addProductButton").addEventListener(
+  "click",
+  function(){
 
-  if(!isOwner())
-    return;
+    if(!isOwner())
+      return;
 
-  openProductModal();
+    openProductModal();
 
-};
+  }
+);
 
 
 window.editProduct =
@@ -2648,11 +2700,8 @@ function(id){
         String(id)
     );
 
-
   if(product)
-    openProductModal(
-      product
-    );
+    openProductModal(product);
 
 };
 
@@ -2764,7 +2813,6 @@ function openProductModal(
     `
   );
 
-
   modalMode =
     product
       ? "product-edit"
@@ -2783,14 +2831,12 @@ async function(id){
   if(!isOwner())
     return;
 
-
   if(
     !confirm(
       "ต้องการลบสินค้านี้หรือไม่?"
     )
   )
     return;
-
 
   const {
     error
@@ -2799,7 +2845,6 @@ async function(id){
     .from("products")
     .delete()
     .eq("id",id);
-
 
   if(error){
 
@@ -2812,11 +2857,9 @@ async function(id){
 
   }
 
-
   showToast(
     "ลบสินค้าแล้ว"
   );
-
 
   await loadProducts();
 
@@ -2843,17 +2886,13 @@ async function loadPortfolio(){
       }
     );
 
-
   if(error){
 
-    $("portfolioGrid")
-      .innerHTML =
+    $("portfolioGrid").innerHTML =
       `
       <div class="empty">
         โหลดผลงานไม่สำเร็จ<br>
-        ${escapeHTML(
-          error.message
-        )}
+        ${escapeHTML(error.message)}
       </div>
       `;
 
@@ -2861,15 +2900,12 @@ async function loadPortfolio(){
 
   }
 
-
   portfolios =
     data || [];
-
 
   $("statPortfolio")
     .textContent =
     portfolios.length;
-
 
   renderPortfolio();
 
@@ -2880,8 +2916,7 @@ function renderPortfolio(){
 
   if(!portfolios.length){
 
-    $("portfolioGrid")
-      .innerHTML =
+    $("portfolioGrid").innerHTML =
       `
       <div class="empty">
         ยังไม่มีผลงาน
@@ -2892,9 +2927,7 @@ function renderPortfolio(){
 
   }
 
-
-  $("portfolioGrid")
-    .innerHTML =
+  $("portfolioGrid").innerHTML =
     portfolios.map(
       item=>
       `
@@ -2907,9 +2940,8 @@ function renderPortfolio(){
             item.image_url ||
             "./assets/logo.png"
           )}"
-          onerror="
-            this.src='./assets/logo.png'
-          "
+          onerror="this.src='./assets/logo.png'"
+          alt=""
         >
 
         <div class="item-body">
@@ -2943,6 +2975,7 @@ function renderPortfolio(){
               <div class="item-actions">
 
                 <button
+                  type="button"
                   class="action"
                   onclick="editPortfolio('${escapeHTML(item.id)}')"
                 >
@@ -2950,6 +2983,7 @@ function renderPortfolio(){
                 </button>
 
                 <button
+                  type="button"
                   class="action"
                   onclick="deletePortfolio('${escapeHTML(item.id)}')"
                 >
@@ -2972,15 +3006,17 @@ function renderPortfolio(){
 }
 
 
-$("addPortfolioButton").onclick =
-function(){
+$("addPortfolioButton").addEventListener(
+  "click",
+  function(){
 
-  if(!isOwner())
-    return;
+    if(!isOwner())
+      return;
 
-  openPortfolioModal();
+    openPortfolioModal();
 
-};
+  }
+);
 
 
 window.editPortfolio =
@@ -2993,11 +3029,8 @@ function(id){
         String(id)
     );
 
-
   if(item)
-    openPortfolioModal(
-      item
-    );
+    openPortfolioModal(item);
 
 };
 
@@ -3128,7 +3161,6 @@ function openPortfolioModal(
     `
   );
 
-
   modalMode =
     item
       ? "portfolio-edit"
@@ -3147,14 +3179,12 @@ async function(id){
   if(!isOwner())
     return;
 
-
   if(
     !confirm(
       "ต้องการลบผลงานนี้หรือไม่?"
     )
   )
     return;
-
 
   const {
     error
@@ -3163,7 +3193,6 @@ async function(id){
     .from("portfolio")
     .delete()
     .eq("id",id);
-
 
   if(error){
 
@@ -3176,11 +3205,9 @@ async function(id){
 
   }
 
-
   showToast(
     "ลบผลงานแล้ว"
   );
-
 
   await loadPortfolio();
 
@@ -3207,19 +3234,15 @@ async function loadInquiries(){
       }
     );
 
-
   if(error){
 
-    $("inquiriesTable")
-      .innerHTML =
+    $("inquiriesTable").innerHTML =
       `
       <tr>
         <td colspan="7">
           <div class="empty">
             โหลดข้อความไม่สำเร็จ<br>
-            ${escapeHTML(
-              error.message
-            )}
+            ${escapeHTML(error.message)}
           </div>
         </td>
       </tr>
@@ -3229,10 +3252,8 @@ async function loadInquiries(){
 
   }
 
-
   inquiries =
     data || [];
-
 
   renderInquiries();
 
@@ -3241,7 +3262,7 @@ async function loadInquiries(){
 
 function inquiryStatus(status){
 
-  const map={
+  const map = {
     new:"ใหม่",
     contacting:"กำลังติดต่อ",
     contacted:"ติดต่อแล้ว",
@@ -3261,14 +3282,12 @@ function renderInquiries(){
     $("inquiryFilter")
       .value;
 
-
   const list =
     inquiries.filter(
       item =>
         !filter ||
         item.status === filter
     );
-
 
   $("statInquiries")
     .textContent =
@@ -3278,11 +3297,9 @@ function renderInquiries(){
         item.status === "new"
     ).length;
 
-
   if(!list.length){
 
-    $("inquiriesTable")
-      .innerHTML =
+    $("inquiriesTable").innerHTML =
       `
       <tr>
         <td colspan="7">
@@ -3297,9 +3314,7 @@ function renderInquiries(){
 
   }
 
-
-  $("inquiriesTable")
-    .innerHTML =
+  $("inquiriesTable").innerHTML =
     list.map(
       item=>
       `
@@ -3336,7 +3351,6 @@ function renderInquiries(){
         </td>
 
         <td>
-
           <span class="badge gold">
             ${escapeHTML(
               inquiryStatus(
@@ -3344,7 +3358,6 @@ function renderInquiries(){
               )
             )}
           </span>
-
         </td>
 
         <td>
@@ -3356,6 +3369,7 @@ function renderInquiries(){
         <td>
 
           <button
+            type="button"
             class="action"
             onclick="editInquiry('${escapeHTML(item.id)}')"
           >
@@ -3372,8 +3386,10 @@ function renderInquiries(){
 }
 
 
-$("inquiryFilter").onchange =
-renderInquiries;
+$("inquiryFilter").addEventListener(
+  "change",
+  renderInquiries
+);
 
 
 window.editInquiry =
@@ -3386,13 +3402,12 @@ function(id){
         String(id)
     );
 
-
   if(!item)
     return;
 
-
   openModal(
     "จัดการข้อความ",
+
     `
     <div class="field">
 
@@ -3479,11 +3494,9 @@ function(id){
     `
   );
 
-
   $("inquiryStatusEdit").value =
     item.status ||
     "new";
-
 
   modalMode =
     "inquiry";
@@ -3516,19 +3529,15 @@ async function loadUsers(){
       }
     );
 
-
   if(error){
 
-    $("usersTable")
-      .innerHTML =
+    $("usersTable").innerHTML =
       `
       <tr>
         <td colspan="6">
           <div class="empty">
             โหลดผู้ใช้งานไม่สำเร็จ<br>
-            ${escapeHTML(
-              error.message
-            )}
+            ${escapeHTML(error.message)}
           </div>
         </td>
       </tr>
@@ -3538,15 +3547,12 @@ async function loadUsers(){
 
   }
 
-
   users =
     data || [];
-
 
   $("statUsers")
     .textContent =
     users.length;
-
 
   renderUsers();
 
@@ -3557,8 +3563,7 @@ function renderUsers(){
 
   if(!users.length){
 
-    $("usersTable")
-      .innerHTML =
+    $("usersTable").innerHTML =
       `
       <tr>
         <td colspan="6">
@@ -3573,9 +3578,7 @@ function renderUsers(){
 
   }
 
-
-  $("usersTable")
-    .innerHTML =
+  $("usersTable").innerHTML =
     users.map(
       user=>
       `
@@ -3598,14 +3601,12 @@ function renderUsers(){
         <td>
 
           <span class="badge gold">
-
             ${escapeHTML(
               String(
                 user.role ||
                 "viewer"
               ).toUpperCase()
             )}
-
           </span>
 
         </td>
@@ -3651,6 +3652,7 @@ function renderUsers(){
               <div class="actions">
 
                 <button
+                  type="button"
                   class="action"
                   onclick="changeRole('${escapeHTML(user.id)}')"
                 >
@@ -3665,6 +3667,7 @@ function renderUsers(){
 
                   `
                   <button
+                    type="button"
                     class="action"
                     onclick="toggleUser('${escapeHTML(user.id)}')"
                   >
@@ -3717,7 +3720,6 @@ function(id){
 
   }
 
-
   const user =
     users.find(
       x =>
@@ -3725,18 +3727,12 @@ function(id){
         String(id)
     );
 
-
   if(!user)
     return;
 
-
-  /*
-    ใช้ SELECT
-    ไม่ต้องพิมพ์ Role
-  */
-
   openModal(
     "เปลี่ยน Role",
+
     `
     <div class="field">
 
@@ -3785,13 +3781,11 @@ function(id){
     `
   );
 
-
   $("newRole").value =
     String(
       user.role ||
       "viewer"
     ).toLowerCase();
-
 
   modalMode =
     "role";
@@ -3812,7 +3806,6 @@ async function(id){
   if(!isOwner())
     return;
 
-
   const user =
     users.find(
       x =>
@@ -3820,24 +3813,19 @@ async function(id){
         String(id)
     );
 
-
   if(!user)
     return;
 
-
   const next =
     user.active === false;
-
 
   const question =
     next
       ? "ต้องการเปิดใช้งานผู้ใช้นี้หรือไม่?"
       : "ต้องการปิดใช้งานผู้ใช้นี้หรือไม่?";
 
-
   if(!confirm(question))
     return;
-
 
   const {
     error
@@ -3855,7 +3843,6 @@ async function(id){
       id
     );
 
-
   if(error){
 
     showToast(
@@ -3867,13 +3854,11 @@ async function(id){
 
   }
 
-
   showToast(
     next
       ? "เปิดใช้งานแล้ว"
       : "ปิดใช้งานแล้ว"
   );
-
 
   await loadUsers();
 
@@ -3886,6 +3871,10 @@ async function(id){
 
 async function loadSettings(){
 
+  /*
+    ตารางเดิมของระบบใช้ site_settings
+  */
+
   const {
     data,
     error
@@ -3894,7 +3883,6 @@ async function loadSettings(){
     .from("site_settings")
     .select("*")
     .limit(1);
-
 
   if(error){
 
@@ -3907,14 +3895,11 @@ async function loadSettings(){
 
   }
 
-
   const item =
     data?.[0];
 
-
   if(!item)
     return;
-
 
   $("companyName").value =
     item.company_name || "";
@@ -3937,114 +3922,108 @@ async function loadSettings(){
 }
 
 
-$("settingsForm").onsubmit =
-async function(event){
+$("settingsForm").addEventListener(
+  "submit",
+  async function(event){
 
-  event.preventDefault();
+    event.preventDefault();
 
+    if(!isOwner()){
 
-  if(!isOwner()){
+      showToast(
+        "เฉพาะ OWNER เท่านั้น",
+        true
+      );
+
+      return;
+
+    }
+
+    const payload = {
+
+      company_name:
+        $("companyName").value,
+
+      phone:
+        $("companyPhone").value,
+
+      email:
+        $("companyEmail").value,
+
+      address:
+        $("companyAddress").value,
+
+      facebook:
+        $("facebook").value,
+
+      line:
+        $("line").value,
+
+      updated_at:
+        new Date()
+          .toISOString()
+
+    };
+
+    const {
+      data:existing,
+      error:findError
+    } =
+    await supabase
+      .from("site_settings")
+      .select("id")
+      .limit(1);
+
+    if(findError){
+
+      showToast(
+        findError.message,
+        true
+      );
+
+      return;
+
+    }
+
+    let result;
+
+    if(existing?.length){
+
+      result =
+        await supabase
+          .from("site_settings")
+          .update(payload)
+          .eq(
+            "id",
+            existing[0].id
+          );
+
+    }else{
+
+      result =
+        await supabase
+          .from("site_settings")
+          .insert(payload);
+
+    }
+
+    if(result.error){
+
+      showToast(
+        result.error.message,
+        true
+      );
+
+      return;
+
+    }
 
     showToast(
-      "เฉพาะ OWNER เท่านั้น",
-      true
+      "บันทึกข้อมูลแล้ว"
     );
 
-    return;
-
   }
-
-
-  const payload={
-
-    company_name:
-      $("companyName").value,
-
-    phone:
-      $("companyPhone").value,
-
-    email:
-      $("companyEmail").value,
-
-    address:
-      $("companyAddress").value,
-
-    facebook:
-      $("facebook").value,
-
-    line:
-      $("line").value,
-
-    updated_at:
-      new Date()
-        .toISOString()
-
-  };
-
-
-  const {
-    data:existing,
-    error:findError
-  } =
-  await supabase
-    .from("site_settings")
-    .select("id")
-    .limit(1);
-
-
-  if(findError){
-
-    showToast(
-      findError.message,
-      true
-    );
-
-    return;
-
-  }
-
-
-  let result;
-
-
-  if(existing?.length){
-
-    result =
-      await supabase
-        .from("site_settings")
-        .update(payload)
-        .eq(
-          "id",
-          existing[0].id
-        );
-
-  }else{
-
-    result =
-      await supabase
-        .from("site_settings")
-        .insert(payload);
-
-  }
-
-
-  if(result.error){
-
-    showToast(
-      result.error.message,
-      true
-    );
-
-    return;
-
-  }
-
-
-  showToast(
-    "บันทึกข้อมูลแล้ว"
-  );
-
-};
+);
 
 
 /* =====================================================
@@ -4077,361 +4056,354 @@ function closeModal(){
     .classList
     .remove("show");
 
-  modalMode="";
-  modalId="";
+  modalMode =
+    "";
+
+  modalId =
+    "";
 
 }
 
 
-$("modalClose").onclick =
-closeModal;
+$("modalClose").addEventListener(
+  "click",
+  closeModal
+);
 
-$("modalCancel").onclick =
-closeModal;
+$("modalCancel").addEventListener(
+  "click",
+  closeModal
+);
 
 
 /* =====================================================
    23. MODAL SAVE
 ===================================================== */
 
-$("modalSave").onclick =
-async function(){
+$("modalSave").addEventListener(
+  "click",
+  async function(){
 
-  try{
+    try{
 
-    /* ROLE */
-
-    if(
-      modalMode === "role"
-    ){
-
-      const role =
-        $("newRole").value;
-
-
-      const {
-        error
-      } =
-      await supabase
-        .from("admin_users")
-        .update({
-          role,
-          updated_at:
-            new Date()
-              .toISOString()
-        })
-        .eq(
-          "id",
-          modalId
-        );
-
-
-      if(error)
-        throw error;
-
-
-      closeModal();
-
-      showToast(
-        "เปลี่ยน Role แล้ว"
-      );
-
-      await loadUsers();
-
-      return;
-
-    }
-
-
-    /* ORDER STATUS */
-
-    if(
-      modalMode ===
-      "order-status"
-    ){
-
-      const status =
-        $("orderStatusEdit")
-          .value;
-
-
-      const {
-        error
-      } =
-      await supabase
-        .from("orders")
-        .update({
-          status,
-          updated_at:
-            new Date()
-              .toISOString()
-        })
-        .eq(
-          "id",
-          modalId
-        );
-
-
-      if(error)
-        throw error;
-
-
-      closeModal();
-
-      showToast(
-        "เปลี่ยนสถานะแล้ว"
-      );
-
-      await loadOrders();
-
-      return;
-
-    }
-
-
-    /* PRODUCT */
-
-    if(
-      modalMode === "product-add" ||
-      modalMode === "product-edit"
-    ){
-
-      const payload={
-
-        name:
-          $("productName").value,
-
-        category:
-          $("productCategory").value,
-
-        price:
-          Number(
-            $("productPrice").value ||
-            0
-          ),
-
-        image_url:
-          $("productImage").value,
-
-        spec_pdf_url:
-          $("productPdf").value,
-
-        description:
-          $("productDescription").value,
-
-        updated_at:
-          new Date()
-            .toISOString()
-
-      };
-
-
-      let result;
-
+      /* ROLE */
 
       if(
-        modalMode ===
-        "product-add"
+        modalMode === "role"
       ){
 
-        result =
-          await supabase
-            .from("products")
-            .insert(payload);
+        const role =
+          $("newRole").value;
 
-      }else{
+        const {
+          error
+        } =
+        await supabase
+          .from("admin_users")
+          .update({
+            role,
+            updated_at:
+              new Date()
+                .toISOString()
+          })
+          .eq(
+            "id",
+            modalId
+          );
 
-        result =
-          await supabase
-            .from("products")
-            .update(payload)
-            .eq(
-              "id",
-              modalId
-            );
+        if(error)
+          throw error;
+
+        closeModal();
+
+        showToast(
+          "เปลี่ยน Role แล้ว"
+        );
+
+        await loadUsers();
+
+        return;
 
       }
 
 
-      if(result.error)
-        throw result.error;
-
-
-      closeModal();
-
-      showToast(
-        "บันทึกสินค้าแล้ว"
-      );
-
-      await loadProducts();
-
-      return;
-
-    }
-
-
-    /* PORTFOLIO */
-
-    if(
-      modalMode === "portfolio-add" ||
-      modalMode === "portfolio-edit"
-    ){
-
-      const payload={
-
-        title:
-          $("portfolioTitle").value,
-
-        category:
-          $("portfolioCategory").value,
-
-        location:
-          $("portfolioLocation").value,
-
-        cover_image:
-          $("portfolioCover").value,
-
-        before_image:
-          $("portfolioBefore").value,
-
-        after_image:
-          $("portfolioAfter").value,
-
-        description:
-          $("portfolioDescription").value,
-
-        updated_at:
-          new Date()
-            .toISOString()
-
-      };
-
-
-      let result;
-
+      /* ORDER STATUS */
 
       if(
         modalMode ===
-        "portfolio-add"
+        "order-status"
       ){
 
-        result =
-          await supabase
-            .from("portfolio")
-            .insert(payload);
+        const status =
+          $("orderStatusEdit")
+            .value;
 
-      }else{
+        const {
+          error
+        } =
+        await supabase
+          .from("orders")
+          .update({
+            status,
+            updated_at:
+              new Date()
+                .toISOString()
+          })
+          .eq(
+            "id",
+            modalId
+          );
 
-        result =
-          await supabase
-            .from("portfolio")
-            .update(payload)
-            .eq(
-              "id",
-              modalId
-            );
+        if(error)
+          throw error;
+
+        closeModal();
+
+        showToast(
+          "เปลี่ยนสถานะแล้ว"
+        );
+
+        await loadOrders();
+
+        return;
 
       }
 
 
-      if(result.error)
-        throw result.error;
+      /* PRODUCT */
 
+      if(
+        modalMode === "product-add" ||
+        modalMode === "product-edit"
+      ){
 
-      closeModal();
+        const payload = {
 
-      showToast(
-        "บันทึกผลงานแล้ว"
-      );
+          name:
+            $("productName").value,
 
-      await loadPortfolio();
+          category:
+            $("productCategory").value,
 
-      return;
+          price:
+            Number(
+              $("productPrice").value ||
+              0
+            ),
 
-    }
+          image_url:
+            $("productImage").value,
 
+          spec_pdf_url:
+            $("productPdf").value,
 
-    /* INQUIRY */
+          description:
+            $("productDescription").value,
 
-    if(
-      modalMode === "inquiry"
-    ){
-
-      const status =
-        $("inquiryStatusEdit")
-          .value;
-
-
-      const {
-        error
-      } =
-      await supabase
-        .from("inquiries")
-        .update({
-          status,
           updated_at:
             new Date()
               .toISOString()
-        })
-        .eq(
-          "id",
-          modalId
+
+        };
+
+        let result;
+
+        if(
+          modalMode ===
+          "product-add"
+        ){
+
+          result =
+            await supabase
+              .from("products")
+              .insert(payload);
+
+        }else{
+
+          result =
+            await supabase
+              .from("products")
+              .update(payload)
+              .eq(
+                "id",
+                modalId
+              );
+
+        }
+
+        if(result.error)
+          throw result.error;
+
+        closeModal();
+
+        showToast(
+          "บันทึกสินค้าแล้ว"
         );
 
+        await loadProducts();
 
-      if(error)
-        throw error;
+        return;
+
+      }
 
 
-      closeModal();
+      /* PORTFOLIO */
+
+      if(
+        modalMode === "portfolio-add" ||
+        modalMode === "portfolio-edit"
+      ){
+
+        const payload = {
+
+          title:
+            $("portfolioTitle").value,
+
+          category:
+            $("portfolioCategory").value,
+
+          location:
+            $("portfolioLocation").value,
+
+          cover_image:
+            $("portfolioCover").value,
+
+          before_image:
+            $("portfolioBefore").value,
+
+          after_image:
+            $("portfolioAfter").value,
+
+          description:
+            $("portfolioDescription").value,
+
+          updated_at:
+            new Date()
+              .toISOString()
+
+        };
+
+        let result;
+
+        if(
+          modalMode ===
+          "portfolio-add"
+        ){
+
+          result =
+            await supabase
+              .from("portfolio")
+              .insert(payload);
+
+        }else{
+
+          result =
+            await supabase
+              .from("portfolio")
+              .update(payload)
+              .eq(
+                "id",
+                modalId
+              );
+
+        }
+
+        if(result.error)
+          throw result.error;
+
+        closeModal();
+
+        showToast(
+          "บันทึกผลงานแล้ว"
+        );
+
+        await loadPortfolio();
+
+        return;
+
+      }
+
+
+      /* INQUIRY */
+
+      if(
+        modalMode === "inquiry"
+      ){
+
+        const status =
+          $("inquiryStatusEdit")
+            .value;
+
+        const {
+          error
+        } =
+        await supabase
+          .from("inquiries")
+          .update({
+            status,
+            updated_at:
+              new Date()
+                .toISOString()
+          })
+          .eq(
+            "id",
+            modalId
+          );
+
+        if(error)
+          throw error;
+
+        closeModal();
+
+        showToast(
+          "อัปเดตข้อความแล้ว"
+        );
+
+        await loadInquiries();
+
+      }
+
+    }catch(error){
+
+      console.error(error);
 
       showToast(
-        "อัปเดตข้อความแล้ว"
+        error.message ||
+        "เกิดข้อผิดพลาด",
+        true
       );
 
-      await loadInquiries();
-
     }
-
-  }catch(error){
-
-    console.error(error);
-
-    showToast(
-      error.message ||
-      "เกิดข้อผิดพลาด",
-      true
-    );
 
   }
-
-};
+);
 
 
 /* =====================================================
    24. REFRESH
 ===================================================== */
 
-$("refreshButton").onclick =
-async function(){
+$("refreshButton").addEventListener(
+  "click",
+  async function(){
 
-  await Promise.allSettled([
+    await Promise.allSettled([
 
-    loadOrders(),
-    loadProducts(),
-    loadPortfolio(),
-    loadInquiries(),
-    loadUsers(),
-    loadSettings()
+      loadOrders(),
+      loadProducts(),
+      loadPortfolio(),
+      loadInquiries(),
+      loadUsers(),
+      loadSettings()
 
-  ]);
+    ]);
 
+    showToast(
+      "รีเฟรชข้อมูลแล้ว"
+    );
 
-  showToast(
-    "รีเฟรชข้อมูลแล้ว"
-  );
-
-};
+  }
+);
 
 
 /* =====================================================
@@ -4442,16 +4414,14 @@ async function startApp(){
 
   await loadCurrentUser();
 
-
   $("loginScreen")
     .style
-    .display="none";
-
+    .display =
+    "none";
 
   $("app")
     .classList
     .add("show");
-
 
   await Promise.allSettled([
 
@@ -4475,8 +4445,15 @@ async function boot(){
 
   try{
 
-    checkConfig();
+    /*
+      สำคัญ:
+      จะสร้าง Supabase client หลังจาก
+      ตรวจค่า config แล้วเท่านั้น
+    */
 
+    initSupabase();
+
+    setupAuthListener();
 
     const {
       data,
@@ -4485,14 +4462,11 @@ async function boot(){
     await supabase.auth
       .getSession();
 
-
     if(error)
       throw error;
 
-
     currentSession =
       data.session;
-
 
     if(currentSession){
 
@@ -4507,11 +4481,10 @@ async function boot(){
       error
     );
 
-
     $("loginError")
       .textContent =
-      error.message;
-
+      error.message ||
+      "เกิดข้อผิดพลาด";
 
     $("loginError")
       .classList
@@ -4521,6 +4494,10 @@ async function boot(){
 
 }
 
+
+/* =====================================================
+   START
+===================================================== */
 
 boot();
 
