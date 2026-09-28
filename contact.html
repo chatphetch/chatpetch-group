@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#100b07">
-
   <title>ติดต่อเรา | CHATPHETCH GROUP</title>
-
   <meta
     name="description"
     content="ติดต่อ CHATPHETCH GROUP เพื่อขอคำปรึกษา ประเมินหน้างาน และสอบถามสินค้าและบริการด้านระบบพื้น"
@@ -14,14 +12,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link
     href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   >
-
-  <!-- SUPABASE -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     :root{
@@ -39,11 +33,11 @@
     }
 
     *{
-      box-sizing:border-box;
+      box-sizing:border-box
     }
 
     html{
-      scroll-behavior:smooth;
+      scroll-behavior:smooth
     }
 
     body{
@@ -56,19 +50,19 @@
 
     a{
       color:inherit;
-      text-decoration:none;
+      text-decoration:none
     }
 
     button,
     input,
     select,
     textarea{
-      font:inherit;
+      font:inherit
     }
 
     img{
       display:block;
-      max-width:100%;
+      max-width:100%
     }
 
     .cp-page{
@@ -110,9 +104,9 @@
       margin:0 auto;
     }
 
-    /* =====================================================
+    /* =========================
        HERO
-    ===================================================== */
+       ========================= */
 
     .contact-hero{
       min-height:470px;
@@ -157,9 +151,9 @@
       line-height:1.85;
     }
 
-    /* =====================================================
+    /* =========================
        MAIN
-    ===================================================== */
+       ========================= */
 
     .contact-main{
       padding-bottom:95px;
@@ -167,9 +161,7 @@
 
     .contact-grid{
       display:grid;
-      grid-template-columns:
-        minmax(0,1.15fr)
-        minmax(350px,.85fr);
+      grid-template-columns:minmax(0,1.15fr) minmax(350px,.85fr);
       gap:22px;
       align-items:start;
     }
@@ -266,15 +258,7 @@
     .field select:focus,
     .field textarea:focus{
       border-color:var(--gold);
-      box-shadow:
-        0 0 0 3px rgba(214,182,106,.07);
-    }
-
-    .field input:disabled,
-    .field select:disabled,
-    .field textarea:disabled{
-      opacity:.7;
-      cursor:not-allowed;
+      box-shadow:0 0 0 3px rgba(214,182,106,.07);
     }
 
     .field select option{
@@ -282,9 +266,9 @@
       color:#fff;
     }
 
-    /* =====================================================
+    /* =========================
        UPLOAD
-    ===================================================== */
+       ========================= */
 
     .upload{
       position:relative;
@@ -351,9 +335,9 @@
       white-space:nowrap;
     }
 
-    /* =====================================================
-       BUTTON
-    ===================================================== */
+    /* =========================
+       FORM ACTIONS
+       ========================= */
 
     .form-actions{
       display:flex;
@@ -377,12 +361,7 @@
 
     .btn-primary{
       color:#181006;
-      background:
-        linear-gradient(
-          135deg,
-          #e7ca7e,
-          #b78b3c
-        );
+      background:linear-gradient(135deg,#e7ca7e,#b78b3c);
       border-color:transparent;
       font-weight:600;
     }
@@ -399,10 +378,14 @@
       background:rgba(214,182,106,.05);
     }
 
-    .btn:hover:not(:disabled){
+    .btn:hover{
       transform:translateY(-2px);
-      box-shadow:
-        0 12px 28px rgba(0,0,0,.3);
+      box-shadow:0 12px 28px rgba(0,0,0,.3);
+    }
+
+    .btn-primary:disabled:hover{
+      transform:none;
+      box-shadow:none;
     }
 
     .form-note{
@@ -412,15 +395,14 @@
       max-width:390px;
     }
 
-    /* =====================================================
-       FORM MESSAGE
-    ===================================================== */
-
     .form-message{
       display:none;
       margin-top:15px;
       padding:13px 15px;
+      border:1px solid rgba(214,182,106,.3);
       border-radius:11px;
+      background:rgba(214,182,106,.055);
+      color:#d8c691;
       font-size:12px;
       line-height:1.7;
     }
@@ -429,27 +411,9 @@
       display:block;
     }
 
-    .form-message.success{
-      border:1px solid rgba(112,180,112,.35);
-      background:rgba(65,120,65,.12);
-      color:#bfe0bd;
-    }
-
-    .form-message.error{
-      border:1px solid rgba(210,90,90,.38);
-      background:rgba(150,45,45,.12);
-      color:#efb1b1;
-    }
-
-    .form-message.info{
-      border:1px solid rgba(214,182,106,.3);
-      background:rgba(214,182,106,.055);
-      color:#d8c691;
-    }
-
-    /* =====================================================
+    /* =========================
        INFO
-    ===================================================== */
+       ========================= */
 
     .info-stack{
       display:grid;
@@ -551,9 +515,9 @@
       background:rgba(214,182,106,.025);
     }
 
-    /* =====================================================
+    /* =========================
        SERVICE STRIP
-    ===================================================== */
+       ========================= */
 
     .service-strip{
       margin-top:56px;
@@ -607,12 +571,11 @@
       transform:translateY(-2px);
     }
 
-    /* =====================================================
+    /* =========================
        RESPONSIVE
-    ===================================================== */
+       ========================= */
 
     @media(max-width:1050px){
-
       .contact-grid{
         grid-template-columns:1fr;
       }
@@ -620,11 +583,9 @@
       .service-links{
         grid-template-columns:repeat(2,1fr);
       }
-
     }
 
     @media(max-width:700px){
-
       :root{
         --container:calc(100% - 30px);
       }
@@ -672,11 +633,9 @@
       .service-links{
         grid-template-columns:1fr;
       }
-
     }
 
     @media(max-width:480px){
-
       :root{
         --container:calc(100% - 24px);
       }
@@ -699,7 +658,6 @@
       .contact-phone{
         font-size:15px;
       }
-
     }
   </style>
 </head>
@@ -708,21 +666,13 @@
 
   <div class="cp-page">
 
-    <!-- =====================================================
-         MASTER NAV
-    ===================================================== -->
-
+    <!-- CUSTOMER MASTER NAV -->
     <div id="customer-master-nav"></div>
-
 
     <main>
 
-      <!-- ===================================================
-           HERO
-      =================================================== -->
-
+      <!-- HERO -->
       <section class="contact-hero">
-
         <div class="container">
 
           <div class="eyebrow">
@@ -740,24 +690,19 @@
           </p>
 
         </div>
-
       </section>
 
 
-      <!-- ===================================================
-           MAIN
-      =================================================== -->
-
+      <!-- MAIN -->
       <section class="contact-main">
 
         <div class="container">
 
           <div class="contact-grid">
 
-
-            <!-- =================================================
-                 FORM
-            ================================================= -->
+            <!-- =========================
+                 CONTACT FORM
+                 ========================= -->
 
             <section class="panel form-panel">
 
@@ -771,21 +716,15 @@
 
               <p class="intro">
                 กรอกข้อมูลเบื้องต้นและแนบรูปหน้างานได้หลายรูป
-                เพื่อให้ทีมงาน CHATPHETCH GROUP ตรวจสอบข้อมูล
-                และติดต่อกลับเพื่อให้คำปรึกษาเบื้องต้น
+                ข้อมูลจากแบบฟอร์มจะถูกส่งเข้าสู่ระบบเพื่อให้ทีมงานตรวจสอบและติดต่อกลับ
               </p>
 
 
-              <form
-                id="contactForm"
-                novalidate
-              >
+              <form id="contactForm">
 
                 <div class="form-grid">
 
-
                   <!-- NAME -->
-
                   <div class="field">
 
                     <label>
@@ -806,7 +745,6 @@
 
 
                   <!-- COMPANY -->
-
                   <div class="field">
 
                     <label>
@@ -825,7 +763,6 @@
 
 
                   <!-- PHONE -->
-
                   <div class="field">
 
                     <label>
@@ -846,7 +783,6 @@
 
 
                   <!-- EMAIL -->
-
                   <div class="field">
 
                     <label>
@@ -865,7 +801,6 @@
 
 
                   <!-- JOB TYPE -->
-
                   <div class="field">
 
                     <label>
@@ -915,7 +850,6 @@
 
 
                   <!-- AREA -->
-
                   <div class="field">
 
                     <label>
@@ -927,8 +861,6 @@
                       name="area"
                       type="number"
                       min="0"
-                      step="0.01"
-                      inputmode="decimal"
                       placeholder="เช่น 500"
                     >
 
@@ -936,7 +868,6 @@
 
 
                   <!-- PROVINCE -->
-
                   <div class="field full">
 
                     <label>
@@ -949,7 +880,6 @@
                       name="province"
                       type="text"
                       required
-                      autocomplete="address-level1"
                       placeholder="เช่น สงขลา"
                     >
 
@@ -957,7 +887,6 @@
 
 
                   <!-- NOTE -->
-
                   <div class="field full">
 
                     <label>
@@ -973,8 +902,7 @@
                   </div>
 
 
-                  <!-- PHOTOS -->
-
+                  <!-- PHOTO -->
                   <div class="field full">
 
                     <label>
@@ -987,7 +915,7 @@
                         id="sitePhotos"
                         name="sitePhotos"
                         type="file"
-                        accept="image/jpeg,image/png,image/webp,image/gif"
+                        accept="image/*"
                         multiple
                       >
 
@@ -1001,7 +929,8 @@
 
                       <div class="upload-sub">
                         สามารถเลือกได้หลายรูป
-                        • รูปจะถูกบันทึกชื่อไฟล์ไว้กับข้อมูลการติดต่อ
+                        • ระบบจะแสดงรายชื่อไฟล์ที่เลือก
+                        • การอัปโหลดไฟล์เข้า Storage จะทำในขั้นถัดไป
                       </div>
 
                     </div>
@@ -1013,21 +942,19 @@
 
                   </div>
 
-
                 </div>
 
 
                 <!-- ACTIONS -->
-
                 <div class="form-actions">
 
                   <button
                     class="btn btn-primary"
-                    id="submitButton"
                     type="submit"
                   >
                     ส่งข้อมูลให้ทีมงาน →
                   </button>
+
 
                   <a
                     class="btn btn-secondary"
@@ -1035,6 +962,7 @@
                   >
                     ดูบริการทั้งหมด
                   </a>
+
 
                   <div class="form-note">
                     * ข้อมูลนี้เป็นข้อมูลเบื้องต้น
@@ -1045,7 +973,6 @@
 
 
                 <!-- MESSAGE -->
-
                 <div
                   class="form-message"
                   id="formMessage"
@@ -1058,15 +985,14 @@
             </section>
 
 
-            <!-- =================================================
-                 INFO
-            ================================================= -->
+            <!-- =========================
+                 INFORMATION
+                 ========================= -->
 
             <aside class="info-stack">
 
 
               <!-- HEAD OFFICE -->
-
               <section class="panel info-panel">
 
                 <div class="section-label">
@@ -1096,7 +1022,6 @@
 
 
               <!-- CONTACT DIRECTORY -->
-
               <section class="panel info-panel">
 
                 <div class="section-label">
@@ -1110,6 +1035,7 @@
                 <div class="contacts">
 
 
+                  <!-- TECHNICAL -->
                   <a
                     class="contact-row"
                     href="tel:0856299778"
@@ -1132,6 +1058,7 @@
                   </a>
 
 
+                  <!-- ACCOUNTING -->
                   <a
                     class="contact-row"
                     href="tel:0980153271"
@@ -1154,6 +1081,7 @@
                   </a>
 
 
+                  <!-- SALES 1 -->
                   <a
                     class="contact-row"
                     href="tel:0828223678"
@@ -1176,6 +1104,7 @@
                   </a>
 
 
+                  <!-- SALES 2 -->
                   <a
                     class="contact-row"
                     href="tel:0986710888"
@@ -1198,6 +1127,7 @@
                   </a>
 
 
+                  <!-- SALES 3 -->
                   <a
                     class="contact-row"
                     href="tel:0630630046"
@@ -1220,6 +1150,7 @@
                   </a>
 
 
+                  <!-- SALES 4 -->
                   <a
                     class="contact-row"
                     href="tel:0986426962"
@@ -1241,14 +1172,12 @@
 
                   </a>
 
-
                 </div>
 
               </section>
 
 
               <!-- SOCIAL -->
-
               <section class="panel info-panel">
 
                 <div class="section-label">
@@ -1282,15 +1211,14 @@
 
               </section>
 
-
             </aside>
 
           </div>
 
 
-          <!-- =================================================
+          <!-- =========================
                SERVICE STRIP
-          ================================================= -->
+               ========================= -->
 
           <section class="service-strip">
 
@@ -1303,8 +1231,7 @@
             </h2>
 
             <p>
-              ดูประเภทบริการก่อน
-              แล้วกลับมาส่งรายละเอียดพื้นที่ให้ทีมงานช่วยพิจารณา
+              ดูประเภทบริการก่อน แล้วกลับมาส่งรายละเอียดพื้นที่ให้ทีมงานช่วยพิจารณา
             </p>
 
             <div class="service-links">
@@ -1362,606 +1289,398 @@
     </main>
 
 
-    <!-- =====================================================
-         MASTER FOOTER
-    ===================================================== -->
-
+    <!-- CUSTOMER MASTER FOOTER -->
     <div id="customer-master-footer"></div>
 
   </div>
 
 
-  <!-- =======================================================
-       MASTER NAV / FOOTER
-  ======================================================= -->
-
+  <!-- CUSTOMER MASTER NAV -->
   <script src="assets/customer-master-nav.js"></script>
 
 
-  <!-- =======================================================
-       SUPABASE + CONTACT FORM
-  ======================================================= -->
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
   <script>
 
     /* =====================================================
        SUPABASE CONFIG
-       
-       ใส่ค่าจริงของคุณตรงนี้
-       
-       ห้ามใช้ service_role key
-       ให้ใช้ Publishable key / anon key
-    ===================================================== */
+       ===================================================== */
 
     const SUPABASE_URL =
-      "ใส่_SUPABASE_URL_ตรงนี้";
+      "https://mfhllgklcfnnbyyzzljz.supabase.co";
 
     const SUPABASE_KEY =
-      "ใส่_SUPABASE_PUBLISHABLE_KEY_หรือ_ANON_KEY_ตรงนี้";
+      "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
 
 
     /* =====================================================
-       SUPABASE CLIENT
-    ===================================================== */
+       CREATE SUPABASE CLIENT
+       ===================================================== */
 
-    let supabaseClient = null;
-
-
-    function initializeSupabase(){
-
-      if(
-        !window.supabase ||
-        typeof window.supabase.createClient !== "function"
-      ){
-
-        throw new Error(
-          "ไม่พบ Supabase JavaScript SDK"
-        );
-
-      }
-
-
-      if(
-        !SUPABASE_URL ||
-        SUPABASE_URL.includes("ใส่_") ||
-        !SUPABASE_URL.startsWith("https://")
-      ){
-
-        throw new Error(
-          "ยังไม่ได้ตั้งค่า SUPABASE_URL"
-        );
-
-      }
-
-
-      if(
-        !SUPABASE_KEY ||
-        SUPABASE_KEY.includes("ใส่_")
-      ){
-
-        throw new Error(
-          "ยังไม่ได้ตั้งค่า SUPABASE_KEY"
-        );
-
-      }
-
-
-      if(
-        /[^\x00-\x7F]/.test(
-          SUPABASE_KEY
-        )
-      ){
-
-        throw new Error(
-          "SUPABASE_KEY มีอักขระที่ไม่ถูกต้อง"
-        );
-
-      }
-
-
-      if(!supabaseClient){
-
-        supabaseClient =
-          window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY,
-            {
-              auth:{
-                persistSession:true,
-                autoRefreshToken:true,
-                detectSessionInUrl:true
-              }
-            }
-          );
-
-      }
-
-
-      return supabaseClient;
-
-    }
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
 
 
     /* =====================================================
-       ELEMENTS
-    ===================================================== */
+       DOM
+       ===================================================== */
 
     const photoInput =
-      document.getElementById(
-        "sitePhotos"
-      );
+      document.getElementById("sitePhotos");
 
     const fileList =
-      document.getElementById(
-        "fileList"
-      );
+      document.getElementById("fileList");
 
     const form =
-      document.getElementById(
-        "contactForm"
-      );
+      document.getElementById("contactForm");
 
     const message =
-      document.getElementById(
-        "formMessage"
-      );
+      document.getElementById("formMessage");
 
     const submitButton =
-      document.getElementById(
-        "submitButton"
-      );
+      form.querySelector('button[type="submit"]');
 
 
     /* =====================================================
-       FORMAT BYTES
-    ===================================================== */
+       FORMAT FILE SIZE
+       ===================================================== */
 
     function formatBytes(bytes){
 
       if(bytes < 1024){
-
         return `${bytes} B`;
-
       }
-
 
       if(bytes < 1024 * 1024){
-
-        return `${(
-          bytes / 1024
-        ).toFixed(0)} KB`;
-
+        return `${(bytes / 1024).toFixed(0)} KB`;
       }
 
-
-      return `${(
-        bytes /
-        1024 /
-        1024
-      ).toFixed(2)} MB`;
-
-    }
-
-
-    /* =====================================================
-       ESCAPE HTML
-    ===================================================== */
-
-    function escapeHTML(value){
-
-      return String(
-        value ?? ""
-      )
-      .replaceAll(
-        "&",
-        "&amp;"
-      )
-      .replaceAll(
-        "<",
-        "&lt;"
-      )
-      .replaceAll(
-        ">",
-        "&gt;"
-      )
-      .replaceAll(
-        '"',
-        "&quot;"
-      )
-      .replaceAll(
-        "'",
-        "&#039;"
-      );
-
+      return `${(bytes / 1024 / 1024).toFixed(2)} MB`;
     }
 
 
     /* =====================================================
        SHOW MESSAGE
-    ===================================================== */
+       ===================================================== */
 
-    function showFormMessage(
+    function showMessage(
       text,
-      type = "info"
+      type = "success"
     ){
 
-      message.textContent =
-        text;
+      message.textContent = text;
 
-      message.className =
-        "form-message show " +
-        type;
+      message.classList.add("show");
 
+
+      if(type === "error"){
+
+        message.style.borderColor =
+          "rgba(190,80,60,.55)";
+
+        message.style.background =
+          "rgba(120,35,25,.12)";
+
+        message.style.color =
+          "#f0b0a4";
+
+      }else{
+
+        message.style.borderColor =
+          "rgba(214,182,106,.3)";
+
+        message.style.background =
+          "rgba(214,182,106,.055)";
+
+        message.style.color =
+          "#d8c691";
+      }
     }
 
 
     /* =====================================================
        CLEAR MESSAGE
-    ===================================================== */
+       ===================================================== */
 
-    function clearFormMessage(){
+    function clearMessage(){
 
-      message.textContent =
-        "";
+      message.textContent = "";
 
-      message.className =
-        "form-message";
-
+      message.classList.remove("show");
     }
 
 
     /* =====================================================
-       FILE PREVIEW LIST
-    ===================================================== */
+       PHOTO PREVIEW
+       ===================================================== */
 
     photoInput.addEventListener(
       "change",
-      function(){
+      () => {
 
         const files =
           [...photoInput.files];
 
 
-        if(!files.length){
-
-          fileList.innerHTML =
-            "";
-
-          return;
-
-        }
-
-
         fileList.innerHTML =
-          files
-          .map(
-            file => `
+          files.map(file => `
 
-              <div class="file-item">
+            <div class="file-item">
 
-                <span>
-                  ${escapeHTML(
-                    file.name
-                  )}
-                </span>
+              <span>
+                ${file.name}
+              </span>
 
-                <span class="file-size">
-                  ${formatBytes(
-                    file.size
-                  )}
-                </span>
+              <span class="file-size">
+                ${formatBytes(file.size)}
+              </span>
 
-              </div>
+            </div>
 
-            `
-          )
-          .join("");
-
+          `).join("");
       }
     );
 
 
     /* =====================================================
-       VALIDATE FORM
-    ===================================================== */
-
-    function validateForm(){
-
-      const name =
-        document
-          .getElementById("name")
-          .value
-          .trim();
-
-      const phone =
-        document
-          .getElementById("phone")
-          .value
-          .trim();
-
-      const province =
-        document
-          .getElementById("province")
-          .value
-          .trim();
-
-      const email =
-        document
-          .getElementById("email")
-          .value
-          .trim();
-
-
-      if(!name){
-
-        throw new Error(
-          "กรุณากรอกชื่อผู้ติดต่อ"
-        );
-
-      }
-
-
-      if(!phone){
-
-        throw new Error(
-          "กรุณากรอกเบอร์โทรศัพท์"
-        );
-
-      }
-
-
-      if(!province){
-
-        throw new Error(
-          "กรุณากรอกจังหวัด / พื้นที่หน้างาน"
-        );
-
-      }
-
-
-      if(email){
-
-        const emailPattern =
-          /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if(
-          !emailPattern.test(
-            email
-          )
-        ){
-
-          throw new Error(
-            "รูปแบบอีเมลไม่ถูกต้อง"
-          );
-
-        }
-
-      }
-
-
-      return true;
-
-    }
-
-
-    /* =====================================================
-       CREATE INQUIRY MESSAGE
-    ===================================================== */
-
-    function buildInquiryMessage(){
-
-      const company =
-        document
-          .getElementById("company")
-          .value
-          .trim();
-
-      const jobType =
-        document
-          .getElementById("jobType")
-          .value
-          .trim();
-
-      const area =
-        document
-          .getElementById("area")
-          .value
-          .trim();
-
-      const province =
-        document
-          .getElementById("province")
-          .value
-          .trim();
-
-      const note =
-        document
-          .getElementById("note")
-          .value
-          .trim();
-
-      const photoNames =
-        [
-          ...photoInput.files
-        ]
-        .map(
-          file =>
-            file.name
-        );
-
-
-      const lines = [];
-
-
-      lines.push(
-        `บริษัท / หน่วยงาน: ${
-          company || "-"
-        }`
-      );
-
-
-      lines.push(
-        `ประเภทงาน: ${
-          jobType || "-"
-        }`
-      );
-
-
-      lines.push(
-        `พื้นที่โดยประมาณ: ${
-          area
-            ? `${area} ตร.ม.`
-            : "-"
-        }`
-      );
-
-
-      lines.push(
-        `จังหวัด / พื้นที่หน้างาน: ${
-          province || "-"
-        }`
-      );
-
-
-      lines.push(
-        `รายละเอียดเพิ่มเติม: ${
-          note || "-"
-        }`
-      );
-
-
-      lines.push(
-        `รูปหน้างานที่เลือก: ${
-          photoNames.length
-            ? photoNames.join(", ")
-            : "ไม่มี"
-        }`
-      );
-
-
-      return lines.join(
-        "\n"
-      );
-
-    }
-
-
-    /* =====================================================
-       SUBMIT
-    ===================================================== */
+       CONTACT FORM SUBMIT
+       ===================================================== */
 
     form.addEventListener(
       "submit",
-      async function(event){
+      async (event) => {
 
         event.preventDefault();
 
-
-        clearFormMessage();
-
-
-        const originalButtonText =
-          submitButton.textContent;
+        clearMessage();
 
 
-        try{
+        /* -----------------------------------------------
+           GET FORM VALUES
+           ----------------------------------------------- */
 
-          /* ---------------------------------------------
-             VALIDATE
-          --------------------------------------------- */
+        const name =
+          document
+            .getElementById("name")
+            .value
+            .trim();
 
-          validateForm();
+        const company =
+          document
+            .getElementById("company")
+            .value
+            .trim();
+
+        const phone =
+          document
+            .getElementById("phone")
+            .value
+            .trim();
+
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
+
+        const jobType =
+          document
+            .getElementById("jobType")
+            .value
+            .trim();
+
+        const area =
+          document
+            .getElementById("area")
+            .value
+            .trim();
+
+        const province =
+          document
+            .getElementById("province")
+            .value
+            .trim();
+
+        const note =
+          document
+            .getElementById("note")
+            .value
+            .trim();
+
+        const files =
+          [...photoInput.files];
 
 
-          /* ---------------------------------------------
-             INITIALIZE SUPABASE
-          --------------------------------------------- */
+        /* -----------------------------------------------
+           VALIDATION
+           ----------------------------------------------- */
 
-          const client =
-            initializeSupabase();
+        if(!name){
 
+          showMessage(
+            "กรุณากรอกชื่อผู้ติดต่อ",
+            "error"
+          );
 
-          /* ---------------------------------------------
-             GET FORM VALUES
-          --------------------------------------------- */
+          document
+            .getElementById("name")
+            .focus();
 
-          const name =
-            document
-              .getElementById("name")
-              .value
-              .trim();
-
-          const phone =
-            document
-              .getElementById("phone")
-              .value
-              .trim();
-
-          const email =
-            document
-              .getElementById("email")
-              .value
-              .trim();
-
-          const inquiryMessage =
-            buildInquiryMessage();
+          return;
+        }
 
 
-          /* ---------------------------------------------
-             DISABLE BUTTON
-          --------------------------------------------- */
+        if(!phone){
 
-          submitButton.disabled =
-            true;
+          showMessage(
+            "กรุณากรอกเบอร์โทรศัพท์",
+            "error"
+          );
 
-          submitButton.textContent =
-            "กำลังส่งข้อมูล...";
+          document
+            .getElementById("phone")
+            .focus();
+
+          return;
+        }
 
 
-          showFormMessage(
-            "กำลังส่งข้อมูลให้ทีมงาน...",
-            "info"
+        if(!province){
+
+          showMessage(
+            "กรุณาระบุจังหวัด / พื้นที่หน้างาน",
+            "error"
+          );
+
+          document
+            .getElementById("province")
+            .focus();
+
+          return;
+        }
+
+
+        /* -----------------------------------------------
+           EMAIL VALIDATION
+           ----------------------------------------------- */
+
+        if(
+          email &&
+          !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+        ){
+
+          showMessage(
+            "รูปแบบ Email ไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง",
+            "error"
+          );
+
+          document
+            .getElementById("email")
+            .focus();
+
+          return;
+        }
+
+
+        /* -----------------------------------------------
+           PHOTO FILE NAMES
+           ----------------------------------------------- */
+
+        const photoNames =
+          files.map(
+            file => file.name
           );
 
 
-          /* ---------------------------------------------
-             INSERT SUPABASE
-          --------------------------------------------- */
+        /* -----------------------------------------------
+           BUILD MESSAGE
+           ----------------------------------------------- */
 
-          const {
-            data,
-            error
-          } =
-          await client
-            .from("inquiries")
-            .insert({
+        const messageParts = [
 
-              name:
-                name,
+          company
+            ? `บริษัท: ${company}`
+            : "",
 
-              email:
-                email || null,
+          jobType
+            ? `ประเภทงาน: ${jobType}`
+            : "",
 
-              phone:
-                phone,
+          area
+            ? `พื้นที่โดยประมาณ: ${area} ตร.ม.`
+            : "",
 
-              subject:
-                "ขอคำปรึกษา / ประเมินหน้างาน",
+          province
+            ? `จังหวัด / พื้นที่หน้างาน: ${province}`
+            : "",
 
-              message:
-                inquiryMessage,
+          note
+            ? `รายละเอียดเพิ่มเติม: ${note}`
+            : "",
 
-              status:
-                "new"
+          photoNames.length
+            ? `ไฟล์รูปที่เลือก: ${photoNames.join(", ")}`
+            : ""
 
-            })
-            .select()
-            .single();
+        ].filter(Boolean);
 
 
-          /* ---------------------------------------------
-             HANDLE ERROR
-          --------------------------------------------- */
+        /* -----------------------------------------------
+           SUPABASE RECORD
+           ----------------------------------------------- */
+
+        const inquiry = {
+
+          name: name,
+
+          email:
+            email || null,
+
+          phone: phone,
+
+          subject:
+            "ขอคำปรึกษา / ประเมินหน้างาน",
+
+          message:
+            messageParts.join("\n"),
+
+          status:
+            "new"
+        };
+
+
+        /* -----------------------------------------------
+           DISABLE BUTTON
+           ----------------------------------------------- */
+
+        submitButton.disabled = true;
+
+        submitButton.dataset.originalText =
+          submitButton.textContent;
+
+        submitButton.textContent =
+          "กำลังบันทึกข้อมูล...";
+
+
+        /* -----------------------------------------------
+           INSERT TO SUPABASE
+           ----------------------------------------------- */
+
+        try{
+
+          const { error } =
+            await supabaseClient
+              .from("inquiries")
+              .insert([
+                inquiry
+              ]);
+
 
           if(error){
 
@@ -1970,51 +1689,30 @@
               error
             );
 
-            throw new Error(
-              error.message ||
-              "ไม่สามารถส่งข้อมูลได้"
-            );
-
+            throw error;
           }
 
 
           /* ---------------------------------------------
              SUCCESS
-          --------------------------------------------- */
+             --------------------------------------------- */
 
-          console.log(
-            "Inquiry created:",
-            data
-          );
-
-
-          showFormMessage(
-            "ส่งข้อมูลเรียบร้อยแล้วครับ ทีมงานจะติดต่อกลับโดยเร็วที่สุด",
+          showMessage(
+            "ส่งข้อมูลเรียบร้อยแล้วครับ ทีมงานได้รับข้อมูลของคุณแล้ว และจะติดต่อกลับเพื่อสอบถามรายละเอียดเพิ่มเติม",
             "success"
           );
 
 
           /* ---------------------------------------------
-             RESET
-          --------------------------------------------- */
+             RESET FORM
+             --------------------------------------------- */
 
           form.reset();
 
-          fileList.innerHTML =
-            "";
+          fileList.innerHTML = "";
 
 
-          /* ---------------------------------------------
-             REMOVE OLD LOCAL DRAFT
-          --------------------------------------------- */
-
-          localStorage.removeItem(
-            "chatpetch_contact_draft"
-          );
-
-
-        }
-        catch(error){
+        }catch(error){
 
           console.error(
             "Contact form error:",
@@ -2022,21 +1720,32 @@
           );
 
 
-          showFormMessage(
-            error.message ||
-            "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+          if(error?.message){
+
+            console.error(
+              "Supabase error message:",
+              error.message
+            );
+          }
+
+
+          showMessage(
+            "ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง",
             "error"
           );
 
-        }
-        finally{
 
-          submitButton.disabled =
-            false;
+        }finally{
+
+          /* ---------------------------------------------
+             ENABLE BUTTON
+             --------------------------------------------- */
+
+          submitButton.disabled = false;
 
           submitButton.textContent =
-            originalButtonText;
-
+            submitButton.dataset.originalText ||
+            "ส่งข้อมูลให้ทีมงาน →";
         }
 
       }
@@ -2044,10 +1753,8 @@
 
 
     /* =====================================================
-       FACEBOOK LINK
-       
-       รองรับ master nav/footer เดิม
-    ===================================================== */
+       FACEBOOK
+       ===================================================== */
 
     const FACEBOOK_URL =
       "https://www.facebook.com/ChatphetchGroup";
@@ -2062,9 +1769,7 @@
 
 
       if(!fb){
-
         return false;
-
       }
 
 
@@ -2084,37 +1789,33 @@
 
 
       if(
-        fb.textContent.trim() !==
-        "f"
+        fb.textContent.trim() !== "f"
       ){
 
-        fb.textContent =
-          "f";
-
+        fb.textContent = "f";
       }
 
 
       return true;
-
     }
 
 
-    if(
-      !setFacebookLink()
-    ){
+    /* =====================================================
+       WAIT FOR DYNAMIC FOOTER
+       ===================================================== */
+
+    if(!setFacebookLink()){
 
       const observer =
         new MutationObserver(
-          function(){
+          () => {
 
             if(
               setFacebookLink()
             ){
 
               observer.disconnect();
-
             }
-
           }
         );
 
@@ -2129,16 +1830,15 @@
 
 
       setTimeout(
-        function(){
+        () => {
 
           observer.disconnect();
 
           setFacebookLink();
 
         },
-        5000
+        3000
       );
-
     }
 
   </script>
