@@ -141,7 +141,7 @@
         smooth;
 
       background:
-        #100b07;
+        #080604;
 
     }
 
@@ -166,12 +166,63 @@
         sans-serif;
 
       background:
+        #080604;
+
+      position:
+        relative;
+
+      isolation:
+        isolate;
+
+    }
+
+
+    /* =====================================================
+       EXACT INDEX BACKGROUND
+       ใช้ชุดเดียวกับ index.html จริง
+    ===================================================== */
+
+    body::before {
+
+      content:"";
+
+      position:fixed;
+
+      inset:0;
+
+      z-index:-2;
+
+      pointer-events:none;
+
+      background:
+        url("assets/index-main-bg.png")
+        center top /
+        cover
+        no-repeat;
+
+    }
+
+
+    body::after {
+
+      content:"";
+
+      position:fixed;
+
+      inset:0;
+
+      z-index:-1;
+
+      pointer-events:none;
+
+      background:
         linear-gradient(
-          rgba(0,0,0,.65),
-          rgba(0,0,0,.88)
-        ),
-        url("./assets/index-main-bg.png")
-        center/cover fixed no-repeat;
+          180deg,
+          rgba(0,0,0,.42) 0%,
+          rgba(0,0,0,.34) 24%,
+          rgba(0,0,0,.72) 58%,
+          #080604 88%
+        );
 
     }
 
@@ -209,9 +260,10 @@
 
     .chatpetch-fixed-background {
 
-      display:none !important;
+      display:none;
 
     }
+
 
     /* =====================================================
        PAGE
