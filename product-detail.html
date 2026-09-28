@@ -2539,6 +2539,89 @@ body::before{
 }
 </style>
 
+
+<style id="chatpetch-product-detail-spacing-fix">
+/* =========================================================
+   PRODUCT DETAIL — COMPACT SPACING
+   คงพื้นหลังและดีไซน์เดิม แต่ลดช่องว่างแนวตั้งให้กระชับขึ้น
+========================================================= */
+
+.page-hero{
+  min-height:470px !important;
+  padding:125px 0 38px !important;
+}
+
+.hero-inner{
+  width:min(1280px,calc(100% - 70px)) !important;
+}
+
+.eyebrow{
+  margin-bottom:9px !important;
+}
+
+.page-title{
+  margin:5px 0 9px !important;
+  line-height:1.02 !important;
+}
+
+.page-title-en{
+  margin-top:4px !important;
+  line-height:1.05 !important;
+}
+
+.page-description{
+  margin:10px 0 0 !important;
+  line-height:1.65 !important;
+}
+
+.product-section{
+  padding:16px 0 70px !important;
+}
+
+.back-row{
+  margin:0 0 18px !important;
+}
+
+@media(max-width:980px){
+  .page-hero{
+    min-height:430px !important;
+    padding:115px 0 32px !important;
+  }
+}
+
+@media(max-width:700px){
+  .page-hero{
+    min-height:auto !important;
+    padding:110px 0 30px !important;
+  }
+
+  .eyebrow{
+    margin-bottom:7px !important;
+  }
+
+  .page-title{
+    margin:3px 0 7px !important;
+  }
+
+  .page-title-en{
+    margin-top:3px !important;
+  }
+
+  .page-description{
+    margin-top:8px !important;
+    line-height:1.65 !important;
+  }
+
+  .product-section{
+    padding:12px 0 55px !important;
+  }
+
+  .back-row{
+    margin-bottom:14px !important;
+  }
+}
+</style>
+
 </head>
 
 
@@ -2947,7 +3030,28 @@ body::before{
 
   </div>
 
- 
+  <section class="product-lower-info" aria-label="ข้อมูลเพิ่มเติมของสินค้า">
+    <div class="product-lower-grid">
+      <div class="product-lower-card product-lower-wide">
+        <div class="product-lower-kicker">PRODUCT INFORMATION</div>
+        <h3>ข้อมูลเพิ่มเติมของสินค้า</h3>
+        <p id="lowerDescription">-</p>
+      </div>
+      <div class="product-lower-card">
+        <div class="product-lower-kicker">FEATURES</div>
+        <h3>จุดเด่นผลิตภัณฑ์</h3>
+        <ul id="lowerFeaturesList" class="lower-feature-list"></ul>
+        <p id="lowerFeaturesEmpty" class="lower-empty">ยังไม่มีข้อมูลเพิ่มเติม</p>
+      </div>
+      <div class="product-lower-card">
+        <div class="product-lower-kicker">USAGE & COVERAGE</div>
+        <h3>การใช้งานและขนาดบรรจุ</h3>
+        <div class="lower-meta-row"><span>การใช้งาน</span><strong id="lowerUsage">-</strong></div>
+        <div class="lower-meta-row"><span>ขนาดบรรจุ / พื้นที่ใช้งาน</span><strong id="lowerCoverage">-</strong></div>
+      </div>
+    </div>
+  </section>
+
 </section>
 
 
