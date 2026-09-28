@@ -4,12 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#100b07">
+
   <title>ติดต่อเรา | CHATPHETCH GROUP</title>
-  <meta name="description" content="ติดต่อ CHATPHETCH GROUP เพื่อขอคำปรึกษา ประเมินหน้างาน และสอบถามสินค้าและบริการด้านระบบพื้น">
+
+  <meta
+    name="description"
+    content="ติดต่อ CHATPHETCH GROUP เพื่อขอคำปรึกษา ประเมินหน้างาน และสอบถามสินค้าและบริการด้านระบบพื้น"
+  >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     :root{
@@ -26,8 +38,14 @@
       --shadow:0 24px 70px rgba(0,0,0,.43);
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       margin:0;
       color:var(--white);
@@ -35,9 +53,23 @@
       font-family:"Prompt",sans-serif;
       overflow-x:hidden;
     }
-    a{color:inherit;text-decoration:none}
-    button,input,select,textarea{font:inherit}
-    img{display:block;max-width:100%}
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    button,
+    input,
+    select,
+    textarea{
+      font:inherit;
+    }
+
+    img{
+      display:block;
+      max-width:100%;
+    }
 
     .cp-page{
       min-height:100vh;
@@ -59,8 +91,17 @@
       inset:0;
       z-index:-2;
       background:
-        linear-gradient(180deg,rgba(8,6,4,.52),rgba(10,7,4,.78) 48%,rgba(10,7,4,.97)),
-        radial-gradient(circle at 72% 8%,rgba(198,151,63,.14),transparent 35%);
+        linear-gradient(
+          180deg,
+          rgba(8,6,4,.52),
+          rgba(10,7,4,.78) 48%,
+          rgba(10,7,4,.97)
+        ),
+        radial-gradient(
+          circle at 72% 8%,
+          rgba(198,151,63,.14),
+          transparent 35%
+        );
       pointer-events:none;
     }
 
@@ -69,7 +110,10 @@
       margin:0 auto;
     }
 
-    /* HERO */
+    /* =====================================================
+       HERO
+    ===================================================== */
+
     .contact-hero{
       min-height:470px;
       display:flex;
@@ -113,12 +157,19 @@
       line-height:1.85;
     }
 
-    /* MAIN */
-    .contact-main{padding-bottom:95px}
+    /* =====================================================
+       MAIN
+    ===================================================== */
+
+    .contact-main{
+      padding-bottom:95px;
+    }
 
     .contact-grid{
       display:grid;
-      grid-template-columns:minmax(0,1.15fr) minmax(350px,.85fr);
+      grid-template-columns:
+        minmax(0,1.15fr)
+        minmax(350px,.85fr);
       gap:22px;
       align-items:start;
     }
@@ -126,12 +177,19 @@
     .panel{
       border:1px solid var(--line);
       border-radius:var(--radius);
-      background:linear-gradient(145deg,rgba(31,22,14,.86),rgba(12,9,6,.93));
+      background:
+        linear-gradient(
+          145deg,
+          rgba(31,22,14,.86),
+          rgba(12,9,6,.93)
+        );
       box-shadow:var(--shadow);
       backdrop-filter:blur(8px);
     }
 
-    .form-panel{padding:31px}
+    .form-panel{
+      padding:31px;
+    }
 
     .section-label{
       color:var(--gold-light);
@@ -168,14 +226,18 @@
       gap:7px;
     }
 
-    .field.full{grid-column:1/-1}
+    .field.full{
+      grid-column:1/-1;
+    }
 
     .field label{
       color:#d1c9bd;
       font-size:13px;
     }
 
-    .required{color:var(--gold)}
+    .required{
+      color:var(--gold);
+    }
 
     .field input,
     .field select,
@@ -191,7 +253,9 @@
     }
 
     .field input,
-    .field select{min-height:47px}
+    .field select{
+      min-height:47px;
+    }
 
     .field textarea{
       min-height:135px;
@@ -202,13 +266,25 @@
     .field select:focus,
     .field textarea:focus{
       border-color:var(--gold);
-      box-shadow:0 0 0 3px rgba(214,182,106,.07);
+      box-shadow:
+        0 0 0 3px rgba(214,182,106,.07);
+    }
+
+    .field input:disabled,
+    .field select:disabled,
+    .field textarea:disabled{
+      opacity:.7;
+      cursor:not-allowed;
     }
 
     .field select option{
       background:#15100b;
       color:#fff;
     }
+
+    /* =====================================================
+       UPLOAD
+    ===================================================== */
 
     .upload{
       position:relative;
@@ -275,6 +351,10 @@
       white-space:nowrap;
     }
 
+    /* =====================================================
+       BUTTON
+    ===================================================== */
+
     .form-actions{
       display:flex;
       align-items:center;
@@ -297,9 +377,21 @@
 
     .btn-primary{
       color:#181006;
-      background:linear-gradient(135deg,#e7ca7e,#b78b3c);
+      background:
+        linear-gradient(
+          135deg,
+          #e7ca7e,
+          #b78b3c
+        );
       border-color:transparent;
       font-weight:600;
+    }
+
+    .btn-primary:disabled{
+      opacity:.65;
+      cursor:not-allowed;
+      transform:none;
+      box-shadow:none;
     }
 
     .btn-secondary{
@@ -307,9 +399,10 @@
       background:rgba(214,182,106,.05);
     }
 
-    .btn:hover{
+    .btn:hover:not(:disabled){
       transform:translateY(-2px);
-      box-shadow:0 12px 28px rgba(0,0,0,.3);
+      box-shadow:
+        0 12px 28px rgba(0,0,0,.3);
     }
 
     .form-note{
@@ -319,27 +412,53 @@
       max-width:390px;
     }
 
+    /* =====================================================
+       FORM MESSAGE
+    ===================================================== */
+
     .form-message{
       display:none;
       margin-top:15px;
       padding:13px 15px;
-      border:1px solid rgba(214,182,106,.3);
       border-radius:11px;
-      background:rgba(214,182,106,.055);
-      color:#d8c691;
       font-size:12px;
       line-height:1.7;
     }
 
-    .form-message.show{display:block}
+    .form-message.show{
+      display:block;
+    }
 
-    /* INFO */
+    .form-message.success{
+      border:1px solid rgba(112,180,112,.35);
+      background:rgba(65,120,65,.12);
+      color:#bfe0bd;
+    }
+
+    .form-message.error{
+      border:1px solid rgba(210,90,90,.38);
+      background:rgba(150,45,45,.12);
+      color:#efb1b1;
+    }
+
+    .form-message.info{
+      border:1px solid rgba(214,182,106,.3);
+      background:rgba(214,182,106,.055);
+      color:#d8c691;
+    }
+
+    /* =====================================================
+       INFO
+    ===================================================== */
+
     .info-stack{
       display:grid;
       gap:16px;
     }
 
-    .info-panel{padding:27px}
+    .info-panel{
+      padding:27px;
+    }
 
     .info-panel h3{
       margin:0 0 13px;
@@ -432,15 +551,26 @@
       background:rgba(214,182,106,.025);
     }
 
-    /* SERVICE STRIP */
+    /* =====================================================
+       SERVICE STRIP
+    ===================================================== */
+
     .service-strip{
       margin-top:56px;
       padding:38px;
       border:1px solid rgba(214,182,106,.23);
       border-radius:24px;
       background:
-        linear-gradient(135deg,rgba(55,39,19,.55),rgba(13,9,6,.9)),
-        radial-gradient(circle at 90% 10%,rgba(214,182,106,.13),transparent 35%);
+        linear-gradient(
+          135deg,
+          rgba(55,39,19,.55),
+          rgba(13,9,6,.9)
+        ),
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(214,182,106,.13),
+          transparent 35%
+        );
     }
 
     .service-strip h2{
@@ -477,20 +607,36 @@
       transform:translateY(-2px);
     }
 
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
     @media(max-width:1050px){
-      .contact-grid{grid-template-columns:1fr}
-      .service-links{grid-template-columns:repeat(2,1fr)}
+
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+
+      .service-links{
+        grid-template-columns:repeat(2,1fr);
+      }
+
     }
 
     @media(max-width:700px){
-      :root{--container:calc(100% - 30px)}
+
+      :root{
+        --container:calc(100% - 30px);
+      }
 
       .contact-hero{
         min-height:410px;
         padding:130px 0 45px;
       }
 
-      h1{font-size:55px}
+      h1{
+        font-size:55px;
+      }
 
       .hero-copy{
         font-size:15px;
@@ -498,30 +644,51 @@
       }
 
       .form-panel,
-      .info-panel{padding:23px 20px}
+      .info-panel{
+        padding:23px 20px;
+      }
 
-      .form-grid{grid-template-columns:1fr}
-      .field.full{grid-column:auto}
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .field.full{
+        grid-column:auto;
+      }
 
       .form-actions{
         align-items:stretch;
         flex-direction:column;
       }
 
-      .btn{width:100%}
-      .service-strip{padding:27px 20px}
-      .service-links{grid-template-columns:1fr}
+      .btn{
+        width:100%;
+      }
+
+      .service-strip{
+        padding:27px 20px;
+      }
+
+      .service-links{
+        grid-template-columns:1fr;
+      }
+
     }
 
     @media(max-width:480px){
-      :root{--container:calc(100% - 24px)}
+
+      :root{
+        --container:calc(100% - 24px);
+      }
 
       .contact-hero{
         min-height:390px;
         padding-top:120px;
       }
 
-      h1{font-size:48px}
+      h1{
+        font-size:48px;
+      }
 
       .contact-row{
         align-items:flex-start;
@@ -529,317 +696,1452 @@
         gap:5px;
       }
 
-      .contact-phone{font-size:15px}
+      .contact-phone{
+        font-size:15px;
+      }
+
     }
   </style>
 </head>
 
 <body>
+
   <div class="cp-page">
+
+    <!-- =====================================================
+         MASTER NAV
+    ===================================================== -->
 
     <div id="customer-master-nav"></div>
 
+
     <main>
+
+      <!-- ===================================================
+           HERO
+      =================================================== -->
+
       <section class="contact-hero">
+
         <div class="container">
-          <div class="eyebrow">CONTACT US</div>
-          <h1>ติดต่อเรา</h1>
+
+          <div class="eyebrow">
+            CONTACT US
+          </div>
+
+          <h1>
+            ติดต่อเรา
+          </h1>
+
           <p class="hero-copy">
             ส่งรายละเอียดพื้นที่ ปัญหาที่พบ หรือประเภทงานที่สนใจ
             ให้ทีมงาน CHATPHETCH GROUP ใช้เป็นข้อมูลเบื้องต้นในการให้คำปรึกษา
             โดยการกำหนดระบบและรายละเอียดงานควรตรวจสอบสภาพหน้างานจริงก่อนดำเนินการ
           </p>
+
         </div>
+
       </section>
 
+
+      <!-- ===================================================
+           MAIN
+      =================================================== -->
+
       <section class="contact-main">
+
         <div class="container">
 
           <div class="contact-grid">
 
+
+            <!-- =================================================
+                 FORM
+            ================================================= -->
+
             <section class="panel form-panel">
-              <div class="section-label">REQUEST A CONSULTATION</div>
-              <h2>ขอคำปรึกษา / ประเมินหน้างาน</h2>
+
+              <div class="section-label">
+                REQUEST A CONSULTATION
+              </div>
+
+              <h2>
+                ขอคำปรึกษา / ประเมินหน้างาน
+              </h2>
+
               <p class="intro">
                 กรอกข้อมูลเบื้องต้นและแนบรูปหน้างานได้หลายรูป
-                ข้อมูลในฟอร์มนี้จะถูกเก็บเป็นแบบร่างไว้ในอุปกรณ์ของคุณเท่านั้น
-                จนกว่าจะเชื่อมระบบรับ Lead จริง
+                เพื่อให้ทีมงาน CHATPHETCH GROUP ตรวจสอบข้อมูล
+                และติดต่อกลับเพื่อให้คำปรึกษาเบื้องต้น
               </p>
 
-              <form id="contactForm">
+
+              <form
+                id="contactForm"
+                novalidate
+              >
+
                 <div class="form-grid">
 
-                  <div class="field">
-                    <label>ชื่อผู้ติดต่อ <span class="required">*</span></label>
-                    <input id="name" required placeholder="ชื่อ - นามสกุล">
-                  </div>
+
+                  <!-- NAME -->
 
                   <div class="field">
-                    <label>บริษัท / หน่วยงาน</label>
-                    <input id="company" placeholder="ชื่อบริษัทหรือหน่วยงาน">
+
+                    <label>
+                      ชื่อผู้ติดต่อ
+                      <span class="required">*</span>
+                    </label>
+
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      autocomplete="name"
+                      placeholder="ชื่อ - นามสกุล"
+                    >
+
                   </div>
 
-                  <div class="field">
-                    <label>เบอร์โทรศัพท์ <span class="required">*</span></label>
-                    <input id="phone" type="tel" required placeholder="08x-xxx-xxxx">
-                  </div>
+
+                  <!-- COMPANY -->
 
                   <div class="field">
-                    <label>อีเมล</label>
-                    <input id="email" type="email" placeholder="example@email.com">
+
+                    <label>
+                      บริษัท / หน่วยงาน
+                    </label>
+
+                    <input
+                      id="company"
+                      name="company"
+                      type="text"
+                      autocomplete="organization"
+                      placeholder="ชื่อบริษัทหรือหน่วยงาน"
+                    >
+
                   </div>
 
+
+                  <!-- PHONE -->
+
                   <div class="field">
-                    <label>ประเภทงาน</label>
-                    <select id="jobType">
-                      <option value="">เลือกประเภทงาน</option>
-                      <option>พื้นอุตสาหกรรม / Epoxy / PU</option>
-                      <option>งานกันรั่วซึม</option>
-                      <option>งานซ่อมปรับปรุงคอนกรีต</option>
-                      <option>พื้นสนามกีฬา</option>
-                      <option>พื้นตกแต่ง</option>
-                      <option>งานตีเส้นจราจร / สัญลักษณ์</option>
-                      <option>อื่น ๆ</option>
+
+                    <label>
+                      เบอร์โทรศัพท์
+                      <span class="required">*</span>
+                    </label>
+
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      required
+                      autocomplete="tel"
+                      placeholder="08x-xxx-xxxx"
+                    >
+
+                  </div>
+
+
+                  <!-- EMAIL -->
+
+                  <div class="field">
+
+                    <label>
+                      อีเมล
+                    </label>
+
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      placeholder="example@email.com"
+                    >
+
+                  </div>
+
+
+                  <!-- JOB TYPE -->
+
+                  <div class="field">
+
+                    <label>
+                      ประเภทงาน
+                    </label>
+
+                    <select
+                      id="jobType"
+                      name="jobType"
+                    >
+
+                      <option value="">
+                        เลือกประเภทงาน
+                      </option>
+
+                      <option>
+                        พื้นอุตสาหกรรม / Epoxy / PU
+                      </option>
+
+                      <option>
+                        งานกันรั่วซึม
+                      </option>
+
+                      <option>
+                        งานซ่อมปรับปรุงคอนกรีต
+                      </option>
+
+                      <option>
+                        พื้นสนามกีฬา
+                      </option>
+
+                      <option>
+                        พื้นตกแต่ง
+                      </option>
+
+                      <option>
+                        งานตีเส้นจราจร / สัญลักษณ์
+                      </option>
+
+                      <option>
+                        อื่น ๆ
+                      </option>
+
                     </select>
+
                   </div>
+
+
+                  <!-- AREA -->
 
                   <div class="field">
-                    <label>พื้นที่โดยประมาณ (ตร.ม.)</label>
-                    <input id="area" type="number" min="0" placeholder="เช่น 500">
+
+                    <label>
+                      พื้นที่โดยประมาณ (ตร.ม.)
+                    </label>
+
+                    <input
+                      id="area"
+                      name="area"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      inputmode="decimal"
+                      placeholder="เช่น 500"
+                    >
+
                   </div>
 
-                  <div class="field full">
-                    <label>จังหวัด / พื้นที่หน้างาน <span class="required">*</span></label>
-                    <input id="province" required placeholder="เช่น สงขลา">
-                  </div>
+
+                  <!-- PROVINCE -->
 
                   <div class="field full">
-                    <label>รายละเอียดเพิ่มเติม</label>
-                    <textarea id="note" placeholder="ระบุปัญหาที่พบ ลักษณะพื้นที่ หรือสิ่งที่ต้องการให้ทีมงานช่วยดู"></textarea>
+
+                    <label>
+                      จังหวัด / พื้นที่หน้างาน
+                      <span class="required">*</span>
+                    </label>
+
+                    <input
+                      id="province"
+                      name="province"
+                      type="text"
+                      required
+                      autocomplete="address-level1"
+                      placeholder="เช่น สงขลา"
+                    >
+
                   </div>
 
+
+                  <!-- NOTE -->
+
                   <div class="field full">
-                    <label>แนบรูปหน้างาน</label>
+
+                    <label>
+                      รายละเอียดเพิ่มเติม
+                    </label>
+
+                    <textarea
+                      id="note"
+                      name="note"
+                      placeholder="ระบุปัญหาที่พบ ลักษณะพื้นที่ หรือสิ่งที่ต้องการให้ทีมงานช่วยดู"
+                    ></textarea>
+
+                  </div>
+
+
+                  <!-- PHOTOS -->
+
+                  <div class="field full">
+
+                    <label>
+                      แนบรูปหน้างาน
+                    </label>
+
                     <div class="upload">
-                      <input id="sitePhotos" type="file" accept="image/*" multiple>
-                      <div class="upload-icon">⇧</div>
-                      <div class="upload-title">คลิกเพื่อเลือกรูปหน้างาน</div>
-                      <div class="upload-sub">สามารถเลือกได้หลายรูป • รูปจะใช้เพื่อแสดงรายการที่เลือกเท่านั้น</div>
+
+                      <input
+                        id="sitePhotos"
+                        name="sitePhotos"
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp,image/gif"
+                        multiple
+                      >
+
+                      <div class="upload-icon">
+                        ⇧
+                      </div>
+
+                      <div class="upload-title">
+                        คลิกเพื่อเลือกรูปหน้างาน
+                      </div>
+
+                      <div class="upload-sub">
+                        สามารถเลือกได้หลายรูป
+                        • รูปจะถูกบันทึกชื่อไฟล์ไว้กับข้อมูลการติดต่อ
+                      </div>
+
                     </div>
-                    <div class="file-list" id="fileList"></div>
+
+                    <div
+                      class="file-list"
+                      id="fileList"
+                    ></div>
+
                   </div>
+
 
                 </div>
+
+
+                <!-- ACTIONS -->
 
                 <div class="form-actions">
-                  <button class="btn btn-primary" type="submit">
-                    บันทึกข้อมูลเบื้องต้น →
+
+                  <button
+                    class="btn btn-primary"
+                    id="submitButton"
+                    type="submit"
+                  >
+                    ส่งข้อมูลให้ทีมงาน →
                   </button>
-                  <a class="btn btn-secondary" href="services.html">
+
+                  <a
+                    class="btn btn-secondary"
+                    href="services.html"
+                  >
                     ดูบริการทั้งหมด
                   </a>
+
                   <div class="form-note">
-                    * ข้อมูลนี้เป็นข้อมูลเบื้องต้น ควรตรวจสอบสภาพหน้างานจริงก่อนกำหนดระบบและรายละเอียดงาน
+                    * ข้อมูลนี้เป็นข้อมูลเบื้องต้น
+                    ควรตรวจสอบสภาพหน้างานจริงก่อนกำหนดระบบและรายละเอียดงาน
                   </div>
+
                 </div>
 
-                <div class="form-message" id="formMessage"></div>
+
+                <!-- MESSAGE -->
+
+                <div
+                  class="form-message"
+                  id="formMessage"
+                  role="alert"
+                  aria-live="polite"
+                ></div>
+
               </form>
+
             </section>
+
+
+            <!-- =================================================
+                 INFO
+            ================================================= -->
 
             <aside class="info-stack">
 
+
+              <!-- HEAD OFFICE -->
+
               <section class="panel info-panel">
-                <div class="section-label">HEAD OFFICE</div>
-                <h3>บริษัท ฉัตรเพชร กรุ๊ป จำกัด</h3>
+
+                <div class="section-label">
+                  HEAD OFFICE
+                </div>
+
+                <h3>
+                  บริษัท ฉัตรเพชร กรุ๊ป จำกัด
+                </h3>
+
                 <div class="address">
                   10/1 ม.9 ต.นาหม่อม<br>
                   อ.นาหม่อม จ.สงขลา<br>
                   Thailand 90310
                 </div>
+
                 <a
                   class="map-link"
                   href="https://www.google.com/maps/search/?api=1&query=10%2F1%20Moo%209%20Na%20Mom%20Songkhla%2090310"
                   target="_blank"
                   rel="noopener noreferrer"
-                >เปิด Google Maps →</a>
+                >
+                  เปิด Google Maps →
+                </a>
+
               </section>
 
+
+              <!-- CONTACT DIRECTORY -->
+
               <section class="panel info-panel">
-                <div class="section-label">CONTACT DIRECTORY</div>
-                <h3>ติดต่อแยกตามฝ่าย</h3>
+
+                <div class="section-label">
+                  CONTACT DIRECTORY
+                </div>
+
+                <h3>
+                  ติดต่อแยกตามฝ่าย
+                </h3>
 
                 <div class="contacts">
 
-                  <a class="contact-row" href="tel:0856299778">
+
+                  <a
+                    class="contact-row"
+                    href="tel:0856299778"
+                  >
+
                     <span class="contact-name">
+
                       ฝ่ายเทคนิค
-                      <span class="contact-role">Technical</span>
+
+                      <span class="contact-role">
+                        Technical
+                      </span>
+
                     </span>
-                    <span class="contact-phone">085-6299778</span>
+
+                    <span class="contact-phone">
+                      085-6299778
+                    </span>
+
                   </a>
 
-                  <a class="contact-row" href="tel:0980153271">
+
+                  <a
+                    class="contact-row"
+                    href="tel:0980153271"
+                  >
+
                     <span class="contact-name">
+
                       ฝ่ายบัญชี
-                      <span class="contact-role">Accounting</span>
+
+                      <span class="contact-role">
+                        Accounting
+                      </span>
+
                     </span>
-                    <span class="contact-phone">098-0153271</span>
+
+                    <span class="contact-phone">
+                      098-0153271
+                    </span>
+
                   </a>
 
-                  <a class="contact-row" href="tel:0828223678">
+
+                  <a
+                    class="contact-row"
+                    href="tel:0828223678"
+                  >
+
                     <span class="contact-name">
+
                       Sale พี่หญิง
-                      <span class="contact-role">Sales</span>
+
+                      <span class="contact-role">
+                        Sales
+                      </span>
+
                     </span>
-                    <span class="contact-phone">082-8223678</span>
+
+                    <span class="contact-phone">
+                      082-8223678
+                    </span>
+
                   </a>
 
-                  <a class="contact-row" href="tel:0986710888">
+
+                  <a
+                    class="contact-row"
+                    href="tel:0986710888"
+                  >
+
                     <span class="contact-name">
+
                       Sale มีน
-                      <span class="contact-role">Sales</span>
+
+                      <span class="contact-role">
+                        Sales
+                      </span>
+
                     </span>
-                    <span class="contact-phone">098-6710888</span>
+
+                    <span class="contact-phone">
+                      098-6710888
+                    </span>
+
                   </a>
 
-                  <a class="contact-row" href="tel:0630630046">
+
+                  <a
+                    class="contact-row"
+                    href="tel:0630630046"
+                  >
+
                     <span class="contact-name">
+
                       Sale เอ้
-                      <span class="contact-role">Sales</span>
+
+                      <span class="contact-role">
+                        Sales
+                      </span>
+
                     </span>
-                    <span class="contact-phone">063-0630046</span>
+
+                    <span class="contact-phone">
+                      063-0630046
+                    </span>
+
                   </a>
 
-                  <a class="contact-row" href="tel:0986426962">
+
+                  <a
+                    class="contact-row"
+                    href="tel:0986426962"
+                  >
+
                     <span class="contact-name">
+
                       Sale สาว
-                      <span class="contact-role">Sales</span>
+
+                      <span class="contact-role">
+                        Sales
+                      </span>
+
                     </span>
-                    <span class="contact-phone">098-6426962</span>
+
+                    <span class="contact-phone">
+                      098-6426962
+                    </span>
+
                   </a>
+
 
                 </div>
+
               </section>
 
+
+              <!-- SOCIAL -->
+
               <section class="panel info-panel">
-                <div class="section-label">SOCIAL</div>
-                <h3>ช่องทางออนไลน์</h3>
+
+                <div class="section-label">
+                  SOCIAL
+                </div>
+
+                <h3>
+                  ช่องทางออนไลน์
+                </h3>
 
                 <div class="social-box">
+
                   <a
                     class="social-btn"
                     href="https://www.facebook.com/ChatphetchGroup"
                     target="_blank"
                     rel="noopener noreferrer"
-                  >Facebook</a>
+                  >
+                    Facebook
+                  </a>
 
-                  <span class="social-btn">YouTube · เร็ว ๆ นี้</span>
-                  <span class="social-btn">LINE OA · รอใส่ URL</span>
+                  <span class="social-btn">
+                    YouTube · เร็ว ๆ นี้
+                  </span>
+
+                  <span class="social-btn">
+                    LINE OA · รอใส่ URL
+                  </span>
+
                 </div>
+
               </section>
 
+
             </aside>
+
           </div>
 
+
+          <!-- =================================================
+               SERVICE STRIP
+          ================================================= -->
+
           <section class="service-strip">
-            <div class="section-label">OUR SYSTEMS</div>
-            <h2>ไม่แน่ใจว่าต้องเริ่มจากระบบไหน?</h2>
-            <p>ดูประเภทบริการก่อน แล้วกลับมาส่งรายละเอียดพื้นที่ให้ทีมงานช่วยพิจารณา</p>
+
+            <div class="section-label">
+              OUR SYSTEMS
+            </div>
+
+            <h2>
+              ไม่แน่ใจว่าต้องเริ่มจากระบบไหน?
+            </h2>
+
+            <p>
+              ดูประเภทบริการก่อน
+              แล้วกลับมาส่งรายละเอียดพื้นที่ให้ทีมงานช่วยพิจารณา
+            </p>
 
             <div class="service-links">
-              <a class="service-link" href="service-detail.html?service=industrial">01 · พื้นอุตสาหกรรม / Epoxy / PU →</a>
-              <a class="service-link" href="service-detail.html?service=waterproof">02 · งานกันรั่วซึม →</a>
-              <a class="service-link" href="service-detail.html?service=concrete">03 · งานซ่อมปรับปรุงคอนกรีต →</a>
-              <a class="service-link" href="service-detail.html?service=sports">04 · พื้นสนามกีฬา →</a>
-              <a class="service-link" href="service-detail.html?service=decorative">05 · พื้นตกแต่ง →</a>
-              <a class="service-link" href="service-detail.html?service=traffic">06 · เส้นจราจร / สัญลักษณ์ →</a>
+
+              <a
+                class="service-link"
+                href="service-detail.html?service=industrial"
+              >
+                01 · พื้นอุตสาหกรรม / Epoxy / PU →
+              </a>
+
+              <a
+                class="service-link"
+                href="service-detail.html?service=waterproof"
+              >
+                02 · งานกันรั่วซึม →
+              </a>
+
+              <a
+                class="service-link"
+                href="service-detail.html?service=concrete"
+              >
+                03 · งานซ่อมปรับปรุงคอนกรีต →
+              </a>
+
+              <a
+                class="service-link"
+                href="service-detail.html?service=sports"
+              >
+                04 · พื้นสนามกีฬา →
+              </a>
+
+              <a
+                class="service-link"
+                href="service-detail.html?service=decorative"
+              >
+                05 · พื้นตกแต่ง →
+              </a>
+
+              <a
+                class="service-link"
+                href="service-detail.html?service=traffic"
+              >
+                06 · เส้นจราจร / สัญลักษณ์ →
+              </a>
+
             </div>
+
           </section>
 
         </div>
+
       </section>
+
     </main>
 
+
+    <!-- =====================================================
+         MASTER FOOTER
+    ===================================================== -->
+
     <div id="customer-master-footer"></div>
+
   </div>
+
+
+  <!-- =======================================================
+       MASTER NAV / FOOTER
+  ======================================================= -->
 
   <script src="assets/customer-master-nav.js"></script>
 
+
+  <!-- =======================================================
+       SUPABASE + CONTACT FORM
+  ======================================================= -->
+
   <script>
-    const photoInput = document.getElementById("sitePhotos");
-    const fileList = document.getElementById("fileList");
-    const form = document.getElementById("contactForm");
-    const message = document.getElementById("formMessage");
+
+    /* =====================================================
+       SUPABASE CONFIG
+       
+       ใส่ค่าจริงของคุณตรงนี้
+       
+       ห้ามใช้ service_role key
+       ให้ใช้ Publishable key / anon key
+    ===================================================== */
+
+    const SUPABASE_URL =
+      "ใส่_SUPABASE_URL_ตรงนี้";
+
+    const SUPABASE_KEY =
+      "ใส่_SUPABASE_PUBLISHABLE_KEY_หรือ_ANON_KEY_ตรงนี้";
+
+
+    /* =====================================================
+       SUPABASE CLIENT
+    ===================================================== */
+
+    let supabaseClient = null;
+
+
+    function initializeSupabase(){
+
+      if(
+        !window.supabase ||
+        typeof window.supabase.createClient !== "function"
+      ){
+
+        throw new Error(
+          "ไม่พบ Supabase JavaScript SDK"
+        );
+
+      }
+
+
+      if(
+        !SUPABASE_URL ||
+        SUPABASE_URL.includes("ใส่_") ||
+        !SUPABASE_URL.startsWith("https://")
+      ){
+
+        throw new Error(
+          "ยังไม่ได้ตั้งค่า SUPABASE_URL"
+        );
+
+      }
+
+
+      if(
+        !SUPABASE_KEY ||
+        SUPABASE_KEY.includes("ใส่_")
+      ){
+
+        throw new Error(
+          "ยังไม่ได้ตั้งค่า SUPABASE_KEY"
+        );
+
+      }
+
+
+      if(
+        /[^\x00-\x7F]/.test(
+          SUPABASE_KEY
+        )
+      ){
+
+        throw new Error(
+          "SUPABASE_KEY มีอักขระที่ไม่ถูกต้อง"
+        );
+
+      }
+
+
+      if(!supabaseClient){
+
+        supabaseClient =
+          window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY,
+            {
+              auth:{
+                persistSession:true,
+                autoRefreshToken:true,
+                detectSessionInUrl:true
+              }
+            }
+          );
+
+      }
+
+
+      return supabaseClient;
+
+    }
+
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const photoInput =
+      document.getElementById(
+        "sitePhotos"
+      );
+
+    const fileList =
+      document.getElementById(
+        "fileList"
+      );
+
+    const form =
+      document.getElementById(
+        "contactForm"
+      );
+
+    const message =
+      document.getElementById(
+        "formMessage"
+      );
+
+    const submitButton =
+      document.getElementById(
+        "submitButton"
+      );
+
+
+    /* =====================================================
+       FORMAT BYTES
+    ===================================================== */
 
     function formatBytes(bytes){
-      if(bytes < 1024) return `${bytes} B`;
-      if(bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
-      return `${(bytes / 1024 / 1024).toFixed(2)} MB`;
+
+      if(bytes < 1024){
+
+        return `${bytes} B`;
+
+      }
+
+
+      if(bytes < 1024 * 1024){
+
+        return `${(
+          bytes / 1024
+        ).toFixed(0)} KB`;
+
+      }
+
+
+      return `${(
+        bytes /
+        1024 /
+        1024
+      ).toFixed(2)} MB`;
+
     }
 
-    photoInput.addEventListener("change",() => {
-      const files = [...photoInput.files];
 
-      fileList.innerHTML = files.map(file => `
-        <div class="file-item">
-          <span>${file.name}</span>
-          <span class="file-size">${formatBytes(file.size)}</span>
-        </div>
-      `).join("");
-    });
+    /* =====================================================
+       ESCAPE HTML
+    ===================================================== */
 
-    form.addEventListener("submit",(event) => {
-      event.preventDefault();
+    function escapeHTML(value){
 
-      const data = {
-        name:document.getElementById("name").value.trim(),
-        company:document.getElementById("company").value.trim(),
-        phone:document.getElementById("phone").value.trim(),
-        email:document.getElementById("email").value.trim(),
-        jobType:document.getElementById("jobType").value,
-        area:document.getElementById("area").value,
-        province:document.getElementById("province").value.trim(),
-        note:document.getElementById("note").value.trim(),
-        photoNames:[...photoInput.files].map(file => file.name),
-        savedAt:new Date().toISOString()
-      };
+      return String(
+        value ?? ""
+      )
+      .replaceAll(
+        "&",
+        "&amp;"
+      )
+      .replaceAll(
+        "<",
+        "&lt;"
+      )
+      .replaceAll(
+        ">",
+        "&gt;"
+      )
+      .replaceAll(
+        '"',
+        "&quot;"
+      )
+      .replaceAll(
+        "'",
+        "&#039;"
+      );
 
-      localStorage.setItem("chatpetch_contact_draft",JSON.stringify(data));
+    }
+
+
+    /* =====================================================
+       SHOW MESSAGE
+    ===================================================== */
+
+    function showFormMessage(
+      text,
+      type = "info"
+    ){
 
       message.textContent =
-        "บันทึกข้อมูลเบื้องต้นไว้ในเครื่องนี้แล้วครับ ขณะนี้ฟอร์มยังไม่ได้เชื่อมต่อระบบรับ Lead หรือส่งข้อมูลเข้าบริษัทโดยอัตโนมัติ";
-      message.classList.add("show");
-    });
+        text;
 
-    /* Safely set Facebook after the dynamic master footer appears. */
-    const FACEBOOK_URL = "https://www.facebook.com/ChatphetchGroup";
+      message.className =
+        "form-message show " +
+        type;
 
-    function setFacebookLink(){
-      const fb = document.querySelector(".customer-social");
-      if(!fb) return false;
+    }
 
-      fb.href = FACEBOOK_URL;
-      fb.target = "_blank";
-      fb.rel = "noopener noreferrer";
-      fb.setAttribute("aria-label","Facebook");
-      if(fb.textContent.trim() !== "f") fb.textContent = "f";
+
+    /* =====================================================
+       CLEAR MESSAGE
+    ===================================================== */
+
+    function clearFormMessage(){
+
+      message.textContent =
+        "";
+
+      message.className =
+        "form-message";
+
+    }
+
+
+    /* =====================================================
+       FILE PREVIEW LIST
+    ===================================================== */
+
+    photoInput.addEventListener(
+      "change",
+      function(){
+
+        const files =
+          [...photoInput.files];
+
+
+        if(!files.length){
+
+          fileList.innerHTML =
+            "";
+
+          return;
+
+        }
+
+
+        fileList.innerHTML =
+          files
+          .map(
+            file => `
+
+              <div class="file-item">
+
+                <span>
+                  ${escapeHTML(
+                    file.name
+                  )}
+                </span>
+
+                <span class="file-size">
+                  ${formatBytes(
+                    file.size
+                  )}
+                </span>
+
+              </div>
+
+            `
+          )
+          .join("");
+
+      }
+    );
+
+
+    /* =====================================================
+       VALIDATE FORM
+    ===================================================== */
+
+    function validateForm(){
+
+      const name =
+        document
+          .getElementById("name")
+          .value
+          .trim();
+
+      const phone =
+        document
+          .getElementById("phone")
+          .value
+          .trim();
+
+      const province =
+        document
+          .getElementById("province")
+          .value
+          .trim();
+
+      const email =
+        document
+          .getElementById("email")
+          .value
+          .trim();
+
+
+      if(!name){
+
+        throw new Error(
+          "กรุณากรอกชื่อผู้ติดต่อ"
+        );
+
+      }
+
+
+      if(!phone){
+
+        throw new Error(
+          "กรุณากรอกเบอร์โทรศัพท์"
+        );
+
+      }
+
+
+      if(!province){
+
+        throw new Error(
+          "กรุณากรอกจังหวัด / พื้นที่หน้างาน"
+        );
+
+      }
+
+
+      if(email){
+
+        const emailPattern =
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if(
+          !emailPattern.test(
+            email
+          )
+        ){
+
+          throw new Error(
+            "รูปแบบอีเมลไม่ถูกต้อง"
+          );
+
+        }
+
+      }
+
 
       return true;
+
     }
 
-    if(!setFacebookLink()){
-      const observer = new MutationObserver(() => {
-        if(setFacebookLink()) observer.disconnect();
-      });
 
-      observer.observe(document.body,{childList:true,subtree:true});
+    /* =====================================================
+       CREATE INQUIRY MESSAGE
+    ===================================================== */
 
-      setTimeout(() => {
-        observer.disconnect();
-        setFacebookLink();
-      },3000);
+    function buildInquiryMessage(){
+
+      const company =
+        document
+          .getElementById("company")
+          .value
+          .trim();
+
+      const jobType =
+        document
+          .getElementById("jobType")
+          .value
+          .trim();
+
+      const area =
+        document
+          .getElementById("area")
+          .value
+          .trim();
+
+      const province =
+        document
+          .getElementById("province")
+          .value
+          .trim();
+
+      const note =
+        document
+          .getElementById("note")
+          .value
+          .trim();
+
+      const photoNames =
+        [
+          ...photoInput.files
+        ]
+        .map(
+          file =>
+            file.name
+        );
+
+
+      const lines = [];
+
+
+      lines.push(
+        `บริษัท / หน่วยงาน: ${
+          company || "-"
+        }`
+      );
+
+
+      lines.push(
+        `ประเภทงาน: ${
+          jobType || "-"
+        }`
+      );
+
+
+      lines.push(
+        `พื้นที่โดยประมาณ: ${
+          area
+            ? `${area} ตร.ม.`
+            : "-"
+        }`
+      );
+
+
+      lines.push(
+        `จังหวัด / พื้นที่หน้างาน: ${
+          province || "-"
+        }`
+      );
+
+
+      lines.push(
+        `รายละเอียดเพิ่มเติม: ${
+          note || "-"
+        }`
+      );
+
+
+      lines.push(
+        `รูปหน้างานที่เลือก: ${
+          photoNames.length
+            ? photoNames.join(", ")
+            : "ไม่มี"
+        }`
+      );
+
+
+      return lines.join(
+        "\n"
+      );
+
     }
+
+
+    /* =====================================================
+       SUBMIT
+    ===================================================== */
+
+    form.addEventListener(
+      "submit",
+      async function(event){
+
+        event.preventDefault();
+
+
+        clearFormMessage();
+
+
+        const originalButtonText =
+          submitButton.textContent;
+
+
+        try{
+
+          /* ---------------------------------------------
+             VALIDATE
+          --------------------------------------------- */
+
+          validateForm();
+
+
+          /* ---------------------------------------------
+             INITIALIZE SUPABASE
+          --------------------------------------------- */
+
+          const client =
+            initializeSupabase();
+
+
+          /* ---------------------------------------------
+             GET FORM VALUES
+          --------------------------------------------- */
+
+          const name =
+            document
+              .getElementById("name")
+              .value
+              .trim();
+
+          const phone =
+            document
+              .getElementById("phone")
+              .value
+              .trim();
+
+          const email =
+            document
+              .getElementById("email")
+              .value
+              .trim();
+
+          const inquiryMessage =
+            buildInquiryMessage();
+
+
+          /* ---------------------------------------------
+             DISABLE BUTTON
+          --------------------------------------------- */
+
+          submitButton.disabled =
+            true;
+
+          submitButton.textContent =
+            "กำลังส่งข้อมูล...";
+
+
+          showFormMessage(
+            "กำลังส่งข้อมูลให้ทีมงาน...",
+            "info"
+          );
+
+
+          /* ---------------------------------------------
+             INSERT SUPABASE
+          --------------------------------------------- */
+
+          const {
+            data,
+            error
+          } =
+          await client
+            .from("inquiries")
+            .insert({
+
+              name:
+                name,
+
+              email:
+                email || null,
+
+              phone:
+                phone,
+
+              subject:
+                "ขอคำปรึกษา / ประเมินหน้างาน",
+
+              message:
+                inquiryMessage,
+
+              status:
+                "new"
+
+            })
+            .select()
+            .single();
+
+
+          /* ---------------------------------------------
+             HANDLE ERROR
+          --------------------------------------------- */
+
+          if(error){
+
+            console.error(
+              "Supabase inquiry error:",
+              error
+            );
+
+            throw new Error(
+              error.message ||
+              "ไม่สามารถส่งข้อมูลได้"
+            );
+
+          }
+
+
+          /* ---------------------------------------------
+             SUCCESS
+          --------------------------------------------- */
+
+          console.log(
+            "Inquiry created:",
+            data
+          );
+
+
+          showFormMessage(
+            "ส่งข้อมูลเรียบร้อยแล้วครับ ทีมงานจะติดต่อกลับโดยเร็วที่สุด",
+            "success"
+          );
+
+
+          /* ---------------------------------------------
+             RESET
+          --------------------------------------------- */
+
+          form.reset();
+
+          fileList.innerHTML =
+            "";
+
+
+          /* ---------------------------------------------
+             REMOVE OLD LOCAL DRAFT
+          --------------------------------------------- */
+
+          localStorage.removeItem(
+            "chatpetch_contact_draft"
+          );
+
+
+        }
+        catch(error){
+
+          console.error(
+            "Contact form error:",
+            error
+          );
+
+
+          showFormMessage(
+            error.message ||
+            "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+            "error"
+          );
+
+        }
+        finally{
+
+          submitButton.disabled =
+            false;
+
+          submitButton.textContent =
+            originalButtonText;
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       FACEBOOK LINK
+       
+       รองรับ master nav/footer เดิม
+    ===================================================== */
+
+    const FACEBOOK_URL =
+      "https://www.facebook.com/ChatphetchGroup";
+
+
+    function setFacebookLink(){
+
+      const fb =
+        document.querySelector(
+          ".customer-social"
+        );
+
+
+      if(!fb){
+
+        return false;
+
+      }
+
+
+      fb.href =
+        FACEBOOK_URL;
+
+      fb.target =
+        "_blank";
+
+      fb.rel =
+        "noopener noreferrer";
+
+      fb.setAttribute(
+        "aria-label",
+        "Facebook"
+      );
+
+
+      if(
+        fb.textContent.trim() !==
+        "f"
+      ){
+
+        fb.textContent =
+          "f";
+
+      }
+
+
+      return true;
+
+    }
+
+
+    if(
+      !setFacebookLink()
+    ){
+
+      const observer =
+        new MutationObserver(
+          function(){
+
+            if(
+              setFacebookLink()
+            ){
+
+              observer.disconnect();
+
+            }
+
+          }
+        );
+
+
+      observer.observe(
+        document.body,
+        {
+          childList:true,
+          subtree:true
+        }
+      );
+
+
+      setTimeout(
+        function(){
+
+          observer.disconnect();
+
+          setFacebookLink();
+
+        },
+        5000
+      );
+
+    }
+
   </script>
+
 </body>
 </html>
