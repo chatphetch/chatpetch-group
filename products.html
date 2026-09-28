@@ -258,10 +258,30 @@
        FIXED BACKGROUND
     ===================================================== */
 
-    .chatpetch-fixed-background {
+     .chatpetch-fixed-background {
 
-      display:none;
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -10;
+      pointer-events: none;
 
+      /* SAME BACKGROUND AS product-detail.html */
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0,0,0,.52) 0%,
+          rgba(0,0,0,.35) 24%,
+          rgba(0,0,0,.54) 55%,
+          rgba(0,0,0,.96) 100%
+        ),
+        url("assets/index-main-bg.png")
+        center top / cover no-repeat fixed;
+
+      transform: translate3d(0,0,0);
+      -webkit-transform: translate3d(0,0,0);
+      will-change: transform;
     }
 
 
@@ -1677,6 +1697,31 @@
       }
 
     }
+
+  /* =====================================================
+     PRODUCT PAGE — SAME BACKGROUND AS PRODUCT DETAIL
+  ===================================================== */
+  html {
+    background:#100b07 !important;
+  }
+  body {
+    background:#100b07 !important;
+  }
+  .chatpetch-fixed-background {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,.52) 0%,
+        rgba(0,0,0,.35) 24%,
+        rgba(0,0,0,.54) 55%,
+        rgba(0,0,0,.96) 100%
+      ),
+      url("assets/index-main-bg.png")
+      center top / cover no-repeat fixed !important;
+  }
+  .products-page {
+    background:transparent !important;
+  }
 
   </style>
 
