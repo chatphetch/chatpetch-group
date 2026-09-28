@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -10,1309 +8,944 @@
     content="width=device-width, initial-scale=1.0"
   >
 
+  <title>เข้าสู่ระบบผู้ดูแล | CHATPHETCH GROUP</title>
+
   <meta
-    name="theme-color"
-    content="#080604"
-  >
-
-  <title>
-    Admin Login | CHATPHETCH GROUP
-  </title>
-
-
-  <!-- =====================================================
-       FONT
-  ====================================================== -->
-
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
+    name="description"
+    content="ระบบเข้าสู่ระบบผู้ดูแลเว็บไซต์ บริษัท ฉัตรเพชรกรุ๊ป จำกัด"
   >
 
   <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
+    rel="icon"
+    type="image/png"
+    href="assets/logo.png"
   >
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-
-  <!-- =====================================================
+  <!-- =========================================================
        SUPABASE
-  ====================================================== -->
-
-  <script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-  ></script>
-
-
-  <!-- =====================================================
-       STYLE
-  ====================================================== -->
+  ========================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
+    /* =========================================================
+       RESET
+    ========================================================== */
 
-    :root{
-
-      --gold:#c9a85a;
-
-      --gold-light:#e6cc7c;
-
-      --cream:#f5ede1;
-
-      --text:#eee6dc;
-
-      --muted:rgba(245,237,225,.55);
-
-      --line:rgba(201,168,90,.25);
-
-      --dark:#080604;
-
-      --panel:rgba(8,6,4,.88);
-
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-
-    *{
-
-      box-sizing:border-box;
-
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
     }
 
-
-    html{
-
-      min-height:100%;
-
-      background:
-        var(--dark);
-
-    }
-
-
-    body{
-
-      margin:0;
-
-      min-height:100vh;
-
-      color:
-        var(--text);
-
+    body {
       font-family:
-        "Prompt",
-        "Kanit",
+        Arial,
+        "Noto Sans Thai",
+        "Tahoma",
         sans-serif;
 
       background:
-        var(--dark);
+        linear-gradient(
+          rgba(8, 18, 35, 0.82),
+          rgba(8, 18, 35, 0.92)
+        ),
+        url("assets/index-main-bg.png") center center / cover
+        no-repeat fixed;
 
-      overflow-x:hidden;
+      color: #172033;
 
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 24px;
     }
 
-
-    /* =====================================================
+    /* =========================================================
        BACKGROUND
-    ====================================================== */
+    ========================================================== */
 
-    .page-background{
-
-      position:fixed;
-
-      inset:0;
-
-      z-index:0;
-
-      background:
-
-        linear-gradient(
-          90deg,
-          rgba(0,0,0,.88) 0%,
-          rgba(0,0,0,.65) 42%,
-          rgba(0,0,0,.60) 100%
-        ),
-
-        linear-gradient(
-          180deg,
-          rgba(0,0,0,.25) 0%,
-          rgba(0,0,0,.55) 100%
-        ),
-
-        url("assets/index-main-bg.png")
-        center center /
-        cover
-        no-repeat;
-
-    }
-
-
-    .page-background::after{
-
-      content:"";
-
-      position:absolute;
-
-      inset:0;
+    .background-overlay {
+      position: fixed;
+      inset: 0;
 
       background:
         radial-gradient(
-          circle at 72% 42%,
-          rgba(201,168,90,.12),
+          circle at 20% 20%,
+          rgba(255,255,255,0.08),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 80% 80%,
+          rgba(255,255,255,0.05),
           transparent 35%
         );
 
+      pointer-events: none;
     }
 
+    /* =========================================================
+       LOGIN CARD
+    ========================================================== */
 
-    /* =====================================================
-       MAIN
-    ====================================================== */
+    .login-wrapper {
+      position: relative;
+      z-index: 2;
 
-    .page{
-
-      position:relative;
-
-      z-index:1;
-
-      min-height:100vh;
-
-      display:flex;
-
-      align-items:center;
-
-      justify-content:center;
-
-      padding:30px;
-
+      width: 100%;
+      max-width: 440px;
     }
 
+    .login-card {
+      width: 100%;
 
-    .login-wrapper{
+      background: rgba(255,255,255,0.97);
 
-      width:
-        min(
-          1100px,
-          100%
-        );
+      border-radius: 24px;
 
-      display:grid;
-
-      grid-template-columns:
-        1.05fr
-        .95fr;
-
-      min-height:620px;
-
-      border:
-        1px solid
-        rgba(201,168,90,.25);
-
-      background:
-        rgba(5,4,3,.56);
+      padding: 38px 34px 34px;
 
       box-shadow:
-        0 35px 100px
-        rgba(0,0,0,.70);
-
-      backdrop-filter:
-        blur(8px);
-
-    }
-
-
-    /* =====================================================
-       LEFT
-    ====================================================== */
-
-    .brand-side{
-
-      position:relative;
-
-      display:flex;
-
-      flex-direction:column;
-
-      justify-content:center;
-
-      padding:
-        65px;
-
-      border-right:
-        1px solid
-        rgba(201,168,90,.15);
-
-      overflow:hidden;
-
-    }
-
-
-    .brand-side::before{
-
-      content:"";
-
-      position:absolute;
-
-      inset:0;
-
-      background:
-        radial-gradient(
-          circle at 30% 50%,
-          rgba(201,168,90,.10),
-          transparent 60%
-        );
-
-      pointer-events:none;
-
-    }
-
-
-    .logo{
-
-      position:relative;
-
-      width:145px;
-
-      height:145px;
-
-      object-fit:contain;
-
-      margin-bottom:30px;
-
-      filter:
-        drop-shadow(
-          0 15px 30px
-          rgba(0,0,0,.5)
-        );
-
-    }
-
-
-    .brand-kicker{
-
-      position:relative;
-
-      color:
-        var(--gold-light);
-
-      font-size:11px;
-
-      font-weight:600;
-
-      letter-spacing:4px;
-
-      margin-bottom:15px;
-
-    }
-
-
-    .brand-title{
-
-      position:relative;
-
-      margin:0;
-
-      color:#fff;
-
-      font-family:
-        "Kanit",
-        sans-serif;
-
-      font-size:
-        clamp(
-          42px,
-          5vw,
-          72px
-        );
-
-      line-height:.95;
-
-      font-weight:500;
-
-    }
-
-
-    .brand-subtitle{
-
-      position:relative;
-
-      margin-top:13px;
-
-      color:
-        var(--gold-light);
-
-      font-family:
-        "Kanit",
-        sans-serif;
-
-      font-size:15px;
-
-      letter-spacing:4px;
-
-    }
-
-
-    .brand-description{
-
-      position:relative;
-
-      max-width:480px;
-
-      margin:
-        25px 0 0;
-
-      color:
-        rgba(245,237,225,.58);
-
-      font-size:13px;
-
-      line-height:1.9;
-
-    }
-
-
-    .brand-line{
-
-      position:relative;
-
-      width:70px;
-
-      height:1px;
-
-      margin-top:30px;
-
-      background:
-        var(--gold);
-
-    }
-
-
-    /* =====================================================
-       RIGHT LOGIN
-    ====================================================== */
-
-    .login-side{
-
-      display:flex;
-
-      align-items:center;
-
-      justify-content:center;
-
-      padding:
-        50px;
-
-      background:
-        rgba(5,4,3,.70);
-
-    }
-
-
-    .login-card{
-
-      width:100%;
-
-      max-width:390px;
-
-    }
-
-
-    .login-label{
-
-      color:
-        var(--gold-light);
-
-      font-size:10px;
-
-      font-weight:600;
-
-      letter-spacing:3px;
-
-      margin-bottom:8px;
-
-    }
-
-
-    .login-title{
-
-      margin:0;
-
-      color:#fff;
-
-      font-family:
-        "Kanit",
-        sans-serif;
-
-      font-size:35px;
-
-      font-weight:500;
-
-    }
-
-
-    .login-description{
-
-      margin:
-        9px 0 28px;
-
-      color:
-        var(--muted);
-
-      font-size:12px;
-
-      line-height:1.8;
-
-    }
-
-
-    /* =====================================================
-       FIELD
-    ====================================================== */
-
-    .field{
-
-      margin-bottom:17px;
-
-    }
-
-
-    .field-label{
-
-      display:block;
-
-      margin-bottom:7px;
-
-      color:#d9d0c4;
-
-      font-size:11px;
-
-    }
-
-
-    .required{
-
-      color:
-        var(--gold-light);
-
-    }
-
-
-    .input{
-
-      width:100%;
-
-      height:50px;
-
-      padding:
-        0 15px;
-
-      color:#fff;
-
-      background:
-        rgba(0,0,0,.50);
+        0 25px 70px rgba(0,0,0,0.35);
 
       border:
-        1px solid
-        rgba(201,168,90,.20);
+        1px solid rgba(255,255,255,0.7);
+    }
 
-      outline:none;
+    /* =========================================================
+       LOGO
+    ========================================================== */
 
-      font-family:
-        "Prompt",
-        sans-serif;
+    .logo-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      font-size:13px;
+      margin-bottom: 22px;
+    }
+
+    .logo-area img {
+      display: block;
+
+      width: auto;
+      max-width: 230px;
+      max-height: 100px;
+
+      object-fit: contain;
+    }
+
+    /* =========================================================
+       TITLE
+    ========================================================== */
+
+    .title {
+      text-align: center;
+
+      font-size: 26px;
+      font-weight: 800;
+
+      color: #172033;
+
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+
+      color: #6b7280;
+
+      font-size: 14px;
+
+      line-height: 1.6;
+
+      margin-bottom: 30px;
+    }
+
+    /* =========================================================
+       FORM
+    ========================================================== */
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+
+      font-size: 14px;
+
+      font-weight: 700;
+
+      color: #263247;
+
+      margin-bottom: 8px;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .form-input {
+      width: 100%;
+
+      height: 52px;
+
+      border:
+        1px solid #d7dce5;
+
+      border-radius: 12px;
+
+      background: #ffffff;
+
+      color: #172033;
+
+      font-size: 15px;
+
+      padding:
+        0 16px;
+
+      outline: none;
 
       transition:
-        .2s ease;
-
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
     }
 
-
-    .input::placeholder{
-
-      color:
-        rgba(255,255,255,.25);
-
-    }
-
-
-    .input:hover{
-
-      border-color:
-        rgba(201,168,90,.35);
-
-    }
-
-
-    .input:focus{
-
-      border-color:
-        var(--gold);
-
-      background:
-        rgba(201,168,90,.035);
+    .form-input:focus {
+      border-color: #1d4ed8;
 
       box-shadow:
-        0 0 0 2px
-        rgba(201,168,90,.05);
-
+        0 0 0 4px rgba(29,78,216,0.10);
     }
 
+    .form-input::placeholder {
+      color: #9ca3af;
+    }
 
-    /* =====================================================
+    /* =========================================================
        PASSWORD
-    ====================================================== */
+    ========================================================== */
 
-    .password-box{
-
-      position:relative;
-
+    .password-input {
+      padding-right: 78px;
     }
 
+    .password-toggle {
+      position: absolute;
 
-    .password-box .input{
+      top: 50%;
+      right: 8px;
 
-      padding-right:82px;
+      transform: translateY(-50%);
 
-    }
+      height: 38px;
 
+      padding:
+        0 12px;
 
-    .password-toggle{
+      border: none;
 
-      position:absolute;
+      border-radius: 9px;
 
-      top:5px;
+      background: #f1f5f9;
 
-      right:5px;
+      color: #334155;
 
-      width:70px;
+      font-size: 13px;
 
-      height:40px;
+      font-weight: 700;
 
-      padding:0;
-
-      border:
-        1px solid
-        rgba(201,168,90,.14);
-
-      color:
-        var(--gold-light);
-
-      background:
-        rgba(201,168,90,.06);
-
-      font-family:
-        "Prompt",
-        sans-serif;
-
-      font-size:10px;
-
-      cursor:pointer;
-
-      z-index:5;
-
-      pointer-events:auto;
+      cursor: pointer;
 
       transition:
-        .2s ease;
-
+        background 0.2s ease,
+        color 0.2s ease;
     }
 
+    .password-toggle:hover {
+      background: #e2e8f0;
 
-    .password-toggle:hover{
-
-      color:#111;
-
-      background:
-        var(--gold-light);
-
+      color: #0f172a;
     }
 
-
-    .password-toggle:active{
-
+    .password-toggle:active {
       transform:
-        scale(.97);
-
+        translateY(-50%)
+        scale(0.97);
     }
 
-
-    /* =====================================================
+    /* =========================================================
        LOGIN BUTTON
-    ====================================================== */
+    ========================================================== */
 
-    .login-button{
+    .login-button {
+      width: 100%;
 
-      position:relative;
+      height: 54px;
 
-      width:100%;
+      border: none;
 
-      height:52px;
-
-      margin-top:8px;
-
-      border:0;
-
-      color:#111;
+      border-radius: 13px;
 
       background:
         linear-gradient(
           135deg,
-          #ead184,
-          #b99048
+          #173b75,
+          #0f2853
         );
 
-      font-family:
-        "Prompt",
-        sans-serif;
+      color: white;
 
-      font-size:12px;
+      font-size: 16px;
 
-      font-weight:700;
+      font-weight: 800;
 
-      cursor:pointer;
+      cursor: pointer;
+
+      margin-top: 4px;
 
       transition:
-        .2s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+    }
+
+    .login-button:hover:not(:disabled) {
+      transform: translateY(-1px);
 
       box-shadow:
-        0 12px 25px
-        rgba(0,0,0,.25);
-
+        0 10px 25px rgba(15,40,83,0.25);
     }
 
-
-    .login-button:hover{
-
-      transform:
-        translateY(-2px);
-
-      box-shadow:
-        0 18px 35px
-        rgba(0,0,0,.35);
-
+    .login-button:active:not(:disabled) {
+      transform: translateY(0);
     }
 
+    .login-button:disabled {
+      cursor: not-allowed;
 
-    .login-button:active{
-
-      transform:
-        translateY(0);
-
+      opacity: 0.75;
     }
 
+    .button-content {
+      display: flex;
 
-    .login-button:disabled{
+      align-items: center;
 
-      opacity:.55;
+      justify-content: center;
 
-      cursor:not-allowed;
-
-      transform:none;
-
+      gap: 10px;
     }
 
+    /* =========================================================
+       SPINNER
+    ========================================================== */
 
-    /* =====================================================
-       MESSAGE
-    ====================================================== */
-
-    .message{
-
-      display:none;
-
-      margin-top:15px;
-
-      padding:
-        12px 14px;
+    .spinner {
+      width: 18px;
+      height: 18px;
 
       border:
-        1px solid;
+        2px solid rgba(255,255,255,0.35);
 
-      font-size:11px;
+      border-top-color: #ffffff;
 
-      line-height:1.8;
-
-    }
-
-
-    .message.show{
-
-      display:block;
-
-    }
-
-
-    .message.error{
-
-      color:#efaaa0;
-
-      border-color:
-        rgba(220,80,70,.30);
-
-      background:
-        rgba(100,25,20,.15);
-
-    }
-
-
-    .message.success{
-
-      color:#cfe5c7;
-
-      border-color:
-        rgba(90,180,100,.25);
-
-      background:
-        rgba(40,100,45,.12);
-
-    }
-
-
-    /* =====================================================
-       FOOTER
-    ====================================================== */
-
-    .login-footer{
-
-      margin-top:25px;
-
-      padding-top:18px;
-
-      border-top:
-        1px solid
-        rgba(255,255,255,.07);
-
-      color:
-        rgba(255,255,255,.32);
-
-      font-size:9px;
-
-      line-height:1.7;
-
-      text-align:center;
-
-    }
-
-
-    /* =====================================================
-       LOADING
-    ====================================================== */
-
-    .button-content{
-
-      display:flex;
-
-      align-items:center;
-
-      justify-content:center;
-
-      gap:9px;
-
-    }
-
-
-    .spinner{
-
-      width:15px;
-
-      height:15px;
-
-      border:
-        2px solid
-        rgba(0,0,0,.22);
-
-      border-top-color:
-        #111;
-
-      border-radius:50%;
+      border-radius: 50%;
 
       animation:
-        spin .7s linear infinite;
-
+        spin 0.8s linear infinite;
     }
 
-
-    @keyframes spin{
-
-      to{
-
-        transform:
-          rotate(360deg);
-
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
       }
-
     }
 
+    /* =========================================================
+       MESSAGE
+    ========================================================== */
 
-    /* =====================================================
+    .message {
+      display: none;
+
+      margin-top: 18px;
+
+      padding:
+        13px 15px;
+
+      border-radius: 11px;
+
+      font-size: 14px;
+
+      line-height: 1.55;
+
+      text-align: center;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .message.error {
+      background: #fef2f2;
+
+      color: #b91c1c;
+
+      border:
+        1px solid #fecaca;
+    }
+
+    .message.success {
+      background: #f0fdf4;
+
+      color: #15803d;
+
+      border:
+        1px solid #bbf7d0;
+    }
+
+    .message.info {
+      background: #eff6ff;
+
+      color: #1d4ed8;
+
+      border:
+        1px solid #bfdbfe;
+    }
+
+    /* =========================================================
+       FALLBACK REDIRECT BUTTON
+    ========================================================== */
+
+    .dashboard-link {
+      display: none;
+
+      width: 100%;
+
+      margin-top: 12px;
+
+      padding: 13px 16px;
+
+      border-radius: 11px;
+
+      text-align: center;
+
+      text-decoration: none;
+
+      background: #e8eef8;
+
+      color: #173b75;
+
+      font-size: 14px;
+
+      font-weight: 800;
+
+      border:
+        1px solid #d5dfef;
+    }
+
+    .dashboard-link.show {
+      display: block;
+    }
+
+    .dashboard-link:hover {
+      background: #dfe8f5;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================== */
+
+    .footer {
+      text-align: center;
+
+      margin-top: 22px;
+
+      color: rgba(255,255,255,0.78);
+
+      font-size: 12px;
+
+      line-height: 1.6;
+    }
+
+    .footer strong {
+      color: #ffffff;
+    }
+
+    /* =========================================================
+       DEBUG BOX
+    ========================================================== */
+
+    .debug-box {
+      display: none;
+
+      margin-top: 15px;
+
+      padding: 12px;
+
+      background: #111827;
+
+      color: #d1d5db;
+
+      border-radius: 10px;
+
+      font-size: 11px;
+
+      line-height: 1.5;
+
+      word-break: break-word;
+    }
+
+    .debug-box.show {
+      display: block;
+    }
+
+    /* =========================================================
        MOBILE
-    ====================================================== */
+    ========================================================== */
 
-    @media(max-width:800px){
+    @media (max-width: 520px) {
 
-      .page{
-
-        padding:15px;
-
+      body {
+        padding: 16px;
       }
 
-
-      .login-wrapper{
-
-        grid-template-columns:1fr;
-
-      }
-
-
-      .brand-side{
-
-        min-height:320px;
-
-        padding:38px 30px;
-
-        border-right:0;
-
-        border-bottom:
-          1px solid
-          rgba(201,168,90,.15);
-
-      }
-
-
-      .logo{
-
-        width:85px;
-
-        height:85px;
-
-        margin-bottom:20px;
-
-      }
-
-
-      .brand-title{
-
-        font-size:42px;
-
-      }
-
-
-      .brand-description{
-
-        margin-top:16px;
-
-        font-size:11px;
-
-      }
-
-
-      .brand-line{
-
-        margin-top:20px;
-
-      }
-
-
-      .login-side{
-
+      .login-card {
         padding:
-          38px 25px;
+          30px 22px 26px;
 
+        border-radius: 20px;
       }
 
+      .title {
+        font-size: 23px;
+      }
+
+      .subtitle {
+        font-size: 13px;
+
+        margin-bottom: 25px;
+      }
+
+      .logo-area img {
+        max-width: 190px;
+
+        max-height: 85px;
+      }
+
+      .form-input {
+        height: 50px;
+      }
+
+      .login-button {
+        height: 52px;
+      }
     }
-
-
-    @media(max-width:480px){
-
-      .brand-side{
-
-        min-height:270px;
-
-      }
-
-
-      .brand-title{
-
-        font-size:35px;
-
-      }
-
-
-      .brand-subtitle{
-
-        font-size:11px;
-
-        letter-spacing:3px;
-
-      }
-
-
-      .brand-description{
-
-        display:none;
-
-      }
-
-
-      .login-side{
-
-        padding:
-          32px 20px;
-
-      }
-
-
-      .login-title{
-
-        font-size:30px;
-
-      }
-
-    }
-
   </style>
-
 </head>
-
 
 <body>
 
+  <div class="background-overlay"></div>
 
-  <!-- =====================================================
-       BACKGROUND
-  ====================================================== -->
+  <main class="login-wrapper">
 
-  <div class="page-background"></div>
+    <section class="login-card">
 
+      <!-- =====================================================
+           LOGO
+      ====================================================== -->
 
-  <!-- =====================================================
-       PAGE
-  ====================================================== -->
-
-  <main class="page">
-
-
-    <div class="login-wrapper">
-
-
-      <!-- =================================================
-           BRAND
-      ================================================== -->
-
-      <section class="brand-side">
-
+      <div class="logo-area">
 
         <img
           src="assets/logo.png"
-          class="logo"
           alt="CHATPHETCH GROUP"
+          onerror="this.style.display='none';"
         >
 
-
-        <div class="brand-kicker">
-          BACK-OFFICE SYSTEM
-        </div>
+      </div>
 
 
-        <h1 class="brand-title">
-          CHATPHETCH
-        </h1>
+      <!-- =====================================================
+           TITLE
+      ====================================================== -->
+
+      <h1 class="title">
+        ระบบผู้ดูแลเว็บไซต์
+      </h1>
+
+      <p class="subtitle">
+        บริษัท ฉัตรเพชรกรุ๊ป จำกัด
+        <br>
+        CHATPHETCH GROUP
+      </p>
 
 
-        <div class="brand-subtitle">
-          GROUP
-        </div>
+      <!-- =====================================================
+           LOGIN FORM
+      ====================================================== -->
 
+      <form
+        id="adminLoginForm"
+        autocomplete="on"
+      >
 
-        <p class="brand-description">
+        <!-- EMAIL -->
 
-          ระบบบริหารจัดการเว็บไซต์และข้อมูลหลังบ้าน
-          สำหรับทีมงาน CHATPHETCH GROUP
+        <div class="form-group">
 
-        </p>
-
-
-        <div class="brand-line"></div>
-
-
-      </section>
-
-
-
-      <!-- =================================================
-           LOGIN
-      ================================================== -->
-
-      <section class="login-side">
-
-
-        <div class="login-card">
-
-
-          <div class="login-label">
-            ADMINISTRATOR
-          </div>
-
-
-          <h2 class="login-title">
-            เข้าสู่ระบบ
-          </h2>
-
-
-          <p class="login-description">
-
-            กรุณาเข้าสู่ระบบด้วยบัญชีผู้ดูแลเว็บไซต์
-            เพื่อจัดการข้อมูลหลังบ้าน
-
-          </p>
-
-
-
-          <!-- =============================================
-               FORM
-          ============================================== -->
-
-          <form
-            id="adminLoginForm"
-            autocomplete="on"
+          <label
+            class="form-label"
+            for="adminEmail"
           >
+            Email
+          </label>
 
+          <div class="input-wrapper">
 
-            <!-- EMAIL -->
-
-            <div class="field">
-
-              <label
-                class="field-label"
-                for="adminEmail"
-              >
-                Email
-                <span class="required">*</span>
-              </label>
-
-
-              <input
-                id="adminEmail"
-                name="email"
-                class="input"
-                type="email"
-                autocomplete="username"
-                inputmode="email"
-                required
-                placeholder="admin@example.com"
-              >
-
-            </div>
-
-
-
-            <!-- PASSWORD -->
-
-            <div class="field">
-
-              <label
-                class="field-label"
-                for="adminPassword"
-              >
-                รหัสผ่าน
-                <span class="required">*</span>
-              </label>
-
-
-              <div class="password-box">
-
-
-                <input
-                  id="adminPassword"
-                  name="password"
-                  class="input"
-                  type="password"
-                  autocomplete="current-password"
-                  required
-                  placeholder="กรอกรหัสผ่าน"
-                >
-
-
-                <button
-                  id="passwordToggle"
-                  class="password-toggle"
-                  type="button"
-                  aria-label="แสดงรหัสผ่าน"
-                  aria-pressed="false"
-                >
-                  แสดง
-                </button>
-
-
-              </div>
-
-            </div>
-
-
-
-            <!-- LOGIN BUTTON -->
-
-            <button
-              id="loginButton"
-              class="login-button"
-              type="submit"
+            <input
+              id="adminEmail"
+              class="form-input"
+              type="email"
+              name="email"
+              placeholder="กรอก Email"
+              autocomplete="username"
+              required
             >
 
-              <span
-                id="loginButtonContent"
-                class="button-content"
-              >
-                เข้าสู่ระบบ
-              </span>
-
-            </button>
-
-
-
-            <!-- MESSAGE -->
-
-            <div
-              id="loginMessage"
-              class="message"
-              role="alert"
-              aria-live="polite"
-            ></div>
-
-
-          </form>
-
-
-
-          <div class="login-footer">
-
-            ระบบสำหรับผู้ดูแลเว็บไซต์เท่านั้น<br>
-
-            CHATPHETCH GROUP · ADMIN SYSTEM
-
           </div>
-
 
         </div>
 
-      </section>
 
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+          <label
+            class="form-label"
+            for="adminPassword"
+          >
+            รหัสผ่าน
+          </label>
+
+          <div class="input-wrapper">
+
+            <input
+              id="adminPassword"
+              class="form-input password-input"
+              type="password"
+              name="password"
+              placeholder="กรอกรหัสผ่าน"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              id="passwordToggle"
+              class="password-toggle"
+              type="button"
+              aria-label="แสดงรหัสผ่าน"
+              aria-pressed="false"
+            >
+              แสดง
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- LOGIN BUTTON -->
+
+        <button
+          id="loginButton"
+          class="login-button"
+          type="submit"
+        >
+
+          <span
+            id="loginButtonContent"
+            class="button-content"
+          >
+            เข้าสู่ระบบ
+          </span>
+
+        </button>
+
+
+        <!-- MESSAGE -->
+
+        <div
+          id="loginMessage"
+          class="message"
+          role="alert"
+          aria-live="polite"
+        ></div>
+
+
+        <!-- FALLBACK DASHBOARD LINK -->
+
+        <a
+          id="dashboardLink"
+          class="dashboard-link"
+          href="./admin-dashboard.html"
+        >
+          เปิดระบบหลังบ้าน
+        </a>
+
+
+        <!-- DEBUG -->
+
+        <div
+          id="debugBox"
+          class="debug-box"
+        ></div>
+
+      </form>
+
+    </section>
+
+
+    <!-- =======================================================
+         FOOTER
+    ======================================================== -->
+
+    <div class="footer">
+
+      <strong>
+        CHATPHETCH GROUP
+      </strong>
+
+      <br>
+
+      Admin Panel
 
     </div>
 
   </main>
 
 
-
-  <!-- =====================================================
+  <!-- =========================================================
        JAVASCRIPT
-  ====================================================== -->
+  ========================================================== -->
 
   <script>
 
-
-    /* =====================================================
+    /* =========================================================
        SUPABASE CONFIG
-    ====================================================== */
+    ========================================================== */
 
     const SUPABASE_URL =
       "https://mfhllgklcfnnbyyzzljz.supabase.co";
 
-
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
 
+
+    /* =========================================================
+       CHECK SUPABASE LIBRARY
+    ========================================================== */
+
+    if (
+      !window.supabase ||
+      typeof window.supabase.createClient !== "function"
+    ) {
+
+      alert(
+        "ไม่สามารถโหลด Supabase ได้ กรุณาตรวจสอบ Internet หรือ CDN"
+      );
+
+      throw new Error(
+        "Supabase JavaScript library not loaded."
+      );
+    }
+
+
+    /* =========================================================
+       CREATE SUPABASE CLIENT
+    ========================================================== */
 
     const supabaseClient =
       window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_PUBLISHABLE_KEY,
         {
+          auth: {
 
-          auth:{
+            persistSession: true,
 
-            persistSession:true,
+            autoRefreshToken: true,
 
-            autoRefreshToken:true,
-
-            detectSessionInUrl:true,
-
-            flowType:"pkce"
+            detectSessionInUrl: true
 
           }
-
         }
       );
 
 
-
-    /* =====================================================
-       ELEMENTS
-    ====================================================== */
+    /* =========================================================
+       DOM
+    ========================================================== */
 
     const loginForm =
       document.getElementById(
         "adminLoginForm"
       );
 
-
     const emailInput =
       document.getElementById(
         "adminEmail"
       );
-
 
     const passwordInput =
       document.getElementById(
         "adminPassword"
       );
 
-
     const passwordToggle =
       document.getElementById(
         "passwordToggle"
       );
-
 
     const loginButton =
       document.getElementById(
         "loginButton"
       );
 
-
     const loginButtonContent =
       document.getElementById(
         "loginButtonContent"
       );
-
 
     const loginMessage =
       document.getElementById(
         "loginMessage"
       );
 
+    const dashboardLink =
+      document.getElementById(
+        "dashboardLink"
+      );
+
+    const debugBox =
+      document.getElementById(
+        "debugBox"
+      );
 
 
-    /* =====================================================
-       SHOW / HIDE PASSWORD
-    ====================================================== */
+    /* =========================================================
+       SHOW MESSAGE
+    ========================================================== */
+
+    function showMessage(
+      message,
+      type = "error"
+    ) {
+
+      loginMessage.textContent =
+        message;
+
+      loginMessage.className =
+        "message show " + type;
+    }
+
+
+    /* =========================================================
+       CLEAR MESSAGE
+    ========================================================== */
+
+    function clearMessage() {
+
+      loginMessage.textContent =
+        "";
+
+      loginMessage.className =
+        "message";
+    }
+
+
+    /* =========================================================
+       DEBUG
+    ========================================================== */
+
+    function showDebug(message) {
+
+      debugBox.textContent =
+        message;
+
+      debugBox.className =
+        "debug-box show";
+    }
+
+
+    /* =========================================================
+       HIDE DEBUG
+    ========================================================== */
+
+    function hideDebug() {
+
+      debugBox.textContent =
+        "";
+
+      debugBox.className =
+        "debug-box";
+    }
+
+
+    /* =========================================================
+       LOADING STATE
+    ========================================================== */
+
+    function setLoading(
+      loading
+    ) {
+
+      loginButton.disabled =
+        loading;
+
+      if (loading) {
+
+        loginButtonContent.innerHTML =
+
+          '<span class="spinner"></span>' +
+
+          '<span>กำลังเข้าสู่ระบบ...</span>';
+
+      } else {
+
+        loginButtonContent.innerHTML =
+
+          '<span>เข้าสู่ระบบ</span>';
+
+      }
+
+    }
+
+
+    /* =========================================================
+       PASSWORD TOGGLE
+    ========================================================== */
 
     passwordToggle.addEventListener(
       "click",
-      function(){
+      function () {
 
-        const isPassword =
+        if (
           passwordInput.type ===
-          "password";
-
-
-        if(isPassword){
+          "password"
+        ) {
 
           passwordInput.type =
             "text";
@@ -1330,7 +963,7 @@
             "true"
           );
 
-        }else{
+        } else {
 
           passwordInput.type =
             "password";
@@ -1356,166 +989,235 @@
     );
 
 
+    /* =========================================================
+       GET DASHBOARD URL
+    ========================================================== */
 
-    /* =====================================================
-       MESSAGE
-    ====================================================== */
+    function getDashboardURL() {
 
-    function showMessage(
-      message,
-      type = "error"
-    ){
+      /*
+        ใช้ ./admin-dashboard.html
+        เพื่อให้ทำงานได้ทั้ง
 
-      loginMessage.textContent =
-        message;
+        https://chatpetch.github.io/chatpetch-group/
 
-      loginMessage.className =
-        "message show " +
-        type;
+        และกรณีเปลี่ยนชื่อ Repository / Domain
+      */
 
-    }
-
-
-    function clearMessage(){
-
-      loginMessage.textContent =
-        "";
-
-      loginMessage.className =
-        "message";
+      return new URL(
+        "./admin-dashboard.html",
+        window.location.href
+      ).href;
 
     }
 
 
+    /* =========================================================
+       REDIRECT TO DASHBOARD
+    ========================================================== */
 
-    /* =====================================================
-       LOADING BUTTON
-    ====================================================== */
+    function redirectToDashboard() {
 
-    function setLoading(
-      loading
-    ){
+      const dashboardURL =
+        getDashboardURL();
 
-      loginButton.disabled =
-        loading;
+      console.log(
+        "Dashboard URL:",
+        dashboardURL
+      );
+
+      showDebug(
+        "กำลังเปิด: " +
+        dashboardURL
+      );
 
 
-      if(loading){
+      /*
+        ใช้ location.assign
+        แทนการเปลี่ยน innerHTML หรือ timeout อย่างเดียว
+      */
 
-        loginButtonContent.innerHTML = `
-
-          <span class="spinner"></span>
-
-          กำลังเข้าสู่ระบบ...
-
-        `;
-
-      }else{
-
-        loginButtonContent.textContent =
-          "เข้าสู่ระบบ";
-
-      }
+      window.location.assign(
+        dashboardURL
+      );
 
     }
 
 
-
-    /* =====================================================
+    /* =========================================================
        LOGIN
-    ====================================================== */
+    ========================================================== */
 
     loginForm.addEventListener(
       "submit",
-      async function(event){
+      async function (event) {
 
         event.preventDefault();
 
-
         clearMessage();
 
+        hideDebug();
+
+        dashboardLink.className =
+          "dashboard-link";
+
+
+        /* -----------------------------------------------------
+           GET VALUES
+        ------------------------------------------------------ */
 
         const email =
           emailInput.value
             .trim()
             .toLowerCase();
 
-
         const password =
           passwordInput.value;
 
 
-        if(!email){
+        /* -----------------------------------------------------
+           VALIDATION
+        ------------------------------------------------------ */
+
+        if (!email) {
 
           showMessage(
-            "กรุณากรอก Email"
+            "กรุณากรอก Email",
+            "error"
           );
 
           emailInput.focus();
 
           return;
-
         }
 
 
-        if(!password){
+        if (!password) {
 
           showMessage(
-            "กรุณากรอกรหัสผ่าน"
+            "กรุณากรอกรหัสผ่าน",
+            "error"
           );
 
           passwordInput.focus();
 
           return;
-
         }
 
+
+        /* -----------------------------------------------------
+           LOADING
+        ------------------------------------------------------ */
 
         setLoading(true);
 
 
-        try{
+        try {
+
+          console.log(
+            "กำลังเข้าสู่ระบบ..."
+          );
 
 
-          /* =============================================
-             SUPABASE AUTH
-          ============================================== */
+          /* ---------------------------------------------------
+             SUPABASE LOGIN
+          ---------------------------------------------------- */
 
           const {
             data,
             error
           } =
-            await supabaseClient
-              .auth
-              .signInWithPassword({
+            await supabaseClient.auth.signInWithPassword({
 
-                email:
-                  email,
+              email:
+                email,
 
-                password:
-                  password
+              password:
+                password
 
-              });
+            });
 
 
-          if(error){
+          console.log(
+            "Supabase login result:",
+            data,
+            error
+          );
+
+
+          /* ---------------------------------------------------
+             LOGIN ERROR
+          ---------------------------------------------------- */
+
+          if (error) {
 
             throw error;
 
           }
 
 
-          if(
+          /* ---------------------------------------------------
+             CHECK USER
+          ---------------------------------------------------- */
+
+          if (
             !data ||
-            !data.session
-          ){
+            !data.user
+          ) {
 
             throw new Error(
-              "เข้าสู่ระบบไม่สำเร็จ ไม่พบ Session"
+              "เข้าสู่ระบบสำเร็จ แต่ไม่พบข้อมูล User"
             );
 
           }
 
+
+          console.log(
+            "LOGIN SUCCESS:",
+            data.user.email
+          );
+
+
+          /* ---------------------------------------------------
+             CHECK SESSION
+          ---------------------------------------------------- */
+
+          const {
+            data:
+              sessionData,
+            error:
+              sessionError
+          } =
+            await supabaseClient.auth.getSession();
+
+
+          if (sessionError) {
+
+            throw sessionError;
+
+          }
+
+
+          if (
+            !sessionData ||
+            !sessionData.session
+          ) {
+
+            throw new Error(
+              "เข้าสู่ระบบสำเร็จ แต่ไม่พบ Session"
+            );
+
+          }
+
+
+          console.log(
+            "SESSION SUCCESS"
+          );
+
+
+          /* ---------------------------------------------------
+             SUCCESS MESSAGE
+          ---------------------------------------------------- */
 
           showMessage(
             "เข้าสู่ระบบสำเร็จ กำลังเปิดระบบหลังบ้าน...",
@@ -1523,78 +1225,139 @@
           );
 
 
-          /*
-           * รอเล็กน้อยเพื่อให้ Supabase
-           * บันทึก Session ลง browser ก่อน
-           */
+          loginButton.disabled =
+            true;
 
-          await new Promise(
-            resolve =>
-              setTimeout(
-                resolve,
-                500
-              )
+          loginButtonContent.innerHTML =
+
+            '<span class="spinner"></span>' +
+
+            '<span>กำลังเปิดระบบหลังบ้าน...</span>';
+
+
+          /* ---------------------------------------------------
+             DASHBOARD URL
+          ---------------------------------------------------- */
+
+          const dashboardURL =
+            getDashboardURL();
+
+
+          console.log(
+            "REDIRECT:",
+            dashboardURL
           );
 
 
-          /* =============================================
-             REDIRECT
-          ============================================== */
+          /*
+            รอเล็กน้อยให้ Supabase
+            บันทึก Session ลง Browser ก่อน
+          */
 
-          window.location.href =
-            "admin-dashboard.html";
+          setTimeout(
+            function () {
+
+              redirectToDashboard();
+
+            },
+            500
+          );
 
 
-        }catch(error){
+          /*
+            Fallback:
+            ถ้า Browser ไม่เปลี่ยนหน้า
+            ให้แสดงปุ่มเปิดระบบหลังบ้าน
+          */
+
+          setTimeout(
+            function () {
+
+              dashboardLink.className =
+                "dashboard-link show";
+
+              loginButton.disabled =
+                false;
+
+              loginButtonContent.innerHTML =
+                "<span>เข้าสู่ระบบ</span>";
+
+              showMessage(
+                "เข้าสู่ระบบแล้ว หากหน้ายังไม่เปลี่ยน กรุณากดปุ่ม \"เปิดระบบหลังบ้าน\"",
+                "success"
+              );
+
+            },
+            3000
+          );
+
+
+        } catch (error) {
 
           console.error(
-            "ADMIN LOGIN ERROR:",
+            "LOGIN ERROR:",
             error
           );
 
 
+          /* ---------------------------------------------------
+             ERROR MESSAGE
+          ---------------------------------------------------- */
+
           let message =
-            "ไม่สามารถเข้าสู่ระบบได้";
+            "เข้าสู่ระบบไม่สำเร็จ";
 
 
-          if(
+          if (
             error &&
             error.message
-          ){
+          ) {
 
-            const text =
-              error.message
-                .toLowerCase();
+            const errorText =
+              error.message.toLowerCase();
 
 
-            if(
-              text.includes(
+            if (
+              errorText.includes(
                 "invalid login credentials"
               )
-            ){
+            ) {
 
               message =
                 "Email หรือรหัสผ่านไม่ถูกต้อง";
 
-            }else if(
-              text.includes(
+
+            } else if (
+              errorText.includes(
                 "email not confirmed"
               )
-            ){
+            ) {
 
               message =
-                "บัญชีนี้ยังไม่ได้ยืนยัน Email ใน Supabase";
+                "Email ของบัญชีนี้ยังไม่ได้รับการยืนยัน";
 
-            }else if(
-              text.includes(
+
+            } else if (
+              errorText.includes(
                 "too many requests"
               )
-            ){
+            ) {
 
               message =
-                "มีการเข้าสู่ระบบหลายครั้งเกินไป กรุณารอสักครู่แล้วลองใหม่";
+                "มีการเข้าสู่ระบบหลายครั้งเกินไป กรุณารอสักครู่";
 
-            }else{
+
+            } else if (
+              errorText.includes(
+                "network"
+              )
+            ) {
+
+              message =
+                "ไม่สามารถเชื่อมต่อระบบได้ กรุณาตรวจสอบ Internet";
+
+
+            } else {
 
               message =
                 error.message;
@@ -1610,6 +1373,14 @@
           );
 
 
+          showDebug(
+            error &&
+            error.message
+              ? error.message
+              : String(error)
+          );
+
+
           setLoading(false);
 
         }
@@ -1618,27 +1389,45 @@
     );
 
 
+    /* =========================================================
+       ENTER KEY
+    ========================================================== */
 
-    /* =====================================================
-       CHECK EXISTING SESSION
-    ====================================================== */
+    emailInput.addEventListener(
+      "keydown",
+      function (event) {
 
-    async function checkExistingSession(){
+        if (
+          event.key === "Enter"
+        ) {
 
-      try{
+          passwordInput.focus();
+
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       CHECK CURRENT SESSION
+    ========================================================== */
+
+    async function checkCurrentSession() {
+
+      try {
 
         const {
           data,
           error
         } =
-          await supabaseClient
-            .auth
-            .getSession();
+          await supabaseClient.auth.getSession();
 
 
-        if(error){
+        if (error) {
 
-          console.error(
+          console.warn(
+            "Session check error:",
             error
           );
 
@@ -1647,24 +1436,29 @@
         }
 
 
-        if(
+        if (
           data &&
-          data.session
-        ){
+          data.session &&
+          data.session.user
+        ) {
 
-          /*
-           * ถ้า Login อยู่แล้ว
-           * เปิด Dashboard ได้เลย
-           */
+          console.log(
+            "มี Session อยู่แล้ว:",
+            data.session.user.email
+          );
 
-          window.location.href =
-            "admin-dashboard.html";
+        } else {
+
+          console.log(
+            "ยังไม่มี Session"
+          );
 
         }
 
-      }catch(error){
+      } catch (error) {
 
         console.error(
+          "CHECK SESSION ERROR:",
           error
         );
 
@@ -1673,42 +1467,35 @@
     }
 
 
+    /* =========================================================
+       AUTH STATE CHANGE
+    ========================================================== */
 
-    /* =====================================================
-       AUTH STATE
-    ====================================================== */
+    supabaseClient.auth.onAuthStateChange(
+      function (
+        event,
+        session
+      ) {
 
-    supabaseClient
-      .auth
-      .onAuthStateChange(
-        function(
+        console.log(
+          "AUTH EVENT:",
           event,
           session
-        ){
+            ? session.user.email
+            : null
+        );
 
-          if(
-            event ===
-            "SIGNED_OUT"
-          ){
-
-            return;
-
-          }
-
-        }
-      );
+      }
+    );
 
 
-
-    /* =====================================================
+    /* =========================================================
        START
-    ====================================================== */
+    ========================================================== */
 
-    checkExistingSession();
-
+    checkCurrentSession();
 
   </script>
 
 </body>
-
 </html>
