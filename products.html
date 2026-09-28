@@ -24,23 +24,33 @@
 
   <!-- =====================================================
        FAVICON
+       แก้ไขแล้ว
   ====================================================== -->
 
   <link
     rel="icon"
     type="image/png"
-    href="assets/logo.png?v=20260926"
+    sizes="32x32"
+    href="./assets/logo.png?v=20260928"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="./assets/logo.png?v=20260928"
   >
 
   <link
     rel="shortcut icon"
     type="image/png"
-    href="assets/logo.png?v=20260926"
+    href="./assets/logo.png?v=20260928"
   >
 
   <link
     rel="apple-touch-icon"
-    href="assets/logo.png?v=20260926"
+    sizes="180x180"
+    href="./assets/logo.png?v=20260928"
   >
 
 
@@ -1949,10 +1959,6 @@
 
     /* =====================================================
        DEFAULT PRODUCTS
-       
-       IMPORTANT:
-       สินค้าชุดนี้จะถูกแสดงทันที
-       ไม่ต้องรอ Supabase
     ===================================================== */
 
     const DEFAULT_PRODUCTS = [
@@ -2255,12 +2261,6 @@
        STATE
     ===================================================== */
 
-    /*
-     * สำคัญ:
-     * ให้ DEFAULT_PRODUCTS อยู่ก่อน
-     * เพื่อไม่ให้หน้าเว็บว่างถ้า Supabase ช้า/ล้มเหลว
-     */
-
     let products =
       DEFAULT_PRODUCTS.map(
         normalizeProduct
@@ -2533,17 +2533,13 @@
 
     /* =====================================================
        LOAD PRODUCTS
-       
-       IMPORTANT FIX:
-       1. Default products render first
-       2. Supabase โหลดทีหลัง
-       3. Supabase fail = default products ยังอยู่
     ===================================================== */
 
     async function loadProducts() {
 
       /*
        * แสดงสินค้าทันที
+       * ไม่ต้องรอ Supabase
        */
 
       products =
@@ -2559,7 +2555,7 @@
 
       /*
        * ถ้าไม่มี Supabase
-       * จบตรงนี้
+       * ให้ใช้ข้อมูลด้านบนต่อ
        */
 
       if (
@@ -2584,9 +2580,8 @@
 
 
         /*
-         * ถ้า query สำเร็จ
-         * และมีข้อมูลจริง
-         * ค่อยใช้ข้อมูล remote
+         * ถ้า Supabase มีข้อมูล
+         * ค่อยนำมาแทนข้อมูลเริ่มต้น
          */
 
         if (
@@ -2637,11 +2632,6 @@
 
       }
       catch (error) {
-
-        /*
-         * ไม่ทำให้หน้าเว็บพัง
-         * เพราะ DEFAULT_PRODUCTS แสดงไปแล้ว
-         */
 
         console.warn(
           "Supabase product load failed:",
@@ -3025,11 +3015,6 @@
         );
 
 
-        /*
-         * แจ้ง Master Nav
-         * ให้อัปเดตจำนวนตะกร้า
-         */
-
         window.dispatchEvent(
           new Event(
             "cartUpdated"
@@ -3077,9 +3062,8 @@
 
 
       /*
-       * ถ้ามี options
-       * ให้ไปหน้า detail
-       * เพื่อเลือกขนาดก่อน
+       * สินค้าที่มีตัวเลือก
+       * ให้ไปหน้า Detail ก่อน
        */
 
       if (
@@ -3417,23 +3401,9 @@
       "DOMContentLoaded",
       () => {
 
-        /*
-         * ตั้ง filter ก่อน
-         */
-
         setupFilters();
 
-
-        /*
-         * อ่าน category จาก URL
-         */
-
         readUrlCategory();
-
-
-        /*
-         * แสดงสินค้า + โหลด Supabase
-         */
 
         loadProducts();
 
@@ -3445,10 +3415,7 @@
 
   <!-- =====================================================
        MASTER NAVIGATION + FOOTER
-       
-       สำคัญ:
-       ห้ามใส่ Footer ซ้ำใน products.html
-       เพราะไฟล์นี้สร้าง Header + Footer ให้อัตโนมัติ
+       Header + Footer สร้างจากไฟล์กลาง
   ====================================================== -->
 
   <script
