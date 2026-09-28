@@ -1870,6 +1870,197 @@ textarea{
 }
 
 </style>
+  <style id="chatpetch-main-background">
+
+/* =========================================================
+   CHATPHETCH GROUP
+   SAME BACKGROUND SYSTEM AS PRODUCTS / HOME
+========================================================= */
+
+html{
+  background:#100b07 !important;
+}
+
+body{
+
+  margin:0 !important;
+
+  min-height:100vh !important;
+
+  overflow-x:hidden !important;
+
+  background:#100b07 !important;
+
+  color:var(--text) !important;
+
+}
+
+
+/* ปิดพื้นหลังเดิมของ product-detail
+   เพื่อไม่ให้ gradient/grid เดิมมาทับ */
+
+body::before{
+  display:none !important;
+
+  content:none !important;
+}
+
+
+/* =========================================================
+   FIXED MAIN BACKGROUND
+   ใช้ไฟล์เดียวกับหน้า Products
+========================================================= */
+
+body::after{
+
+  content:"";
+
+  position:fixed;
+
+  inset:0;
+
+  width:100vw;
+  height:100vh;
+
+  z-index:-10;
+
+  pointer-events:none;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.42) 0%,
+      rgba(0,0,0,.34) 24%,
+      rgba(0,0,0,.58) 58%,
+      rgba(16,11,7,.90) 100%
+    ),
+
+    url("assets/index-main-bg.png")
+    center center /
+    cover
+    no-repeat;
+
+  transform:
+    translate3d(0,0,0);
+
+  -webkit-transform:
+    translate3d(0,0,0);
+
+  will-change:
+    transform;
+
+}
+
+
+/* =========================================================
+   PAGE BACKGROUND MUST BE TRANSPARENT
+========================================================= */
+
+.product-section,
+.page-hero,
+.product-lower-info{
+
+  background:
+    transparent !important;
+
+}
+
+
+/* =========================================================
+   KEEP PRODUCT DETAIL PANELS
+========================================================= */
+
+.product-visual{
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(55,34,21,.72),
+      rgba(25,14,8,.86)
+    ) !important;
+
+}
+
+
+.product-info{
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(54,33,20,.60),
+      rgba(27,15,9,.88)
+    ) !important;
+
+}
+
+
+.product-lower-info{
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(52,31,19,.54),
+      rgba(25,14,8,.78)
+    ) !important;
+
+}
+
+
+/* =========================================================
+   HERO ต้องเห็นภาพพื้นหลังด้านหลัง
+========================================================= */
+
+.page-hero{
+
+  background:
+    transparent !important;
+
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+main,
+.product-section{
+
+  position:relative;
+
+  z-index:1;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:620px){
+
+  body::after{
+
+    background:
+
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,.46) 0%,
+        rgba(0,0,0,.38) 25%,
+        rgba(0,0,0,.62) 60%,
+        rgba(16,11,7,.92) 100%
+      ),
+
+      url("assets/index-main-bg.png")
+      center center /
+      cover
+      no-repeat;
+
+  }
+
+}
+
+</style>
 </head>
 
 <body>
