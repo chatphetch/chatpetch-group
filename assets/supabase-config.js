@@ -6,10 +6,10 @@
 (function () {
 
   const SUPABASE_URL =
-    "ใส่_SUPABASE_URL_ตรงนี้";
+    "https://mfhllgklcfnnbyyzzljz.supabase.co";
 
   const SUPABASE_KEY =
-    "ใส่_SUPABASE_PUBLISHABLE_KEY_หรือ_ANON_KEY_ตรงนี้";
+    "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
 
 
   /* ---------------------------------------------------
