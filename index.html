@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -22,12 +21,37 @@
 <link
   rel="icon"
   type="image/png"
-  href="assets/logo.png"
+  sizes="32x32"
+  href="./assets/logo.png?v=20260929"
+>
+
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="./assets/logo.png?v=20260929"
+>
+
+<link
+  rel="shortcut icon"
+  type="image/png"
+  href="./assets/logo.png?v=20260929"
+>
+
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="./assets/logo.png?v=20260929"
 >
 
 <link
   rel="preconnect"
   href="https://fonts.googleapis.com"
+>
+
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
 >
 
 <link
@@ -849,7 +873,7 @@ textarea{
 
   display:inline-block;
 
-  margin-top:13px;
+  margin-top:14px;
 
 }
 
@@ -876,7 +900,7 @@ textarea{
 
   position:relative;
 
-  height:380px;
+  min-height:340px;
 
   overflow:hidden;
 
@@ -884,7 +908,7 @@ textarea{
     1px solid
     var(--line);
 
-  background:#100a06;
+  background:#100b07;
 
 }
 
@@ -892,23 +916,36 @@ textarea{
 
   width:100%;
 
-  height:100%;
-
-  display:block;
+  height:340px;
 
   object-fit:cover;
 
-  opacity:.86;
-
   transition:
-    transform .35s ease;
+    transform .45s ease;
 
 }
 
 .project:hover img{
 
   transform:
-    scale(1.03);
+    scale(1.035);
+
+}
+
+.project::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 30%,
+      rgba(0,0,0,.88) 100%
+    );
 
 }
 
@@ -917,20 +954,15 @@ textarea{
   position:absolute;
 
   left:0;
+
   right:0;
+
   bottom:0;
 
-  padding:
-    65px
-    23px
-    22px;
+  z-index:2;
 
-  background:
-    linear-gradient(
-      180deg,
-      transparent,
-      rgba(0,0,0,.92)
-    );
+  padding:
+    25px;
 
 }
 
@@ -938,7 +970,7 @@ textarea{
 
   color:var(--gold-light);
 
-  font-size:9px;
+  font-size:11px;
 
   letter-spacing:2px;
 
@@ -947,7 +979,7 @@ textarea{
 .project h3{
 
   margin:
-    8px
+    7px
     0
     0;
 
@@ -958,11 +990,9 @@ textarea{
     "Prompt",
     sans-serif;
 
-  font-size:29px;
+  font-size:27px;
 
   font-weight:400;
-
-  line-height:1.25;
 
 }
 
@@ -976,14 +1006,12 @@ textarea{
   color:
     rgba(
       255,
-      248,
-      239,
-      .68
+      255,
+      255,
+      .72
     );
 
-  font-size:13px;
-
-  line-height:1.7;
+  font-size:14px;
 
 }
 
@@ -994,35 +1022,26 @@ textarea{
 
 .cta{
 
-  width:
-    min(
-      1000px,
-      calc(
-        100% -
-        (var(--page-gutter) * 2)
-      )
-    );
-
   margin:
-    15px
-    auto
-    70px;
+    0
+    var(--page-gutter)
+    60px;
 
   padding:
-    48px
-    35px;
+    52px
+    25px;
 
   text-align:center;
 
   border:
     1px solid
-    rgba(201,168,90,.28);
+    var(--line);
 
   background:
     linear-gradient(
-      135deg,
-      rgba(28,18,11,.88),
-      rgba(5,4,3,.92)
+      145deg,
+      rgba(21,14,9,.92),
+      rgba(7,5,3,.88)
     );
 
 }
@@ -1043,14 +1062,12 @@ textarea{
 
   font-size:
     clamp(
-      31px,
-      4vw,
-      48px
+      34px,
+      5vw,
+      52px
     );
 
   font-weight:400;
-
-  line-height:1.15;
 
 }
 
@@ -1059,30 +1076,33 @@ textarea{
   max-width:620px;
 
   margin:
-    10px
+    11px
     auto
-    20px;
+    0;
 
   color:var(--muted);
 
-  font-size:12px;
+  font-size:14px;
 
-  line-height:1.8;
+  line-height:1.9;
 
 }
 
 
 /* =========================================================
-   TABLET
+   RESPONSIVE
 ========================================================= */
 
-@media(max-width:1100px){
+@media(
+  max-width:980px
+){
 
   :root{
 
-    --page-gutter:28px;
+    --page-gutter:25px;
 
   }
+
 
   .hero{
 
@@ -1091,569 +1111,268 @@ textarea{
     padding:
       105px
       0
-      50px;
+      45px;
 
   }
+
 
   .company-grid{
 
     grid-template-columns:
-      180px
-      minmax(0,1fr);
+      1fr;
 
-    gap:28px;
+    gap:15px;
 
   }
 
-  .company-grid .text-link{
 
-    grid-column:2;
+  .company .text-link{
 
     justify-self:start;
 
   }
 
+
   .service-grid{
 
     grid-template-columns:
-      repeat(
-        2,
-        minmax(0,1fr)
-      );
+      1fr;
 
   }
 
-}
 
+  .product-grid{
 
-/* =========================================================
-   TABLET / LARGE MOBILE
-========================================================= */
-
-@media(max-width:900px){
-
-  :root{
-
-    --page-gutter:20px;
+    grid-template-columns:
+      1fr;
 
   }
 
-  .container{
 
-    width:
-      calc(
-        100% -
-        (var(--page-gutter) * 2)
-      );
+  .project-grid{
+
+    grid-template-columns:
+      1fr;
 
   }
 
-  .company-grid{
-
-    grid-template-columns:1fr;
-
-    gap:10px;
-
-  }
-
-  .company .text-link{
-
-    display:inline-block;
-
-    margin-top:4px;
-
-  }
-
-  .service-grid{
-
-    grid-template-columns:1fr;
-
-  }
 
   .section-head{
 
-    display:block;
+    align-items:flex-start;
+
+    flex-direction:column;
+
+    gap:12px;
 
   }
 
+
   .section-note{
 
-    margin-top:10px;
+    max-width:650px;
 
     text-align:left;
 
   }
 
-  .product-grid{
-
-    grid-template-columns:1fr;
-
-  }
-
 }
 
 
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:700px){
+@media(
+  max-width:640px
+){
 
   :root{
 
-    --page-gutter:16px;
+    --page-gutter:18px;
 
   }
 
-  body::before{
-
-    background:
-      url("assets/index-main-bg.png")
-      center top /
-      cover
-      no-repeat;
-
-  }
-
-  body::after{
-
-    background:
-      linear-gradient(
-        180deg,
-        rgba(0,0,0,.34) 0%,
-        rgba(0,0,0,.48) 24%,
-        rgba(0,0,0,.83) 56%,
-        #080604 82%
-      );
-
-  }
-
-  .home{
-
-    background:transparent;
-
-  }
-
-
-  /* -------------------------------------------------------
-     HERO
-     IMPORTANT:
-     ไม่มี translateY อีกแล้ว
-  ------------------------------------------------------- */
 
   .hero{
 
-    min-height:590px;
+    min-height:
+      600px;
 
     padding:
-      88px
+      100px
       0
-      35px;
-
-    align-items:flex-start;
+      38px;
 
   }
+
 
   .hero-copy{
 
-    max-width:none;
-
     padding:
-      24px
-      8px
-      25px
-      0;
-
-    /*
-      เดิม:
-      transform:translateY(58px);
-
-      เอาออกเพราะทำให้เกิด
-      ช่องว่างหลอกใน layout
-    */
-
-    transform:none !important;
+      15px
+      0
+      20px;
 
   }
+
 
   .hero h1{
 
     font-size:
       clamp(
-        46px,
-        14vw,
-        64px
+        43px,
+        15vw,
+        67px
       );
 
   }
 
+
   .hero h1 span{
 
-    font-size:11px;
+    font-size:
+      .31em;
 
-    letter-spacing:2px;
+    letter-spacing:
+      2px;
 
   }
+
 
   .hero p{
 
-    font-size:16px;
+    font-size:
+      15px;
 
-    line-height:1.9;
+    line-height:
+      1.85;
 
   }
+
 
   .actions{
 
-    flex-direction:column;
+    flex-direction:
+      column;
 
-    gap:10px;
+    align-items:
+      stretch;
 
   }
 
-  .actions .btn{
+
+  .btn{
 
     width:100%;
 
   }
 
 
-  /* COMPANY */
-
   .company{
 
     padding:
-      30px
+      32px
       0;
 
   }
 
+
   .company h2{
 
-    font-size:29px;
+    font-size:
+      27px;
 
   }
 
-  .company p{
-
-    font-size:15px;
-
-    line-height:1.9;
-
-  }
-
-
-  /* SECTION */
 
   .section{
 
     padding:
-      46px
-      0
-      50px;
+      48px
+      0;
 
   }
 
-  .section-head{
-
-    margin-bottom:24px;
-
-  }
 
   .section-title{
 
-    font-size:39px;
-
-  }
-
-  .section-note{
-
-    font-size:14px;
-
-    line-height:1.9;
-
-  }
-
-
-  /* SERVICES */
-
-  .service{
-
-    min-height:0;
-
-    padding:
-      25px
-      21px;
-
-  }
-
-  .service h3{
-
-    font-size:27px;
-
-  }
-
-  .service p{
-
-    font-size:15px;
-
-    line-height:1.9;
-
-  }
-
-
-  /* PRODUCTS */
-
-  .product{
-
-    grid-template-columns:
-      120px
-      minmax(0,1fr);
-
-    min-height:150px;
-
-  }
-
-  .product-image{
-
-    min-height:150px;
-
-  }
-
-  .product-body{
-
-    padding:
-      18px
-      15px;
-
-  }
-
-  .product h3{
-
-    font-size:21px;
-
-  }
-
-  .product p{
-
-    font-size:14px;
-
-    line-height:1.85;
-
-  }
-
-
-  /* PROJECTS */
-
-  .project-grid{
-
-    grid-template-columns:1fr;
-
-  }
-
-  .project{
-
-    height:300px;
-
-  }
-
-  .project h3{
-
-    font-size:27px;
-
-  }
-
-  .project p{
-
-    font-size:14px;
-
-    line-height:1.8;
-
-  }
-
-
-  /* CTA */
-
-  .cta{
-
-    width:
-      calc(
-        100% -
-        (var(--page-gutter) * 2)
-      );
-
-    margin:
-      15px
-      auto
-      50px;
-
-    padding:
-      38px
-      20px;
-
-  }
-
-  .cta .actions{
-
-    flex-direction:column;
-
-  }
-
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media(max-width:480px){
-
-  :root{
-
-    --page-gutter:14px;
-
-  }
-
-  .hero{
-
-    min-height:auto;
-
-    padding:
-      62px
-      0
+    font-size:
       35px;
 
   }
 
-  .hero-copy{
-
-    padding:
-      18px
-      4px
-      20px
-      0;
-
-  }
-
-  .hero h1{
-
-    font-size:
-      clamp(
-        40px,
-        13.5vw,
-        56px
-      );
-
-  }
-
-  .hero p{
-
-    font-size:14px;
-
-  }
-
-  .btn{
-
-    min-height:48px;
-
-    font-size:13px;
-
-  }
-
-  .company{
-
-    padding:
-      28px
-      0;
-
-  }
-
-  .company h2{
-
-    font-size:27px;
-
-  }
-
-  .section{
-
-    padding:
-      42px
-      0
-      46px;
-
-  }
-
-  .section-title{
-
-    font-size:35px;
-
-  }
 
   .service{
 
-    padding:
-      21px
-      17px;
+    min-height:
+      auto;
 
   }
 
-  .service h3{
-
-    font-size:24px;
-
-  }
 
   .product{
 
     grid-template-columns:
-      105px
-      minmax(0,1fr);
+      1fr;
 
   }
+
 
   .product-image{
 
-    min-height:145px;
+    min-height:
+      210px;
 
   }
 
-  .product-body{
 
-    padding:
-      16px
-      13px;
+  .product-image img{
 
-  }
-
-  .product h3{
-
-    font-size:18px;
+    height:
+      210px;
 
   }
 
-  .product p{
-
-    font-size:12.5px;
-
-  }
 
   .project{
 
-    height:260px;
+    min-height:
+      270px;
 
   }
+
+
+  .project img{
+
+    height:
+      270px;
+
+  }
+
+
+  .project-overlay{
+
+    padding:
+      20px;
+
+  }
+
 
   .project h3{
 
-    font-size:24px;
+    font-size:
+      24px;
 
   }
+
 
   .cta{
 
+    margin:
+      0
+      var(--page-gutter)
+      40px;
+
     padding:
-      34px
-      17px;
+      38px
+      18px;
 
   }
 
@@ -1661,91 +1380,41 @@ textarea{
 
 
 /* =========================================================
-   VERY SMALL MOBILE
+   EXTRA MOBILE SAFETY
 ========================================================= */
 
-@media(max-width:380px){
-
-  :root{
-
-    --page-gutter:12px;
-
-  }
+@media(
+  max-width:420px
+){
 
   .hero{
 
-    padding-top:52px;
+    min-height:
+      570px;
 
   }
+
 
   .hero h1{
 
-    font-size:38px;
+    font-size:
+      42px;
 
   }
+
 
   .hero h1 span{
 
-    font-size:10px;
-
-    letter-spacing:1.7px;
-
-  }
-
-  .product{
-
-    grid-template-columns:1fr;
+    font-size:
+      11px;
 
   }
 
-  .product-image{
 
-    height:170px;
+  .section-title{
 
-    min-height:170px;
-
-  }
-
-  .product-body{
-
-    padding:18px;
-
-  }
-
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media(prefers-reduced-motion:reduce){
-
-  html{
-
-    scroll-behavior:auto;
-
-  }
-
-  *,
-  *::before,
-  *::after{
-
-    transition:none !important;
-
-    animation:none !important;
-
-  }
-
-  .btn:hover{
-
-    transform:none;
-
-  }
-
-  .project:hover img{
-
-    transform:none;
+    font-size:
+      31px;
 
   }
 
@@ -1761,12 +1430,13 @@ textarea{
 
 <div class="home">
 
+
+  <!-- =====================================================
+       HERO
+  ====================================================== -->
+
   <main>
 
-
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
 
     <section class="hero">
 
@@ -1781,9 +1451,8 @@ textarea{
           <h1>
 
             วัสดุงานพื้น
-
             <span>
-              FLOORING &amp; CONSTRUCTION
+              และงานก่อสร้าง
             </span>
 
           </h1>
@@ -1791,11 +1460,11 @@ textarea{
           <div class="hero-rule"></div>
 
           <p>
-            โซลูชันด้านวัสดุงานพื้นและงานก่อสร้าง
-            สำหรับบ้าน อาคารพาณิชย์ โรงงาน
-            และโครงการต่าง ๆ
-            พร้อมทีมงานดูแลตั้งแต่การเลือกวัสดุจนถึงการติดตั้ง
+            เราคัดสรรวัสดุและระบบงานพื้น
+            สำหรับบ้าน อาคาร โรงงาน และโครงการต่าง ๆ
+            พร้อมคำแนะนำเพื่อให้เหมาะกับลักษณะการใช้งาน
           </p>
+
 
           <div class="actions">
 
@@ -1803,14 +1472,14 @@ textarea{
               class="btn btn-gold"
               href="products.html"
             >
-              ดูสินค้า →
+              ดูสินค้า
             </a>
 
             <a
               class="btn btn-line"
               href="contact.html"
             >
-              ติดต่อเรา
+              ปรึกษางาน
             </a>
 
           </div>
@@ -1823,37 +1492,43 @@ textarea{
 
 
     <!-- =====================================================
-         COMPANY INTRO
+         COMPANY
     ====================================================== -->
 
     <section class="company">
 
-      <div class="container company-grid">
+      <div class="container">
 
-        <div class="company-label">
-          ABOUT CHATPHETCH
+        <div class="company-grid">
+
+          <div class="company-label">
+            ABOUT CHATPHETCH
+          </div>
+
+          <div>
+
+            <h2>
+              บริษัท ฉัตรเพชรกรุ๊ป จำกัด
+            </h2>
+
+            <p>
+              ให้บริการด้านวัสดุงานพื้น
+              สี น้ำยา วัสดุก่อสร้าง
+              และงานระบบที่เกี่ยวข้อง
+              พร้อมให้คำปรึกษาและแนะนำวัสดุ
+              ให้เหมาะกับหน้างานของลูกค้า
+            </p>
+
+          </div>
+
+          <a
+            class="text-link"
+            href="about.html"
+          >
+            เกี่ยวกับเรา →
+          </a>
+
         </div>
-
-        <div>
-
-          <h2>
-            CHATPHETCH GROUP
-          </h2>
-
-          <p>
-            ผู้ผลิตและจำหน่ายวัสดุงานพื้นและผลิตภัณฑ์ที่เกี่ยวข้อง
-            พร้อมให้คำปรึกษาเกี่ยวกับระบบพื้น
-            และแนวทางการเลือกวัสดุให้เหมาะกับพื้นที่และการใช้งาน
-          </p>
-
-        </div>
-
-        <a
-          class="text-link"
-          href="about.html"
-        >
-          เกี่ยวกับเรา →
-        </a>
 
       </div>
 
@@ -1873,18 +1548,18 @@ textarea{
           <div>
 
             <div class="section-kicker">
-              OUR SERVICES
+              SERVICES
             </div>
 
             <h2 class="section-title">
-              บริการหลัก
+              บริการของเรา
             </h2>
 
           </div>
 
           <p class="section-note">
-            เลือกดูรายละเอียดบริการที่เกี่ยวข้อง
-            กับลักษณะพื้นที่และการใช้งาน
+            ให้คำปรึกษาและดูแลตั้งแต่การเลือกวัสดุ
+            ไปจนถึงแนวทางการใช้งานที่เหมาะกับพื้นที่
           </p>
 
         </div>
@@ -1896,11 +1571,11 @@ textarea{
           <article class="service">
 
             <div class="service-no">
-              01 / INDUSTRIAL
+              01 / INDUSTRIAL FLOOR
             </div>
 
             <h3>
-              พื้นอุตสาหกรรม
+              งานพื้นอุตสาหกรรม
             </h3>
 
             <p>
@@ -2451,4 +2126,3 @@ textarea{
 
 </body>
 </html>
-```
