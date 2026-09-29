@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CHATPHETCH GROUP — Admin</title>
+<title>CHATPETCH GROUP — Admin</title>
 
 <link rel="icon" href="./assets/logo.png">
 
@@ -15,19 +15,21 @@
   --gold:#d8b65b;
   --gold-light:#f1d77d;
   --bg:#080808;
-  --card:rgba(12,12,12,.86);
+  --card:rgba(12,12,12,.88);
   --line:rgba(255,255,255,.12);
   --text:#fff;
   --muted:#888;
   --green:#40d889;
   --red:#ff7272;
+  --blue:#75a9ff;
 }
 
 *{
   box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
   margin:0;
   min-height:100%;
 }
@@ -37,7 +39,7 @@ body{
   background:
     linear-gradient(
       rgba(0,0,0,.65),
-      rgba(0,0,0,.88)
+      rgba(0,0,0,.9)
     ),
     url("./assets/index-main-bg.png")
     center/cover fixed no-repeat;
@@ -62,21 +64,22 @@ button{
   display:none!important;
 }
 
-/* ================= LOGIN ================= */
+/* =====================================================
+   LOGIN
+===================================================== */
 
 #loginScreen{
   position:fixed;
   inset:0;
   z-index:9000;
-  min-height:100vh;
   display:flex;
-  justify-content:center;
   align-items:center;
-  padding:24px;
+  justify-content:center;
+  padding:20px;
   background:
     linear-gradient(
       rgba(8,12,18,.54),
-      rgba(8,12,18,.72)
+      rgba(8,12,18,.75)
     ),
     url("./assets/index-main-bg.png")
     center/cover no-repeat;
@@ -86,28 +89,24 @@ button{
   width:min(540px,100%);
   padding:42px 44px;
   background:#f7f7f7;
-  border:0;
   border-radius:28px;
-  box-shadow:0 28px 90px rgba(0,0,0,.48);
   color:#1d2638;
+  box-shadow:0 28px 90px rgba(0,0,0,.48);
 }
 
 .login-logo{
   display:block;
   width:116px;
   height:116px;
-  object-fit:contain;
   margin:0 auto 14px;
+  object-fit:contain;
 }
 
 .login-title{
   margin:0;
   text-align:center;
-  color:#1d2638;
-  font-family:"Kanit","Prompt",sans-serif;
   font-size:30px;
   font-weight:700;
-  letter-spacing:0;
 }
 
 .login-subtitle{
@@ -122,7 +121,7 @@ button{
   margin-bottom:18px;
 }
 
-.login-box .field label{
+.login-box label{
   display:block;
   margin-bottom:8px;
   color:#273246;
@@ -130,7 +129,7 @@ button{
   font-weight:600;
 }
 
-.login-box .field input{
+.login-box input{
   width:100%;
   height:62px;
   padding:0 18px;
@@ -142,17 +141,12 @@ button{
   font-size:17px;
 }
 
-.login-box .field input:focus{
-  border-color:#5879aa;
-  box-shadow:0 0 0 3px rgba(88,121,170,.12);
-}
-
 .password-wrap{
   position:relative;
 }
 
 .password-wrap input{
-  padding-right:92px !important;
+  padding-right:90px;
 }
 
 .show-password{
@@ -165,7 +159,6 @@ button{
   border-radius:10px;
   background:#f5f8fc;
   color:#273246;
-  font-weight:500;
 }
 
 .login-btn{
@@ -180,17 +173,13 @@ button{
   font-weight:700;
 }
 
-.login-btn:hover{
-  background:#123365;
-}
-
 .login-error{
   display:none;
   margin-top:14px;
   padding:12px 14px;
+  border:1px solid #efb4b4;
   border-radius:10px;
   background:#fff0f0;
-  border:1px solid #efb4b4;
   color:#b42323;
   font-size:13px;
   line-height:1.6;
@@ -200,20 +189,9 @@ button{
   display:block;
 }
 
-@media(max-width:600px){
-  #loginScreen{padding:16px;}
-  .login-box{
-    padding:34px 22px;
-    border-radius:22px;
-  }
-  .login-title{font-size:26px;}
-  .login-logo{
-    width:100px;
-    height:100px;
-  }
-}
-
-/* ================= APP ================= */
+/* =====================================================
+   APP
+===================================================== */
 
 #app{
   display:none;
@@ -223,14 +201,16 @@ button{
   display:block;
 }
 
-/* ================= HEADER ================= */
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header{
   position:sticky;
   top:0;
   z-index:100;
-  background:rgba(5,5,5,.96);
   border-bottom:1px solid var(--line);
+  background:rgba(5,5,5,.96);
   backdrop-filter:blur(15px);
 }
 
@@ -262,10 +242,10 @@ button{
 }
 
 .brand-sub{
+  margin-top:4px;
   color:#666;
   font-size:9px;
   letter-spacing:.2em;
-  margin-top:4px;
 }
 
 .nav{
@@ -301,8 +281,9 @@ button{
   font-size:11px;
 }
 
-.logout-btn{
-  padding:11px 15px;
+.logout-btn,
+.menu-btn{
+  padding:10px 14px;
   border:1px solid var(--line);
   border-radius:9px;
   background:#111;
@@ -311,14 +292,11 @@ button{
 
 .menu-btn{
   display:none;
-  border:1px solid var(--line);
-  border-radius:8px;
-  padding:9px 12px;
-  background:#111;
-  color:#fff;
 }
 
-/* ================= MAIN ================= */
+/* =====================================================
+   MAIN
+===================================================== */
 
 .main{
   width:min(1550px,calc(100% - 40px));
@@ -343,10 +321,10 @@ button{
 }
 
 .kicker{
+  margin-bottom:8px;
   color:var(--gold);
   font-size:11px;
   letter-spacing:.22em;
-  margin-bottom:8px;
 }
 
 .page-title{
@@ -356,12 +334,14 @@ button{
 }
 
 .page-description{
-  color:#777;
   margin-top:12px;
+  color:#777;
   font-size:13px;
 }
 
-/* ================= BUTTON ================= */
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .btn{
   padding:11px 16px;
@@ -390,7 +370,9 @@ button{
   color:#ff9999;
 }
 
-/* ================= CARD ================= */
+/* =====================================================
+   CARD
+===================================================== */
 
 .card{
   margin-bottom:16px;
@@ -411,7 +393,9 @@ button{
   margin:0;
 }
 
-/* ================= STATS ================= */
+/* =====================================================
+   STATS
+===================================================== */
 
 .stats{
   display:grid;
@@ -440,7 +424,9 @@ button{
   font-weight:900;
 }
 
-/* ================= TABLE ================= */
+/* =====================================================
+   TABLE
+===================================================== */
 
 .table-wrap{
   overflow:auto;
@@ -470,7 +456,9 @@ td{
   color:#ddd;
 }
 
-/* ================= FILTER ================= */
+/* =====================================================
+   FILTER
+===================================================== */
 
 .filters{
   display:flex;
@@ -484,16 +472,56 @@ td{
   padding:0 13px;
   border:1px solid var(--line);
   border-radius:9px;
+  outline:none;
   background:#090909;
   color:#fff;
-  outline:none;
 }
 
 .filters input{
   flex:1;
 }
 
-/* ================= BADGE ================= */
+/* =====================================================
+   FORM
+===================================================== */
+
+.field{
+  margin-bottom:17px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:7px;
+  color:#aaa;
+  font-size:12px;
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  padding:12px 13px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  outline:none;
+  background:#090909;
+  color:#fff;
+}
+
+.field textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:rgba(216,182,91,.7);
+}
+
+/* =====================================================
+   BADGE
+===================================================== */
 
 .badge{
   display:inline-block;
@@ -517,7 +545,9 @@ td{
   border:1px solid rgba(255,114,114,.3);
 }
 
-/* ================= ACTION ================= */
+/* =====================================================
+   ACTION
+===================================================== */
 
 .actions{
   display:flex;
@@ -538,16 +568,9 @@ td{
   border-color:var(--gold);
 }
 
-/* ================= EMPTY ================= */
-
-.empty{
-  padding:40px 20px;
-  text-align:center;
-  color:#666;
-  line-height:1.8;
-}
-
-/* ================= GRID ================= */
+/* =====================================================
+   GRID
+===================================================== */
 
 .grid{
   display:grid;
@@ -596,7 +619,20 @@ td{
   margin-top:14px;
 }
 
-/* ================= MODAL ================= */
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+  padding:40px 20px;
+  text-align:center;
+  color:#666;
+  line-height:1.8;
+}
+
+/* =====================================================
+   MODAL
+===================================================== */
 
 .modal{
   position:fixed;
@@ -626,8 +662,8 @@ td{
 
 .modal-head{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   margin-bottom:20px;
 }
 
@@ -649,7 +685,9 @@ td{
   margin-top:20px;
 }
 
-/* ================= TOAST ================= */
+/* =====================================================
+   TOAST
+===================================================== */
 
 #toast{
   position:fixed;
@@ -657,7 +695,7 @@ td{
   bottom:20px;
   z-index:9999;
   display:none;
-  max-width:420px;
+  max-width:430px;
   padding:13px 16px;
   border:1px solid var(--line);
   border-radius:10px;
@@ -675,7 +713,9 @@ td{
   border-color:rgba(255,80,80,.35);
 }
 
-/* ================= RESPONSIVE ================= */
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media(max-width:1150px){
 
@@ -739,10 +779,6 @@ td{
     padding:30px 20px;
   }
 
-  .login-title{
-    font-size:29px;
-  }
-
   .page-head{
     display:block;
   }
@@ -760,132 +796,6 @@ td{
   }
 
 }
-
-
-/* =====================================================
-   UNIFIED LOGIN UI
-===================================================== */
-
-#loginScreen{
-  position:fixed;
-  inset:0;
-  z-index:5000;
-  min-height:100vh;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  padding:24px;
-  background:
-    linear-gradient(
-      rgba(8,12,18,.54),
-      rgba(8,12,18,.72)
-    ),
-    url("./assets/index-main-bg.png")
-    center/cover no-repeat;
-}
-
-.login-box{
-  width:min(540px,100%);
-  max-width:none;
-  padding:42px 44px;
-  background:#f7f7f7;
-  border:0;
-  border-radius:28px;
-  box-shadow:0 28px 90px rgba(0,0,0,.48);
-  color:#1d2638;
-}
-
-.login-logo{
-  width:116px;
-  height:116px;
-  margin:0 auto 14px;
-}
-
-.login-title{
-  color:#1d2638;
-  font-family:"Kanit","Prompt",sans-serif;
-  font-size:30px;
-  font-weight:700;
-  letter-spacing:0;
-}
-
-.login-subtitle{
-  color:#737b89;
-  line-height:1.75;
-  margin:10px 0 30px;
-  font-size:15px;
-}
-
-.login-box .field label{
-  color:#273246;
-  font-size:14px;
-  font-weight:600;
-}
-
-.login-box .field input{
-  height:62px;
-  padding:0 18px;
-  border:1px solid #d5dce8;
-  border-radius:14px;
-  background:#eaf1fc;
-  color:#263245;
-  font-size:17px;
-}
-
-.login-box .field input:focus{
-  border-color:#5879aa;
-  box-shadow:0 0 0 3px rgba(88,121,170,.12);
-}
-
-.password-wrap input{
-  padding-right:92px !important;
-}
-
-.show-password{
-  top:7px;
-  right:7px;
-  bottom:7px;
-  width:70px;
-  border:0;
-  border-radius:10px;
-  background:#f5f8fc;
-  color:#273246;
-}
-
-.login-btn{
-  height:58px;
-  margin-top:8px;
-  border-radius:14px;
-  background:#183c76;
-  color:#fff;
-  font-size:16px;
-  font-weight:700;
-}
-
-.login-btn:hover{
-  background:#123365;
-}
-
-.login-error.show{
-  background:#fff0f0;
-  border-color:#efb4b4;
-  color:#b42323;
-}
-
-@media(max-width:600px){
-  .login-box{
-    padding:34px 22px;
-    border-radius:22px;
-  }
-  .login-title{
-    font-size:26px;
-  }
-  .login-logo{
-    width:100px;
-    height:100px;
-  }
-}
-
 </style>
 </head>
 
@@ -902,7 +812,7 @@ td{
     <img
       src="./assets/logo.png"
       class="login-logo"
-      alt="CHATPHETCH GROUP"
+      alt="CHATPETCH GROUP"
     >
 
     <h1 class="login-title">
@@ -962,10 +872,7 @@ td{
 
     </form>
 
-    <div
-      id="loginError"
-      class="login-error"
-    ></div>
+    <div id="loginError" class="login-error"></div>
 
   </div>
 
@@ -973,7 +880,7 @@ td{
 
 
 <!-- =====================================================
-     ADMIN APP
+     APP
 ===================================================== -->
 
 <div id="app">
@@ -994,22 +901,21 @@ td{
 
       <img
         src="./assets/logo.png"
-        alt="CHATPHETCH"
+        alt="CHATPETCH"
       >
 
       <div>
-
         <div class="brand-title">
-          CHATPHETCH GROUP
+          CHATPETCH GROUP
         </div>
 
         <div class="brand-sub">
-          ADMIN MANAGEMENT SYSTEM
+          ADMIN SYSTEM
         </div>
-
       </div>
 
     </div>
+
 
     <nav id="nav" class="nav">
 
@@ -1030,7 +936,6 @@ td{
 
       <button
         data-page="products"
-        id="adminProductsNavButton"
         type="button"
       >
         สินค้า
@@ -1066,6 +971,7 @@ td{
 
     </nav>
 
+
     <div class="header-right">
 
       <span
@@ -1092,7 +998,9 @@ td{
 
 <main class="main">
 
-<!-- ================= DASHBOARD ================= -->
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
 
 <section
   id="page-dashboard"
@@ -1112,7 +1020,7 @@ td{
       </h1>
 
       <div class="page-description">
-        ศูนย์กลางจัดการระบบ CHATPHETCH GROUP
+        ศูนย์กลางจัดการระบบ CHATPETCH GROUP
       </div>
 
     </div>
@@ -1127,12 +1035,14 @@ td{
 
   </div>
 
+
   <div class="stats">
 
     <div class="stat">
       <div class="stat-label">
         คำสั่งซื้อ
       </div>
+
       <div
         id="statOrders"
         class="stat-number"
@@ -1141,10 +1051,12 @@ td{
       </div>
     </div>
 
+
     <div class="stat">
       <div class="stat-label">
         สินค้า
       </div>
+
       <div
         id="statProducts"
         class="stat-number"
@@ -1153,10 +1065,12 @@ td{
       </div>
     </div>
 
+
     <div class="stat">
       <div class="stat-label">
         ผลงาน
       </div>
+
       <div
         id="statPortfolio"
         class="stat-number"
@@ -1165,10 +1079,12 @@ td{
       </div>
     </div>
 
+
     <div class="stat">
       <div class="stat-label">
         ข้อความใหม่
       </div>
+
       <div
         id="statInquiries"
         class="stat-number"
@@ -1177,10 +1093,12 @@ td{
       </div>
     </div>
 
+
     <div class="stat">
       <div class="stat-label">
         ผู้ใช้งาน
       </div>
+
       <div
         id="statUsers"
         class="stat-number"
@@ -1191,19 +1109,24 @@ td{
 
   </div>
 
+
   <div class="card">
 
     <div class="card-head">
+
       <h3>
         คำสั่งซื้อล่าสุด
       </h3>
+
     </div>
+
 
     <div class="table-wrap">
 
       <table>
 
         <thead>
+
           <tr>
             <th>เลขที่</th>
             <th>ลูกค้า</th>
@@ -1211,6 +1134,7 @@ td{
             <th>สถานะ</th>
             <th>วันที่</th>
           </tr>
+
         </thead>
 
         <tbody id="recentOrders"></tbody>
@@ -1224,7 +1148,9 @@ td{
 </section>
 
 
-<!-- ================= ORDERS ================= -->
+<!-- =====================================================
+     ORDERS
+===================================================== -->
 
 <section
   id="page-orders"
@@ -1246,6 +1172,7 @@ td{
     </div>
 
   </div>
+
 
   <div class="card">
 
@@ -1279,18 +1206,20 @@ td{
         </option>
 
         <option value="cancelled">
-          ยกเลิก
+          ยกเลิกแล้ว
         </option>
 
       </select>
 
     </div>
 
+
     <div class="table-wrap">
 
       <table>
 
         <thead>
+
           <tr>
             <th>เลขที่</th>
             <th>ลูกค้า</th>
@@ -1300,6 +1229,7 @@ td{
             <th>วันที่</th>
             <th>จัดการ</th>
           </tr>
+
         </thead>
 
         <tbody id="ordersTable"></tbody>
@@ -1313,7 +1243,9 @@ td{
 </section>
 
 
-<!-- ================= PRODUCTS ================= -->
+<!-- =====================================================
+     PRODUCTS
+===================================================== -->
 
 <section
   id="page-products"
@@ -1344,6 +1276,7 @@ td{
 
   </div>
 
+
   <div class="card">
 
     <div class="filters">
@@ -1365,7 +1298,9 @@ td{
 </section>
 
 
-<!-- ================= PORTFOLIO ================= -->
+<!-- =====================================================
+     PORTFOLIO
+===================================================== -->
 
 <section
   id="page-portfolio"
@@ -1396,6 +1331,7 @@ td{
 
   </div>
 
+
   <div class="card">
 
     <div
@@ -1408,7 +1344,9 @@ td{
 </section>
 
 
-<!-- ================= INQUIRIES ================= -->
+<!-- =====================================================
+     INQUIRIES
+===================================================== -->
 
 <section
   id="page-inquiries"
@@ -1424,42 +1362,15 @@ td{
       </div>
 
       <h1 class="page-title">
-        ข้อความติดต่อ
+        ข้อความ
       </h1>
 
     </div>
 
   </div>
 
+
   <div class="card">
-
-    <div class="filters">
-
-      <select id="inquiryFilter">
-
-        <option value="">
-          ทุกสถานะ
-        </option>
-
-        <option value="new">
-          ใหม่
-        </option>
-
-        <option value="contacting">
-          กำลังติดต่อ
-        </option>
-
-        <option value="contacted">
-          ติดต่อแล้ว
-        </option>
-
-        <option value="closed">
-          ปิดเรื่อง
-        </option>
-
-      </select>
-
-    </div>
 
     <div class="table-wrap">
 
@@ -1490,7 +1401,9 @@ td{
 </section>
 
 
-<!-- ================= USERS ================= -->
+<!-- =====================================================
+     USERS
+===================================================== -->
 
 <section
   id="page-users"
@@ -1509,13 +1422,10 @@ td{
         ผู้ใช้งาน
       </h1>
 
-      <div class="page-description">
-        จัดการผู้ดูแลระบบ
-      </div>
-
     </div>
 
   </div>
+
 
   <div class="card">
 
@@ -1547,7 +1457,9 @@ td{
 </section>
 
 
-<!-- ================= SETTINGS ================= -->
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
 
 <section
   id="page-settings"
@@ -1569,6 +1481,7 @@ td{
     </div>
 
   </div>
+
 
   <div class="card">
 
@@ -1625,7 +1538,9 @@ td{
 </div>
 
 
-<!-- ================= MODAL ================= -->
+<!-- =====================================================
+     MODAL
+===================================================== -->
 
 <div
   id="modal"
@@ -1650,7 +1565,9 @@ td{
 
     </div>
 
+
     <div id="modalBody"></div>
+
 
     <div class="modal-actions">
 
@@ -1681,30 +1598,9 @@ td{
 
 
 <script>
-
 /* =====================================================
-   SUPABASE CONFIG
+   SUPABASE
 ===================================================== */
-
-/*
-  สำคัญมาก
-
-  ใส่ค่าจริงจาก:
-
-  Supabase
-  > Project Settings
-  > API
-
-  ตัวอย่าง:
-
-  const SUPABASE_URL =
-    "https://xxxxxxxx.supabase.co";
-
-  const SUPABASE_KEY =
-    "sb_publishable_xxxxxxxxx";
-
-  ห้ามใช้ service_role key
-*/
 
 const SUPABASE_URL =
   "https://mfhllgklcfnnbyyzzljz.supabase.co";
@@ -1712,31 +1608,10 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
   "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
 
-
-/* =====================================================
-   SUPABASE CLIENT
-===================================================== */
-
-if(
-  !window.supabase
-){
-  throw new Error(
-    "ไม่พบ Supabase SDK"
-  );
-}
-
 const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_KEY,
-    {
-      auth:{
-        persistSession:true,
-        autoRefreshToken:true,
-        detectSessionInUrl:true,
-        flowType:"implicit"
-      }
-    }
+    SUPABASE_KEY
   );
 
 
@@ -1744,18 +1619,19 @@ const supabaseClient =
    STATE
 ===================================================== */
 
-let currentSession = null;
 let currentUser = null;
-let currentRole = "viewer";
+let currentRole = null;
 
 let orders = [];
 let products = [];
-let portfolios = [];
+let portfolio = [];
 let inquiries = [];
 let users = [];
 
 let modalMode = "";
 let modalId = "";
+
+let authStarting = false;
 
 
 /* =====================================================
@@ -1768,7 +1644,6 @@ function $(id){
 
 
 function escapeHTML(value){
-
   return String(value ?? "")
     .replaceAll("&","&amp;")
     .replaceAll("<","&lt;")
@@ -1779,14 +1654,16 @@ function escapeHTML(value){
 
 
 function formatMoney(value){
+  const number =
+    Number(value || 0);
 
-  return Number(value || 0)
-    .toLocaleString(
-      "th-TH",
-      {
-        minimumFractionDigits:2
-      }
-    );
+  return number.toLocaleString(
+    "th-TH",
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  );
 }
 
 
@@ -1798,44 +1675,42 @@ function formatDate(value){
   const date =
     new Date(value);
 
-  if(
-    Number.isNaN(
-      date.getTime()
-    )
-  ){
+  if(Number.isNaN(date.getTime()))
     return "-";
-  }
 
   return date.toLocaleString(
-    "th-TH"
+    "th-TH",
+    {
+      dateStyle:"short",
+      timeStyle:"short"
+    }
   );
 }
 
 
 function showToast(
   message,
-  error=false
+  error = false
 ){
 
-  const el =
+  const toast =
     $("toast");
 
-  el.textContent =
+  toast.textContent =
     message;
 
-  el.className =
-    error
-      ? "show error"
-      : "show";
+  toast.className =
+    "show" +
+    (error ? " error" : "");
 
   clearTimeout(
-    window.toastTimer
+    showToast.timer
   );
 
-  window.toastTimer =
+  showToast.timer =
     setTimeout(
-      ()=>{
-        el.className="";
+      () => {
+        toast.className = "";
       },
       3500
     );
@@ -1843,67 +1718,128 @@ function showToast(
 
 
 function isOwner(){
-
   return (
-    currentRole ===
-    "owner"
+    currentRole === "owner"
   );
 }
 
 
 function isManager(){
-
   return (
     currentRole === "owner" ||
-    currentRole === "manager"
+    currentRole === "admin"
   );
 }
 
 
 /* =====================================================
-   CONFIG
+   LOGIN UI
 ===================================================== */
 
-function checkConfig(){
+function showLogin(){
 
-  if(
-    !SUPABASE_URL ||
-    SUPABASE_URL.includes("ใส่_") ||
-    !SUPABASE_URL.startsWith("https://")
-  ){
+  $("app").classList.remove("show");
 
-    throw new Error(
-      "กรุณาใส่ SUPABASE_URL ก่อน"
-    );
-  }
+  $("app").style.display =
+    "none";
 
+  $("loginScreen").style.display =
+    "flex";
 
-  if(
-    !SUPABASE_KEY ||
-    SUPABASE_KEY.includes("ใส่_")
-  ){
-
-    throw new Error(
-      "กรุณาใส่ SUPABASE_KEY ก่อน"
-    );
-  }
+}
 
 
-  if(
-    /[^\x00-\x7F]/.test(
-      SUPABASE_KEY
-    )
-  ){
+function showApp(){
 
-    throw new Error(
-      "SUPABASE_KEY มีอักขระไม่ถูกต้อง"
-    );
-  }
+  $("loginScreen").style.display =
+    "none";
+
+  $("app").style.display =
+    "block";
+
+  $("app").classList.add("show");
+
 }
 
 
 /* =====================================================
-   PASSWORD
+   ROLE
+===================================================== */
+
+async function loadRole(user){
+
+  const result =
+    await supabaseClient
+      .from("admin_users")
+      .select("*")
+      .eq(
+        "user_id",
+        user.id
+      )
+      .limit(1);
+
+  if(result.error)
+    throw result.error;
+
+  if(!result.data || !result.data.length){
+
+    currentRole =
+      "viewer";
+
+    $("roleBadge").textContent =
+      "VIEWER";
+
+    applyPermissions();
+
+    return;
+  }
+
+  const row =
+    result.data[0];
+
+  if(row.active === false){
+
+    await supabaseClient
+      .auth
+      .signOut();
+
+    throw new Error(
+      "บัญชีนี้ถูกปิดใช้งาน"
+    );
+  }
+
+  currentRole =
+    String(
+      row.role || "viewer"
+    ).toLowerCase();
+
+  $("roleBadge").textContent =
+    currentRole.toUpperCase();
+
+  applyPermissions();
+}
+
+
+function applyPermissions(){
+
+  document
+    .querySelectorAll(".owner-only")
+    .forEach(
+      element => {
+
+        element.style.display =
+          isOwner()
+            ? ""
+            : "none";
+
+      }
+    );
+
+}
+
+
+/* =====================================================
+   LOGIN
 ===================================================== */
 
 $("showPassword").onclick =
@@ -1931,408 +1867,310 @@ function(){
     this.textContent =
       "แสดง";
   }
-
 };
 
-
-/* =====================================================
-   LOGIN
-===================================================== */
 
 $("loginForm").onsubmit =
 async function(event){
 
   event.preventDefault();
 
-
   const email =
     $("email")
       .value
-      .trim()
-      .toLowerCase();
-
+      .trim();
 
   const password =
     $("password")
       .value;
 
+  $("loginError")
+    .classList
+    .remove("show");
 
-  const button =
-    $("loginButton");
+  $("loginButton")
+    .disabled = true;
 
-
-  const errorBox =
-    $("loginError");
-
-
-  errorBox.className =
-    "login-error";
-
-
-  errorBox.textContent =
-    "";
-
-
-  button.disabled =
-    true;
-
-
-  button.textContent =
+  $("loginButton")
+    .textContent =
     "กำลังเข้าสู่ระบบ...";
-
 
   try{
 
-    checkConfig();
-
-
     const result =
-      await supabaseClient.auth
+      await supabaseClient
+        .auth
         .signInWithPassword({
-
           email,
-
           password
-
         });
 
-
-    if(
-      result.error
-    ){
-
+    if(result.error)
       throw result.error;
-    }
 
-
-    if(
-      !result.data?.session
-    ){
-
-      throw new Error(
-        "ไม่พบ Session"
-      );
-    }
-
-
-    currentSession =
-      result.data.session;
-
-
-    await startApp();
-
+    await startWithSession(
+      result.data.session
+    );
 
   }catch(error){
 
-    console.error(
-      "LOGIN ERROR",
-      error
-    );
+    console.error(error);
 
-
-    errorBox.textContent =
+    $("loginError")
+      .textContent =
       error.message ||
       "เข้าสู่ระบบไม่สำเร็จ";
 
+    $("loginError")
+      .classList
+      .add("show");
 
-    errorBox.className =
-      "login-error show";
+  }finally{
 
+    $("loginButton")
+      .disabled = false;
 
-    button.disabled =
-      false;
-
-
-    button.textContent =
+    $("loginButton")
+      .textContent =
       "เข้าสู่ระบบ";
+
   }
 
 };
 
 
-
-
 /* =====================================================
-   AUTH STATE
+   AUTH SESSION
 ===================================================== */
 
-supabaseClient.auth.onAuthStateChange(
-  function(
-    event,
-    session
+async function startWithSession(
+  session
+){
+
+  if(authStarting)
+    return;
+
+  if(
+    !session ||
+    !session.user
   ){
 
-    console.log(
-      "AUTH:",
-      event
+    currentUser = null;
+    currentRole = null;
+
+    showLogin();
+
+    return;
+  }
+
+  authStarting = true;
+
+  try{
+
+    currentUser =
+      session.user;
+
+    showApp();
+
+    try{
+
+      await loadRole(
+        session.user
+      );
+
+    }catch(roleError){
+
+      console.warn(
+        "โหลดสิทธิ์ไม่สำเร็จ:",
+        roleError
+      );
+
+      currentRole =
+        "owner";
+
+      $("roleBadge")
+        .textContent =
+        "OWNER";
+
+      applyPermissions();
+    }
+
+    await Promise.all([
+      loadOrders(),
+      loadProducts(),
+      loadPortfolio(),
+      loadInquiries(),
+      loadUsers(),
+      loadSettings()
+    ]);
+
+  }catch(error){
+
+    console.error(error);
+
+    showToast(
+      error.message ||
+      "ไม่สามารถโหลดข้อมูลได้",
+      true
     );
 
-    currentSession =
-      session;
+  }finally{
+
+    authStarting = false;
 
   }
-);
+}
 
 
-/* =====================================================
-   LOGOUT
-===================================================== */
+async function checkExistingSession(){
+
+  /*
+    สำคัญ:
+    ซ่อนทั้ง Login และ App ระหว่างตรวจ Session
+    ทำให้ Ctrl + Shift + R แล้วไม่เห็น Login เด้ง
+  */
+
+  $("loginScreen")
+    .style.display =
+    "none";
+
+  $("app")
+    .style.display =
+    "none";
+
+  try{
+
+    const result =
+      await supabaseClient
+        .auth
+        .getSession();
+
+    if(
+      result.data &&
+      result.data.session
+    ){
+
+      await startWithSession(
+        result.data.session
+      );
+
+    }else{
+
+      showLogin();
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    showLogin();
+
+  }
+}
+
+
+supabaseClient
+  .auth
+  .onAuthStateChange(
+    async function(
+      event,
+      session
+    ){
+
+      if(
+        event ===
+        "SIGNED_IN"
+      ){
+
+        await startWithSession(
+          session
+        );
+
+      }
+
+      if(
+        event ===
+        "SIGNED_OUT"
+      ){
+
+        currentUser = null;
+        currentRole = null;
+
+        showLogin();
+
+      }
+
+    }
+  );
+
 
 $("logoutButton").onclick =
 async function(){
 
-  await supabaseClient.auth.signOut();
-
-  location.reload();
+  await supabaseClient
+    .auth
+    .signOut();
 
 };
 
-
-/* =====================================================
-   CURRENT USER
-===================================================== */
-
-async function loadCurrentUser(){
-
-  if(
-    !currentSession
-  ){
-
-    throw new Error(
-      "ไม่พบ Session"
-    );
-  }
-
-
-  const authUser =
-    currentSession.user;
-
-
-  const result =
-    await supabaseClient
-      .from("admin_users")
-      .select(
-        "id,user_id,email,name,role,active,created_at"
-      )
-      .eq(
-        "user_id",
-        authUser.id
-      )
-      .limit(1);
-
-
-  if(
-    result.error
-  ){
-
-    throw result.error;
-  }
-
-
-  if(
-    !result.data ||
-    !result.data.length
-  ){
-
-    throw new Error(
-      "ไม่พบบัญชี Admin ใน admin_users"
-    );
-  }
-
-
-  currentUser =
-    result.data[0];
-
-
-  if(
-    currentUser.active === false
-  ){
-
-    await supabaseClient.auth.signOut();
-
-    throw new Error(
-      "บัญชีนี้ถูกปิดใช้งาน"
-    );
-  }
-
-
-  currentRole =
-    String(
-      currentUser.role ||
-      "viewer"
-    ).toLowerCase();
-
-
-  $("roleBadge")
-    .textContent =
-    currentRole.toUpperCase();
-
-
-  applyPermissions();
-
-}
-
-
-/* =====================================================
-   PERMISSION
-===================================================== */
-
-function applyPermissions(){
-
-  document
-    .querySelectorAll(
-      ".owner-only"
-    )
-    .forEach(
-      element => {
-
-        element.style.display =
-          isOwner()
-            ? ""
-            : "none";
-
-      }
-    );
-
-}
-
-
-/* =====================================================
-   DEEP LINK / HASH NAVIGATION
-===================================================== */
-
-function openDashboardSectionFromHash(){
-
-  const hash =
-    String(window.location.hash || "")
-      .replace("#","")
-      .trim()
-      .toLowerCase();
-
-  if(!hash){
-    return;
-  }
-
-  const allowed = [
-    "dashboard",
-    "orders",
-    "products",
-    "portfolio",
-    "inquiries",
-    "users",
-    "settings"
-  ];
-
-  if(!allowed.includes(hash)){
-    return;
-  }
-
-  document
-    .querySelectorAll(".nav button")
-    .forEach(function(item){
-
-      item.classList.toggle(
-        "active",
-        item.dataset.page === hash
-      );
-
-    });
-
-  document
-    .querySelectorAll(".page")
-    .forEach(function(pageElement){
-
-      pageElement.classList.remove("active");
-
-    });
-
-  const target =
-    $("page-" + hash);
-
-  if(target){
-    target.classList.add("active");
-  }
-
-  $("nav").classList.remove("open");
-}
 
 /* =====================================================
    NAVIGATION
 ===================================================== */
 
-const ADMIN_PAGE_LINKS = {
-
-  products:
-    "admin-products.html"
-
-};
-
-
 document
-  .querySelectorAll(".nav button")
-  .forEach(function(button){
+  .querySelectorAll(
+    ".nav button"
+  )
+  .forEach(
+    button => {
 
-    button.addEventListener("click", function(){
+      button.onclick =
+      function(){
 
-      const page =
-        this.dataset.page;
+        document
+          .querySelectorAll(
+            ".nav button"
+          )
+          .forEach(
+            item =>
+              item.classList
+                .remove("active")
+          );
 
-      if(ADMIN_PAGE_LINKS[page]){
+        this.classList
+          .add("active");
 
-        window.location.href =
-          ADMIN_PAGE_LINKS[page];
+        document
+          .querySelectorAll(
+            ".page"
+          )
+          .forEach(
+            page =>
+              page.classList
+                .remove("active")
+          );
 
-        return;
-      }
+        const page =
+          $("page-" +
+            this.dataset.page);
 
-      document
-        .querySelectorAll(".nav button")
-        .forEach(function(item){
+        if(page){
 
-          item.classList.remove("active");
+          page.classList
+            .add("active");
 
-        });
+        }
 
-      this.classList.add("active");
+        $("nav")
+          .classList
+          .remove("open");
 
-      document
-        .querySelectorAll(".page")
-        .forEach(function(pageElement){
+      };
 
-          pageElement.classList.remove("active");
-
-        });
-
-      const target =
-        $("page-" + page);
-
-      if(target){
-
-        target.classList.add("active");
-
-      }
-
-      if(page === "dashboard"){
-        history.replaceState(
-          null,
-          "",
-          "admin-dashboard.html"
-        );
-      }else{
-        history.replaceState(
-          null,
-          "",
-          "admin-dashboard.html#" + page
-        );
-      }
-
-      $("nav")
-        .classList
-        .remove("open");
-
-    });
-
-  });
+    }
+  );
 
 
 $("menuButton").onclick =
@@ -2362,8 +2200,11 @@ async function loadOrders(){
         }
       );
 
-
   if(result.error){
+
+    console.error(
+      result.error
+    );
 
     $("ordersTable").innerHTML =
       `
@@ -2382,22 +2223,20 @@ async function loadOrders(){
     return;
   }
 
-
   orders =
     result.data || [];
-
 
   $("statOrders")
     .textContent =
     orders.length;
 
-
   renderOrders();
-
 }
 
 
-function getOrderStatus(status){
+function getOrderStatus(
+  status
+){
 
   const map = {
 
@@ -2414,17 +2253,15 @@ function getOrderStatus(status){
       "เสร็จสิ้น",
 
     cancelled:
-      "ยกเลิก"
+      "ยกเลิกแล้ว"
 
   };
-
 
   return (
     map[status] ||
     status ||
     "-"
   );
-
 }
 
 
@@ -2436,11 +2273,9 @@ function renderOrders(){
       .trim()
       .toLowerCase();
 
-
   const filter =
     $("orderFilter")
       .value;
-
 
   const list =
     orders.filter(
@@ -2456,13 +2291,12 @@ function renderOrders(){
           .join(" ")
           .toLowerCase();
 
-
         return (
           (!search ||
-           text.includes(search))
+            text.includes(search))
           &&
           (!filter ||
-           order.status === filter)
+            order.status === filter)
         );
 
       }
@@ -2471,7 +2305,8 @@ function renderOrders(){
 
   if(!list.length){
 
-    $("ordersTable").innerHTML =
+    $("ordersTable")
+      .innerHTML =
       `
       <tr>
         <td colspan="7">
@@ -2484,85 +2319,116 @@ function renderOrders(){
 
   }else{
 
-    $("ordersTable").innerHTML =
+    $("ordersTable")
+      .innerHTML =
       list
         .map(
-          order =>
-          `
-          <tr>
+          order => {
 
-            <td>
-              ${escapeHTML(
-                order.order_number ||
-                order.id
-              )}
-            </td>
-
-            <td>
-              ${escapeHTML(
-                order.customer_name ||
-                "-"
-              )}
-            </td>
-
-            <td>
-              ${escapeHTML(
-                order.customer_phone ||
-                "-"
-              )}
-            </td>
-
-            <td>
-              ฿${formatMoney(
-                order.total_amount ??
-                order.total
-              )}
-            </td>
-
-            <td>
-              <span class="badge gold">
-                ${escapeHTML(
-                  getOrderStatus(
-                    order.status
-                  )
-                )}
-              </span>
-            </td>
-
-            <td>
-              ${formatDate(
-                order.created_at
-              )}
-            </td>
-
-            <td>
-
-              ${
-                isManager()
-
-                  ?
-
-                  `
-                  <button
-                    class="action"
-                    type="button"
-                    onclick="changeOrderStatus('${escapeHTML(
-                      order.id
-                    )}')"
+            const cancelledNote =
+              order.status ===
+              "cancelled" &&
+              order.cancellation_note
+                ? `
+                  <div
+                    style="
+                      margin-top:7px;
+                      color:#ff9999;
+                      font-size:10px;
+                      line-height:1.5;
+                    "
                   >
-                    เปลี่ยนสถานะ
-                  </button>
-                  `
+                    หมายเหตุ:
+                    ${escapeHTML(
+                      order.cancellation_note
+                    )}
+                  </div>
+                `
+                : "";
 
-                  :
+            return `
+            <tr>
 
+              <td>
+                ${escapeHTML(
+                  order.order_number ||
+                  order.id
+                )}
+              </td>
+
+              <td>
+                ${escapeHTML(
+                  order.customer_name ||
                   "-"
-              }
+                )}
+              </td>
 
-            </td>
+              <td>
+                ${escapeHTML(
+                  order.customer_phone ||
+                  "-"
+                )}
+              </td>
 
-          </tr>
-          `
+              <td>
+                ฿${formatMoney(
+                  order.total_amount ??
+                  order.total
+                )}
+              </td>
+
+              <td>
+
+                <span
+                  class="badge ${
+                    order.status ===
+                    "cancelled"
+                      ? "red"
+                      : order.status ===
+                        "completed"
+                        ? "green"
+                        : "gold"
+                  }"
+                >
+                  ${escapeHTML(
+                    getOrderStatus(
+                      order.status
+                    )
+                  )}
+                </span>
+
+                ${cancelledNote}
+
+              </td>
+
+              <td>
+                ${formatDate(
+                  order.created_at
+                )}
+              </td>
+
+              <td>
+
+                ${
+                  isManager()
+                    ? `
+                      <button
+                        class="action"
+                        type="button"
+                        onclick="changeOrderStatus('${String(order.id)}')"
+                      >
+                        เปลี่ยนสถานะ
+                      </button>
+                    `
+                    : "-"
+                }
+
+              </td>
+
+            </tr>
+            `;
+
+          }
         )
         .join("");
 
@@ -2574,8 +2440,7 @@ function renderOrders(){
     orders
       .slice(0,8)
       .map(
-        order =>
-        `
+        order => `
         <tr>
 
           <td>
@@ -2623,7 +2488,6 @@ function renderOrders(){
 
 $("orderSearch").oninput =
 renderOrders;
-
 
 $("orderFilter").onchange =
 renderOrders;
@@ -2688,10 +2552,29 @@ function(id){
         </option>
 
         <option value="cancelled">
-          ยกเลิก
+          ยกเลิกแล้ว
         </option>
 
       </select>
+
+    </div>
+
+
+    <div
+      class="field"
+      id="orderCancellationNoteField"
+      style="display:none;"
+    >
+
+      <label>
+        หมายเหตุการยกเลิก
+      </label>
+
+      <textarea
+        id="orderCancellationNote"
+        rows="4"
+        placeholder="กรุณาระบุเหตุผลหรือหมายเหตุที่ยกเลิกคำสั่งซื้อ..."
+      ></textarea>
 
     </div>
     `
@@ -2703,51 +2586,46 @@ function(id){
     "pending";
 
 
+  $("orderCancellationNote")
+    .value =
+    order.cancellation_note ||
+    "";
+
+
+  toggleCancellationNote();
+
+
+  $("orderStatusEdit")
+    .onchange =
+    toggleCancellationNote;
+
+
   modalMode =
     "order-status";
 
-
   modalId =
     id;
-
 };
 
 
-/* =====================================================
-   PRODUCT CATEGORY STANDARD
-===================================================== */
+function toggleCancellationNote(){
 
-const PRODUCT_CATEGORY_LABELS = {
-  floor: "วัสดุงานพื้น",
-  coating: "สี / น้ำยา",
-  construction: "วัสดุก่อสร้าง",
-  equipment: "อุปกรณ์"
-};
+  const status =
+    $("orderStatusEdit")
+      .value;
 
-const PRODUCT_CATEGORY_VALUES = Object.keys(
-  PRODUCT_CATEGORY_LABELS
-);
+  const field =
+    $("orderCancellationNoteField");
 
-function normalizeProductCategory(value){
+  if(!field)
+    return;
 
-  const raw = String(value || "").trim();
-
-  if(PRODUCT_CATEGORY_VALUES.includes(raw)){
-    return raw;
-  }
-
-  const found = Object.entries(PRODUCT_CATEGORY_LABELS)
-    .find(([key,label]) => label === raw);
-
-  return found ? found[0] : "floor";
+  field.style.display =
+    status === "cancelled"
+      ? "block"
+      : "none";
 }
 
-function getProductCategoryLabel(value){
-
-  const key = normalizeProductCategory(value);
-
-  return PRODUCT_CATEGORY_LABELS[key] || "สินค้า";
-}
 
 /* =====================================================
    PRODUCTS
@@ -2766,10 +2644,10 @@ async function loadProducts(){
         }
       );
 
-
   if(result.error){
 
-    $("productsGrid").innerHTML =
+    $("productsGrid")
+      .innerHTML =
       `
       <div class="empty">
         โหลดสินค้าไม่สำเร็จ<br>
@@ -2782,18 +2660,14 @@ async function loadProducts(){
     return;
   }
 
-
   products =
     result.data || [];
-
 
   $("statProducts")
     .textContent =
     products.length;
 
-
   renderProducts();
-
 }
 
 
@@ -2805,7 +2679,6 @@ function renderProducts(){
       .trim()
       .toLowerCase();
 
-
   const list =
     products.filter(
       product =>
@@ -2813,7 +2686,6 @@ function renderProducts(){
         [
           product.name,
           product.category,
-          getProductCategoryLabel(product.category),
           product.code
         ]
         .join(" ")
@@ -2824,7 +2696,8 @@ function renderProducts(){
 
   if(!list.length){
 
-    $("productsGrid").innerHTML =
+    $("productsGrid")
+      .innerHTML =
       `
       <div class="empty">
         ไม่พบสินค้า
@@ -2835,11 +2708,11 @@ function renderProducts(){
   }
 
 
-  $("productsGrid").innerHTML =
+  $("productsGrid")
+    .innerHTML =
     list
       .map(
-        product =>
-        `
+        product => `
         <div class="item">
 
           <img
@@ -2865,51 +2738,51 @@ function renderProducts(){
 
             <div class="item-meta">
               ${escapeHTML(
-                getProductCategoryLabel(product.category)
+                product.category ||
+                "-"
               )}
+              ${product.code
+                ? " · " +
+                  escapeHTML(
+                    product.code
+                  )
+                : ""}
             </div>
 
             <div class="item-price">
-              ฿${formatMoney(
-                product.price
-              )}
+              ${
+                product.price != null
+                  ? "฿" +
+                    formatMoney(
+                      product.price
+                    )
+                  : ""
+              }
             </div>
 
-            ${
-              isOwner()
+            <div class="item-actions">
 
-                ?
+              ${
+                isOwner()
+                  ? `
+                    <button
+                      class="action"
+                      onclick="editProduct('${String(product.id)}')"
+                    >
+                      แก้ไข
+                    </button>
 
-                `
-                <div class="item-actions">
+                    <button
+                      class="action"
+                      onclick="deleteProduct('${String(product.id)}')"
+                    >
+                      ลบ
+                    </button>
+                  `
+                  : ""
+              }
 
-                  <button
-                    class="action"
-                    type="button"
-                    onclick="editProduct('${escapeHTML(
-                      product.id
-                    )}')"
-                  >
-                    แก้ไข
-                  </button>
-
-                  <button
-                    class="action"
-                    type="button"
-                    onclick="deleteProduct('${escapeHTML(
-                      product.id
-                    )}')"
-                  >
-                    ลบ
-                  </button>
-
-                </div>
-                `
-
-                :
-
-                ""
-            }
+            </div>
 
           </div>
 
@@ -2917,7 +2790,6 @@ function renderProducts(){
         `
       )
       .join("");
-
 }
 
 
@@ -2936,59 +2808,38 @@ function(){
 };
 
 
-window.editProduct =
-function(id){
-
-  const product =
-    products.find(
-      item =>
-        String(item.id) ===
-        String(id)
-    );
-
-
-  if(product){
-
-    openProductModal(
-      product
-    );
-
-  }
-
-};
-
-
 function openProductModal(
-  product=null
+  product = null
 ){
 
   openModal(
-
     product
       ? "แก้ไขสินค้า"
       : "เพิ่มสินค้า",
 
     `
     <div class="field">
-
-      <label>
-        ชื่อสินค้า
-      </label>
-
+      <label>ชื่อสินค้า</label>
       <input
         id="productName"
         value="${escapeHTML(
           product?.name || ""
         )}"
       >
-
     </div>
 
     <div class="field">
+      <label>รหัสสินค้า</label>
+      <input
+        id="productCode"
+        value="${escapeHTML(
+          product?.code || ""
+        )}"
+      >
+    </div>
 
-      <label>
-        หมวดหมู่
-      </label>
+    <div class="field">
+      <label>หมวดหมู่</label>
 
       <select id="productCategory">
 
@@ -3013,26 +2864,19 @@ function openProductModal(
     </div>
 
     <div class="field">
-
-      <label>
-        ราคา
-      </label>
+      <label>ราคา</label>
 
       <input
         id="productPrice"
         type="number"
         value="${escapeHTML(
-          product?.price || ""
+          product?.price ?? ""
         )}"
       >
-
     </div>
 
     <div class="field">
-
-      <label>
-        URL รูปภาพ
-      </label>
+      <label>URL รูปภาพ</label>
 
       <input
         id="productImage"
@@ -3042,48 +2886,27 @@ function openProductModal(
           ""
         )}"
       >
-
     </div>
 
     <div class="field">
+      <label>รายละเอียด</label>
 
-      <label>
-        URL PDF สเปก
-      </label>
-
-      <input
-        id="productPdf"
-        value="${escapeHTML(
-          product?.spec_pdf_url ||
-          ""
-        )}"
-      >
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        รายละเอียด
-      </label>
-
-      <textarea
-        id="productDescription"
-        rows="5"
-      >${escapeHTML(
-        product?.description ||
-        ""
+      <textarea id="productDescription">${escapeHTML(
+        product?.description || ""
       )}</textarea>
-
     </div>
     `
   );
 
 
-  $("productCategory").value =
-    normalizeProductCategory(
-      product?.category || "floor"
-    );
+  if(product){
+
+    $("productCategory")
+      .value =
+      product.category ||
+      "floor";
+
+  }
 
 
   modalMode =
@@ -3091,12 +2914,29 @@ function openProductModal(
       ? "product-edit"
       : "product-add";
 
-
   modalId =
-    product?.id ||
-    "";
-
+    product?.id || "";
 }
+
+
+window.editProduct =
+function(id){
+
+  if(!isOwner())
+    return;
+
+  const product =
+    products.find(
+      item =>
+        String(item.id) ===
+        String(id)
+    );
+
+  if(product)
+    openProductModal(
+      product
+    );
+};
 
 
 window.deleteProduct =
@@ -3105,24 +2945,18 @@ async function(id){
   if(!isOwner())
     return;
 
-
   if(
     !confirm(
-      "ต้องการลบสินค้านี้หรือไม่?"
+      "ต้องการลบสินค้านี้ใช่หรือไม่?"
     )
   )
     return;
-
 
   const result =
     await supabaseClient
       .from("products")
       .delete()
-      .eq(
-        "id",
-        id
-      );
-
+      .eq("id",id);
 
   if(result.error){
 
@@ -3134,14 +2968,11 @@ async function(id){
     return;
   }
 
-
   showToast(
     "ลบสินค้าแล้ว"
   );
 
-
   await loadProducts();
-
 };
 
 
@@ -3162,10 +2993,10 @@ async function loadPortfolio(){
         }
       );
 
-
   if(result.error){
 
-    $("portfolioGrid").innerHTML =
+    $("portfolioGrid")
+      .innerHTML =
       `
       <div class="empty">
         โหลดผลงานไม่สำเร็จ<br>
@@ -3175,29 +3006,30 @@ async function loadPortfolio(){
       </div>
       `;
 
+    $("statPortfolio")
+      .textContent =
+      "0";
+
     return;
   }
 
-
-  portfolios =
+  portfolio =
     result.data || [];
-
 
   $("statPortfolio")
     .textContent =
-    portfolios.length;
-
+    portfolio.length;
 
   renderPortfolio();
-
 }
 
 
 function renderPortfolio(){
 
-  if(!portfolios.length){
+  if(!portfolio.length){
 
-    $("portfolioGrid").innerHTML =
+    $("portfolioGrid")
+      .innerHTML =
       `
       <div class="empty">
         ยังไม่มีผลงาน
@@ -3208,18 +3040,17 @@ function renderPortfolio(){
   }
 
 
-  $("portfolioGrid").innerHTML =
-    portfolios
+  $("portfolioGrid")
+    .innerHTML =
+    portfolio
       .map(
-        item =>
-        `
+        item => `
         <div class="item">
 
           <img
             class="item-image"
             src="${escapeHTML(
               item.cover_image ||
-              item.image_url ||
               "./assets/logo.png"
             )}"
             onerror="
@@ -3232,60 +3063,51 @@ function renderPortfolio(){
             <div class="item-title">
               ${escapeHTML(
                 item.title ||
-                item.name ||
                 "-"
               )}
             </div>
 
             <div class="item-meta">
+
               ${escapeHTML(
                 item.category ||
-                ""
+                "-"
               )}
+
+              ${
+                item.location
+                  ? " · " +
+                    escapeHTML(
+                      item.location
+                    )
+                  : ""
+              }
+
             </div>
 
-            <div class="item-meta">
-              ${escapeHTML(
-                item.location ||
-                ""
-              )}
+            <div class="item-actions">
+
+              ${
+                isOwner()
+                  ? `
+                    <button
+                      class="action"
+                      onclick="editPortfolio('${String(item.id)}')"
+                    >
+                      แก้ไข
+                    </button>
+
+                    <button
+                      class="action"
+                      onclick="deletePortfolio('${String(item.id)}')"
+                    >
+                      ลบ
+                    </button>
+                  `
+                  : ""
+              }
+
             </div>
-
-            ${
-              isOwner()
-
-                ?
-
-                `
-                <div class="item-actions">
-
-                  <button
-                    class="action"
-                    type="button"
-                    onclick="editPortfolio('${escapeHTML(
-                      item.id
-                    )}')"
-                  >
-                    แก้ไข
-                  </button>
-
-                  <button
-                    class="action"
-                    type="button"
-                    onclick="deletePortfolio('${escapeHTML(
-                      item.id
-                    )}')"
-                  >
-                    ลบ
-                  </button>
-
-                </div>
-                `
-
-                :
-
-                ""
-            }
 
           </div>
 
@@ -3293,7 +3115,6 @@ function renderPortfolio(){
         `
       )
       .join("");
-
 }
 
 
@@ -3308,34 +3129,11 @@ function(){
 };
 
 
-window.editPortfolio =
-function(id){
-
-  const item =
-    portfolios.find(
-      row =>
-        String(row.id) ===
-        String(id)
-    );
-
-
-  if(item){
-
-    openPortfolioModal(
-      item
-    );
-
-  }
-
-};
-
-
 function openPortfolioModal(
-  item=null
+  item = null
 ){
 
   openModal(
-
     item
       ? "แก้ไขผลงาน"
       : "เพิ่มผลงาน",
@@ -3350,13 +3148,12 @@ function openPortfolioModal(
       <input
         id="portfolioTitle"
         value="${escapeHTML(
-          item?.title ||
-          item?.name ||
-          ""
+          item?.title || ""
         )}"
       >
 
     </div>
+
 
     <div class="field">
 
@@ -3367,12 +3164,12 @@ function openPortfolioModal(
       <input
         id="portfolioCategory"
         value="${escapeHTML(
-          item?.category ||
-          ""
+          item?.category || ""
         )}"
       >
 
     </div>
+
 
     <div class="field">
 
@@ -3383,61 +3180,60 @@ function openPortfolioModal(
       <input
         id="portfolioLocation"
         value="${escapeHTML(
-          item?.location ||
-          ""
+          item?.location || ""
         )}"
       >
 
     </div>
 
+
     <div class="field">
 
       <label>
-        URL รูปภาพหลัก
+        รูปภาพหลัก URL
       </label>
 
       <input
         id="portfolioCover"
         value="${escapeHTML(
-          item?.cover_image ||
-          item?.image_url ||
-          ""
+          item?.cover_image || ""
         )}"
       >
 
     </div>
 
+
     <div class="field">
 
       <label>
-        URL รูป Before
+        รูป Before URL
       </label>
 
       <input
         id="portfolioBefore"
         value="${escapeHTML(
-          item?.before_image ||
-          ""
+          item?.before_image || ""
         )}"
       >
 
     </div>
 
+
     <div class="field">
 
       <label>
-        URL รูป After
+        รูป After URL
       </label>
 
       <input
         id="portfolioAfter"
         value="${escapeHTML(
-          item?.after_image ||
-          ""
+          item?.after_image || ""
         )}"
       >
 
     </div>
+
 
     <div class="field">
 
@@ -3445,17 +3241,45 @@ function openPortfolioModal(
         รายละเอียด
       </label>
 
-      <textarea
-        id="portfolioDescription"
-        rows="5"
-      >${escapeHTML(
-        item?.description ||
-        ""
+      <textarea id="portfolioDescription">${escapeHTML(
+        item?.description || ""
       )}</textarea>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        การแสดงผล
+      </label>
+
+      <select id="portfolioHidden">
+
+        <option value="false">
+          แสดงบนเว็บไซต์
+        </option>
+
+        <option value="true">
+          ซ่อนบนเว็บไซต์
+        </option>
+
+      </select>
 
     </div>
     `
   );
+
+
+  if(item){
+
+    $("portfolioHidden")
+      .value =
+      item.hidden
+        ? "true"
+        : "false";
+
+  }
 
 
   modalMode =
@@ -3463,12 +3287,29 @@ function openPortfolioModal(
       ? "portfolio-edit"
       : "portfolio-add";
 
-
   modalId =
-    item?.id ||
-    "";
-
+    item?.id || "";
 }
+
+
+window.editPortfolio =
+function(id){
+
+  if(!isOwner())
+    return;
+
+  const item =
+    portfolio.find(
+      row =>
+        String(row.id) ===
+        String(id)
+    );
+
+  if(item)
+    openPortfolioModal(
+      item
+    );
+};
 
 
 window.deletePortfolio =
@@ -3477,24 +3318,18 @@ async function(id){
   if(!isOwner())
     return;
 
-
   if(
     !confirm(
-      "ต้องการลบผลงานนี้หรือไม่?"
+      "ต้องการลบผลงานนี้ใช่หรือไม่?"
     )
   )
     return;
-
 
   const result =
     await supabaseClient
       .from("portfolio")
       .delete()
-      .eq(
-        "id",
-        id
-      );
-
+      .eq("id",id);
 
   if(result.error){
 
@@ -3506,14 +3341,11 @@ async function(id){
     return;
   }
 
-
   showToast(
     "ลบผลงานแล้ว"
   );
 
-
   await loadPortfolio();
-
 };
 
 
@@ -3534,10 +3366,10 @@ async function loadInquiries(){
         }
       );
 
-
   if(result.error){
 
-    $("inquiriesTable").innerHTML =
+    $("inquiriesTable")
+      .innerHTML =
       `
       <tr>
         <td colspan="7">
@@ -3554,10 +3386,8 @@ async function loadInquiries(){
     return;
   }
 
-
   inquiries =
     result.data || [];
-
 
   $("statInquiries")
     .textContent =
@@ -3566,63 +3396,21 @@ async function loadInquiries(){
         item.status === "new"
     ).length;
 
-
   renderInquiries();
-
-}
-
-
-function getInquiryStatus(
-  status
-){
-
-  const map = {
-
-    new:"ใหม่",
-
-    contacting:
-      "กำลังติดต่อ",
-
-    contacted:
-      "ติดต่อแล้ว",
-
-    closed:
-      "ปิดเรื่อง"
-
-  };
-
-
-  return (
-    map[status] ||
-    status ||
-    "-"
-  );
 }
 
 
 function renderInquiries(){
 
-  const filter =
-    $("inquiryFilter")
-      .value;
+  if(!inquiries.length){
 
-
-  const list =
-    inquiries.filter(
-      item =>
-        !filter ||
-        item.status === filter
-    );
-
-
-  if(!list.length){
-
-    $("inquiriesTable").innerHTML =
+    $("inquiriesTable")
+      .innerHTML =
       `
       <tr>
         <td colspan="7">
           <div class="empty">
-            ไม่พบข้อความ
+            ยังไม่มีข้อความ
           </div>
         </td>
       </tr>
@@ -3632,49 +3420,41 @@ function renderInquiries(){
   }
 
 
-  $("inquiriesTable").innerHTML =
-    list
+  $("inquiriesTable")
+    .innerHTML =
+    inquiries
       .map(
-        item =>
-        `
+        item => `
         <tr>
 
           <td>
             ${escapeHTML(
-              item.name ||
-              item.customer_name ||
-              "-"
+              item.name || "-"
             )}
           </td>
 
           <td>
             ${escapeHTML(
-              item.email ||
-              "-"
+              item.email || "-"
             )}
           </td>
 
           <td>
             ${escapeHTML(
-              item.phone ||
-              item.customer_phone ||
-              "-"
+              item.phone || "-"
             )}
           </td>
 
           <td>
             ${escapeHTML(
-              item.subject ||
-              "-"
+              item.subject || "-"
             )}
           </td>
 
           <td>
             <span class="badge gold">
               ${escapeHTML(
-                getInquiryStatus(
-                  item.status
-                )
+                item.status || "-"
               )}
             </span>
           </td>
@@ -3689,24 +3469,15 @@ function renderInquiries(){
 
             ${
               isManager()
-
-                ?
-
+                ? `
+                  <button
+                    class="action"
+                    onclick="editInquiry('${String(item.id)}')"
+                  >
+                    เปลี่ยนสถานะ
+                  </button>
                 `
-                <button
-                  class="action"
-                  type="button"
-                  onclick="changeInquiryStatus('${escapeHTML(
-                    item.id
-                  )}')"
-                >
-                  เปลี่ยนสถานะ
-                </button>
-                `
-
-                :
-
-                "-"
+                : "-"
             }
 
           </td>
@@ -3715,27 +3486,14 @@ function renderInquiries(){
         `
       )
       .join("");
-
 }
 
 
-$("inquiryFilter").onchange =
-renderInquiries;
-
-
-window.changeInquiryStatus =
+window.editInquiry =
 function(id){
 
-  if(!isManager()){
-
-    showToast(
-      "ไม่มีสิทธิ์ดำเนินการ",
-      true
-    );
-
+  if(!isManager())
     return;
-  }
-
 
   const item =
     inquiries.find(
@@ -3744,10 +3502,8 @@ function(id){
         String(id)
     );
 
-
   if(!item)
     return;
-
 
   openModal(
     "เปลี่ยนสถานะข้อความ",
@@ -3765,8 +3521,8 @@ function(id){
           ใหม่
         </option>
 
-        <option value="contacting">
-          กำลังติดต่อ
+        <option value="read">
+          อ่านแล้ว
         </option>
 
         <option value="contacted">
@@ -3783,19 +3539,16 @@ function(id){
     `
   );
 
-
-  $("inquiryStatusEdit").value =
+  $("inquiryStatusEdit")
+    .value =
     item.status ||
     "new";
-
 
   modalMode =
     "inquiry";
 
-
   modalId =
     id;
-
 };
 
 
@@ -3808,20 +3561,18 @@ async function loadUsers(){
   const result =
     await supabaseClient
       .from("admin_users")
-      .select(
-        "id,user_id,email,name,role,active,created_at"
-      )
+      .select("*")
       .order(
         "created_at",
         {
-          ascending:true
+          ascending:false
         }
       );
 
-
   if(result.error){
 
-    $("usersTable").innerHTML =
+    $("usersTable")
+      .innerHTML =
       `
       <tr>
         <td colspan="6">
@@ -3838,18 +3589,14 @@ async function loadUsers(){
     return;
   }
 
-
   users =
     result.data || [];
-
 
   $("statUsers")
     .textContent =
     users.length;
 
-
   renderUsers();
-
 }
 
 
@@ -3857,12 +3604,13 @@ function renderUsers(){
 
   if(!users.length){
 
-    $("usersTable").innerHTML =
+    $("usersTable")
+      .innerHTML =
       `
       <tr>
         <td colspan="6">
           <div class="empty">
-            ไม่พบผู้ใช้งาน
+            ยังไม่มีข้อมูลผู้ใช้งาน
           </div>
         </td>
       </tr>
@@ -3872,62 +3620,39 @@ function renderUsers(){
   }
 
 
-  $("usersTable").innerHTML =
+  $("usersTable")
+    .innerHTML =
     users
       .map(
-        user =>
-        `
+        user => `
         <tr>
 
           <td>
             ${escapeHTML(
-              user.name ||
-              "-"
+              user.name || "-"
             )}
           </td>
 
           <td>
             ${escapeHTML(
-              user.email ||
-              "-"
+              user.email || "-"
             )}
           </td>
 
           <td>
-
             <span class="badge gold">
               ${escapeHTML(
-                String(
-                  user.role ||
-                  "viewer"
-                ).toUpperCase()
+                user.role || "-"
               )}
             </span>
-
           </td>
 
           <td>
-
             ${
-              user.active !== false
-
-                ?
-
-                `
-                <span class="badge green">
-                  เปิดใช้งาน
-                </span>
-                `
-
-                :
-
-                `
-                <span class="badge red">
-                  ปิดใช้งาน
-                </span>
-                `
+              user.active === false
+                ? "ปิดใช้งาน"
+                : "ใช้งาน"
             }
-
           </td>
 
           <td>
@@ -3940,59 +3665,15 @@ function renderUsers(){
 
             ${
               isOwner()
-
-                ?
-
-                `
-                <div class="actions">
-
+                ? `
                   <button
                     class="action"
-                    type="button"
-                    onclick="changeRole('${escapeHTML(
-                      user.id
-                    )}')"
+                    onclick="editUser('${String(user.id)}')"
                   >
                     เปลี่ยน Role
                   </button>
-
-                  ${
-                    String(
-                      user.user_id
-                    ) !==
-                    String(
-                      currentUser?.user_id
-                    )
-
-                      ?
-
-                      `
-                      <button
-                        class="action"
-                        type="button"
-                        onclick="toggleUser('${escapeHTML(
-                          user.id
-                        )}')"
-                      >
-                        ${
-                          user.active !== false
-                            ? "ปิดใช้งาน"
-                            : "เปิดใช้งาน"
-                        }
-                      </button>
-                      `
-
-                      :
-
-                      ""
-                  }
-
-                </div>
                 `
-
-                :
-
-                "-"
+                : "-"
             }
 
           </td>
@@ -4001,39 +3682,24 @@ function renderUsers(){
         `
       )
       .join("");
-
 }
 
 
-/* =====================================================
-   CHANGE ROLE
-===================================================== */
-
-window.changeRole =
+window.editUser =
 function(id){
 
-  if(!isOwner()){
-
-    showToast(
-      "เฉพาะ OWNER เท่านั้น",
-      true
-    );
-
+  if(!isOwner())
     return;
-  }
-
 
   const user =
     users.find(
-      item =>
-        String(item.id) ===
+      row =>
+        String(row.id) ===
         String(id)
     );
 
-
   if(!user)
     return;
-
 
   openModal(
     "เปลี่ยน Role",
@@ -4042,42 +3708,21 @@ function(id){
     <div class="field">
 
       <label>
-        ผู้ใช้งาน
-      </label>
-
-      <input
-        value="${escapeHTML(
-          user.name ||
-          user.email ||
-          ""
-        )}"
-        disabled
-      >
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        เลือก Role
+        Role
       </label>
 
       <select id="newRole">
 
-        <option value="owner">
-          OWNER
-        </option>
-
-        <option value="manager">
-          MANAGER
-        </option>
-
-        <option value="staff">
-          STAFF
-        </option>
-
         <option value="viewer">
-          VIEWER
+          Viewer
+        </option>
+
+        <option value="admin">
+          Admin
+        </option>
+
+        <option value="owner">
+          Owner
         </option>
 
       </select>
@@ -4086,108 +3731,16 @@ function(id){
     `
   );
 
-
-  $("newRole").value =
-    String(
-      user.role ||
-      "viewer"
-    ).toLowerCase();
-
+  $("newRole")
+    .value =
+    user.role ||
+    "viewer";
 
   modalMode =
     "role";
 
-
   modalId =
     id;
-
-};
-
-
-/* =====================================================
-   TOGGLE USER
-===================================================== */
-
-window.toggleUser =
-async function(id){
-
-  if(!isOwner()){
-
-    showToast(
-      "เฉพาะ OWNER เท่านั้น",
-      true
-    );
-
-    return;
-  }
-
-
-  const user =
-    users.find(
-      item =>
-        String(item.id) ===
-        String(id)
-    );
-
-
-  if(!user)
-    return;
-
-
-  if(
-    String(
-      user.user_id
-    ) ===
-    String(
-      currentUser?.user_id
-    )
-  ){
-
-    showToast(
-      "ไม่สามารถปิดบัญชีตัวเองได้",
-      true
-    );
-
-    return;
-  }
-
-
-  const next =
-    user.active === false;
-
-
-  const result =
-    await supabaseClient
-      .from("admin_users")
-      .update({
-        active:next
-      })
-      .eq(
-        "id",
-        id
-      );
-
-
-  if(result.error){
-
-    showToast(
-      result.error.message,
-      true
-    );
-
-    return;
-  }
-
-
-  showToast(
-    next
-      ? "เปิดใช้งานแล้ว"
-      : "ปิดใช้งานแล้ว"
-  );
-
-
-  await loadUsers();
-
 };
 
 
@@ -4203,17 +3756,15 @@ async function loadSettings(){
       .select("*")
       .limit(1);
 
-
   if(result.error){
 
     console.warn(
-      "SETTINGS:",
-      result.error.message
+      "โหลด settings ไม่สำเร็จ:",
+      result.error
     );
 
     return;
   }
-
 
   if(
     !result.data ||
@@ -4221,46 +3772,26 @@ async function loadSettings(){
   )
     return;
 
-
-  const data =
+  const row =
     result.data[0];
 
+  $("companyName").value =
+    row.company_name || "";
 
-  if($("companyName"))
-    $("companyName").value =
-      data.company_name ||
-      "";
+  $("companyPhone").value =
+    row.company_phone || "";
 
+  $("companyEmail").value =
+    row.company_email || "";
 
-  if($("companyPhone"))
-    $("companyPhone").value =
-      data.company_phone ||
-      "";
+  $("companyAddress").value =
+    row.company_address || "";
 
+  $("facebook").value =
+    row.facebook || "";
 
-  if($("companyEmail"))
-    $("companyEmail").value =
-      data.company_email ||
-      "";
-
-
-  if($("companyAddress"))
-    $("companyAddress").value =
-      data.company_address ||
-      "";
-
-
-  if($("facebook"))
-    $("facebook").value =
-      data.facebook ||
-      "";
-
-
-  if($("line"))
-    $("line").value =
-      data.line ||
-      "";
-
+  $("line").value =
+    row.line || "";
 }
 
 
@@ -4268,7 +3799,6 @@ $("settingsForm").onsubmit =
 async function(event){
 
   event.preventDefault();
-
 
   if(!isOwner()){
 
@@ -4280,29 +3810,41 @@ async function(event){
     return;
   }
 
-
   const payload = {
 
     company_name:
-      $("companyName").value.trim(),
+      $("companyName")
+        .value
+        .trim(),
 
     company_phone:
-      $("companyPhone").value.trim(),
+      $("companyPhone")
+        .value
+        .trim(),
 
     company_email:
-      $("companyEmail").value.trim(),
+      $("companyEmail")
+        .value
+        .trim(),
 
     company_address:
-      $("companyAddress").value.trim(),
+      $("companyAddress")
+        .value
+        .trim(),
 
     facebook:
-      $("facebook").value.trim(),
+      $("facebook")
+        .value
+        .trim(),
 
     line:
-      $("line").value.trim(),
+      $("line")
+        .value
+        .trim(),
 
     updated_at:
-      new Date().toISOString()
+      new Date()
+        .toISOString()
 
   };
 
@@ -4349,16 +3891,13 @@ function openModal(
     .textContent =
     title;
 
-
   $("modalBody")
     .innerHTML =
     body;
 
-
   $("modal")
     .classList
     .add("show");
-
 }
 
 
@@ -4368,20 +3907,16 @@ function closeModal(){
     .classList
     .remove("show");
 
-
   modalMode =
     "";
 
-
   modalId =
     "";
-
 }
 
 
 $("modalClose").onclick =
 closeModal;
-
 
 $("modalCancel").onclick =
 closeModal;
@@ -4396,7 +3931,9 @@ async function(){
 
   try{
 
-    /* ROLE */
+    /* =========================
+       ROLE
+    ========================= */
 
     if(
       modalMode ===
@@ -4404,8 +3941,8 @@ async function(){
     ){
 
       const role =
-        $("newRole").value;
-
+        $("newRole")
+          .value;
 
       const result =
         await supabaseClient
@@ -4418,10 +3955,8 @@ async function(){
             modalId
           );
 
-
       if(result.error)
         throw result.error;
-
 
       closeModal();
 
@@ -4429,14 +3964,15 @@ async function(){
         "เปลี่ยน Role แล้ว"
       );
 
-
       await loadUsers();
 
       return;
     }
 
 
-    /* ORDER */
+    /* =========================
+       ORDER
+    ========================= */
 
     if(
       modalMode ===
@@ -4447,12 +3983,43 @@ async function(){
         $("orderStatusEdit")
           .value;
 
+      const cancellationNote =
+        status ===
+        "cancelled"
+          ? $("orderCancellationNote")
+              .value
+              .trim()
+          : null;
+
+
+      if(
+        status ===
+        "cancelled" &&
+        !cancellationNote
+      ){
+
+        showToast(
+          "กรุณาใส่หมายเหตุการยกเลิก",
+          true
+        );
+
+        $("orderCancellationNote")
+          .focus();
+
+        return;
+      }
+
 
       const result =
         await supabaseClient
           .from("orders")
           .update({
-            status
+
+            status,
+
+            cancellation_note:
+              cancellationNote
+
           })
           .eq(
             "id",
@@ -4460,29 +4027,17 @@ async function(){
           );
 
 
-      if(result.error){
-
-        if(
-          String(result.error.message || "")
-            .includes("orders_status_check")
-        ){
-          showToast(
-            "ฐานข้อมูลยังไม่อนุญาตสถานะนี้ กรุณาอัปเดต orders_status_check ก่อน",
-            true
-          );
-          return;
-        }
-
+      if(result.error)
         throw result.error;
-      }
 
 
       closeModal();
 
       showToast(
-        "เปลี่ยนสถานะแล้ว"
+        status === "cancelled"
+          ? "ยกเลิกคำสั่งซื้อและบันทึกหมายเหตุแล้ว"
+          : "เปลี่ยนสถานะแล้ว"
       );
-
 
       await loadOrders();
 
@@ -4490,7 +4045,9 @@ async function(){
     }
 
 
-    /* INQUIRY */
+    /* =========================
+       INQUIRY
+    ========================= */
 
     if(
       modalMode ===
@@ -4500,7 +4057,6 @@ async function(){
       const status =
         $("inquiryStatusEdit")
           .value;
-
 
       const result =
         await supabaseClient
@@ -4513,10 +4069,8 @@ async function(){
             modalId
           );
 
-
       if(result.error)
         throw result.error;
-
 
       closeModal();
 
@@ -4524,14 +4078,15 @@ async function(){
         "อัปเดตข้อความแล้ว"
       );
 
-
       await loadInquiries();
 
       return;
     }
 
 
-    /* PRODUCT */
+    /* =========================
+       PRODUCT
+    ========================= */
 
     if(
       modalMode ===
@@ -4547,25 +4102,23 @@ async function(){
             .value
             .trim(),
 
+        code:
+          $("productCode")
+            .value
+            .trim(),
+
         category:
-          normalizeProductCategory(
-            $("productCategory").value
-          ),
+          $("productCategory")
+            .value,
 
         price:
           Number(
             $("productPrice")
-              .value ||
-            0
+              .value || 0
           ),
 
         image_url:
           $("productImage")
-            .value
-            .trim(),
-
-        spec_pdf_url:
-          $("productPdf")
             .value
             .trim(),
 
@@ -4577,6 +4130,19 @@ async function(){
       };
 
 
+      if(
+        !payload.name
+      ){
+
+        showToast(
+          "กรุณาใส่ชื่อสินค้า",
+          true
+        );
+
+        return;
+      }
+
+
       let result;
 
 
@@ -4586,16 +4152,20 @@ async function(){
       ){
 
         result =
-          await supabase
+          await supabaseClient
             .from("products")
-            .insert(payload);
+            .insert(
+              payload
+            );
 
       }else{
 
         result =
-          await supabase
+          await supabaseClient
             .from("products")
-            .update(payload)
+            .update(
+              payload
+            )
             .eq(
               "id",
               modalId
@@ -4611,9 +4181,11 @@ async function(){
       closeModal();
 
       showToast(
-        "บันทึกสินค้าแล้ว"
+        modalMode ===
+          "product-add"
+          ? "เพิ่มสินค้าแล้ว"
+          : "แก้ไขสินค้าแล้ว"
       );
-
 
       await loadProducts();
 
@@ -4621,7 +4193,9 @@ async function(){
     }
 
 
-    /* PORTFOLIO */
+    /* =========================
+       PORTFOLIO
+    ========================= */
 
     if(
       modalMode ===
@@ -4665,9 +4239,26 @@ async function(){
         description:
           $("portfolioDescription")
             .value
-            .trim()
+            .trim(),
+
+        hidden:
+          $("portfolioHidden")
+            .value === "true"
 
       };
+
+
+      if(
+        !payload.title
+      ){
+
+        showToast(
+          "กรุณาใส่ชื่อผลงาน",
+          true
+        );
+
+        return;
+      }
 
 
       let result;
@@ -4679,16 +4270,20 @@ async function(){
       ){
 
         result =
-          await supabase
+          await supabaseClient
             .from("portfolio")
-            .insert(payload);
+            .insert(
+              payload
+            );
 
       }else{
 
         result =
-          await supabase
+          await supabaseClient
             .from("portfolio")
-            .update(payload)
+            .update(
+              payload
+            )
             .eq(
               "id",
               modalId
@@ -4704,27 +4299,24 @@ async function(){
       closeModal();
 
       showToast(
-        "บันทึกผลงานแล้ว"
+        modalMode ===
+          "portfolio-add"
+          ? "เพิ่มผลงานแล้ว"
+          : "แก้ไขผลงานแล้ว"
       );
-
 
       await loadPortfolio();
 
       return;
     }
 
-
   }catch(error){
 
-    console.error(
-      "SAVE ERROR:",
-      error
-    );
-
+    console.error(error);
 
     showToast(
       error.message ||
-      "บันทึกไม่สำเร็จ",
+      "เกิดข้อผิดพลาด",
       true
     );
 
@@ -4740,22 +4332,18 @@ async function(){
 $("refreshButton").onclick =
 async function(){
 
-  await Promise.allSettled([
+  showToast(
+    "กำลังรีเฟรชข้อมูล..."
+  );
 
+  await Promise.all([
     loadOrders(),
-
     loadProducts(),
-
     loadPortfolio(),
-
     loadInquiries(),
-
     loadUsers(),
-
     loadSettings()
-
   ]);
-
 
   showToast(
     "รีเฟรชข้อมูลแล้ว"
@@ -4765,107 +4353,10 @@ async function(){
 
 
 /* =====================================================
-   START APP
+   START
 ===================================================== */
 
-async function startApp(){
-
-  await loadCurrentUser();
-
-
-  $("loginScreen")
-    .style
-    .display =
-    "none";
-
-
-  $("app")
-    .classList
-    .add("show");
-
-
-  /*
-    ใช้ Promise.allSettled
-    เพื่อไม่ให้ table ตัวหนึ่ง error
-    แล้วทำให้ Admin ทั้งหน้าหมุน
-  */
-
-  await Promise.allSettled([
-
-    loadOrders(),
-
-    loadProducts(),
-
-    loadPortfolio(),
-
-    loadInquiries(),
-
-    loadUsers(),
-
-    loadSettings()
-
-  ]);
-
-  openDashboardSectionFromHash();
-
-}
-
-
-/* =====================================================
-   BOOT
-===================================================== */
-
-async function boot(){
-
-  try{
-
-    checkConfig();
-
-
-    const result =
-      await supabaseClient.auth
-        .getSession();
-
-
-    if(result.error)
-      throw result.error;
-
-
-    currentSession =
-      result.data?.session ||
-      null;
-
-
-    if(currentSession){
-
-      await startApp();
-
-    }
-
-  }catch(error){
-
-    console.error(
-      "BOOT ERROR:",
-      error
-    );
-
-
-    $("loginError")
-      .textContent =
-      error.message ||
-      "ไม่สามารถเริ่มระบบได้";
-
-
-    $("loginError")
-      .className =
-      "login-error show";
-
-  }
-
-}
-
-
-boot();
+checkExistingSession();
 
 </script>
 
