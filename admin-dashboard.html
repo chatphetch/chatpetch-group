@@ -176,7 +176,6 @@ button{
   cursor:not-allowed;
 }
 
-
 .login-divider::before,
 .login-divider::after{
   content:"";
@@ -753,10 +752,6 @@ td{
 
 <body>
 
-<!-- =====================================================
-     LOGIN
-===================================================== -->
-
 <section id="loginScreen">
 
   <div class="login-box">
@@ -834,10 +829,6 @@ td{
 </section>
 
 
-<!-- =====================================================
-     ADMIN APP
-===================================================== -->
-
 <div id="app">
 
 <header class="header">
@@ -892,6 +883,7 @@ td{
 
       <button
         data-page="products"
+        id="adminProductsNavButton"
         type="button"
       >
         สินค้า
@@ -953,8 +945,6 @@ td{
 
 <main class="main">
 
-<!-- ================= DASHBOARD ================= -->
-
 <section
   id="page-dashboard"
   class="page active"
@@ -991,63 +981,28 @@ td{
   <div class="stats">
 
     <div class="stat">
-      <div class="stat-label">
-        คำสั่งซื้อ
-      </div>
-      <div
-        id="statOrders"
-        class="stat-number"
-      >
-        0
-      </div>
+      <div class="stat-label">คำสั่งซื้อ</div>
+      <div id="statOrders" class="stat-number">0</div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">
-        สินค้า
-      </div>
-      <div
-        id="statProducts"
-        class="stat-number"
-      >
-        0
-      </div>
+      <div class="stat-label">สินค้า</div>
+      <div id="statProducts" class="stat-number">0</div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">
-        ผลงาน
-      </div>
-      <div
-        id="statPortfolio"
-        class="stat-number"
-      >
-        0
-      </div>
+      <div class="stat-label">ผลงาน</div>
+      <div id="statPortfolio" class="stat-number">0</div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">
-        ข้อความใหม่
-      </div>
-      <div
-        id="statInquiries"
-        class="stat-number"
-      >
-        0
-      </div>
+      <div class="stat-label">ข้อความใหม่</div>
+      <div id="statInquiries" class="stat-number">0</div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">
-        ผู้ใช้งาน
-      </div>
-      <div
-        id="statUsers"
-        class="stat-number"
-      >
-        0
-      </div>
+      <div class="stat-label">ผู้ใช้งาน</div>
+      <div id="statUsers" class="stat-number">0</div>
     </div>
 
   </div>
@@ -1055,9 +1010,7 @@ td{
   <div class="card">
 
     <div class="card-head">
-      <h3>
-        คำสั่งซื้อล่าสุด
-      </h3>
+      <h3>คำสั่งซื้อล่าสุด</h3>
     </div>
 
     <div class="table-wrap">
@@ -1085,8 +1038,6 @@ td{
 </section>
 
 
-<!-- ================= ORDERS ================= -->
-
 <section
   id="page-orders"
   class="page"
@@ -1095,15 +1046,8 @@ td{
   <div class="page-head">
 
     <div>
-
-      <div class="kicker">
-        ORDERS
-      </div>
-
-      <h1 class="page-title">
-        คำสั่งซื้อ
-      </h1>
-
+      <div class="kicker">ORDERS</div>
+      <h1 class="page-title">คำสั่งซื้อ</h1>
     </div>
 
   </div>
@@ -1119,9 +1063,7 @@ td{
 
       <select id="orderFilter">
 
-        <option value="">
-          ทุกสถานะ
-        </option>
+        <option value="">ทุกสถานะ</option>
 
         <option value="pending">
           รอดำเนินการ
@@ -1174,8 +1116,6 @@ td{
 </section>
 
 
-<!-- ================= PRODUCTS ================= -->
-
 <section
   id="page-products"
   class="page"
@@ -1184,15 +1124,8 @@ td{
   <div class="page-head">
 
     <div>
-
-      <div class="kicker">
-        PRODUCTS
-      </div>
-
-      <h1 class="page-title">
-        สินค้า
-      </h1>
-
+      <div class="kicker">PRODUCTS</div>
+      <h1 class="page-title">สินค้า</h1>
     </div>
 
     <button
@@ -1226,8 +1159,6 @@ td{
 </section>
 
 
-<!-- ================= PORTFOLIO ================= -->
-
 <section
   id="page-portfolio"
   class="page"
@@ -1236,15 +1167,8 @@ td{
   <div class="page-head">
 
     <div>
-
-      <div class="kicker">
-        PORTFOLIO
-      </div>
-
-      <h1 class="page-title">
-        ผลงาน
-      </h1>
-
+      <div class="kicker">PORTFOLIO</div>
+      <h1 class="page-title">ผลงาน</h1>
     </div>
 
     <button
@@ -1269,8 +1193,6 @@ td{
 </section>
 
 
-<!-- ================= INQUIRIES ================= -->
-
 <section
   id="page-inquiries"
   class="page"
@@ -1279,15 +1201,8 @@ td{
   <div class="page-head">
 
     <div>
-
-      <div class="kicker">
-        INQUIRIES
-      </div>
-
-      <h1 class="page-title">
-        ข้อความติดต่อ
-      </h1>
-
+      <div class="kicker">INQUIRIES</div>
+      <h1 class="page-title">ข้อความติดต่อ</h1>
     </div>
 
   </div>
@@ -1298,13 +1213,9 @@ td{
 
       <select id="inquiryFilter">
 
-        <option value="">
-          ทุกสถานะ
-        </option>
+        <option value="">ทุกสถานะ</option>
 
-        <option value="new">
-          ใหม่
-        </option>
+        <option value="new">ใหม่</option>
 
         <option value="contacting">
           กำลังติดต่อ
@@ -1351,8 +1262,6 @@ td{
 </section>
 
 
-<!-- ================= USERS ================= -->
-
 <section
   id="page-users"
   class="page"
@@ -1362,9 +1271,7 @@ td{
 
     <div>
 
-      <div class="kicker">
-        USERS
-      </div>
+      <div class="kicker">USERS</div>
 
       <h1 class="page-title">
         ผู้ใช้งาน
@@ -1408,8 +1315,6 @@ td{
 </section>
 
 
-<!-- ================= SETTINGS ================= -->
-
 <section
   id="page-settings"
   class="page"
@@ -1419,9 +1324,7 @@ td{
 
     <div>
 
-      <div class="kicker">
-        SETTINGS
-      </div>
+      <div class="kicker">SETTINGS</div>
 
       <h1 class="page-title">
         ตั้งค่า
@@ -1486,8 +1389,6 @@ td{
 </div>
 
 
-<!-- ================= MODAL ================= -->
-
 <div
   id="modal"
   class="modal"
@@ -1497,9 +1398,7 @@ td{
 
     <div class="modal-head">
 
-      <h3 id="modalTitle">
-        -
-      </h3>
+      <h3 id="modalTitle">-</h3>
 
       <button
         id="modalClose"
@@ -1546,26 +1445,6 @@ td{
 /* =====================================================
    SUPABASE CONFIG
 ===================================================== */
-
-/*
-  สำคัญมาก
-
-  ใส่ค่าจริงจาก:
-
-  Supabase
-  > Project Settings
-  > API
-
-  ตัวอย่าง:
-
-  const SUPABASE_URL =
-    "https://xxxxxxxx.supabase.co";
-
-  const SUPABASE_KEY =
-    "sb_publishable_xxxxxxxxx";
-
-  ห้ามใช้ service_role key
-*/
 
 const SUPABASE_URL =
   "https://mfhllgklcfnnbyyzzljz.supabase.co";
@@ -1911,8 +1790,6 @@ async function(event){
 };
 
 
-
-
 /* =====================================================
    AUTH STATE
 ===================================================== */
@@ -2062,63 +1939,77 @@ function applyPermissions(){
    NAVIGATION
 ===================================================== */
 
+const ADMIN_PAGE_LINKS = {
+
+  dashboard:
+    "admin-dashboard.html",
+
+  products:
+    "admin-products.html",
+
+  inquiries:
+    "admin-inquiries.html",
+
+  users:
+    "admin-users.html",
+
+  settings:
+    "admin-store.html"
+
+};
+
+
 document
-  .querySelectorAll(
-    ".nav button"
-  )
-  .forEach(
-    button => {
+  .querySelectorAll(".nav button")
+  .forEach(function(button){
 
-      button.onclick =
-      function(){
+    button.addEventListener("click", function(){
 
-        document
-          .querySelectorAll(
-            ".nav button"
-          )
-          .forEach(
-            item =>
-              item.classList
-                .remove("active")
-          );
+      const page =
+        this.dataset.page;
 
+      if(ADMIN_PAGE_LINKS[page]){
 
-        this.classList
-          .add("active");
+        window.location.href =
+          ADMIN_PAGE_LINKS[page];
 
+        return;
+      }
 
-        document
-          .querySelectorAll(
-            ".page"
-          )
-          .forEach(
-            page =>
-              page.classList
-                .remove("active")
-          );
+      document
+        .querySelectorAll(".nav button")
+        .forEach(function(item){
 
+          item.classList.remove("active");
 
-        const page =
-          $("page-" +
-            this.dataset.page);
+        });
 
+      this.classList.add("active");
 
-        if(page){
+      document
+        .querySelectorAll(".page")
+        .forEach(function(pageElement){
 
-          page.classList
-            .add("active");
+          pageElement.classList.remove("active");
 
-        }
+        });
 
+      const target =
+        $("page-" + page);
 
-        $("nav")
-          .classList
-          .remove("open");
+      if(target){
 
-      };
+        target.classList.add("active");
 
-    }
-  );
+      }
+
+      $("nav")
+        .classList
+        .remove("open");
+
+    });
+
+  });
 
 
 $("menuButton").onclick =
@@ -2534,6 +2425,7 @@ function getProductCategoryLabel(value){
 
   return PRODUCT_CATEGORY_LABELS[key] || "สินค้า";
 }
+
 
 /* =====================================================
    PRODUCTS
@@ -4182,8 +4074,6 @@ async function(){
 
   try{
 
-    /* ROLE */
-
     if(
       modalMode ===
       "role"
@@ -4221,8 +4111,6 @@ async function(){
       return;
     }
 
-
-    /* ORDER */
 
     if(
       modalMode ===
@@ -4263,8 +4151,6 @@ async function(){
     }
 
 
-    /* INQUIRY */
-
     if(
       modalMode ===
       "inquiry"
@@ -4303,8 +4189,6 @@ async function(){
       return;
     }
 
-
-    /* PRODUCT */
 
     if(
       modalMode ===
@@ -4359,14 +4243,14 @@ async function(){
       ){
 
         result =
-          await supabase
+          await supabaseClient
             .from("products")
             .insert(payload);
 
       }else{
 
         result =
-          await supabase
+          await supabaseClient
             .from("products")
             .update(payload)
             .eq(
@@ -4393,8 +4277,6 @@ async function(){
       return;
     }
 
-
-    /* PORTFOLIO */
 
     if(
       modalMode ===
@@ -4452,14 +4334,14 @@ async function(){
       ){
 
         result =
-          await supabase
+          await supabaseClient
             .from("portfolio")
             .insert(payload);
 
       }else{
 
         result =
-          await supabase
+          await supabaseClient
             .from("portfolio")
             .update(payload)
             .eq(
@@ -4556,12 +4438,6 @@ async function startApp(){
     .classList
     .add("show");
 
-
-  /*
-    ใช้ Promise.allSettled
-    เพื่อไม่ให้ table ตัวหนึ่ง error
-    แล้วทำให้ Admin ทั้งหน้าหมุน
-  */
 
   await Promise.allSettled([
 
