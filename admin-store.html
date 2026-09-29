@@ -1,419 +1,746 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CHATPHETCH GROUP — หน้าร้านค้า</title>
+<title>CHATPHETCH GROUP — Admin</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="./assets/logo.png">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 :root{
-  --black:#050505;
-  --gold:#c8a45b;
-  --gold-light:#f0d991;
-  --line:rgba(255,255,255,.09);
-  --gold-line:rgba(200,164,91,.30);
+  --gold:#d8b65b;
+  --gold-light:#f1d77d;
+  --bg:#080808;
+  --card:rgba(12,12,12,.86);
+  --line:rgba(255,255,255,.12);
+  --text:#fff;
+  --muted:#888;
+  --green:#40d889;
+  --red:#ff7272;
 }
 
 *{
   box-sizing:border-box;
 }
 
-body{
+html,body{
   margin:0;
-  min-height:100vh;
+  min-height:100%;
+}
 
-  color:#fff;
-
-  font-family:
-    "Prompt",
-    "Kanit",
-    sans-serif;
-
+body{
+  color:var(--text);
   background:
-    radial-gradient(circle at 12% 12%,rgba(200,164,91,.075),transparent 28%),
-    radial-gradient(circle at 88% 20%,rgba(200,164,91,.055),transparent 28%),
-    #050505;
+    linear-gradient(
+      rgba(0,0,0,.65),
+      rgba(0,0,0,.88)
+    ),
+    url("./assets/index-main-bg.png")
+    center/cover fixed no-repeat;
+  font-family:
+    Arial,
+    "Noto Sans Thai",
+    sans-serif;
 }
 
-body:before{
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* ================= LOGIN ================= */
+
+#loginScreen{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.login-box{
+  width:100%;
+  max-width:600px;
+  padding:40px;
+  background:rgba(5,5,5,.96);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  box-shadow:0 30px 100px rgba(0,0,0,.8);
+}
+
+.login-logo{
+  display:block;
+  width:125px;
+  height:125px;
+  object-fit:contain;
+  margin:0 auto 15px;
+}
+
+.login-title{
+  margin:0;
+  text-align:center;
+  font-size:40px;
+  font-weight:900;
+}
+
+.login-title span{
+  color:var(--gold-light);
+}
+
+.login-subtitle{
+  text-align:center;
+  color:#888;
+  line-height:1.8;
+  margin:12px 0 35px;
+}
+
+.field{
+  margin-bottom:18px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:8px;
+  color:#ddd;
+  font-size:13px;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  padding:14px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  outline:none;
+  background:#090909;
+  color:#fff;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color:var(--gold);
+}
+
+.password-wrap{
+  position:relative;
+}
+
+.password-wrap input{
+  padding-right:90px;
+}
+
+.show-password{
+  position:absolute;
+  top:7px;
+  right:7px;
+  bottom:7px;
+  width:70px;
+  border:0;
+  border-radius:8px;
+  background:#171717;
+  color:#ddd;
+}
+
+.login-btn{
+  width:100%;
+  height:56px;
+  border:0;
+  border-radius:10px;
+  background:linear-gradient(
+    135deg,
+    var(--gold-light),
+    var(--gold)
+  );
+  color:#111;
+  font-weight:900;
+}
+
+.login-btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+
+.login-divider::before,
+.login-divider::after{
   content:"";
-  position:fixed;
-  inset:0;
-
-  background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-
-  background-size:40px 40px;
-
-  pointer-events:none;
+  flex:1;
+  height:1px;
+  background:rgba(255,255,255,.10);
 }
+
+.login-error{
+  display:none;
+  margin-top:17px;
+  padding:13px 15px;
+  border:1px solid rgba(255,70,70,.4);
+  border-radius:10px;
+  background:rgba(70,0,0,.25);
+  color:#ff9999;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.login-error.show{
+  display:block;
+}
+
+/* ================= APP ================= */
+
+#app{
+  display:none;
+}
+
+#app.show{
+  display:block;
+}
+
+/* ================= HEADER ================= */
 
 .header{
   position:sticky;
   top:0;
-  z-index:1000;
+  z-index:100;
+  background:rgba(5,5,5,.96);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(15px);
+}
 
-  min-height:100px;
-
-  padding:0 4vw;
-
+.header-inner{
+  width:min(1550px,calc(100% - 40px));
+  min-height:82px;
+  margin:auto;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-
-  background:rgba(5,5,5,.95);
-
-  border-top:1px solid rgba(200,164,91,.35);
-  border-bottom:1px solid var(--line);
-
-  backdrop-filter:blur(18px);
+  gap:20px;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:12px;
+  margin-right:auto;
 }
 
-.logo{
-  width:52px;
-  height:52px;
-
+.brand img{
+  width:58px;
+  height:58px;
   object-fit:contain;
-
-  border:1px solid var(--gold);
 }
 
-.brand-name{
-  font-size:18px;
-  font-weight:700;
+.brand-title{
+  font-size:20px;
+  font-weight:900;
 }
 
 .brand-sub{
-  color:#777;
-  font-size:11px;
-  letter-spacing:2px;
+  color:#666;
+  font-size:9px;
+  letter-spacing:.2em;
+  margin-top:4px;
 }
 
 .nav{
   display:flex;
-  gap:7px;
   align-items:center;
 }
 
-.nav a,
-.logout{
-  min-height:40px;
-  padding:0 15px;
+.nav button{
+  padding:30px 17px 23px;
+  border:0;
+  border-bottom:2px solid transparent;
+  background:none;
+  color:#777;
+}
 
+.nav button:hover,
+.nav button.active{
+  color:#fff;
+  border-bottom-color:var(--gold);
+}
+
+.header-right{
   display:flex;
   align-items:center;
-
-  color:#aaa;
-  text-decoration:none;
-
-  border:1px solid rgba(255,255,255,.08);
-
-  background:#090909;
-
-  font-family:inherit;
-  font-size:13px;
-
-  cursor:pointer;
+  gap:10px;
 }
 
-.nav a:hover,
-.nav a.active,
-.logout:hover{
+.role-badge{
+  padding:8px 14px;
+  border:1px solid rgba(216,182,91,.4);
+  border-radius:30px;
   color:var(--gold-light);
-  border-color:var(--gold-line);
+  font-size:11px;
 }
 
-.user{
-  color:#777;
-  font-size:12px;
+.logout-btn{
+  padding:11px 15px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:#111;
+  color:#ccc;
+}
+
+.menu-btn{
+  display:none;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:9px 12px;
+  background:#111;
+  color:#fff;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+  width:min(1550px,calc(100% - 40px));
+  margin:auto;
+  padding:50px 0 100px;
 }
 
 .page{
-  position:relative;
-  z-index:1;
+  display:none;
+}
 
-  width:min(
-    calc(100% - 48px),
-    1540px
-  );
+.page.active{
+  display:block;
+}
 
-  margin:auto;
-
-  padding:55px 0 80px;
+.page-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:28px;
 }
 
 .kicker{
   color:var(--gold);
-  font-size:13px;
-  letter-spacing:4px;
-  font-weight:600;
+  font-size:11px;
+  letter-spacing:.22em;
+  margin-bottom:8px;
 }
 
-h1{
-  margin:7px 0 0;
-
-  font-size:clamp(42px,5vw,60px);
-  line-height:1.2;
+.page-title{
+  margin:0;
+  font-size:52px;
+  line-height:1;
 }
 
-.desc{
-  margin-top:10px;
+.page-description{
   color:#777;
-  font-size:14px;
+  margin-top:12px;
+  font-size:13px;
 }
 
-.top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-
-  margin-bottom:35px;
-}
+/* ================= BUTTON ================= */
 
 .btn{
-  min-height:44px;
-  padding:0 18px;
-
-  border:1px solid rgba(255,255,255,.11);
-
-  background:#101010;
-
+  padding:11px 16px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:#111;
   color:#ddd;
-
-  font-family:inherit;
-  cursor:pointer;
 }
 
 .btn:hover{
-  color:var(--gold-light);
-  border-color:var(--gold-line);
+  border-color:rgba(216,182,91,.5);
 }
+
+.btn.gold{
+  border:0;
+  background:linear-gradient(
+    135deg,
+    var(--gold-light),
+    var(--gold)
+  );
+  color:#111;
+  font-weight:900;
+}
+
+.btn.red{
+  color:#ff9999;
+}
+
+/* ================= CARD ================= */
+
+.card{
+  margin-bottom:16px;
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:17px;
+  background:var(--card);
+}
+
+.card-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:17px;
+}
+
+.card-head h3{
+  margin:0;
+}
+
+/* ================= STATS ================= */
 
 .stats{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-
-  gap:14px;
-
-  margin-bottom:25px;
+  grid-template-columns:repeat(5,1fr);
+  gap:15px;
+  margin-bottom:17px;
 }
 
 .stat{
-  padding:25px 22px;
-
+  min-height:135px;
+  padding:22px;
   border:1px solid var(--line);
-
-  background:rgba(255,255,255,.025);
+  border-radius:16px;
+  background:var(--card);
 }
 
-.stat small{
+.stat-label{
+  color:#777;
+  font-size:11px;
+}
+
+.stat-number{
+  margin-top:14px;
+  color:var(--gold-light);
+  font-size:40px;
+  font-weight:900;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrap{
+  overflow:auto;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;
+}
+
+table{
+  width:100%;
+  min-width:900px;
+  border-collapse:collapse;
+}
+
+th,
+td{
+  padding:14px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  text-align:left;
+  font-size:12px;
+}
+
+th{
   color:#777;
 }
 
-.stat strong{
-  display:block;
-
-  margin-top:14px;
-
-  color:var(--gold-light);
-
-  font-size:32px;
-}
-
-.toolbar{
-  display:flex;
-  gap:12px;
-
-  margin-bottom:24px;
-
-  padding:15px;
-
-  border:1px solid var(--line);
-}
-
-input,
-select{
-  height:46px;
-
-  border:1px solid rgba(255,255,255,.10);
-
-  background:#090909;
-
+td{
   color:#ddd;
+}
 
-  font-family:inherit;
+/* ================= FILTER ================= */
 
-  padding:0 14px;
+.filters{
+  display:flex;
+  gap:10px;
+  margin-bottom:15px;
+}
 
+.filters input,
+.filters select{
+  min-height:43px;
+  padding:0 13px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:#090909;
+  color:#fff;
   outline:none;
 }
 
-input{
+.filters input{
   flex:1;
 }
 
-select{
-  min-width:200px;
+/* ================= BADGE ================= */
+
+.badge{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:9px;
 }
+
+.badge.gold{
+  color:var(--gold-light);
+  border:1px solid rgba(216,182,91,.3);
+}
+
+.badge.green{
+  color:var(--green);
+  border:1px solid rgba(64,216,137,.3);
+}
+
+.badge.red{
+  color:var(--red);
+  border:1px solid rgba(255,114,114,.3);
+}
+
+/* ================= ACTION ================= */
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.action{
+  padding:7px 10px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  background:#101010;
+  color:#ccc;
+  font-size:10px;
+}
+
+.action:hover{
+  border-color:var(--gold);
+}
+
+/* ================= EMPTY ================= */
+
+.empty{
+  padding:40px 20px;
+  text-align:center;
+  color:#666;
+  line-height:1.8;
+}
+
+/* ================= GRID ================= */
 
 .grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:18px;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
 }
 
-.card{
+.item{
   overflow:hidden;
-
   border:1px solid var(--line);
-
+  border-radius:14px;
   background:#0b0b0b;
-
-  transition:.2s;
 }
 
-.card:hover{
-  transform:translateY(-3px);
-  border-color:var(--gold-line);
-}
-
-.card img{
+.item-image{
   width:100%;
-  aspect-ratio:1/1;
-
+  height:190px;
   object-fit:cover;
+  background:#151515;
+}
 
+.item-body{
+  padding:15px;
+}
+
+.item-title{
+  font-size:14px;
+  font-weight:900;
+}
+
+.item-meta{
+  margin-top:6px;
+  color:#777;
+  font-size:10px;
+}
+
+.item-price{
+  margin-top:10px;
+  color:var(--gold-light);
+  font-weight:900;
+}
+
+.item-actions{
+  display:flex;
+  gap:7px;
+  margin-top:14px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(8px);
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(650px,100%);
+  max-height:90vh;
+  overflow:auto;
+  padding:25px;
+  border:1px solid var(--line);
+  border-radius:17px;
+  background:#111;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.modal-head h3{
+  margin:0;
+}
+
+.modal-close{
+  border:0;
+  background:none;
+  color:#aaa;
+  font-size:28px;
+}
+
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:20px;
+}
+
+/* ================= TOAST ================= */
+
+#toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:9999;
+  display:none;
+  max-width:420px;
+  padding:13px 16px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#111;
+  color:#ddd;
+  font-size:12px;
+}
+
+#toast.show{
   display:block;
 }
 
-.info{
-  padding:18px;
+#toast.error{
+  color:#ff9999;
+  border-color:rgba(255,80,80,.35);
 }
 
-.code{
-  color:var(--gold);
-  font-size:11px;
-  letter-spacing:1px;
-}
+/* ================= RESPONSIVE ================= */
 
-.name{
-  margin-top:7px;
+@media(max-width:1150px){
 
-  color:#eee;
-
-  font-size:16px;
-  font-weight:600;
-}
-
-.price{
-  margin-top:9px;
-
-  color:var(--gold-light);
-
-  font-size:23px;
-  font-weight:700;
-}
-
-.buy{
-  display:block;
-
-  width:100%;
-
-  margin-top:15px;
-
-  min-height:43px;
-
-  border:1px solid var(--gold-line);
-
-  background:rgba(200,164,91,.06);
-
-  color:var(--gold-light);
-
-  font-family:inherit;
-
-  cursor:pointer;
-}
-
-@media(max-width:1200px){
-
-  .grid{
+  .stats{
     grid-template-columns:repeat(3,1fr);
   }
 
-}
-
-@media(max-width:900px){
-
-  .stats{
-    grid-template-columns:repeat(2,1fr);
-  }
-
   .grid{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .user{
+}
+
+@media(max-width:850px){
+
+  .header-inner{
+    width:calc(100% - 20px);
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .nav{
     display:none;
+    position:absolute;
+    top:82px;
+    left:10px;
+    right:10px;
+    flex-direction:column;
+    align-items:stretch;
+    padding:8px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:#111;
+  }
+
+  .nav.open{
+    display:flex;
+  }
+
+  .nav button{
+    padding:13px;
+    text-align:left;
+    border:0;
+  }
+
+  .role-badge{
+    display:none;
+  }
+
+  .main{
+    width:calc(100% - 20px);
   }
 
 }
 
 @media(max-width:600px){
 
-  .header{
-    flex-direction:column;
-    align-items:stretch;
-
-    padding:14px 20px;
-
-    gap:14px;
+  .login-box{
+    padding:30px 20px;
   }
 
-  .nav{
-    flex-wrap:wrap;
+  .login-title{
+    font-size:29px;
   }
 
-  .nav a{
-    flex:1;
+  .page-head{
+    display:block;
   }
 
-  .page{
-    width:calc(100% - 28px);
-  }
-
-  .top{
-    flex-direction:column;
-    align-items:flex-start;
-
-    gap:20px;
+  .page-title{
+    font-size:39px;
   }
 
   .stats{
-    grid-template-columns:1fr;
-  }
-
-  .toolbar{
-    flex-direction:column;
+    grid-template-columns:repeat(2,1fr);
   }
 
   .grid{
@@ -421,176 +748,825 @@ select{
   }
 
 }
-
 </style>
-
 </head>
 
 <body>
 
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<section id="loginScreen">
+
+  <div class="login-box">
+
+    <img
+      src="./assets/logo.png"
+      class="login-logo"
+      alt="CHATPHETCH GROUP"
+    >
+
+    <h1 class="login-title">
+      CHATPHETCH <span>GROUP</span>
+    </h1>
+
+    <div class="login-subtitle">
+      ระบบจัดการหลังบ้าน<br>
+      Admin / Back Office
+    </div>
+
+    <form id="loginForm">
+
+      <div class="field">
+        <label>อีเมล</label>
+
+        <input
+          id="email"
+          type="email"
+          autocomplete="username"
+          required
+        >
+      </div>
+
+      <div class="field">
+
+        <label>รหัสผ่าน</label>
+
+        <div class="password-wrap">
+
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          >
+
+          <button
+            type="button"
+            class="show-password"
+            id="showPassword"
+          >
+            แสดง
+          </button>
+
+        </div>
+
+      </div>
+
+      <button
+        type="submit"
+        class="login-btn"
+        id="loginButton"
+      >
+        เข้าสู่ระบบ
+      </button>
+
+    </form>
+
+    <div
+      id="loginError"
+      class="login-error"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     ADMIN APP
+===================================================== -->
+
+<div id="app">
+
 <header class="header">
 
-  <div class="brand">
+  <div class="header-inner">
 
-    <a href="admin.html">
+    <button
+      id="menuButton"
+      class="menu-btn"
+      type="button"
+    >
+      ☰
+    </button>
+
+    <div class="brand">
 
       <img
-        src="assets/logo.png"
-        class="logo"
-        alt="CHATPHETCH GROUP"
+        src="./assets/logo.png"
+        alt="CHATPHETCH"
       >
 
-    </a>
+      <div>
 
-    <div>
+        <div class="brand-title">
+          CHATPHETCH GROUP
+        </div>
 
-      <div class="brand-name">
-        CHATPHETCH GROUP
+        <div class="brand-sub">
+          ADMIN MANAGEMENT SYSTEM
+        </div>
+
       </div>
 
-      <div class="brand-sub">
-        BACK OFFICE
-      </div>
+    </div>
+
+    <nav id="nav" class="nav">
+
+      <button
+        class="active"
+        data-page="dashboard"
+        type="button"
+      >
+        หน้าแรก
+      </button>
+
+      <button
+        data-page="orders"
+        type="button"
+      >
+        คำสั่งซื้อ
+      </button>
+
+      <button
+        data-page="products"
+        id="adminProductsNavButton"
+        type="button"
+      >
+        สินค้า
+      </button>
+
+      <button
+        data-page="portfolio"
+        type="button"
+      >
+        ผลงาน
+      </button>
+
+      <button
+        data-page="inquiries"
+        type="button"
+      >
+        ข้อความ
+      </button>
+
+      <button
+        data-page="users"
+        type="button"
+      >
+        ผู้ใช้งาน
+      </button>
+
+      <button
+        data-page="settings"
+        type="button"
+      >
+        ตั้งค่า
+      </button>
+
+    </nav>
+
+    <div class="header-right">
+
+      <span
+        id="roleBadge"
+        class="role-badge"
+      >
+        VIEWER
+      </span>
+
+      <button
+        id="logoutButton"
+        class="logout-btn"
+        type="button"
+      >
+        ออกจากระบบ
+      </button>
 
     </div>
 
   </div>
 
-
-  <nav class="nav">
-
-    <a href="admin.html">
-      หน้าแรก
-    </a>
-
-    <a href="products.html">
-      สินค้า
-    </a>
-
-    <a href="admin-products.html">
-      จัดการสินค้า
-    </a>
-
-    <a href="admin-users.html">
-      ผู้ใช้งาน
-    </a>
-
-    <a
-      href="admin-store.html"
-      class="active"
-    >
-      หน้าร้าน
-    </a>
-
-    <span
-      class="user"
-      id="user"
-    >
-      OWNER
-    </span>
-
-    <button
-      class="logout"
-      id="logout"
-    >
-      ออกจากระบบ
-    </button>
-
-  </nav>
-
 </header>
 
 
-<main class="page">
+<main class="main">
 
-  <div class="top">
+<!-- ================= DASHBOARD ================= -->
+
+<section
+  id="page-dashboard"
+  class="page"
+>
+
+  <div class="page-head">
 
     <div>
 
       <div class="kicker">
-        STORE PREVIEW
+        ADMIN DASHBOARD
       </div>
 
-      <h1>
-        หน้าร้านค้า
+      <h1 class="page-title">
+        หน้าแรก
       </h1>
 
-      <div class="desc">
-        ตรวจสอบสินค้าและหน้าร้านของ CHATPHETCH GROUP
+      <div class="page-description">
+        ศูนย์กลางจัดการระบบ CHATPHETCH GROUP
       </div>
 
     </div>
 
     <button
       class="btn"
-      onclick="location.href='products.html'"
+      id="refreshButton"
+      type="button"
     >
-      เปิดหน้าร้านจริง
+      ↻ รีเฟรชข้อมูล
     </button>
 
   </div>
 
-
   <div class="stats">
 
     <div class="stat">
-      <small>PRODUCTS</small>
-      <strong id="total">0</strong>
+      <div class="stat-label">
+        คำสั่งซื้อ
+      </div>
+      <div
+        id="statOrders"
+        class="stat-number"
+      >
+        0
+      </div>
     </div>
 
     <div class="stat">
-      <small>VISIBLE</small>
-      <strong id="visible">0</strong>
+      <div class="stat-label">
+        สินค้า
+      </div>
+      <div
+        id="statProducts"
+        class="stat-number"
+      >
+        0
+      </div>
     </div>
 
     <div class="stat">
-      <small>HIDDEN</small>
-      <strong id="hidden">0</strong>
+      <div class="stat-label">
+        ผลงาน
+      </div>
+      <div
+        id="statPortfolio"
+        class="stat-number"
+      >
+        0
+      </div>
     </div>
 
     <div class="stat">
-      <small>CATEGORIES</small>
-      <strong id="categories">0</strong>
+      <div class="stat-label">
+        ข้อความใหม่
+      </div>
+      <div
+        id="statInquiries"
+        class="stat-number"
+      >
+        0
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">
+        ผู้ใช้งาน
+      </div>
+      <div
+        id="statUsers"
+        class="stat-number"
+      >
+        0
+      </div>
     </div>
 
   </div>
 
+  <div class="card">
 
-  <div class="toolbar">
+    <div class="card-head">
+      <h3>
+        คำสั่งซื้อล่าสุด
+      </h3>
+    </div>
 
-    <input
-      id="search"
-      placeholder="ค้นหาสินค้า"
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>เลขที่</th>
+            <th>ลูกค้า</th>
+            <th>ยอดรวม</th>
+            <th>สถานะ</th>
+            <th>วันที่</th>
+          </tr>
+        </thead>
+
+        <tbody id="recentOrders"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= ORDERS ================= -->
+
+<section
+  id="page-orders"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div>
+
+      <div class="kicker">
+        ORDERS
+      </div>
+
+      <h1 class="page-title">
+        คำสั่งซื้อ
+      </h1>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="filters">
+
+      <input
+        id="orderSearch"
+        placeholder="ค้นหาเลขออเดอร์ / ลูกค้า"
+      >
+
+      <select id="orderFilter">
+
+        <option value="">
+          ทุกสถานะ
+        </option>
+
+        <option value="pending">
+          รอดำเนินการ
+        </option>
+
+        <option value="processing">
+          กำลังดำเนินการ
+        </option>
+
+        <option value="shipping">
+          กำลังจัดส่ง
+        </option>
+
+        <option value="completed">
+          เสร็จสิ้น
+        </option>
+
+        <option value="cancelled">
+          ยกเลิก
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>เลขที่</th>
+            <th>ลูกค้า</th>
+            <th>โทรศัพท์</th>
+            <th>ยอดรวม</th>
+            <th>สถานะ</th>
+            <th>วันที่</th>
+            <th>จัดการ</th>
+          </tr>
+        </thead>
+
+        <tbody id="ordersTable"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section
+  id="page-products"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div>
+
+      <div class="kicker">
+        PRODUCTS
+      </div>
+
+      <h1 class="page-title">
+        สินค้า
+      </h1>
+
+    </div>
+
+    <button
+      id="addProductButton"
+      class="btn gold owner-only"
+      type="button"
     >
-
-    <select id="category">
-
-      <option value="">
-        ทุกหมวดหมู่
-      </option>
-
-      <option value="floor">
-        พื้น
-      </option>
-
-      <option value="coating">
-        น้ำยาเคลือบ
-      </option>
-
-    </select>
+      + เพิ่มสินค้า
+    </button>
 
   </div>
 
+  <div class="card">
 
-  <div
-    class="grid"
-    id="grid"
-  ></div>
+    <div class="filters">
+
+      <input
+        id="productSearch"
+        placeholder="ค้นหาสินค้า..."
+      >
+
+    </div>
+
+    <div
+      id="productsGrid"
+      class="grid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PORTFOLIO ================= -->
+
+<section
+  id="page-portfolio"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div>
+
+      <div class="kicker">
+        PORTFOLIO
+      </div>
+
+      <h1 class="page-title">
+        ผลงาน
+      </h1>
+
+    </div>
+
+    <button
+      id="addPortfolioButton"
+      class="btn gold owner-only"
+      type="button"
+    >
+      + เพิ่มผลงาน
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <div
+      id="portfolioGrid"
+      class="grid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= INQUIRIES ================= -->
+
+<section
+  id="page-inquiries"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div>
+
+      <div class="kicker">
+        INQUIRIES
+      </div>
+
+      <h1 class="page-title">
+        ข้อความติดต่อ
+      </h1>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="filters">
+
+      <select id="inquiryFilter">
+
+        <option value="">
+          ทุกสถานะ
+        </option>
+
+        <option value="new">
+          ใหม่
+        </option>
+
+        <option value="contacting">
+          กำลังติดต่อ
+        </option>
+
+        <option value="contacted">
+          ติดต่อแล้ว
+        </option>
+
+        <option value="closed">
+          ปิดเรื่อง
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>ชื่อ</th>
+            <th>Email</th>
+            <th>โทรศัพท์</th>
+            <th>หัวข้อ</th>
+            <th>สถานะ</th>
+            <th>วันที่</th>
+            <th>จัดการ</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="inquiriesTable"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= USERS ================= -->
+
+<section
+  id="page-users"
+  class="page"
+>
+
+  <div class="page-head">
+
+    <div>
+
+      <div class="kicker">
+        USERS
+      </div>
+
+      <h1 class="page-title">
+        ผู้ใช้งาน
+      </h1>
+
+      <div class="page-description">
+        จัดการผู้ดูแลระบบ
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>ชื่อ</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>สถานะ</th>
+            <th>วันที่สร้าง</th>
+            <th>จัดการ</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="usersTable"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<section
+  id="page-settings"
+  class="page active"
+>
+
+  <div class="page-head">
+
+    <div>
+
+      <div class="kicker">
+        SETTINGS
+      </div>
+
+      <h1 class="page-title">
+        ตั้งค่า
+      </h1>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <form id="settingsForm">
+
+      <div class="field">
+        <label>ชื่อบริษัท</label>
+        <input id="companyName">
+      </div>
+
+      <div class="field">
+        <label>เบอร์โทรศัพท์</label>
+        <input id="companyPhone">
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input id="companyEmail">
+      </div>
+
+      <div class="field">
+        <label>ที่อยู่</label>
+        <textarea
+          id="companyAddress"
+          rows="4"
+        ></textarea>
+      </div>
+
+      <div class="field">
+        <label>Facebook</label>
+        <input id="facebook">
+      </div>
+
+      <div class="field">
+        <label>LINE</label>
+        <input id="line">
+      </div>
+
+      <button
+        class="btn gold owner-only"
+        type="submit"
+      >
+        บันทึกข้อมูล
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
 
 </main>
 
+</div>
+
+
+<!-- ================= MODAL ================= -->
+
+<div
+  id="modal"
+  class="modal"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h3 id="modalTitle">
+        -
+      </h3>
+
+      <button
+        id="modalClose"
+        class="modal-close"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="modalBody"></div>
+
+    <div class="modal-actions">
+
+      <button
+        id="modalCancel"
+        class="btn"
+        type="button"
+      >
+        ยกเลิก
+      </button>
+
+      <button
+        id="modalSave"
+        class="btn gold"
+        type="button"
+      >
+        บันทึก
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div id="toast"></div>
+
 
 <script>
+
+/* =====================================================
+   SUPABASE CONFIG
+===================================================== */
+
+/*
+  สำคัญมาก
+
+  ใส่ค่าจริงจาก:
+
+  Supabase
+  > Project Settings
+  > API
+
+  ตัวอย่าง:
+
+  const SUPABASE_URL =
+    "https://xxxxxxxx.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_xxxxxxxxx";
+
+  ห้ามใช้ service_role key
+*/
 
 const SUPABASE_URL =
   "https://mfhllgklcfnnbyyzzljz.supabase.co";
@@ -598,246 +1574,3084 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
   "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
 
+
+/* =====================================================
+   SUPABASE CLIENT
+===================================================== */
+
+if(
+  !window.supabase
+){
+  throw new Error(
+    "ไม่พบ Supabase SDK"
+  );
+}
+
 const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_KEY
+    SUPABASE_KEY,
+    {
+      auth:{
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true,
+        flowType:"implicit"
+      }
+    }
   );
 
 
-const products=[
+/* =====================================================
+   STATE
+===================================================== */
 
-  {
-    id:"91428",
-    code:"91428",
-    name:"PREMIUM STAMPED CONCRETE (PSC)",
-    category:"floor",
-    image:"assets/products/91428.jpg",
-    price:799
-  },
+let currentSession = null;
+let currentUser = null;
+let currentRole = "viewer";
 
-  {
-    id:"91427",
-    code:"91427",
-    name:"RELEASER POWER",
-    category:"floor",
-    image:"assets/products/releaser-power.jpg",
-    price:1050
-  },
+let orders = [];
+let products = [];
+let portfolios = [];
+let inquiries = [];
+let users = [];
 
-  {
-    id:"91430",
-    code:"91430",
-    name:"READY COAT (RCT)",
-    category:"coating",
-    image:"assets/products/91430.jpg",
-    price:388
-  },
-
-  {
-    id:"91429",
-    code:"91429",
-    name:"READY COAT COLOR (RCR)",
-    category:"coating",
-    image:"assets/products/91429.jpg",
-    price:369
-  }
-
-];
+let modalMode = "";
+let modalId = "";
 
 
-function render(){
+/* =====================================================
+   HELPERS
+===================================================== */
 
-  const keyword =
-    document.getElementById(
-      "search"
-    ).value
-      .toLowerCase()
-      .trim();
-
-  const category =
-    document.getElementById(
-      "category"
-    ).value;
-
-  const list =
-    products.filter(p=>{
-
-      const a =
-        !keyword ||
-        (
-          p.name +
-          " " +
-          p.code
-        )
-        .toLowerCase()
-        .includes(keyword);
-
-      const b =
-        !category ||
-        p.category === category;
-
-      return a && b;
-
-    });
-
-
-  document.getElementById(
-    "grid"
-  ).innerHTML =
-    list.map(p=>`
-
-      <article class="card">
-
-        <img
-          src="${p.image}"
-          alt="${p.name}"
-        >
-
-        <div class="info">
-
-          <div class="code">
-            ${p.code}
-          </div>
-
-          <div class="name">
-            ${p.name}
-          </div>
-
-          <div class="price">
-            ${p.price.toLocaleString("th-TH")} ฿
-          </div>
-
-          <button
-            class="buy"
-            onclick="location.href='product-detail.html?id=${p.id}'"
-          >
-            ดูรายละเอียดสินค้า
-          </button>
-
-        </div>
-
-      </article>
-
-    `).join("");
-
+function $(id){
+  return document.getElementById(id);
 }
 
 
-async function init(){
+function escapeHTML(value){
 
-  const {
-    data
-  } =
-    await supabaseClient
-      .auth
-      .getSession();
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
 
-  if(!data.session){
 
-    location.href =
-      "admin.html";
+function formatMoney(value){
 
-    return;
+  return Number(value || 0)
+    .toLocaleString(
+      "th-TH",
+      {
+        minimumFractionDigits:2
+      }
+    );
+}
 
+
+function formatDate(value){
+
+  if(!value)
+    return "-";
+
+  const date =
+    new Date(value);
+
+  if(
+    Number.isNaN(
+      date.getTime()
+    )
+  ){
+    return "-";
   }
 
+  return date.toLocaleString(
+    "th-TH"
+  );
+}
 
-  const {
-    data:admin
-  } =
-    await supabaseClient
-      .from("admin_users")
-      .select("*")
-      .eq(
-        "user_id",
-        data.session.user.id
-      )
-      .maybeSingle();
+
+function showToast(
+  message,
+  error=false
+){
+
+  const el =
+    $("toast");
+
+  el.textContent =
+    message;
+
+  el.className =
+    error
+      ? "show error"
+      : "show";
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(
+      ()=>{
+        el.className="";
+      },
+      3500
+    );
+}
+
+
+function isOwner(){
+
+  return (
+    currentRole ===
+    "owner"
+  );
+}
+
+
+function isManager(){
+
+  return (
+    currentRole === "owner" ||
+    currentRole === "manager"
+  );
+}
+
+
+/* =====================================================
+   CONFIG
+===================================================== */
+
+function checkConfig(){
+
+  if(
+    !SUPABASE_URL ||
+    SUPABASE_URL.includes("ใส่_") ||
+    !SUPABASE_URL.startsWith("https://")
+  ){
+
+    throw new Error(
+      "กรุณาใส่ SUPABASE_URL ก่อน"
+    );
+  }
 
 
   if(
-    !admin ||
-    !admin.active
+    !SUPABASE_KEY ||
+    SUPABASE_KEY.includes("ใส่_")
   ){
 
-    location.href =
-      "admin.html";
-
-    return;
-
+    throw new Error(
+      "กรุณาใส่ SUPABASE_KEY ก่อน"
+    );
   }
 
 
-  document.getElementById(
-    "user"
-  ).textContent =
-    `${admin.name || "ผู้ดูแล"} · ${String(admin.role).toUpperCase()}`;
+  if(
+    /[^\x00-\x7F]/.test(
+      SUPABASE_KEY
+    )
+  ){
+
+    throw new Error(
+      "SUPABASE_KEY มีอักขระไม่ถูกต้อง"
+    );
+  }
+}
 
 
-  document.getElementById(
-    "total"
-  ).textContent =
-    products.length;
+/* =====================================================
+   PASSWORD
+===================================================== */
 
-  document.getElementById(
-    "visible"
-  ).textContent =
-    products.length;
+$("showPassword").onclick =
+function(){
 
-  document.getElementById(
-    "hidden"
-  ).textContent =
-    0;
+  const input =
+    $("password");
 
-  document.getElementById(
-    "categories"
-  ).textContent =
-    new Set(
-      products.map(
-        p=>p.category
+  if(
+    input.type ===
+    "password"
+  ){
+
+    input.type =
+      "text";
+
+    this.textContent =
+      "ซ่อน";
+
+  }else{
+
+    input.type =
+      "password";
+
+    this.textContent =
+      "แสดง";
+  }
+
+};
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+$("loginForm").onsubmit =
+async function(event){
+
+  event.preventDefault();
+
+
+  const email =
+    $("email")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const password =
+    $("password")
+      .value;
+
+
+  const button =
+    $("loginButton");
+
+
+  const errorBox =
+    $("loginError");
+
+
+  errorBox.className =
+    "login-error";
+
+
+  errorBox.textContent =
+    "";
+
+
+  button.disabled =
+    true;
+
+
+  button.textContent =
+    "กำลังเข้าสู่ระบบ...";
+
+
+  try{
+
+    checkConfig();
+
+
+    const result =
+      await supabaseClient.auth
+        .signInWithPassword({
+
+          email,
+
+          password
+
+        });
+
+
+    if(
+      result.error
+    ){
+
+      throw result.error;
+    }
+
+
+    if(
+      !result.data?.session
+    ){
+
+      throw new Error(
+        "ไม่พบ Session"
+      );
+    }
+
+
+    currentSession =
+      result.data.session;
+
+
+    await startApp();
+
+
+  }catch(error){
+
+    console.error(
+      "LOGIN ERROR",
+      error
+    );
+
+
+    errorBox.textContent =
+      error.message ||
+      "เข้าสู่ระบบไม่สำเร็จ";
+
+
+    errorBox.className =
+      "login-error show";
+
+
+    button.disabled =
+      false;
+
+
+    button.textContent =
+      "เข้าสู่ระบบ";
+  }
+
+};
+
+
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+supabaseClient.auth.onAuthStateChange(
+  function(
+    event,
+    session
+  ){
+
+    console.log(
+      "AUTH:",
+      event
+    );
+
+    currentSession =
+      session;
+
+  }
+);
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+$("logoutButton").onclick =
+async function(){
+
+  await supabaseClient.auth.signOut();
+
+  location.reload();
+
+};
+
+
+/* =====================================================
+   CURRENT USER
+===================================================== */
+
+async function loadCurrentUser(){
+
+  if(
+    !currentSession
+  ){
+
+    throw new Error(
+      "ไม่พบ Session"
+    );
+  }
+
+
+  const authUser =
+    currentSession.user;
+
+
+  const result =
+    await supabaseClient
+      .from("admin_users")
+      .select(
+        "id,user_id,email,name,role,active,created_at"
       )
-    ).size;
+      .eq(
+        "user_id",
+        authUser.id
+      )
+      .limit(1);
 
 
-  render();
+  if(
+    result.error
+  ){
+
+    throw result.error;
+  }
+
+
+  if(
+    !result.data ||
+    !result.data.length
+  ){
+
+    throw new Error(
+      "ไม่พบบัญชี Admin ใน admin_users"
+    );
+  }
+
+
+  currentUser =
+    result.data[0];
+
+
+  if(
+    currentUser.active === false
+  ){
+
+    await supabaseClient.auth.signOut();
+
+    throw new Error(
+      "บัญชีนี้ถูกปิดใช้งาน"
+    );
+  }
+
+
+  currentRole =
+    String(
+      currentUser.role ||
+      "viewer"
+    ).toLowerCase();
+
+
+  $("roleBadge")
+    .textContent =
+    currentRole.toUpperCase();
+
+
+  applyPermissions();
 
 }
 
 
-document.getElementById(
-  "search"
-).addEventListener(
-  "input",
-  render
-);
+/* =====================================================
+   PERMISSION
+===================================================== */
 
-document.getElementById(
-  "category"
-).addEventListener(
-  "change",
-  render
-);
+function applyPermissions(){
+
+  document
+    .querySelectorAll(
+      ".owner-only"
+    )
+    .forEach(
+      element => {
+
+        element.style.display =
+          isOwner()
+            ? ""
+            : "none";
+
+      }
+    );
+
+}
 
 
-document.getElementById(
-  "logout"
-).addEventListener(
-  "click",
-  async()=>{
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
+const ADMIN_PAGE_LINKS = {
+
+  dashboard:
+    "admin-dashboard.html",
+
+  products:
+    "admin-products.html",
+
+  inquiries:
+    "admin-inquiries.html",
+
+  users:
+    "admin-users.html",
+
+  settings:
+    "admin-store.html"
+
+};
+
+
+document
+  .querySelectorAll(".nav button")
+  .forEach(function(button){
+
+    button.addEventListener("click", function(){
+
+      const page =
+        this.dataset.page;
+
+      if(ADMIN_PAGE_LINKS[page]){
+
+        window.location.href =
+          ADMIN_PAGE_LINKS[page];
+
+        return;
+      }
+
+      document
+        .querySelectorAll(".nav button")
+        .forEach(function(item){
+
+          item.classList.remove("active");
+
+        });
+
+      this.classList.add("active");
+
+      document
+        .querySelectorAll(".page")
+        .forEach(function(pageElement){
+
+          pageElement.classList.remove("active");
+
+        });
+
+      const target =
+        $("page-" + page);
+
+      if(target){
+
+        target.classList.add("active");
+
+      }
+
+      $("nav")
+        .classList
+        .remove("open");
+
+    });
+
+  });
+
+
+$("menuButton").onclick =
+function(){
+
+  $("nav")
+    .classList
+    .toggle("open");
+
+};
+
+
+/* =====================================================
+   ORDERS
+===================================================== */
+
+async function loadOrders(){
+
+  const result =
     await supabaseClient
-      .auth
-      .signOut();
+      .from("orders")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
 
-    location.href =
-      "admin.html";
+
+  if(result.error){
+
+    $("ordersTable").innerHTML =
+      `
+      <tr>
+        <td colspan="7">
+          <div class="empty">
+            โหลดคำสั่งซื้อไม่สำเร็จ<br>
+            ${escapeHTML(
+              result.error.message
+            )}
+          </div>
+        </td>
+      </tr>
+      `;
+
+    return;
+  }
+
+
+  orders =
+    result.data || [];
+
+
+  $("statOrders")
+    .textContent =
+    orders.length;
+
+
+  renderOrders();
+
+}
+
+
+function getOrderStatus(status){
+
+  const map = {
+
+    pending:
+      "รอดำเนินการ",
+
+    processing:
+      "กำลังดำเนินการ",
+
+    shipping:
+      "กำลังจัดส่ง",
+
+    completed:
+      "เสร็จสิ้น",
+
+    cancelled:
+      "ยกเลิก"
+
+  };
+
+
+  return (
+    map[status] ||
+    status ||
+    "-"
+  );
+
+}
+
+
+function renderOrders(){
+
+  const search =
+    $("orderSearch")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const filter =
+    $("orderFilter")
+      .value;
+
+
+  const list =
+    orders.filter(
+      order => {
+
+        const text =
+          [
+            order.order_number,
+            order.customer_name,
+            order.customer_email,
+            order.customer_phone
+          ]
+          .join(" ")
+          .toLowerCase();
+
+
+        return (
+          (!search ||
+           text.includes(search))
+          &&
+          (!filter ||
+           order.status === filter)
+        );
+
+      }
+    );
+
+
+  if(!list.length){
+
+    $("ordersTable").innerHTML =
+      `
+      <tr>
+        <td colspan="7">
+          <div class="empty">
+            ไม่พบคำสั่งซื้อ
+          </div>
+        </td>
+      </tr>
+      `;
+
+  }else{
+
+    $("ordersTable").innerHTML =
+      list
+        .map(
+          order =>
+          `
+          <tr>
+
+            <td>
+              ${escapeHTML(
+                order.order_number ||
+                order.id
+              )}
+            </td>
+
+            <td>
+              ${escapeHTML(
+                order.customer_name ||
+                "-"
+              )}
+            </td>
+
+            <td>
+              ${escapeHTML(
+                order.customer_phone ||
+                "-"
+              )}
+            </td>
+
+            <td>
+              ฿${formatMoney(
+                order.total_amount ??
+                order.total
+              )}
+            </td>
+
+            <td>
+              <span class="badge gold">
+                ${escapeHTML(
+                  getOrderStatus(
+                    order.status
+                  )
+                )}
+              </span>
+            </td>
+
+            <td>
+              ${formatDate(
+                order.created_at
+              )}
+            </td>
+
+            <td>
+
+              ${
+                isManager()
+
+                  ?
+
+                  `
+                  <button
+                    class="action"
+                    type="button"
+                    onclick="changeOrderStatus('${escapeHTML(
+                      order.id
+                    )}')"
+                  >
+                    เปลี่ยนสถานะ
+                  </button>
+                  `
+
+                  :
+
+                  "-"
+              }
+
+            </td>
+
+          </tr>
+          `
+        )
+        .join("");
 
   }
+
+
+  $("recentOrders")
+    .innerHTML =
+    orders
+      .slice(0,8)
+      .map(
+        order =>
+        `
+        <tr>
+
+          <td>
+            ${escapeHTML(
+              order.order_number ||
+              order.id
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              order.customer_name ||
+              "-"
+            )}
+          </td>
+
+          <td>
+            ฿${formatMoney(
+              order.total_amount ??
+              order.total
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              getOrderStatus(
+                order.status
+              )
+            )}
+          </td>
+
+          <td>
+            ${formatDate(
+              order.created_at
+            )}
+          </td>
+
+        </tr>
+        `
+      )
+      .join("");
+
+}
+
+
+$("orderSearch").oninput =
+renderOrders;
+
+
+$("orderFilter").onchange =
+renderOrders;
+
+
+/* =====================================================
+   CHANGE ORDER STATUS
+===================================================== */
+
+window.changeOrderStatus =
+function(id){
+
+  if(!isManager()){
+
+    showToast(
+      "ไม่มีสิทธิ์ดำเนินการ",
+      true
+    );
+
+    return;
+  }
+
+
+  const order =
+    orders.find(
+      item =>
+        String(item.id) ===
+        String(id)
+    );
+
+
+  if(!order)
+    return;
+
+
+  openModal(
+    "เปลี่ยนสถานะคำสั่งซื้อ",
+
+    `
+    <div class="field">
+
+      <label>
+        สถานะ
+      </label>
+
+      <select id="orderStatusEdit">
+
+        <option value="pending">
+          รอดำเนินการ
+        </option>
+
+        <option value="processing">
+          กำลังดำเนินการ
+        </option>
+
+        <option value="shipping">
+          กำลังจัดส่ง
+        </option>
+
+        <option value="completed">
+          เสร็จสิ้น
+        </option>
+
+        <option value="cancelled">
+          ยกเลิก
+        </option>
+
+      </select>
+
+    </div>
+    `
+  );
+
+
+  $("orderStatusEdit").value =
+    order.status ||
+    "pending";
+
+
+  modalMode =
+    "order-status";
+
+
+  modalId =
+    id;
+
+};
+
+
+/* =====================================================
+   PRODUCT CATEGORY STANDARD
+===================================================== */
+
+const PRODUCT_CATEGORY_LABELS = {
+  floor: "วัสดุงานพื้น",
+  coating: "สี / น้ำยา",
+  construction: "วัสดุก่อสร้าง",
+  equipment: "อุปกรณ์"
+};
+
+const PRODUCT_CATEGORY_VALUES = Object.keys(
+  PRODUCT_CATEGORY_LABELS
 );
 
+function normalizeProductCategory(value){
 
-init();
+  const raw = String(value || "").trim();
+
+  if(PRODUCT_CATEGORY_VALUES.includes(raw)){
+    return raw;
+  }
+
+  const found = Object.entries(PRODUCT_CATEGORY_LABELS)
+    .find(([key,label]) => label === raw);
+
+  return found ? found[0] : "floor";
+}
+
+function getProductCategoryLabel(value){
+
+  const key = normalizeProductCategory(value);
+
+  return PRODUCT_CATEGORY_LABELS[key] || "สินค้า";
+}
+
+/* =====================================================
+   PRODUCTS
+===================================================== */
+
+async function loadProducts(){
+
+  const result =
+    await supabaseClient
+      .from("products")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(result.error){
+
+    $("productsGrid").innerHTML =
+      `
+      <div class="empty">
+        โหลดสินค้าไม่สำเร็จ<br>
+        ${escapeHTML(
+          result.error.message
+        )}
+      </div>
+      `;
+
+    return;
+  }
+
+
+  products =
+    result.data || [];
+
+
+  $("statProducts")
+    .textContent =
+    products.length;
+
+
+  renderProducts();
+
+}
+
+
+function renderProducts(){
+
+  const search =
+    $("productSearch")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const list =
+    products.filter(
+      product =>
+        !search ||
+        [
+          product.name,
+          product.category,
+          getProductCategoryLabel(product.category),
+          product.code
+        ]
+        .join(" ")
+        .toLowerCase()
+        .includes(search)
+    );
+
+
+  if(!list.length){
+
+    $("productsGrid").innerHTML =
+      `
+      <div class="empty">
+        ไม่พบสินค้า
+      </div>
+      `;
+
+    return;
+  }
+
+
+  $("productsGrid").innerHTML =
+    list
+      .map(
+        product =>
+        `
+        <div class="item">
+
+          <img
+            class="item-image"
+            src="${escapeHTML(
+              product.image_url ||
+              product.image ||
+              "./assets/logo.png"
+            )}"
+            onerror="
+              this.src='./assets/logo.png'
+            "
+          >
+
+          <div class="item-body">
+
+            <div class="item-title">
+              ${escapeHTML(
+                product.name ||
+                "-"
+              )}
+            </div>
+
+            <div class="item-meta">
+              ${escapeHTML(
+                getProductCategoryLabel(product.category)
+              )}
+            </div>
+
+            <div class="item-price">
+              ฿${formatMoney(
+                product.price
+              )}
+            </div>
+
+            ${
+              isOwner()
+
+                ?
+
+                `
+                <div class="item-actions">
+
+                  <button
+                    class="action"
+                    type="button"
+                    onclick="editProduct('${escapeHTML(
+                      product.id
+                    )}')"
+                  >
+                    แก้ไข
+                  </button>
+
+                  <button
+                    class="action"
+                    type="button"
+                    onclick="deleteProduct('${escapeHTML(
+                      product.id
+                    )}')"
+                  >
+                    ลบ
+                  </button>
+
+                </div>
+                `
+
+                :
+
+                ""
+            }
+
+          </div>
+
+        </div>
+        `
+      )
+      .join("");
+
+}
+
+
+$("productSearch").oninput =
+renderProducts;
+
+
+$("addProductButton").onclick =
+function(){
+
+  if(!isOwner())
+    return;
+
+  openProductModal();
+
+};
+
+
+window.editProduct =
+function(id){
+
+  const product =
+    products.find(
+      item =>
+        String(item.id) ===
+        String(id)
+    );
+
+
+  if(product){
+
+    openProductModal(
+      product
+    );
+
+  }
+
+};
+
+
+function openProductModal(
+  product=null
+){
+
+  openModal(
+
+    product
+      ? "แก้ไขสินค้า"
+      : "เพิ่มสินค้า",
+
+    `
+    <div class="field">
+
+      <label>
+        ชื่อสินค้า
+      </label>
+
+      <input
+        id="productName"
+        value="${escapeHTML(
+          product?.name || ""
+        )}"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        หมวดหมู่
+      </label>
+
+      <select id="productCategory">
+
+        <option value="floor">
+          วัสดุงานพื้น
+        </option>
+
+        <option value="coating">
+          สี / น้ำยา
+        </option>
+
+        <option value="construction">
+          วัสดุก่อสร้าง
+        </option>
+
+        <option value="equipment">
+          อุปกรณ์
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        ราคา
+      </label>
+
+      <input
+        id="productPrice"
+        type="number"
+        value="${escapeHTML(
+          product?.price || ""
+        )}"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        URL รูปภาพ
+      </label>
+
+      <input
+        id="productImage"
+        value="${escapeHTML(
+          product?.image_url ||
+          product?.image ||
+          ""
+        )}"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        URL PDF สเปก
+      </label>
+
+      <input
+        id="productPdf"
+        value="${escapeHTML(
+          product?.spec_pdf_url ||
+          ""
+        )}"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        รายละเอียด
+      </label>
+
+      <textarea
+        id="productDescription"
+        rows="5"
+      >${escapeHTML(
+        product?.description ||
+        ""
+      )}</textarea>
+
+    </div>
+    `
+  );
+
+
+  $("productCategory").value =
+    normalizeProductCategory(
+      product?.category || "floor"
+    );
+
+
+  modalMode =
+    product
+      ? "product-edit"
+      : "product-add";
+
+
+  modalId =
+    product?.id ||
+    "";
+
+}
+
+
+window.deleteProduct =
+async function(id){
+
+  if(!isOwner())
+    return;
+
+
+  if(
+    !confirm(
+      "ต้องการลบสินค้านี้หรือไม่?"
+    )
+  )
+    return;
+
+
+  const result =
+    await supabaseClient
+      .from("products")
+      .delete()
+      .eq(
+        "id",
+        id
+      );
+
+
+  if(result.error){
+
+    showToast(
+      result.error.message,
+      true
+    );
+
+    return;
+  }
+
+
+  showToast(
+    "ลบสินค้าแล้ว"
+  );
+
+
+  await loadProducts();
+
+};
+
+
+/* =====================================================
+   PORTFOLIO
+===================================================== */
+
+async function loadPortfolio(){
+
+  const result =
+    await supabaseClient
+      .from("portfolio")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(result.error){
+
+    $("portfolioGrid").innerHTML =
+      `
+      <div class="empty">
+        โหลดผลงานไม่สำเร็จ<br>
+        ${escapeHTML(
+          result.error.message
+        )}
+      </div>
+      `;
+
+    return;
+  }
+
+
+  portfolios =
+    result.data || [];
+
+
+  $("statPortfolio")
+    .textContent =
+    portfolios.length;
+
+
+  renderPortfolio();
+
+}
+
+
+function renderPortfolio(){
+
+  if(!portfolios.length){
+
+    $("portfolioGrid").innerHTML =
+      `
+      <div class="empty">
+        ยังไม่มีผลงาน
+      </div>
+      `;
+
+    return;
+  }
+
+
+  $("portfolioGrid").innerHTML =
+    portfolios
+      .map(
+        item =>
+        `
+        <div class="item">
+
+          <img
+            class="item-image"
+            src="${escapeHTML(
+              item.cover_image ||
+              item.image_url ||
+              "./assets/logo.png"
+            )}"
+            onerror="
+              this.src='./assets/logo.png'
+            "
+          >
+
+          <div class="item-body">
+
+            <div class="item-title">
+              ${escapeHTML(
+                item.title ||
+                item.name ||
+                "-"
+              )}
+            </div>
+
+            <div class="item-meta">
+              ${escapeHTML(
+                item.category ||
+                ""
+              )}
+            </div>
+
+            <div class="item-meta">
+              ${escapeHTML(
+                item.location ||
+                ""
+              )}
+            </div>
+
+            ${
+              isOwner()
+
+                ?
+
+                `
+                <div class="item-actions">
+
+                  <button
+                    class="action"
+                    type="button"
+                    onclick="editPortfolio('${escapeHTML(
+                      item.id
+                    )}')"
+                  >
+                    แก้ไข
+                  </button>
+
+                  <button
+                    class="action"
+                    type="button"
+                    onclick="deletePortfolio('${escapeHTML(
+                      item.id
+                    )}')"
+                  >
+                    ลบ
+                  </button>
+
+                </div>
+                `
+
+                :
+
+                ""
+            }
+
+          </div>
+
+        </div>
+        `
+      )
+      .join("");
+
+}
+
+
+$("addPortfolioButton").onclick =
+function(){
+
+  if(!isOwner())
+    return;
+
+  openPortfolioModal();
+
+};
+
+
+window.editPortfolio =
+function(id){
+
+  const item =
+    portfolios.find(
+      row =>
+        String(row.id) ===
+        String(id)
+    );
+
+
+  if(item){
+
+    openPortfolioModal(
+      item
+    );
+
+  }
+
+};
+
+
+function openPortfolioModal(
+  item=null
+){
+
+  openModal(
+
+    item
+      ? "แก้ไขผลงาน"
+      : "เพิ่มผลงาน",
+
+    `
+    <div class="field">
+
+      <label>
+        ชื่อผลงาน
+      </label>
+
+      <input
+        id="portfolioTitle"
+        value="${escapeHTML(
+          item?.title ||
+          item?.name ||
+          ""
+        )}"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        หมวดหมู่
+      </label>
+
+      <input
+        id="portfolioCategory"
+        value="${escapeHTML(
+          item?.category ||
+          ""
+        )}"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        สถานที่
+      </label>
+
+      <input
+        id="portfolioLocation"
+        value="${escapeHTML(
+          item?.location ||
+          ""
+        )}"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        URL รูปภาพหลัก
+      </label>
+
+      <input
+        id="portfolioCover"
+        value="${escapeHTML(
+          item?.cover_image ||
+          item?.image_url ||
+          ""
+        )}"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        URL รูป Before
+      </label>
+
+      <input
+        id="portfolioBefore"
+        value="${escapeHTML(
+          item?.before_image ||
+          ""
+        )}"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        URL รูป After
+      </label>
+
+      <input
+        id="portfolioAfter"
+        value="${escapeHTML(
+          item?.after_image ||
+          ""
+        )}"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        รายละเอียด
+      </label>
+
+      <textarea
+        id="portfolioDescription"
+        rows="5"
+      >${escapeHTML(
+        item?.description ||
+        ""
+      )}</textarea>
+
+    </div>
+    `
+  );
+
+
+  modalMode =
+    item
+      ? "portfolio-edit"
+      : "portfolio-add";
+
+
+  modalId =
+    item?.id ||
+    "";
+
+}
+
+
+window.deletePortfolio =
+async function(id){
+
+  if(!isOwner())
+    return;
+
+
+  if(
+    !confirm(
+      "ต้องการลบผลงานนี้หรือไม่?"
+    )
+  )
+    return;
+
+
+  const result =
+    await supabaseClient
+      .from("portfolio")
+      .delete()
+      .eq(
+        "id",
+        id
+      );
+
+
+  if(result.error){
+
+    showToast(
+      result.error.message,
+      true
+    );
+
+    return;
+  }
+
+
+  showToast(
+    "ลบผลงานแล้ว"
+  );
+
+
+  await loadPortfolio();
+
+};
+
+
+/* =====================================================
+   INQUIRIES
+===================================================== */
+
+async function loadInquiries(){
+
+  const result =
+    await supabaseClient
+      .from("inquiries")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(result.error){
+
+    $("inquiriesTable").innerHTML =
+      `
+      <tr>
+        <td colspan="7">
+          <div class="empty">
+            โหลดข้อความไม่สำเร็จ<br>
+            ${escapeHTML(
+              result.error.message
+            )}
+          </div>
+        </td>
+      </tr>
+      `;
+
+    return;
+  }
+
+
+  inquiries =
+    result.data || [];
+
+
+  $("statInquiries")
+    .textContent =
+    inquiries.filter(
+      item =>
+        item.status === "new"
+    ).length;
+
+
+  renderInquiries();
+
+}
+
+
+function getInquiryStatus(
+  status
+){
+
+  const map = {
+
+    new:"ใหม่",
+
+    contacting:
+      "กำลังติดต่อ",
+
+    contacted:
+      "ติดต่อแล้ว",
+
+    closed:
+      "ปิดเรื่อง"
+
+  };
+
+
+  return (
+    map[status] ||
+    status ||
+    "-"
+  );
+}
+
+
+function renderInquiries(){
+
+  const filter =
+    $("inquiryFilter")
+      .value;
+
+
+  const list =
+    inquiries.filter(
+      item =>
+        !filter ||
+        item.status === filter
+    );
+
+
+  if(!list.length){
+
+    $("inquiriesTable").innerHTML =
+      `
+      <tr>
+        <td colspan="7">
+          <div class="empty">
+            ไม่พบข้อความ
+          </div>
+        </td>
+      </tr>
+      `;
+
+    return;
+  }
+
+
+  $("inquiriesTable").innerHTML =
+    list
+      .map(
+        item =>
+        `
+        <tr>
+
+          <td>
+            ${escapeHTML(
+              item.name ||
+              item.customer_name ||
+              "-"
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              item.email ||
+              "-"
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              item.phone ||
+              item.customer_phone ||
+              "-"
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              item.subject ||
+              "-"
+            )}
+          </td>
+
+          <td>
+            <span class="badge gold">
+              ${escapeHTML(
+                getInquiryStatus(
+                  item.status
+                )
+              )}
+            </span>
+          </td>
+
+          <td>
+            ${formatDate(
+              item.created_at
+            )}
+          </td>
+
+          <td>
+
+            ${
+              isManager()
+
+                ?
+
+                `
+                <button
+                  class="action"
+                  type="button"
+                  onclick="changeInquiryStatus('${escapeHTML(
+                    item.id
+                  )}')"
+                >
+                  เปลี่ยนสถานะ
+                </button>
+                `
+
+                :
+
+                "-"
+            }
+
+          </td>
+
+        </tr>
+        `
+      )
+      .join("");
+
+}
+
+
+$("inquiryFilter").onchange =
+renderInquiries;
+
+
+window.changeInquiryStatus =
+function(id){
+
+  if(!isManager()){
+
+    showToast(
+      "ไม่มีสิทธิ์ดำเนินการ",
+      true
+    );
+
+    return;
+  }
+
+
+  const item =
+    inquiries.find(
+      row =>
+        String(row.id) ===
+        String(id)
+    );
+
+
+  if(!item)
+    return;
+
+
+  openModal(
+    "เปลี่ยนสถานะข้อความ",
+
+    `
+    <div class="field">
+
+      <label>
+        สถานะ
+      </label>
+
+      <select id="inquiryStatusEdit">
+
+        <option value="new">
+          ใหม่
+        </option>
+
+        <option value="contacting">
+          กำลังติดต่อ
+        </option>
+
+        <option value="contacted">
+          ติดต่อแล้ว
+        </option>
+
+        <option value="closed">
+          ปิดเรื่อง
+        </option>
+
+      </select>
+
+    </div>
+    `
+  );
+
+
+  $("inquiryStatusEdit").value =
+    item.status ||
+    "new";
+
+
+  modalMode =
+    "inquiry";
+
+
+  modalId =
+    id;
+
+};
+
+
+/* =====================================================
+   USERS
+===================================================== */
+
+async function loadUsers(){
+
+  const result =
+    await supabaseClient
+      .from("admin_users")
+      .select(
+        "id,user_id,email,name,role,active,created_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending:true
+        }
+      );
+
+
+  if(result.error){
+
+    $("usersTable").innerHTML =
+      `
+      <tr>
+        <td colspan="6">
+          <div class="empty">
+            โหลดผู้ใช้งานไม่สำเร็จ<br>
+            ${escapeHTML(
+              result.error.message
+            )}
+          </div>
+        </td>
+      </tr>
+      `;
+
+    return;
+  }
+
+
+  users =
+    result.data || [];
+
+
+  $("statUsers")
+    .textContent =
+    users.length;
+
+
+  renderUsers();
+
+}
+
+
+function renderUsers(){
+
+  if(!users.length){
+
+    $("usersTable").innerHTML =
+      `
+      <tr>
+        <td colspan="6">
+          <div class="empty">
+            ไม่พบผู้ใช้งาน
+          </div>
+        </td>
+      </tr>
+      `;
+
+    return;
+  }
+
+
+  $("usersTable").innerHTML =
+    users
+      .map(
+        user =>
+        `
+        <tr>
+
+          <td>
+            ${escapeHTML(
+              user.name ||
+              "-"
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              user.email ||
+              "-"
+            )}
+          </td>
+
+          <td>
+
+            <span class="badge gold">
+              ${escapeHTML(
+                String(
+                  user.role ||
+                  "viewer"
+                ).toUpperCase()
+              )}
+            </span>
+
+          </td>
+
+          <td>
+
+            ${
+              user.active !== false
+
+                ?
+
+                `
+                <span class="badge green">
+                  เปิดใช้งาน
+                </span>
+                `
+
+                :
+
+                `
+                <span class="badge red">
+                  ปิดใช้งาน
+                </span>
+                `
+            }
+
+          </td>
+
+          <td>
+            ${formatDate(
+              user.created_at
+            )}
+          </td>
+
+          <td>
+
+            ${
+              isOwner()
+
+                ?
+
+                `
+                <div class="actions">
+
+                  <button
+                    class="action"
+                    type="button"
+                    onclick="changeRole('${escapeHTML(
+                      user.id
+                    )}')"
+                  >
+                    เปลี่ยน Role
+                  </button>
+
+                  ${
+                    String(
+                      user.user_id
+                    ) !==
+                    String(
+                      currentUser?.user_id
+                    )
+
+                      ?
+
+                      `
+                      <button
+                        class="action"
+                        type="button"
+                        onclick="toggleUser('${escapeHTML(
+                          user.id
+                        )}')"
+                      >
+                        ${
+                          user.active !== false
+                            ? "ปิดใช้งาน"
+                            : "เปิดใช้งาน"
+                        }
+                      </button>
+                      `
+
+                      :
+
+                      ""
+                  }
+
+                </div>
+                `
+
+                :
+
+                "-"
+            }
+
+          </td>
+
+        </tr>
+        `
+      )
+      .join("");
+
+}
+
+
+/* =====================================================
+   CHANGE ROLE
+===================================================== */
+
+window.changeRole =
+function(id){
+
+  if(!isOwner()){
+
+    showToast(
+      "เฉพาะ OWNER เท่านั้น",
+      true
+    );
+
+    return;
+  }
+
+
+  const user =
+    users.find(
+      item =>
+        String(item.id) ===
+        String(id)
+    );
+
+
+  if(!user)
+    return;
+
+
+  openModal(
+    "เปลี่ยน Role",
+
+    `
+    <div class="field">
+
+      <label>
+        ผู้ใช้งาน
+      </label>
+
+      <input
+        value="${escapeHTML(
+          user.name ||
+          user.email ||
+          ""
+        )}"
+        disabled
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        เลือก Role
+      </label>
+
+      <select id="newRole">
+
+        <option value="owner">
+          OWNER
+        </option>
+
+        <option value="manager">
+          MANAGER
+        </option>
+
+        <option value="staff">
+          STAFF
+        </option>
+
+        <option value="viewer">
+          VIEWER
+        </option>
+
+      </select>
+
+    </div>
+    `
+  );
+
+
+  $("newRole").value =
+    String(
+      user.role ||
+      "viewer"
+    ).toLowerCase();
+
+
+  modalMode =
+    "role";
+
+
+  modalId =
+    id;
+
+};
+
+
+/* =====================================================
+   TOGGLE USER
+===================================================== */
+
+window.toggleUser =
+async function(id){
+
+  if(!isOwner()){
+
+    showToast(
+      "เฉพาะ OWNER เท่านั้น",
+      true
+    );
+
+    return;
+  }
+
+
+  const user =
+    users.find(
+      item =>
+        String(item.id) ===
+        String(id)
+    );
+
+
+  if(!user)
+    return;
+
+
+  if(
+    String(
+      user.user_id
+    ) ===
+    String(
+      currentUser?.user_id
+    )
+  ){
+
+    showToast(
+      "ไม่สามารถปิดบัญชีตัวเองได้",
+      true
+    );
+
+    return;
+  }
+
+
+  const next =
+    user.active === false;
+
+
+  const result =
+    await supabaseClient
+      .from("admin_users")
+      .update({
+        active:next
+      })
+      .eq(
+        "id",
+        id
+      );
+
+
+  if(result.error){
+
+    showToast(
+      result.error.message,
+      true
+    );
+
+    return;
+  }
+
+
+  showToast(
+    next
+      ? "เปิดใช้งานแล้ว"
+      : "ปิดใช้งานแล้ว"
+  );
+
+
+  await loadUsers();
+
+};
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+async function loadSettings(){
+
+  const result =
+    await supabaseClient
+      .from("settings")
+      .select("*")
+      .limit(1);
+
+
+  if(result.error){
+
+    console.warn(
+      "SETTINGS:",
+      result.error.message
+    );
+
+    return;
+  }
+
+
+  if(
+    !result.data ||
+    !result.data.length
+  )
+    return;
+
+
+  const data =
+    result.data[0];
+
+
+  if($("companyName"))
+    $("companyName").value =
+      data.company_name ||
+      "";
+
+
+  if($("companyPhone"))
+    $("companyPhone").value =
+      data.company_phone ||
+      "";
+
+
+  if($("companyEmail"))
+    $("companyEmail").value =
+      data.company_email ||
+      "";
+
+
+  if($("companyAddress"))
+    $("companyAddress").value =
+      data.company_address ||
+      "";
+
+
+  if($("facebook"))
+    $("facebook").value =
+      data.facebook ||
+      "";
+
+
+  if($("line"))
+    $("line").value =
+      data.line ||
+      "";
+
+}
+
+
+$("settingsForm").onsubmit =
+async function(event){
+
+  event.preventDefault();
+
+
+  if(!isOwner()){
+
+    showToast(
+      "ไม่มีสิทธิ์ดำเนินการ",
+      true
+    );
+
+    return;
+  }
+
+
+  const payload = {
+
+    company_name:
+      $("companyName").value.trim(),
+
+    company_phone:
+      $("companyPhone").value.trim(),
+
+    company_email:
+      $("companyEmail").value.trim(),
+
+    company_address:
+      $("companyAddress").value.trim(),
+
+    facebook:
+      $("facebook").value.trim(),
+
+    line:
+      $("line").value.trim(),
+
+    updated_at:
+      new Date().toISOString()
+
+  };
+
+
+  const result =
+    await supabaseClient
+      .from("settings")
+      .update(payload)
+      .not(
+        "id",
+        "is",
+        null
+      );
+
+
+  if(result.error){
+
+    showToast(
+      result.error.message,
+      true
+    );
+
+    return;
+  }
+
+
+  showToast(
+    "บันทึกข้อมูลแล้ว"
+  );
+
+};
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function openModal(
+  title,
+  body
+){
+
+  $("modalTitle")
+    .textContent =
+    title;
+
+
+  $("modalBody")
+    .innerHTML =
+    body;
+
+
+  $("modal")
+    .classList
+    .add("show");
+
+}
+
+
+function closeModal(){
+
+  $("modal")
+    .classList
+    .remove("show");
+
+
+  modalMode =
+    "";
+
+
+  modalId =
+    "";
+
+}
+
+
+$("modalClose").onclick =
+closeModal;
+
+
+$("modalCancel").onclick =
+closeModal;
+
+
+/* =====================================================
+   MODAL SAVE
+===================================================== */
+
+$("modalSave").onclick =
+async function(){
+
+  try{
+
+    /* ROLE */
+
+    if(
+      modalMode ===
+      "role"
+    ){
+
+      const role =
+        $("newRole").value;
+
+
+      const result =
+        await supabaseClient
+          .from("admin_users")
+          .update({
+            role
+          })
+          .eq(
+            "id",
+            modalId
+          );
+
+
+      if(result.error)
+        throw result.error;
+
+
+      closeModal();
+
+      showToast(
+        "เปลี่ยน Role แล้ว"
+      );
+
+
+      await loadUsers();
+
+      return;
+    }
+
+
+    /* ORDER */
+
+    if(
+      modalMode ===
+      "order-status"
+    ){
+
+      const status =
+        $("orderStatusEdit")
+          .value;
+
+
+      const result =
+        await supabaseClient
+          .from("orders")
+          .update({
+            status
+          })
+          .eq(
+            "id",
+            modalId
+          );
+
+
+      if(result.error)
+        throw result.error;
+
+
+      closeModal();
+
+      showToast(
+        "เปลี่ยนสถานะแล้ว"
+      );
+
+
+      await loadOrders();
+
+      return;
+    }
+
+
+    /* INQUIRY */
+
+    if(
+      modalMode ===
+      "inquiry"
+    ){
+
+      const status =
+        $("inquiryStatusEdit")
+          .value;
+
+
+      const result =
+        await supabaseClient
+          .from("inquiries")
+          .update({
+            status
+          })
+          .eq(
+            "id",
+            modalId
+          );
+
+
+      if(result.error)
+        throw result.error;
+
+
+      closeModal();
+
+      showToast(
+        "อัปเดตข้อความแล้ว"
+      );
+
+
+      await loadInquiries();
+
+      return;
+    }
+
+
+    /* PRODUCT */
+
+    if(
+      modalMode ===
+        "product-add" ||
+      modalMode ===
+        "product-edit"
+    ){
+
+      const payload = {
+
+        name:
+          $("productName")
+            .value
+            .trim(),
+
+        category:
+          normalizeProductCategory(
+            $("productCategory").value
+          ),
+
+        price:
+          Number(
+            $("productPrice")
+              .value ||
+            0
+          ),
+
+        image_url:
+          $("productImage")
+            .value
+            .trim(),
+
+        spec_pdf_url:
+          $("productPdf")
+            .value
+            .trim(),
+
+        description:
+          $("productDescription")
+            .value
+            .trim()
+
+      };
+
+
+      let result;
+
+
+      if(
+        modalMode ===
+        "product-add"
+      ){
+
+        result =
+          await supabase
+            .from("products")
+            .insert(payload);
+
+      }else{
+
+        result =
+          await supabase
+            .from("products")
+            .update(payload)
+            .eq(
+              "id",
+              modalId
+            );
+
+      }
+
+
+      if(result.error)
+        throw result.error;
+
+
+      closeModal();
+
+      showToast(
+        "บันทึกสินค้าแล้ว"
+      );
+
+
+      await loadProducts();
+
+      return;
+    }
+
+
+    /* PORTFOLIO */
+
+    if(
+      modalMode ===
+        "portfolio-add" ||
+      modalMode ===
+        "portfolio-edit"
+    ){
+
+      const payload = {
+
+        title:
+          $("portfolioTitle")
+            .value
+            .trim(),
+
+        category:
+          $("portfolioCategory")
+            .value
+            .trim(),
+
+        location:
+          $("portfolioLocation")
+            .value
+            .trim(),
+
+        cover_image:
+          $("portfolioCover")
+            .value
+            .trim(),
+
+        before_image:
+          $("portfolioBefore")
+            .value
+            .trim(),
+
+        after_image:
+          $("portfolioAfter")
+            .value
+            .trim(),
+
+        description:
+          $("portfolioDescription")
+            .value
+            .trim()
+
+      };
+
+
+      let result;
+
+
+      if(
+        modalMode ===
+        "portfolio-add"
+      ){
+
+        result =
+          await supabase
+            .from("portfolio")
+            .insert(payload);
+
+      }else{
+
+        result =
+          await supabase
+            .from("portfolio")
+            .update(payload)
+            .eq(
+              "id",
+              modalId
+            );
+
+      }
+
+
+      if(result.error)
+        throw result.error;
+
+
+      closeModal();
+
+      showToast(
+        "บันทึกผลงานแล้ว"
+      );
+
+
+      await loadPortfolio();
+
+      return;
+    }
+
+
+  }catch(error){
+
+    console.error(
+      "SAVE ERROR:",
+      error
+    );
+
+
+    showToast(
+      error.message ||
+      "บันทึกไม่สำเร็จ",
+      true
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   REFRESH
+===================================================== */
+
+$("refreshButton").onclick =
+async function(){
+
+  await Promise.allSettled([
+
+    loadOrders(),
+
+    loadProducts(),
+
+    loadPortfolio(),
+
+    loadInquiries(),
+
+    loadUsers(),
+
+    loadSettings()
+
+  ]);
+
+
+  showToast(
+    "รีเฟรชข้อมูลแล้ว"
+  );
+
+};
+
+
+/* =====================================================
+   START APP
+===================================================== */
+
+async function startApp(){
+
+  await loadCurrentUser();
+
+
+  $("loginScreen")
+    .style
+    .display =
+    "none";
+
+
+  $("app")
+    .classList
+    .add("show");
+
+
+  /*
+    ใช้ Promise.allSettled
+    เพื่อไม่ให้ table ตัวหนึ่ง error
+    แล้วทำให้ Admin ทั้งหน้าหมุน
+  */
+
+  await Promise.allSettled([
+
+    loadOrders(),
+
+    loadProducts(),
+
+    loadPortfolio(),
+
+    loadInquiries(),
+
+    loadUsers(),
+
+    loadSettings()
+
+  ]);
+
+}
+
+
+/* =====================================================
+   BOOT
+===================================================== */
+
+async function boot(){
+
+  try{
+
+    checkConfig();
+
+
+    const result =
+      await supabaseClient.auth
+        .getSession();
+
+
+    if(result.error)
+      throw result.error;
+
+
+    currentSession =
+      result.data?.session ||
+      null;
+
+
+    if(currentSession){
+
+      await startApp();
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "BOOT ERROR:",
+      error
+    );
+
+
+    $("loginError")
+      .textContent =
+      error.message ||
+      "ไม่สามารถเริ่มระบบได้";
+
+
+    $("loginError")
+      .className =
+      "login-error show";
+
+  }
+
+}
+
+
+boot();
 
 </script>
 
