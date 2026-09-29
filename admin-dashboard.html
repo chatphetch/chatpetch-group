@@ -771,7 +771,7 @@ td{
   inset:0;
   z-index:5000;
   min-height:100vh;
-  display:flex;
+  display:none;
   justify-content:center;
   align-items:center;
   padding:24px;
@@ -4460,8 +4460,21 @@ async function(){
           );
 
 
-      if(result.error)
+      if(result.error){
+
+        if(
+          String(result.error.message || "")
+            .includes("orders_status_check")
+        ){
+          showToast(
+            "ฐานข้อมูลยังไม่อนุญาตสถานะนี้ กรุณาอัปเดต orders_status_check ก่อน",
+            true
+          );
+          return;
+        }
+
         throw result.error;
+      }
 
 
       closeModal();
