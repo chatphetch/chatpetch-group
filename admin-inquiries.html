@@ -748,6 +748,133 @@ td{
   }
 
 }
+
+/* =====================================================
+   UNIFIED LOGIN UI
+===================================================== */
+
+
+#loginScreen{
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:24px;
+  background:
+    linear-gradient(
+      rgba(8,12,18,.54),
+      rgba(8,12,18,.72)
+    ),
+    url("./assets/index-main-bg.png")
+    center/cover no-repeat;
+}
+
+.login-box{
+  width:min(540px,100%);
+  max-width:none;
+  padding:42px 44px;
+  background:#f7f7f7;
+  border:0;
+  border-radius:28px;
+  box-shadow:0 28px 90px rgba(0,0,0,.48);
+  color:#1d2638;
+}
+
+.login-logo{
+  width:116px;
+  height:116px;
+  margin:0 auto 14px;
+}
+
+.login-title{
+  color:#1d2638;
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:30px;
+  font-weight:700;
+  letter-spacing:0;
+}
+
+.login-subtitle{
+  color:#737b89;
+  line-height:1.75;
+  margin:10px 0 30px;
+  font-size:15px;
+}
+
+.login-box .field label{
+  color:#273246;
+  font-size:14px;
+  font-weight:600;
+}
+
+.login-box .field input{
+  height:62px;
+  padding:0 18px;
+  border:1px solid #d5dce8;
+  border-radius:14px;
+  background:#eaf1fc;
+  color:#263245;
+  font-size:17px;
+}
+
+.login-box .field input:focus{
+  border-color:#5879aa;
+  box-shadow:0 0 0 3px rgba(88,121,170,.12);
+}
+
+.password-wrap input{
+  padding-right:92px !important;
+}
+
+.show-password{
+  top:7px;
+  right:7px;
+  bottom:7px;
+  width:70px;
+  border:0;
+  border-radius:10px;
+  background:#f5f8fc;
+  color:#273246;
+}
+
+.login-btn{
+  height:58px;
+  margin-top:8px;
+  border-radius:14px;
+  background:#183c76;
+  color:#fff;
+  font-size:16px;
+  font-weight:700;
+}
+
+.login-btn:hover{
+  background:#123365;
+}
+
+.login-error.show{
+  background:#fff0f0;
+  border-color:#efb4b4;
+  color:#b42323;
+}
+
+@media(max-width:600px){
+  .login-box{
+    padding:34px 22px;
+    border-radius:22px;
+  }
+  .login-title{
+    font-size:26px;
+  }
+  .login-logo{
+    width:100px;
+    height:100px;
+  }
+}
+
+
 </style>
 </head>
 
@@ -768,12 +895,12 @@ td{
     >
 
     <h1 class="login-title">
-      CHATPHETCH <span>GROUP</span>
+      ระบบผู้ดูแลเว็บไซต์
     </h1>
 
     <div class="login-subtitle">
-      ระบบจัดการหลังบ้าน<br>
-      Admin / Back Office
+      บริษัท ฉัตรเพชรกรุ๊ป จำกัด<br>
+      CHATPETCH GROUP
     </div>
 
     <form id="loginForm">
