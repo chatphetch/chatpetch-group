@@ -176,6 +176,7 @@ button{
   cursor:not-allowed;
 }
 
+
 .login-divider::before,
 .login-divider::after{
   content:"";
@@ -747,10 +748,140 @@ td{
   }
 
 }
+
+
+/* =====================================================
+   UNIFIED LOGIN UI
+===================================================== */
+
+#loginScreen{
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:24px;
+  background:
+    linear-gradient(
+      rgba(8,12,18,.54),
+      rgba(8,12,18,.72)
+    ),
+    url("./assets/index-main-bg.png")
+    center/cover no-repeat;
+}
+
+.login-box{
+  width:min(540px,100%);
+  max-width:none;
+  padding:42px 44px;
+  background:#f7f7f7;
+  border:0;
+  border-radius:28px;
+  box-shadow:0 28px 90px rgba(0,0,0,.48);
+  color:#1d2638;
+}
+
+.login-logo{
+  width:116px;
+  height:116px;
+  margin:0 auto 14px;
+}
+
+.login-title{
+  color:#1d2638;
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:30px;
+  font-weight:700;
+  letter-spacing:0;
+}
+
+.login-subtitle{
+  color:#737b89;
+  line-height:1.75;
+  margin:10px 0 30px;
+  font-size:15px;
+}
+
+.login-box .field label{
+  color:#273246;
+  font-size:14px;
+  font-weight:600;
+}
+
+.login-box .field input{
+  height:62px;
+  padding:0 18px;
+  border:1px solid #d5dce8;
+  border-radius:14px;
+  background:#eaf1fc;
+  color:#263245;
+  font-size:17px;
+}
+
+.login-box .field input:focus{
+  border-color:#5879aa;
+  box-shadow:0 0 0 3px rgba(88,121,170,.12);
+}
+
+.password-wrap input{
+  padding-right:92px !important;
+}
+
+.show-password{
+  top:7px;
+  right:7px;
+  bottom:7px;
+  width:70px;
+  border:0;
+  border-radius:10px;
+  background:#f5f8fc;
+  color:#273246;
+}
+
+.login-btn{
+  height:58px;
+  margin-top:8px;
+  border-radius:14px;
+  background:#183c76;
+  color:#fff;
+  font-size:16px;
+  font-weight:700;
+}
+
+.login-btn:hover{
+  background:#123365;
+}
+
+.login-error.show{
+  background:#fff0f0;
+  border-color:#efb4b4;
+  color:#b42323;
+}
+
+@media(max-width:600px){
+  .login-box{
+    padding:34px 22px;
+    border-radius:22px;
+  }
+  .login-title{
+    font-size:26px;
+  }
+  .login-logo{
+    width:100px;
+    height:100px;
+  }
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
 <section id="loginScreen">
 
@@ -763,12 +894,12 @@ td{
     >
 
     <h1 class="login-title">
-      CHATPHETCH <span>GROUP</span>
+      ระบบผู้ดูแลเว็บไซต์
     </h1>
 
     <div class="login-subtitle">
-      ระบบจัดการหลังบ้าน<br>
-      Admin / Back Office
+      บริษัท ฉัตรเพชรกรุ๊ป จำกัด<br>
+      CHATPETCH GROUP
     </div>
 
     <form id="loginForm">
@@ -828,6 +959,10 @@ td{
 
 </section>
 
+
+<!-- =====================================================
+     ADMIN APP
+===================================================== -->
 
 <div id="app">
 
@@ -945,6 +1080,8 @@ td{
 
 <main class="main">
 
+<!-- ================= DASHBOARD ================= -->
+
 <section
   id="page-dashboard"
   class="page active"
@@ -981,28 +1118,63 @@ td{
   <div class="stats">
 
     <div class="stat">
-      <div class="stat-label">คำสั่งซื้อ</div>
-      <div id="statOrders" class="stat-number">0</div>
+      <div class="stat-label">
+        คำสั่งซื้อ
+      </div>
+      <div
+        id="statOrders"
+        class="stat-number"
+      >
+        0
+      </div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">สินค้า</div>
-      <div id="statProducts" class="stat-number">0</div>
+      <div class="stat-label">
+        สินค้า
+      </div>
+      <div
+        id="statProducts"
+        class="stat-number"
+      >
+        0
+      </div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">ผลงาน</div>
-      <div id="statPortfolio" class="stat-number">0</div>
+      <div class="stat-label">
+        ผลงาน
+      </div>
+      <div
+        id="statPortfolio"
+        class="stat-number"
+      >
+        0
+      </div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">ข้อความใหม่</div>
-      <div id="statInquiries" class="stat-number">0</div>
+      <div class="stat-label">
+        ข้อความใหม่
+      </div>
+      <div
+        id="statInquiries"
+        class="stat-number"
+      >
+        0
+      </div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">ผู้ใช้งาน</div>
-      <div id="statUsers" class="stat-number">0</div>
+      <div class="stat-label">
+        ผู้ใช้งาน
+      </div>
+      <div
+        id="statUsers"
+        class="stat-number"
+      >
+        0
+      </div>
     </div>
 
   </div>
@@ -1010,7 +1182,9 @@ td{
   <div class="card">
 
     <div class="card-head">
-      <h3>คำสั่งซื้อล่าสุด</h3>
+      <h3>
+        คำสั่งซื้อล่าสุด
+      </h3>
     </div>
 
     <div class="table-wrap">
@@ -1038,6 +1212,8 @@ td{
 </section>
 
 
+<!-- ================= ORDERS ================= -->
+
 <section
   id="page-orders"
   class="page"
@@ -1046,8 +1222,15 @@ td{
   <div class="page-head">
 
     <div>
-      <div class="kicker">ORDERS</div>
-      <h1 class="page-title">คำสั่งซื้อ</h1>
+
+      <div class="kicker">
+        ORDERS
+      </div>
+
+      <h1 class="page-title">
+        คำสั่งซื้อ
+      </h1>
+
     </div>
 
   </div>
@@ -1063,7 +1246,9 @@ td{
 
       <select id="orderFilter">
 
-        <option value="">ทุกสถานะ</option>
+        <option value="">
+          ทุกสถานะ
+        </option>
 
         <option value="pending">
           รอดำเนินการ
@@ -1116,6 +1301,8 @@ td{
 </section>
 
 
+<!-- ================= PRODUCTS ================= -->
+
 <section
   id="page-products"
   class="page"
@@ -1124,8 +1311,15 @@ td{
   <div class="page-head">
 
     <div>
-      <div class="kicker">PRODUCTS</div>
-      <h1 class="page-title">สินค้า</h1>
+
+      <div class="kicker">
+        PRODUCTS
+      </div>
+
+      <h1 class="page-title">
+        สินค้า
+      </h1>
+
     </div>
 
     <button
@@ -1159,6 +1353,8 @@ td{
 </section>
 
 
+<!-- ================= PORTFOLIO ================= -->
+
 <section
   id="page-portfolio"
   class="page"
@@ -1167,8 +1363,15 @@ td{
   <div class="page-head">
 
     <div>
-      <div class="kicker">PORTFOLIO</div>
-      <h1 class="page-title">ผลงาน</h1>
+
+      <div class="kicker">
+        PORTFOLIO
+      </div>
+
+      <h1 class="page-title">
+        ผลงาน
+      </h1>
+
     </div>
 
     <button
@@ -1193,6 +1396,8 @@ td{
 </section>
 
 
+<!-- ================= INQUIRIES ================= -->
+
 <section
   id="page-inquiries"
   class="page"
@@ -1201,8 +1406,15 @@ td{
   <div class="page-head">
 
     <div>
-      <div class="kicker">INQUIRIES</div>
-      <h1 class="page-title">ข้อความติดต่อ</h1>
+
+      <div class="kicker">
+        INQUIRIES
+      </div>
+
+      <h1 class="page-title">
+        ข้อความติดต่อ
+      </h1>
+
     </div>
 
   </div>
@@ -1213,9 +1425,13 @@ td{
 
       <select id="inquiryFilter">
 
-        <option value="">ทุกสถานะ</option>
+        <option value="">
+          ทุกสถานะ
+        </option>
 
-        <option value="new">ใหม่</option>
+        <option value="new">
+          ใหม่
+        </option>
 
         <option value="contacting">
           กำลังติดต่อ
@@ -1262,6 +1478,8 @@ td{
 </section>
 
 
+<!-- ================= USERS ================= -->
+
 <section
   id="page-users"
   class="page"
@@ -1271,7 +1489,9 @@ td{
 
     <div>
 
-      <div class="kicker">USERS</div>
+      <div class="kicker">
+        USERS
+      </div>
 
       <h1 class="page-title">
         ผู้ใช้งาน
@@ -1315,6 +1535,8 @@ td{
 </section>
 
 
+<!-- ================= SETTINGS ================= -->
+
 <section
   id="page-settings"
   class="page"
@@ -1324,7 +1546,9 @@ td{
 
     <div>
 
-      <div class="kicker">SETTINGS</div>
+      <div class="kicker">
+        SETTINGS
+      </div>
 
       <h1 class="page-title">
         ตั้งค่า
@@ -1389,6 +1613,8 @@ td{
 </div>
 
 
+<!-- ================= MODAL ================= -->
+
 <div
   id="modal"
   class="modal"
@@ -1398,7 +1624,9 @@ td{
 
     <div class="modal-head">
 
-      <h3 id="modalTitle">-</h3>
+      <h3 id="modalTitle">
+        -
+      </h3>
 
       <button
         id="modalClose"
@@ -1445,6 +1673,26 @@ td{
 /* =====================================================
    SUPABASE CONFIG
 ===================================================== */
+
+/*
+  สำคัญมาก
+
+  ใส่ค่าจริงจาก:
+
+  Supabase
+  > Project Settings
+  > API
+
+  ตัวอย่าง:
+
+  const SUPABASE_URL =
+    "https://xxxxxxxx.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_xxxxxxxxx";
+
+  ห้ามใช้ service_role key
+*/
 
 const SUPABASE_URL =
   "https://mfhllgklcfnnbyyzzljz.supabase.co";
@@ -1788,6 +2036,8 @@ async function(event){
   }
 
 };
+
+
 
 
 /* =====================================================
@@ -2425,7 +2675,6 @@ function getProductCategoryLabel(value){
 
   return PRODUCT_CATEGORY_LABELS[key] || "สินค้า";
 }
-
 
 /* =====================================================
    PRODUCTS
@@ -4074,6 +4323,8 @@ async function(){
 
   try{
 
+    /* ROLE */
+
     if(
       modalMode ===
       "role"
@@ -4111,6 +4362,8 @@ async function(){
       return;
     }
 
+
+    /* ORDER */
 
     if(
       modalMode ===
@@ -4151,6 +4404,8 @@ async function(){
     }
 
 
+    /* INQUIRY */
+
     if(
       modalMode ===
       "inquiry"
@@ -4189,6 +4444,8 @@ async function(){
       return;
     }
 
+
+    /* PRODUCT */
 
     if(
       modalMode ===
@@ -4243,14 +4500,14 @@ async function(){
       ){
 
         result =
-          await supabaseClient
+          await supabase
             .from("products")
             .insert(payload);
 
       }else{
 
         result =
-          await supabaseClient
+          await supabase
             .from("products")
             .update(payload)
             .eq(
@@ -4277,6 +4534,8 @@ async function(){
       return;
     }
 
+
+    /* PORTFOLIO */
 
     if(
       modalMode ===
@@ -4334,14 +4593,14 @@ async function(){
       ){
 
         result =
-          await supabaseClient
+          await supabase
             .from("portfolio")
             .insert(payload);
 
       }else{
 
         result =
-          await supabaseClient
+          await supabase
             .from("portfolio")
             .update(payload)
             .eq(
@@ -4438,6 +4697,12 @@ async function startApp(){
     .classList
     .add("show");
 
+
+  /*
+    ใช้ Promise.allSettled
+    เพื่อไม่ให้ table ตัวหนึ่ง error
+    แล้วทำให้ Admin ทั้งหน้าหมุน
+  */
 
   await Promise.allSettled([
 
