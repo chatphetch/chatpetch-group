@@ -65,76 +65,86 @@ button{
 /* ================= LOGIN ================= */
 
 #loginScreen{
+  position:fixed;
+  inset:0;
+  z-index:9000;
   min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:20px;
+  padding:24px;
+  background:
+    linear-gradient(
+      rgba(8,12,18,.54),
+      rgba(8,12,18,.72)
+    ),
+    url("./assets/index-main-bg.png")
+    center/cover no-repeat;
 }
 
 .login-box{
-  width:100%;
-  max-width:600px;
-  padding:40px;
-  background:rgba(5,5,5,.96);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:24px;
-  box-shadow:0 30px 100px rgba(0,0,0,.8);
+  width:min(540px,100%);
+  padding:42px 44px;
+  background:#f7f7f7;
+  border:0;
+  border-radius:28px;
+  box-shadow:0 28px 90px rgba(0,0,0,.48);
+  color:#1d2638;
 }
 
 .login-logo{
   display:block;
-  width:125px;
-  height:125px;
+  width:116px;
+  height:116px;
   object-fit:contain;
-  margin:0 auto 15px;
+  margin:0 auto 14px;
 }
 
 .login-title{
   margin:0;
   text-align:center;
-  font-size:40px;
-  font-weight:900;
-}
-
-.login-title span{
-  color:var(--gold-light);
+  color:#1d2638;
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:30px;
+  font-weight:700;
+  letter-spacing:0;
 }
 
 .login-subtitle{
+  margin:10px 0 30px;
   text-align:center;
-  color:#888;
-  line-height:1.8;
-  margin:12px 0 35px;
+  color:#737b89;
+  line-height:1.75;
+  font-size:15px;
 }
 
-.field{
+.login-box .field{
   margin-bottom:18px;
 }
 
-.field label{
+.login-box .field label{
   display:block;
   margin-bottom:8px;
-  color:#ddd;
-  font-size:13px;
+  color:#273246;
+  font-size:14px;
+  font-weight:600;
 }
 
-.field input,
-.field textarea,
-.field select{
+.login-box .field input{
   width:100%;
-  padding:14px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:10px;
+  height:62px;
+  padding:0 18px;
+  border:1px solid #d5dce8;
+  border-radius:14px;
   outline:none;
-  background:#090909;
-  color:#fff;
+  background:#eaf1fc;
+  color:#263245;
+  font-size:17px;
 }
 
-.field input:focus,
-.field textarea:focus,
-.field select:focus{
-  border-color:var(--gold);
+.login-box .field input:focus{
+  border-color:#5879aa;
+  box-shadow:0 0 0 3px rgba(88,121,170,.12);
 }
 
 .password-wrap{
@@ -142,7 +152,7 @@ button{
 }
 
 .password-wrap input{
-  padding-right:90px;
+  padding-right:92px !important;
 }
 
 .show-password{
@@ -152,53 +162,55 @@ button{
   bottom:7px;
   width:70px;
   border:0;
-  border-radius:8px;
-  background:#171717;
-  color:#ddd;
+  border-radius:10px;
+  background:#f5f8fc;
+  color:#273246;
+  font-weight:500;
 }
 
 .login-btn{
   width:100%;
-  height:56px;
+  height:58px;
+  margin-top:8px;
   border:0;
-  border-radius:10px;
-  background:linear-gradient(
-    135deg,
-    var(--gold-light),
-    var(--gold)
-  );
-  color:#111;
-  font-weight:900;
+  border-radius:14px;
+  background:#183c76;
+  color:#fff;
+  font-size:16px;
+  font-weight:700;
 }
 
-.login-btn:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-}
-
-
-.login-divider::before,
-.login-divider::after{
-  content:"";
-  flex:1;
-  height:1px;
-  background:rgba(255,255,255,.10);
+.login-btn:hover{
+  background:#123365;
 }
 
 .login-error{
   display:none;
-  margin-top:17px;
-  padding:13px 15px;
-  border:1px solid rgba(255,70,70,.4);
+  margin-top:14px;
+  padding:12px 14px;
   border-radius:10px;
-  background:rgba(70,0,0,.25);
-  color:#ff9999;
+  background:#fff0f0;
+  border:1px solid #efb4b4;
+  color:#b42323;
   font-size:13px;
   line-height:1.6;
 }
 
 .login-error.show{
   display:block;
+}
+
+@media(max-width:600px){
+  #loginScreen{padding:16px;}
+  .login-box{
+    padding:34px 22px;
+    border-radius:22px;
+  }
+  .login-title{font-size:26px;}
+  .login-logo{
+    width:100px;
+    height:100px;
+  }
 }
 
 /* ================= APP ================= */
@@ -2186,25 +2198,72 @@ function applyPermissions(){
 
 
 /* =====================================================
+   DEEP LINK / HASH NAVIGATION
+===================================================== */
+
+function openDashboardSectionFromHash(){
+
+  const hash =
+    String(window.location.hash || "")
+      .replace("#","")
+      .trim()
+      .toLowerCase();
+
+  if(!hash){
+    return;
+  }
+
+  const allowed = [
+    "dashboard",
+    "orders",
+    "products",
+    "portfolio",
+    "inquiries",
+    "users",
+    "settings"
+  ];
+
+  if(!allowed.includes(hash)){
+    return;
+  }
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach(function(item){
+
+      item.classList.toggle(
+        "active",
+        item.dataset.page === hash
+      );
+
+    });
+
+  document
+    .querySelectorAll(".page")
+    .forEach(function(pageElement){
+
+      pageElement.classList.remove("active");
+
+    });
+
+  const target =
+    $("page-" + hash);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  $("nav").classList.remove("open");
+}
+
+/* =====================================================
    NAVIGATION
 ===================================================== */
 
 const ADMIN_PAGE_LINKS = {
 
-  dashboard:
-    "admin-dashboard.html",
-
   products:
-    "admin-products.html",
-
-  inquiries:
-    "admin-inquiries.html",
-
-  users:
-    "admin-users.html",
-
-  settings:
-    "admin-store.html"
+    "admin-products.html"
 
 };
 
@@ -2251,6 +2310,20 @@ document
 
         target.classList.add("active");
 
+      }
+
+      if(page === "dashboard"){
+        history.replaceState(
+          null,
+          "",
+          "admin-dashboard.html"
+        );
+      }else{
+        history.replaceState(
+          null,
+          "",
+          "admin-dashboard.html#" + page
+        );
       }
 
       $("nav")
@@ -4719,6 +4792,8 @@ async function startApp(){
     loadSettings()
 
   ]);
+
+  openDashboardSectionFromHash();
 
 }
 
