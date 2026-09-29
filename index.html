@@ -88,16 +88,7 @@
 
   --max:1240px;
 
-  /*
-    GLOBAL GUTTER
-    ใช้ชุดเดียวกันทั้ง Desktop / Tablet / Mobile
-  */
-
   --page-gutter:35px;
-
-  /*
-    GLOBAL SPACING
-  */
 
   --space-xs:8px;
   --space-sm:12px;
@@ -121,7 +112,7 @@
 
 html{
   scroll-behavior:smooth;
-  background:#080604;
+  background:#100b07;
 }
 
 body{
@@ -139,7 +130,20 @@ body{
     "Kanit",
     sans-serif;
 
-  background:#080604;
+  /*
+    ใช้พื้นหลังชุดเดียวกับ product-detail.html
+  */
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.52) 0%,
+      rgba(0,0,0,.35) 24%,
+      rgba(0,0,0,.54) 55%,
+      rgba(0,0,0,.96) 100%
+    ),
+    url("assets/index-main-bg.png")
+    center top / cover no-repeat fixed;
 
   position:relative;
 
@@ -147,47 +151,18 @@ body{
 
 }
 
+
+/*
+  ปิด background layer เดิม
+  เพื่อไม่ให้เกิดการซ้อน gradient กับชุด product-detail
+*/
+
 body::before{
-
-  content:"";
-
-  position:fixed;
-
-  inset:0;
-
-  z-index:-2;
-
-  pointer-events:none;
-
-  background:
-    url("assets/index-main-bg.png")
-    center top /
-    cover
-    no-repeat;
-
+  display:none;
 }
 
 body::after{
-
-  content:"";
-
-  position:fixed;
-
-  inset:0;
-
-  z-index:-1;
-
-  pointer-events:none;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.42) 0%,
-      rgba(0,0,0,.34) 24%,
-      rgba(0,0,0,.72) 58%,
-      #080604 88%
-    );
-
+  display:none;
 }
 
 a{
@@ -1379,10 +1354,6 @@ textarea{
 }
 
 
-/* =========================================================
-   EXTRA MOBILE SAFETY
-========================================================= */
-
 @media(
   max-width:420px
 ){
@@ -1972,20 +1943,8 @@ textarea{
 </div>
 
 
-<!-- =========================================================
-     MASTER NAVIGATION + FOOTER
-     
-     ห้ามลบตัวนี้
-     เพราะ Header / Navigation / Mobile Menu / Footer
-     ของเว็บไซต์ถูกสร้างจากไฟล์นี้
-========================================================= -->
-
 <script src="assets/customer-master-nav.js"></script>
 
-
-<!-- =========================================================
-     PROJECT PREVIEW
-========================================================= -->
 
 <script>
 
@@ -2113,8 +2072,8 @@ textarea{
   }catch(error){
 
     /*
-      ถ้า GitHub API ใช้งานไม่ได้
-      จะใช้รูป fallback ที่อยู่ใน HTML
+      ใช้รูป fallback เดิม
+      หาก GitHub API ไม่พร้อมใช้งาน
     */
 
   }
