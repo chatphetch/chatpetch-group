@@ -78,27 +78,25 @@
        SUPABASE
   ====================================================== -->
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
   <!-- =====================================================
-       PAGE CSS
+       CSS
   ====================================================== -->
 
   <style>
 
     :root {
+
       --gold:#c9a85a;
       --gold-light:#e4c979;
-      --gold-soft:rgba(228,201,121,.72);
       --cream:#f4ecdf;
       --text:#f5eee5;
       --muted:rgba(245,238,229,.72);
       --line:rgba(201,168,90,.26);
-      --panel:rgba(10,7,5,.86);
       --max:1280px;
+
     }
 
 
@@ -108,79 +106,110 @@
 
 
     html {
+
       scroll-behavior:smooth;
+
       background:#100b07;
+
     }
 
 
     body {
+
       margin:0;
+
       min-height:100vh;
+
       overflow-x:hidden;
+
       color:var(--text);
-      font-family:"Prompt","Kanit",sans-serif;
+
+      font-family:
+        "Prompt",
+        "Kanit",
+        sans-serif;
+
       background:#100b07;
+
     }
 
 
     a {
+
       color:inherit;
+
       text-decoration:none;
-    }
 
-
-    button,
-    input,
-    select,
-    textarea {
-      font:inherit;
     }
 
 
     button {
+
+      font:inherit;
+
       cursor:pointer;
+
     }
 
 
     img {
+
       max-width:100%;
+
     }
 
 
     /* =====================================================
        FIXED BACKGROUND
+       เหมือน product-detail.html
     ====================================================== */
 
     .chatpetch-fixed-background {
+
       position:fixed;
+
       inset:0;
+
       width:100vw;
+
       height:100vh;
 
-      /*
-       * สำคัญ:
-       * เดิมเป็น z-index:-10 ทำให้พื้นหลังถูกซ่อน
-       */
       z-index:0;
 
       pointer-events:none;
 
       background:
+
         linear-gradient(
+
           180deg,
-          rgba(0,0,0,.42) 0%,
-          rgba(0,0,0,.34) 24%,
-          rgba(0,0,0,.58) 58%,
-          rgba(16,11,7,.90) 100%
+
+          rgba(0,0,0,.52) 0%,
+
+          rgba(0,0,0,.35) 24%,
+
+          rgba(0,0,0,.54) 55%,
+
+          rgba(0,0,0,.96) 100%
+
         ),
+
         url("./assets/index-main-bg.png")
-        center center /
+
+        center top /
+
         cover
+
         no-repeat;
 
-      transform:translate3d(0,0,0);
-      -webkit-transform:translate3d(0,0,0);
+      transform:
+        translate3d(0,0,0);
+
+      -webkit-transform:
+        translate3d(0,0,0);
+
       will-change:transform;
+
     }
 
 
@@ -189,19 +218,27 @@
     ====================================================== */
 
     .products-page {
-      min-height:100vh;
+
       position:relative;
+
       z-index:1;
+
+      min-height:100vh;
+
       background:transparent;
+
     }
 
 
     .container {
+
       width:min(
         var(--max),
         calc(100% - 70px)
       );
-      margin:0 auto;
+
+      margin:auto;
+
     }
 
 
@@ -210,19 +247,27 @@
     ====================================================== */
 
     .products-hero {
+
+      position:relative;
+
       min-height:600px;
 
       display:flex;
+
       align-items:center;
 
       padding:
         145px
         0
         75px;
+
+      background:transparent;
+
     }
 
 
     .hero-copy {
+
       width:min(
         700px,
         100%
@@ -235,26 +280,40 @@
         0;
 
       background:
+
         radial-gradient(
+
           ellipse at left center,
+
           rgba(0,0,0,.78),
+
           rgba(0,0,0,.38) 48%,
+
           transparent 80%
+
         );
+
     }
 
 
     .eyebrow {
+
       color:var(--gold-light);
+
       font-size:11px;
+
       letter-spacing:2.5px;
+
       font-weight:500;
+
     }
 
 
     .hero-title {
+
       margin:
-        12px 0
+        12px
+        0
         18px;
 
       color:#fff;
@@ -272,86 +331,107 @@
         );
 
       font-weight:400;
+
       line-height:1.02;
+
       letter-spacing:-1.5px;
 
       text-shadow:
         0 8px 30px
         rgba(0,0,0,.95);
+
     }
 
 
     .hero-title span {
+
       display:block;
+
       margin-top:8px;
 
       color:var(--gold-light);
 
       font-size:.42em;
+
       font-weight:500;
+
       letter-spacing:3px;
+
     }
 
 
     .hero-text {
-      display:block;
 
       width:540px;
+
       max-width:100%;
 
       margin:0;
-      padding:0;
 
       color:#fff8ef;
 
       font-size:14px;
+
       line-height:1.9;
 
       text-shadow:
         0 4px 18px
         rgba(0,0,0,.92);
-    }
 
-
-    .hero-text-line {
-      display:block;
-      width:100%;
     }
 
 
     /* =====================================================
-       PRODUCTS CONTENT
+       CONTENT
     ====================================================== */
 
     .products-content {
+
+      position:relative;
+
       padding:
         20px
         0
         80px;
+
+      background:transparent;
+
     }
 
 
     .section-head {
+
       display:flex;
+
       align-items:flex-end;
+
       justify-content:space-between;
 
       gap:30px;
+
       margin-bottom:28px;
+
     }
 
 
     .section-kicker {
+
       color:var(--gold-light);
+
       font-size:11px;
+
       letter-spacing:2.5px;
+
       font-weight:600;
+
     }
 
 
     .section-title {
+
       margin:
-        8px 0
+        8px
+        0
         0;
 
       color:#fff;
@@ -369,19 +449,26 @@
         );
 
       font-weight:400;
+
       line-height:1.1;
+
     }
 
 
     .section-note {
+
       max-width:500px;
+
       margin:0;
 
       color:var(--muted);
 
       font-size:13px;
+
       line-height:1.8;
+
       text-align:right;
+
     }
 
 
@@ -390,6 +477,7 @@
     ====================================================== */
 
     .filter-panel {
+
       padding:
         18px
         20px;
@@ -401,31 +489,41 @@
         var(--line);
 
       background:
-        rgba(8,5,3,.82);
+        rgba(8,5,3,.72);
 
       backdrop-filter:blur(10px);
+
       -webkit-backdrop-filter:blur(10px);
+
     }
 
 
     .filter-label {
+
       margin-bottom:11px;
 
       color:var(--gold-light);
 
       font-size:10px;
+
       letter-spacing:1.5px;
+
     }
 
 
     .filter-row {
+
       display:flex;
+
       flex-wrap:wrap;
+
       gap:8px;
+
     }
 
 
     .filter-button {
+
       min-height:38px;
 
       padding:
@@ -444,22 +542,28 @@
         rgba(255,255,255,.035);
 
       transition:.2s ease;
+
     }
 
 
     .filter-button:hover,
     .filter-button.active {
+
       color:#17100a;
+
       background:var(--gold-light);
+
       border-color:var(--gold-light);
+
     }
 
 
     /* =====================================================
-       PRODUCT GRID
+       GRID
     ====================================================== */
 
     .product-grid {
+
       display:grid;
 
       grid-template-columns:
@@ -469,19 +573,20 @@
         );
 
       gap:18px;
-      align-items:stretch;
+
     }
 
 
     /* =====================================================
-       PRODUCT CARD
+       CARD
     ====================================================== */
 
     .product-card {
+
       min-width:0;
-      height:100%;
 
       display:flex;
+
       flex-direction:column;
 
       overflow:hidden;
@@ -493,60 +598,78 @@
       border-radius:18px;
 
       background:
+
         linear-gradient(
+
           145deg,
-          rgba(19,12,8,.97),
-          rgba(7,5,3,.98)
+
+          rgba(19,12,8,.90),
+
+          rgba(7,5,3,.96)
+
         );
 
       box-shadow:
         0 18px 55px
-        rgba(0,0,0,.28);
+        rgba(0,0,0,.30);
 
-      transition:
-        transform .25s ease,
-        border-color .25s ease,
-        box-shadow .25s ease;
+      transition:.25s ease;
+
     }
 
 
     .product-card:hover {
-      transform:translateY(-4px);
+
+      transform:
+        translateY(-4px);
 
       border-color:
         rgba(228,201,121,.55);
 
       box-shadow:
         0 28px 70px
-        rgba(0,0,0,.42);
+        rgba(0,0,0,.45);
+
     }
 
 
     /* =====================================================
-       PRODUCT IMAGE
+       IMAGE
     ====================================================== */
 
     .product-image-link {
+
       position:relative;
 
       display:block;
 
       width:100%;
+
       aspect-ratio:1 / 1;
 
       overflow:hidden;
 
       background:
-        linear-gradient(
-          145deg,
-          #3a2417,
-          #120a06
-        );
+
+        radial-gradient(
+
+          circle at center,
+
+          rgba(100,65,35,.18),
+
+          transparent 65%
+
+        ),
+
+        #1a0f08;
+
     }
 
 
     .product-image {
+
       width:100%;
+
       height:100%;
 
       display:block;
@@ -555,31 +678,28 @@
 
       padding:12px;
 
-      background:
-        radial-gradient(
-          circle at 50% 40%,
-          rgba(201,168,90,.08),
-          transparent 62%
-        );
-
       transition:
         transform .45s ease;
+
     }
 
 
     .product-card:hover
     .product-image {
-      transform:scale(1.035);
+
+      transform:
+        scale(1.035);
+
     }
 
 
     .image-overlay {
+
       position:absolute;
 
       right:10px;
-      bottom:10px;
 
-      z-index:2;
+      bottom:10px;
 
       padding:
         5px
@@ -599,43 +719,51 @@
       font-size:8.5px;
 
       backdrop-filter:blur(8px);
-      -webkit-backdrop-filter:blur(8px);
+
     }
 
 
     /* =====================================================
-       PRODUCT CONTENT
+       CARD CONTENT
     ====================================================== */
 
     .product-content {
+
       flex:1;
 
       display:flex;
+
       flex-direction:column;
 
       padding:
         18px
         17px
         16px;
+
     }
 
 
     .product-category {
-      min-height:17px;
 
       color:var(--gold-light);
 
       font-size:9.5px;
+
       letter-spacing:.12em;
+
       font-weight:600;
+
     }
 
 
     .product-name {
+
       min-height:48px;
 
       display:-webkit-box;
+
       -webkit-box-orient:vertical;
+
       -webkit-line-clamp:2;
 
       overflow:hidden;
@@ -653,24 +781,31 @@
         sans-serif;
 
       font-size:20px;
+
       font-weight:500;
+
       line-height:1.18;
-      letter-spacing:-.2px;
+
     }
 
 
     .product-name a:hover {
+
       color:var(--gold-light);
+
     }
 
 
     .product-description {
+
       min-height:40px;
 
       margin-top:7px;
 
       display:-webkit-box;
+
       -webkit-box-orient:vertical;
+
       -webkit-line-clamp:2;
 
       overflow:hidden;
@@ -679,11 +814,14 @@
         rgba(255,248,239,.72);
 
       font-size:11.5px;
+
       line-height:1.6;
+
     }
 
 
     .product-price {
+
       margin-top:12px;
 
       color:var(--gold-light);
@@ -694,49 +832,54 @@
         sans-serif;
 
       font-size:20px;
+
       font-weight:600;
-      line-height:1.2;
+
     }
 
 
     .shipping {
+
       margin-top:5px;
 
       color:
         rgba(244,236,223,.62);
 
       font-size:9.5px;
+
     }
 
 
     /* =====================================================
-       PRODUCT ACTIONS
+       ACTIONS
     ====================================================== */
 
     .product-actions {
+
       display:grid;
 
       grid-template-columns:
-        1fr 1fr;
+        1fr
+        1fr;
 
       gap:7px;
 
       margin-top:auto;
+
       padding-top:15px;
+
     }
 
 
     .detail-button,
     .add-button {
-      min-height:39px;
 
-      padding:
-        7px
-        8px;
+      min-height:39px;
 
       display:inline-flex;
 
       align-items:center;
+
       justify-content:center;
 
       border-radius:10px;
@@ -744,10 +887,12 @@
       font-size:10.5px;
 
       transition:.2s ease;
+
     }
 
 
     .detail-button {
+
       border:
         1px solid
         rgba(201,168,90,.42);
@@ -756,49 +901,61 @@
 
       background:
         rgba(255,255,255,.035);
+
     }
 
 
     .detail-button:hover {
+
       color:var(--gold-light);
-      border-color:var(--gold-light);
+
+      border-color:
+        var(--gold-light);
+
     }
 
 
     .add-button {
+
       border:
         1px solid
         var(--gold-light);
 
       color:#17100a;
-      background:var(--gold-light);
+
+      background:
+        var(--gold-light);
 
       font-weight:600;
+
     }
 
 
     .add-button:hover {
+
       background:#f0d990;
-      transform:translateY(-1px);
+
+      transform:
+        translateY(-1px);
+
     }
 
 
     /* =====================================================
-       LOADING / EMPTY
+       LOADING
     ====================================================== */
 
-    .loading,
-    .empty {
+    .loading {
+
       grid-column:1 / -1;
 
       min-height:220px;
 
       display:grid;
+
       place-items:center;
 
       padding:30px;
-
-      text-align:center;
 
       border:
         1px dashed
@@ -808,7 +965,67 @@
         rgba(255,255,255,.68);
 
       background:
-        rgba(7,5,3,.75);
+        rgba(7,5,3,.65);
+
+    }
+
+
+    .loading-spinner {
+
+      width:30px;
+
+      height:30px;
+
+      margin:auto;
+
+      border:
+        2px solid
+        rgba(228,201,121,.20);
+
+      border-top-color:
+        var(--gold-light);
+
+      border-radius:50%;
+
+      animation:
+        spin .8s linear infinite;
+
+    }
+
+
+    @keyframes spin {
+
+      to {
+        transform:rotate(360deg);
+      }
+
+    }
+
+
+    /* =====================================================
+       EMPTY
+    ====================================================== */
+
+    .empty {
+
+      grid-column:1 / -1;
+
+      min-height:220px;
+
+      display:grid;
+
+      place-items:center;
+
+      border:
+        1px dashed
+        rgba(201,168,90,.30);
+
+      color:
+        rgba(255,255,255,.68);
+
+      background:
+        rgba(7,5,3,.65);
+
     }
 
 
@@ -817,6 +1034,9 @@
     ====================================================== */
 
     .products-cta {
+
+      position:relative;
+
       margin:
         10px
         0
@@ -835,15 +1055,22 @@
         rgba(201,168,90,.30);
 
       background:
+
         linear-gradient(
+
           135deg,
-          rgba(31,20,12,.90),
-          rgba(5,4,3,.95)
+
+          rgba(54,33,20,.78),
+
+          rgba(23,13,8,.92)
+
         );
+
     }
 
 
     .products-cta h2 {
+
       margin:
         10px
         0
@@ -864,11 +1091,14 @@
         );
 
       font-weight:400;
+
       line-height:1.1;
+
     }
 
 
     .products-cta p {
+
       max-width:680px;
 
       margin:0;
@@ -877,14 +1107,18 @@
         rgba(245,238,229,.72);
 
       font-size:13px;
+
       line-height:1.9;
+
     }
 
 
     .cta-button {
+
       display:inline-flex;
 
       align-items:center;
+
       justify-content:center;
 
       min-height:44px;
@@ -896,14 +1130,24 @@
         20px;
 
       color:#17100a;
-      background:var(--gold-light);
+
+      background:
+        var(--gold-light);
 
       font-size:11px;
+
+      transition:.2s ease;
+
     }
 
 
     .cta-button:hover {
+
       background:#f0d990;
+
+      transform:
+        translateY(-1px);
+
     }
 
 
@@ -914,36 +1158,41 @@
     @media (max-width:1100px) {
 
       .product-grid {
+
         grid-template-columns:
           repeat(
             2,
             minmax(0,1fr)
           );
+
       }
 
     }
 
 
-    /* =====================================================
-       850
-    ====================================================== */
-
     @media (max-width:850px) {
 
       .container {
+
         width:
           calc(100% - 50px);
+
       }
 
 
       .section-head {
+
         display:block;
+
       }
 
 
       .section-note {
+
         margin-top:12px;
+
         text-align:left;
+
       }
 
     }
@@ -956,57 +1205,73 @@
     @media (max-width:650px) {
 
       .container {
+
         width:
           calc(100% - 30px);
+
       }
 
 
       .products-hero {
+
         min-height:570px;
 
         padding:
           125px
           0
           55px;
+
       }
 
 
       .hero-copy {
+
         padding-right:0;
+
       }
 
 
       .hero-title {
+
         font-size:52px;
+
       }
 
 
       .hero-text {
-        width:100%;
-        max-width:100%;
 
-        font-size:16px;
+        width:100%;
+
+        font-size:15px;
+
         line-height:1.85;
+
       }
 
 
       .section-title {
+
         font-size:30px;
+
       }
 
 
       .section-note {
-        font-size:14px;
-        line-height:1.8;
+
+        font-size:13px;
+
       }
 
 
       .filter-panel {
+
         padding:15px;
+
       }
 
 
       .filter-button {
+
         min-height:36px;
 
         padding:
@@ -1014,10 +1279,12 @@
           13px;
 
         font-size:12px;
+
       }
 
 
       .product-grid {
+
         grid-template-columns:
           repeat(
             2,
@@ -1025,88 +1292,103 @@
           );
 
         gap:12px;
+
       }
 
 
       .product-card {
+
         border-radius:15px;
+
       }
 
 
       .product-image {
+
         padding:9px;
+
       }
 
 
       .product-content {
+
         padding:
           13px
           11px;
+
       }
 
 
       .product-category {
+
         font-size:8.5px;
+
       }
 
 
       .product-name {
+
         min-height:39px;
+
         font-size:15px;
+
       }
 
 
       .product-description {
+
         min-height:34px;
+
         font-size:10px;
+
       }
 
 
       .product-price {
+
         font-size:17px;
+
       }
 
 
       .shipping {
+
         font-size:8.5px;
+
       }
 
 
       .product-actions {
+
         grid-template-columns:1fr;
 
         gap:5px;
 
         padding-top:11px;
+
       }
 
 
       .detail-button,
       .add-button {
+
         width:100%;
+
         min-height:36px;
+
         font-size:10px;
-      }
 
-
-      .image-overlay {
-        right:7px;
-        bottom:7px;
-
-        padding:
-          4px
-          6px;
-
-        font-size:7.5px;
       }
 
 
       .products-cta {
+
         margin-bottom:55px;
 
         padding:
           38px
           22px;
+
       }
 
     }
@@ -1115,29 +1397,39 @@
     @media (max-width:380px) {
 
       .product-grid {
+
         gap:9px;
+
       }
 
 
       .product-content {
+
         padding:
           11px
           9px;
+
       }
 
 
       .product-name {
+
         font-size:14px;
+
       }
 
 
       .product-description {
+
         font-size:9.5px;
+
       }
 
 
       .product-price {
+
         font-size:16px;
+
       }
 
     }
@@ -1151,7 +1443,7 @@
 
 
   <!-- =====================================================
-       FIXED BACKGROUND
+       BACKGROUND
   ====================================================== -->
 
   <div
@@ -1197,13 +1489,10 @@
 
             <p class="hero-text">
 
-              <span class="hero-text-line">
-                วัสดุสำหรับงานพื้น สี น้ำยาเคลือบ และผลิตภัณฑ์ที่เกี่ยวข้อง
-              </span>
-
-              <span class="hero-text-line">
-                คัดสรรสำหรับงานก่อสร้าง และงานพื้นอย่างครบวงจร
-              </span>
+              วัสดุสำหรับงานพื้น สี น้ำยาเคลือบ
+              และผลิตภัณฑ์ที่เกี่ยวข้อง
+              คัดสรรสำหรับงานก่อสร้าง
+              และงานพื้นอย่างครบวงจร
 
             </p>
 
@@ -1239,7 +1528,8 @@
 
               เลือกดูผลิตภัณฑ์ตามประเภท
               หรือเปิดรายละเอียดเพื่อดูข้อมูล
-              คุณสมบัติ ราคา และตัวเลือกของสินค้าแต่ละรายการ
+              คุณสมบัติ ราคา และตัวเลือก
+              ของสินค้าแต่ละรายการ
 
             </p>
 
@@ -1319,9 +1609,20 @@
 
             <div class="loading">
 
-              กำลังโหลดสินค้า
-              <br>
-              กรุณารอสักครู่...
+              <div>
+
+                <div class="loading-spinner"></div>
+
+                <div
+                  style="
+                    margin-top:12px;
+                    text-align:center;
+                  "
+                >
+                  กำลังโหลดสินค้า...
+                </div>
+
+              </div>
 
             </div>
 
@@ -1374,7 +1675,7 @@
 
 
   <!-- =====================================================
-       PRODUCT JAVASCRIPT
+       JAVASCRIPT
   ====================================================== -->
 
   <script>
@@ -1387,8 +1688,8 @@
       "https://mfhllgklcfnnbyyzzljz.supabase.co";
 
 
-    const SUPABASE_ANON_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJtbWZsbGdrbHNmbl5eXp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkwMjY2NzEsImV4cCI6MjEwNDYwMjY3fQ.bjpjXkB0tpgrJu8BwmpSO3_MSQSLMWC1xI0v-9hNlIc";
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_rkWSZF3He7_mhCIRY9MaNQ_JGBEa1l5";
 
 
     let supabaseClient = null;
@@ -1396,28 +1697,19 @@
 
     try {
 
-      if (
-        window.supabase &&
-        typeof window.supabase.createClient === "function"
-      ) {
-
-        supabaseClient =
-          window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_ANON_KEY
-          );
-
-      }
+      supabaseClient =
+        window.supabase.createClient(
+          SUPABASE_URL,
+          SUPABASE_PUBLISHABLE_KEY
+        );
 
     }
     catch (error) {
 
-      console.warn(
-        "Supabase client could not be created:",
+      console.error(
+        "Supabase initialization error:",
         error
       );
-
-      supabaseClient = null;
 
     }
 
@@ -1429,14 +1721,27 @@
     const DEFAULT_PRODUCTS = [
 
       {
+
         id:"91428",
+
         category:"floor",
+
         category_label:"วัสดุงานพื้น",
-        image:"assets/products/91428.jpg",
-        name:"PREMIUM STAMPED CONCRETE (PSC)",
-        short_desc:"สีเคลือบแกร่งสำหรับงานพิมพ์ลาย",
-        price_label:"799.-",
-        numeric_price:799,
+
+        image:
+          "assets/products/91428.jpg",
+
+        name:
+          "PREMIUM STAMPED CONCRETE (PSC)",
+
+        short_desc:
+          "สีเคลือบแกร่งสำหรับงานพิมพ์ลาย",
+
+        price_label:
+          "799.-",
+
+        numeric_price:
+          799,
 
         details:[
           "เฉดสี : M 1 - 26",
@@ -1451,21 +1756,34 @@
         ],
 
         options:[]
+
       },
 
 
       {
+
         id:"91427",
+
         category:"floor",
+
         category_label:"วัสดุงานพื้น",
-        image:"assets/products/releaser-power.jpg",
-        name:"RELEASER POWER",
-        short_desc:"ผงฝุ่นลอกแบบ",
-        price_label:"เริ่ม 1,050.-",
-        numeric_price:1050,
+
+        image:
+          "assets/products/releaser-power.jpg",
+
+        name:
+          "RELEASER POWER",
+
+        short_desc:
+          "ผงฝุ่นลอกแบบ",
+
+        price_label:
+          "เริ่ม 1,050.-",
+
+        numeric_price:
+          1050,
 
         details:[
-          "เลือกแบบสีให้เข้ากับปูนสีเคลือบแกร่ง",
           "5 กก. ได้พื้นที่ประมาณ 40-50 ตร.ม.",
           "10 กก. ได้พื้นที่ประมาณ 80-100 ตร.ม."
         ],
@@ -1486,18 +1804,32 @@
             price:1050
           }
         ]
+
       },
 
 
       {
+
         id:"91430",
+
         category:"coating",
+
         category_label:"สี / น้ำยา",
-        image:"assets/products/91430.jpg",
-        name:"READY COAT (RCT)",
-        short_desc:"น้ำยาเคลือบเงาคอนกรีต (ชนิดใส)",
-        price_label:"เริ่ม 388.-",
-        numeric_price:388,
+
+        image:
+          "assets/products/91430.jpg",
+
+        name:
+          "READY COAT (RCT)",
+
+        short_desc:
+          "น้ำยาเคลือบเงาคอนกรีต (ชนิดใส)",
+
+        price_label:
+          "เริ่ม 388.-",
+
+        numeric_price:
+          388,
 
         details:[
           "750 มล. : 2-3 ตร.ม. / 2 เที่ยว",
@@ -1530,21 +1862,35 @@
             price:388
           }
         ]
+
       },
 
 
       {
+
         id:"91429",
+
         category:"coating",
+
         category_label:"สี / น้ำยา",
-        image:"assets/products/91429.jpg",
-        name:"READY COAT COLOR (RCR)",
-        short_desc:"น้ำยาเคลือบเงาคอนกรีต (ชนิดสี)",
-        price_label:"เริ่ม 369.-",
-        numeric_price:369,
+
+        image:
+          "assets/products/91429.jpg",
+
+        name:
+          "READY COAT COLOR (RCR)",
+
+        short_desc:
+          "น้ำยาเคลือบเงาคอนกรีต (ชนิดสี)",
+
+        price_label:
+          "เริ่ม 369.-",
+
+        numeric_price:
+          369,
 
         details:[
-          "(เฉดสีตามลูกค้าต้องการ)",
+          "เฉดสีตามลูกค้าต้องการ",
           "750 มล. : 2-3 ตร.ม. / 2 เที่ยว",
           "4 กก. : 12-15 ตร.ม.",
           "9 กก. : 25-30 ตร.ม.",
@@ -1575,27 +1921,14 @@
             price:3850
           }
         ]
+
       }
 
     ];
 
 
     /* =====================================================
-       STATE
-    ====================================================== */
-
-    let products =
-      DEFAULT_PRODUCTS.map(
-        normalizeProduct
-      );
-
-
-    let currentCategory =
-      "all";
-
-
-    /* =====================================================
-       IMAGE MAP
+       IMAGE FALLBACK
     ====================================================== */
 
     const PRODUCT_IMAGES = {
@@ -1616,19 +1949,29 @@
 
 
     /* =====================================================
-       SORT ORDER
+       PRODUCT ORDER
     ====================================================== */
 
     const PRODUCT_ORDER = [
+
       "91428",
       "91427",
       "91430",
       "91429"
+
     ];
 
 
+    let products =
+      DEFAULT_PRODUCTS.slice();
+
+
+    let currentCategory =
+      "all";
+
+
     /* =====================================================
-       ESCAPE HTML
+       HELPERS
     ====================================================== */
 
     function escapeHtml(value) {
@@ -1665,10 +2008,6 @@
     }
 
 
-    /* =====================================================
-       NORMALIZE PRODUCT
-    ====================================================== */
-
     function normalizeProduct(product) {
 
       return {
@@ -1691,29 +2030,28 @@
           product?.image
           || product?.image_url
           || product?.cover_image
+          || PRODUCT_IMAGES[
+               String(
+                 product?.id ?? ""
+               )
+             ]
           || "",
 
         name:
           product?.name
-          || "",
+          || "สินค้า",
 
         short_desc:
           product?.short_desc
+          || product?.short_description
           || product?.shortDesc
           || product?.description
-          || product?.short_description
           || "",
 
         price_label:
           product?.price_label
           || product?.priceLabel
-          || (
-            product?.price !== undefined &&
-            product?.price !== null &&
-            product?.price !== ""
-              ? String(product.price)
-              : ""
-          ),
+          || "",
 
         numeric_price:
           Number(
@@ -1745,107 +2083,62 @@
             product?.options
           )
             ? product.options
-            : []
+            : [],
+
+        hidden:
+          product?.hidden === true
 
       };
 
     }
 
 
-    /* =====================================================
-       PRODUCT IMAGE
-    ====================================================== */
-
-    function getProductImage(product) {
-
-      const id =
-        String(
-          product?.id ?? ""
-        );
-
-
-      if (
-        product?.image &&
-        String(
-          product.image
-        ).trim() !== ""
-      ) {
-
-        return String(
-          product.image
-        ).trim();
-
-      }
-
-
-      return (
-        PRODUCT_IMAGES[id]
-        || ""
-      );
-
-    }
-
-
-    /* =====================================================
-       SORT PRODUCTS
-    ====================================================== */
-
     function sortProducts(list) {
 
       return list.sort(
         (
-          first,
-          second
+          a,
+          b
         ) => {
 
-          const firstIndex =
+          const ai =
             PRODUCT_ORDER.indexOf(
-              String(first.id)
+              String(a.id)
             );
 
-
-          const secondIndex =
+          const bi =
             PRODUCT_ORDER.indexOf(
-              String(second.id)
+              String(b.id)
             );
 
 
           if (
-            firstIndex !== -1 &&
-            secondIndex !== -1
+            ai === -1 &&
+            bi === -1
           ) {
 
-            return (
-              firstIndex -
-              secondIndex
+            return String(
+              a.name
+            ).localeCompare(
+              String(
+                b.name
+              )
             );
 
           }
 
 
-          if (
-            firstIndex !== -1
-          ) {
-
-            return -1;
-
-          }
-
-
-          if (
-            secondIndex !== -1
-          ) {
-
+          if (ai === -1) {
             return 1;
-
           }
 
 
-          return String(
-            first.name
-          ).localeCompare(
-            String(second.name)
-          );
+          if (bi === -1) {
+            return -1;
+          }
+
+
+          return ai - bi;
 
         }
       );
@@ -1859,16 +2152,11 @@
 
     async function loadProducts() {
 
-      /*
-       * แสดงข้อมูลสำรองทันที
-       */
-
       products =
-        sortProducts(
-          DEFAULT_PRODUCTS.map(
+        DEFAULT_PRODUCTS
+          .map(
             normalizeProduct
-          )
-        );
+          );
 
 
       renderProducts();
@@ -1892,44 +2180,32 @@
 
 
         if (
-          !result.error &&
+          result.error
+        ) {
+
+          console.warn(
+            "Products query error:",
+            result.error
+          );
+
+          return;
+
+        }
+
+
+        if (
           Array.isArray(
             result.data
           ) &&
-          result.data.length > 0
+          result.data.length
         ) {
-
-          const remoteProducts =
-            result.data
-              .map(
-                normalizeProduct
-              )
-              .map(
-                product => {
-
-                  if (
-                    !product.image
-                  ) {
-
-                    product.image =
-                      PRODUCT_IMAGES[
-                        String(
-                          product.id
-                        )
-                      ]
-                      || "";
-
-                  }
-
-                  return product;
-
-                }
-              );
-
 
           products =
             sortProducts(
-              remoteProducts
+              result.data
+                .map(
+                  normalizeProduct
+                )
             );
 
 
@@ -1941,7 +2217,7 @@
       catch (error) {
 
         console.warn(
-          "Supabase product load failed:",
+          "Could not load products:",
           error
         );
 
@@ -1951,88 +2227,7 @@
 
 
     /* =====================================================
-       IMAGE ERROR
-    ====================================================== */
-
-    function handleImageError(
-      imageElement,
-      productId
-    ) {
-
-      const fallback =
-        PRODUCT_IMAGES[
-          String(productId)
-        ];
-
-
-      if (
-        fallback &&
-        imageElement.dataset.fallbackApplied !== "1"
-      ) {
-
-        imageElement.dataset.fallbackApplied =
-          "1";
-
-        imageElement.src =
-          fallback;
-
-        return;
-
-      }
-
-
-      imageElement.style.display =
-        "none";
-
-
-      const parent =
-        imageElement.closest(
-          ".product-image-link"
-        );
-
-
-      if (
-        parent &&
-        !parent.querySelector(
-          ".image-error"
-        )
-      ) {
-
-        const message =
-          document.createElement(
-            "div"
-          );
-
-
-        message.className =
-          "image-error";
-
-
-        message.textContent =
-          "ไม่พบรูปสินค้า";
-
-
-        message.style.cssText = `
-          position:absolute;
-          inset:0;
-          display:grid;
-          place-items:center;
-          color:rgba(255,255,255,.55);
-          font-size:12px;
-        `;
-
-
-        parent.appendChild(
-          message
-        );
-
-      }
-
-    }
-
-
-    /* =====================================================
-       RENDER PRODUCTS
+       RENDER
     ====================================================== */
 
     function renderProducts() {
@@ -2048,24 +2243,33 @@
       }
 
 
-      const filtered =
-        currentCategory === "all"
-
-          ? products
-
-          : products.filter(
-              product =>
-                String(
-                  product.category
-                ) ===
-                String(
-                  currentCategory
-                )
-            );
+      let visibleProducts =
+        products.filter(
+          product =>
+            !product.hidden
+        );
 
 
       if (
-        filtered.length === 0
+        currentCategory !== "all"
+      ) {
+
+        visibleProducts =
+          visibleProducts.filter(
+            product =>
+              String(
+                product.category
+              ) ===
+              String(
+                currentCategory
+              )
+          );
+
+      }
+
+
+      if (
+        visibleProducts.length === 0
       ) {
 
         grid.innerHTML = `
@@ -2084,12 +2288,9 @@
 
 
       grid.innerHTML =
-        filtered
+        visibleProducts
           .map(
-            product =>
-              createProductCard(
-                product
-              )
+            createProductCard
           )
           .join("");
 
@@ -2097,10 +2298,12 @@
 
 
     /* =====================================================
-       CREATE PRODUCT CARD
+       PRODUCT CARD
     ====================================================== */
 
-    function createProductCard(product) {
+    function createProductCard(
+      product
+    ) {
 
       const id =
         encodeURIComponent(
@@ -2110,47 +2313,73 @@
         );
 
 
-      const productImage =
-        getProductImage(
-          product
-        );
+      const image =
+        product.image
+        ||
+        PRODUCT_IMAGES[
+          String(
+            product.id
+          )
+        ]
+        ||
+        "";
 
 
-      const safeName =
+      const name =
         escapeHtml(
           product.name
         );
 
 
-      const safeCategory =
+      const category =
         escapeHtml(
           product.category_label
         );
 
 
-      const safeDescription =
+      const description =
         escapeHtml(
           product.short_desc
         );
 
 
-      const safePrice =
+      let price =
+        product.price_label;
+
+
+      if (
+        !price &&
+        product.numeric_price
+      ) {
+
+        price =
+          Number(
+            product.numeric_price
+          ).toLocaleString(
+            "th-TH"
+          )
+          + ".-";
+
+      }
+
+
+      price =
         escapeHtml(
-          product.price_label
+          price
         );
 
 
       const imageHtml =
-        productImage
+        image
 
           ? `
 
             <img
               class="product-image"
-              src="${escapeHtml(productImage)}"
-              alt="${safeName}"
-              loading="eager"
-              onerror="handleImageError(this, '${escapeHtml(String(product.id))}')"
+              src="${escapeHtml(image)}"
+              alt="${name}"
+              loading="lazy"
+              onerror="this.style.display='none';"
             >
 
           `
@@ -2163,11 +2392,11 @@
                 height:100%;
                 display:grid;
                 place-items:center;
-                color:rgba(255,255,255,.50);
+                color:rgba(255,255,255,.45);
                 font-size:12px;
               "
             >
-              ไม่พบรูปสินค้า
+              ไม่มีรูปสินค้า
             </div>
 
           `;
@@ -2177,16 +2406,16 @@
 
         <article class="product-card">
 
+
           <a
             class="product-image-link"
             href="product-detail.html?id=${id}"
-            aria-label="ดูรายละเอียด ${safeName}"
           >
 
             ${imageHtml}
 
             <span class="image-overlay">
-              คลิกดูรายละเอียด →
+              ดูรายละเอียด →
             </span>
 
           </a>
@@ -2194,8 +2423,9 @@
 
           <div class="product-content">
 
+
             <div class="product-category">
-              ${safeCategory}
+              ${category}
             </div>
 
 
@@ -2204,19 +2434,19 @@
               <a
                 href="product-detail.html?id=${id}"
               >
-                ${safeName}
+                ${name}
               </a>
 
             </h2>
 
 
             <div class="product-description">
-              ${safeDescription}
+              ${description}
             </div>
 
 
             <div class="product-price">
-              ${safePrice}
+              ${price || "-"}
             </div>
 
 
@@ -2226,6 +2456,7 @@
 
 
             <div class="product-actions">
+
 
               <a
                 class="detail-button"
@@ -2243,13 +2474,65 @@
                 เพิ่มลงตะกร้า
               </button>
 
+
             </div>
 
+
           </div>
+
 
         </article>
 
       `;
+
+    }
+
+
+    /* =====================================================
+       FILTER
+    ====================================================== */
+
+    function setupFilters() {
+
+      const buttons =
+        document.querySelectorAll(
+          ".filter-button"
+        );
+
+
+      buttons.forEach(
+        button => {
+
+          button.addEventListener(
+            "click",
+            function() {
+
+              buttons.forEach(
+                item =>
+                  item.classList.remove(
+                    "active"
+                  )
+              );
+
+
+              this.classList.add(
+                "active"
+              );
+
+
+              currentCategory =
+                this.dataset.category
+                ||
+                "all";
+
+
+              renderProducts();
+
+            }
+          );
+
+        }
+      );
 
     }
 
@@ -2262,27 +2545,27 @@
 
       try {
 
-        const stored =
+        const data =
           localStorage.getItem(
             "chatpetch_cart"
           );
 
 
-        if (!stored) {
+        if (!data) {
           return [];
         }
 
 
-        const parsed =
+        const cart =
           JSON.parse(
-            stored
+            data
           );
 
 
         return Array.isArray(
-          parsed
+          cart
         )
-          ? parsed
+          ? cart
           : [];
 
       }
@@ -2295,42 +2578,33 @@
     }
 
 
-    function saveCart(cart) {
+    function saveCart(
+      cart
+    ) {
 
-      try {
-
-        localStorage.setItem(
-          "chatpetch_cart",
-          JSON.stringify(
-            cart
-          )
-        );
+      localStorage.setItem(
+        "chatpetch_cart",
+        JSON.stringify(
+          cart
+        )
+      );
 
 
-        window.dispatchEvent(
-          new Event(
-            "cartUpdated"
-          )
-        );
+      updateCartCount();
 
-      }
-      catch (error) {
 
-        console.warn(
-          "Could not save cart:",
-          error
-        );
-
-      }
+      window.dispatchEvent(
+        new Event(
+          "cartUpdated"
+        )
+      );
 
     }
 
 
-    /* =====================================================
-       ADD TO CART
-    ====================================================== */
-
-    function quickAdd(productId) {
+    function quickAdd(
+      productId
+    ) {
 
       const product =
         products.find(
@@ -2350,8 +2624,8 @@
 
 
       /*
-       * ถ้ามีตัวเลือกสินค้า
-       * ให้ไปหน้ารายละเอียดก่อน
+       * สินค้าที่มีหลายตัวเลือก
+       * ให้เลือกในหน้ารายละเอียดก่อน
        */
 
       if (
@@ -2415,9 +2689,15 @@
             product.name,
 
           image:
-            getProductImage(
-              product
-            ),
+            product.image
+            ||
+            PRODUCT_IMAGES[
+              String(
+                product.id
+              )
+            ]
+            ||
+            "",
 
           category:
             product.category,
@@ -2425,17 +2705,18 @@
           categoryLabel:
             product.category_label,
 
-          quantity:
-            1,
+          quantity:1,
 
-          priceLabel:
-            product.price_label,
+          price:
+            product.numeric_price,
 
           numericPrice:
             product.numeric_price,
 
-          selectedOption:
-            null
+          priceLabel:
+            product.price_label,
+
+          selectedOption:null
 
         });
 
@@ -2448,6 +2729,50 @@
 
 
       showToast();
+
+    }
+
+
+    /* =====================================================
+       CART COUNT
+    ====================================================== */
+
+    function updateCartCount() {
+
+      const cartCount =
+        document.getElementById(
+          "cartCount"
+        );
+
+
+      if (!cartCount) {
+        return;
+      }
+
+
+      const cart =
+        getCart();
+
+
+      let count = 0;
+
+
+      cart.forEach(
+        item => {
+
+          count +=
+            Number(
+              item.quantity ||
+              item.qty ||
+              1
+            );
+
+        }
+      );
+
+
+      cartCount.textContent =
+        count;
 
     }
 
@@ -2479,29 +2804,32 @@
         toast.style.cssText = `
 
           position:fixed;
-          z-index:99999;
+
           left:50%;
-          bottom:28px;
+
+          bottom:30px;
+
+          z-index:99999;
 
           transform:
             translate(-50%,20px);
 
           padding:
-            12px 18px;
+            12px 20px;
 
           border:
             1px solid
             rgba(228,201,121,.45);
 
-          border-radius:
-            999px;
+          border-radius:999px;
 
           color:#17100a;
+
           background:#e4c979;
 
           box-shadow:
             0 15px 40px
-            rgba(0,0,0,.35);
+            rgba(0,0,0,.40);
 
           font-size:13px;
 
@@ -2524,7 +2852,7 @@
 
 
       requestAnimationFrame(
-        () => {
+        function() {
 
           toast.style.opacity =
             "1";
@@ -2537,13 +2865,13 @@
 
 
       clearTimeout(
-        window.__productToastTimer
+        window.__toastTimer
       );
 
 
-      window.__productToastTimer =
+      window.__toastTimer =
         setTimeout(
-          () => {
+          function() {
 
             toast.style.opacity =
               "0";
@@ -2554,55 +2882,6 @@
           },
           2200
         );
-
-    }
-
-
-    /* =====================================================
-       FILTER
-    ====================================================== */
-
-    function setupFilters() {
-
-      const buttons =
-        document.querySelectorAll(
-          ".filter-button"
-        );
-
-
-      buttons.forEach(
-        button => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              buttons.forEach(
-                item =>
-                  item.classList.remove(
-                    "active"
-                  )
-              );
-
-
-              button.classList.add(
-                "active"
-              );
-
-
-              currentCategory =
-                button.dataset.category
-                ||
-                "all";
-
-
-              renderProducts();
-
-            }
-          );
-
-        }
-      );
 
     }
 
@@ -2625,7 +2904,7 @@
         );
 
 
-      const validCategories = [
+      const allowed = [
 
         "floor",
         "coating",
@@ -2636,7 +2915,7 @@
 
 
       if (
-        !validCategories.includes(
+        !allowed.includes(
           category
         )
       ) {
@@ -2670,70 +2949,8 @@
 
 
     /* =====================================================
-       CART COUNT SUPPORT
+       EVENTS
     ====================================================== */
-
-    function updateCartCount() {
-
-      const cartCount =
-        document.getElementById(
-          "cartCount"
-        );
-
-
-      if (!cartCount) {
-        return;
-      }
-
-
-      try {
-
-        const cart =
-          JSON.parse(
-            localStorage.getItem(
-              "chatpetch_cart"
-            ) || "[]"
-          );
-
-
-        let count = 0;
-
-
-        if (
-          Array.isArray(
-            cart
-          )
-        ) {
-
-          cart.forEach(
-            item => {
-
-              count +=
-                Number(
-                  item.quantity ||
-                  item.qty ||
-                  1
-                );
-
-            }
-          );
-
-        }
-
-
-        cartCount.textContent =
-          count;
-
-      }
-      catch (error) {
-
-        cartCount.textContent =
-          "0";
-
-      }
-
-    }
-
 
     window.addEventListener(
       "storage",
@@ -2753,7 +2970,7 @@
 
     document.addEventListener(
       "DOMContentLoaded",
-      () => {
+      function() {
 
         setupFilters();
 
@@ -2770,7 +2987,7 @@
 
 
   <!-- =====================================================
-       MASTER NAVIGATION + FOOTER
+       MASTER NAV
   ====================================================== -->
 
   <script
