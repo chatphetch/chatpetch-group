@@ -2338,7 +2338,7 @@ const logoutBtn =
   document.getElementById("logoutButton");
 
 const roleText =
-  document.getElementById("roleBadge");
+  document.getElementById("roleText");
 
 const productsGrid =
   document.getElementById("productsGrid");
@@ -2502,12 +2502,10 @@ async function loadRole(user){
   currentRole =
     data.role;
 
-  if(roleText){
-    roleText.textContent =
-      String(
-        data.role || "admin"
-      ).toUpperCase();
-  }
+  roleText.textContent =
+    String(
+      data.role || "admin"
+    ).toUpperCase();
 
 
   return data.role;
@@ -2689,14 +2687,26 @@ supabaseClient.auth
         event === "SIGNED_OUT"
       ){
 
+        currentUser = null;
+        currentRole = null;
+
         showLogin();
 
         return;
       }
 
+      /*
+        SIGNED_IN:
+        การ Login เองเรียก handleSession() อยู่แล้ว
+        จึงไม่เรียกซ้ำจาก event นี้ เพื่อป้องกัน
+        หน้า Login/หน้า Products กระพริบหรือโหลดซ้ำ
+
+        TOKEN_REFRESHED:
+        ตรวจ Session ใหม่เมื่อ Supabase ต่ออายุ Token
+      */
       if(
-        event === "SIGNED_IN" ||
-        event === "TOKEN_REFRESHED"
+        event === "TOKEN_REFRESHED" &&
+        session
       ){
 
         setTimeout(
@@ -2711,6 +2721,62 @@ supabaseClient.auth
 
     }
   );
+
+
+/* =========================================================
+INITIAL SESSION
+========================================================= */
+
+/*
+  สำคัญสำหรับการเปลี่ยนจาก Dashboard -> Products
+
+  Supabase เก็บ Session ไว้ใน browser อยู่แล้ว
+  แต่ INITIAL_SESSION ไม่ได้ถูกจัดการด้วย listener ด้านบน
+  ดังนั้นเมื่อเปิด admin-products.html โดยตรง
+  ต้องอ่าน Session ที่มีอยู่แล้วด้วย getSession()
+*/
+(async function initAdminProducts(){
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient.auth.getSession();
+
+    if(error){
+      throw error;
+    }
+
+    if(data && data.session){
+
+      await handleSession(
+        data.session
+      );
+
+      return;
+    }
+
+    showLogin();
+
+  }catch(error){
+
+    console.error(
+      "INITIAL SESSION ERROR:",
+      error
+    );
+
+    showLogin();
+
+    showLoginError(
+      error.message ||
+      "ไม่สามารถตรวจสอบ Session ได้"
+    );
+
+  }
+
+})();
 
 
 /* =========================================================
