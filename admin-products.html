@@ -1483,13 +1483,13 @@ PRODUCT MODAL
 
             <select id="productCategory">
               <option value="floor">floor — วัสดุงานพื้น</option>
-              <option value="coating">coating — สี / น้ำยาเคลือบ</option>
+              <option value="coating">coating — สี / น้ำยา</option>
               <option value="construction">construction — วัสดุก่อสร้าง</option>
               <option value="equipment">equipment — อุปกรณ์</option>
             </select>
 
             <div class="help">
-              ใช้ค่าเดียวกับตัวกรองบนหน้า Products เพื่อให้สินค้าใหม่แสดงถูกหมวด
+              ใช้หมวดหมู่เดียวกับหน้า Products เพื่อให้สินค้าใหม่แสดงถูกหมวด
             </div>
 
           </div>
@@ -1503,8 +1503,13 @@ PRODUCT MODAL
 
             <input
               id="productCategoryLabel"
-              placeholder="เช่น พื้น"
+              readonly
+              aria-readonly="true"
             >
+
+            <div class="help">
+              ชื่อหมวดหมู่นี้จะกำหนดอัตโนมัติจากหมวดหมู่ด้านบน เพื่อให้ตรงกับหน้า Products
+            </div>
 
           </div>
 
@@ -2907,7 +2912,35 @@ function renderProducts(){
 OPEN ADD
 ========================================================= */
 
+function getCategoryLabel(category){
+
+  const labels = {
+    floor: "วัสดุงานพื้น",
+    coating: "สี / น้ำยา",
+    construction: "วัสดุก่อสร้าง",
+    equipment: "อุปกรณ์"
+  };
+
+  return labels[String(category || "").trim()] || "สินค้า";
+
+}
+
+
+function syncProductCategoryLabel(){
+
+  const category = document.getElementById("productCategory");
+  const label = document.getElementById("productCategoryLabel");
+
+  if(!category || !label) return;
+
+  label.value = getCategoryLabel(category.value);
+
+}
+
+
 function openAddProduct(){
+
+  syncProductCategoryLabel();
 
   if(
     !canManageProducts()
@@ -3022,7 +3055,7 @@ function openEditProduct(
   document.getElementById(
     "productCategoryLabel"
   ).value =
-    product.category_label || "";
+    getCategoryLabel(product.category);
 
 
   document.getElementById(
@@ -3669,6 +3702,20 @@ categoryFilter.addEventListener(
   "change",
   renderProducts
 );
+
+
+const productCategorySelect =
+  document.getElementById("productCategory");
+
+if(productCategorySelect){
+  productCategorySelect.addEventListener(
+    "change",
+    syncProductCategoryLabel
+  );
+}
+
+
+syncProductCategoryLabel();
 
 
 /* =========================================================
