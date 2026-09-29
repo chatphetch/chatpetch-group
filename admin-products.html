@@ -1069,6 +1069,233 @@ MOBILE
 
 }
 
+
+
+/* =========================================================
+   UNIFIED ADMIN LOGIN / HEADER
+========================================================= */
+
+body{
+  background:
+    linear-gradient(
+      rgba(8,12,18,.58),
+      rgba(8,12,18,.78)
+    ),
+    url("./assets/index-main-bg.png")
+    center/cover fixed no-repeat;
+}
+
+.login-screen{
+  position:fixed !important;
+  inset:0 !important;
+  z-index:5000 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:24px !important;
+  background:
+    linear-gradient(
+      rgba(8,12,18,.54),
+      rgba(8,12,18,.72)
+    ),
+    url("./assets/index-main-bg.png")
+    center/cover no-repeat !important;
+}
+
+.login-card{
+  width:min(540px,100%) !important;
+  padding:42px 44px !important;
+  background:#f7f7f7 !important;
+  border:0 !important;
+  border-radius:28px !important;
+  box-shadow:0 28px 90px rgba(0,0,0,.48) !important;
+  color:#1d2638 !important;
+}
+
+.login-box{
+  width:min(540px,100%) !important;
+  padding:42px 44px !important;
+  background:#f7f7f7 !important;
+  border:0 !important;
+  border-radius:28px !important;
+  box-shadow:0 28px 90px rgba(0,0,0,.48) !important;
+  color:#1d2638 !important;
+}
+
+.login-logo{
+  display:block !important;
+  width:116px !important;
+  height:116px !important;
+  object-fit:contain !important;
+  margin:0 auto 14px !important;
+}
+
+.login-title{
+  margin:0 !important;
+  text-align:center !important;
+  color:#1d2638 !important;
+  font-family:"Kanit","Prompt",sans-serif !important;
+  font-size:30px !important;
+  font-weight:700 !important;
+  letter-spacing:0 !important;
+}
+
+.login-title span{
+  color:#1d2638 !important;
+}
+
+.login-subtitle{
+  margin:10px 0 30px !important;
+  text-align:center !important;
+  color:#737b89 !important;
+  line-height:1.75 !important;
+  font-size:15px !important;
+}
+
+.login-box .field{
+  margin-bottom:18px !important;
+}
+
+.login-box .field label{
+  display:block !important;
+  margin-bottom:8px !important;
+  color:#273246 !important;
+  font-size:14px !important;
+  font-weight:600 !important;
+}
+
+.login-box .field input{
+  width:100% !important;
+  height:62px !important;
+  padding:0 18px !important;
+  border:1px solid #d5dce8 !important;
+  border-radius:14px !important;
+  outline:none !important;
+  background:#eaf1fc !important;
+  color:#263245 !important;
+  font-size:17px !important;
+}
+
+.login-box .field input:focus{
+  border-color:#5879aa !important;
+  box-shadow:0 0 0 3px rgba(88,121,170,.12) !important;
+}
+
+.password-wrap{
+  position:relative !important;
+}
+
+.password-wrap input{
+  padding-right:92px !important;
+}
+
+.show-password{
+  position:absolute !important;
+  top:7px !important;
+  right:7px !important;
+  bottom:7px !important;
+  width:70px !important;
+  border:0 !important;
+  border-radius:10px !important;
+  background:#f5f8fc !important;
+  color:#273246 !important;
+  font-weight:500 !important;
+}
+
+.login-btn{
+  width:100% !important;
+  height:58px !important;
+  margin-top:8px !important;
+  border:0 !important;
+  border-radius:14px !important;
+  background:#183c76 !important;
+  color:#fff !important;
+  font-size:16px !important;
+  font-weight:700 !important;
+  box-shadow:none !important;
+}
+
+.login-btn:hover{
+  background:#123365 !important;
+}
+
+.login-error{
+  display:none;
+  margin-top:14px !important;
+  padding:12px 14px !important;
+  border-radius:10px !important;
+  background:#fff0f0 !important;
+  border:1px solid #efb4b4 !important;
+  color:#b42323 !important;
+  font-size:13px !important;
+  line-height:1.6 !important;
+}
+
+.login-error.show{
+  display:block !important;
+}
+
+.header .brand-logo{
+  width:62px !important;
+  height:62px !important;
+  flex-shrink:0 !important;
+}
+
+.header .brand-logo img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+}
+
+.header .brand-title{
+  font-size:20px !important;
+  font-weight:700 !important;
+}
+
+.header .brand-title span{
+  color:var(--gold-light) !important;
+}
+
+@media(max-width:1050px){
+  .header-inner{
+    gap:16px !important;
+  }
+  .nav{
+    gap:0 !important;
+  }
+  .nav a{
+    padding:12px 10px !important;
+    font-size:12px !important;
+  }
+}
+
+@media(max-width:850px){
+  .header-inner{
+    min-height:78px !important;
+  }
+  .nav{
+    flex-wrap:wrap !important;
+    justify-content:flex-end !important;
+  }
+  .user-area{
+    display:none !important;
+  }
+}
+
+@media(max-width:650px){
+  .login-box{
+    padding:34px 22px !important;
+    border-radius:22px !important;
+  }
+  .login-title{
+    font-size:26px !important;
+  }
+  .login-logo{
+    width:100px !important;
+    height:100px !important;
+  }
+}
+
 </style>
 
 </head>
@@ -1084,34 +1311,73 @@ MOBILE
 LOGIN
 ========================================================= -->
 
-<section class="login-screen" id="loginScreen">
+<section id="loginScreen" class="login-screen">
 
-  <div class="login-card">
+  <div class="login-box">
 
     <img
+      src="./assets/logo.png"
       class="login-logo"
-      src="assets/logo.png"
       alt="CHATPHETCH GROUP"
     >
 
-    <div class="login-title">
+    <h1 class="login-title">
+      ระบบผู้ดูแลเว็บไซต์
+    </h1>
+
+    <div class="login-subtitle">
+      บริษัท ฉัตรเพชรกรุ๊ป จำกัด<br>
       CHATPETCH GROUP
     </div>
 
-    <div class="login-sub">
-      PRODUCT MANAGEMENT
-    </div>
+    <form id="loginForm">
 
-    <button
-      class="google-btn"
-      id="googleLogin"
-    >
-      เข้าสู่ระบบด้วย Google
-    </button>
+      <div class="field">
+        <label>
+          Email
+        </label>
+        <input
+          id="email"
+          type="email"
+          autocomplete="username"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label>
+          รหัสผ่าน
+        </label>
+        <div class="password-wrap">
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          >
+          <button
+            type="button"
+            class="show-password"
+            id="showPassword"
+          >
+            แสดง
+          </button>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="login-btn"
+        id="loginButton"
+      >
+        เข้าสู่ระบบ
+      </button>
+
+    </form>
 
     <div
-      class="login-error"
       id="loginError"
+      class="login-error"
     ></div>
 
   </div>
@@ -1131,77 +1397,57 @@ APP
   <div class="header-inner">
 
     <a
-      href="admin.html"
+      href="admin-dashboard.html"
       class="brand"
     >
-
       <div class="brand-logo">
-
         <img
-          src="assets/logo.png"
+          src="./assets/logo.png"
           alt="CHATPHETCH GROUP"
         >
-
       </div>
-
       <div class="brand-text">
-
         <div class="brand-title">
           CHAT<span>PHETCH</span> GROUP
         </div>
-
         <div class="brand-sub">
           BACK OFFICE
         </div>
-
       </div>
-
     </a>
 
-
     <nav class="nav">
-
-      <a href="admin.html">
+      <a href="admin-dashboard.html">
         หน้าแรก
       </a>
-
-      <a
-        href="products.html"
-        target="_self"
-      >
+      <a href="products.html">
         สินค้า
       </a>
-
       <a
         href="admin-products.html"
         class="active"
       >
         จัดการสินค้า
       </a>
-
       <a href="admin-users.html">
         ผู้ใช้งาน
       </a>
-
     </nav>
 
-
     <div class="user-area">
-
       <span
         class="role"
         id="roleText"
       >
         -
       </span>
-
       <button
         class="logout"
         id="logoutBtn"
+        type="button"
       >
         ออกจากระบบ
       </button>
-
     </div>
 
   </div>
@@ -1481,16 +1727,10 @@ PRODUCT MODAL
               หมวดหมู่
             </label>
 
-            <select id="productCategory">
-              <option value="floor">floor — วัสดุงานพื้น</option>
-              <option value="coating">coating — สี / น้ำยา</option>
-              <option value="construction">construction — วัสดุก่อสร้าง</option>
-              <option value="equipment">equipment — อุปกรณ์</option>
-            </select>
-
-            <div class="help">
-              ใช้หมวดหมู่เดียวกับหน้า Products เพื่อให้สินค้าใหม่แสดงถูกหมวด
-            </div>
+            <input
+              id="productCategory"
+              placeholder="เช่น floor"
+            >
 
           </div>
 
@@ -1503,13 +1743,8 @@ PRODUCT MODAL
 
             <input
               id="productCategoryLabel"
-              readonly
-              aria-readonly="true"
+              placeholder="เช่น พื้น"
             >
-
-            <div class="help">
-              ชื่อหมวดหมู่นี้จะกำหนดอัตโนมัติจากหมวดหมู่ด้านบน เพื่อให้ตรงกับหน้า Products
-            </div>
 
           </div>
 
@@ -1522,43 +1757,11 @@ PRODUCT MODAL
 
             <input
               id="productImage"
-              placeholder="URL หรือ path รูปสินค้า"
-            >
-
-            <input
-              id="productImageFile"
-              type="file"
-              accept="image/jpeg,image/png,image/webp"
-              style="margin-top:10px;"
+              placeholder="assets/products/91428.jpg"
             >
 
             <div class="help">
-              เลือกไฟล์เพื่ออัปโหลดเข้า Supabase Storage หรือใส่ URL เองก็ได้
-            </div>
-
-          </div>
-
-
-          <div class="field form-full">
-
-            <label>
-              PDF / เอกสารประกอบสินค้า
-            </label>
-
-            <input
-              id="productPdf"
-              placeholder="URL PDF (ถ้ามี)"
-            >
-
-            <input
-              id="productPdfFile"
-              type="file"
-              accept="application/pdf"
-              style="margin-top:10px;"
-            >
-
-            <div class="help">
-              PDF จะอัปโหลดเข้า Supabase Storage bucket <b>product-pdfs</b>
+              ใส่ path รูป เช่น assets/products/91428.jpg
             </div>
 
           </div>
@@ -1767,8 +1970,20 @@ const loginScreen =
 const loginError =
   document.getElementById("loginError");
 
-const googleLogin =
-  document.getElementById("googleLogin");
+const loginForm =
+  document.getElementById("loginForm");
+
+const emailInput =
+  document.getElementById("email");
+
+const passwordInput =
+  document.getElementById("password");
+
+const loginButton =
+  document.getElementById("loginButton");
+
+const showPassword =
+  document.getElementById("showPassword");
 
 const app =
   document.getElementById("app");
@@ -1814,15 +2029,6 @@ const productForm =
 
 const optionsBox =
   document.getElementById("optionsBox");
-
-const productImageFile =
-  document.getElementById("productImageFile");
-
-const productPdf =
-  document.getElementById("productPdf");
-
-const productPdfFile =
-  document.getElementById("productPdfFile");
 
 const addOptionBtn =
   document.getElementById("addOptionBtn");
@@ -2065,68 +2271,57 @@ async function handleSession(session){
 
 
 /* =========================================================
-GOOGLE LOGIN
+EMAIL / PASSWORD LOGIN
 ========================================================= */
 
-googleLogin.addEventListener(
+showPassword.addEventListener(
   "click",
-  async ()=>{
+  ()=>{
+    if(passwordInput.type === "password"){
+      passwordInput.type = "text";
+      showPassword.textContent = "ซ่อน";
+    }else{
+      passwordInput.type = "password";
+      showPassword.textContent = "แสดง";
+    }
+  }
+);
 
+loginForm.addEventListener(
+  "submit",
+  async event=>{
+    event.preventDefault();
     hideLoginError();
 
-    googleLogin.disabled =
-      true;
+    const email = emailInput.value.trim().toLowerCase();
+    const password = passwordInput.value;
 
-    googleLogin.textContent =
-      "กำลังเข้าสู่ระบบ...";
-
+    loginButton.disabled = true;
+    loginButton.textContent = "กำลังเข้าสู่ระบบ...";
 
     try{
-
-      const redirectTo =
-        window.location.origin +
-        window.location.pathname;
-
-
-      const {
-        error
-      } =
-        await supabaseClient
-          .auth
-          .signInWithOAuth({
-
-            provider:"google",
-
-            options:{
-              redirectTo
-            }
-
-          });
-
+      const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
 
       if(error){
         throw error;
       }
 
+      await handleSession(data.session);
 
     }catch(error){
-
-      console.error(
-        error
-      );
-
+      console.error("LOGIN ERROR:", error);
       showLoginError(
         error.message ||
         "เข้าสู่ระบบไม่สำเร็จ"
       );
-
-      googleLogin.disabled =
-        false;
-
-      googleLogin.textContent =
-        "เข้าสู่ระบบด้วย Google";
+    }finally{
+      loginButton.disabled = false;
+      loginButton.textContent = "เข้าสู่ระบบ";
     }
-
   }
 );
 
@@ -2446,48 +2641,6 @@ function getFilteredProducts(){
     }
   );
 
-}
-
-
-/* =========================================================
-SUPABASE STORAGE UPLOAD
-========================================================= */
-
-async function uploadProductFile(file, bucket, productId){
-
-  if(!file) return "";
-
-  const user = currentUser;
-
-  if(!user || !user.id){
-    throw new Error("ไม่พบผู้ใช้งานสำหรับอัปโหลดไฟล์");
-  }
-
-  const safeId = String(productId || "product")
-    .replace(/[^a-zA-Z0-9_-]/g, "-");
-
-  const ext = (file.name.split(".").pop() || "bin")
-    .toLowerCase()
-    .replace(/[^a-z0-9]/g, "");
-
-  const path = `${user.id}/${safeId}-${Date.now()}.${ext}`;
-
-  const { error } = await supabaseClient
-    .storage
-    .from(bucket)
-    .upload(path, file, {
-      upsert:false,
-      contentType:file.type || undefined
-    });
-
-  if(error) throw error;
-
-  const { data } = supabaseClient
-    .storage
-    .from(bucket)
-    .getPublicUrl(path);
-
-  return data?.publicUrl || "";
 }
 
 
@@ -2912,35 +3065,7 @@ function renderProducts(){
 OPEN ADD
 ========================================================= */
 
-function getCategoryLabel(category){
-
-  const labels = {
-    floor: "วัสดุงานพื้น",
-    coating: "สี / น้ำยา",
-    construction: "วัสดุก่อสร้าง",
-    equipment: "อุปกรณ์"
-  };
-
-  return labels[String(category || "").trim()] || "สินค้า";
-
-}
-
-
-function syncProductCategoryLabel(){
-
-  const category = document.getElementById("productCategory");
-  const label = document.getElementById("productCategoryLabel");
-
-  if(!category || !label) return;
-
-  label.value = getCategoryLabel(category.value);
-
-}
-
-
 function openAddProduct(){
-
-  syncProductCategoryLabel();
 
   if(
     !canManageProducts()
@@ -2964,9 +3089,6 @@ function openAddProduct(){
 
 
   productForm.reset();
-
-  if(productImageFile) productImageFile.value = "";
-  if(productPdfFile) productPdfFile.value = "";
 
   clearOptions();
 
@@ -3055,21 +3177,13 @@ function openEditProduct(
   document.getElementById(
     "productCategoryLabel"
   ).value =
-    getCategoryLabel(product.category);
+    product.category_label || "";
 
 
   document.getElementById(
     "productImage"
   ).value =
     product.image || "";
-
-  if(productPdf){
-    productPdf.value =
-      product.spec_pdf_url || "";
-  }
-
-  if(productImageFile) productImageFile.value = "";
-  if(productPdfFile) productPdfFile.value = "";
 
 
   document.getElementById(
@@ -3237,42 +3351,6 @@ productForm.addEventListener(
         : [];
 
 
-    saveBtn.disabled = true;
-    saveBtn.textContent = "กำลังเตรียมไฟล์...";
-
-    let imageUrl =
-      document.getElementById("productImage").value.trim();
-
-    let pdfUrl =
-      productPdf ? productPdf.value.trim() : "";
-
-    try{
-      if(productImageFile?.files?.[0]){
-        imageUrl = await uploadProductFile(
-          productImageFile.files[0],
-          "product-images",
-          id
-        );
-      }
-
-      if(productPdfFile?.files?.[0]){
-        pdfUrl = await uploadProductFile(
-          productPdfFile.files[0],
-          "product-pdfs",
-          id
-        );
-      }
-    }catch(uploadError){
-      console.error("UPLOAD PRODUCT FILE ERROR:", uploadError);
-      saveBtn.disabled = false;
-      saveBtn.textContent = "บันทึกสินค้า";
-      showToast(
-        uploadError?.message || "อัปโหลดไฟล์ไม่สำเร็จ กรุณาตรวจสอบ Storage policy",
-        "error"
-      );
-      return;
-    }
-
     const productData = {
 
       id,
@@ -3290,10 +3368,9 @@ productForm.addEventListener(
         ).value.trim(),
 
       image:
-        imageUrl,
-
-      spec_pdf_url:
-        pdfUrl,
+        document.getElementById(
+          "productImage"
+        ).value.trim(),
 
       short_desc:
         document.getElementById(
@@ -3335,49 +3412,55 @@ productForm.addEventListener(
 
     try{
 
-      let saveResult;
-
-      if(editingProductId){
-        saveResult = await supabaseClient
-          .from("products")
-          .update(productData)
-          .eq("id", editingProductId);
-      }else{
-        saveResult = await supabaseClient
-          .from("products")
-          .insert(productData);
-      }
-
-      /* รองรับฐานข้อมูลเดิมที่ยังไม่มี spec_pdf_url */
-      if(saveResult.error && /spec_pdf_url|column .* does not exist/i.test(saveResult.error.message || "")){
-        const fallback = {...productData};
-        delete fallback.spec_pdf_url;
-
-        if(editingProductId){
-          saveResult = await supabaseClient
-            .from("products")
-            .update(fallback)
-            .eq("id", editingProductId);
-        }else{
-          saveResult = await supabaseClient
-            .from("products")
-            .insert(fallback);
-        }
-
-        if(!saveResult.error && pdfUrl){
-          showToast("บันทึกสินค้าแล้ว แต่ยังไม่ได้บันทึก URL PDF เพราะตาราง products ยังไม่มีคอลัมน์ spec_pdf_url", "error");
-        }
-      }
-
-      if(saveResult.error){
-        throw saveResult.error;
-      }
-
-      showToast(
+      if(
         editingProductId
-          ? "แก้ไขสินค้าเรียบร้อยแล้ว"
-          : "เพิ่มสินค้าเรียบร้อยแล้ว"
-      );
+      ){
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("products")
+            .update(
+              productData
+            )
+            .eq(
+              "id",
+              editingProductId
+            );
+
+
+        if(error){
+          throw error;
+        }
+
+
+        showToast(
+          "แก้ไขสินค้าเรียบร้อยแล้ว"
+        );
+
+      }else{
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("products")
+            .insert(
+              productData
+            );
+
+
+        if(error){
+          throw error;
+        }
+
+
+        showToast(
+          "เพิ่มสินค้าเรียบร้อยแล้ว"
+        );
+
+      }
 
 
       closeProductModal();
@@ -3702,20 +3785,6 @@ categoryFilter.addEventListener(
   "change",
   renderProducts
 );
-
-
-const productCategorySelect =
-  document.getElementById("productCategory");
-
-if(productCategorySelect){
-  productCategorySelect.addEventListener(
-    "change",
-    syncProductCategoryLabel
-  );
-}
-
-
-syncProductCategoryLabel();
 
 
 /* =========================================================
