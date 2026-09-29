@@ -306,6 +306,87 @@ button{
   color:#fff;
 }
 
+/* ================= SETTINGS FORM ================= */
+
+.settings-card{
+  max-width:1100px;
+}
+
+.settings-form{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px 24px;
+}
+
+.settings-field{
+  margin:0;
+}
+
+.settings-field.full{
+  grid-column:1 / -1;
+}
+
+.settings-field label{
+  display:block;
+  margin:0 0 9px;
+  color:#e9e9e9;
+  font-size:13px;
+  font-weight:600;
+}
+
+.settings-field input,
+.settings-field textarea{
+  display:block;
+  width:100%;
+  min-height:48px;
+  padding:13px 15px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:10px;
+  background:rgba(0,0,0,.42);
+  color:#fff;
+  outline:none;
+  font-family:"Prompt",sans-serif;
+  font-size:14px;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+
+.settings-field textarea{
+  min-height:125px;
+  resize:vertical;
+  line-height:1.7;
+}
+
+.settings-field input:focus,
+.settings-field textarea:focus{
+  border-color:rgba(216,182,91,.72);
+  box-shadow:0 0 0 3px rgba(216,182,91,.10);
+}
+
+.settings-actions{
+  grid-column:1 / -1;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding-top:4px;
+}
+
+.settings-note{
+  color:#777;
+  font-size:12px;
+  line-height:1.7;
+}
+
+@media(max-width:800px){
+  .settings-form{
+    grid-template-columns:1fr;
+  }
+
+  .settings-field.full,
+  .settings-actions{
+    grid-column:auto;
+  }
+}
+
 /* ================= MAIN ================= */
 
 .main{
@@ -748,133 +829,6 @@ td{
   }
 
 }
-
-/* =====================================================
-   UNIFIED LOGIN UI
-===================================================== */
-
-
-#loginScreen{
-  position:fixed;
-  inset:0;
-  z-index:5000;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:24px;
-  background:
-    linear-gradient(
-      rgba(8,12,18,.54),
-      rgba(8,12,18,.72)
-    ),
-    url("./assets/index-main-bg.png")
-    center/cover no-repeat;
-}
-
-.login-box{
-  width:min(540px,100%);
-  max-width:none;
-  padding:42px 44px;
-  background:#f7f7f7;
-  border:0;
-  border-radius:28px;
-  box-shadow:0 28px 90px rgba(0,0,0,.48);
-  color:#1d2638;
-}
-
-.login-logo{
-  width:116px;
-  height:116px;
-  margin:0 auto 14px;
-}
-
-.login-title{
-  color:#1d2638;
-  font-family:"Kanit","Prompt",sans-serif;
-  font-size:30px;
-  font-weight:700;
-  letter-spacing:0;
-}
-
-.login-subtitle{
-  color:#737b89;
-  line-height:1.75;
-  margin:10px 0 30px;
-  font-size:15px;
-}
-
-.login-box .field label{
-  color:#273246;
-  font-size:14px;
-  font-weight:600;
-}
-
-.login-box .field input{
-  height:62px;
-  padding:0 18px;
-  border:1px solid #d5dce8;
-  border-radius:14px;
-  background:#eaf1fc;
-  color:#263245;
-  font-size:17px;
-}
-
-.login-box .field input:focus{
-  border-color:#5879aa;
-  box-shadow:0 0 0 3px rgba(88,121,170,.12);
-}
-
-.password-wrap input{
-  padding-right:92px !important;
-}
-
-.show-password{
-  top:7px;
-  right:7px;
-  bottom:7px;
-  width:70px;
-  border:0;
-  border-radius:10px;
-  background:#f5f8fc;
-  color:#273246;
-}
-
-.login-btn{
-  height:58px;
-  margin-top:8px;
-  border-radius:14px;
-  background:#183c76;
-  color:#fff;
-  font-size:16px;
-  font-weight:700;
-}
-
-.login-btn:hover{
-  background:#123365;
-}
-
-.login-error.show{
-  background:#fff0f0;
-  border-color:#efb4b4;
-  color:#b42323;
-}
-
-@media(max-width:600px){
-  .login-box{
-    padding:34px 22px;
-    border-radius:22px;
-  }
-  .login-title{
-    font-size:26px;
-  }
-  .login-logo{
-    width:100px;
-    height:100px;
-  }
-}
-
-
 </style>
 </head>
 
@@ -895,12 +849,12 @@ td{
     >
 
     <h1 class="login-title">
-      ระบบผู้ดูแลเว็บไซต์
+      CHATPHETCH <span>GROUP</span>
     </h1>
 
     <div class="login-subtitle">
-      บริษัท ฉัตรเพชรกรุ๊ป จำกัด<br>
-      CHATPETCH GROUP
+      ระบบจัดการหลังบ้าน<br>
+      Admin / Back Office
     </div>
 
     <form id="loginForm">
@@ -1003,7 +957,6 @@ td{
     <nav id="nav" class="nav">
 
       <button
-        class="active"
         data-page="dashboard"
         type="button"
       >
@@ -1047,6 +1000,7 @@ td{
       </button>
 
       <button
+        class="active"
         data-page="settings"
         type="button"
       >
@@ -1555,53 +1509,95 @@ td{
         ตั้งค่า
       </h1>
 
+      <div class="page-description">
+        ข้อมูลบริษัทที่ใช้แสดงบนเว็บไซต์
+      </div>
+
     </div>
 
   </div>
 
-  <div class="card">
+  <div class="card settings-card">
 
-    <form id="settingsForm">
+    <div class="card-head">
+      <div>
+        <h3>ข้อมูลบริษัท</h3>
+      </div>
+    </div>
 
-      <div class="field">
-        <label>ชื่อบริษัท</label>
-        <input id="companyName">
+    <form
+      id="settingsForm"
+      class="settings-form"
+    >
+
+      <div class="settings-field">
+        <label for="companyName">ชื่อบริษัท</label>
+        <input
+          id="companyName"
+          type="text"
+          placeholder="บริษัท ฉัตรเพชรกรุ๊ป จำกัด"
+        >
       </div>
 
-      <div class="field">
-        <label>เบอร์โทรศัพท์</label>
-        <input id="companyPhone">
+      <div class="settings-field">
+        <label for="companyPhone">เบอร์โทรศัพท์</label>
+        <input
+          id="companyPhone"
+          type="tel"
+          placeholder="02-xxx-xxxx"
+        >
       </div>
 
-      <div class="field">
-        <label>Email</label>
-        <input id="companyEmail">
+      <div class="settings-field">
+        <label for="companyEmail">Email</label>
+        <input
+          id="companyEmail"
+          type="email"
+          placeholder="example@chatpetchgroup.com"
+        >
       </div>
 
-      <div class="field">
-        <label>ที่อยู่</label>
+      <div class="settings-field">
+        <label for="facebook">Facebook</label>
+        <input
+          id="facebook"
+          type="url"
+          placeholder="https://facebook.com/..."
+        >
+      </div>
+
+      <div class="settings-field full">
+        <label for="companyAddress">ที่อยู่</label>
         <textarea
           id="companyAddress"
           rows="4"
+          placeholder="ที่อยู่บริษัท"
         ></textarea>
       </div>
 
-      <div class="field">
-        <label>Facebook</label>
-        <input id="facebook">
+      <div class="settings-field">
+        <label for="line">LINE</label>
+        <input
+          id="line"
+          type="text"
+          placeholder="@chatpetch"
+        >
       </div>
 
-      <div class="field">
-        <label>LINE</label>
-        <input id="line">
-      </div>
+      <div class="settings-actions">
 
-      <button
-        class="btn gold owner-only"
-        type="submit"
-      >
-        บันทึกข้อมูล
-      </button>
+        <button
+          class="btn gold owner-only"
+          type="submit"
+        >
+          บันทึกข้อมูล
+        </button>
+
+        <div class="settings-note">
+          ข้อมูลนี้จะถูกใช้เป็นข้อมูลบริษัทในระบบเว็บไซต์
+        </div>
+
+      </div>
 
     </form>
 
