@@ -2338,7 +2338,7 @@ const logoutBtn =
   document.getElementById("logoutButton");
 
 const roleText =
-  document.getElementById("roleText");
+  document.getElementById("roleBadge");
 
 const productsGrid =
   document.getElementById("productsGrid");
@@ -2386,74 +2386,44 @@ const toast =
   document.getElementById("toast");
 
 
-/* =========================================================
-HELPER
-========================================================= */
-
-function escapeHTML(value){
-
-  if(
-    value === null ||
-    value === undefined
-  ){
-    return "";
+function setText(element, value){
+  if(element){
+    element.textContent = String(value ?? "");
   }
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
 }
 
 
-function showToast(
-  message,
-  type=""
-){
+function showToast(message, type=""){
+  if(!toast) return;
 
-  toast.textContent =
-    message;
+  setText(toast, message);
+  toast.className = "toast show " + type;
 
-  toast.className =
-    "toast show " +
-    type;
+  clearTimeout(window.__toastTimer);
 
-  clearTimeout(
-    window.__toastTimer
+  window.__toastTimer = setTimeout(()=>{
+    toast.className = "toast";
+  },3000);
+}
+
+
+function showLoginError(message){
+  if(!loginError) return;
+
+  setText(
+    loginError,
+    message || "ไม่สามารถเข้าสู่ระบบได้"
   );
 
-  window.__toastTimer =
-    setTimeout(
-      ()=>{
-        toast.className =
-          "toast";
-      },
-      3000
-    );
-}
-
-
-function showLoginError(
-  message
-){
-
-  loginError.textContent =
-    message;
-
-  loginError.style.display =
-    "block";
+  loginError.style.display = "block";
 }
 
 
 function hideLoginError(){
+  if(!loginError) return;
 
-  loginError.textContent =
-    "";
-
-  loginError.style.display =
-    "none";
+  setText(loginError, "");
+  loginError.style.display = "none";
 }
 
 
@@ -2463,114 +2433,120 @@ ROLE
 
 async function loadRole(user){
 
-  const {
-    data,
-    error
-  } =
+  const result =
     await supabaseClient
       .from("admin_users")
-      .select(`
-        role,
-        active
-      `)
-      .eq(
-        "user_id",
-        user.id
-      )
-      .maybeSingle();
+      .select("role,active")
+      .eq("user_id",user.id)
+      .limit(1);
 
-
-  if(error){
-    throw error;
+  if(result.error){
+    throw result.error;
   }
 
+  const data =
+    result.data &&
+    result.data.length
+      ? result.data[0]
+      : null;
 
   if(!data){
     throw new Error(
-      "บัญชีนี้ยังไม่ได้ถูกเพิ่มใน admin_users"
+      "ไม่พบบัญชีผู้ดูแลในระบบ"
     );
   }
 
-
-  if(!data.active){
+  if(data.active === false){
     throw new Error(
       "บัญชีผู้ดูแลนี้ถูกปิดใช้งาน"
     );
   }
 
-
   currentRole =
-    data.role;
-
-  roleText.textContent =
     String(
-      data.role || "admin"
-    ).toUpperCase();
+      data.role || "viewer"
+    ).toLowerCase();
 
+  setText(
+    roleText,
+    currentRole.toUpperCase()
+  );
 
-  return data.role;
+  return currentRole;
 }
 
 
-/* =========================================================
-PERMISSION
-========================================================= */
-
 function canManageProducts(){
-
   return [
     "owner",
     "manager"
-  ].includes(
-    currentRole
-  );
+  ].includes(currentRole);
 }
 
 
 /* =========================================================
-AUTH
+AUTH UI
 ========================================================= */
 
 function showLogin(){
 
-  loading.style.display =
-    "none";
+  if(loading){
+    loading.style.display = "none";
+  }
 
-  app.style.display =
-    "none";
+  if(app){
+    app.style.display = "none";
+  }
 
-  loginScreen.style.display =
-    "flex";
+  if(loginScreen){
+    loginScreen.style.display = "flex";
+  }
 }
 
 
 async function showApp(user){
 
-  loading.style.display =
-    "none";
+  if(loading){
+    loading.style.display = "none";
+  }
 
-  loginScreen.style.display =
-    "none";
+  if(loginScreen){
+    loginScreen.style.display = "none";
+  }
 
-  app.style.display =
-    "block";
+  if(app){
+    app.style.display = "block";
+  }
 
   await loadProducts();
 }
 
 
-async function handleSession(session){
+/* =========================================================
+START APP FROM SESSION
+========================================================= */
 
-  if(!session?.user){
+let authStarting = false;
 
-    currentUser = null;
-    currentRole = null;
+async function startWithSession(session){
 
-    showLogin();
-
+  if(
+    authStarting
+  ){
     return;
   }
 
+  if(
+    !session ||
+    !session.user
+  ){
+    currentUser = null;
+    currentRole = null;
+    showLogin();
+    return;
+  }
+
+  authStarting = true;
 
   try{
 
@@ -2581,142 +2557,201 @@ async function handleSession(session){
       session.user
     );
 
-
     if(
       !canManageProducts()
     ){
-
       throw new Error(
         "บัญชีนี้ไม่มีสิทธิ์จัดการสินค้า"
       );
     }
 
-
     await showApp(
       session.user
     );
 
-
   }catch(error){
 
     console.error(
-      "AUTH ERROR:",
+      "PRODUCT AUTH ERROR:",
       error
     );
 
     currentUser = null;
+    currentRole = null;
 
     showLogin();
 
     showLoginError(
-      error.message ||
-      "ไม่สามารถเข้าสู่ระบบได้"
+      error?.message ||
+      "ไม่สามารถเปิดหน้าจัดการสินค้าได้"
     );
+
+  }finally{
+
+    authStarting = false;
+
   }
 }
 
 
 /* =========================================================
-EMAIL / PASSWORD LOGIN
+PASSWORD
 ========================================================= */
 
-showPassword.addEventListener(
-  "click",
-  ()=>{
-    if(passwordInput.type === "password"){
-      passwordInput.type = "text";
-      showPassword.textContent = "ซ่อน";
-    }else{
-      passwordInput.type = "password";
-      showPassword.textContent = "แสดง";
-    }
-  }
-);
+if(showPassword){
 
-loginForm.addEventListener(
-  "submit",
-  async event=>{
-    event.preventDefault();
-    hideLoginError();
-
-    const email = emailInput.value.trim().toLowerCase();
-    const password = passwordInput.value;
-
-    loginButton.disabled = true;
-    loginButton.textContent = "กำลังเข้าสู่ระบบ...";
-
-    try{
-      const { data, error } =
-        await supabaseClient.auth.signInWithPassword({
-          email,
-          password
-        });
-
-      if(error){
-        throw error;
+  showPassword.addEventListener(
+    "click",
+    ()=>{
+      if(
+        passwordInput.type === "password"
+      ){
+        passwordInput.type = "text";
+        setText(
+          showPassword,
+          "ซ่อน"
+        );
+      }else{
+        passwordInput.type = "password";
+        setText(
+          showPassword,
+          "แสดง"
+        );
       }
-
-      await handleSession(data.session);
-
-    }catch(error){
-      console.error("LOGIN ERROR:", error);
-      showLoginError(
-        error.message ||
-        "เข้าสู่ระบบไม่สำเร็จ"
-      );
-    }finally{
-      loginButton.disabled = false;
-      loginButton.textContent = "เข้าสู่ระบบ";
     }
-  }
-);
+  );
+
+}
 
 
 /* =========================================================
-AUTH STATE
+LOGIN
 ========================================================= */
+
+if(loginForm){
+
+  loginForm.addEventListener(
+    "submit",
+    async event=>{
+
+      event.preventDefault();
+
+      hideLoginError();
+
+      const email =
+        emailInput.value
+          .trim()
+          .toLowerCase();
+
+      const password =
+        passwordInput.value;
+
+      loginButton.disabled = true;
+
+      setText(
+        loginButton,
+        "กำลังเข้าสู่ระบบ..."
+      );
+
+      try{
+
+        const result =
+          await supabaseClient.auth
+            .signInWithPassword({
+              email,
+              password
+            });
+
+        if(result.error){
+          throw result.error;
+        }
+
+        const session =
+          result.data?.session;
+
+        if(!session){
+          throw new Error(
+            "เข้าสู่ระบบสำเร็จ แต่ไม่พบ Session"
+          );
+        }
+
+        await startWithSession(
+          session
+        );
+
+      }catch(error){
+
+        console.error(
+          "LOGIN ERROR:",
+          error
+        );
+
+        showLoginError(
+          error?.message ||
+          "เข้าสู่ระบบไม่สำเร็จ"
+        );
+
+      }finally{
+
+        loginButton.disabled = false;
+
+        setText(
+          loginButton,
+          "เข้าสู่ระบบ"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+SESSION CHECK
+========================================================= */
+
+async function checkExistingSession(){
+
+  try{
+
+    const result =
+      await supabaseClient.auth
+        .getSession();
+
+    if(result.error){
+      throw result.error;
+    }
+
+    await startWithSession(
+      result.data?.session || null
+    );
+
+  }catch(error){
+
+    console.error(
+      "SESSION CHECK ERROR:",
+      error
+    );
+
+    showLogin();
+
+  }
+
+}
+
 
 supabaseClient.auth
   .onAuthStateChange(
-    (
-      event,
-      session
-    )=>{
+    (event,session)=>{
 
       if(
         event === "SIGNED_OUT"
       ){
-
         currentUser = null;
         currentRole = null;
-
         showLogin();
-
-        return;
-      }
-
-      /*
-        SIGNED_IN:
-        การ Login เองเรียก handleSession() อยู่แล้ว
-        จึงไม่เรียกซ้ำจาก event นี้ เพื่อป้องกัน
-        หน้า Login/หน้า Products กระพริบหรือโหลดซ้ำ
-
-        TOKEN_REFRESHED:
-        ตรวจ Session ใหม่เมื่อ Supabase ต่ออายุ Token
-      */
-      if(
-        event === "TOKEN_REFRESHED" &&
-        session
-      ){
-
-        setTimeout(
-          ()=>{
-            handleSession(
-              session
-            );
-          },
-          0
-        );
       }
 
     }
@@ -2724,75 +2759,33 @@ supabaseClient.auth
 
 
 /* =========================================================
-INITIAL SESSION
-========================================================= */
-
-/*
-  สำคัญสำหรับการเปลี่ยนจาก Dashboard -> Products
-
-  Supabase เก็บ Session ไว้ใน browser อยู่แล้ว
-  แต่ INITIAL_SESSION ไม่ได้ถูกจัดการด้วย listener ด้านบน
-  ดังนั้นเมื่อเปิด admin-products.html โดยตรง
-  ต้องอ่าน Session ที่มีอยู่แล้วด้วย getSession()
-*/
-(async function initAdminProducts(){
-
-  try{
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient.auth.getSession();
-
-    if(error){
-      throw error;
-    }
-
-    if(data && data.session){
-
-      await handleSession(
-        data.session
-      );
-
-      return;
-    }
-
-    showLogin();
-
-  }catch(error){
-
-    console.error(
-      "INITIAL SESSION ERROR:",
-      error
-    );
-
-    showLogin();
-
-    showLoginError(
-      error.message ||
-      "ไม่สามารถตรวจสอบ Session ได้"
-    );
-
-  }
-
-})();
-
-
-/* =========================================================
 LOGOUT
 ========================================================= */
 
-logoutBtn.addEventListener(
-  "click",
-  async ()=>{
+if(logoutBtn){
 
-    await supabaseClient
-      .auth
-      .signOut();
+  logoutBtn.addEventListener(
+    "click",
+    async ()=>{
 
-  }
-);
+      await supabaseClient.auth.signOut();
+
+      currentUser = null;
+      currentRole = null;
+
+      showLogin();
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+START
+========================================================= */
+
+checkExistingSession();
 
 
 /* =========================================================
