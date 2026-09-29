@@ -1625,7 +1625,7 @@ if(
   );
 }
 
-const supabase =
+const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY,
@@ -1887,7 +1887,7 @@ async function(event){
 
 
     const result =
-      await supabase.auth
+      await supabaseClient.auth
         .signInWithPassword({
 
           email,
@@ -1997,7 +1997,7 @@ function(){
    AUTH STATE
 ===================================================== */
 
-supabase.auth.onAuthStateChange(
+supabaseClient.auth.onAuthStateChange(
   function(
     event,
     session
@@ -2022,7 +2022,7 @@ supabase.auth.onAuthStateChange(
 $("logoutButton").onclick =
 async function(){
 
-  await supabase.auth.signOut();
+  await supabaseClient.auth.signOut();
 
   location.reload();
 
@@ -2050,7 +2050,7 @@ async function loadCurrentUser(){
 
 
   const result =
-    await supabase
+    await supabaseClient
       .from("admin_users")
       .select(
         "id,user_id,email,name,role,active,created_at"
@@ -2089,7 +2089,7 @@ async function loadCurrentUser(){
     currentUser.active === false
   ){
 
-    await supabase.auth.signOut();
+    await supabaseClient.auth.signOut();
 
     throw new Error(
       "บัญชีนี้ถูกปิดใช้งาน"
@@ -2218,7 +2218,7 @@ function(){
 async function loadOrders(){
 
   const result =
-    await supabase
+    await supabaseClient
       .from("orders")
       .select("*")
       .order(
@@ -2622,7 +2622,7 @@ function getProductCategoryLabel(value){
 async function loadProducts(){
 
   const result =
-    await supabase
+    await supabaseClient
       .from("products")
       .select("*")
       .order(
@@ -2981,7 +2981,7 @@ async function(id){
 
 
   const result =
-    await supabase
+    await supabaseClient
       .from("products")
       .delete()
       .eq(
@@ -3018,7 +3018,7 @@ async function(id){
 async function loadPortfolio(){
 
   const result =
-    await supabase
+    await supabaseClient
       .from("portfolio")
       .select("*")
       .order(
@@ -3353,7 +3353,7 @@ async function(id){
 
 
   const result =
-    await supabase
+    await supabaseClient
       .from("portfolio")
       .delete()
       .eq(
@@ -3390,7 +3390,7 @@ async function(id){
 async function loadInquiries(){
 
   const result =
-    await supabase
+    await supabaseClient
       .from("inquiries")
       .select("*")
       .order(
@@ -3672,7 +3672,7 @@ function(id){
 async function loadUsers(){
 
   const result =
-    await supabase
+    await supabaseClient
       .from("admin_users")
       .select(
         "id,user_id,email,name,role,active,created_at"
@@ -4023,7 +4023,7 @@ async function(id){
 
 
   const result =
-    await supabase
+    await supabaseClient
       .from("admin_users")
       .update({
         active:next
@@ -4064,7 +4064,7 @@ async function(id){
 async function loadSettings(){
 
   const result =
-    await supabase
+    await supabaseClient
       .from("settings")
       .select("*")
       .limit(1);
@@ -4174,7 +4174,7 @@ async function(event){
 
 
   const result =
-    await supabase
+    await supabaseClient
       .from("settings")
       .update(payload)
       .not(
@@ -4274,7 +4274,7 @@ async function(){
 
 
       const result =
-        await supabase
+        await supabaseClient
           .from("admin_users")
           .update({
             role
@@ -4315,7 +4315,7 @@ async function(){
 
 
       const result =
-        await supabase
+        await supabaseClient
           .from("orders")
           .update({
             status
@@ -4356,7 +4356,7 @@ async function(){
 
 
       const result =
-        await supabase
+        await supabaseClient
           .from("inquiries")
           .update({
             status
@@ -4674,7 +4674,7 @@ async function boot(){
 
 
     const result =
-      await supabase.auth
+      await supabaseClient.auth
         .getSession();
 
 
