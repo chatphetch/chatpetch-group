@@ -1634,7 +1634,7 @@ const supabase =
         persistSession:true,
         autoRefreshToken:true,
         detectSessionInUrl:true,
-        flowType:"pkce"
+        flowType:"implicit"
       }
     }
   );
@@ -1957,62 +1957,39 @@ async function(event){
 ===================================================== */
 
 $("googleLoginButton").onclick =
-async function(){
+function(){
 
-  const button =
-    $("googleLoginButton");
+  const errorBox = $("loginError");
+  const button = $("googleLoginButton");
 
-  const errorBox =
-    $("loginError");
-
-  errorBox.className =
-    "login-error";
-
-  errorBox.textContent =
-    "";
-
+  errorBox.className = "login-error";
+  errorBox.textContent = "";
   button.disabled = true;
   button.textContent = "กำลังเปิด Google...";
 
   try{
-
     checkConfig();
 
     const redirectTo =
       window.location.origin +
       window.location.pathname;
 
-    const result =
-      await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          redirectTo
-        }
-      });
+    const oauthUrl =
+      SUPABASE_URL +
+      "/auth/v1/authorize?provider=google&redirect_to=" +
+      encodeURIComponent(redirectTo);
 
-    if(result.error){
-      throw result.error;
-    }
+    window.location.assign(oauthUrl);
 
   }catch(error){
-
-    console.error(
-      "GOOGLE LOGIN ERROR",
-      error
-    );
-
+    console.error("GOOGLE LOGIN ERROR", error);
     errorBox.textContent =
       error.message ||
-      "เข้าสู่ระบบด้วย Google ไม่สำเร็จ";
-
-    errorBox.className =
-      "login-error show";
-
+      "ไม่สามารถเปิด Google Login ได้";
+    errorBox.className = "login-error show";
     button.disabled = false;
-    button.textContent =
-      "G  เข้าสู่ระบบด้วย Google";
+    button.textContent = "G  เข้าสู่ระบบด้วย Google";
   }
-
 };
 
 
