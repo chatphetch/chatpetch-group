@@ -2338,7 +2338,7 @@ const logoutBtn =
   document.getElementById("logoutButton");
 
 const roleText =
-  document.getElementById("roleText");
+  document.getElementById("roleBadge");
 
 const productsGrid =
   document.getElementById("productsGrid");
@@ -2502,10 +2502,12 @@ async function loadRole(user){
   currentRole =
     data.role;
 
-  roleText.textContent =
-    String(
-      data.role || "admin"
-    ).toUpperCase();
+  if(roleText){
+    roleText.textContent =
+      String(
+        data.role || "admin"
+      ).toUpperCase();
+  }
 
 
   return data.role;
