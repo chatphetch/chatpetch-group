@@ -28,11 +28,11 @@
 }
 
 *{
-  box-sizing:border-box;
+  box-sizing:border-box
 }
 
 html{
-  scroll-behavior:smooth;
+  scroll-behavior:smooth
 }
 
 body{
@@ -46,15 +46,7 @@ body{
 
 a{
   color:inherit;
-  text-decoration:none;
-}
-
-button{
-  font:inherit;
-}
-
-img{
-  max-width:100%;
+  text-decoration:none
 }
 
 .cp-page{
@@ -80,44 +72,39 @@ img{
   inset:0;
   z-index:-1;
   pointer-events:none;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.52) 0%,
-      rgba(0,0,0,.35) 24%,
-      rgba(0,0,0,.54) 55%,
-      rgba(0,0,0,.96) 100%
-    );
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.38) 0%,
+    rgba(0,0,0,.18) 20%,
+    rgba(0,0,0,.34) 48%,
+    rgba(0,0,0,.72) 78%,
+    rgba(0,0,0,.94) 100%
+  );
 }
 
 .cp-page>*{
   position:relative;
-  z-index:2;
+  z-index:2
 }
 
-
-/* =========================================================
-   HERO
-========================================================= */
-
+/* HERO */
 .hero{
-  min-height:620px;
+  min-height:610px;
   display:flex;
-  align-items:flex-start;
-  padding:150px 0 70px;
+  align-items:center;
 }
 
 .hero-inner{
   width:min(var(--max),calc(100% - 80px));
   margin:auto;
-  padding-top:0;
+  padding-top:105px;
 }
 
 .hero-copy{
   position:relative;
-  width:min(760px,100%);
-  padding:0 42px 34px 0;
-  transform:none;
+  width:min(820px,100%);
+  padding:30px 42px 38px 0;
+  transform:translateY(38px);
 }
 
 .hero-copy::before{
@@ -126,16 +113,15 @@ img{
   z-index:-1;
   left:-180px;
   top:-90px;
-  width:850px;
-  height:520px;
+  width:900px;
+  height:560px;
   border-radius:50%;
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(0,0,0,.78) 0%,
-      rgba(0,0,0,.46) 43%,
-      rgba(0,0,0,0) 77%
-    );
+  background:radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,.80) 0%,
+    rgba(0,0,0,.48) 43%,
+    rgba(0,0,0,0) 77%
+  );
 }
 
 .kicker{
@@ -159,18 +145,18 @@ img{
   margin:17px 0 0;
   color:var(--white);
   font-family:"Kanit","Prompt",sans-serif;
-  font-size:clamp(48px,6.4vw,82px);
+  font-size:clamp(46px,6vw,78px);
   font-weight:400;
-  line-height:1;
-  letter-spacing:-1.8px;
+  line-height:1.02;
+  letter-spacing:-1.6px;
   text-shadow:0 8px 35px rgba(0,0,0,.72);
 }
 
 .hero h1 span{
   display:block;
-  margin-top:10px;
+  margin-top:12px;
   color:var(--gold2);
-  font-size:.27em;
+  font-size:.24em;
   font-weight:500;
   letter-spacing:4px;
 }
@@ -179,104 +165,131 @@ img{
   width:75px;
   height:1px;
   margin-top:24px;
-  background:
-    linear-gradient(
-      90deg,
-      var(--gold),
-      transparent
-    );
+  background:linear-gradient(90deg,var(--gold),transparent);
 }
 
 .hero p{
-  max-width:690px;
+  max-width:760px;
   margin:18px 0 0;
-  color:rgba(247,240,232,.88);
+  color:rgba(247,240,232,.86);
   font-size:15px;
   line-height:1.9;
-  text-shadow:0 4px 20px rgba(0,0,0,.8);
 }
 
-
-/* =========================================================
-   DETAIL
-========================================================= */
-
+/* DETAIL */
 .detail{
   width:min(var(--max),calc(100% - 80px));
   margin:auto;
-  padding:0 0 70px;
+  padding:20px 0 80px;
 }
 
-.detail-grid{
-  display:grid;
-  grid-template-columns:
-    minmax(0,1.1fr)
-    minmax(320px,.9fr);
-  gap:24px;
-  align-items:start;
+.detail-shell{
+  border:1px solid rgba(201,164,92,.24);
+  background:linear-gradient(
+    145deg,
+    rgba(17,11,7,.92),
+    rgba(4,3,2,.90)
+  );
+  box-shadow:0 30px 90px rgba(0,0,0,.35);
 }
 
-.detail-panel{
-  border:1px solid rgba(201,164,92,.23);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(17,11,7,.94),
-      rgba(4,3,2,.94)
-    );
-  box-shadow:0 25px 70px rgba(0,0,0,.3);
-}
-
-.detail-image{
+.detail-top{
   position:relative;
-  min-height:500px;
-  overflow:hidden;
   display:grid;
-  place-items:center;
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(201,164,92,.08),
-      rgba(4,3,2,.96) 70%
-    );
+  grid-template-columns:minmax(0,.90fr) minmax(390px,1.10fr);
 }
 
-.detail-image img{
+.detail-visual{
+  min-height:450px;
+  position:relative;
+  overflow:hidden;
+  background:#090806;
+  border-right:1px solid rgba(201,164,92,.18);
+}
+
+.detail-visual img{
   width:100%;
-  height:100%;
-  min-height:500px;
+  height:450px;
+  min-height:450px;
   display:block;
   object-fit:cover;
+  cursor:zoom-in;
+  transition:transform .35s ease;
 }
 
-.detail-image::after{
-  content:"";
+.detail-visual:hover img{
+  transform:scale(1.015)
+}
+
+.visual-empty{
   position:absolute;
   inset:0;
-  pointer-events:none;
-  background:
-    linear-gradient(
-      180deg,
-      transparent 55%,
-      rgba(0,0,0,.35) 100%
-    );
+  display:grid;
+  place-items:center;
+  color:#7f776d;
+  font-size:11px;
+  letter-spacing:2px;
+  background:radial-gradient(
+    circle at center,
+    rgba(201,164,92,.10),
+    rgba(0,0,0,.35)
+  );
+}
+
+.image-back-btn{
+  position:absolute;
+  left:22px;
+  top:-66px;
+  z-index:20;
+  min-height:42px;
+  padding:0 18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:11px;
+  letter-spacing:.2px;
+  border:1px solid rgba(228,197,127,.58);
+  background:rgba(5,4,3,.94);
+  box-shadow:0 8px 24px rgba(0,0,0,.45);
+  backdrop-filter:blur(8px);
+  transition:.2s ease;
+}
+
+.image-back-btn:hover{
+  color:#160e07;
+  background:linear-gradient(135deg,#e4c57f,#b18442);
+  transform:translateY(-2px);
+}
+
+.visual-label{
+  position:absolute;
+  left:22px;
+  bottom:20px;
+  padding:9px 13px;
+  color:#fff;
+  font-size:10px;
+  letter-spacing:1.4px;
+  border:1px solid rgba(228,197,127,.48);
+  background:rgba(5,4,3,.72);
+  backdrop-filter:blur(7px);
 }
 
 .detail-copy{
-  padding:34px;
+  padding:42px 38px 40px;
 }
 
 .detail-code{
   color:var(--gold2);
   font-size:10px;
-  letter-spacing:2.5px;
+  letter-spacing:3px;
 }
 
 .detail-copy h2{
   margin:13px 0 0;
   color:#fff;
   font-family:"Kanit","Prompt",sans-serif;
-  font-size:clamp(32px,4vw,55px);
+  font-size:clamp(34px,4vw,56px);
   font-weight:400;
   line-height:1.05;
 }
@@ -284,49 +297,41 @@ img{
 .detail-copy h2 small{
   display:block;
   margin-top:9px;
-  color:rgba(255,248,239,.58);
-  font-family:"Prompt",sans-serif;
-  font-size:14px;
+  color:var(--gold2);
+  font-family:"Prompt","Kanit",sans-serif;
+  font-size:18px;
   line-height:1.5;
+  font-weight:400;
 }
 
 .detail-copy p{
-  margin:19px 0 0;
-  color:rgba(255,248,239,.74);
-  font-size:13px;
-  line-height:1.9;
+  margin:22px 0 0;
+  color:rgba(255,248,239,.73);
+  font-size:14px;
+  line-height:1.95;
 }
 
-.detail-list{
-  margin:24px 0 0;
-  padding:0;
-  list-style:none;
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:23px;
 }
 
-.detail-list li{
-  position:relative;
-  padding:11px 0 11px 20px;
-  border-bottom:1px solid rgba(201,164,92,.12);
-  color:rgba(255,248,239,.76);
-  font-size:12px;
-  line-height:1.7;
-}
-
-.detail-list li::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:19px;
-  width:6px;
-  height:1px;
-  background:var(--gold2);
+.tag{
+  padding:8px 10px;
+  color:#cfc5b8;
+  font-size:9px;
+  letter-spacing:1px;
+  border:1px solid rgba(201,164,92,.24);
+  background:rgba(201,164,92,.05);
 }
 
 .detail-actions{
   display:flex;
   flex-wrap:wrap;
   gap:9px;
-  margin-top:25px;
+  margin-top:28px;
 }
 
 .btn{
@@ -341,12 +346,7 @@ img{
 
 .btn-gold{
   color:#160e07;
-  background:
-    linear-gradient(
-      135deg,
-      #e4c57f,
-      #b18442
-    );
+  background:linear-gradient(135deg,#e4c57f,#b18442);
   border:1px solid #e4c57f;
 }
 
@@ -357,18 +357,51 @@ img{
 }
 
 .btn:hover{
-  transform:translateY(-2px);
+  transform:translateY(-2px)
 }
 
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(201,164,92,.16);
+}
 
-/* =========================================================
-   PROJECTS
-========================================================= */
+.info-box{
+  min-height:150px;
+  padding:26px 27px;
+  border-right:1px solid rgba(201,164,92,.16);
+}
 
+.info-box:last-child{
+  border-right:0
+}
+
+.info-label{
+  color:var(--gold2);
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+.info-box h3{
+  margin:12px 0 0;
+  color:#fff;
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:21px;
+  font-weight:400;
+}
+
+.info-box p{
+  margin:7px 0 0;
+  color:rgba(255,248,239,.63);
+  font-size:12px;
+  line-height:1.8;
+}
+
+/* PROJECTS */
 .projects{
   width:min(var(--max),calc(100% - 80px));
   margin:auto;
-  padding:0 0 75px;
+  padding:10px 0 85px;
 }
 
 .section-head{
@@ -376,12 +409,12 @@ img{
   justify-content:space-between;
   align-items:flex-end;
   gap:35px;
-  margin-bottom:28px;
+  margin-bottom:25px;
 }
 
 .section-title{
   margin:8px 0 0;
-  color:var(--white);
+  color:#fff;
   font-family:"Kanit","Prompt",sans-serif;
   font-size:clamp(34px,4vw,52px);
   font-weight:400;
@@ -390,7 +423,7 @@ img{
 
 .section-note{
   max-width:520px;
-  color:rgba(247,240,232,.72);
+  color:rgba(247,240,232,.68);
   font-size:13px;
   line-height:1.85;
   text-align:right;
@@ -398,140 +431,311 @@ img{
 
 .project-grid{
   display:grid;
-  grid-template-columns:
-    repeat(
-      3,
-      minmax(0,1fr)
-    );
-  gap:16px;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
 }
 
 .project-card{
   position:relative;
-  min-height:240px;
+  aspect-ratio:1/1;
   overflow:hidden;
-  border:1px solid rgba(201,164,92,.22);
-  background:#090705;
+  border:1px solid rgba(201,164,92,.20);
+  background:#080706;
+  cursor:zoom-in;
 }
 
 .project-card img{
   width:100%;
-  height:240px;
+  height:100%;
   display:block;
   object-fit:cover;
-  transition:.45s ease;
+  transition:transform .35s ease,opacity .35s ease;
 }
 
 .project-card:hover img{
-  transform:scale(1.045);
+  transform:scale(1.035)
 }
 
 .project-card::after{
   content:"";
   position:absolute;
   inset:0;
-  background:
-    linear-gradient(
-      180deg,
-      transparent 38%,
-      rgba(0,0,0,.84) 100%
-    );
+  pointer-events:none;
+  background:linear-gradient(
+    180deg,
+    transparent 55%,
+    rgba(0,0,0,.62)
+  );
 }
 
-.project-caption{
+.project-card span{
   position:absolute;
-  left:18px;
-  right:18px;
-  bottom:17px;
+  left:13px;
+  bottom:12px;
   z-index:2;
-}
-
-.project-caption small{
-  color:var(--gold2);
-  font-size:9px;
-  letter-spacing:2px;
-}
-
-.project-caption h3{
-  margin:5px 0 0;
   color:#fff;
-  font-family:"Kanit","Prompt",sans-serif;
-  font-size:20px;
-  font-weight:400;
+  font-size:10px;
+  letter-spacing:1px;
 }
 
-
-/* =========================================================
-   CTA
-========================================================= */
-
+/* CTA */
 .cta{
-  width:min(1000px,calc(100% - 80px));
-  margin:0 auto 85px;
-  padding:55px 40px;
-  text-align:center;
-  border:1px solid rgba(201,164,92,.28);
+  width:min(var(--max),calc(100% - 80px));
+  margin:auto;
+  padding:0 0 90px;
+}
+
+.cta-box{
+  position:relative;
+  overflow:hidden;
+  padding:52px 55px;
+  border:1px solid rgba(201,164,92,.24);
   background:
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(201,164,92,.12),
+      transparent 34%
+    ),
     linear-gradient(
       135deg,
-      rgba(27,17,10,.82),
-      rgba(5,4,3,.78)
+      rgba(24,16,10,.95),
+      rgba(5,4,3,.96)
     );
-  box-shadow:0 30px 80px rgba(0,0,0,.35);
 }
 
-.cta-label{
+.cta-kicker{
   color:var(--gold2);
-  font-size:9px;
+  font-size:10px;
   letter-spacing:3px;
 }
 
-.cta h2{
-  margin:10px 0 0;
+.cta-box h2{
+  margin:12px 0 0;
   color:#fff;
   font-family:"Kanit","Prompt",sans-serif;
-  font-size:clamp(34px,4vw,55px);
+  font-size:clamp(32px,4vw,52px);
   font-weight:400;
 }
 
-.cta p{
+.cta-box p{
   max-width:650px;
-  margin:14px auto 22px;
-  color:rgba(255,255,255,.72);
+  margin:15px 0 0;
+  color:rgba(247,240,232,.70);
   font-size:13px;
-  line-height:1.85;
+  line-height:1.9;
 }
 
 .cta-actions{
   display:flex;
-  justify-content:center;
   flex-wrap:wrap;
   gap:10px;
+  margin-top:25px;
 }
 
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  background:rgba(0,0,0,.90);
+}
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+.lightbox.open{
+  display:flex
+}
 
+.lightbox img{
+  max-width:min(1200px,94vw);
+  max-height:88vh;
+  object-fit:contain;
+  box-shadow:0 25px 80px rgba(0,0,0,.65);
+}
+
+.lightbox-close{
+  position:absolute;
+  top:22px;
+  right:24px;
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:25px;
+  border:1px solid rgba(255,255,255,.20);
+  background:rgba(0,0,0,.45);
+  cursor:pointer;
+}
+
+/* FOOTER */
+.cp-footer{
+  position:relative;
+  z-index:3;
+  border-top:1px solid rgba(201,164,92,.16);
+  background:#050403;
+}
+
+.cp-footer-inner{
+  width:min(var(--max),calc(100% - 80px));
+  margin:auto;
+  padding:45px 0 30px;
+  display:grid;
+  grid-template-columns:1.3fr 1fr 1fr;
+  gap:50px;
+}
+
+.cp-footer-brand{
+  color:#fff;
+  font-family:"Kanit","Prompt",sans-serif;
+  font-size:25px;
+}
+
+.cp-footer-brand span{
+  color:var(--gold2)
+}
+
+.cp-footer-text{
+  margin-top:12px;
+  max-width:430px;
+  color:rgba(247,240,232,.56);
+  font-size:12px;
+  line-height:1.9;
+}
+
+.cp-footer-title{
+  color:var(--gold2);
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+.cp-footer-list{
+  margin-top:14px;
+  display:grid;
+  gap:7px;
+}
+
+.cp-footer-list a,
+.cp-footer-list div{
+  color:rgba(247,240,232,.68);
+  font-size:12px;
+  line-height:1.7;
+}
+
+.cp-footer-list a:hover{
+  color:#fff
+}
+
+.cp-footer-bottom{
+  width:min(var(--max),calc(100% - 80px));
+  margin:auto;
+  padding:18px 0 22px;
+  border-top:1px solid rgba(201,164,92,.10);
+  color:rgba(247,240,232,.38);
+  font-size:10px;
+  letter-spacing:.5px;
+}
+
+/* RESPONSIVE */
 @media(max-width:1050px){
 
-  .hero-inner,
-  .detail,
-  .projects{
-    width:calc(100% - 50px);
-  }
-
-  .detail-grid{
+  .detail-top{
     grid-template-columns:1fr;
   }
 
+  .detail-visual{
+    border-right:0;
+    border-bottom:1px solid rgba(201,164,92,.18);
+  }
+
   .project-grid{
-    grid-template-columns:
-      repeat(
-        2,
-        minmax(0,1fr)
-      );
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+
+  .cp-footer-inner{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:760px){
+
+  .hero-inner,
+  .detail,
+  .projects,
+  .cta,
+  .cp-footer-inner,
+  .cp-footer-bottom{
+    width:min(var(--max),calc(100% - 40px));
+  }
+
+  .hero{
+    min-height:570px;
+  }
+
+  .hero-inner{
+    padding-top:90px;
+  }
+
+  .hero-copy{
+    padding:20px 0 35px;
+    transform:translateY(20px);
+  }
+
+  .hero-copy::before{
+    left:-160px;
+    top:-70px;
+    width:700px;
+    height:500px;
+  }
+
+  .hero h1{
+    font-size:clamp(42px,12vw,64px);
+  }
+
+  .hero p{
+    font-size:13px;
+    line-height:1.8;
+  }
+
+  .detail{
+    padding-bottom:55px;
+  }
+
+  .detail-visual{
+    min-height:330px;
+  }
+
+  .detail-visual img{
+    height:330px;
+    min-height:330px;
+  }
+
+  .detail-copy{
+    padding:30px 24px;
+  }
+
+  .detail-copy h2{
+    font-size:38px;
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .info-box{
+    border-right:0;
+    border-bottom:1px solid rgba(201,164,92,.16);
+  }
+
+  .info-box:last-child{
+    border-bottom:0;
+  }
+
+  .project-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
   }
 
   .section-head{
@@ -539,123 +743,56 @@ img{
   }
 
   .section-note{
-    margin-top:13px;
+    margin-top:14px;
     text-align:left;
   }
 
-  .cta{
-    width:calc(100% - 50px);
+  .cta-box{
+    padding:35px 25px;
   }
+
+  .cp-footer-inner{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
 }
 
+@media(max-width:480px){
 
-@media(max-width:700px){
-
-  .cp-page::before{
-    background-position:center top;
-  }
-
-  .hero{
-    min-height:570px;
-    align-items:flex-start;
-    padding:125px 0 50px;
-  }
-
-  .hero-inner{
-    width:calc(100% - 32px);
-    padding-top:0;
-  }
-
-  .hero-copy{
-    width:100%;
-    padding:0 18px 30px 0;
-    transform:none;
-  }
-
-  .hero-copy::before{
-    left:-90px;
-    top:-55px;
-    width:650px;
-    height:440px;
+  .hero-inner,
+  .detail,
+  .projects,
+  .cta,
+  .cp-footer-inner,
+  .cp-footer-bottom{
+    width:calc(100% - 30px);
   }
 
   .hero h1{
-    font-size:
-      clamp(
-        43px,
-        13vw,
-        60px
-      );
+    font-size:42px;
   }
 
   .hero h1 span{
-    font-size:12px;
-    letter-spacing:2.5px;
-  }
-
-  .hero p{
-    font-size:14px;
-    line-height:1.82;
-  }
-
-  .detail,
-  .projects{
-    width:calc(100% - 32px);
-  }
-
-  .detail{
-    padding-bottom:55px;
-  }
-
-  .detail-image,
-  .detail-image img{
-    min-height:330px;
-  }
-
-  .detail-copy{
-    padding:23px 20px;
-  }
-
-  .detail-copy h2{
-    font-size:36px;
+    font-size:11px;
+    letter-spacing:3px;
   }
 
   .project-grid{
     grid-template-columns:1fr;
   }
 
-  .project-card,
-  .project-card img{
-    min-height:210px;
-    height:210px;
-  }
-
-  .cta{
-    width:calc(100% - 32px);
-    margin-bottom:60px;
-    padding:40px 22px;
-  }
-
-  .cta-actions{
-    flex-direction:column;
-  }
-
-  .cta-actions>*{
-    width:100%;
-  }
-
 }
-</style>
 
+/* =========================================================
+   CHATPHETCH HERO STANDARD
+   ใช้ override เฉพาะตำแหน่ง Hero / background
+   ไม่เปลี่ยนโครงสร้างเดิมของหน้า
+========================================================= */
 
-<!-- =========================================================
-     HERO STANDARD OVERRIDE
-     ให้ตรงกับ Services / Projects / Products
-========================================================= -->
-
-<style id="chatpetch-hero-spacing-standard-final">
-
-.hero{
+.hero,
+.products-hero,
+.projects-hero{
   min-height:620px !important;
   display:flex !important;
   align-items:flex-start !important;
@@ -672,27 +809,24 @@ img{
 }
 
 .cp-page::before{
-  background:
-    url("assets/index-main-bg.png")
-    center top/
-    cover
-    no-repeat !important;
+  background:url("assets/index-main-bg.png") center top / cover no-repeat !important;
 }
 
 .cp-page::after{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.52) 0%,
-      rgba(0,0,0,.35) 24%,
-      rgba(0,0,0,.54) 55%,
-      rgba(0,0,0,.96) 100%
-    ) !important;
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.52) 0%,
+    rgba(0,0,0,.35) 24%,
+    rgba(0,0,0,.54) 55%,
+    rgba(0,0,0,.96) 100%
+  ) !important;
 }
 
 @media(max-width:700px){
 
-  .hero{
+  .hero,
+  .products-hero,
+  .projects-hero{
     min-height:570px !important;
     align-items:flex-start !important;
     padding:125px 0 50px !important;
@@ -708,1003 +842,670 @@ img{
   }
 
 }
-
 </style>
-
 </head>
-
 
 <body>
 
 <div class="cp-page">
 
+  <header id="siteHeader"></header>
 
-<main>
+  <main>
 
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
 
-<section class="hero">
+          <div class="kicker" id="heroKicker">
+            SERVICE DETAIL
+          </div>
 
-  <div class="hero-inner">
+          <h1 id="heroTitle">
+            บริการ
+            <span id="heroEnglish">SERVICE</span>
+          </h1>
 
-    <div class="hero-copy">
+          <div class="hero-line"></div>
 
-      <div class="kicker">
-        SERVICE DETAIL
+          <p id="heroDescription">
+            รายละเอียดงานบริการและระบบงานของ CHATPHETCH GROUP
+          </p>
+
+        </div>
       </div>
+    </section>
 
-      <h1>
-        รายละเอียดบริการ
-        <span>
-          CHATPHETCH SERVICE SYSTEM
-        </span>
-      </h1>
+    <section class="detail">
+      <div class="detail-shell">
 
-      <div class="hero-line"></div>
+        <div class="detail-top">
 
-      <p id="heroDescription">
-        รายละเอียดระบบบริการของ CHATPHETCH GROUP
-        สำหรับงานพื้น งานเคลือบผิว งานกันซึม
-        และงานปรับปรุงพื้นที่ตามลักษณะการใช้งาน
-      </p>
+          <div class="detail-visual">
 
-    </div>
+            <button
+              class="image-back-btn"
+              type="button"
+              onclick="history.back()"
+            >
+              ← กลับ
+            </button>
 
-  </div>
+            <img
+              id="detailImage"
+              src=""
+              alt=""
+            >
 
-</section>
+            <div
+              class="visual-empty"
+              id="visualEmpty"
+              style="display:none;"
+            >
+              NO IMAGE
+            </div>
 
+            <div
+              class="visual-label"
+              id="visualLabel"
+            >
+              CHATPHETCH GROUP
+            </div>
 
-<section class="detail">
+          </div>
 
-  <div class="detail-grid">
+          <div class="detail-copy">
 
+            <div
+              class="detail-code"
+              id="detailCode"
+            >
+              SERVICE
+            </div>
 
-    <div class="detail-panel">
+            <h2 id="detailTitle">
+              บริการ
+              <small id="detailSubtitle"></small>
+            </h2>
 
-      <div class="detail-image">
+            <p id="detailDescription"></p>
 
-        <img
-          id="serviceMainImage"
-          src=""
-          alt="รายละเอียดบริการ"
-        >
+            <div
+              class="tags"
+              id="detailTags"
+            ></div>
 
-      </div>
+            <div class="detail-actions">
 
-    </div>
+              <a
+                class="btn btn-gold"
+                href="contact.html"
+              >
+                ขอใบเสนอราคา
+              </a>
 
+              <a
+                class="btn btn-outline"
+                href="tel:074-000-000"
+              >
+                ติดต่อเรา
+              </a>
 
-    <div class="detail-panel">
+            </div>
 
-      <div class="detail-copy">
+          </div>
 
-        <div
-          class="detail-code"
-          id="serviceCode"
-        >
-          SERVICE
         </div>
 
+        <div class="info-grid">
 
-        <h2 id="serviceTitle">
-          ระบบบริการ
-          <small id="serviceSubtitle">
-            CHATPHETCH GROUP
-          </small>
+          <div class="info-box">
+
+            <div class="info-label">
+              APPLICATION
+            </div>
+
+            <h3 id="infoApplicationTitle">
+              งานที่เหมาะสม
+            </h3>
+
+            <p id="infoApplication"></p>
+
+          </div>
+
+          <div class="info-box">
+
+            <div class="info-label">
+              SYSTEM
+            </div>
+
+            <h3 id="infoSystemTitle">
+              ระบบงาน
+            </h3>
+
+            <p id="infoSystem"></p>
+
+          </div>
+
+          <div class="info-box">
+
+            <div class="info-label">
+              SERVICE
+            </div>
+
+            <h3 id="infoServiceTitle">
+              การให้บริการ
+            </h3>
+
+            <p id="infoService"></p>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="projects">
+
+      <div class="section-head">
+
+        <div>
+          <div class="kicker">
+            RELATED WORK
+          </div>
+
+          <h2 class="section-title">
+            ผลงานที่เกี่ยวข้อง
+          </h2>
+        </div>
+
+        <div class="section-note">
+          ตัวอย่างผลงานที่เกี่ยวข้องกับบริการของ CHATPHETCH GROUP
+        </div>
+
+      </div>
+
+      <div
+        class="project-grid"
+        id="projectGrid"
+      ></div>
+
+    </section>
+
+    <section class="cta">
+
+      <div class="cta-box">
+
+        <div class="cta-kicker">
+          CHATPHETCH GROUP
+        </div>
+
+        <h2>
+          ต้องการประเมินหน้างาน?
         </h2>
 
-
-        <p id="serviceDescription">
-          รายละเอียดบริการ
+        <p>
+          ติดต่อทีมงานเพื่อสอบถามรายละเอียด
+          ประเมินพื้นที่ และขอใบเสนอราคา
+          สำหรับงานของคุณ
         </p>
 
-
-        <ul
-          class="detail-list"
-          id="serviceFeatures"
-        ></ul>
-
-
-        <div class="detail-actions">
+        <div class="cta-actions">
 
           <a
             class="btn btn-gold"
             href="contact.html"
           >
-            ขอคำปรึกษา
+            ติดต่อเรา
           </a>
-
 
           <a
             class="btn btn-outline"
-            href="projects.html"
+            href="services.html"
           >
-            ดูผลงาน
+            ดูบริการทั้งหมด
           </a>
 
         </div>
 
       </div>
 
-    </div>
+    </section>
 
-  </div>
-
-</section>
-
-
-<section class="projects">
-
-  <div class="section-head">
-
-    <div>
-
-      <div class="kicker">
-        PROJECT REFERENCE
-      </div>
-
-      <h2 class="section-title">
-        ตัวอย่างผลงาน
-      </h2>
-
-    </div>
-
-
-    <p class="section-note">
-      ตัวอย่างงานที่เกี่ยวข้องกับระบบบริการ
-      เพื่อใช้เป็นข้อมูลประกอบการพิจารณา
-      ก่อนเลือกแนวทางที่เหมาะกับพื้นที่
-    </p>
-
-  </div>
-
+  </main>
 
   <div
-    class="project-grid"
-    id="projectGrid"
-  ></div>
+    class="lightbox"
+    id="lightbox"
+  >
 
-</section>
-
-
-<section class="cta">
-
-  <div class="cta-label">
-    CHATPHETCH GROUP
-  </div>
-
-
-  <h2>
-    ต้องการคำแนะนำสำหรับพื้นที่ของคุณ?
-  </h2>
-
-
-  <p>
-    ติดต่อทีมงานเพื่อพูดคุยรายละเอียดหน้างาน
-    เลือกระบบ และประเมินแนวทางที่เหมาะสม
-    กับลักษณะการใช้งานของคุณ
-  </p>
-
-
-  <div class="cta-actions">
-
-    <a
-      class="btn btn-gold"
-      href="contact.html"
+    <button
+      class="lightbox-close"
+      id="lightboxClose"
+      type="button"
     >
-      ติดต่อเรา
-    </a>
+      ×
+    </button>
 
-
-    <a
-      class="btn btn-outline"
-      href="services.html"
+    <img
+      id="lightboxImage"
+      src=""
+      alt=""
     >
-      กลับไปหน้าบริการ
-    </a>
 
   </div>
-
-</section>
-
-
-</main>
-
 
 </div>
 
+<footer class="cp-footer">
 
-<script>
+  <div class="cp-footer-inner">
 
-(function(){
+    <div>
 
-  "use strict";
-
-
-  const SERVICES = {
-
-    industrial:{
-      code:"SERVICE 01",
-      title:"พื้นอุตสาหกรรม",
-      subtitle:"อีพ็อกซี่ / พียู",
-      description:
-        "ระบบพื้นสำหรับพื้นที่โรงงาน คลังสินค้า และพื้นที่ใช้งานหนัก โดยพิจารณาจากสภาพพื้นเดิม ลักษณะการใช้งาน และเงื่อนไขของหน้างาน",
-      features:[
-        "ระบบ Epoxy สำหรับพื้นที่ใช้งานทั่วไปและงานอุตสาหกรรม",
-        "ระบบ PU สำหรับพื้นที่ที่ต้องการความยืดหยุ่นและความทนทาน",
-        "สามารถพิจารณาระบบตามสภาพพื้นและลักษณะการใช้งาน",
-        "เหมาะสำหรับโรงงาน คลังสินค้า และพื้นที่เชิงพาณิชย์"
-      ],
-      folders:[
-        "Epoxy self",
-        "Epoxy anti static",
-        "PU Self"
-      ]
-    },
-
-
-    waterproof:{
-      code:"SERVICE 02",
-      title:"งานกันรั่วซึม",
-      subtitle:"ดาดฟ้า / หลังคา / พื้นอาคาร",
-      description:
-        "แนวทางงานกันซึมสำหรับพื้นที่ที่มีความเสี่ยงต่อการรั่วซึม โดยพิจารณารอยต่อ สภาพพื้นเดิม และลักษณะการรับน้ำของพื้นที่",
-      features:[
-        "ระบบกันซึมสำหรับดาดฟ้าและหลังคา",
-        "ระบบ Fiberglass สำหรับงานที่ต้องการเสริมความแข็งแรง",
-        "พิจารณารายละเอียดรอยต่อและจุดเสี่ยงของพื้นที่",
-        "เลือกแนวทางตามสภาพหน้างานจริง"
-      ],
-      folders:[
-        "งานกันซึม",
-        "Fiberglass"
-      ]
-    },
-
-
-    concrete:{
-      code:"SERVICE 03",
-      title:"งานซ่อมปรับปรุง",
-      subtitle:"งานคอนกรีต / เตรียมพื้น",
-      description:
-        "งานปรับปรุงพื้นและงานคอนกรีตเพื่อเตรียมพื้นที่ให้เหมาะสมกับระบบงานขั้นต่อไป โดยพิจารณาจากสภาพพื้นจริง",
-      features:[
-        "งานซ่อมและปรับปรุงพื้นเดิม",
-        "งานเตรียมพื้นก่อนติดตั้งระบบ",
-        "งานขัดและปรับสภาพผิวคอนกรีต",
-        "วิเคราะห์สภาพพื้นก่อนเลือกวิธีดำเนินงาน"
-      ],
-      folders:[
-        "งาน Polishing",
-        "Epoxy self"
-      ]
-    },
-
-
-    sports:{
-      code:"SERVICE 04",
-      title:"พื้นสนามกีฬา",
-      subtitle:"Sport Floor / PU",
-      description:
-        "ระบบพื้นที่ใช้กับสนามกีฬาและพื้นที่กิจกรรม โดยพิจารณาความเหมาะสมของระบบกับรูปแบบการใช้งานและสภาพพื้นที่",
-      features:[
-        "ระบบพื้นสำหรับพื้นที่กิจกรรม",
-        "ระบบ PU สำหรับงานที่ต้องการความยืดหยุ่น",
-        "พิจารณาความเหมาะสมตามประเภทกีฬาและการใช้งาน",
-        "วางระบบตามเงื่อนไขของพื้นที่จริง"
-      ],
-      folders:[
-        "PU Self",
-        "PU Coating"
-      ]
-    },
-
-
-    decorative:{
-      code:"SERVICE 05",
-      title:"พื้นตกแต่ง",
-      subtitle:"เพื่อความสวยงาม",
-      description:
-        "งานพื้นตกแต่งที่เน้นทั้งความสวยงามและการใช้งาน โดยสามารถเลือกแนวทาง สี และลวดลายให้เหมาะกับพื้นที่",
-      features:[
-        "งาน Stamped Concrete",
-        "ออกแบบแนวทางสีและลวดลายตามพื้นที่",
-        "เหมาะสำหรับพื้นที่ภายนอกและพื้นที่ตกแต่ง",
-        "พิจารณาความเหมาะสมของวัสดุกับสภาพแวดล้อม"
-      ],
-      folders:[
-        "งาน Stamped Concrete"
-      ]
-    },
-
-
-    traffic:{
-      code:"SERVICE 06",
-      title:"ระบบงานสัญลักษณ์",
-      subtitle:"และเส้นจราจร",
-      description:
-        "งานกำหนดพื้นที่ เส้นทาง และสัญลักษณ์ เพื่อช่วยจัดระเบียบการใช้งานภายในพื้นที่โรงงาน อาคาร และพื้นที่จอดรถ",
-      features:[
-        "งานตีเส้นจราจร",
-        "งานกำหนดพื้นที่ใช้งาน",
-        "งานสัญลักษณ์บนพื้น",
-        "เลือกวัสดุและระบบตามลักษณะพื้นที่"
-      ],
-      folders:[
-        "PU Coating",
-        "Epoxy anti static"
-      ]
-    }
-
-  };
-
-
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
-
-
-  const serviceKey =
-    params.get("service")
-    || "industrial";
-
-
-  const service =
-    SERVICES[serviceKey]
-    || SERVICES.industrial;
-
-
-  const title =
-    document.getElementById(
-      "serviceTitle"
-    );
-
-
-  const subtitle =
-    document.getElementById(
-      "serviceSubtitle"
-    );
-
-
-  const code =
-    document.getElementById(
-      "serviceCode"
-    );
-
-
-  const description =
-    document.getElementById(
-      "serviceDescription"
-    );
-
-
-  const heroDescription =
-    document.getElementById(
-      "heroDescription"
-    );
-
-
-  const features =
-    document.getElementById(
-      "serviceFeatures"
-    );
-
-
-  const mainImage =
-    document.getElementById(
-      "serviceMainImage"
-    );
-
-
-  if(code){
-    code.textContent =
-      service.code;
-  }
-
-
-  if(title){
-    title.childNodes[0].nodeValue =
-      service.title;
-  }
-
-
-  if(subtitle){
-    subtitle.textContent =
-      service.subtitle;
-  }
-
-
-  if(description){
-    description.textContent =
-      service.description;
-  }
-
-
-  if(heroDescription){
-    heroDescription.textContent =
-      service.description;
-  }
-
-
-  if(features){
-
-    features.innerHTML =
-      service.features
-        .map(
-          function(item){
-            return (
-              "<li>" +
-              item +
-              "</li>"
-            );
-          }
-        )
-        .join("");
-
-  }
-
-
-  const OWNER =
-    "chatphetch";
-
-
-  const REPO =
-    "chatpetch-group";
-
-
-  const BRANCH =
-    "main";
-
-
-  const TREE_API =
-    "https://api.github.com/repos/" +
-    OWNER +
-    "/" +
-    REPO +
-    "/git/trees/" +
-    BRANCH +
-    "?recursive=1";
-
-
-  const RAW_BASE =
-    "https://raw.githubusercontent.com/" +
-    OWNER +
-    "/" +
-    REPO +
-    "/" +
-    BRANCH +
-    "/";
-
-
-  function normalize(
-    value
-  ){
-
-    return String(
-      value || ""
-    )
-      .trim()
-      .toLowerCase();
-
-  }
-
-
-  function rawUrl(
-    path
-  ){
-
-    return (
-      RAW_BASE +
-      path
-        .split("/")
-        .map(
-          encodeURIComponent
-        )
-        .join("/")
-    );
-
-  }
-
-
-  function findImages(
-    tree,
-    folder
-  ){
-
-    const wanted =
-      normalize(
-        folder
-      );
-
-
-    return tree.filter(
-      function(item){
-
-        if(
-          item.type !== "blob"
-        ){
-          return false;
-        }
-
-
-        if(
-          !/\.(jpg|jpeg|png|webp|gif)$/i
-            .test(
-              item.path
-            )
-        ){
-          return false;
-        }
-
-
-        const parts =
-          item.path
-            .split("/");
-
-
-        return parts.some(
-          function(part){
-            return (
-              normalize(
-                part
-              ) === wanted
-            );
-          }
-        );
-
-      }
-    );
-
-  }
-
-
-  function renderProjects(
-    tree
-  ){
-
-    const grid =
-      document.getElementById(
-        "projectGrid"
-      );
-
-
-    if(!grid){
-      return;
-    }
-
-
-    const images = [];
-
-
-    service.folders.forEach(
-      function(folder){
-
-        const matches =
-          findImages(
-            tree,
-            folder
-          );
-
-
-        matches.forEach(
-          function(item){
-
-            if(
-              !images.some(
-                function(existing){
-                  return (
-                    existing.path ===
-                    item.path
-                  );
-                }
-              )
-            ){
-
-              images.push(
-                item
-              );
-
-            }
-
-          }
-        );
-
-      }
-    );
-
-
-    const selected =
-      images.slice(
-        0,
-        6
-      );
-
-
-    if(
-      selected.length === 0
-    ){
-
-      grid.innerHTML = `
-        <div
-          style="
-            grid-column:1/-1;
-            padding:40px;
-            text-align:center;
-            color:rgba(255,255,255,.55);
-            border:1px dashed rgba(201,164,92,.25);
-          "
-        >
-          ยังไม่มีรูปผลงานสำหรับระบบนี้
-        </div>
-      `;
-
-      return;
-
-    }
-
-
-    grid.innerHTML =
-      selected
-        .map(
-          function(item,index){
-
-            return `
-              <a
-                class="project-card"
-                href="${rawUrl(item.path)}"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-
-                <img
-                  src="${rawUrl(item.path)}"
-                  alt="${service.title} ผลงาน ${index+1}"
-                  loading="lazy"
-                >
-
-                <div class="project-caption">
-
-                  <small>
-                    PROJECT ${String(index+1).padStart(2,"0")}
-                  </small>
-
-                  <h3>
-                    ${service.title}
-                  </h3>
-
-                </div>
-
-              </a>
-            `;
-
-          }
-        )
-        .join("");
-
-  }
-
-
-  async function loadImages(){
-
-    try{
-
-      const response =
-        await fetch(
-          TREE_API,
-          {
-            headers:{
-              Accept:
-                "application/vnd.github+json"
-            }
-          }
-        );
-
-
-      if(
-        !response.ok
-      ){
-
-        throw new Error(
-          "GitHub API " +
-          response.status
-        );
-
-      }
-
-
-      const json =
-        await response.json();
-
-
-      const tree =
-        Array.isArray(
-          json.tree
-        )
-          ? json.tree
-          : [];
-
-
-      renderProjects(
-        tree
-      );
-
-
-      const first =
-        service.folders
-          .map(
-            function(folder){
-
-              return findImages(
-                tree,
-                folder
-              );
-
-            }
-          )
-          .find(
-            function(items){
-              return items.length;
-            }
-          );
-
-
-      if(
-        first &&
-        first[0] &&
-        mainImage
-      ){
-
-        mainImage.src =
-          rawUrl(
-            first[0].path
-          );
-
-        mainImage.alt =
-          service.title;
-
-      }
-
-    }
-    catch(error){
-
-      console.warn(
-        "Could not load service project images:",
-        error
-      );
-
-      const grid =
-        document.getElementById(
-          "projectGrid"
-        );
-
-
-      if(grid){
-
-        grid.innerHTML = `
-          <div
-            style="
-              grid-column:1/-1;
-              padding:40px;
-              text-align:center;
-              color:rgba(255,255,255,.55);
-              border:1px dashed rgba(201,164,92,.25);
-            "
-          >
-            ไม่สามารถโหลดรูปผลงานได้ในขณะนี้
-          </div>
-        `;
-
-      }
-
-    }
-
-  }
-
-
-  loadImages();
-
-})();
-
-</script>
-
-
-<script src="assets/customer-master-nav.js"></script>
-
-
-<footer class="customer-footer">
-
-  <div class="customer-footer-inner">
-
-    <div class="customer-footer-upper">
-
-
-      <div>
-
-        <div class="customer-footer-brand">
-
-          <img
-            class="customer-footer-logo"
-            src="assets/logo.png"
-            alt="CHATPHETCH GROUP"
-          >
-
-          <div>
-
-            <div class="customer-footer-brand-name">
-              CHATPHETCH GROUP
-            </div>
-
-            <div class="customer-footer-brand-sub">
-              FLOORING &amp; CONSTRUCTION
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="customer-footer-info">
-
-          <div class="customer-footer-company-line">
-            🌹 โรงงานผลิต-จำหน่าย วัสดุงานพื้นทุกประเภท 🌹
-          </div>
-
-
-          <div class="customer-footer-service-line">
-
-            <span class="customer-footer-service-item">
-              <span class="icon">♠</span>
-              สร้างสรรค์ผลงาน
-            </span>
-
-            <span class="customer-footer-service-item">
-              <span class="icon">♠</span>
-              มาตรฐานเข้าถึง
-            </span>
-
-            <span class="customer-footer-service-item">
-              <span class="icon">♠</span>
-              ยืน 1 คุณภาพ
-            </span>
-
-          </div>
-
-
-          <div class="customer-footer-company-line strong">
-            บริการให้คำปรึกษาเกี่ยวกับพื้นทุกระบบแบบครบวงจร
-          </div>
-
-        </div>
-
+      <div class="cp-footer-brand">
+        CHATPHETCH <span>GROUP</span>
       </div>
 
-
-      <div class="customer-footer-menu">
-
-        <div class="customer-footer-menu-title">
-          MENU
-        </div>
-
-        <ul class="customer-footer-menu-list">
-
-          <li>
-            <a href="index.html">
-              หน้าแรก
-            </a>
-          </li>
-
-          <li>
-            <a href="about.html">
-              เกี่ยวกับเรา
-            </a>
-          </li>
-
-          <li>
-            <a href="products.html">
-              สินค้า
-            </a>
-          </li>
-
-          <li>
-            <a href="services.html">
-              บริการ
-            </a>
-          </li>
-
-          <li>
-            <a href="projects.html">
-              ผลงาน
-            </a>
-          </li>
-
-          <li>
-            <a href="contact.html">
-              ติดต่อเรา
-            </a>
-          </li>
-
-        </ul>
-
+      <div class="cp-footer-text">
+        บริษัท ฉัตรเพชร กรุ๊ป จำกัด
+        ผู้ให้บริการงานพื้น งานเคลือบผิว
+        งานกันซึม งานคอนกรีต และงานก่อสร้าง
       </div>
 
     </div>
 
+    <div>
 
-    <div class="customer-footer-divider"></div>
-
-
-    <div class="customer-footer-bottom">
-
-      <div class="customer-footer-copyright">
-        ©
-        <strong>
-          CHATPHETCH GROUP CO., LTD.
-        </strong>
-        All Rights Reserved.
+      <div class="cp-footer-title">
+        NAVIGATION
       </div>
 
+      <div class="cp-footer-list">
 
-      <div class="customer-footer-address">
-        📍
-        <span>
-          10/1 ม.9 ต.นาหม่อม อ.นาหม่อม จ.สงขลา 90310
-        </span>
-      </div>
-
-
-      <div class="customer-footer-actions">
-
-        <a
-          class="customer-footer-action"
-          href="contact.html"
-        >
-          ☎ ติดต่อเรา
+        <a href="index.html">
+          หน้าหลัก
         </a>
 
-        <a
-          class="customer-footer-action"
-          href="order-status.html"
-        >
-          🔎 ติดตามคำสั่งซื้อ
+        <a href="about.html">
+          เกี่ยวกับเรา
         </a>
 
-      </div>
-
-
-      <div class="customer-footer-social">
-
-        <a
-          class="customer-social"
-          href="https://www.facebook.com/ChatphetchGroup"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          f
+        <a href="services.html">
+          บริการ
         </a>
 
-        <a
-          class="customer-social"
-          href="#"
-        >
-          ▶
+        <a href="products.html">
+          สินค้า
         </a>
 
-        <a
-          class="customer-social"
-          href="#"
-        >
-          LINE
+        <a href="projects.html">
+          ผลงาน
+        </a>
+
+        <a href="contact.html">
+          ติดต่อเรา
         </a>
 
       </div>
 
     </div>
 
+    <div>
+
+      <div class="cp-footer-title">
+        CONTACT
+      </div>
+
+      <div class="cp-footer-list">
+
+        <div>
+          บริษัท ฉัตรเพชร กรุ๊ป จำกัด
+        </div>
+
+        <div>
+          โทร. 074-000-000
+        </div>
+
+        <div>
+          Email: info@chatpetchgroup.com
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="cp-footer-bottom">
+    © CHATPHETCH GROUP. All rights reserved.
   </div>
 
 </footer>
 
+<script>
+
+const SERVICES = {
+
+  industrial: {
+    code:"SERVICE 01",
+    kicker:"INDUSTRIAL FLOOR",
+    title:"งานพื้นอุตสาหกรรม",
+    english:"INDUSTRIAL FLOORING",
+    subtitle:"ระบบพื้นสำหรับพื้นที่ใช้งานหนัก",
+    description:"บริการออกแบบและติดตั้งระบบพื้นอุตสาหกรรมสำหรับพื้นที่ที่ต้องรองรับการใช้งานหนัก การสัญจร และสภาพแวดล้อมที่ต้องการความทนทาน",
+    image:"assets/services/industrial.jpg",
+
+    tags:[
+      "INDUSTRIAL",
+      "HEAVY DUTY",
+      "DURABLE"
+    ],
+
+    applicationTitle:"พื้นที่ใช้งาน",
+    application:"โรงงาน โกดัง คลังสินค้า พื้นที่ผลิต พื้นที่จอดรถ และพื้นที่ที่มีการใช้งานต่อเนื่อง",
+
+    systemTitle:"ระบบพื้น",
+    system:"เลือกระบบพื้นให้เหมาะกับลักษณะการใช้งาน น้ำหนัก การเสียดสี และสภาพแวดล้อมของพื้นที่",
+
+    serviceTitle:"บริการ",
+    service:"สำรวจพื้นที่ ให้คำแนะนำ ประเมินระบบ และติดตั้งโดยทีมงานที่มีประสบการณ์"
+  },
+
+  waterproof: {
+    code:"SERVICE 02",
+    kicker:"WATERPROOFING",
+    title:"งานกันซึม",
+    english:"WATERPROOFING SYSTEM",
+    subtitle:"ระบบป้องกันน้ำสำหรับอาคารและโครงสร้าง",
+    description:"บริการงานกันซึมสำหรับพื้น ผนัง ดาดฟ้า ห้องน้ำ และพื้นที่ที่ต้องการป้องกันปัญหาน้ำซึม",
+    image:"assets/services/waterproof.jpg",
+
+    tags:[
+      "WATERPROOF",
+      "PROTECTION",
+      "BUILDING"
+    ],
+
+    applicationTitle:"พื้นที่ใช้งาน",
+    application:"ดาดฟ้า ห้องน้ำ ระเบียง หลังคา พื้นคอนกรีต และพื้นที่เสี่ยงต่อการรั่วซึม",
+
+    systemTitle:"ระบบกันซึม",
+    system:"เลือกวัสดุและระบบกันซึมตามลักษณะพื้นผิว จุดรับน้ำ และสภาพพื้นที่จริง",
+
+    serviceTitle:"บริการ",
+    service:"สำรวจหน้างาน วิเคราะห์ปัญหา และแนะนำแนวทางแก้ไขให้เหมาะสมกับพื้นที่"
+  },
+
+  concrete: {
+    code:"SERVICE 03",
+    kicker:"DECORATIVE CONCRETE",
+    title:"งานคอนกรีต",
+    english:"DECORATIVE CONCRETE",
+    subtitle:"งานคอนกรีตเพื่อความสวยงามและการใช้งาน",
+    description:"บริการงานคอนกรีตพิมพ์ลายและงานคอนกรีตตกแต่งสำหรับพื้นที่ภายนอกและพื้นที่ใช้งานที่ต้องการความสวยงาม",
+    image:"assets/services/concrete.jpg",
+
+    tags:[
+      "CONCRETE",
+      "STAMPED",
+      "DECORATIVE"
+    ],
+
+    applicationTitle:"พื้นที่ใช้งาน",
+    application:"ทางเดิน ลานจอดรถ ลานกิจกรรม พื้นที่บ้าน อาคาร และพื้นที่เชิงพาณิชย์",
+
+    systemTitle:"ระบบคอนกรีต",
+    system:"ออกแบบลวดลาย สี และระบบพื้นให้เหมาะกับพื้นที่และรูปแบบสถาปัตยกรรม",
+
+    serviceTitle:"บริการ",
+    service:"ให้คำปรึกษา เลือกลวดลาย ประเมินพื้นที่ และติดตั้งโดยทีมงาน"
+  },
+
+  sports: {
+    code:"SERVICE 04",
+    kicker:"SPORT FLOOR",
+    title:"พื้นสนามกีฬา",
+    english:"SPORT FLOORING",
+    subtitle:"ระบบพื้นสำหรับพื้นที่กีฬา",
+    description:"บริการระบบพื้นสนามกีฬาและพื้นที่กิจกรรมที่ต้องการความเหมาะสมด้านการใช้งาน ความปลอดภัย และการดูแลรักษา",
+    image:"assets/services/sports.jpg",
+
+    tags:[
+      "SPORT",
+      "OUTDOOR",
+      "SAFETY"
+    ],
+
+    applicationTitle:"พื้นที่ใช้งาน",
+    application:"สนามกีฬา สนามอเนกประสงค์ ลานกิจกรรม และพื้นที่ออกกำลังกาย",
+
+    systemTitle:"ระบบพื้น",
+    system:"เลือกระบบพื้นตามประเภทกีฬา ลักษณะพื้นที่ และระดับการใช้งาน",
+
+    serviceTitle:"บริการ",
+    service:"สำรวจพื้นที่ ออกแบบระบบ และดำเนินการติดตั้งตามลักษณะงาน"
+  },
+
+  decorative: {
+    code:"SERVICE 05",
+    kicker:"DECORATIVE FLOOR",
+    title:"พื้นตกแต่ง",
+    english:"DECORATIVE FLOORING",
+    subtitle:"ระบบพื้นเพื่อความสวยงาม",
+    description:"บริการงานพื้นตกแต่งสำหรับบ้าน อาคาร ร้านค้า และพื้นที่เชิงพาณิชย์ที่ต้องการเอกลักษณ์เฉพาะตัว",
+    image:"assets/services/decorative.jpg",
+
+    tags:[
+      "DECORATIVE",
+      "DESIGN",
+      "FINISH"
+    ],
+
+    applicationTitle:"พื้นที่ใช้งาน",
+    application:"บ้าน ร้านค้า โชว์รูม สำนักงาน คาเฟ่ และพื้นที่เชิงพาณิชย์",
+
+    systemTitle:"ระบบตกแต่ง",
+    system:"เลือกสี ลวดลาย และพื้นผิวให้เข้ากับแนวทางการออกแบบของพื้นที่",
+
+    serviceTitle:"บริการ",
+    service:"ให้คำปรึกษาด้านสี วัสดุ ลวดลาย และแนวทางการติดตั้ง"
+  },
+
+  traffic: {
+    code:"SERVICE 06",
+    kicker:"TRAFFIC MARKING",
+    title:"งานตีเส้นและสัญลักษณ์",
+    english:"TRAFFIC MARKING",
+    subtitle:"ระบบตีเส้นเพื่อการจัดระเบียบพื้นที่",
+    description:"บริการตีเส้นจราจร เส้นแบ่งพื้นที่ และสัญลักษณ์สำหรับโรงงาน อาคาร ลานจอดรถ และพื้นที่ใช้งานต่าง ๆ",
+    image:"assets/services/traffic.jpg",
+
+    tags:[
+      "TRAFFIC",
+      "MARKING",
+      "SAFETY"
+    ],
+
+    applicationTitle:"พื้นที่ใช้งาน",
+    application:"โรงงาน โกดัง ลานจอดรถ อาคารสำนักงาน และพื้นที่สัญจร",
+
+    systemTitle:"ระบบตีเส้น",
+    system:"ออกแบบตำแหน่งเส้น สี และสัญลักษณ์ให้เหมาะกับการใช้งานของพื้นที่",
+
+    serviceTitle:"บริการ",
+    service:"สำรวจพื้นที่ วางตำแหน่ง และดำเนินการตีเส้นตามรูปแบบที่กำหนด"
+  }
+
+};
+
+const params = new URLSearchParams(window.location.search);
+const serviceKey = params.get("service") || "industrial";
+const service = SERVICES[serviceKey] || SERVICES.industrial;
+
+function setText(id,value){
+  const el=document.getElementById(id);
+  if(el) el.textContent=value || "";
+}
+
+function setImage(id,src,alt){
+  const el=document.getElementById(id);
+  if(!el) return;
+
+  if(src){
+    el.src=src;
+    el.alt=alt || "";
+    el.style.display="block";
+  }else{
+    el.style.display="none";
+  }
+}
+
+setText("heroKicker",service.kicker);
+setText("heroEnglish",service.english);
+setText("heroTitle",service.title);
+setText("heroDescription",service.description);
+
+setText("detailCode",service.code);
+setText("detailTitle",service.title);
+setText("detailSubtitle",service.subtitle);
+setText("detailDescription",service.description);
+
+setText("infoApplicationTitle",service.applicationTitle);
+setText("infoApplication",service.application);
+
+setText("infoSystemTitle",service.systemTitle);
+setText("infoSystem",service.system);
+
+setText("infoServiceTitle",service.serviceTitle);
+setText("infoService",service.service);
+
+setImage(
+  "detailImage",
+  service.image,
+  service.title
+);
+
+const tags=document.getElementById("detailTags");
+
+if(tags){
+  tags.innerHTML="";
+
+  (service.tags || []).forEach(function(tag){
+
+    const el=document.createElement("span");
+
+    el.className="tag";
+    el.textContent=tag;
+
+    tags.appendChild(el);
+
+  });
+}
+
+const projectGrid=document.getElementById("projectGrid");
+
+if(projectGrid){
+
+  const projectImages=[
+    "assets/projects/01.jpg",
+    "assets/projects/02.jpg",
+    "assets/projects/03.jpg",
+    "assets/projects/04.jpg",
+    "assets/projects/05.jpg",
+    "assets/projects/06.jpg",
+    "assets/projects/07.jpg",
+    "assets/projects/08.jpg"
+  ];
+
+  projectImages.forEach(function(src,index){
+
+    const card=document.createElement("div");
+
+    card.className="project-card";
+
+    card.innerHTML=`
+      <img
+        src="${src}"
+        alt="${service.title} ผลงาน ${index+1}"
+        loading="lazy"
+      >
+      <span>
+        PROJECT ${String(index+1).padStart(2,"0")}
+      </span>
+    `;
+
+    const img=card.querySelector("img");
+
+    img.addEventListener("click",function(){
+
+      const lightbox=document.getElementById("lightbox");
+      const lightboxImage=document.getElementById("lightboxImage");
+
+      if(lightbox && lightboxImage){
+
+        lightboxImage.src=src;
+        lightboxImage.alt=img.alt;
+
+        lightbox.classList.add("open");
+
+      }
+
+    });
+
+    img.addEventListener("error",function(){
+
+      card.style.display="none";
+
+    });
+
+    projectGrid.appendChild(card);
+
+  });
+
+}
+
+const lightbox=document.getElementById("lightbox");
+const lightboxClose=document.getElementById("lightboxClose");
+
+if(lightbox){
+
+  lightbox.addEventListener("click",function(e){
+
+    if(e.target===lightbox){
+
+      lightbox.classList.remove("open");
+
+    }
+
+  });
+
+}
+
+if(lightboxClose){
+
+  lightboxClose.addEventListener("click",function(){
+
+    lightbox.classList.remove("open");
+
+  });
+
+}
+
+document.addEventListener("keydown",function(e){
+
+  if(e.key==="Escape" && lightbox){
+
+    lightbox.classList.remove("open");
+
+  }
+
+});
+
+</script>
+
+<script src="assets/customer-master-nav.js"></script>
 
 </body>
 </html>
