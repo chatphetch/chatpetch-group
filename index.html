@@ -52,7 +52,6 @@
 <link
   rel="preconnect"
   href="https://fonts.gstatic.com"
-  crossorigin
 >
 
 <link
@@ -1229,12 +1228,16 @@ textarea{
 
   .hero{
 
-    min-height:590px;
+    /*
+      ปรับให้ Hero บนมือถือสูงตามเนื้อหาจริง
+      ไม่บังคับความสูง 590px
+    */
+    min-height:auto;
 
     padding:
-      88px
+      68px
       0
-      35px;
+      32px;
 
     align-items:flex-start;
 
@@ -1245,12 +1248,10 @@ textarea{
     max-width:none;
 
     padding:
-      24px
+      16px
       8px
-      25px
+      18px
       0;
-
-    transform:none !important;
 
   }
 
@@ -1263,6 +1264,8 @@ textarea{
         64px
       );
 
+    line-height:.98;
+
   }
 
   .hero h1 span{
@@ -1270,6 +1273,15 @@ textarea{
     font-size:11px;
 
     letter-spacing:2px;
+
+  }
+
+  .hero-rule{
+
+    margin:
+      18px
+      0
+      15px;
 
   }
 
@@ -1286,6 +1298,8 @@ textarea{
     flex-direction:column;
 
     gap:10px;
+
+    margin-top:21px;
 
   }
 
@@ -1497,18 +1511,18 @@ textarea{
     min-height:auto;
 
     padding:
-      62px
+      55px
       0
-      35px;
+      28px;
 
   }
 
   .hero-copy{
 
     padding:
-      18px
+      12px
       4px
-      20px
+      16px
       0;
 
   }
@@ -1524,9 +1538,32 @@ textarea{
 
   }
 
+  .hero h1 span{
+
+    margin-top:11px;
+
+  }
+
+  .hero-rule{
+
+    margin:
+      17px
+      0
+      14px;
+
+  }
+
   .hero p{
 
     font-size:14px;
+
+    line-height:1.9;
+
+  }
+
+  .actions{
+
+    margin-top:20px;
 
   }
 
@@ -1652,7 +1689,7 @@ textarea{
 
   .hero{
 
-    padding-top:52px;
+    padding-top:48px;
 
   }
 
@@ -1700,7 +1737,9 @@ textarea{
 @media(prefers-reduced-motion:reduce){
 
   html{
+
     scroll-behavior:auto;
+
   }
 
   *,
@@ -1748,6 +1787,7 @@ textarea{
           <h1>
 
             วัสดุงานพื้น
+
             <span>
               และงานก่อสร้าง
             </span>
